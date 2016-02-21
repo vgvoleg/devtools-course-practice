@@ -11,12 +11,14 @@
 
 ## Ресурсы
 
- - [Gitter chat][gitter]
- - [Google-группа][mailing-list]
+ - Коммуникация
+   - [Gitter chat][gitter]
+   - [Google-группа][mailing-list]
  - [Таблица успеваемости][hall-of-fame]
+ - Теория
+   - [Слайды к лекциям][theory]
+   - [Контрольные вопросы][control-questions]
  - [Лабораторные работы][labs]
- - [Контрольные вопросы][control-questions]
- - [Теоретическая часть][theory]
 
 <!-- LINKS -->
 
