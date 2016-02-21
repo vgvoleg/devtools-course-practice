@@ -16,7 +16,8 @@
    - [Google-группа][mailing-list]
  - [Таблица успеваемости][hall-of-fame]
  - Теория
-   - [Слайды к лекциям][theory]
+   - [Слайды в HTML][html]
+   - [Исходники слайдов][theory]
    - [Контрольные вопросы][control-questions]
  - [Лабораторные работы][labs]
 
@@ -27,5 +28,6 @@
 [mailing-list]:      https://groups.google.com/forum/?hl=ru#!forum/devtools-course
 [hall-of-fame]:      https://docs.google.com/spreadsheet/ccc?key=0AsBBkrQIoSbjdEdTUFRsaUw3LV92eVhwXzYtb0tZNHc#gid=5
 [labs]:              https://github.com/UNN-VMK-Software/devtools-course-theory/tree/master/wiki
-[control-questions]: https://github.com/UNN-VMK-Software/devtools-course-theory/blob/master/wiki/control-questions.md
+[control-questions]: https://github.com/UNN-VMK-Software/devtools-course-theory/blob/master/slides/control-questions.md
 [theory]:            https://github.com/UNN-VMK-Software/devtools-course-theory
+[html]:              http://unn-vmk-software.github.io/devtools-course-theory/
