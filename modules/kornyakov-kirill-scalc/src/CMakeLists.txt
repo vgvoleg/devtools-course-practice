@@ -3,6 +3,8 @@ set(target ${LIBRARY})
 file(GLOB srcs "*.cxx")
 
 add_library(${target} STATIC ${srcs})
+set_target_properties(${target}
+    PROPERTIES OUTPUT_NAME ${MODULE})
 
 if (UNIX)
   target_link_libraries(${target} ${CMAKE_THREAD_LIBS_INIT})

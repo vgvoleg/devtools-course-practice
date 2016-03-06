@@ -1,8 +1,9 @@
 # Declare variables for binaries' names
-set(MODULE      "kornyakov-kirill-scalc")
+get_filename_component(DIR_NAME ${CMAKE_CURRENT_LIST_DIR} NAME)
+set(MODULE      "${DIR_NAME}")
 set(LIBRARY     "lib_${MODULE}")
 set(TESTS       "test_${MODULE}")
-set(APPLICATION "${MODULE}")
+set(APPLICATION "app_${MODULE}")
 
 # Include directory with public headers
 include_directories("./")

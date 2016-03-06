@@ -1,6 +1,10 @@
 set -e
 
-cmake_build_dir="../build_cmake"
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cmake_build_dir="${DIR}/../devtools_build"
+cpplint="${DIR}/3rdparty/cpplint.py"
+
+echo $DIR
 
 # This function executes command and stops
 # execution if return status wasn't 0
@@ -36,7 +40,7 @@ function CheckGoogleStyleInDir {
     sources=`find . -name "*.hpp" -or -name "*.h" -or -name "*.cpp" -or -name "*.cxx"`
     for file in $sources;
     do
-        python ../cpplint.py $file
+        python $cpplint $file
         status=$?
         if [ $status -ne 0 ]; then
             retCode=$status
@@ -88,7 +92,7 @@ function BuildCMakeProject {
     dir=$cmake_build_dir
     mkdir -p $cmake_build_dir
     cd $cmake_build_dir
-    try cmake  -DWITH_CODE_COVERAGE=ON -DCMAKE_BUILD_TYPE=Debug ../code
+    try cmake  -DWITH_CODE_COVERAGE=ON -DCMAKE_BUILD_TYPE=Debug $DIR
     try make
 }
 
@@ -100,7 +104,7 @@ function CTest {
 function GoogleTest {
     Header "Run all GoogleTest tests"
 
-    for test in $(ls -1 ./bin/*-test)
+    for test in $(ls -1 ./bin/test_*)
     do
         Header "Testing $test"
         try $test
