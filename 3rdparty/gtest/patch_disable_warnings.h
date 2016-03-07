@@ -11,4 +11,5 @@
     #pragma clang diagnostic ignored "-Wused-but-marked-unused"
     #pragma clang diagnostic ignored "-Wshift-sign-overflow"
     #pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
+    #pragma clang diagnostic ignored "-Wunused-const-variable"
 #endif

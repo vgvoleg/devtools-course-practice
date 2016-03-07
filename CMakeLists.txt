@@ -1,14 +1,21 @@
 cmake_minimum_required(VERSION 2.8.6)
 project(DevTools)
 
-# Enable C++11
-set(CMAKE_CXX_FLAGS "-std=c++11")
-# if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-#     set(CMAKE_CXX_FLAGS "-std=c++11")# -stdlib=libc++")
-# elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
-# endif()
+#
+# Set configuration
+#
+set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configurations" FORCE)
+if(DEFINED CMAKE_BUILD_TYPE)
+    set_property( CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS ${CMAKE_CONFIGURATION_TYPES} )
+endif()
 
+if(CMAKE_GENERATOR MATCHES "Makefiles|Ninja" AND NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE "Release" CACHE STRING "" FORCE)
+endif()
+
+#
 # Setup output directories
+#
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
@@ -22,7 +29,17 @@ foreach(cfg ${CMAKE_CONFIGURATION_TYPES})
     set(CMAKE_PDB_OUTPUT_DIRECTORY_${cfg} ${CMAKE_BINARY_DIR}/lib)
 endforeach()
 
+#
+# Enable C++11
+#
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" OR
+    "${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+    set(CMAKE_CXX_FLAGS "-std=c++11 -Wall")
+endif()
+
+#
 # Add Google Test
+#
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/3rdparty")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/gtest")
 set(LIBRARY_DEPS "gtest")
@@ -38,8 +55,9 @@ message(STATUS "")
 message(STATUS "General configuration for ${PROJECT_NAME}")
 message(STATUS "==================================")
 message(STATUS "")
-message(STATUS "   Configuration:        ${CMAKE_BUILD_TYPE}")
-message(STATUS "   Enable code coverage: ${WITH_CODE_COVERAGE}")
+message(STATUS "   Compiler:          ${CMAKE_CXX_COMPILER_ID}")
+message(STATUS "   Configuration:     ${CMAKE_BUILD_TYPE}")
+message(STATUS "   Code coverage:     ${WITH_CODE_COVERAGE}")
 message(STATUS "   Detected modules:")
 foreach(subdir ${SUBDIRS})
     get_filename_component(DIR_NAME ${subdir} NAME)
@@ -47,5 +65,7 @@ foreach(subdir ${SUBDIRS})
 endforeach()
 message(STATUS "")
 
-# Enable testing
+#
+# Enable testing with CTest
+#
 enable_testing()

@@ -48,7 +48,7 @@
 // registration from Barthelemy Dagenais' (barthelemy@prologique.com)
 // easyUnit framework.
 
-#include "disable_warnings.h"
+#include "patch_disable_warnings.h"
 #define _VARIADIC_MAX 10
 
 #ifndef GTEST_INCLUDE_GTEST_GTEST_H_
