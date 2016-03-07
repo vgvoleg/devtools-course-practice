@@ -2,8 +2,11 @@ cmake_minimum_required(VERSION 2.8.6)
 project(DevTools)
 
 # Enable C++11
-# FIXME(Kornyakov): use other flags for GCC
-set(CMAKE_CXX_FLAGS "-std=c++11 -stdlib=libc++")
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+    set(CMAKE_CXX_FLAGS "-std=c++11 -stdlib=libc++")
+elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+    set(CMAKE_CXX_FLAGS "-std=c++11")
+endif()
 
 # Setup output directories
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
