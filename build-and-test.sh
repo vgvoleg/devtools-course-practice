@@ -1,13 +1,12 @@
 set -e
 
+# Variables
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cmake_build_dir="${DIR}/../devtools_build"
 cpplint="${DIR}/3rdparty/cpplint.py"
 
-echo $DIR
-
 # This function executes command and stops
-# execution if return status wasn't 0
+# execution if return status isn't 0
 function try {
     "$@"
     status=$?
@@ -24,6 +23,10 @@ function Header {
     echo "$@"
     echo "*****************************************************"
     echo ""
+}
+
+function Clean {
+    rm -rf $cmake_build_dir
 }
 
 function CheckGoogleStyleInDir {
@@ -67,32 +70,13 @@ function CheckGoogleStyle {
     done
 }
 
-function MakeTest {
-    # Go through all directories and run 'make test'
-    for dir in */;
-    do
-        cd $dir
-
-        Header "Build and Test $dir"
-        if [ -f Makefile ];
-        then
-           echo "Makefile exists"
-           try make test
-        else
-           echo "No Makefile"
-        fi
-
-        cd ..
-    done
-}
-
 function BuildCMakeProject {
     Header "Build common CMake project"
 
     dir=$cmake_build_dir
     mkdir -p $cmake_build_dir
     cd $cmake_build_dir
-    try cmake  -DWITH_CODE_COVERAGE=ON -DCMAKE_BUILD_TYPE=Debug $DIR
+    try cmake -DWITH_CODE_COVERAGE=ON -DCMAKE_BUILD_TYPE=Debug $DIR
     try make
 }
 
@@ -111,14 +95,9 @@ function GoogleTest {
     done
 }
 
-function Clean {
-    rm -rf $cmake_build_dir
-}
-
 function Main {
     # Clean
     CheckGoogleStyle
-    # MakeTest
     BuildCMakeProject
     CTest
     GoogleTest
