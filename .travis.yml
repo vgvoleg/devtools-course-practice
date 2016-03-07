@@ -1,7 +1,7 @@
-language: cpp
 sudo: false
 notifications:
   email: false
+language: cpp
 compiler:
   - gcc
   - clang
@@ -11,15 +11,10 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-4.8
-# install:
+install:
   # - sudo pip install cpp-coveralls
-before_script:
-  # - if [ "$CXX" = "g++" ]; then sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y; fi
-  # - if [ "$CXX" = "g++" ]; then sudo apt-get update -qq; fi
-  # - if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.8; fi
-  # - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
-  # Use newer gcc and g++
   - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
+before_script:
 script:
   - ./build-and-test.sh
 # after_success:
