@@ -1,0 +1,21 @@
+sudo: false
+notifications:
+  email: false
+language: cpp
+compiler:
+  - gcc
+  - clang
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
+install:
+  # - sudo pip install cpp-coveralls
+  - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
+before_script:
+script:
+  - ./build-and-test.sh
+# after_success:
+  # - coveralls --exclude 3rdparty -E ".*\.cpp" --extension cxx --root ../ --build-root ../devtools_build
