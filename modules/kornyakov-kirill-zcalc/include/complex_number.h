@@ -16,12 +16,16 @@ class ComplexNumber {
     void setRe(const double real);
     void setIm(const double imaginary);
 
-    ComplexNumber operator + (const ComplexNumber& z);
-    ComplexNumber operator - (const ComplexNumber& z);
-    ComplexNumber operator * (const ComplexNumber& z);
-    ComplexNumber operator / (const ComplexNumber& z);
+    ComplexNumber operator + (const ComplexNumber& z) const;
+    ComplexNumber operator - (const ComplexNumber& z) const;
+    ComplexNumber operator * (const ComplexNumber& z) const;
+    ComplexNumber operator / (const ComplexNumber& z) const;
+
+    bool operator == (const ComplexNumber& z) const;
+    bool operator != (const ComplexNumber& z) const;
 
  private:
+    bool equalsZero(const ComplexNumber& z) const;
     double real_;
     double imaginary_;
 };

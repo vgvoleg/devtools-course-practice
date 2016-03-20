@@ -6,12 +6,12 @@
 
 #include "include/complex_number.h"
 
-class ComplexTest : public ::testing::Test {
+class ComplexNumberTest : public ::testing::Test {
  protected:
     double epsilon = 0.001;
 };
 
-TEST_F(ComplexTest, Can_Create_With_Real_And_Imaginary) {
+TEST_F(ComplexNumberTest, Can_Create_With_Real_And_Imaginary) {
     // Arrange
     double re = 26.0;
     double im = 20.0;
@@ -20,25 +20,22 @@ TEST_F(ComplexTest, Can_Create_With_Real_And_Imaginary) {
     ComplexNumber z(re, im);
 
     // Assert
-    EXPECT_NEAR(re, z.getRe(), ComplexTest::epsilon);
-    EXPECT_NEAR(im, z.getIm(), ComplexTest::epsilon);
+    EXPECT_NEAR(re, z.getRe(), ComplexNumberTest::epsilon);
+    EXPECT_NEAR(im, z.getIm(), ComplexNumberTest::epsilon);
 }
 
-TEST_F(ComplexTest, Can_Create_Via_Copying) {
+TEST_F(ComplexNumberTest, Can_Create_Via_Copying) {
     // Arrange
-    double re = 26.0;
-    double im = 20.0;
-    ComplexNumber z(re, im);
+    ComplexNumber z(26.0, 20.0);
 
     // Act
     ComplexNumber expected_z = z;
 
     // Assert
-    EXPECT_NEAR(re, expected_z.getRe(), ComplexTest::epsilon);
-    EXPECT_NEAR(im, expected_z.getIm(), ComplexTest::epsilon);
+    EXPECT_EQ(expected_z, z);
 }
 
-TEST_F(ComplexTest, Can_Set_Real) {
+TEST_F(ComplexNumberTest, Can_Set_Real) {
     // Arrange
     ComplexNumber z;
     double re = 20.0;
@@ -47,10 +44,10 @@ TEST_F(ComplexTest, Can_Set_Real) {
     z.setRe(re);
 
     // Assert
-    EXPECT_NEAR(re, z.getRe(), ComplexTest::epsilon);
+    EXPECT_NEAR(re, z.getRe(), ComplexNumberTest::epsilon);
 }
 
-TEST_F(ComplexTest, Can_Set_Imaginary) {
+TEST_F(ComplexNumberTest, Can_Set_Imaginary) {
     // Arrange
     ComplexNumber z;
     double im = 26.0;
@@ -59,10 +56,10 @@ TEST_F(ComplexTest, Can_Set_Imaginary) {
     z.setIm(im);
 
     // Assert
-    EXPECT_NEAR(im, z.getIm(), ComplexTest::epsilon);
+    EXPECT_NEAR(im, z.getIm(), ComplexNumberTest::epsilon);
 }
 
-TEST_F(ComplexTest, Can_Add_Complex) {
+TEST_F(ComplexNumberTest, Can_Add_Complex) {
     // Arrange
     ComplexNumber z1(26.0, 14.0);
     ComplexNumber z2(1.0, 7.0);
@@ -71,11 +68,11 @@ TEST_F(ComplexTest, Can_Add_Complex) {
     ComplexNumber z = z1 + z2;
 
     // Assert
-    EXPECT_NEAR(27.0, z.getRe(), ComplexTest::epsilon);
-    EXPECT_NEAR(21.0, z.getIm(), ComplexTest::epsilon);
+    ComplexNumber expected_z(27.0, 21.0);
+    EXPECT_EQ(expected_z, z);
 }
 
-TEST_F(ComplexTest, Can_Difference_Complex) {
+TEST_F(ComplexNumberTest, Can_Difference_Complex) {
     // Arrange
     ComplexNumber z1(26.0, 14.0);
     ComplexNumber z2(1.0, 1.0);
@@ -84,11 +81,11 @@ TEST_F(ComplexTest, Can_Difference_Complex) {
     ComplexNumber z = z2 - z1;
 
     // Assert
-    EXPECT_NEAR(-25.0, z.getRe(), ComplexTest::epsilon);
-    EXPECT_NEAR(-13.0, z.getIm(), ComplexTest::epsilon);
+    ComplexNumber expected_z(-25.0, -13.0);
+    EXPECT_EQ(expected_z, z);
 }
 
-TEST_F(ComplexTest, Can_Multiplication_Complex) {
+TEST_F(ComplexNumberTest, Can_Multiplication_Complex) {
     // Arrange
     ComplexNumber z1(5.0, 3.0);
     ComplexNumber z2(4.0, 6.0);
@@ -97,11 +94,11 @@ TEST_F(ComplexTest, Can_Multiplication_Complex) {
     ComplexNumber z = z1 * z2;
 
     // Assert
-    EXPECT_NEAR(2.0,  z.getRe(), ComplexTest::epsilon);
-    EXPECT_NEAR(42.0, z.getIm(), ComplexTest::epsilon);
+    ComplexNumber expected_z(2.0, 42.0);
+    EXPECT_EQ(expected_z, z);
 }
 
-TEST_F(ComplexTest, Can_Division_Complex) {
+TEST_F(ComplexNumberTest, Can_Division_Complex) {
     // Arrange
     ComplexNumber z1(15.0, 20.0);
     ComplexNumber z2(27.0, 30.0);
@@ -110,15 +107,41 @@ TEST_F(ComplexTest, Can_Division_Complex) {
     ComplexNumber z = z2 / z1;
 
     // Assert
-    EXPECT_NEAR(1.608,  z.getRe(), ComplexTest::epsilon);
-    EXPECT_NEAR(-0.144, z.getIm(), ComplexTest::epsilon);
+    ComplexNumber expected_z(1.608, -0.144);
+    EXPECT_EQ(expected_z, z);
 }
 
-TEST_F(ComplexTest, Do_Throw_When_Division_By_Zero) {
+TEST_F(ComplexNumberTest, Do_Throw_When_Division_By_Zero) {
     // Arrange
     ComplexNumber z1(0.0, 0.0);
     ComplexNumber z2(26.0, 14.0);
 
     // Act & Assert
     EXPECT_THROW(z2 / z1, std::string);
+}
+
+TEST_F(ComplexNumberTest, Number_Is_Equal_To_Itself) {
+    // Arrange
+    ComplexNumber z(26.0, 14.0);
+
+    // Act & Assert
+    EXPECT_TRUE(z == z);
+}
+
+TEST_F(ComplexNumberTest, Equal_Numbers_Are_Equal) {
+    // Arrange
+    ComplexNumber z1(26.0, 14.0);
+    ComplexNumber z2(26.0, 14.0);
+
+    // Act & Assert
+    EXPECT_EQ(z1, z2);
+}
+
+TEST_F(ComplexNumberTest, Different_Numbers_Not_Equal) {
+    // Arrange
+    ComplexNumber z1(26.0, 14.0);
+    ComplexNumber z2(26.1, 14.1);
+
+    // Act & Assert
+    EXPECT_TRUE(z1 != z2);
 }

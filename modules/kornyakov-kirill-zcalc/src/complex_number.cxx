@@ -6,6 +6,8 @@
 #include <string>
 #include <limits>
 
+const double eps = std::numeric_limits<double>::epsilon();
+
 ComplexNumber::ComplexNumber() : real_(0), imaginary_(0) {}
 
 ComplexNumber::ComplexNumber(const double real,
@@ -38,7 +40,7 @@ void ComplexNumber::setIm(const double imaginary) {
     imaginary_ = imaginary;
 }
 
-ComplexNumber ComplexNumber::operator+(const ComplexNumber& z) {
+ComplexNumber ComplexNumber::operator+(const ComplexNumber& z) const {
     ComplexNumber sum;
 
     sum.setRe(this->getRe() + z.getRe());
@@ -47,7 +49,7 @@ ComplexNumber ComplexNumber::operator+(const ComplexNumber& z) {
     return sum;
 }
 
-ComplexNumber ComplexNumber::operator-(const ComplexNumber& z) {
+ComplexNumber ComplexNumber::operator-(const ComplexNumber& z) const {
     ComplexNumber difference;
 
     difference.setRe(this->getRe() - z.getRe());
@@ -56,7 +58,7 @@ ComplexNumber ComplexNumber::operator-(const ComplexNumber& z) {
     return difference;
 }
 
-ComplexNumber ComplexNumber::operator*(const ComplexNumber& z) {
+ComplexNumber ComplexNumber::operator*(const ComplexNumber& z) const {
     ComplexNumber multiplication;
 
     multiplication.setRe(this->getRe() * z.getRe() -
@@ -67,14 +69,12 @@ ComplexNumber ComplexNumber::operator*(const ComplexNumber& z) {
     return multiplication;
 }
 
-bool equalsZero(const ComplexNumber& z) {
-    const double eps = std::numeric_limits<double>::epsilon();
-
+bool ComplexNumber::equalsZero(const ComplexNumber& z) const {
     return z.getRe() < eps && z.getRe() > -eps &&
            z.getIm() < eps && z.getIm() > -eps;
 }
 
-ComplexNumber ComplexNumber::operator/(const ComplexNumber& z) {
+ComplexNumber ComplexNumber::operator/(const ComplexNumber& z) const {
     ComplexNumber division;
 
     if (equalsZero(z)) {
@@ -90,4 +90,12 @@ ComplexNumber ComplexNumber::operator/(const ComplexNumber& z) {
     }
 
     return division;
+}
+
+bool ComplexNumber::operator == (const ComplexNumber& z) const {
+    return equalsZero(*this - z);
+}
+
+bool ComplexNumber::operator != (const ComplexNumber& z) const {
+    return !(*this == z);
 }
