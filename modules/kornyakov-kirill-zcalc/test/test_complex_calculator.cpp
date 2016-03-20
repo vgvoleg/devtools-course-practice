@@ -21,6 +21,7 @@ TEST_F(ComplexTest, Can_Create_With_Real_And_Imaginary) {
     EXPECT_NEAR(testReal, test.getReal(), ComplexTest::epsilon);
     EXPECT_NEAR(testImaginary, test.getImaginary(), ComplexTest::epsilon);
 }
+
 TEST_F(ComplexTest, Can_Create_Via_Copying) {
     // Arrange
     ValueType testReal = static_cast<ValueType>(26);
@@ -34,6 +35,7 @@ TEST_F(ComplexTest, Can_Create_Via_Copying) {
     EXPECT_NEAR(testReal, tested.getReal(), ComplexTest::epsilon);
     EXPECT_NEAR(testImaginary, tested.getImaginary(), ComplexTest::epsilon);
 }
+
 TEST_F(ComplexTest, Can_Set_Real) {
     // Arrange
     Complex test;
@@ -57,6 +59,7 @@ TEST_F(ComplexTest, Can_Set_Imaginary) {
     // Assert
     EXPECT_NEAR(testImaginary, test.getImaginary(), ComplexTest::epsilon);
 }
+
 TEST_F(ComplexTest, Can_Add_Complex) {
     // Arrange
     ValueType testReal = static_cast<ValueType>(26);
@@ -119,6 +122,7 @@ TEST_F(ComplexTest, Can_Multiplication_Complex) {
     EXPECT_NEAR(static_cast<ValueType>(42),
                 tested.getImaginary(), ComplexTest::epsilon);
 }
+
 TEST_F(ComplexTest, Can_Division_Complex) {
     // Arrange
     ValueType testReal = static_cast<ValueType>(15);
