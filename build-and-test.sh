@@ -4,6 +4,7 @@ set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cmake_build_dir="${DIR}/../devtools_build"
 cpplint="${DIR}/3rdparty/cpplint.py"
+github_api_repo="https://api.github.com/repos/UNN-VMK-Software/devtools-course-practice"
 
 # This function executes command and stops
 # execution if return status isn't 0
@@ -116,7 +117,7 @@ function CheckPullRequestNameFormat {
     # TRAVIS_PULL_REQUEST=4
 
     if [ "$TRAVIS" == "true" ]; then
-        pr_title=`curl https://api.github.com/repos/UNN-VMK-Software/devtools-course-practice/pulls/$TRAVIS_PULL_REQUEST | grep title | cut -d \" -f4`
+        pr_title=`curl $github_api_repo/pulls/$TRAVIS_PULL_REQUEST | grep title | cut -d \" -f4`
         echo "PR#$TRAVIS_PULL_REQUEST title: $pr_title"
     fi
 
