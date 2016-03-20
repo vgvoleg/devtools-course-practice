@@ -95,8 +95,16 @@ function GoogleTest {
     done
 }
 
+function CheckPullRequestNameFormat {
+    if [$TRAVIS = "true"]; then
+        echo "Nice job!"
+        echo $TRAVIS_PULL_REQUEST
+    fi
+}
+
 function Main {
     # Clean
+    CheckPullRequestNameFormat
     CheckGoogleStyle
     BuildCMakeProject
     CTest
