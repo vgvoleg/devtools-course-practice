@@ -95,11 +95,32 @@ function GoogleTest {
     done
 }
 
-function CheckPullRequestNameFormat {
-    if [$TRAVIS == "true"]; then
-        echo "Nice job!"
-        echo $TRAVIS_PULL_REQUEST
+function valivatePullRequestTitle {
+    retcode=0
+
+    pattern=".* - Лабораторная работа #[0-9].*"
+    if [[ "$pr_title" =~ $pattern ]]; then
+        echo "SUCCESS: Valid name of the pull request"
+    else
+        echo "FAILURE: Invalid name of the pull request"
+        echo "Should be something like: Корняков - Лабораторная работа #1"
+        retcode=1
     fi
+
+    return $retcode
+}
+
+function CheckPullRequestNameFormat {
+    # For debugging
+    # TRAVIS=true
+    # TRAVIS_PULL_REQUEST=4
+
+    if [ "$TRAVIS" == "true" ]; then
+        pr_title=`curl https://api.github.com/repos/UNN-VMK-Software/devtools-course-practice/pulls/$TRAVIS_PULL_REQUEST | grep title | cut -d \" -f4`
+        echo "#$TRAVIS_PULL_REQUEST Title: $pr_title"
+    fi
+
+    try valivatePullRequestTitle
 }
 
 function Main {
