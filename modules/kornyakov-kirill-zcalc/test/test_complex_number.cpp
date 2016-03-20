@@ -1,4 +1,4 @@
-// Copyright 2014 Gladilov Gleb
+// Copyright 2016 Kornyakov Kirill
 
 #include <gtest/gtest.h>
 
@@ -18,8 +18,8 @@ TEST_F(ComplexTest, Can_Create_With_Real_And_Imaginary) {
     ComplexNumber test(testReal, testImaginary);
 
     // Assert
-    EXPECT_NEAR(testReal, test.getReal(), ComplexTest::epsilon);
-    EXPECT_NEAR(testImaginary, test.getImaginary(), ComplexTest::epsilon);
+    EXPECT_NEAR(testReal, test.getRe(), ComplexTest::epsilon);
+    EXPECT_NEAR(testImaginary, test.getIm(), ComplexTest::epsilon);
 }
 
 TEST_F(ComplexTest, Can_Create_Via_Copying) {
@@ -32,8 +32,8 @@ TEST_F(ComplexTest, Can_Create_Via_Copying) {
     ComplexNumber tested = test;
 
     // Assert
-    EXPECT_NEAR(testReal, tested.getReal(), ComplexTest::epsilon);
-    EXPECT_NEAR(testImaginary, tested.getImaginary(), ComplexTest::epsilon);
+    EXPECT_NEAR(testReal, tested.getRe(), ComplexTest::epsilon);
+    EXPECT_NEAR(testImaginary, tested.getIm(), ComplexTest::epsilon);
 }
 
 TEST_F(ComplexTest, Can_Set_Real) {
@@ -42,10 +42,10 @@ TEST_F(ComplexTest, Can_Set_Real) {
     double testReal = 20.0;
 
     // Act
-    test.setReal(testReal);
+    test.setRe(testReal);
 
     // Assert
-    EXPECT_NEAR(testReal, test.getReal(), ComplexTest::epsilon);
+    EXPECT_NEAR(testReal, test.getRe(), ComplexTest::epsilon);
 }
 
 TEST_F(ComplexTest, Can_Set_Imaginary) {
@@ -54,10 +54,10 @@ TEST_F(ComplexTest, Can_Set_Imaginary) {
     double testImaginary = 26.0;
 
     // Act
-    test.setImaginary(testImaginary);
+    test.setIm(testImaginary);
 
     // Assert
-    EXPECT_NEAR(testImaginary, test.getImaginary(), ComplexTest::epsilon);
+    EXPECT_NEAR(testImaginary, test.getIm(), ComplexTest::epsilon);
 }
 
 TEST_F(ComplexTest, Can_Add_Complex) {
@@ -75,8 +75,8 @@ TEST_F(ComplexTest, Can_Add_Complex) {
     tested = tested + test;
 
     // Assert
-    EXPECT_NEAR(27.0, tested.getReal(), ComplexTest::epsilon);
-    EXPECT_NEAR(21.0, tested.getImaginary(), ComplexTest::epsilon);
+    EXPECT_NEAR(27.0, tested.getRe(), ComplexTest::epsilon);
+    EXPECT_NEAR(21.0, tested.getIm(), ComplexTest::epsilon);
 }
 
 TEST_F(ComplexTest, Can_Difference_Complex) {
@@ -94,8 +94,8 @@ TEST_F(ComplexTest, Can_Difference_Complex) {
     tested = tested - test;
 
     // Assert
-    EXPECT_NEAR(-25.0, tested.getReal(), ComplexTest::epsilon);
-    EXPECT_NEAR(-13.0, tested.getImaginary(), ComplexTest::epsilon);
+    EXPECT_NEAR(-25.0, tested.getRe(), ComplexTest::epsilon);
+    EXPECT_NEAR(-13.0, tested.getIm(), ComplexTest::epsilon);
 }
 
 TEST_F(ComplexTest, Can_Multiplication_Complex) {
@@ -113,8 +113,8 @@ TEST_F(ComplexTest, Can_Multiplication_Complex) {
     tested = tested * test;
 
     // Assert
-    EXPECT_NEAR(2.0, tested.getReal(), ComplexTest::epsilon);
-    EXPECT_NEAR(42.0, tested.getImaginary(), ComplexTest::epsilon);
+    EXPECT_NEAR(2.0, tested.getRe(), ComplexTest::epsilon);
+    EXPECT_NEAR(42.0, tested.getIm(), ComplexTest::epsilon);
 }
 
 TEST_F(ComplexTest, Can_Division_Complex) {
@@ -132,8 +132,8 @@ TEST_F(ComplexTest, Can_Division_Complex) {
     tested = tested / test;
 
     // Assert
-    EXPECT_NEAR(1.608, tested.getReal(), ComplexTest::epsilon);
-    EXPECT_NEAR(-0.144, tested.getImaginary(), ComplexTest::epsilon);
+    EXPECT_NEAR(1.608, tested.getRe(), ComplexTest::epsilon);
+    EXPECT_NEAR(-0.144, tested.getIm(), ComplexTest::epsilon);
 }
 
 TEST_F(ComplexTest, Do_Throw_When_Division_By_Zero) {

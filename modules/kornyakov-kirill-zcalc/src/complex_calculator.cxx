@@ -84,33 +84,33 @@ std::string ComplexCalculator::operator()(int argc, const char** argv) {
     ComplexNumber z1;
     ComplexNumber z2;
 
-    z1.setReal(expr.z1_real);
-    z1.setImaginary(expr.z1_imaginary);
-    z2.setReal(expr.z2_real);
-    z2.setImaginary(expr.z2_imaginary);
+    z1.setRe(expr.z1_real);
+    z1.setIm(expr.z1_imaginary);
+    z2.setRe(expr.z2_real);
+    z2.setIm(expr.z2_imaginary);
 
     ComplexNumber z;
     switch (expr.operation) {
      case '+':
         z = z1 + z2;
-        stream << "Real = " << z.getReal() << " "
-               << "Imaginary = " << z.getImaginary();
+        stream << "Real = " << z.getRe() << " "
+               << "Imaginary = " << z.getIm();
         break;
      case '-':
         z = z1 - z2;
-        stream << "Real = " << z.getReal() << " "
-               << "Imaginary = " << z.getImaginary();
+        stream << "Real = " << z.getRe() << " "
+               << "Imaginary = " << z.getIm();
         break;
      case '*':
         z = z1 * z2;
-        stream << "Real = " << z.getReal() << " "
-               << "Imaginary = " << z.getImaginary();
+        stream << "Real = " << z.getRe() << " "
+               << "Imaginary = " << z.getIm();
         break;
      case '/':
         try {
             z = z1 / z2;
-            stream << "Real = " << z.getReal() << " "
-                   << "Imaginary = " << z.getImaginary();
+            stream << "Real = " << z.getRe() << " "
+                   << "Imaginary = " << z.getIm();
             break;
         }
         catch(std::string str) {

@@ -1,7 +1,7 @@
 // Copyright 2016 Kornyakov Kirill
 
-#ifndef MODULES_KORNYAKOV_KIRILL_ZCALC_INCLUDE_COMPLEXCALCULATOR_H_
-#define MODULES_KORNYAKOV_KIRILL_ZCALC_INCLUDE_COMPLEXCALCULATOR_H_
+#ifndef MODULES_KORNYAKOV_KIRILL_ZCALC_INCLUDE_COMPLEX_NUMBER_H_
+#define MODULES_KORNYAKOV_KIRILL_ZCALC_INCLUDE_COMPLEX_NUMBER_H_
 
 class ComplexNumber {
  private:
@@ -15,11 +15,11 @@ class ComplexNumber {
 
     ComplexNumber& operator=(const ComplexNumber& z);
 
-    double getReal() const;
-    double getImaginary() const;
+    double getRe() const;
+    double getIm() const;
 
-    void setReal(const double real);
-    void setImaginary(const double imaginary);
+    void setRe(const double real);
+    void setIm(const double imaginary);
 
     ComplexNumber operator + (const ComplexNumber& z);
     ComplexNumber operator - (const ComplexNumber& z);
@@ -27,4 +27,4 @@ class ComplexNumber {
     ComplexNumber operator / (const ComplexNumber& z);
 };
 
-#endif  // MODULES_KORNYAKOV_KIRILL_ZCALC_INCLUDE_COMPLEXCALCULATOR_H_
+#endif  // MODULES_KORNYAKOV_KIRILL_ZCALC_INCLUDE_COMPLEX_NUMBER_H_

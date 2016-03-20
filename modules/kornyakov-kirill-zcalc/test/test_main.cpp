@@ -1,4 +1,4 @@
-// Copyright 2014 Gladilov Gleb
+// Copyright 2016 Kornyakov Kirill
 
 #include <gtest/gtest.h>
 
