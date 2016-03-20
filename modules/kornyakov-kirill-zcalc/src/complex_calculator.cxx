@@ -23,7 +23,7 @@ void ComplexCalculator::help(const char* appname, const char* message) {
              + "and <operation> is one of '+', '-', '*', '/'.\n";
 }
 
-bool ComplexCalculator::checkArgsNum(int argc, const char** argv) {
+bool ComplexCalculator::validateNumberOfArguments(int argc, const char** argv) {
     if (argc == 1) {
         help(argv[0]);
         return false;
@@ -34,7 +34,6 @@ bool ComplexCalculator::checkArgsNum(int argc, const char** argv) {
     return true;
 }
 
-double parseDouble(const char* arg);
 double parseDouble(const char* arg) {
     char* end;
     double value = strtod(arg, &end);
@@ -46,7 +45,6 @@ double parseDouble(const char* arg) {
     return value;
 }
 
-char parseOperation(const char* arg);
 char parseOperation(const char* arg) {
     char op;
     if (strcmp(arg, "+") == 0) {
@@ -64,18 +62,16 @@ char parseOperation(const char* arg) {
 }
 
 std::string ComplexCalculator::operator()(int argc, const char** argv) {
-    Expression expr;
-    std::ostringstream stream;
+    Arguments args;
 
-    bool returnCode = checkArgsNum(argc, argv);
-    if (returnCode != true)
+    if (!validateNumberOfArguments(argc, argv))
         return message_;
     try {
-        expr.z1_real = static_cast<double>(parseDouble(argv[1]));
-        expr.z1_imaginary = static_cast<double>(parseDouble(argv[2]));
-        expr.z2_real = static_cast<double>(parseDouble(argv[3]));
-        expr.z2_imaginary = static_cast<double>(parseDouble(argv[4]));
-        expr.operation = static_cast<char>(parseOperation(argv[5]));
+        args.z1_real = static_cast<double>(parseDouble(argv[1]));
+        args.z1_imaginary = static_cast<double>(parseDouble(argv[2]));
+        args.z2_real = static_cast<double>(parseDouble(argv[3]));
+        args.z2_imaginary = static_cast<double>(parseDouble(argv[4]));
+        args.operation = static_cast<char>(parseOperation(argv[5]));
     }
     catch(std::string str) {
         return str;
@@ -84,13 +80,14 @@ std::string ComplexCalculator::operator()(int argc, const char** argv) {
     ComplexNumber z1;
     ComplexNumber z2;
 
-    z1.setRe(expr.z1_real);
-    z1.setIm(expr.z1_imaginary);
-    z2.setRe(expr.z2_real);
-    z2.setIm(expr.z2_imaginary);
+    z1.setRe(args.z1_real);
+    z1.setIm(args.z1_imaginary);
+    z2.setRe(args.z2_real);
+    z2.setIm(args.z2_imaginary);
 
     ComplexNumber z;
-    switch (expr.operation) {
+    std::ostringstream stream;
+    switch (args.operation) {
      case '+':
         z = z1 + z2;
         stream << "Real = " << z.getRe() << " "

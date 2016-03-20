@@ -5,15 +5,13 @@
 
 #include <string>
 
-// #pragma pack(push, 1)
 typedef struct {
     double z1_real;
     double z1_imaginary;
     double z2_real;
     double z2_imaginary;
     char operation;
-} Expression;
-// #pragma pack(pop)
+} Arguments;
 
 class ComplexCalculator {
  public:
@@ -22,7 +20,7 @@ class ComplexCalculator {
 
  private:
     void help(const char* appname, const char* message = "");
-    bool checkArgsNum(int argc, const char** argv);
+    bool validateNumberOfArguments(int argc, const char** argv);
     std::string message_;
 };
 
