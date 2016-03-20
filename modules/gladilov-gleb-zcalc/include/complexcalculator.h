@@ -1,7 +1,7 @@
 // Copyright 2014 Gladilov Gleb
 
-#ifndef CODE_GLADILOV_GLEB_INCLUDE_COMPLEXCALCULATOR_H_
-#define CODE_GLADILOV_GLEB_INCLUDE_COMPLEXCALCULATOR_H_
+#ifndef MODULES_GLADILOV_GLEB_ZCALC_INCLUDE_COMPLEXCALCULATOR_H_
+#define MODULES_GLADILOV_GLEB_ZCALC_INCLUDE_COMPLEXCALCULATOR_H_
 
 typedef double ValueType;
 
@@ -34,4 +34,4 @@ Complex operator-(const Complex& a, const Complex& b);
 Complex operator*(const Complex& a, const Complex& b);
 Complex operator/(const Complex& a, const Complex& b);
 
-#endif  // CODE_GLADILOV_GLEB_INCLUDE_COMPLEXCALCULATOR_H_
+#endif  // MODULES_GLADILOV_GLEB_ZCALC_INCLUDE_COMPLEXCALCULATOR_H_
