@@ -100,9 +100,9 @@ function valivatePullRequestTitle {
 
     pattern=".* - Лабораторная работа #[0-9].*"
     if [[ "$pr_title" =~ $pattern ]]; then
-        echo "SUCCESS: Valid name of the pull request"
+        echo "SUCCESS: Valid title of the pull request"
     else
-        echo "FAILURE: Invalid name of the pull request"
+        echo "FAILURE: Invalid title of the pull request"
         echo "Should be something like: Корняков - Лабораторная работа #1"
         retcode=1
     fi
@@ -117,7 +117,7 @@ function CheckPullRequestNameFormat {
 
     if [ "$TRAVIS" == "true" ]; then
         pr_title=`curl https://api.github.com/repos/UNN-VMK-Software/devtools-course-practice/pulls/$TRAVIS_PULL_REQUEST | grep title | cut -d \" -f4`
-        echo "#$TRAVIS_PULL_REQUEST Title: $pr_title"
+        echo "PR#$TRAVIS_PULL_REQUEST title: $pr_title"
     fi
 
     try valivatePullRequestTitle
