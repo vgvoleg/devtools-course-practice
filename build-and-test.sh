@@ -113,15 +113,16 @@ function valivatePullRequestTitle {
 
 function CheckPullRequestNameFormat {
     # For debugging
-    # TRAVIS=true
     # TRAVIS_PULL_REQUEST=4
 
-    if [ "$TRAVIS" == "true" ]; then
+    pattern="[0-9]+"
+    if [[ "$TRAVIS_PULL_REQUEST" =~ $pattern ]]; then
+        Header "Validating pull request title"
+
         pr_title=`curl $github_api_repo/pulls/$TRAVIS_PULL_REQUEST | grep title | cut -d \" -f4`
         echo "PR#$TRAVIS_PULL_REQUEST title: $pr_title"
+        try valivatePullRequestTitle
     fi
-
-    try valivatePullRequestTitle
 }
 
 function Main {
