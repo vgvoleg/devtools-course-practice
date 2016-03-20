@@ -96,7 +96,7 @@ function GoogleTest {
 }
 
 function CheckPullRequestNameFormat {
-    if [$TRAVIS = "true"]; then
+    if [$TRAVIS == "true"]; then
         echo "Nice job!"
         echo $TRAVIS_PULL_REQUEST
     fi
