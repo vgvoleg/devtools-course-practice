@@ -30,7 +30,7 @@ foreach(cfg ${CMAKE_CONFIGURATION_TYPES})
 endforeach()
 
 #
-# Enable C++11
+# Add compiler options: enable C++11, all warnings, break on warnings
 #
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" OR
     "${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
@@ -61,7 +61,7 @@ message(STATUS "==================================")
 message(STATUS "")
 message(STATUS "   Compiler:          ${CMAKE_CXX_COMPILER_ID}")
 message(STATUS "   Configuration:     ${CMAKE_BUILD_TYPE}")
-message(STATUS "   Code coverage:     ${WITH_CODE_COVERAGE}")
+# message(STATUS "   Code coverage:     ${WITH_CODE_COVERAGE}")
 message(STATUS "   Detected modules:")
 foreach(subdir ${SUBDIRS})
     get_filename_component(DIR_NAME ${subdir} NAME)

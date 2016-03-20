@@ -1,13 +1,15 @@
-// Copyright 2013 Kirill Kornyakov
+// Copyright 2016 Kornyakov Kirill
 
+#include <stdlib.h>
 #include <stdio.h>
 #include <string>
 
-#include "include/simplecalculator_application.h"
+#include "include/complex_calculator.h"
 
 int main(int argc, const char** argv) {
-    CalculatorApplication app;
+    ComplexCalculator app;
     std::string output = app(argc, argv);
     printf("%s\n", output.c_str());
+
     return 0;
 }
