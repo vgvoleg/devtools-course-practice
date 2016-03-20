@@ -85,8 +85,8 @@ ComplexNumber ComplexNumber::operator/(const ComplexNumber& z) const {
 
         division.setRe(denominator * this->getRe() * z.getRe() +
                        denominator * this->getIm() * z.getIm());
-        division.setIm(denominator * z.getRe() * this->getIm() -
-                       denominator * z.getIm() * this->getRe());
+        division.setIm(denominator * this->getIm() * z.getRe() -
+                       denominator * this->getRe() * z.getIm());
     }
 
     return division;
