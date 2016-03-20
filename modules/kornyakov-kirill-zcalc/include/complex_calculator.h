@@ -5,14 +5,6 @@
 
 #include <string>
 
-typedef struct {
-    double z1_real;
-    double z1_imaginary;
-    double z2_real;
-    double z2_imaginary;
-    char operation;
-} Arguments;
-
 class ComplexCalculator {
  public:
     ComplexCalculator();
@@ -22,6 +14,13 @@ class ComplexCalculator {
     void help(const char* appname, const char* message = "");
     bool validateNumberOfArguments(int argc, const char** argv);
     std::string message_;
+    typedef struct {
+        double z1_real;
+        double z1_imaginary;
+        double z2_real;
+        double z2_imaginary;
+        char operation;
+    } Arguments;
 };
 
 #endif  // MODULES_KORNYAKOV_KIRILL_ZCALC_INCLUDE_COMPLEX_CALCULATOR_H_

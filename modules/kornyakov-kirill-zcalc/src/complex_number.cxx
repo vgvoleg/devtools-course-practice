@@ -6,14 +6,6 @@
 #include <string>
 #include <limits>
 
-const double eps = std::numeric_limits<double>::epsilon();
-
-// bool compareComplexWithZero(const ComplexNumber& z);
-bool compareComplexWithZero(const ComplexNumber& z) {
-    return z.getRe() < eps && z.getRe() > -eps &&
-           z.getIm() < eps && z.getIm() > -eps;
-}
-
 ComplexNumber::ComplexNumber() : real_(0), imaginary_(0) {}
 
 ComplexNumber::ComplexNumber(const double real,
@@ -63,29 +55,38 @@ ComplexNumber ComplexNumber::operator-(const ComplexNumber& z) {
 
     return difference;
 }
+
 ComplexNumber ComplexNumber::operator*(const ComplexNumber& z) {
     ComplexNumber multiplication;
 
     multiplication.setRe(this->getRe() * z.getRe() -
-                           this->getIm() * z.getIm());
+                         this->getIm() * z.getIm());
     multiplication.setIm(this->getRe() * z.getIm() +
-                                this->getIm() * z.getRe());
+                         this->getIm() * z.getRe());
 
     return multiplication;
 }
+
+bool equalsZero(const ComplexNumber& z) {
+    const double eps = std::numeric_limits<double>::epsilon();
+
+    return z.getRe() < eps && z.getRe() > -eps &&
+           z.getIm() < eps && z.getIm() > -eps;
+}
+
 ComplexNumber ComplexNumber::operator/(const ComplexNumber& z) {
     ComplexNumber division;
 
-    if (compareComplexWithZero(z)) {
+    if (equalsZero(z)) {
         throw std::string("Can't divide by zero");
     } else {
         double denominator = 1.0 / (z.getRe() * z.getRe() +
                                     z.getIm() * z.getIm());
 
         division.setRe(denominator * this->getRe() * z.getRe() +
-                         denominator * this->getIm() * z.getIm());
+                       denominator * this->getIm() * z.getIm());
         division.setIm(denominator * z.getRe() * this->getIm() -
-                              denominator * z.getIm() * this->getRe());
+                       denominator * z.getIm() * this->getRe());
     }
 
     return division;
