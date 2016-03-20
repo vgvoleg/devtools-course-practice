@@ -3,158 +3,111 @@
 #include <gtest/gtest.h>
 
 #include <string>
+#include <vector>
+#include <algorithm>
+#include <functional>
+#include <iterator>
 
-#include "include/complexcalculator.h"
+#include "include/complex_calculator.h"
 
-class ComplexTest : public ::testing::Test {
+using ::testing::internal::RE;
+using std::vector;
+using std::string;
+
+class AppTest : public ::testing::Test {
  protected:
-    double epsilon = 0.001;
+    virtual void SetUp() {
+        args.clear();
+    }
+
+    void Act(vector<string> args_) {
+        vector<const char*> starts;
+        starts.push_back("appname");
+
+        for (size_t i = 0; i < args_.size(); ++i) {
+            starts.push_back(args_[i].c_str());
+        }
+        const char** argv = &starts.front();
+        int argc = static_cast<int>(args_.size()) + 1;
+
+        output_ = app_(argc, argv);
+    }
+
+    void Assert(std::string expected) {
+        EXPECT_TRUE(RE::PartialMatch(output_, RE(expected)));
+    }
+
+    ComplexCalculator app_;
+    string output_;
+    vector<string> args;
 };
 
-TEST_F(ComplexTest, Can_Create_With_Real_And_Imaginary) {
-    // Arrange & Act
-    ValueType testReal = static_cast<ValueType>(26);
-    ValueType testImaginary = static_cast<ValueType>(20);
-    Complex test(testReal, testImaginary);
+TEST_F(AppTest, Do_Print_Help_Without_Arguments) {
+    Act(args);
 
-    // Assert
-    EXPECT_NEAR(testReal, test.getReal(), ComplexTest::epsilon);
-    EXPECT_NEAR(testImaginary, test.getImaginary(), ComplexTest::epsilon);
+    Assert("This is a complex number calculator application\\..*");
 }
 
-TEST_F(ComplexTest, Can_Create_Via_Copying) {
-    // Arrange
-    ValueType testReal = static_cast<ValueType>(26);
-    ValueType testImaginary = static_cast<ValueType>(20);
-    Complex test(testReal, testImaginary);
+TEST_F(AppTest, Is_Checking_Number_Of_Arguments) {
+    args = {"1", "2"};
 
-    // Act
-    Complex tested = test;
+    Act(args);
 
-    // Assert
-    EXPECT_NEAR(testReal, tested.getReal(), ComplexTest::epsilon);
-    EXPECT_NEAR(testImaginary, tested.getImaginary(), ComplexTest::epsilon);
+    Assert("ERROR: Should be 5 arguments\\..*");
 }
 
-TEST_F(ComplexTest, Can_Set_Real) {
-    // Arrange
-    Complex test;
-    ValueType testReal = static_cast<ValueType>(20);
+TEST_F(AppTest, Can_Detect_Wrong_Number_Format) {
+    args = {"1", "pi", "2", "4", "+"};
 
-    // Act
-    test.setReal(testReal);
+    Act(args);
 
-    // Assert
-    EXPECT_NEAR(testReal, test.getReal(), ComplexTest::epsilon);
+    Assert("Wrong number format!.*");
 }
 
-TEST_F(ComplexTest, Can_Set_Imaginary) {
-    // Arrange
-    Complex test;
-    ValueType testImaginary = static_cast<ValueType>(26);
+TEST_F(AppTest, Can_Detect_Wrong_Operation_Format) {
+    args = {"1", "1", "1", "1", "garbage"};
 
-    // Act
-    test.setImaginary(testImaginary);
+    Act(args);
 
-    // Assert
-    EXPECT_NEAR(testImaginary, test.getImaginary(), ComplexTest::epsilon);
+    Assert("Wrong operation format!");
 }
 
-TEST_F(ComplexTest, Can_Add_Complex) {
-    // Arrange
-    ValueType testReal = static_cast<ValueType>(26);
-    ValueType testImaginary = static_cast<ValueType>(14);
+TEST_F(AppTest, Can_Add_Complexs) {
+    args = {"2.0", "3.5", "1.5", "4.0", "+"};
 
-    ValueType testedReal = static_cast<ValueType>(1);
-    ValueType testedImaginary = static_cast<ValueType>(7);
+    Act(args);
 
-    Complex test(testReal, testImaginary);
-    Complex tested(testedReal, testedImaginary);
-
-    // Act
-    tested = tested + test;
-
-    // Assert
-    EXPECT_NEAR(static_cast<ValueType>(27),
-                tested.getReal(), ComplexTest::epsilon);
-    EXPECT_NEAR(static_cast<ValueType>(21),
-                tested.getImaginary(), ComplexTest::epsilon);
+    Assert("Real = 3.5 Imaginary = 7.5");
 }
 
-TEST_F(ComplexTest, Can_Difference_Complex) {
-    // Arrange
-    ValueType testReal = static_cast<ValueType>(26);
-    ValueType testImaginary = static_cast<ValueType>(14);
+TEST_F(AppTest, Can_Diff_Complexs) {
+    args = {"13", "7.6", "26", "-14", "-"};
 
-    ValueType testedReal = static_cast<ValueType>(1);
-    ValueType testedImaginary = static_cast<ValueType>(1);
+    Act(args);
 
-    Complex test(testReal, testImaginary);
-    Complex tested(testedReal, testedImaginary);
-
-    // Act
-    tested = tested - test;
-
-    // Assert
-    EXPECT_NEAR(static_cast<ValueType>(-25),
-                tested.getReal(), ComplexTest::epsilon);
-    EXPECT_NEAR(static_cast<ValueType>(-13),
-                tested.getImaginary(), ComplexTest::epsilon);
+    Assert("Real = -13 Imaginary = 21.6");
 }
 
-TEST_F(ComplexTest, Can_Multiplication_Complex) {
-    // Arrange
-    ValueType testReal = static_cast<ValueType>(5);
-    ValueType testImaginary = static_cast<ValueType>(3);
+TEST_F(AppTest, Can_Mult_Complexs) {
+    args = {"0", "-3.6", "17.4", "21", "*"};
 
-    ValueType testedReal = static_cast<ValueType>(4);
-    ValueType testedImaginary = static_cast<ValueType>(6);
+    Act(args);
 
-    Complex test(testReal, testImaginary);
-    Complex tested(testedReal, testedImaginary);
-
-    // Act
-    tested = tested * test;
-
-    // Assert
-    EXPECT_NEAR(static_cast<ValueType>(2),
-                tested.getReal(), ComplexTest::epsilon);
-    EXPECT_NEAR(static_cast<ValueType>(42),
-                tested.getImaginary(), ComplexTest::epsilon);
+    Assert("Real = 75.6 Imaginary = -62.64");
 }
 
-TEST_F(ComplexTest, Can_Division_Complex) {
-    // Arrange
-    ValueType testReal = static_cast<ValueType>(15);
-    ValueType testImaginary = static_cast<ValueType>(20);
+TEST_F(AppTest, Can_Divide_Complexs) {
+    args = {"27", "30", "15", "20", "/"};
 
-    ValueType testedReal = static_cast<ValueType>(27);
-    ValueType testedImaginary = static_cast<ValueType>(30);
+    Act(args);
 
-    Complex test(testReal, testImaginary);
-    Complex tested(testedReal, testedImaginary);
-
-    // Act
-    tested = tested / test;
-
-    // Assert
-    EXPECT_NEAR(static_cast<ValueType>(1.608),
-                tested.getReal(), ComplexTest::epsilon);
-    EXPECT_NEAR(static_cast<ValueType>(-0.144),
-                tested.getImaginary(), ComplexTest::epsilon);
+    Assert("Real = 1.608 Imaginary = -0.144");
 }
 
-TEST_F(ComplexTest, Do_Throw_When_Division_By_Zero) {
-    // Arrange
-    ValueType testReal = static_cast<ValueType>(0);
-    ValueType testImaginary = static_cast<ValueType>(0);
+TEST_F(AppTest, Can_Detect_Divide_By_Zero) {
+    args = {"27", "30", "0", "0", "/"};
 
-    ValueType testedReal = static_cast<ValueType>(26);
-    ValueType testedImaginary = static_cast<ValueType>(14);
+    Act(args);
 
-    Complex test(testReal, testImaginary);
-    Complex tested(testedReal, testedImaginary);
-
-    // Act & Assert
-    EXPECT_THROW(tested / test, std::string);
+    Assert("Can't divide by zero");
 }
