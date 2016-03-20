@@ -4,6 +4,7 @@ set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cmake_build_dir="${DIR}/../devtools_build"
 cpplint="${DIR}/3rdparty/cpplint.py"
+github_api_repo="https://api.github.com/repos/UNN-VMK-Software/devtools-course-practice"
 
 # This function executes command and stops
 # execution if return status isn't 0
@@ -95,8 +96,38 @@ function GoogleTest {
     done
 }
 
+function valivatePullRequestTitle {
+    retcode=0
+
+    pattern=".* - Лабораторная работа #[0-9].*"
+    if [[ "$pr_title" =~ $pattern ]]; then
+        echo "SUCCESS: Valid title of the pull request"
+    else
+        echo "FAILURE: Invalid title of the pull request"
+        echo "Should be something like: Корняков - Лабораторная работа #1"
+        retcode=1
+    fi
+
+    return $retcode
+}
+
+function CheckPullRequestNameFormat {
+    # For debugging
+    # TRAVIS_PULL_REQUEST=4
+
+    pattern="[0-9]+"
+    if [[ "$TRAVIS_PULL_REQUEST" =~ $pattern ]]; then
+        Header "Validating pull request title"
+
+        pr_title=`curl $github_api_repo/pulls/$TRAVIS_PULL_REQUEST | grep title | cut -d \" -f4`
+        echo "PR#$TRAVIS_PULL_REQUEST title: $pr_title"
+        try valivatePullRequestTitle
+    fi
+}
+
 function Main {
     # Clean
+    CheckPullRequestNameFormat
     CheckGoogleStyle
     BuildCMakeProject
     CTest
