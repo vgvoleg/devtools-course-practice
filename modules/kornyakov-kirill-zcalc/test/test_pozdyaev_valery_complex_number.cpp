@@ -5,10 +5,10 @@
 TEST(Pozdyaev_Valery_ComplexNumberTest, Can_Set_Boolean) {
 	// Arrange
 	ComplexNumber z1(0, 0);
-	bool t = true;
+	bool re = true;
 
 	// Act
-	z1.setRe(t);
+	z1.setRe(re);
 
 	// Assert
 	EXPECT_DOUBLE_EQ(1.0, z1.getRe());
@@ -64,13 +64,4 @@ TEST(Pozdyaev_Valery_ComplexNumberTest, Can_Multiplication_With_Inverse_Number) 
 	// Assert
 	EXPECT_DOUBLE_EQ(1.0, result.getRe());
 	EXPECT_DOUBLE_EQ(0, result.getIm());
-}
-
-TEST(Pozdyaev_Valery_ComplexNumberTest, Compare_Small_Number) {
-	// Arrange
-	ComplexNumber z1(0.00001, 0.00001);
-	ComplexNumber z2();
-
-	// Act & Assert
-	
 }
