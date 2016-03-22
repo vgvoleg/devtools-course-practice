@@ -32,4 +32,4 @@
 [control-questions]: https://github.com/UNN-VMK-Software/devtools-course-theory/blob/master/slides/control-questions.md
 [theory]:            https://github.com/UNN-VMK-Software/devtools-course-theory
 [html]:              http://unn-vmk-software.github.io/devtools-course-theory/
-[html-badge]:        https://img.shields.io/badge/slides-html-blue.svg
+[html-badge]:        https://img.shields.io/badge/slides-html-blue.svg 
