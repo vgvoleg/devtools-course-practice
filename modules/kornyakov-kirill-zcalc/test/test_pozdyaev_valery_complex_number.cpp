@@ -41,7 +41,7 @@ TEST(Pozdyaev_Valery_ComplexNumberTest, Can_Do_Multi_Assignment) {
     a = b = c;
 
     // Assert
-    EXPECT_EQ(a, b); 
+    EXPECT_EQ(a, b);
     EXPECT_EQ(a, c);
 }
 
@@ -105,8 +105,8 @@ TEST(Pozdyaev_Valery_ComplexNumberTest, Can_Extract_Complex_Using_Conjugate) {
     ComplexNumber conjugate_z(3.0, -4.0);
 
     // Act
-    double re = 0.5 * (z + conjugate_z).getRe();  /* Re(z) = 0.5 * (z + Conjugate(z)) */
-    double im = 0.5 * (z - conjugate_z).getIm();  /* Im(z) = (0.5 / i ) * (z - Conjugate(z)) */
+    double re = 0.5 * (z + conjugate_z).getRe(); // Re = 0.5*(z + ñonj_z))
+    double im = 0.5 * (z - conjugate_z).getIm(); // Im = (0.5/i)*(z - conj_z)
 
     // Assert
     EXPECT_DOUBLE_EQ(re, z.getRe());
