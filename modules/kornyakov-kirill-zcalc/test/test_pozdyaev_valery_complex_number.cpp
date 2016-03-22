@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 
+#include "math.h"
+
 #include "include/complex_number.h"
 
 TEST(Pozdyaev_Valery_ComplexNumberTest, Can_Create_Complex_From_Int) {
