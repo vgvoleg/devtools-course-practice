@@ -1,3 +1,5 @@
+// Copyright 2016 Zhiltsov Max
+
 #include <gtest/gtest.h>
 #include <limits>
 #include <cmath>
