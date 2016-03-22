@@ -1,8 +1,7 @@
 // Copyright 2016 Pozdyaev Valery
 
 #include <gtest/gtest.h>
-
-#include "math.h"
+#include <cmath>
 
 #include "include/complex_number.h"
 
