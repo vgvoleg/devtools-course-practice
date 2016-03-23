@@ -56,5 +56,5 @@ TEST(Zhiltsov_Max_ComplexNumberTest, Multiplication_Correct) {
 
     ComplexNumber result = z1 * z2;
 
-    EXPECT_EQ(2.0e100, result.getRe());
+    EXPECT_DOUBLE_EQ(2.0e100, result.getRe());
 }
