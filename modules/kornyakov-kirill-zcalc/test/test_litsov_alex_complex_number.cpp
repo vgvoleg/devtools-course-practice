@@ -59,7 +59,7 @@ TEST(Litsov_Alex_ComplexNumberTest, Can_Mult_By_One) {
 
 TEST(Litsov_Alex_ComplexNumberTest, Mult_Is_Commutative) {
     // Arrange
-    ComplexNumber a(3.12, 2.9), b(13.82, 122.2311);
+    ComplexNumber a(3.13, 2.9), b(13.82, 122.2311);
 
     // Act
     ComplexNumber res1 = a*b;
