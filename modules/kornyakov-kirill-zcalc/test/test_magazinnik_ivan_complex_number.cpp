@@ -24,7 +24,7 @@ TEST(Magazinnik_Ivan_ComplexNumberTest, multiplication_of_two_im_number) {
     ASSERT_DOUBLE_EQ(0.0, mult.getIm());
 }
 
-TEST(Magazinnik_Ivan_ComplexNumberTest, can_divade_by_epsilon) {
+TEST(Magazinnik_Ivan_ComplexNumberTest, can_divide_by_epsilon) {
     // Test dividing on smallest double number
     // Arrange
     double re = 0.0;
