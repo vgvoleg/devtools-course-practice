@@ -17,7 +17,6 @@ TEST(Litsov_Alex_ComplexNumberTest, Check_Triangle_Inequality) {
     // Assert
     ASSERT_LE(module_of_sum, sum_of_modules);
 }
-
 TEST(Litsov_Alex_ComplexNumberTest, Sum_Is_Commutative) {
     // Arrange
     ComplexNumber a(1.5,2.9), b(13.82, 122.2311);
