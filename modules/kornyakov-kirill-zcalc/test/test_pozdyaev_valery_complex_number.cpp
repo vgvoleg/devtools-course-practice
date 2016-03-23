@@ -77,13 +77,13 @@ TEST(Pozdyaev_Valery_ComplexNumberTest, Can_Create_Reciprocal) {
     // Arrange
     ComplexNumber z(1.0, 2.0);
     ComplexNumber z_one(1.0, 0);
-    double re = 0.2;  /* Re(1/z) = Re(z) / (Re(z)^2 + Im(z)^2) */
-    double im = -0.4;  /* Im(1/z) = -Im(z) / (Re(z)^2 + Im(z)^2) */
 
     // Act
     ComplexNumber result = z_one / z;
 
     // Assert
+	double re = 0.2;  /* Re(1/z) = Re(z) / (Re(z)^2 + Im(z)^2) */
+    double im = -0.4;  /* Im(1/z) = -Im(z) / (Re(z)^2 + Im(z)^2) */
     EXPECT_DOUBLE_EQ(re, result.getRe());
     EXPECT_DOUBLE_EQ(im, result.getIm());
 }
