@@ -11,9 +11,10 @@ TEST(Litsov_Alex_ComplexNumberTest, Check_Triangle_Inequality) {
 
     // Act
     ComplexNumber sum_num = a + b;
-    double module_of_sum = pow(sum_num.getRe()*sum_num.getRe() + sum_num.getIm()*sum_num.getIm(), 0.5);
-    double sum_of_modules = pow(a.getRe()*a.getRe() + a.getIm()*a.getIm(), 0.5);
-    sum_of_modules += pow(b.getRe()*b.getRe() + b.getIm()*b.getIm(), 0.5);
+    double module_of_sum = pow(sum_num.getRe()*sum_num.getRe() +
+        sum_num.getIm()*sum_num.getIm(), 0.5);
+    double sum_of_modules = pow(a.getRe()*a.getRe() + a.getIm()*a.getIm(), 0.5) +
+        pow(b.getRe()*b.getRe() + b.getIm()*b.getIm(), 0.5);
 
     // Assert
     ASSERT_LE(module_of_sum, sum_of_modules);
