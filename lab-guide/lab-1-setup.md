@@ -127,6 +127,18 @@
      }
      ```
 
+     Требования к файлам:
+       - Первая строка должна быть комментарием вида:
+
+         ```txt
+         Copyright [year] <Copyright Owner>
+         ```
+
+       - В качестве отступов не должны использоваться символы табуляции. Можно
+         использовать последовательность из пробелов.
+       - Подробнее про требования по стилю кода можно прочитать здесь -
+         [Google C++ Style Guide][style-guide]
+
   1. Далее нужно убедиться, что ваш файл добавлен в проект. Он должен
      подцепиться автоматически, нужно только перегенерировать проект при помощи
      CMake. IDE либо сама предложит это сделать, либо нужно запустить CMake в
@@ -203,6 +215,8 @@
 [help-pr]:      https://help.github.com/articles/using-pull-requests
 [gfm]:          https://help.github.com/articles/github-flavored-markdown
 [imworkflow]:   https://git-scm.com/book/en/v2/Distributed-Git-Distributed-Workflows#Integration-Manager-Workflow
+
+[style-guide]:  https://google.github.io/styleguide/cppguide.html
 
 <!-- BACKUP
   1. Выберите себе свободную тему из [списка][topics], вписав свое имя и группу.
