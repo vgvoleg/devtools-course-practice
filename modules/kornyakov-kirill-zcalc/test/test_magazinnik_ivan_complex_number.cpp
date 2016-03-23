@@ -90,6 +90,6 @@ TEST(Magazinnik_Ivan_ComplexNumberTest, test_create_transcendental_number) {
     ComplexNumber z(re, im);
 
     // Assert
-    EXPECT_EQ(re, z.getRe());
-    EXPECT_EQ(im, z.getIm());
+    ASSERT_DOUBLE_EQ(re, z.getRe());
+    ASSERT_DOUBLE_EQ(im, z.getIm());
 }
