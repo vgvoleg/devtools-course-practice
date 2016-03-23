@@ -1,11 +1,10 @@
 // Copyright 2016 Pozdyaev Valery
 
 #include <gtest/gtest.h>
-#include <cmath>
 
 #include "include/complex_number.h"
 
-TEST(Pozdyaev_Valery_ComplexNumberTest, Can_Create_Complex_From_Int) {
+TEST(Pozdyaev_Valery_ComplexNumberTest, Can_Set_Int) {
     // Arrange
     int re = 12;
     int im = -24;
@@ -22,14 +21,14 @@ TEST(Pozdyaev_Valery_ComplexNumberTest, Can_Create_Complex_From_Int) {
 
 TEST(Pozdyaev_Valery_ComplexNumberTest, Can_Add_Small_Complex) {
     // Arrange
-    ComplexNumber z1(pow(1, -10), pow(1, -20));
-    ComplexNumber z2(pow(1, -10), pow(1, -20));
+    ComplexNumber z1(1e-10, 1e-20);
+    ComplexNumber z2(1e-10, 1e-20);
 
     // Act
     ComplexNumber z = z1 + z2;
 
     // Assert
-    ComplexNumber expected_z(2 * pow(1, -10), 2 * pow(1, -20));
+    ComplexNumber expected_z(2e-10, 2e-20);
     EXPECT_EQ(expected_z, z);
 }
 
@@ -60,7 +59,7 @@ TEST(Pozdyaev_Valery_ComplexNumberTest, Can_Do_Assignment_To_Itself) {
     EXPECT_DOUBLE_EQ(im, z.getIm());
 }
 
-TEST(Pozdyaev_Valery_ComplexNumberTest, Can_Multiplication_With_Inverse) {
+TEST(Pozdyaev_Valery_ComplexNumberTest, Can_Multiply_With_Inverse) {
     // Arrange
     ComplexNumber z(1.0, 1.0);
     ComplexNumber inverse_z(0.5, -0.5);
@@ -88,16 +87,17 @@ TEST(Pozdyaev_Valery_ComplexNumberTest, Can_Create_Reciprocal) {
     EXPECT_DOUBLE_EQ(im, result.getIm());
 }
 
-TEST(Pozdyaev_Valery_ComplexNumberTest, Check_Multiplication_With_Conjugate) {
+TEST(Pozdyaev_Valery_ComplexNumberTest, Mult_With_Conjugate_Is_Mult_Of_Modules) {
     // Arrange
     ComplexNumber z(3.0, 4.0);
     ComplexNumber conjugate_z(3.0, -4.0);
 
     // Act
-    ComplexNumber result = z * conjugate_z; /* z + Conjugate(z) = |z|^2 */
+    ComplexNumber result = z * conjugate_z; /* z * Conjugate(z) = |z|^2 */
 
     // Assert
     EXPECT_DOUBLE_EQ(25.0, result.getRe());
+    EXPECT_DOUBLE_EQ(0, result.getIm());
 }
 
 TEST(Pozdyaev_Valery_ComplexNumberTest, Can_Extract_Complex_Using_Conjugate) {
