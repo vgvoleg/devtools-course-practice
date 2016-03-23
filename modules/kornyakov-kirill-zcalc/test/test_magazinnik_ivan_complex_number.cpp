@@ -20,8 +20,8 @@ TEST(Magazinnik_Ivan_ComplexNumberTest, multiplication_of_two_im_number) {
     ComplexNumber mult = z1 * z;
     // Assert
     double expected_re =  im * im1 * (-1.0);
-    ASSERT_EQ(expected_re, mult.getRe());
-    ASSERT_EQ(0.0, mult.getIm());
+    ASSERT_DOUBLE_EQ(expected_re, mult.getRe());
+    ASSERT_DOUBLE_EQ(0.0, mult.getIm());
 }
 
 TEST(Magazinnik_Ivan_ComplexNumberTest, can_divade_by_epsilon) {
@@ -39,8 +39,8 @@ TEST(Magazinnik_Ivan_ComplexNumberTest, can_divade_by_epsilon) {
 
     // Assert
     double expected_im = 1.0 / eps;
-    ASSERT_EQ(re, div.getRe());
-    ASSERT_EQ(expected_im, div.getIm());
+    ASSERT_DOUBLE_EQ(re, div.getRe());
+    ASSERT_DOUBLE_EQ(expected_im, div.getIm());
 }
 
 TEST(Magazinnik_Ivan_ComplexNumberTest, can_multiply_by_epsilon) {
@@ -58,8 +58,8 @@ TEST(Magazinnik_Ivan_ComplexNumberTest, can_multiply_by_epsilon) {
     // Assert
     double expected_re = eps;
     double expected_im = 3 * eps;
-    ASSERT_EQ(expected_re, mult.getRe());
-    ASSERT_EQ(expected_im, mult.getIm());
+    ASSERT_DOUBLE_EQ(expected_re, mult.getRe());
+    ASSERT_DOUBLE_EQ(expected_im, mult.getIm());
 }
 
 TEST(Magazinnik_Ivan_ComplexNumberTest, adding_two_epsilon_number) {
@@ -77,8 +77,8 @@ TEST(Magazinnik_Ivan_ComplexNumberTest, adding_two_epsilon_number) {
     // Assert
     double expected_re = 1.0 + 2 * eps;
     double expected_im = 2.0 + 2 * eps;
-    ASSERT_EQ(expected_re, add.getRe());
-    ASSERT_EQ(expected_im, add.getIm());
+    ASSERT_DOUBLE_EQ(expected_re, add.getRe());
+    ASSERT_DOUBLE_EQ(expected_im, add.getIm());
 }
 
 TEST(Magazinnik_Ivan_ComplexNumberTest, test_create_transcendental_number) {
