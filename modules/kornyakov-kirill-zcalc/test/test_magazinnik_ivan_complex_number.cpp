@@ -15,8 +15,8 @@ TEST(Magazinnik_Ivan_ComplexNumberTest, multiplication_of_two_im_number) {
     double im1 = 2.0;
 
     // Act
-    ComplexNumber z1(re, im1);
     ComplexNumber z(re, im);
+    ComplexNumber z1(re, im1);
     ComplexNumber mult = z1 * z;
     // Assert
     double expected_re =  im * im1 * (-1.0);
@@ -33,8 +33,8 @@ TEST(Magazinnik_Ivan_ComplexNumberTest, can_divade_by_epsilon) {
     double im1 = 0.0;
 
     // Act
-    ComplexNumber z1(re1, im1);
     ComplexNumber z(re, im);
+    ComplexNumber z1(re1, im1);
     ComplexNumber div = z1 / z;
 
     // Assert
@@ -51,8 +51,8 @@ TEST(Magazinnik_Ivan_ComplexNumberTest, can_multiply_by_epsilon) {
     double im1 = 1.0;
 
     // Act
-    ComplexNumber z1(re1, im1);
     ComplexNumber z(re, im);
+    ComplexNumber z1(re1, im1);
     ComplexNumber mult = z1 * z;
 
     // Assert
@@ -70,8 +70,8 @@ TEST(Magazinnik_Ivan_ComplexNumberTest, adding_two_epsilon_number) {
     double im1 = 1.0 + eps;
 
     // Act
-    ComplexNumber z1(re1, im1);
     ComplexNumber z(re, im);
+    ComplexNumber z1(re1, im1);
     ComplexNumber add = z1 + z;
 
     // Assert
