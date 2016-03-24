@@ -1,11 +1,11 @@
 // Copyright 2016 Polyakov Igor
 
 #include <gtest/gtest.h>
-
-#include "include/complex_number.h"
 #include <cmath>
+#include "include/complex_number.h"
 
-TEST(Polyakov_Igor_ComplexNumberTest, Can_Division_With_Unit_In_Numerator) {
+
+TEST(Polyakov_Igor_ComplexNumberTest, Can_Calculate_Inverse_Complex_Number) {
     // Arrange
     ComplexNumber z_denominator(1.0, 2.0);
     ComplexNumber z_numerator(1.0, 0.0);
@@ -18,7 +18,7 @@ TEST(Polyakov_Igor_ComplexNumberTest, Can_Division_With_Unit_In_Numerator) {
     EXPECT_EQ(-0.4, z.getIm());  // z = 1 / (a + b*i). Im(z) = -b / (a^2 + b^2)
 }
 
-TEST(Polyakov_Igor_ComplexNumberTest, Can_Sum_Complex_And_Conjugate_Number) {
+TEST(Polyakov_Igor_ComplexNumberTest, Sum_With_Conjugate_Is_Doubled_Real) {
     // Arrange
     ComplexNumber z(1.0, 2.0);
     ComplexNumber z_conjugate(1.0, -2.0);  // z = a + b*i. z_conjugate = a - b*i
