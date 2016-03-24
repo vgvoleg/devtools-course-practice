@@ -27,7 +27,7 @@ TEST(Petrov_Kirill_ComplexNumberTest, Can_Division_And_Multiplication_Complex) {
     EXPECT_EQ(expected_z, z);
 }
 
-TEST(Petrov_Kirill_ComplexNumberTest, Can_Associativity_Of_Multiplication_Complex) {
+TEST(Petrov_Kirill_ComplexNumberTest, Can_Associativity_Complex) {
     // Arrange
     ComplexNumber z1(5.0, 1.0);
     ComplexNumber z2(3.0, 5.0);
