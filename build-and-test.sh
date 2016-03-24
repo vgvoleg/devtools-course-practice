@@ -127,7 +127,7 @@ function CheckPullRequestNameFormat {
 
 function Main {
     # Clean
-    CheckPullRequestNameFormat
+    # CheckPullRequestNameFormat
     CheckGoogleStyle
     BuildCMakeProject
     CTest
