@@ -87,7 +87,7 @@ TEST(Pozdyaev_Valery_ComplexNumberTest, Can_Create_Reciprocal) {
     EXPECT_DOUBLE_EQ(im, result.getIm());
 }
 
-TEST(Pozdyaev_Valery_ComplexNumberTest, Mult_With_Conjugate_Is_Mult_Of_Modules) {
+TEST(Pozdyaev_Valery_ComplexNumberTest, Mult_Conjugates_Is_Mult_Of_Modules) {
     // Arrange
     ComplexNumber z(3.0, 4.0);
     ComplexNumber conjugate_z(3.0, -4.0);
