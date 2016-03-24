@@ -8,7 +8,7 @@
 
 const double eps = std::numeric_limits<double>::epsilon();
 
-TEST(Magazinnik_Ivan_ComplexNumberTest, multiplication_of_two_im_number) {
+TEST(Magazinnik_Ivan_ComplexNumberTest, Can_Multiply_Two_Im_Number) {
     // Arrange
     double re = 0.0;
     double im = 2.0;
@@ -24,7 +24,7 @@ TEST(Magazinnik_Ivan_ComplexNumberTest, multiplication_of_two_im_number) {
     ASSERT_DOUBLE_EQ(0.0, mult.getIm());
 }
 
-TEST(Magazinnik_Ivan_ComplexNumberTest, can_divide_by_epsilon) {
+TEST(Magazinnik_Ivan_ComplexNumberTest, Can_Divide_By_Epsilon) {
     // Test dividing on smallest double number
     // Arrange
     double re = 0.0;
@@ -43,7 +43,7 @@ TEST(Magazinnik_Ivan_ComplexNumberTest, can_divide_by_epsilon) {
     ASSERT_DOUBLE_EQ(expected_im, div.getIm());
 }
 
-TEST(Magazinnik_Ivan_ComplexNumberTest, can_multiply_by_epsilon) {
+TEST(Magazinnik_Ivan_ComplexNumberTest, Can_Multiply_By_Epsilon) {
     // Arrange
     double re = eps;
     double im = eps;
@@ -62,7 +62,7 @@ TEST(Magazinnik_Ivan_ComplexNumberTest, can_multiply_by_epsilon) {
     ASSERT_DOUBLE_EQ(expected_im, mult.getIm());
 }
 
-TEST(Magazinnik_Ivan_ComplexNumberTest, adding_two_epsilon_number) {
+TEST(Magazinnik_Ivan_ComplexNumberTest, Adding_Two_Epsilon_Number) {
     // Arrange
     double re = 1.0 + eps;
     double im = 1.0 + eps;
@@ -81,7 +81,7 @@ TEST(Magazinnik_Ivan_ComplexNumberTest, adding_two_epsilon_number) {
     ASSERT_DOUBLE_EQ(expected_im, add.getIm());
 }
 
-TEST(Magazinnik_Ivan_ComplexNumberTest, test_create_transcendental_number) {
+TEST(Magazinnik_Ivan_ComplexNumberTest, Test_Create_Transcendental_Number) {
     // Arrange
     double re = M_E;
     double im = M_PI;
