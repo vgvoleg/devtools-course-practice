@@ -43,33 +43,32 @@ TEST(Petrov_Kirill_ComplexNumberTest, Can_Associativity_Of_Multiplication_Comple
 
 TEST(Petrov_Kirill_ComplexNumberTest, Can_Summarize_The_Many_Complex) {
     // Arrange
-    const unsigned N=1000;
+    const unsigned N = 1000;
     ComplexNumber z(1.0, 1.0);
     ComplexNumber z_res;
 
     // Act
-    for (unsigned i=0; i<N; i++)
+    for (unsigned i = 0; i < N; i++)
         z_res = z_res+z;
 
     // Assert
-    ComplexNumber expected_z(1000.0,1000.0);
+    ComplexNumber expected_z(1000.0, 1000.0);
     EXPECT_EQ(expected_z, z_res);
 }
 
 TEST(Petrov_Kirill_ComplexNumberTest, Can_Perform_Power_Of_A_Power_Property) {
     // Arrange
-    const unsigned N=3, M=5;
+    const unsigned N = 3, M = 5;
     ComplexNumber z(5.0, 3.0);
 
-    auto power=[](const ComplexNumber& index,const unsigned pow)
-    {
-       ComplexNumber res(1.0,0.0);
-       for (unsigned i=0; i<pow; i++)
-           res=res*index;
+    auto power=[](const ComplexNumber& index, const unsigned pow) {
+       ComplexNumber res(1.0, 0.0);
+       for (unsigned i = 0; i < pow; i++)
+           res = res*index;
        return res;
     };
 
     // Act & Assert
-    //(z^n)^m == z^(m*n) ?
-    EXPECT_EQ(power(power(z,N),M), power(z,N*M));
+    // (z^n)^m == z^(m*n) ?
+    EXPECT_EQ(power(power(z, N), M), power(z, N*M));
 }
