@@ -31,7 +31,7 @@ TEST(Maksimenko_Alex_ComplexNumberTest, sum_using_the_form_of_diff_of_sqr) {
     EXPECT_EQ(z, expected_z);
 }
 
-TEST(Maksimenko_Alex_ComplexNumberTest, sum_using_the_form_of_diff_of_sum) {
+TEST(Maksimenko_Alex_ComplexNumberTest, sum_using_the_form_of_sums_of_sqr) {
     // Arrange
     ComplexNumber z1(4.0, 2.0);
     ComplexNumber z2(6.0, 8.0);
