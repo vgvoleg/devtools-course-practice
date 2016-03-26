@@ -71,7 +71,7 @@ TEST(Maksimenko_Alex_ComplexNumberTest, can_apply_the_form_of_diff_of_cub) {
     ComplexNumber cn2(1, 2);
 
     // Act
-	ComplexNumber res = cn1*cn1*cn1 - cn2*cn2*cn2;
+    ComplexNumber res = cn1*cn1*cn1 - cn2*cn2*cn2;
     ComplexNumber result = (cn1 - cn2)*(cn1*cn1 + cn1*cn2 + cn2*cn2);
 
     // Assert
