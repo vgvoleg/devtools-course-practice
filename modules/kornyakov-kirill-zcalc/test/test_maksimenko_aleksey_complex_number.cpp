@@ -20,7 +20,7 @@ TEST(Maksimenko_Alex_ComplexNumberTest, can_use_some_oper_with_complex) {
     EXPECT_EQ(z, result);
 }
 
-TEST(Maksimenko_Alex_ComplexNumberTest, can_calc_div_diff_of_sqr_and_diff_complex) {
+TEST(Maksimenko_Alex_ComplexNumberTest, can_calc_div_dif_of_sqr_&_dif_complex) {
     // Arrange
     ComplexNumber cn1(4, 2);
     ComplexNumber cn2(6, 8);
@@ -33,7 +33,7 @@ TEST(Maksimenko_Alex_ComplexNumberTest, can_calc_div_diff_of_sqr_and_diff_comple
     EXPECT_EQ(res, result);
 }
 
-TEST(Maksimenko_Alex_ComplexNumberTest, can_calc_div_diff_of_sqr_and_sums_complex) {
+TEST(Maksimenko_Alex_ComplexNumberTest, can_calc_div_diff_of_sqr_&_sums_complex) {
     // Arrange
     ComplexNumber cn1(4, 2);
     ComplexNumber cn2(6, 8);
