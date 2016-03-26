@@ -13,11 +13,11 @@ TEST(Maksimenko_Alex_ComplexNumberTest, division_and_multiplication) {
     ComplexNumber c(1, 1);
     ComplexNumber result(6.5, -0.5);
 
-	// Act
+    // Act
     ComplexNumber z = (a*b) / c;
 
     // Assert
-	EXPECT_EQ(z, result);
+    EXPECT_EQ(z, result);
 }
 
 TEST(Maksimenko_Alex_ComplexNumberTest, div_diff_of_squares_and_diff_complex) {
@@ -46,7 +46,7 @@ TEST(Maksimenko_Alex_ComplexNumberTest, div_diff_of_squares_and_sums_complex) {
     EXPECT_EQ(res, result);
 }
 
-TEST(Maksimenko_Alex_ComplexNumberTest, can_work_with_complex_conjugates)) {
+TEST(Maksimenko_Alex_ComplexNumberTest, can_work_with_complex_conjugates) {
     // Arrange
     ComplexNumber cn1(1, -1);
     ComplexNumber cn2(1, 1);
@@ -65,13 +65,13 @@ TEST(Maksimenko_Alex_ComplexNumberTest, can_work_with_complex_conjugates)) {
     EXPECT_EQ(result, res2);
 }
 
-TEST(Maksimenko_Alex_ComplexNumberTest, can_apply_the_formula_of_diff_of_cubes) {
+TEST(Maksimenko_Alex_ComplexNumberTest, can_apply_the_form_of_diff_of_cub) {
     // Arrange
     ComplexNumber cn1(1, 1);
     ComplexNumber cn2(1, 2);
 
     // Act
-    ComplexNumber res=cn1*cn1*cn1-cn2*cn2*cn2;
+	ComplexNumber res = cn1*cn1*cn1 - cn2*cn2*cn2;
     ComplexNumber result = (cn1 - cn2)*(cn1*cn1 + cn1*cn2 + cn2*cn2);
 
     // Assert
