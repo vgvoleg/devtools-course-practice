@@ -53,21 +53,21 @@ TEST(Maksimenko_Alex_ComplexNumberTest, can_work_with_complex_conjugates) {
     ComplexNumber ins(-1, 0);
 
     // Act
-	// (a*(1-i)^2/(b*(1+i)^2)=-a/b)
+    // (a*(1-i)^2/(b*(1+i)^2)=-a/b)
     ComplexNumber  division = a*z1*z1 / (b*z2*z2);
 
-	// Assert
-	ComplexNumber result = ins*a / b;
+    // Assert
+    ComplexNumber result = ins*a / b;
     EXPECT_EQ(division, result);
 }
 
 TEST(Maksimenko_Alex_ComplexNumberTest, can_apply_the_form_of_diff_of_cub) {
     // Arrange
     ComplexNumber z1(1, 1);
-	ComplexNumber z2(1, 2);
+    ComplexNumber z2(1, 2);
 
     // Act & Assert
-	// (z1)^3-(z2)^3=((z1)^2+z1z2+(z2)^2)
+    // (z1)^3-(z2)^3=((z1)^2+z1z2+(z2)^2)
     ComplexNumber result_left = z1*z1*z1 - z2*z2*z2;
     ComplexNumber result_right = (z1 - z2)*(z1*z1 + z1*z2 + z2*z2);
     EXPECT_EQ(result_left, result_right);
