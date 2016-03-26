@@ -4,7 +4,7 @@
 
 #include "include/complex_number.h"
 
-TEST(Maksimenko_Alex_ComplexNumberTest, can_use_some_oper_with) {
+TEST(Maksimenko_Alex_ComplexNumberTest, can_use_some_oper_with_complex) {
     // Arrange
     ComplexNumber z1(2.0, 1.0);
     ComplexNumber z2(4.0, 1.0);
@@ -18,7 +18,7 @@ TEST(Maksimenko_Alex_ComplexNumberTest, can_use_some_oper_with) {
     EXPECT_EQ(z, expected_z);
 }
 
-TEST(Maksimenko_Alex_ComplexNumberTest, can_calc_div_dif_of_sqr_and_dif) {
+TEST(Maksimenko_Alex_ComplexNumberTest, sum_using_the_form_of_diff_of_sqr) {
     // Arrange
     ComplexNumber z1(4.0, 2.0);
     ComplexNumber z2(6.0, 8.0);
@@ -31,7 +31,7 @@ TEST(Maksimenko_Alex_ComplexNumberTest, can_calc_div_dif_of_sqr_and_dif) {
     EXPECT_EQ(z, expected_z);
 }
 
-TEST(Maksimenko_Alex_ComplexNumberTest, can_calc_div_dif_of_sqr_and_sum) {
+TEST(Maksimenko_Alex_ComplexNumberTest, sum_using_the_form_of_diff_of_sum) {
     // Arrange
     ComplexNumber z1(4.0, 2.0);
     ComplexNumber z2(6.0, 8.0);
@@ -61,7 +61,7 @@ TEST(Maksimenko_Alex_ComplexNumberTest, can_work_with_complex_conjugates) {
     EXPECT_EQ(division, expected_z);
 }
 
-TEST(Maksimenko_Alex_ComplexNumberTest, can_apply_the_form_of_diff_of_cub) {
+TEST(Maksimenko_Alex_ComplexNumberTest, works_form_of_diff_of_cubes) {
     // Arrange
     ComplexNumber z1(1.0, 1.0);
     ComplexNumber z2(1.0, 2.0);
