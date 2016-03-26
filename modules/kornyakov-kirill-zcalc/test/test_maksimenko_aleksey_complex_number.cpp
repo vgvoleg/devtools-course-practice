@@ -6,7 +6,7 @@
 
 #include "include/complex_number.h"
 
-TEST(Maksimenko_Alex_ComplexNumberTest, can_use_some_oper_with_complex) {
+TEST(Maksimenko_Alex_ComplexNumberTest, can_use_some_oper_with) {
     // Arrange
     ComplexNumber a(2, 1);
     ComplexNumber b(4, 1);
@@ -20,7 +20,7 @@ TEST(Maksimenko_Alex_ComplexNumberTest, can_use_some_oper_with_complex) {
     EXPECT_EQ(z, result);
 }
 
-TEST(Maksimenko_Alex_ComplexNumberTest, can_calc_div_dif_of_sqr_&_dif_complex) {
+TEST(Maksimenko_Alex_ComplexNumberTest, can_calc_div_dif_of_sqr_and_dif) {
     // Arrange
     ComplexNumber cn1(4, 2);
     ComplexNumber cn2(6, 8);
@@ -33,7 +33,7 @@ TEST(Maksimenko_Alex_ComplexNumberTest, can_calc_div_dif_of_sqr_&_dif_complex) {
     EXPECT_EQ(res, result);
 }
 
-TEST(Maksimenko_Alex_ComplexNumberTest, can_calc_div_diff_of_sqr_&_sums_complex) {
+TEST(Maksimenko_Alex_ComplexNumberTest, can_calc_div_dif_of_sqr_and_sum) {
     // Arrange
     ComplexNumber cn1(4, 2);
     ComplexNumber cn2(6, 8);
