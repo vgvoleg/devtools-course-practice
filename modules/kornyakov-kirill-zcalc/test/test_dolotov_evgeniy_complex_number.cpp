@@ -22,7 +22,7 @@ TEST(Dolotov_Evgeniy_ComplexNumberTest, Imaginary_Unit_Square_Is_Minus_One) {
 
 TEST(Dolotov_Evgeniy_ComplexNumberTest, Multiplied_By_Zero_Is_Zero) {
     // Arrange
-    ComplexNumber z(23.0, -42.0);
+    ComplexNumber z(2.0, 3.0);
     ComplexNumber zero(0.0, 0.0);
 
     // Act
@@ -35,7 +35,7 @@ TEST(Dolotov_Evgeniy_ComplexNumberTest, Multiplied_By_Zero_Is_Zero) {
 
 TEST(Dolotov_Evgeniy_ComplexNumberTest, Devided_By_Itself_Is_Equal_To_One) {
     // Arrange
-    ComplexNumber z(34.0, 29.0);
+    ComplexNumber z(2.0, 3.0);
 
     // Act
     ComplexNumber devided = z / z;
@@ -47,8 +47,8 @@ TEST(Dolotov_Evgeniy_ComplexNumberTest, Devided_By_Itself_Is_Equal_To_One) {
 
 TEST(Dolotov_Evgeniy_ComplexNumberTest, Addition_Is_Commutative) {
     // Arrange
-    ComplexNumber z1(22.0, -9.0);
-    ComplexNumber z2(-56.0, 3.0);
+    ComplexNumber z1(2.0, 3.0);
+    ComplexNumber z2(3.0, 2.0);
 
     // Act
     ComplexNumber z1Addz2 = z1 + z2;
@@ -61,8 +61,8 @@ TEST(Dolotov_Evgeniy_ComplexNumberTest, Addition_Is_Commutative) {
 
 TEST(Dolotov_Evgeniy_ComplexNumberTest, Substract_With_Conjugate_Is_Imaginary) {
     // Arrange
-    double re = 36.0;
-    double im = -29.0;
+    double re = 2.0;
+    double im = 3.0;
 
     ComplexNumber z(re, im);
     ComplexNumber conjugate(re, -im);
