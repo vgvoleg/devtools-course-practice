@@ -50,3 +50,15 @@ TEST(Pronina_Maria_ComplexNumberTest,
     ComplexNumber z1Conj(8.0, -6.0), z2Conj(4.0, 3.0);
     EXPECT_TRUE(multConj == z1Conj * z2Conj);
 }
+
+TEST(Pronina_Maria_ComplexNumberTest,
+    Conjuate_Of_Division_Is_Equal_To_Division_Of_Conjuates) {
+    // Arrange
+    ComplexNumber z1(8.0, 6.0), z2(4.0, -3.0);
+    //Act
+    ComplexNumber div = z1 / z2;
+    ComplexNumber divtConj(div.getRe(), -div.getIm());
+    // Assert
+    ComplexNumber z1Conj(8.0, -6.0), z2Conj(4.0, 3.0);
+    EXPECT_TRUE(divtConj == z1Conj / z2Conj);
+}
