@@ -25,7 +25,7 @@ TEST(Zemtsov_Artem_ComplexNumberTest, distributivity_rule_works) {
     ComplexNumber secondEx(25.0, 15.0);
     ComplexNumber thirdEx(13, 66);
 
-    // Assert & Act 
+    // Assert & Act
     EXPECT_EQ(firstEx*thirdEx+secondEx*thirdEx, thirdEx*(firstEx+secondEx));
 }
 
