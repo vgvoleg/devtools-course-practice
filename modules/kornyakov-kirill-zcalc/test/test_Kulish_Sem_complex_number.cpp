@@ -37,9 +37,9 @@ TEST(Kulish_Sem_complex_test, Can_Make_All_Oper_Some_Times) {
   ComplexNumber cnumb3(1.0, -1.0);
   ComplexNumber cnumb4(1.0, 1.0);
   ComplexNumber cnumb5(2.0, 3.0);
-  const int N = 15;  // Number_Of_Cycles
 
   // Act
+  const int N = 15;  // Number_Of_Cycles
   ComplexNumber resultCNumb;
   for (int i = 0; i < N; i++)
     resultCNumb = resultCNumb+(cnumb1*cnumb2 - cnumb3 / cnumb4 + cnumb5);
@@ -53,10 +53,10 @@ TEST(Kulish_Sem_complex_test, Can_Check_Triangle_Inequality) {
   // Arrange
   ComplexNumber cnumb1(3.0, -2.0);
   ComplexNumber cnumb2(-1.0, 5.0);
-  bool triangleCheck = false;
 
   // Act
   // |z1|-|z2|<||z1|-|z2||<|z1+z2|<|z1|+|z2|
+  bool triangleCheck = false;
   double fstIneq = vectorlength(cnumb1) - vectorlength(cnumb2);
   double sndIneq = abs(vectorlength(cnumb1) - vectorlength(cnumb2));
   double trdIneq = vectorlength(cnumb1 + cnumb2);
@@ -72,9 +72,9 @@ TEST(Kulish_Sem_complex_test, Can_Check_Triangle_Inequality) {
 TEST(Kulish_Sem_complex_test, Can_Build_Complex_To_Any_Pow) {
   // Arrange
   ComplexNumber cnumb(4, 3);
-  const int N = 10;
 
   // Act
+  const int N = 10;
   ComplexNumber result(1, 0);
   for (int i = 1; i <= N; i++)
     result = result*cnumb;
