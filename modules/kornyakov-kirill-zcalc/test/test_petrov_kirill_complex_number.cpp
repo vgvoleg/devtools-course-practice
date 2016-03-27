@@ -42,7 +42,7 @@ TEST(Petrov_Kirill_ComplexNumberTest, Can_Associativity_Complex) {
 }
 
 TEST(Petrov_Kirill_ComplexNumberTest, Can_Summarize_The_Many_Complex) {
-    // Arrange   
+    // Arrange
     ComplexNumber z(1.0, 1.0);
 
     // Act
@@ -57,7 +57,6 @@ TEST(Petrov_Kirill_ComplexNumberTest, Can_Summarize_The_Many_Complex) {
 }
 
 TEST(Petrov_Kirill_ComplexNumberTest, Can_Perform_Power_Of_A_Power_Property) {
-
     auto power=[](const ComplexNumber& index, const unsigned pow) {
        ComplexNumber res(1.0, 0.0);
        for (unsigned i = 0; i < pow; i++)
