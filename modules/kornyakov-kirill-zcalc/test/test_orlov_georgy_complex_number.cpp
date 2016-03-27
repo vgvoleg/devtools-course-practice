@@ -42,7 +42,7 @@ TEST(Orlov_Georgy_ComplexNumberTest, multiplication_is_commutative) {
     EXPECT_EQ(result1, result2);
 }
 
-TEST(Orlov_Georgy_ComplexNumberTest, expr_with_all_ops_gives_the_correct_result) {
+TEST(Orlov_Georgy_ComplexNumberTest, expr_with_all_ops_correct_result) {
     // Arrange
     const ComplexNumber z1(2, 4);
     const ComplexNumber z2(8, 12);
