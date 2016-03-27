@@ -65,7 +65,7 @@ TEST(Marchenko_Andrey_ComplexNumberTest, Multiplication_Is_Distibutive) {
 TEST(Marchenko_Andrey_ComplexNumberTest, Summation_Is_Commutative) {
     // Arrange
     ComplexNumber z1(1, 2);
-    ComplexNumber z2(4, 5);
+    ComplexNumber z2(3, 4);
 
     // Act
     ComplexNumber first_result = z1 + z2;
