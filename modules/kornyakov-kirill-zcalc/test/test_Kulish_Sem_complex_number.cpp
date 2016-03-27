@@ -4,35 +4,29 @@
 #include <cmath>
 #include "include/complex_number.h"
 
+
 double vectorlength(const ComplexNumber & cn) {
-	return sqrt(pow(cn.getRe(), 2) + pow(cn.getIm(), 2));
+  return sqrt(pow(cn.getRe(), 2) + pow(cn.getIm(), 2));
 }
 
 TEST(Kulish_Sem_complex_test, Can_Calculate_Vector_Length) {
   // Arrange
-  ComplexNumber cnumb(4.0, 3.0);
-  const int N = 5; // Expected_Result
+  ComplexNumber cnum(4.0, 3.0);
 
   // Act
-  double result = vectorlength(cnumb);
+  double result = vectorlength(cnum);
 
   // Assert
-  EXPECT_EQ(N, result);
+  EXPECT_EQ(5, result);
 }
 
-TEST(Kulish_Sem_complex_test, Two_Complex_Are_Equiv_After_Multiplications) {
+TEST(Kulish_Sem_complex_test, Can_Use_Commutative_Operation) {
   // Arrange
   ComplexNumber cnumb1(5.0, 16.0);
   ComplexNumber cnumb2(2.2, 3.9);
-  ComplexNumber result1;
-  ComplexNumber result2;
 
-  // Act
-  result1 = cnumb2*cnumb1;
-  result2 = cnumb1*cnumb2;
-
-  // Assert
-  EXPECT_EQ(result1, result2);
+  // Act & Assert
+  EXPECT_EQ(cnumb2*cnumb1, cnumb1*cnumb2);
 }
 
 TEST(Kulish_Sem_complex_test, Can_Make_All_Oper_Some_Times) {
@@ -44,9 +38,10 @@ TEST(Kulish_Sem_complex_test, Can_Make_All_Oper_Some_Times) {
   ComplexNumber cnumb5(2.0, 3.0);
   ComplexNumber resultCNumb;
   ComplexNumber expectedCNumb(180, 90);
+  const int N = 15;  // Number_Of_Cycles
 
   // Act
-  for (int i = 0; i < 15; i++)
+  for (int i = 0; i < N; i++)
     resultCNumb = resultCNumb+(cnumb1*cnumb2 - cnumb3 / cnumb4 + cnumb5);
 
   // Assert
@@ -66,18 +61,11 @@ TEST(Kulish_Sem_complex_test, Can_Check_Triangle_Inequality) {
 
   // Act
   // |z1|-|z2|<||z1|-|z2||<|z1+z2|<|z1|+|z2|
-  fstIneq = sqrt(pow(cnumb1.getRe(), 2) + pow(cnumb1.getIm(), 2))
-  - sqrt(pow(cnumb2.getRe(), 2) + pow(cnumb2.getIm(), 2));
-
-  sndIneq = abs(sqrt(pow(cnumb1.getRe(), 2) + pow(cnumb1.getIm(), 2))
-  - sqrt(pow(cnumb2.getRe(), 2) + pow(cnumb2.getIm(), 2)));
-
+  fstIneq = vectorlength(cnumb1) - vectorlength(cnumb2);
+  sndIneq = abs(vectorlength(cnumb1) - vectorlength(cnumb2));
   buffCNum = cnumb1 + cnumb2;
-
-  trdIneq = sqrt(pow(buffCNum.getRe(), 2) + pow(buffCNum.getIm(), 2));
-
-  fthIneq = sqrt(pow(cnumb1.getRe(), 2) + pow(cnumb1.getIm(), 2))
-  + sqrt(pow(cnumb2.getRe(), 2) + pow(cnumb2.getIm(), 2));
+  trdIneq = vectorlength(buffCNum);
+  fthIneq = vectorlength(cnumb1) + vectorlength(cnumb2);
 
   if (fstIneq < sndIneq && sndIneq < trdIneq && trdIneq < fthIneq)
     triangleCheck = true;
@@ -91,7 +79,7 @@ TEST(Kulish_Sem_complex_test, Can_Build_Complex_To_Any_Pow) {
   ComplexNumber cnumb(4, 3);
   ComplexNumber result(1, 0);
   ComplexNumber expectedResultCnumb(9653287, 1476984);
-  int N = 10;
+  const int N = 10;
 
   // Act
   for (int i = 1; i <= N; i++)
