@@ -8,7 +8,7 @@ TEST(Orlov_Georgy_ComplexNumberTest, squared_img_number_equal_minus_one) {
     // Arrange
     const ComplexNumber z1(0, 1);
     const ComplexNumber z2(-1, 0);
-    
+
     // Act
     ComplexNumber result = z1 * z1;
 
