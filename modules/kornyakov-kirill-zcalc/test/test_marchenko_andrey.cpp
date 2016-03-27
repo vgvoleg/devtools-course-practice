@@ -13,8 +13,8 @@ TEST(Marchenko_Andrey_ComplexNumberTest, Can_Create_Int_Char_Variable) {
     ComplexNumber z(re, im);
 
     // Assert
-    EXPECT_EQ(re, z.getRe());
-    EXPECT_EQ(im, z.getIm());
+    EXPECT_DOUBLE_EQ(re, z.getRe());
+    EXPECT_DOUBLE_EQ(im, z.getIm());
 }
 
 TEST(Marchenko_Andrey_ComplexNumberTest, Can_Add_Big_Complex_Numbers) {
