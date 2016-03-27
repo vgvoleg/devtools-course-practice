@@ -67,7 +67,7 @@ TEST(Kulish_Sem_complex_test, Can_Check_Triangle_Inequality) {
   sndIneq = abs(sqrt(pow(cnumb1.getRe(), 2) + pow(cnumb1.getIm(), 2))
   - sqrt(pow(cnumb2.getRe(), 2) + pow(cnumb2.getIm(), 2)));
 
-  buffCNum = cnumb1 + numb2;
+  buffCNum = cnumb1 + cnumb2;
 
   trdIneq = sqrt(pow(buffCNum.getRe(), 2) + pow(buffCNum.getIm(), 2));
 
