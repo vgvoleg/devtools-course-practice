@@ -1,6 +1,7 @@
 // Copyright 2016 Zemtsov Artem
 
 #include <gtest/gtest.h>
+#include <math.h>
 #include "include/complex_number.h"
 
 TEST(Zemtsov_Artem_ComplexNumberTest, Can_Get_Sum_Of_The_Many_Complex) {
@@ -30,12 +31,11 @@ TEST(Zemtsov_Artem_ComplexNumberTest, distributivity_is_work) {
 
 TEST(Zemtsov_Artem_ComplexNumberTest, check_conjuate_Is_Abs_Square) {
     // Arrange
-    ComplexNumber firstEx(8.0, 6.0), secEx(8.0, -6.0);
+    ComplexNumber fEx(8.0, 6.0), secEx(8.0, -6.0);
 
     // Act
-    ComplexNumber multy = firstEx * secEx;
-    double abs = sqrt(firstEx.getRe() * firstEx.getRe()+
-       firstEx.getIm() * firstEx.getIm() );
+    ComplexNumber multy = fEx * secEx;
+    double abs = sqrt(fEx.getRe() * fEx.getRe()+fEx.getIm() * fEx.getIm() );
     ComplexNumber absSquare(abs * abs, 0.0);
 
     // Assert
