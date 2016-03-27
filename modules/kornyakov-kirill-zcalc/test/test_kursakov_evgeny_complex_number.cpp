@@ -17,6 +17,19 @@ TEST(Kursakov_Evgeny_ComplexNumberTest, Multiplication_Of_Complex_Number_And_Con
     EXPECT_EQ(z3, expected_z);
 }
 
+TEST(Kursakov_Evgeny_ComplexNumberTest, Sum_Of_Number_And_Conjugate_Is_Real) {
+    // Arrange
+    ComplexNumber z1(26.0, 14.0);
+    ComplexNumber z2(26.0, -14.0);
+
+    // Act
+    ComplexNumber z3 = z1 + z2;
+
+    // Assert
+    ComplexNumber expected_z(52.0, 0);
+    EXPECT_EQ(z3, expected_z);
+}
+
 TEST(Kursakov_Evgeny_ComplexNumberTest, Multiplication_Is_Commutative) {
     // Arrange
     ComplexNumber z1(26.0, 14.0);
