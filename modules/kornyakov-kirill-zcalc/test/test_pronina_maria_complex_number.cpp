@@ -38,3 +38,15 @@ TEST(Pronina_Maria_ComplexNumberTest,
     ComplexNumber absSquare(z1Abs * z1Abs, 0.0);
     EXPECT_TRUE(absSquare == mult);
 }
+
+TEST(Pronina_Maria_ComplexNumberTest,
+    Conjuate_Of_Mult_Is_Equal_To_Mul_Of_Conjuates) {
+    // Arrange
+    ComplexNumber z1(8.0, 6.0), z2(4.0, -3.0);
+    //Act
+    ComplexNumber mult = z1 * z2;
+    ComplexNumber multConj(mult.getRe(), -mult.getIm());
+    // Assert
+    ComplexNumber z1Conj(8.0, -6.0), z2Conj(4.0, 3.0);
+    EXPECT_TRUE(multConj == z1Conj * z2Conj);
+}
