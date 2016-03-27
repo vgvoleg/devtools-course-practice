@@ -13,12 +13,9 @@ TEST(Kulish_Sem_complex_test, Can_Calculate_Vector_Length) {
   // Arrange
   ComplexNumber cnum(4.0, 3.0);
 
-  // Act
-  double result = vectorlength(cnum);
-
-  // Assert
+  // Act & Assert
   const int N = 5;  // Expected_Result
-  EXPECT_EQ(N, result);
+  EXPECT_EQ(N, vectorlength(cnum));
 }
 
 TEST(Kulish_Sem_complex_test, Can_Use_Commutative_Operation) {
