@@ -17,7 +17,7 @@ TEST(Kulish_Sem_complex_test, Can_Calculate_Vector_Length) {
   double result = vectorlength(cnum);
 
   // Assert
-  const int N = 5;  //Expected_Result
+  const int N = 5;  // Expected_Result
   EXPECT_EQ(5, result);
 }
 
