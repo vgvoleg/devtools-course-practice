@@ -11,7 +11,7 @@ TEST(Zemtsov_Artem_ComplexNumberTest, Can_Get_Sum_Of_The_Many_Complex) {
 
     // Act
     for (unsigned i = 0; i < N; i++)
-       z_res = z_res + z;
+        z_res = z_res + z;
 
     // Assert
     ComplexNumber expected_z(10000.0, 10000.0);
@@ -24,7 +24,7 @@ TEST(Zemtsov_Artem_ComplexNumberTest, distributivity_is_work) {
     ComplexNumber secondEx(25.0,15.0);
     ComplexNumber thirdEx(13, 66);
 
-    // Normal human assert
+    //Assert
     EXPECT_EQ(firstEx*thirdEx+secondEx*thirdEx, thirdEx*(firstEx+secondEx));
 }
 
@@ -54,7 +54,7 @@ TEST(Zemtsov_Artem_ComplexNumberTest, can_get_and_set_re_and_im) {
 }
 
 TEST(Zemtsov_Artem_ComplexNumberTest, checking_of_the_inequality_operator) {
-    //Arrange
+     //Arrange
     ComplexNumber firstEx(13, 66), secEx(66,13);
 
     //Assert
