@@ -26,3 +26,15 @@ TEST(Pronina_Maria_ComplexNumberTest, Triangle_Inequality_For_Complex) {
     // Assert
     EXPECT_TRUE(sumAbs < z1Abs + z2Abs);
 }
+
+TEST(Pronina_Maria_ComplexNumberTest,
+    Mult_Of_Complex_And_Conjuate_Is_Abs_Square) {
+    // Arrange
+    ComplexNumber z1(8.0, 6.0), z2(8.0, -6.0);
+    //Act
+    ComplexNumber mult = z1 * z2;
+    // Assert
+    double z1Abs = sqrt(z1.getRe() * z1.getRe() + z1.getIm() * z1.getIm());
+    ComplexNumber absSquare(z1Abs * z1Abs, 0.0);
+    EXPECT_TRUE(absSquare == mult);
+}
