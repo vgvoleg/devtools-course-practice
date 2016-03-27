@@ -4,15 +4,18 @@
 
 #include "include/complex_number.h"
 
-TEST(Kornyakov_Kirill_ComplexNumberTest1, Can_Create_Zero1) {
+TEST(Zemtsov_Artem_ComplexNumberTest, Can_Get_Sum_Of_The_Many_Complex) {
 	// Arrange
-	double re = 0.0;
-	double im = 0.0;
+	const unsigned N = 10000;
+	ComplexNumber z(1.0, 1.0);
+	ComplexNumber z_res;
 
 	// Act
-	ComplexNumber z(re, im);
+	for (unsigned i = 0; i < N; i++)
+		z_res = z_res + z;
 
 	// Assert
-	EXPECT_EQ(re, z.getRe());
-	EXPECT_EQ(im, z.getIm());
+	ComplexNumber expected_z(10000.0, 10000.0);
+	EXPECT_EQ(expected_z, z_res);
 }
+
