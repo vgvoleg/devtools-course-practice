@@ -2,9 +2,11 @@
 
 #include <gtest/gtest.h>
 
+#include <limits>
+
 #include "include/complex_number.h"
 
-const double epsilon = 1e-6;
+const double epsilon = std::numeric_limits<double>::epsilon();
 
 TEST(Dolotov_Evgeniy_ComplexNumberTest, Imaginary_Unit_Square_Is_Minus_One) {
     // Arrange
