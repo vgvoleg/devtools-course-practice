@@ -1,16 +1,16 @@
 // Copyright 2016 Muminov Ruslan
 
+#include <math.h>
+
 #include <gtest/gtest.h>
 
 #include "include/complex_number.h"
 
-#include <math.h>
-
-double calc_absolute_value(ComplexNumber c){
+double calc_abs_value(ComplexNumber c) {
     return sqrt(c.getRe()*c.getRe() + c.getIm()*c.getIm());
 }
 
-double calc_argument(ComplexNumber c){
+double calc_argument(ComplexNumber c) {
     return atan(c.getIm()/c.getRe());
 }
 
@@ -25,53 +25,53 @@ TEST(Muminov_Ruslan_ComplexNumberTest, Does_Triangle_Inequality) {
     ComplexNumber z = z1 + z2;
 
     // Assert
-    EXPECT_TRUE(calc_absolute_value(z) <= calc_absolute_value(z1) + calc_absolute_value(z2));
+    EXPECT_TRUE(calc_abs_value(z) <= calc_abs_value(z1) + calc_abs_value(z2));
 }
 
-TEST(Muminov_Ruslan_ComplexNumberTest, Absolute_Values_Of_Conjugates_Are_Equal){
+TEST(Muminov_Ruslan_ComplexNumberTest, Abs_Values_Of_Conjugates_Are_Equal) {
     // Arrange
     ComplexNumber z1(2.0, 5.0);
     ComplexNumber z2(2.0, -5.0);
 
     // Act & Assert
-    EXPECT_NEAR(calc_absolute_value(z1), calc_absolute_value(z2), epsilon);
+    EXPECT_NEAR(calc_abs_value(z1), calc_abs_value(z2), epsilon);
 }
 
-TEST(Muminov_Ruslan_ComplexNumberTest, Conjugates_Product_Is_Equal_Square_Of_Absolute_Value){
-    //Arrange
+TEST(Muminov_Ruslan_ComplexNumberTest, Conjugates_Product_Is_Sqr_Abs_Value) {
+    // Arrange
     ComplexNumber z1(14.0, 4.0);
     ComplexNumber z2(14.0, -4.0);
 
-    //Act
+    // Act
     ComplexNumber z = z1*z2;
-    double sqrAbs = calc_absolute_value(z1)*calc_absolute_value(z1);
+    double sqrAbs = calc_abs_value(z1)*calc_abs_value(z1);
 
-    //Assert
+    // Assert
     EXPECT_NEAR(z.getRe(), sqrAbs, epsilon);
     EXPECT_EQ(z.getIm(), 0);
 }
 
-TEST(Muminov_Ruslan_ComplexNumberTest, Conjugates_Sum_Is_Equal_Double_Real){
-    //Arrange
+TEST(Muminov_Ruslan_ComplexNumberTest, Conjugates_Sum_Is_Equal_Double_Real) {
+    // Arrange
     ComplexNumber z1(23.0, 10.0);
     ComplexNumber z2(23.0, -10.0);
 
-    //Act
+    // Act
     ComplexNumber z = z1 + z2;
 
-    //Assert
+    // Assert
     EXPECT_NEAR(z.getRe(), 2*z1.getRe(), epsilon);
     EXPECT_EQ(z.getIm(), 0);
 }
 
-TEST(Muminov_Ruslan_ComplexNumberTest, Argument_Of_Inverse_Is_Equal_Argument_Original_With_Minus_Sign){
-    //Arrange
+TEST(Muminov_Ruslan_ComplexNumberTest, Arg_Inverse_Is_Minus_Arg_Original) {
+    // Arrange
     ComplexNumber z1(13.0, 5.0);
     ComplexNumber z(1.0, 0.0);
 
-    //Act
+    // Act
     ComplexNumber z2 = z/z1;
 
-    //Assert
+    // Assert
     EXPECT_NEAR(calc_argument(z1), -calc_argument(z2), epsilon);
 }
