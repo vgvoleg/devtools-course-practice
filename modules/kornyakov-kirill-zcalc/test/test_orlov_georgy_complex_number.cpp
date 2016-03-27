@@ -7,9 +7,9 @@
 TEST(Orlov_Georgy_ComplexNumberTest, squared_img_number_equal_minus_one) {
     // Arrange
     const ComplexNumber z1(0, 1);
-    const ComplexNumber expected_z(-1, 0);
 
     // Act & Assert
+    const ComplexNumber expected_z(-1, 0);
     EXPECT_EQ(expected_z, z1 * z1);
 }
 
