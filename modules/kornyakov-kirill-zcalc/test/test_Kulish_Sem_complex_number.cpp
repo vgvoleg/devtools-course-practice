@@ -18,7 +18,7 @@ TEST(Kulish_Sem_complex_test, Can_Calculate_Vector_Length) {
 
   // Assert
   const int N = 5;  // Expected_Result
-  EXPECT_EQ(5, result);
+  EXPECT_EQ(N, result);
 }
 
 TEST(Kulish_Sem_complex_test, Can_Use_Commutative_Operation) {
