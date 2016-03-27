@@ -18,4 +18,13 @@ TEST(Zemtsov_Artem_ComplexNumberTest, Can_Get_Sum_Of_The_Many_Complex) {
 	ComplexNumber expected_z(10000.0, 10000.0);
 	EXPECT_EQ(expected_z, z_res);
 }
+TEST(Zemtsov_Artem_ComplexNumberTest, distributivity_is_work) {
+	// Arrange
+	const unsigned N = 10000;
+	ComplexNumber firstEx(10.0, 10.0);
+	ComplexNumber secondEx(25.0,15.0);
+	ComplexNumber thirdEx(13, 66);
 
+	// Normal human assert
+	EXPECT_EQ(firstEx*thirdEx+secondEx*thirdEx, thirdEx*(firstEx+secondEx));
+}
