@@ -42,3 +42,16 @@ TEST(Kursakov_Evgeny_ComplexNumberTest, Add_Is_Commutative) {
     // Assert
     EXPECT_EQ(z3, z4);
 }
+
+TEST(Kursakov_Evgeny_ComplexNumberTest, Multiplication_Of_Number_And_Reciprocal_Is_Equals_One) {
+    // Arrange
+    ComplexNumber z(26.0, 14.0);
+    ComplexNumber one(1.0, 0.0);
+
+    // Act
+    ComplexNumber inverse_z = one / z;
+    ComplexNumber result_z = z * inverse_z;
+
+    // Assert
+    EXPECT_EQ(result_z, one);
+}
