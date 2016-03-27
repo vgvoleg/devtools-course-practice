@@ -28,7 +28,8 @@ TEST(Muminov_Ruslan_ComplexNumberTest, Does_Triangle_Inequality) {
     EXPECT_TRUE(calc_abs_value(z) <= calc_abs_value(z1) + calc_abs_value(z2));
 }
 
-TEST(Muminov_Ruslan_ComplexNumberTest, Abs_Values_Of_Conjugates_Are_Equal) {
+TEST(Muminov_Ruslan_ComplexNumberTest,
+     Absolute_Values_Of_Conjugates_Are_Equal) {
     // Arrange
     ComplexNumber z1(2.0, 5.0);
     ComplexNumber z2(2.0, -5.0);
@@ -37,7 +38,8 @@ TEST(Muminov_Ruslan_ComplexNumberTest, Abs_Values_Of_Conjugates_Are_Equal) {
     EXPECT_NEAR(calc_abs_value(z1), calc_abs_value(z2), epsilon);
 }
 
-TEST(Muminov_Ruslan_ComplexNumberTest, Conjugates_Product_Is_Sqr_Abs_Value) {
+TEST(Muminov_Ruslan_ComplexNumberTest,
+     Conjugates_Product_Is_Equal_Square_Absolute_Value) {
     // Arrange
     ComplexNumber z1(14.0, 4.0);
     ComplexNumber z2(14.0, -4.0);
@@ -51,7 +53,8 @@ TEST(Muminov_Ruslan_ComplexNumberTest, Conjugates_Product_Is_Sqr_Abs_Value) {
     EXPECT_EQ(z.getIm(), 0);
 }
 
-TEST(Muminov_Ruslan_ComplexNumberTest, Conjugates_Sum_Is_Equal_Double_Real) {
+TEST(Muminov_Ruslan_ComplexNumberTest,
+     Conjugates_Sum_Is_Equal_Double_Real_Part) {
     // Arrange
     ComplexNumber z1(23.0, 10.0);
     ComplexNumber z2(23.0, -10.0);
@@ -64,7 +67,8 @@ TEST(Muminov_Ruslan_ComplexNumberTest, Conjugates_Sum_Is_Equal_Double_Real) {
     EXPECT_EQ(z.getIm(), 0);
 }
 
-TEST(Muminov_Ruslan_ComplexNumberTest, Arg_Inverse_Is_Minus_Arg_Original) {
+TEST(Muminov_Ruslan_ComplexNumberTest,
+     Argument_Of_Inverse_Number_Is_Equal_Negative_Argument_Of_Original) {
     // Arrange
     ComplexNumber z1(13.0, 5.0);
     ComplexNumber z(1.0, 0.0);
