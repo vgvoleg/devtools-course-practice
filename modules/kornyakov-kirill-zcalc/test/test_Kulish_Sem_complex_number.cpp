@@ -17,6 +17,7 @@ TEST(Kulish_Sem_complex_test, Can_Calculate_Vector_Length) {
   double result = vectorlength(cnum);
 
   // Assert
+  const int N = 5;  //Expected_Result
   EXPECT_EQ(5, result);
 }
 
@@ -36,15 +37,15 @@ TEST(Kulish_Sem_complex_test, Can_Make_All_Oper_Some_Times) {
   ComplexNumber cnumb3(1.0, -1.0);
   ComplexNumber cnumb4(1.0, 1.0);
   ComplexNumber cnumb5(2.0, 3.0);
-  ComplexNumber resultCNumb;
-  ComplexNumber expectedCNumb(180, 90);
   const int N = 15;  // Number_Of_Cycles
 
   // Act
+  ComplexNumber resultCNumb;
   for (int i = 0; i < N; i++)
     resultCNumb = resultCNumb+(cnumb1*cnumb2 - cnumb3 / cnumb4 + cnumb5);
 
   // Assert
+  ComplexNumber expectedCNumb(180, 90);
   EXPECT_EQ(expectedCNumb, resultCNumb);
 }
 
@@ -77,14 +78,14 @@ TEST(Kulish_Sem_complex_test, Can_Check_Triangle_Inequality) {
 TEST(Kulish_Sem_complex_test, Can_Build_Complex_To_Any_Pow) {
   // Arrange
   ComplexNumber cnumb(4, 3);
-  ComplexNumber result(1, 0);
-  ComplexNumber expectedResultCnumb(9653287, 1476984);
   const int N = 10;
 
   // Act
+  ComplexNumber result(1, 0);
   for (int i = 1; i <= N; i++)
     result = result*cnumb;
 
   // Assert
+  ComplexNumber expectedResultCnumb(9653287, 1476984);
   EXPECT_EQ(expectedResultCnumb, result);
 }
