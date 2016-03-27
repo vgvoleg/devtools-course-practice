@@ -19,13 +19,13 @@ TEST(Zemtsov_Artem_ComplexNumberTest, Can_Get_Sum_Of_The_Many_Complex) {
     EXPECT_EQ(expected_z, z_res);
 }
 
-TEST(Zemtsov_Artem_ComplexNumberTest, distributivity_is_work) {
+TEST(Zemtsov_Artem_ComplexNumberTest, distributivity_rule_works) {
     // Arrange
     ComplexNumber firstEx(10.0, 10.0);
     ComplexNumber secondEx(25.0, 15.0);
     ComplexNumber thirdEx(13, 66);
 
-    // Assert
+    // Assert & Act 
     EXPECT_EQ(firstEx*thirdEx+secondEx*thirdEx, thirdEx*(firstEx+secondEx));
 }
 
