@@ -32,7 +32,8 @@ TEST(Marchenko_Andrey_ComplexNumberTest, Can_Add_Big_Complex_Numbers) {
     EXPECT_EQ(result, expected_result);
 }
 
-TEST(Marchenko_Andrey_ComplexNumberTest, The_Triangle_Inequality_Is_Carried_Out) {
+TEST(Marchenko_Andrey_ComplexNumberTest, 
+    The_Triangle_Inequality_Is_Carried_Out) {
     // Arrange
     ComplexNumber z1(1, 2);
     ComplexNumber z2(3, 4);
