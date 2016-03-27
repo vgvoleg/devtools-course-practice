@@ -56,8 +56,8 @@ TEST(Zemtsov_Artem_ComplexNumberTest, can_get_and_set_re_and_im) {
 
 TEST(Zemtsov_Artem_ComplexNumberTest, checking_of_the_inequality_operator) {
     // Arrange
-    ComplexNumber firstEx(13 , 66) , secEx(66,13);
+    ComplexNumber firstEx(13 , 66) , secEx(66 , 13);
 
-    //Assert
+    // Assert
     EXPECT_NE(firstEx , secEx);
 }
