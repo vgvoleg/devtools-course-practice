@@ -1,8 +1,8 @@
 // Copyright 2016 Orlov Georgy
 
-#include <gtest\gtest.h>
+#include "gtest\gtest.h"
 
-#include <include\complex_number.h>
+#include "include\complex_number.h"
 
 TEST(Orlov_Georgy_ComplexNumberTest, squared_img_number_equal_minus_one) {
     // Arrange
