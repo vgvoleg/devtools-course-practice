@@ -19,8 +19,8 @@ TEST(Hramov_Ilya_ComplexNumberTest, Can_Compare_For_Inequality)
     ComplexNumber z1(1.0, 2.0), z2(1.0, 2.0), z3(1.1, 2.0);
 
     //Assert
-    EXPEXT_TRUE(z1 != z3);
-    EXPEXT_FALSE(z1 != z2);
+    EXPEСT_TRUE(z1 != z3);
+    EXPEСT_FALSE(z1 != z2);
 }
 
 TEST(Hramov_Ilya_ComplexNumberTest, Can_Multiply_Not_Extraordinnary_Numbers)
