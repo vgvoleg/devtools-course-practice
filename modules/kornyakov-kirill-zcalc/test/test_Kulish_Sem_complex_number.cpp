@@ -4,15 +4,20 @@
 #include <cmath>
 #include "include/complex_number.h"
 
+double vectorlength(const ComplexNumber & cn) {
+	return sqrt(pow(cn.getRe(), 2) + pow(cn.getIm(), 2));
+}
+
 TEST(Kulish_Sem_complex_test, Can_Calculate_Vector_Length) {
   // Arrange
-  ComplexNumber vector(4.0, 3.0);
+  ComplexNumber cnumb(4.0, 3.0);
+  const int N = 5; // Expected_Result
 
   // Act
-  double result = sqrt(pow(vector.getRe(), 2) + pow(vector.getIm(), 2));
+  double result = vectorlength(cnumb);
 
   // Assert
-  EXPECT_EQ(5, result);
+  EXPECT_EQ(N, result);
 }
 
 TEST(Kulish_Sem_complex_test, Two_Complex_Are_Equiv_After_Multiplications) {
