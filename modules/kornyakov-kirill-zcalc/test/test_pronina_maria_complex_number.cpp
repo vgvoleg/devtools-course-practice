@@ -9,8 +9,8 @@ TEST(Pronina_Maria_ComplexNumberTest,
     ComplexNumber z(0.0, 1.0);
      // Act
     ComplexNumber square = z * z;
-     // Assert
     ComplexNumber res(-1.0, 0.0);
+     // Assert   
     EXPECT_TRUE(res == square);
 }
 
@@ -33,22 +33,23 @@ TEST(Pronina_Maria_ComplexNumberTest,
     ComplexNumber z1(8.0, 6.0), z2(8.0, -6.0);
      // Act
     ComplexNumber mult = z1 * z2;
-     // Assert
     double z1Abs = sqrt(z1.getRe() * z1.getRe() + z1.getIm() * z1.getIm());
     ComplexNumber absSquare(z1Abs * z1Abs, 0.0);
+     // Assert  
     EXPECT_TRUE(absSquare == mult);
 }
 
 TEST(Pronina_Maria_ComplexNumberTest,
-    Conjuate_Of_Mult_Is_Equal_To_Mul_Of_Conjuates) {
+    Conjuate_Of_Mult_Is_Equal_To_Mult_Of_Conjuates) {
      // Arrange
     ComplexNumber z1(8.0, 6.0), z2(4.0, -3.0);
+    ComplexNumber z1Conj(8.0, -6.0), z2Conj(4.0, 3.0);
      // Act
     ComplexNumber mult = z1 * z2;
     ComplexNumber multConj(mult.getRe(), -mult.getIm());
-     // Assert
-    ComplexNumber z1Conj(8.0, -6.0), z2Conj(4.0, 3.0);
-    EXPECT_TRUE(multConj == z1Conj * z2Conj);
+    ComplexNumber conjMult = z1Conj * z2Conj;
+     // Assert    
+    EXPECT_TRUE(multConj == conjMult);
 }
 
 TEST(Pronina_Maria_ComplexNumberTest,
@@ -58,7 +59,7 @@ TEST(Pronina_Maria_ComplexNumberTest,
      // Act
     ComplexNumber div = z1 / z2;
     ComplexNumber divtConj(div.getRe(), -div.getIm());
-     // Assert
     ComplexNumber z1Conj(8.0, -6.0), z2Conj(4.0, 3.0);
+     // Assert  
     EXPECT_TRUE(divtConj == z1Conj / z2Conj);
 }
