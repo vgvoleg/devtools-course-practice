@@ -14,7 +14,8 @@ TEST(Pronina_Maria_ComplexNumberTest,
     EXPECT_TRUE(res == square);
 }
 
-TEST(Pronina_Maria_ComplexNumberTest, Triangle_Inequality_For_Complex) {
+TEST(Pronina_Maria_ComplexNumberTest, 
+    Triangle_Inequality_Is_True_For_Complex) {
      // Arrange
     ComplexNumber z1(6.0, 5.0), z2(7.0, 8.0);
      // Act
