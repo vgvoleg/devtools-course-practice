@@ -34,7 +34,7 @@ TEST(Kulish_Sem_complex_test, Can_Make_All_Oper_Some_Times) {
   // Arrange
   ComplexNumber cnumb[5];
   for (int j = 0; j < 5; j++)
-	  cnumb[j] = ComplexNumber(j, j+1);
+    cnumb[j] = ComplexNumber(j, j+1);
 
   // Act
   const int N = 15;  // Number_Of_Cycles
