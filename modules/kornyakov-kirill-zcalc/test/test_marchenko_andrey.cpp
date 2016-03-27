@@ -21,7 +21,7 @@ TEST(Marchenko_Andrey_ComplexNumberTest, Can_Add_Big_Complex_Numbers) {
     // Arrange
     double a = sqrt(1000);
     double b = sqrt(2000);
-    ComplexNumber z1(a,b);
+    ComplexNumber z1(a, b);
     ComplexNumber z2(2 * a, 2 * b);
 
     // Act
@@ -32,7 +32,7 @@ TEST(Marchenko_Andrey_ComplexNumberTest, Can_Add_Big_Complex_Numbers) {
     EXPECT_EQ(result, expected_result);
 }
 
-TEST(Marchenko_Andrey_ComplexNumberTest, Ñheck_The_Triangle_Inequality) {
+TEST(Marchenko_Andrey_ComplexNumberTest, Check_The_Triangle_Inequality) {
     // Arrange
     ComplexNumber z1(1, 2);
     ComplexNumber z2(3, 4);
@@ -40,8 +40,9 @@ TEST(Marchenko_Andrey_ComplexNumberTest, Ñheck_The_Triangle_Inequality) {
     // Act
     ComplexNumber result_sum = z1 + z2;
     double abs_of_sum = hypot(result_sum.getRe(), result_sum.getIm());
-    double sum_of_abs = hypot(z1.getRe(), z1.getIm()) + hypot(z2.getRe(), z2.getIm());
-    
+    double sum_of_abs = hypot(z1.getRe(), z1.getIm()) +
+        hypot(z2.getRe(), z2.getIm());
+
     // Assert
     EXPECT_LE(abs_of_sum, sum_of_abs);
 }
