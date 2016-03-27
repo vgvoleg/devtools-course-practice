@@ -32,17 +32,19 @@ TEST(Kulish_Sem_complex_test, Can_Use_Commutative_Operation) {
 
 TEST(Kulish_Sem_complex_test, Can_Make_All_Oper_Some_Times) {
   // Arrange
-  ComplexNumber cnumb1(2.0, 3.0);
-  ComplexNumber cnumb2(2.0, -2.0);
-  ComplexNumber cnumb3(1.0, -1.0);
-  ComplexNumber cnumb4(1.0, 1.0);
-  ComplexNumber cnumb5(2.0, 3.0);
+  ComplexNumber cnumb[5];
+  cnumb[0] = ComplexNumber(2.0, 3.0);
+  cnumb[1] = ComplexNumber(2.0, -2.0);
+  cnumb[2] = ComplexNumber(1.0, -1.0);
+  cnumb[3] = ComplexNumber(1.0, 1.0);
+  cnumb[4] = ComplexNumber(2.0, 3.0);
 
   // Act
   const int N = 15;  // Number_Of_Cycles
-  ComplexNumber resultCNumb;
+  ComplexNumber resultCNumb(1.0, 0.0);
+  // Result_Complex=Result_Complex+cnum1*cnum2-(cnum3/cnum4)+cnum5
   for (int i = 0; i < N; i++)
-    resultCNumb = resultCNumb+(cnumb1*cnumb2 - cnumb3 / cnumb4 + cnumb5);
+    resultCNumb = resultCNumb+cnumb[0]*cnumb[1] - cnumb[2] / cnumb[3] + cnumb[4];
 
   // Assert
   ComplexNumber expectedCNumb(180, 90);
