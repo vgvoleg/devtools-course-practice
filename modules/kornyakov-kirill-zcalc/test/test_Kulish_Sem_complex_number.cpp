@@ -53,7 +53,6 @@ TEST(Kulish_Sem_complex_test, Can_Check_Triangle_Inequality) {
   // Arrange
   ComplexNumber cnumb1(3.0, -2.0);
   ComplexNumber cnumb2(-1.0, 5.0);
-  ComplexNumber buffCNum;
   bool triangleCheck = false;
   double fstIneq;
   double sndIneq;
@@ -64,8 +63,7 @@ TEST(Kulish_Sem_complex_test, Can_Check_Triangle_Inequality) {
   // |z1|-|z2|<||z1|-|z2||<|z1+z2|<|z1|+|z2|
   fstIneq = vectorlength(cnumb1) - vectorlength(cnumb2);
   sndIneq = abs(vectorlength(cnumb1) - vectorlength(cnumb2));
-  buffCNum = cnumb1 + cnumb2;
-  trdIneq = vectorlength(buffCNum);
+  trdIneq = vectorlength(cnumb1 + cnumb2);
   fthIneq = vectorlength(cnumb1) + vectorlength(cnumb2);
 
   if (fstIneq < sndIneq && sndIneq < trdIneq && trdIneq < fthIneq)
