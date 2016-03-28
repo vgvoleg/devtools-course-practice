@@ -19,7 +19,7 @@ TEST(Sharadze_Georgy_ComplexNumberTest, Can_Make_Few_Multiplications_In_A_Row) {
 TEST(Sharadze_Georgy_ComplexNumberTest, Can_Divide_With_Zero) {
     // Arrange
     ComplexNumber z0(0.0, 0.0);
-    ComplexNumber z1(2.0, 8.0);
+    ComplexNumber z1(1.0, 1.0);
 
     // Act
     ComplexNumber z = z0 / z1;
