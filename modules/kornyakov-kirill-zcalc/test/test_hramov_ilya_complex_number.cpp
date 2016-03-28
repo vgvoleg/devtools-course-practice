@@ -42,7 +42,8 @@ TEST(Hramov_Ilya_ComplexNumberTest, Can_Compare_For_Imparity_Unequal_Numbers) {
 
 TEST(Hramov_Ilya_ComplexNumberTest, Can_Multiply_Ordinary_Numbers) {
     // Arrange
-    ComplexNumber z1(1.0, 2.0), z2(3.0, 4.0);
+    ComplexNumber z1(1.0, 2.0);
+    ComplexNumber z2(3.0, 4.0);
 
     // Act
     ComplexNumber result = z1 * z2;
@@ -54,7 +55,8 @@ TEST(Hramov_Ilya_ComplexNumberTest, Can_Multiply_Ordinary_Numbers) {
 
 TEST(Hramov_Ilya_ComplexNumberTest, Can_Add_Ordinary_Numbers) {
     // Arrange
-    ComplexNumber z1(1.0, 2.0), z2(3.0, 4.0);
+    ComplexNumber z1(1.0, 2.0);
+    ComplexNumber z2(3.0, 4.0);
 
     // Act
     ComplexNumber result = z1 + z2;
@@ -66,7 +68,8 @@ TEST(Hramov_Ilya_ComplexNumberTest, Can_Add_Ordinary_Numbers) {
 
 TEST(Hramov_Ilya_ComplexNumberTest, Can_Subtract_Ordinary_Numbers) {
     // Arrange
-    ComplexNumber z1(1.0, 2.0), z2(3.0, 4.0);
+    ComplexNumber z1(1.0, 2.0);
+    ComplexNumber z2(3.0, 4.0);
 
     // Act
     ComplexNumber result = z1 - z2;
