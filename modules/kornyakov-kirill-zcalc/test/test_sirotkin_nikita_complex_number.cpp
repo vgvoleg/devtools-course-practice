@@ -66,7 +66,7 @@ TEST(Sirotkin_Nikita_ComplexNumberTest, Can_sum_many_times) {
 
     // Act
     ComplexNumber a(re, im);
-    ComplexNumber res(0,0);
+    ComplexNumber res(0, 0);
     for (int i = 0; i < count; ++i)
         res = res + a;
 
