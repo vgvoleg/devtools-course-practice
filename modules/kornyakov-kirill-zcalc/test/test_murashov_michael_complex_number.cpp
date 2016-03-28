@@ -69,7 +69,8 @@ TEST(Murashov_Michael_ComplexNumberTest, DISABLED_correct_cube_of_im_num) {
     ComplexNumber z(0.0, 1.0);
 
     // Act
-    ComplexNumber cube = z * z * z;  // re = 0, im = -1
+    ComplexNumber cube;  // z^3
+    cube = z * z * z;  // re = 0, im = -1
 
     // Assert
     ComplexNumber expected_z(0.0, -1.0);
