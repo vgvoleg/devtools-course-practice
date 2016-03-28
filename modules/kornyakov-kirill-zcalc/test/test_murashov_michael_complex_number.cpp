@@ -43,9 +43,9 @@ TEST(Murashov_Michael_ComplexNumberTest, can_count_module) {
     double module = sqrt(acr1 + acr2);
 
     // Assert
-    double expected_vect = sqrt(4.0 + 1.0);
+    double expected_module = sqrt(4.0 + 1.0);
 
-    EXPECT_EQ(expected_vect, vect);
+    EXPECT_EQ(expected_module, module);
 }
 
 TEST(Murashov_Michael_ComplexNumberTest, can_do_algebraic_operations) {
