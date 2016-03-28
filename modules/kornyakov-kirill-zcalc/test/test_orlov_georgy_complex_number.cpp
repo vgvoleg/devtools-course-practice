@@ -4,7 +4,7 @@
 
 #include "include/complex_number.h"
 
-TEST(Orlov_Georgy_ComplexNumberTest, squared_img_number_equal_minus_one) {
+TEST(Orlov_Georgy_ComplexNumberTest, Squared_Img_Number_Equal_Minus_One) {
     // Arrange
     const ComplexNumber z1(0, 1);
 
@@ -13,7 +13,7 @@ TEST(Orlov_Georgy_ComplexNumberTest, squared_img_number_equal_minus_one) {
     EXPECT_EQ(expected_z, z1 * z1);
 }
 
-TEST(Orlov_Georgy_ComplexNumberTest, addition_is_commutative) {
+TEST(Orlov_Georgy_ComplexNumberTest, Addition_Is_Commutative) {
     // Arrange
     const ComplexNumber z1(10, 15);
     const ComplexNumber z2(6, 12);
@@ -22,7 +22,7 @@ TEST(Orlov_Georgy_ComplexNumberTest, addition_is_commutative) {
     EXPECT_EQ(z1 + z2, z2 + z1);
 }
 
-TEST(Orlov_Georgy_ComplexNumberTest, multiplication_is_commutative) {
+TEST(Orlov_Georgy_ComplexNumberTest, Multiplication_Is_Commutative) {
     // Arrange
     const ComplexNumber z1(10, 15);
     const ComplexNumber z2(6, 12);
@@ -31,7 +31,7 @@ TEST(Orlov_Georgy_ComplexNumberTest, multiplication_is_commutative) {
     EXPECT_EQ(z1 * z2, z2 * z1);
 }
 
-TEST(Orlov_Georgy_ComplexNumberTest, expr_with_all_ops_correct_result) {
+TEST(Orlov_Georgy_ComplexNumberTest, Expr_With_All_Ops_Correct_Result) {
     // Arrange
     const ComplexNumber z1(2, 4);
     const ComplexNumber z2(8, 12);
@@ -44,7 +44,7 @@ TEST(Orlov_Georgy_ComplexNumberTest, expr_with_all_ops_correct_result) {
     EXPECT_EQ(z1 * z2 + z3 - z4 / z5, expected_z);
 }
 
-TEST(Orlov_Georgy_ComplexNumberTest, distributivity_check) {
+TEST(Orlov_Georgy_ComplexNumberTest, Distributivity_Is_Performed) {
     // Arrange
     const ComplexNumber z1(-2, 5);
     const ComplexNumber z2(6, 4);
