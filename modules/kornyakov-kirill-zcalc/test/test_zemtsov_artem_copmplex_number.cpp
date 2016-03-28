@@ -36,9 +36,9 @@ TEST(Zemtsov_Artem_ComplexNumberTest, check_conjuate_Is_Abs_Square) {
     // Act
     ComplexNumber multy = fEx * secEx;
     double abs = sqrt(fEx.getRe() * fEx.getRe()+fEx.getIm() * fEx.getIm() );
-    ComplexNumber absSquare(abs * abs, 0.0);
-
+    
     // Assert
+    ComplexNumber absSquare(abs * abs, 0.0);
     EXPECT_TRUE(absSquare == multy);
 }
 
