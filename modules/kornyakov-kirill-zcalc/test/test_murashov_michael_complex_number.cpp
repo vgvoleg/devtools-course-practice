@@ -25,7 +25,7 @@ TEST(Murashov_Michael_ComplexNumberTest, can_compare) {
     // Arrange
     ComplexNumber z1(4.0, -1.0);
     ComplexNumber z2(-1.0, -1.0);
-    
+
     // Act
     bool expect = (z1 == z2);
 
