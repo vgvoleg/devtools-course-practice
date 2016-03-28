@@ -4,7 +4,7 @@
 
 #include "include/complex_number.h"
 
-TEST(Hramov_Ilya_ComplexNumberTest, Can_Compare_For_Equality_Equal_Numbers) {
+TEST(Hramov_Ilya_ComplexNumberTest, Can_Compare_For_Parity_Equal_Numbers) {
     // Arrange
     ComplexNumber z1(1.0, 2.0);
     ComplexNumber z2(1.0, 2.0);
@@ -13,7 +13,7 @@ TEST(Hramov_Ilya_ComplexNumberTest, Can_Compare_For_Equality_Equal_Numbers) {
     EXPECT_TRUE(z1 == z2);
 }
 
-TEST(Hramov_Ilya_ComplexNumberTest, Can_Compare_For_Equality_Unequal_Numbers) {
+TEST(Hramov_Ilya_ComplexNumberTest, Can_Compare_For_Parity_Unequal_Numbers) {
     // Arrange
     ComplexNumber z1(1.0, 2.0);
     ComplexNumber z2(1.1, 2.0);
@@ -22,7 +22,7 @@ TEST(Hramov_Ilya_ComplexNumberTest, Can_Compare_For_Equality_Unequal_Numbers) {
     EXPECT_FALSE(z1 == z2);
 }
 
-TEST(Hramov_Ilya_ComplexNumberTest, Can_Compare_For_Inequality_Equal_Numbers) {
+TEST(Hramov_Ilya_ComplexNumberTest, Can_Compare_For_Imparity_Equal_Numbers) {
     // Arrange
     ComplexNumber z1(1.0, 2.0);
     ComplexNumber z2(1.0, 2.0);
@@ -31,7 +31,7 @@ TEST(Hramov_Ilya_ComplexNumberTest, Can_Compare_For_Inequality_Equal_Numbers) {
     EXPECT_FALSE(z1 != z2);
 }
 
-TEST(Hramov_Ilya_ComplexNumberTest, Can_Compare_For_Inequality_Unequal_Numbers) {
+TEST(Hramov_Ilya_ComplexNumberTest, Can_Compare_For_Imparity_Unequal_Numbers) {
     // Arrange
     ComplexNumber z1(1.0, 2.0);
     ComplexNumber z2(1.1, 2.0);
