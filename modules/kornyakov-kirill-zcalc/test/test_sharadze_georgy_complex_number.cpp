@@ -7,7 +7,7 @@
 TEST(Sharadze_Georgy_ComplexNumberTest, Can_Make_Few_Multiplications_In_A_Row) {
     // Arrange
     ComplexNumber z(1.0, -1.0);
-    ComplexNumber expected_result(-2.0, -2.0); // (1 - i)(1 - i)(1 - i) = -2 - 2i
+    ComplexNumber expected_result(-2.0, -2.0);
 
     // Act
     ComplexNumber result = z * z * z;
