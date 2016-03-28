@@ -4,7 +4,7 @@
 
 #include "include/complex_number.h"
 
-TEST(Shumihin_Sergey_ComplexNumberTest, multiplication_is_associative) {
+TEST(Shumihin_Sergey_ComplexNumberTest, Multiplication_Is_Associative) {
     // Arrange
     ComplexNumber cNum1(2.0, 1.0);
     ComplexNumber cNum2(0.0, 5.0);
@@ -14,7 +14,7 @@ TEST(Shumihin_Sergey_ComplexNumberTest, multiplication_is_associative) {
     EXPECT_EQ(cNum1*(cNum2*cNum3), (cNum1*cNum2)*cNum3);
 }
 
-TEST(Shumihin_Sergey_ComplexNumberTest, cant_divided_by_zero) {
+TEST(Shumihin_Sergey_ComplexNumberTest, Cant_Divided_By_Zero) {
     // Arrange
     ComplexNumber cNum1(1.0, 2.0);
     ComplexNumber cNum2(0.0, 0.0);
@@ -23,19 +23,19 @@ TEST(Shumihin_Sergey_ComplexNumberTest, cant_divided_by_zero) {
     EXPECT_ANY_THROW(cNum1 / cNum2);
 }
 
-TEST(Shumihin_Sergey_ComplexNumberTest, can_assign_to_youself) {
+TEST(Shumihin_Sergey_ComplexNumberTest, Can_Assign_To_Youself) {
     // Arrange
-    ComplexNumber cNum1(2.3, 1.0);
+    ComplexNumber cNum(2.3, 1.0);
 
     // Act
-    cNum1 = cNum1;
+    cNum = cNum;
 
     // Assert
     ComplexNumber expected_cNum(2.3, 1.0);
-    EXPECT_EQ(expected_cNum, cNum1);
+    EXPECT_EQ(expected_cNum, cNum);
 }
 
-TEST(Shumihin_Sergey_ComplexNumberTest, can_initialize_using_int) {
+TEST(Shumihin_Sergey_ComplexNumberTest, Can_Initialize_Using_Int) {
     // Arrange
     ComplexNumber cNum(1, 2);
 
@@ -44,7 +44,7 @@ TEST(Shumihin_Sergey_ComplexNumberTest, can_initialize_using_int) {
     EXPECT_EQ(expected_cNum, cNum);
 }
 
-TEST(Shumihin_Sergey_ComplexNumberTest, can_use_multi_oper_in_one_line) {
+TEST(Shumihin_Sergey_ComplexNumberTest, Can_Use_Multi_Oper_In_One_Line) {
     // Arrange
     ComplexNumber cNum1(2, 1);
     ComplexNumber cNum2(6, 0);
@@ -59,7 +59,7 @@ TEST(Shumihin_Sergey_ComplexNumberTest, can_use_multi_oper_in_one_line) {
     EXPECT_EQ(expect_cNum, result_cNum);
 }
 
-TEST(Shumihin_Sergey_ComplexNumberTest, square_of_Im_is_equal_to_minus_one) {
+TEST(Shumihin_Sergey_ComplexNumberTest, Square_Of_Im_Is_Equal_To_Minus_One) {
     // Arrange
     ComplexNumber cNum(0.0, 1.0);
 
