@@ -40,7 +40,7 @@ TEST(Murashov_Michael_ComplexNumberTest, can_count_module) {
     // Act
     double acr1 = pow(z1.getIm(), 2);
     double acr2 = pow(z1.getRe(), 2);
-    double vect = sqrt(acr1 + acr2);
+    double module = sqrt(acr1 + acr2);
 
     // Assert
     double expected_vect = sqrt(4.0 + 1.0);
