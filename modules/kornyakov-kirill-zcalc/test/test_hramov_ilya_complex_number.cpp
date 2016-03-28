@@ -4,22 +4,40 @@
 
 #include "include/complex_number.h"
 
-TEST(Hramov_Ilya_ComplexNumberTest, Can_Compare_For_Equality) {
+TEST(Hramov_Ilya_ComplexNumberTest, Can_Compare_For_Equality_Equal_Numbers) {
     // Arrange
-    ComplexNumber z1(1.0, 2.0), z2(1.0, 2.0), z3(1.1, 2.0);
+    ComplexNumber z1(1.0, 2.0);
+    ComplexNumber z2(1.0, 2.0);
 
     // Assert
     EXPECT_TRUE(z1 == z2);
-    EXPECT_FALSE(z1 == z3);
 }
 
-TEST(Hramov_Ilya_ComplexNumberTest, Can_Compare_For_Inequality) {
+TEST(Hramov_Ilya_ComplexNumberTest, Can_Compare_For_Equality_Unequal_Numbers) {
     // Arrange
-    ComplexNumber z1(1.0, 2.0), z2(1.0, 2.0), z3(1.1, 2.0);
+    ComplexNumber z1(1.0, 2.0);
+    ComplexNumber z2(1.1, 2.0);
 
     // Assert
-    EXPECT_TRUE(z1 != z3);
+    EXPECT_FALSE(z1 == z2);
+}
+
+TEST(Hramov_Ilya_ComplexNumberTest, Can_Compare_For_Inequality_Equal_Numbers) {
+    // Arrange
+    ComplexNumber z1(1.0, 2.0);
+    ComplexNumber z2(1.0, 2.0);
+
+    // Assert
     EXPECT_FALSE(z1 != z2);
+}
+
+TEST(Hramov_Ilya_ComplexNumberTest, Can_Compare_For_Inequality_Unequal_Numbers) {
+    // Arrange
+    ComplexNumber z1(1.0, 2.0);
+    ComplexNumber z2(1.1, 2.0);
+
+    // Assert
+    EXPECT_TRUE(z1 != z2);
 }
 
 TEST(Hramov_Ilya_ComplexNumberTest, Can_Multiply_Ordinary_Numbers) {
