@@ -37,13 +37,13 @@ TEST(Murashov_Michael_ComplexNumberTest, can_count_module) {
   // Arrange
   ComplexNumber z1(2.0, -1.0);
 
-  // Act 
+  // Act
   double acr1 = pow(z1.getIm(), 2);
   double acr2 = pow(z1.getRe(), 2);
   double module = sqrt(acr1 + acr2);
 
   // Assert
-	double expected_module = sqrt(4.0 + 1.0);
+  double expected_module = sqrt(4.0 + 1.0);
 
   EXPECT_EQ(expected_module, module);
 }
@@ -68,7 +68,7 @@ TEST(Murashov_Michael_ComplexNumberTest, correct_cube_of_imaginary_number) {
   // Arrange
   ComplexNumber z(0.0, 1.0);
 
-  //Act
+  // Act
   ComplexNumber cube;  // z^3
   cube = z * z * z;  // re = 0, im = -1
 
