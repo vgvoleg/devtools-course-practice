@@ -5,8 +5,7 @@
 
 #include "include/complex_number.h"
 
-TEST(Murashov_Michael_ComplexNumberTest, can_work_with_public_methods)
-{
+TEST(Murashov_Michael_ComplexNumberTest, can_work_with_public_methods) {
 	// Arrange
 	double re = 2.0;
 	double im = 3.0;
@@ -22,8 +21,7 @@ TEST(Murashov_Michael_ComplexNumberTest, can_work_with_public_methods)
 	EXPECT_EQ(expected_z, z);
 }
 
-TEST(Murashov_Michael_ComplexNumberTest, can_compare)
-{
+TEST(Murashov_Michael_ComplexNumberTest, can_compare) {
 	// Arrange
 	ComplexNumber z1(4.0, -1.0);
 	ComplexNumber z2(-1.0, -1.0);
@@ -35,8 +33,7 @@ TEST(Murashov_Michael_ComplexNumberTest, can_compare)
 	EXPECT_EQ(false, expect);
 }
 
-TEST(Murashov_Michael_ComplexNumberTest, can_count_module)
-{
+TEST(Murashov_Michael_ComplexNumberTest, can_count_module) {
 	// Arrange
 	ComplexNumber z1(2.0, -1.0);
 
@@ -51,8 +48,7 @@ TEST(Murashov_Michael_ComplexNumberTest, can_count_module)
 	EXPECT_EQ(expected_module, module);
 }
 
-TEST(Murashov_Michael_ComplexNumberTest, сan_do_algebraic_operations)
-{
+TEST(Murashov_Michael_ComplexNumberTest, сan_do_algebraic_operations) {
 	// Arrange
 	ComplexNumber z1(1.0, -1.0);
 	ComplexNumber z2(2.0, 2.0);
@@ -68,8 +64,7 @@ TEST(Murashov_Michael_ComplexNumberTest, сan_do_algebraic_operations)
 	EXPECT_EQ(expected_z, z);
 }
 
-TEST(Murashov_Michael_ComplexNumberTest, correct_cube_of_imaginary_number)
-{
+TEST(Murashov_Michael_ComplexNumberTest, correct_cube_of_imaginary_number) {
 	// Arrange
 	ComplexNumber z(0.0, 1.0);
 
