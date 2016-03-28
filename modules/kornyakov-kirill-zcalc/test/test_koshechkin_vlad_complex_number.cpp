@@ -9,13 +9,14 @@ TEST(Koshechkin_Vlad_ComplexNumberTest, Can_Create_With_Zero_Imaginary) {
     // Arrange
     double re = 2.0;
     double im = 0.0;
+    double epsilon = 0.001;
 
     // Act
     ComplexNumber z(re, im);
 
     // Assert
-    EXPECT_DOUBLE_EQ(re, z.getRe());
-    EXPECT_DOUBLE_EQ(im, z.getIm());
+    EXPECT_NEAR(re, z.getRe(), epsilon);
+    EXPECT_NEAR(im, z.getIm(), epsilon);
 }
 
 TEST(Koshechkin_Vlad_ComplexNumberTest, Can_Assignment) {
