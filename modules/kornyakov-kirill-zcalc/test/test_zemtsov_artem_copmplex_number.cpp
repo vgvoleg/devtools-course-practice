@@ -23,7 +23,7 @@ TEST(Zemtsov_Artem_ComplexNumberTest, distributivity_rule_works) {
     // Arrange
     ComplexNumber firstEx(10.0, 10.0);
     ComplexNumber secondEx(25.0, 15.0);
-    ComplexNumber thirdEx(13, 66);
+    ComplexNumber thirdEx(13.0, 66.0);
 
     // Assert & Act
     EXPECT_EQ(firstEx*thirdEx+secondEx*thirdEx, thirdEx*(firstEx+secondEx));
@@ -44,7 +44,7 @@ TEST(Zemtsov_Artem_ComplexNumberTest, check_conjuate_Is_Abs_Square) {
 
 TEST(Zemtsov_Artem_ComplexNumberTest, can_get_and_set_re_and_im) {
     // Arrange
-    ComplexNumber firstEx(13, 66) , secEx;
+    ComplexNumber firstEx(13.0, 66.0) , secEx;
 
     // Act
     secEx.setIm(firstEx.getIm());
@@ -56,8 +56,8 @@ TEST(Zemtsov_Artem_ComplexNumberTest, can_get_and_set_re_and_im) {
 
 TEST(Zemtsov_Artem_ComplexNumberTest, checking_of_the_inequality_operator) {
     // Arrange
-    ComplexNumber firstEx(13 , 66) , secEx(66 , 13);
+    ComplexNumber firstEx(13.0 , 66.0) , secEx(66.0 , 13.0);
 
-    // Assert
+    // Assert & Act
     EXPECT_NE(firstEx , secEx);
 }
