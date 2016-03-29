@@ -38,7 +38,8 @@ TEST(Sharadze_Georgy_ComplexNumberTest, Can_Compare) {
     EXPECT_FALSE(z1 == z2);
 }
 
-TEST(Sharadze_Georgy_ComplexNumberTest, Equal_To_Itself_When_Init_With_Default_Constructor) {
+TEST(Sharadze_Georgy_ComplexNumberTest, 
+     Equal_To_Itself_When_Init_With_Default_Constructor) {
     // Arrange
     ComplexNumber z;
 
