@@ -23,10 +23,10 @@ TEST(Sharadze_Georgy_ComplexNumberTest, Can_Divide_With_Zero) {
 
     // Act
     ComplexNumber result;
-    ASSERT_NO_THROW(result = z0 / z1);
 
     // Assert
     EXPECT_EQ(z0, result);
+    ASSERT_NO_THROW(result = z0 / z1);
 }
 
 TEST(Sharadze_Georgy_ComplexNumberTest, Can_Compare) {
@@ -38,7 +38,7 @@ TEST(Sharadze_Georgy_ComplexNumberTest, Can_Compare) {
     EXPECT_FALSE(z1 == z2);
 }
 
-TEST(Sharadze_Georgy_ComplexNumberTest, 
+TEST(Sharadze_Georgy_ComplexNumberTest,
      Equal_To_Itself_When_Init_With_Default_Constructor) {
     // Arrange
     ComplexNumber z;
