@@ -4,12 +4,12 @@
 
 #include "include/complex_number.h"
 
+const double epsilon = std::numeric_limits<double>::epsilon();
 
 TEST(Koshechkin_Vlad_ComplexNumberTest, Can_Create_With_Zero_Imaginary) {
     // Arrange
     double re = 2.0;
     double im = 0.0;
-    double epsilon = 0.001;
 
     // Act
     ComplexNumber z(re, im);
@@ -28,8 +28,8 @@ TEST(Koshechkin_Vlad_ComplexNumberTest, Can_Assignment) {
     z = c;
 
     // Assert
-    EXPECT_DOUBLE_EQ(1.0, z.getRe());
-    EXPECT_DOUBLE_EQ(2.0, z.getIm());
+    EXPECT_NEAR(1.0, z.getRe(), epsilon);
+    EXPECT_NEAR(2.0, z.getIm(), epsilon);
 }
 
 TEST(Koshechkin_Vlad_ComplexNumberTest, Summ_Zero) {
@@ -41,8 +41,8 @@ TEST(Koshechkin_Vlad_ComplexNumberTest, Summ_Zero) {
     ComplexNumber v = z + c;
 
     // Assert
-    EXPECT_DOUBLE_EQ(0.0, v.getRe());
-    EXPECT_DOUBLE_EQ(0.0, v.getIm());
+    EXPECT_NEAR(0.0, v.getRe(), epsilon);
+    EXPECT_NEAR(0.0, v.getIm(), epsilon);
 }
 
 TEST(Koshechkin_Vlad_ComplexNumberTest, Can_Copy_Number) {
