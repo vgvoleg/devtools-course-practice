@@ -1,4 +1,4 @@
-/* Copyright 2016 Murashov Michael© */
+/* Copyright 2016 Murashov Michael */
 
 #include <gtest/gtest.h>
 #include <cmath>
@@ -48,7 +48,7 @@ TEST(Murashov_Michael_ComplexNumberTest, can_count_module) {
   EXPECT_EQ(expected_module, module);
 }
 
-TEST(Murashov_Michael_ComplexNumberTest, сan_do_algebraic_operations) {
+TEST(Murashov_Michael_ComplexNumberTest, can_do_algebraic_operations) {
   // Arrange
   ComplexNumber z1(1.0, -1.0);
   ComplexNumber z2(2.0, 2.0);
