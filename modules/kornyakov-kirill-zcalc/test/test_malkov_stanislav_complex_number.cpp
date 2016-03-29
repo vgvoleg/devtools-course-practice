@@ -17,7 +17,7 @@ TEST(Malkov_Stanislav_ComplexNumberTest, Is_Comparsion_Correct) {
     EXPECT_EQ(a, b);
 }
 
-TEST(Malkov_Stanislav_ComplexNumberTest, Can_Divide_By_Zero) {
+TEST(Malkov_Stanislav_ComplexNumberTest, Cant_Divide_By_Zero) {
     // Arrange
     double re = 1.0;
     double im = 1.0;
