@@ -33,7 +33,7 @@ TEST(Koshechkin_Vlad_ComplexNumberTest, Can_Assignment) {
     EXPECT_NEAR(2.0, z.getIm(), epsilon);
 }
 
-TEST(Koshechkin_Vlad_ComplexNumberTest, Summ_Zero) {
+TEST(Koshechkin_Vlad_ComplexNumberTest, Can_Addition_Zero_Elems) {
     // Arrange
     ComplexNumber z;
     ComplexNumber c;
