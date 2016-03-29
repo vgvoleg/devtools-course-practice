@@ -39,7 +39,7 @@ TEST(Arhipycheva_Anastasia_ComplexNumberTest, Comparison_When_Only_Imaginary) {
   ComplexNumber complex2(re, im2);
 
   //  Assert
-  EXPECT_EQ(false, complex1 == complex2);
+  EXPECT_FALSE(complex1 == complex2);
 }
 
 TEST(Arhipycheva_Anastasia_ComplexNumberTest, Comparison_When_Only_Real) {
