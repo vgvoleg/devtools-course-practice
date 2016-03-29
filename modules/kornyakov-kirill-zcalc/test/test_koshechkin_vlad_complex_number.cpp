@@ -1,6 +1,7 @@
 // Copyright 2016 Koshechkin Vlad
 
 #include <gtest/gtest.h>
+#include <limits>
 
 #include "include/complex_number.h"
 
