@@ -61,7 +61,7 @@ TEST(Kursakov_Evgeny_ComplexNumberTest,
 }
 
 TEST(Kursakov_Evgeny_ComplexNumberTest,
-     Multiplication_Of_Number_And_Reciprocal_Is_Equals_One) {
+     Multiplication_Of_Number_And_Reciprocal_Equals_One) {
     // Arrange
     ComplexNumber z(26.0, 14.0);
     ComplexNumber one(1.0, 0.0);
