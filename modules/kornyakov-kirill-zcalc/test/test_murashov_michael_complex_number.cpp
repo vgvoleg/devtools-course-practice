@@ -27,10 +27,10 @@ TEST(Murashov_Michael_ComplexNumberTest, can_compare) {
   ComplexNumber z2(-1.0, -1.0);
 
   // Act
-  bool expect = z1 == z2;
+  bool expect = (z1 == z2);
 
   // Assert
-  EXPECT_EQ(false, expect);
+  EXPECT_FALSE(expect);
 }
 
 TEST(Murashov_Michael_ComplexNumberTest, can_count_module) {
