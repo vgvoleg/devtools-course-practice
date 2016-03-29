@@ -33,9 +33,7 @@ TEST(Sharadze_Georgy_ComplexNumberTest, Can_Compare) {
     ComplexNumber z1(-1.0, 1.0);
     ComplexNumber z2(1.0, 1.0);
 
-    // Act
-
-    // Assert
+    // Act & Assert
     EXPECT_FALSE(z1 == z2);
 }
 
@@ -43,9 +41,7 @@ TEST(Sharadze_Georgy_ComplexNumberTest, Equal_To_Itself) {
     // Arrange
     ComplexNumber z;
 
-    // Act
-
-    // Assert
+    // Act & Assert
     EXPECT_TRUE(z == z);
 }
 
