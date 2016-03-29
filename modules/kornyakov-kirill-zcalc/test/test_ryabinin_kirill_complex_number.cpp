@@ -76,5 +76,5 @@ ComplexNumber y(-5.0, 7.0);
 bool compare_z = x == y;
 
 // Assert
-EXPECT_EQ(false, compare_z);
+EXPECT_FALSE(compare_z);
 }
