@@ -22,10 +22,11 @@ TEST(Sharadze_Georgy_ComplexNumberTest, Can_Divide_With_Zero) {
     ComplexNumber z1(1.0, 1.0);
 
     // Act
-    ComplexNumber z = z0 / z1;
+    ComplexNumber result;
+    ASSERT_NO_THROW(result = z0 / z1);
 
     // Assert
-    EXPECT_EQ(z0, z);
+    EXPECT_EQ(z0, result);
 }
 
 TEST(Sharadze_Georgy_ComplexNumberTest, Can_Compare) {
@@ -37,7 +38,7 @@ TEST(Sharadze_Georgy_ComplexNumberTest, Can_Compare) {
     EXPECT_FALSE(z1 == z2);
 }
 
-TEST(Sharadze_Georgy_ComplexNumberTest, Equal_To_Itself) {
+TEST(Sharadze_Georgy_ComplexNumberTest, Equal_To_Itself_When_Init_With_Default_Constructor) {
     // Arrange
     ComplexNumber z;
 
@@ -49,12 +50,13 @@ TEST(Sharadze_Georgy_ComplexNumberTest, Can_Make_Billion_Additions) {
     // Arrange
     ComplexNumber z1;
     ComplexNumber z2(1.0, 1.0);
+    const double billion = 1000000000.0;
 
     // Act
-    for (int i = 0; i < 1000000000; i++)
+    for (int i = 0; i < billion; i++)
         z1 = z1 + z2;
 
     // Assert
-    EXPECT_DOUBLE_EQ(1000000000.0, z1.getRe());
-    EXPECT_DOUBLE_EQ(1000000000.0, z1.getIm());
+    EXPECT_DOUBLE_EQ(billion, z1.getRe());
+    EXPECT_DOUBLE_EQ(billion, z1.getIm());
 }
