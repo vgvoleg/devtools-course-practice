@@ -30,7 +30,7 @@ ComplexNumber sub_xy(15.0, -3.0);
 EXPECT_EQ(z, sub_xy);
 }
 
-TEST(Ryabinin_Kirill_ComplexNumberTest, Can_Multiplication_NULL_Complex_Number) {
+TEST(Ryabinin_Kirill_ComplexNumberTest, Can_Multi_Null_Complex_Number) {
 // Arrange
 ComplexNumber x(1.0, 3.0);
 ComplexNumber y(0.0, 0.0);
