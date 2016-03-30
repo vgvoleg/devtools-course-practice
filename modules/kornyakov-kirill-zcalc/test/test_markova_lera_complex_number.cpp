@@ -28,20 +28,20 @@ TEST(Markova_Lera_ComplexNumberTest, Can_Get_Big_Sum) {
 }
 
 TEST(Markova_Lera_ComplexNumberTest, distributivity_saved) {
-    // Arrange
-    ComplexNumber firstExample(13.0, 103.0);
-    ComplexNumber secondExample(610.0, 140.0);
-    ComplexNumber thirdExample(15.0, 11.0);
-    // Act
-    ComplexNumber leftSide = (firstExample + secondExample) * thirdExample;
-    ComplexNumber rightSide = (firstExample * thirdExample) + (secondExample * thirdExample);
-    // Assert
-    EXPECT_EQ(leftSide, rightSide);
+  // Arrange
+  ComplexNumber firstExample(13.0, 103.0);
+  ComplexNumber secondExample(610.0, 140.0);
+  ComplexNumber thirdExample(15.0, 11.0);
+  // Act
+  ComplexNumber leftSide = (firstExample + secondExample) * thirdExample;
+  ComplexNumber rightSide = (firstExample * thirdExample) + (secondExample * thirdExample);
+  // Assert
+  EXPECT_EQ(leftSide, rightSide);
 }
 
 TEST(Markova_Lera_ComplexNumberTest, copy_is_work) {
     // Arrange
-    ComplexNumber firstExample(153.0,17.0);
+    ComplexNumber firstExample(153.0, 17.0);
     ComplexNumber secondExampleByCopy;
     double Im;
     double Re;
@@ -49,7 +49,7 @@ TEST(Markova_Lera_ComplexNumberTest, copy_is_work) {
     secondExampleByCopy = firstExample;
     Im = firstExample.getIm();
     Re = firstExample.getRe();
-    ComplexNumber secondExampleByDoubleGet(Re,Im);
+    ComplexNumber secondExampleByDoubleGet(Re, Im);
     // Assert
     EXPECT_EQ(secondExampleByCopy, secondExampleByDoubleGet);
 }
@@ -57,20 +57,20 @@ TEST(Markova_Lera_ComplexNumberTest, copy_is_work) {
 TEST(Markova_Lera_ComplexNumberTest, Can_Multyply) {
     // Arrange
     ComplexNumber unitExample(1.0, 1.0);
-    const int dividedIntoTwo=100;
+    const int dividedIntoTwo = 100;
     const int notDividedIntoTwo = 111;
     ComplexNumber firstExpected;
     ComplexNumber secondExpected;
     // Act
     for (int i = 0; i < dividedIntoTwo; i++)
     {
-        unitExample=unitExample * unitExample;
+        unitExample = unitExample * unitExample;
         firstExpected = unitExample;
     }
-    unitExample.setIm(1.0); // comeback
-    unitExample.setRe(1.0); // comeback
+    unitExample.setIm(1.0);  // comeback
+    unitExample.setRe(1.0);  // comeback
     for (int i = 0; i < notDividedIntoTwo; i++)
-	{
+    {
         unitExample = unitExample * unitExample;
         secondExpected = unitExample;
     }
