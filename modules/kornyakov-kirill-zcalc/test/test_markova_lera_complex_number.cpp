@@ -27,7 +27,7 @@ TEST(Markova_Lera_ComplexNumberTest, Can_Get_Big_Sum) {
     EXPECT_EQ(expectedValue, result);
 }
 
-TEST(Markova_Lera_ComplexNumberTest, distributivity_saved_and_use_Re_and_Im) {
+TEST(Markova_Lera_ComplexNumberTest, distributivity_saved_and_use_Re_Im) {
   // Arrange
   ComplexNumber firstEx(13.0, 103.0)
   ComplexNumber secondEx(610.0, 140.0);
