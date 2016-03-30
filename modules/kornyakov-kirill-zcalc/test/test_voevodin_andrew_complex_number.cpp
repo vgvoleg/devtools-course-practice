@@ -65,3 +65,21 @@ TEST(Voevodin_Andrew_ComplexNumberTest, Sum_Complex_Conjugate_Numbers_Is_Real_Nu
     EXPECT_EQ(Model_Mult.getIm(), 0.0);
     EXPECT_EQ(Model_Mult.getRe(), Square);
 }
+
+TEST(Voevodin_Andrew_ComplexNumberTest, Complex_Conjugate_Division_Is_Division_Complex_Conjugate) {
+    // Arrange
+    ComplexNumber z1(3.14, 13.12);
+    ComplexNumber z1_conj(3.14, -13.12);
+    ComplexNumber z2(29.2, 1.0);
+    ComplexNumber z2_conj(29.2, -1.0);
+    ComplexNumber Model_Div, Div_Model;
+
+    // Act
+    Model_Div = z1/z2;
+    Model_Div.setIm((-1.0)*Model_Div.getIm());
+    Div_Model=z1_conj/z2_conj;
+
+    // Assert
+    EXPECT_EQ(Div_Model.getRe(), Model_Div.getRe());
+    EXPECT_EQ(Div_Model.getIm(), Model_Div.getIm());
+}
