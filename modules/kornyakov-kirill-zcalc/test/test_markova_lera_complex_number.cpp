@@ -29,7 +29,7 @@ TEST(Markova_Lera_ComplexNumberTest, Can_Get_Big_Sum) {
 
 TEST(Markova_Lera_ComplexNumberTest, Use_Re_Im_and_distributivity_saved) {
   // Arrange
-  ComplexNumber firstEx(13.0, 103.0)
+  ComplexNumber firstEx(13.0, 103.0);
   ComplexNumber secondEx(610.0, 140.0);
   ComplexNumber thirdEx(15.0, 11.0);
   // Act
