@@ -4,6 +4,8 @@
 
 #include <math.h>
 
+#include <string>
+
 #include "include/complex_number.h"
 
 TEST(Voevodin_Andrew_ComplexNumberTest, Can_Create_From_ComplexNumber) {
@@ -29,10 +31,10 @@ TEST(Voevodin_Andrew_ComplexNumberTest, Module_Of_Sum_less_Sum_Module) {
     Model_Sum = pow(pow((z1+z2).getRe(), 2) + pow((z1+z2).getIm(), 2), 0.5);
     Sum_Model = pow(pow(z1.getRe(), 2) + pow(z1.getIm(), 2), 0.5) +
                 pow(pow(z2.getRe(), 2) + pow(z2.getIm(), 2), 0.5);
-    if (Model_Sum <= Sum_Model) l = true;
+
 
     // Assert
-    EXPECT_EQ(l, true);
+	EXPECT_TRUE(Model_Sum <= Sum_Model);
 }
 
 TEST(Voevodin_Andrew_ComplexNumberTest, Mult_Complex_Conjugate_Is_Real) {
