@@ -18,9 +18,10 @@ TEST(Markova_Lera_ComplexNumberTest, Can_Set_Re_and_Im) {
 TEST(Markova_Lera_ComplexNumberTest, Can_Get_Big_Sum) {
     // Arrange
     ComplexNumber example(1.0, 1.0);
-    ComplexNumber result;
     // Act
-    for (unsigned i = 0; i < 500; i++)
+    ComplexNumber result;
+    const int N = 500;
+    for (unsigned i = 0; i < N; i++)
        result = result + example;
     // Assert
     ComplexNumber expectedValue(500.0, 500.0);
@@ -43,9 +44,9 @@ TEST(Markova_Lera_ComplexNumberTest, Use_Re_Im_and_copy_is_work) {
     // Arrange
     ComplexNumber firstExample(153.0, 17.0);
     ComplexNumber secondExampleByCopy;
+    // Act
     double Im;
     double Re;
-    // Act
     Im = firstExample.getIm();
     Re = firstExample.getRe();
 
