@@ -11,7 +11,7 @@ TEST(Voevodin_Andrew_ComplexNumberTest, Can_Create_From_ComplexNumber) {
     ComplexNumber ñ(12.34, 5);
 
     // Act
-	ComplexNumber z_new(ñ);
+    ComplexNumber z_new(ñ);
 
 
     // Assert
@@ -22,19 +22,20 @@ TEST(Voevodin_Andrew_ComplexNumberTest, Can_Create_From_ComplexNumber) {
 TEST(Voevodin_Andrew_ComplexNumberTest, Triangle_Inequality) {
     // Arrange
     ComplexNumber z1(5.0, 5.0);
-	ComplexNumber z2(5.0, 5.0);
-	double Model_Sum, Sum_Model;
-	bool l=false;
+    ComplexNumber z2(5.0, 5.0);
+    double Model_Sum, Sum_Model;
+    bool l = false;
     // Act
     Model_Sum = pow(pow((z1+z2).getRe(), 2) + pow((z1+z2).getIm(), 2), 0.5);
-    Sum_Model = pow(pow(z1.getRe(), 2) + pow(z1.getIm(), 2), 0.5) + pow(pow(z2.getRe(), 2) + pow(z2.getIm(), 2), 0.5);
+    Sum_Model = pow(pow(z1.getRe(), 2) + pow(z1.getIm(), 2), 0.5) +
+                pow(pow(z2.getRe(), 2) + pow(z2.getIm(), 2), 0.5);
     if (Model_Sum <= Sum_Model) l = true;
 
     // Assert
     EXPECT_EQ(l, true);
 }
 
-TEST(Voevodin_Andrew_ComplexNumberTest, Mult_Complex_Conjugate_Numbers_Is_Real_Number) {
+TEST(Voevodin_Andrew_ComplexNumberTest, Mult_Complex_Conjugate_Is_Real) {
     // Arrange
     ComplexNumber z1(6.0, 5.12);
     ComplexNumber z2(6.0, -5.12);
@@ -50,7 +51,7 @@ TEST(Voevodin_Andrew_ComplexNumberTest, Mult_Complex_Conjugate_Numbers_Is_Real_N
     EXPECT_EQ(Model_Mult.getRe(), Square);
 }
 
-TEST(Voevodin_Andrew_ComplexNumberTest, Sum_Complex_Conjugate_Numbers_Is_Real_Number) {
+TEST(Voevodin_Andrew_ComplexNumberTest, Sum_Complex_Conjugate_Is_Real) {
     // Arrange
     ComplexNumber z1(6.0, 5.12);
     ComplexNumber z2(6.0, -5.12);
@@ -66,7 +67,7 @@ TEST(Voevodin_Andrew_ComplexNumberTest, Sum_Complex_Conjugate_Numbers_Is_Real_Nu
     EXPECT_EQ(Model_Mult.getRe(), Square);
 }
 
-TEST(Voevodin_Andrew_ComplexNumberTest, Complex_Conjugate_Division_Is_Division_Complex_Conjugate) {
+TEST(Voevodin_Andrew_ComplexNumberTest, Complex_Conj_Div_Is_Div_Complex_Conj) {
     // Arrange
     ComplexNumber z1(3.14, 13.12);
     ComplexNumber z1_conj(3.14, -13.12);
@@ -77,7 +78,7 @@ TEST(Voevodin_Andrew_ComplexNumberTest, Complex_Conjugate_Division_Is_Division_C
     // Act
     Model_Div = z1/z2;
     Model_Div.setIm((-1.0)*Model_Div.getIm());
-    Div_Model=z1_conj/z2_conj;
+    Div_Model = z1_conj/z2_conj;
 
     // Assert
     EXPECT_EQ(Div_Model.getRe(), Model_Div.getRe());
