@@ -19,7 +19,7 @@ TEST(Ovcharuk_Oleg_ComplexNumberTest, Property_of_Addition_Conjugate) {
     // Act
     ComplexNumber sum = z + _z;
     // Assert
-    EXPECT_DOUBLE_EQ(8.0, (2 * z.getRe()));
+    EXPECT_DOUBLE_EQ(8.0, (sum.getRe()));
 }
 
 TEST(Ovcharuk_Oleg_ComplexNumberTest, Property_of_Multiplication_Conjugate) {
