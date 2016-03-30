@@ -26,7 +26,7 @@ TEST(Voevodin_Andrew_ComplexNumberTest, Module_Of_Sum_less_Sum_Module) {
     ComplexNumber z1(5.0, 5.0);
     ComplexNumber z2(5.0, 5.0);
     double Model_Sum, Sum_Model;
-    bool l = false;
+
     // Act
     Model_Sum = pow(pow((z1+z2).getRe(), 2) + pow((z1+z2).getIm(), 2), 0.5);
     Sum_Model = pow(pow(z1.getRe(), 2) + pow(z1.getIm(), 2), 0.5) +
