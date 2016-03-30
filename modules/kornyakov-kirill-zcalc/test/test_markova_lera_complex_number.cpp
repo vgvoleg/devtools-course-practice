@@ -19,7 +19,7 @@ TEST(Markova_Lera_ComplexNumberTest, Can_Get_Big_Sum) {
     // Arrange
     ComplexNumber example(1.0, 1.0);
     ComplexNumber result;
-    // Act 
+    // Act
     for (unsigned i = 0; i < 500; i++)
        result = result + example;
     // Assert
@@ -60,7 +60,7 @@ TEST(Markova_Lera_ComplexNumberTest, Can_Multyply) {
     const int dividedIntoTwo=100;
     const int notDividedIntoTwo = 111;
     ComplexNumber firstExpected;
-    ComplexNumber secondExpected; 
+    ComplexNumber secondExpected;
     // Act
     for (int i = 0; i < dividedIntoTwo; i++)
     {
@@ -70,7 +70,7 @@ TEST(Markova_Lera_ComplexNumberTest, Can_Multyply) {
     unitExample.setIm(1.0); // comeback
     unitExample.setRe(1.0); // comeback
     for (int i = 0; i < notDividedIntoTwo; i++)
-    {
+	{
         unitExample = unitExample * unitExample;
         secondExpected = unitExample;
     }
