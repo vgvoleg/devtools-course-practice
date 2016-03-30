@@ -29,12 +29,12 @@ TEST(Markova_Lera_ComplexNumberTest, Can_Get_Big_Sum) {
 
 TEST(Markova_Lera_ComplexNumberTest, distributivity_saved) {
   // Arrange
-  ComplexNumber firstExample(13.0, 103.0);
-  ComplexNumber secondExample(610.0, 140.0);
-  ComplexNumber thirdExample(15.0, 11.0);
+  ComplexNumber firstEx(13.0, 103.0);
+  ComplexNumber secondEx(610.0, 140.0);
+  ComplexNumber thirdEx(15.0, 11.0);
   // Act
-  ComplexNumber leftSide = (firstExample + secondExample) * thirdExample;
-  ComplexNumber rightSide = (firstExample * thirdExample) + (secondExample * thirdExample);
+  ComplexNumber leftSide = (firstEx + secondEx) * thirdEx;
+  ComplexNumber rightSide = (firstEx * thirdEx) + (secondEx * thirdEx);
   // Assert
   EXPECT_EQ(leftSide, rightSide);
 }
@@ -62,15 +62,13 @@ TEST(Markova_Lera_ComplexNumberTest, Can_Multyply) {
     ComplexNumber firstExpected;
     ComplexNumber secondExpected;
     // Act
-    for (int i = 0; i < dividedIntoTwo; i++)
-    {
+    for (int i = 0; i < dividedIntoTwo; i++) {
         unitExample = unitExample * unitExample;
         firstExpected = unitExample;
     }
     unitExample.setIm(1.0);  // comeback
     unitExample.setRe(1.0);  // comeback
-    for (int i = 0; i < notDividedIntoTwo; i++)
-    {
+    for (int i = 0; i < notDividedIntoTwo; i++) {
         unitExample = unitExample * unitExample;
         secondExpected = unitExample;
     }
