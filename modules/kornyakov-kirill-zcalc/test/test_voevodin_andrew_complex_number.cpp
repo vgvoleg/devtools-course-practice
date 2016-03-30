@@ -19,7 +19,7 @@ TEST(Voevodin_Andrew_ComplexNumberTest, Can_Create_From_ComplexNumber) {
     EXPECT_EQ(z_new.getIm(), c.getIm());
 }
 
-TEST(Voevodin_Andrew_ComplexNumberTest, Triangle_Inequality) {
+TEST(Voevodin_Andrew_ComplexNumberTest, Module_Of_Sum_less_Sum_Module) {
     // Arrange
     ComplexNumber z1(5.0, 5.0);
     ComplexNumber z2(5.0, 5.0);
