@@ -53,7 +53,7 @@ TEST(Arhipycheva_Anastasia_ComplexNumberTest, Comparison_When_Only_Real) {
   ComplexNumber complex2(re2, im);
 
   //  Assert
-  EXPECT_EQ(true, complex1 != complex2);
+  EXPECT_NE(complex1, complex2);
 }
 
 TEST(Arhipycheva_Anastasia_ComplexNumberTest, Comparison_Different_Types) {
@@ -68,7 +68,7 @@ TEST(Arhipycheva_Anastasia_ComplexNumberTest, Comparison_Different_Types) {
   ComplexNumber complex2(re2, im2);
 
   //  Assert
-  EXPECT_EQ(true, complex1 != complex2);
+  EXPECT_NE(complex1, complex2);
 }
 
 
