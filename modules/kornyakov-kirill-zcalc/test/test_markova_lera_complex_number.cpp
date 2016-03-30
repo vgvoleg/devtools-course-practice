@@ -19,11 +19,9 @@ TEST(Markova_Lera_ComplexNumberTest, Can_Get_Big_Sum) {
     // Arrange
     ComplexNumber example(1.0, 1.0);
     ComplexNumber result;
-
-    // Act
+    // Act 
     for (unsigned i = 0; i < 500; i++)
        result = result + example;
-
     // Assert
     ComplexNumber expectedValue(500.0, 500.0);
     EXPECT_EQ(expectedValue, result);
@@ -34,11 +32,9 @@ TEST(Markova_Lera_ComplexNumberTest, distributivity_saved) {
     ComplexNumber firstExample(13.0, 103.0);
     ComplexNumber secondExample(610.0, 140.0);
     ComplexNumber thirdExample(15.0, 11.0);
-
-	// Act
+    // Act
     ComplexNumber leftSide = (firstExample + secondExample) * thirdExample;
     ComplexNumber rightSide = (firstExample * thirdExample) + (secondExample * thirdExample);
-
     // Assert
     EXPECT_EQ(leftSide, rightSide);
 }
@@ -49,13 +45,11 @@ TEST(Markova_Lera_ComplexNumberTest, copy_is_work) {
     ComplexNumber secondExampleByCopy;
     double Im;
     double Re;
-
     // Act
     secondExampleByCopy = firstExample;
     Im = firstExample.getIm();
     Re = firstExample.getRe();
     ComplexNumber secondExampleByDoubleGet(Re,Im);
-
     // Assert
     EXPECT_EQ(secondExampleByCopy, secondExampleByDoubleGet);
 }
@@ -66,8 +60,7 @@ TEST(Markova_Lera_ComplexNumberTest, Can_Multyply) {
     const int dividedIntoTwo=100;
     const int notDividedIntoTwo = 111;
     ComplexNumber firstExpected;
-    ComplexNumber secondExpected;
-
+    ComplexNumber secondExpected; 
     // Act
     for (int i = 0; i < dividedIntoTwo; i++)
     {
@@ -81,7 +74,6 @@ TEST(Markova_Lera_ComplexNumberTest, Can_Multyply) {
         unitExample = unitExample * unitExample;
         secondExpected = unitExample;
     }
-
     // Assert
     EXPECT_NE(firstExpected, secondExpected);
 }
