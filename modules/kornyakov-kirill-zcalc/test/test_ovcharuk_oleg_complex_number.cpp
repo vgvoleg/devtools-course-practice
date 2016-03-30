@@ -3,7 +3,8 @@
 #include "gtest\gtest.h"
 #include "include\complex_number.h"
 
-TEST(Ovcharuk_Oleg_ComplexNumberTest, Can_find_abs_value){
+TEST(Ovcharuk_Oleg_ComplexNumberTest, Can_find_abs_value)
+{
     // Arrange
     ComplexNumber z(12.0, 4.0);
     // Act
@@ -12,7 +13,8 @@ TEST(Ovcharuk_Oleg_ComplexNumberTest, Can_find_abs_value){
     EXPECT_DOUBLE_EQ(160.0, abs_value);
 }
 
-TEST(Ovcharuk_Oleg_ComplexNumberTest, Property_of_Addition_Conjugate){
+TEST(Ovcharuk_Oleg_ComplexNumberTest, Property_of_Addition_Conjugate)
+{
     // Arrange
     ComplexNumber z(4.0, 2.0);
     ComplexNumber _z(z.getRe(), z.getIm()*(-1));
@@ -22,7 +24,8 @@ TEST(Ovcharuk_Oleg_ComplexNumberTest, Property_of_Addition_Conjugate){
     EXPECT_DOUBLE_EQ(8.0, (2 * z.getRe()));
 }
 
-TEST(Ovcharuk_Oleg_ComplexNumberTest, Property_of_Multiplication_Conjugate){
+TEST(Ovcharuk_Oleg_ComplexNumberTest, Property_of_Multiplication_Conjugate)
+{
     // Arrange
     ComplexNumber z(6.0, 4.0);
     ComplexNumber _z(z.getRe(), z.getIm()*(-1));
@@ -32,7 +35,8 @@ TEST(Ovcharuk_Oleg_ComplexNumberTest, Property_of_Multiplication_Conjugate){
     EXPECT_DOUBLE_EQ(52.0, mult.getRe());
 }
 
-TEST(Ovcharuk_Oleg_ComplexNumberTest, Property_of_Commutativity){
+TEST(Ovcharuk_Oleg_ComplexNumberTest, Property_of_Commutativity)
+{
     // Arrange
     ComplexNumber z1(3.0, 2.0);
     ComplexNumber z2(5.0, 5.0);
@@ -44,7 +48,8 @@ TEST(Ovcharuk_Oleg_ComplexNumberTest, Property_of_Commutativity){
     EXPECT_DOUBLE_EQ(sum1.getIm(), sum2.getIm());
 }
 
-TEST(Ovcharuk_Oleg_ComplexNumberTest, Property_of_Distributivity){
+TEST(Ovcharuk_Oleg_ComplexNumberTest, Property_of_Distributivity)
+{
     // Arrange
     ComplexNumber z1(4.0, 4.0);
     ComplexNumber z2(1.0, 0.0);
