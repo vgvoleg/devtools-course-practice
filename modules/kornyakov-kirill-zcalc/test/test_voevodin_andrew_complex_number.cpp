@@ -15,8 +15,8 @@ TEST(Voevodin_Andrew_ComplexNumberTest, Can_Create_From_ComplexNumber) {
 
 
     // Assert
-    EXPECT_EQ(z_new.getRe(), c.getRe());
-    EXPECT_EQ(z_new.getIm(), c.getIm());
+    EXPECT_DOUBLE_EQ(z_new.getRe(), c.getRe());
+    EXPECT_DOUBLE_EQ(z_new.getIm(), c.getIm());
 }
 
 TEST(Voevodin_Andrew_ComplexNumberTest, Module_Of_Sum_less_Sum_Module) {
@@ -47,8 +47,8 @@ TEST(Voevodin_Andrew_ComplexNumberTest, Mult_Complex_Conjugate_Is_Real) {
     Square = pow(z1.getRe(), 2) + pow(z1.getIm(), 2);
 
     // Assert
-    EXPECT_EQ(Model_Mult.getIm(), 0.0);
-    EXPECT_EQ(Model_Mult.getRe(), Square);
+    EXPECT_DOUBLE_EQ(Model_Mult.getIm(), 0.0);
+    EXPECT_DOUBLE_EQ(Model_Mult.getRe(), Square);
 }
 
 TEST(Voevodin_Andrew_ComplexNumberTest, Sum_Complex_Conjugate_Is_Real) {
@@ -63,8 +63,8 @@ TEST(Voevodin_Andrew_ComplexNumberTest, Sum_Complex_Conjugate_Is_Real) {
     Square = 2.0*z1.getRe();
 
     // Assert
-    EXPECT_EQ(Model_Mult.getIm(), 0.0);
-    EXPECT_EQ(Model_Mult.getRe(), Square);
+    EXPECT_DOUBLE_EQ(Model_Mult.getIm(), 0.0);
+    EXPECT_DOUBLE_EQ(Model_Mult.getRe(), Square);
 }
 
 TEST(Voevodin_Andrew_ComplexNumberTest, Complex_Conj_Div_Is_Div_Complex_Conj) {
@@ -81,6 +81,6 @@ TEST(Voevodin_Andrew_ComplexNumberTest, Complex_Conj_Div_Is_Div_Complex_Conj) {
     Div_Model = z1_conj/z2_conj;
 
     // Assert
-    EXPECT_EQ(Div_Model.getRe(), Model_Div.getRe());
-    EXPECT_EQ(Div_Model.getIm(), Model_Div.getIm());
+    EXPECT_DOUBLE_EQ(Div_Model.getRe(), Model_Div.getRe());
+    EXPECT_DOUBLE_EQ(Div_Model.getIm(), Model_Div.getIm());
 }
