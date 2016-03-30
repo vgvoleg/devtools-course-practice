@@ -26,8 +26,7 @@ TEST(Kochetova_Dasha_ComplexNumberTest, check_result_equality_operator) {
     z1 = z2;
 
     // Assert
-    EXPECT_EQ(z2.getRe(), z1.getRe());
-    EXPECT_EQ(z2.getIm(), z1.getIm());
+    EXPECT_EQ(z1, z2);
 }
 
 TEST(Kochetova_Dasha_ComplexNumberTest, can_compare_objects) {
@@ -49,25 +48,24 @@ TEST(Kochetova_Dasha_ComplexNumberTest, can_calculate_arithmetic_expressions) {
     ComplexNumber z3(3.0, 5.0);
 
     // Act
-    ComplexNumber result;
-    result = (z1 + z2)*z3;
+    ComplexNumber result = (z1 + z2)*z3;
 
     // Assert
-    ComplexNumber right(4.0, 18.0);
-    EXPECT_EQ(right, result);
+    ComplexNumber expected_z(4.0, 18.0);
+    EXPECT_EQ(expected_z, result);
 }
 
 TEST(Kochetova_Dasha_ComplexNumberTest, can_get_big_sum) {
     // Arrange
-    ComplexNumber z1(1.0, 1.0);
+    ComplexNumber z(1.0, 1.0);
     ComplexNumber result;
 
     // Act
     for (int i = 0; i < 1000; i++) {
-        result = result + z1;
+        result = result + z;
     }
 
     // Assert
-    ComplexNumber z2(1000.0, 1000.0);
-    EXPECT_EQ(result, z2);
+    ComplexNumber expected_z(1000.0, 1000.0);
+    EXPECT_EQ(result, expected_z);
 }
