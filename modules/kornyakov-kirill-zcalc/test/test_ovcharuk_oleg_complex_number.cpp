@@ -1,7 +1,7 @@
 // Copyright 2016 Ovcharuk Oleg
 
-#include "gtest\gtest.h"
-#include "include\complex_number.h"
+#include <gtest/gtest.h>
+#include "include/complex_number.h"
 
 TEST(Ovcharuk_Oleg_ComplexNumberTest, Can_find_abs_value) {
     // Arrange
