@@ -34,7 +34,7 @@ TEST(Voevodin_Andrew_ComplexNumberTest, Module_Of_Sum_less_Sum_Module) {
 
 
     // Assert
-	EXPECT_TRUE(Model_Sum <= Sum_Model);
+    EXPECT_TRUE(Model_Sum <= Sum_Model);
 }
 
 TEST(Voevodin_Andrew_ComplexNumberTest, Mult_Complex_Conjugate_Is_Real) {
