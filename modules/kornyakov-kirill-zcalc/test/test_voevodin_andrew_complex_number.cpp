@@ -8,15 +8,15 @@
 
 TEST(Voevodin_Andrew_ComplexNumberTest, Can_Create_From_ComplexNumber) {
     // Arrange
-    ComplexNumber ñ(12.34, 5);
+    ComplexNumber c(12.34, 5.0);
 
     // Act
-    ComplexNumber z_new(ñ);
+    ComplexNumber z_new(c);
 
 
     // Assert
-    EXPECT_EQ(z_new.getRe(), ñ.getRe());
-    EXPECT_EQ(z_new.getIm(), ñ.getIm());
+    EXPECT_EQ(z_new.getRe(), c.getRe());
+    EXPECT_EQ(z_new.getIm(), c.getIm());
 }
 
 TEST(Voevodin_Andrew_ComplexNumberTest, Triangle_Inequality) {
