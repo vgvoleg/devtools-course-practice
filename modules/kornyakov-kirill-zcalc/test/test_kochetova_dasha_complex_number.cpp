@@ -48,10 +48,10 @@ TEST(Kochetova_Dasha_ComplexNumberTest, can_calculate_arithmetic_expressions) {
     ComplexNumber z3(3.0, 5.0);
 
     // Act
-    ComplexNumber result = (z1 + z2)*z3;
+    ComplexNumber result = ((z1 + z2)*z3)/z2;
 
     // Assert
-    ComplexNumber expected_z(4.0, 18.0);
+    ComplexNumber expected_z(5.5, 3.5);
     EXPECT_EQ(expected_z, result);
 }
 
