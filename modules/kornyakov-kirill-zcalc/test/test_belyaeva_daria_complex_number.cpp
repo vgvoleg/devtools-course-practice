@@ -15,11 +15,10 @@ TEST(Belyaeva_Daria_ComplexNumberTest, Sum_With_Conjugate_Is_Twice_Real) {
     ComplexNumber z = z1 + z2;
 
     // Assert
-    EXPECT_EQ(z.getRe(), 6.0);
+    EXPECT_DOUBLE_EQ(z.getRe(), 6.0);
 }
 
-TEST(Belyaeva_Daria_ComplexNumberTest,
-            Can_Do_Some_Operations_In_One_Assignment) {
+TEST(Belyaeva_Daria_ComplexNumberTest, Can_Do_Some_Operations_In_One_Assignment) {
     // Arrange
     ComplexNumber z1(3.0, 5.0);
     ComplexNumber z2(1.0, 2.0);
@@ -44,8 +43,7 @@ TEST(Belyaeva_Daria_ComplexNumberTest, Can_Do_Operations_With_Zero) {
     EXPECT_EQ(z1, result);
 }
 
-TEST(Belyaeva_Daria_ComplexNumberTest,
-            Multiplication_With_Conjuate_Is_Square_Of_Absolute_Value) {
+TEST(Belyaeva_Daria_ComplexNumberTest, Multiplication_With_Conjuate_Is_Square_Of_Absolute_Value) {
     // Arrange
     ComplexNumber z1(3.0, 5.0);
     ComplexNumber z2(3.0, -5.0);
@@ -59,8 +57,7 @@ TEST(Belyaeva_Daria_ComplexNumberTest,
     EXPECT_EQ(result_of_mult, result_abs);
 }
 
-TEST(Belyaeva_Daria_ComplexNumberTest,
-            Im_Of_Subtraction_With_Conjugate_Is_Twice_Im) {
+TEST(Belyaeva_Daria_ComplexNumberTest, Im_Of_Subtraction_With_Conjugate_Is_Twice_Im) {
     // Arrange
     ComplexNumber z1(3.0, 5.0);
     ComplexNumber z2(3.0, -5.0);
@@ -69,5 +66,5 @@ TEST(Belyaeva_Daria_ComplexNumberTest,
     ComplexNumber z = z1 - z2;
 
     // Assert
-    EXPECT_EQ(z.getIm(), 10.0);
+    EXPECT_DOUBLE_EQ(z.getIm(), 10.0);
 }
