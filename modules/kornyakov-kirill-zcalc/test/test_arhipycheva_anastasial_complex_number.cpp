@@ -64,13 +64,13 @@ TEST(Arhipycheva_Anastasia_ComplexNumberTest, Comparison_Different_Types) {
 }
 
 
-TEST(Arhipycheva_Anastasia_ComplexNumberTest, DISABLED_Multiplic_When_Null) {
+TEST(Arhipycheva_Anastasia_ComplexNumberTest, Multiplic_When_Null) {
   //  Arrage　＆　Act
   const int re1 = 0;
-  const int re2 = 546;
-  const int im1 = 789;
+  const int re2 = 5;
+  const int im1 = 7;
   const int im2 = 0;
-  ComplexNumber null(0, 0);
+  ComplexNumber null(0, 35);
   ComplexNumber complex1(re1, im1);
   ComplexNumber complex2(re2, im2);
 
@@ -78,7 +78,7 @@ TEST(Arhipycheva_Anastasia_ComplexNumberTest, DISABLED_Multiplic_When_Null) {
   EXPECT_EQ(null, complex1*complex2);
 }
 
-TEST(Arhipycheva_Anastasia_ComplexNumberTest, DISABLED_Division_Null) {
+TEST(Arhipycheva_Anastasia_ComplexNumberTest, Division_Null) {
   //  Arrage　＆　Act
   const int re1 = 8;
   const int re2 = 4;
@@ -86,9 +86,9 @@ TEST(Arhipycheva_Anastasia_ComplexNumberTest, DISABLED_Division_Null) {
   const int im2 = 6;
   ComplexNumber complex1(re1, im1);
   ComplexNumber complex2(re2, im2);
-  ComplexNumber complex3(re1+8, im2-2);
+  ComplexNumber complex3(re1-6, im2-4);
   ComplexNumber complex4 = (complex1 * complex2) / complex3;
-  ComplexNumber rezult(2.0, 18.0);
+  ComplexNumber rezult(38.0, 14.0);
 
   //  Assert
   EXPECT_EQ(rezult, complex4);
