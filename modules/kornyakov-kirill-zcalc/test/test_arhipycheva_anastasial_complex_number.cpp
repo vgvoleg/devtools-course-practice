@@ -1,12 +1,11 @@
-// Copyright 2016 Arhipycheva Anastasia
+﻿// Copyright 2016 Arhipycheva Anastasia
 #include <gtest/gtest.h>
 #include "include/complex_number.h"
 
 TEST(Arhipycheva_Anastasia_ComplexNumberTest, Can_Create_From_Double) {
-  //  Arrage
-  double re = -922337203685;
-  double im = 260.45682;
-  //  Act
+  //  Arrage　＆　Act
+  const double re = -922337203685;
+  const double im = 260.45682;
   ComplexNumber complex(re, im);
 
   //  Assert
@@ -15,11 +14,9 @@ TEST(Arhipycheva_Anastasia_ComplexNumberTest, Can_Create_From_Double) {
 }
 
 TEST(Arhipycheva_Anastasia_ComplexNumberTest, Addition_With_Opposing_Number) {
-  //  Arrage
-  int re = 140;
-  int im = 444;
-
-  //  Act
+  //  Arrage　＆　Act
+  const int re = 140;
+  const int im = 444;
   ComplexNumber null(0, 0);
   ComplexNumber complex1(re, -im);
   ComplexNumber complex2(-re, im);
@@ -29,12 +26,10 @@ TEST(Arhipycheva_Anastasia_ComplexNumberTest, Addition_With_Opposing_Number) {
 }
 
 TEST(Arhipycheva_Anastasia_ComplexNumberTest, Comparison_When_Only_Imaginary) {
-  //  Arrage
-  int re = 0;
-  int im1 = 444;
-  int im2 = 666;
-
-  //  Act
+  //  Arrage　＆　Act
+  const int re = 0;
+  const int im1 = 444;
+  const int im2 = 666;
   ComplexNumber complex1(re, im1);
   ComplexNumber complex2(re, im2);
 
@@ -43,12 +38,10 @@ TEST(Arhipycheva_Anastasia_ComplexNumberTest, Comparison_When_Only_Imaginary) {
 }
 
 TEST(Arhipycheva_Anastasia_ComplexNumberTest, Comparison_When_Only_Real) {
-  //  Arrage
-  int re1 = 123;
-  int re2 = 12;
-  int im = 0;
-
-  //  Act
+  //  Arrage　＆　Act
+  const int re1 = 123;
+  const int re2 = 12;
+  const int im = 0;
   ComplexNumber complex1(re1, im);
   ComplexNumber complex2(re2, im);
 
@@ -57,13 +50,11 @@ TEST(Arhipycheva_Anastasia_ComplexNumberTest, Comparison_When_Only_Real) {
 }
 
 TEST(Arhipycheva_Anastasia_ComplexNumberTest, Comparison_Different_Types) {
-  //  Arrage
-  int re1 = 123;
-  double re2 = 12.556;
-  double im1 = 13.487;
-  int im2 = 489;
-
-  //  Act
+  //  Arrage　＆　Act
+  const int re1 = 123;
+  const double re2 = 12.556;
+  const double im1 = 13.487;
+  const int im2 = 489;
   ComplexNumber complex1(re1, im1);
   ComplexNumber complex2(re2, im2);
 
@@ -73,13 +64,11 @@ TEST(Arhipycheva_Anastasia_ComplexNumberTest, Comparison_Different_Types) {
 
 
 TEST(Arhipycheva_Anastasia_ComplexNumberTest, DISABLED_Multiplic_When_Null) {
-  //  Arrage
-  int re1 = 0;
-  int re2 = 546;
-  int im1 = 789;
-  int im2 = 0;
-
-  //  Act
+  //  Arrage　＆　Act
+  const int re1 = 0;
+  const int re2 = 546;
+  const int im1 = 789;
+  const int im2 = 0;
   ComplexNumber null(0, 0);
   ComplexNumber complex1(re1, im1);
   ComplexNumber complex2(re2, im2);
