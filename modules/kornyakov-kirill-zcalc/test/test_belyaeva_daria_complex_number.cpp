@@ -1,10 +1,10 @@
 // Copyright 2016 Belyaeva Daria
 
+#include <math.h>
+
 #include <gtest/gtest.h>
 
 #include "include/complex_number.h"
-
-#include <math.h>
 
 TEST(Belyaeva_Daria_ComplexNumberTest, Sum_With_Conjugate) {
     // Arrange
