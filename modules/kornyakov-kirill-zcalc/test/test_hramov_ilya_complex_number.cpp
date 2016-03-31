@@ -53,6 +53,19 @@ TEST(Hramov_Ilya_ComplexNumberTest, Can_Multiply_Ordinary_Numbers) {
     EXPECT_DOUBLE_EQ(10.0, result.getIm());
 }
 
+TEST(Hramov_Ilya_ComplexNumberTest, Can_Multiply_Zero_To_Non_Zero) {
+    // Arrange
+    ComplexNumber z1(0.0, 0.0);
+    ComplexNumber z2(1.0, 2.0);
+
+    // Act
+    ComplexNumber result = z1 * z2;
+
+    // Assert
+    EXPECT_DOUBLE_EQ(0.0, result.getRe());
+    EXPECT_DOUBLE_EQ(0.0, result.getIm());
+}
+
 TEST(Hramov_Ilya_ComplexNumberTest, Can_Add_Ordinary_Numbers) {
     // Arrange
     ComplexNumber z1(1.0, 2.0);
@@ -77,4 +90,32 @@ TEST(Hramov_Ilya_ComplexNumberTest, Can_Subtract_Ordinary_Numbers) {
     // Assert
     EXPECT_DOUBLE_EQ(-2.0, result.getRe());
     EXPECT_DOUBLE_EQ(-2.0, result.getIm());
+}
+
+TEST(Hramov_Ilya_ComplexNumberTest, Can_Divide_Ordinary_Numbers) {
+    // Arrange
+    ComplexNumber z1(1.0, 2.0);
+    ComplexNumber z2(3.0, 4.0);
+
+    // Act
+    double reResult = 11.0 / 25.0;
+    double imResult = 2.0 / 25.0;
+    ComplexNumber result = z1 / z2;
+
+    // Assert
+    EXPECT_DOUBLE_EQ(reResult, result.getRe());
+    EXPECT_DOUBLE_EQ(imResult, result.getIm());
+}
+
+TEST(Hramov_Ilya_ComplexNumberTest, Can_Divide_Zero_To_Non_Zero) {
+    // Arrange
+    ComplexNumber z1(0.0, 0.0);
+    ComplexNumber z2(1.0, 2.0);
+
+    // Act
+    ComplexNumber result = z1 / z2;
+
+    // Assert
+    EXPECT_DOUBLE_EQ(0.0, result.getRe());
+    EXPECT_DOUBLE_EQ(0.0, result.getIm());
 }
