@@ -15,8 +15,8 @@ TEST(Belyaeva_Daria_ComplexNumberTest, Sum_With_Conjugate_Is_Twice_Real) {
     ComplexNumber z = z1 + z2;
 
     // Assert
-    double result = 6.0;
-    EXPECT_DOUBLE_EQ(z.getRe(), result);
+    const double expected_result = 6.0;
+    EXPECT_DOUBLE_EQ(z.getRe(), expected_result);
 }
 
 TEST(Belyaeva_Daria_ComplexNumberTest,
@@ -70,6 +70,6 @@ TEST(Belyaeva_Daria_ComplexNumberTest,
     ComplexNumber z = z1 - z2;
 
     // Assert
-    double result = 10.0;
-    EXPECT_DOUBLE_EQ(z.getIm(), result);
+    const double expected_result = 10.0;
+    EXPECT_DOUBLE_EQ(z.getIm(), expected_result);
 }
