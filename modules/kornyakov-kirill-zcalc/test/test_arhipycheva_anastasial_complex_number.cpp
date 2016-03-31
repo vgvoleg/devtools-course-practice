@@ -1,4 +1,5 @@
 ﻿  // Copyright 2016 Arhipycheva Anastasia
+
 #include <gtest/gtest.h>
 #include "include/complex_number.h"
 
@@ -75,4 +76,18 @@ TEST(Arhipycheva_Anastasia_ComplexNumberTest, DISABLED_Multiplic_When_Null) {
 
   //  Assert
   EXPECT_EQ(null, complex1*complex2);
+}
+
+TEST(Arhipycheva_Anastasia_ComplexNumberTest, Division_Null) {
+  //  Arrage　＆　Act
+  const int re1 = 0;
+  const int re2 = 155;
+  const int im1 = 12;
+  const int im2 = 6;
+  ComplexNumber complex1(re1, im1);
+  ComplexNumber complex2(re2, im2);
+  ComplexNumber complex3(0, 2);
+
+  //  Assert
+  EXPECT_EQ(complex3, complex1/complex2);
 }
