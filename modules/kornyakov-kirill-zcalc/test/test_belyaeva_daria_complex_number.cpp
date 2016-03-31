@@ -4,6 +4,8 @@
 
 #include "include/complex_number.h"
 
+#include <math.h>
+
 TEST(Belyaeva_Daria_ComplexNumberTest, Sum_With_Conjugate) {
     // Arrange
     ComplexNumber z1(3.0, 5.0);
