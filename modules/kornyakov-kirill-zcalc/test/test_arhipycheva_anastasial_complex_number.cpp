@@ -87,7 +87,8 @@ TEST(Arhipycheva_Anastasia_ComplexNumbeкTest, DISABLED_Division_Null) {
   ComplexNumber complex1(re1, im1);
   ComplexNumber complex2(re2, im2);
   ComplexNumber complex3(0, 2);
+  ComplexNumber complex4 = complex1 / complex2;
 
   //  Assert
-  EXPECT_EQ(complex3, complex1/complex2);
+  EXPECT_EQ(complex3, complex4);
 }
