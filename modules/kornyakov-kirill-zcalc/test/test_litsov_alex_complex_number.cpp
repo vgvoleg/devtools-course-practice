@@ -69,7 +69,7 @@ TEST(Litsov_Alex_ComplexNumberTest, Mult_Is_Commutative) {
     ASSERT_EQ(res1, res2);
 }
 
-TEST(Litsov_Alex_ComplexNumberTest, Disabled_Div_Is_Distributive) {
+TEST(Litsov_Alex_ComplexNumberTest, DISABLED_Div_Is_Distributive) {
     // Arrange
     ComplexNumber a(3.13, 2.9), b(13.82, 122.2311), c(2.15, 21.16);
 
