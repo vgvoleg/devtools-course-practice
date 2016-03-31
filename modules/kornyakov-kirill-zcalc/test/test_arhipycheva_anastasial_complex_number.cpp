@@ -78,7 +78,7 @@ TEST(Arhipycheva_Anastasia_ComplexNumberTest, DISABLED_Multiplic_When_Null) {
   EXPECT_EQ(null, complex1*complex2);
 }
 
-TEST(Arhipycheva_Anastasia_ComplexNumberTest, Division_Null) {
+TEST(Arhipycheva_Anastasia_ComplexNumberTest, DISABLED_Division_Null) {
   //  Arrage　＆　Act
   const int re1 = 8;
   const int re2 = 4;
