@@ -3,7 +3,7 @@
 #include <gtest/gtest.h>
 #include "include/complex_number.h"
 
-TEST(Goncharova_Svetlana_ComplexNumberTest,sqr_imaginary_one_is_one) {
+TEST(Goncharova_Svetlana_ComplexNumberTest, sqr_imaginary_one_is_one) {
    // Arrange
    ComplexNumber z(0.0, 1.0);
 
