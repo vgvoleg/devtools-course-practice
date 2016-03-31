@@ -47,9 +47,9 @@ TEST(Belyaeva_Daria_ComplexNumberTest, Multiplication_With_Conjuate) {
     ComplexNumber z2(3.0, -5.0);
 
     // Act
-    double abs_z1 = sqrt(pow(z1.getRe(), 2) + pow (z1.getIm(), 2));
+    double abs_z1 = sqrt(pow(z1.getRe(), 2) + pow(z1.getIm(), 2));
     ComplexNumber result_of_mult = z1 * z2;
-    ComplexNumber result_abs(pow (abs_z1, 2), 0.0);
+    ComplexNumber result_abs(pow(abs_z1, 2), 0.0);
 
     // Assert
     EXPECT_EQ(result_of_mult, result_abs);
