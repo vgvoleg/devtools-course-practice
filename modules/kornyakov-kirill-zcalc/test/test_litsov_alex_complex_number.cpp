@@ -71,7 +71,7 @@ TEST(Litsov_Alex_ComplexNumberTest, Mult_Is_Commutative) {
 
 TEST(Litsov_Alex_ComplexNumberTest, Div_Is_Distributive) {
     // Arrange
-    ComplexNumber a(3.13, 2.9), b(13.82, 122.2311), c(2.15, 21.16);
+    ComplexNumber a(3, 2), b(13.8, 122), c(2, 21);
 
     // Act
     ComplexNumber sum = a + b;

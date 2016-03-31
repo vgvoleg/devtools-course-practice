@@ -6,7 +6,7 @@
 #include <string>
 #include <limits>
 
-const double eps = std::numeric_limits<double>::epsilon()*10;
+const double eps = std::numeric_limits<double>::epsilon();
 
 ComplexNumber::ComplexNumber() : real_(0), imaginary_(0) {}
 
