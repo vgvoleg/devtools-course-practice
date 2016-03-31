@@ -1,4 +1,4 @@
-﻿// Copyright 2016 Arhipycheva Anastasia
+﻿  // Copyright 2016 Arhipycheva Anastasia
 #include <gtest/gtest.h>
 #include "include/complex_number.h"
 
