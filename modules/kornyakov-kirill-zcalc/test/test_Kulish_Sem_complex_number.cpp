@@ -79,3 +79,19 @@ TEST(Kulish_Sem_complex_test, Can_Build_Complex_To_Any_Pow) {
   ComplexNumber expectedResultCnumb(9653287, 1476984);
   EXPECT_EQ(expectedResultCnumb, result);
 }
+
+TEST(Kulish_Sem_complex_test, Can_Use_Division) {
+  // Arrange
+  ComplexNumber cnumb(1000.0, 1000.0);
+  
+  // Act
+  ComplexNumber divider(1.0, 2.0);
+  const int N = 3;
+
+  for (int i = 0; i < N; i++)
+    cnumb = cnumb / divider;
+
+  //Assert
+  ComplexNumber expected_result(-104.0, -72.0);
+  EXPECT_EQ(expected_result, cnumb);
+}
