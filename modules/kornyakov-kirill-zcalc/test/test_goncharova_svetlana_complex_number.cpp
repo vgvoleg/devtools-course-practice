@@ -42,7 +42,7 @@ TEST(Goncharova_Svetlana_ComplexNumberTest, sqr_conjugate_numbers) {
   EXPECT_EQ(z_result, z_expected);
 }
 
-TEST(Goncharova_Svetlana_ComplexNumberTest, associativity_multiplication_is performed) {
+TEST(Goncharova_Svetlana_ComplexNumberTest, associativity_multiplication_performed) {
   // Arrange
   ComplexNumber z1(3.0, 2.0);
   ComplexNumber z2(-9.0, 30.0);
@@ -56,7 +56,7 @@ TEST(Goncharova_Svetlana_ComplexNumberTest, associativity_multiplication_is perf
   EXPECT_EQ(z_result, z_expected);
 }
 
-TEST(Goncharova_Svetlana_ComplexNumberTest, multiplication_through_the_construction_of_the_power) {
+TEST(Goncharova_Svetlana_ComplexNumberTest, multiplication_through_the_the_power) {
   // Arrange
   ComplexNumber z1(3.0, -2.0);
 
