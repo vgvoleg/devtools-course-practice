@@ -11,7 +11,7 @@ TEST(Baydina_Olga_ComplexNumberTest, Can_Operation_With_Zero) {
 
     // Act
     ComplexNumber result = (a * b) + (a / b);
- 
+
     // Assert
     EXPECT_EQ(a, result);
 }
@@ -45,10 +45,10 @@ TEST(Baydina_Olga_ComplexNumberTest, Sum_Re_Of_Complex_Numbers) {
     // Arrange
     ComplexNumber a(5.0, 8.0);
     ComplexNumber b(3.0, -1.0);
- 
+
     // Act
     ComplexNumber result = a + b;
- 
+
     // Assert
     EXPECT_EQ(result.getRe(), 8.0);
 }
