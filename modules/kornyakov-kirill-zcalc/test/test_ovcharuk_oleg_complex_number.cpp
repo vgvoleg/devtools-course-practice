@@ -21,6 +21,7 @@ TEST(Ovcharuk_Oleg_ComplexNumberTest, Can_Property_of_Addition_Conjugate) {
     // Assert
     EXPECT_DOUBLE_EQ(8.0, (sum.getRe()));
 }
+
 TEST(Ovcharuk_Oleg_ComplexNumberTest, Can_Do_Operations_With_Zero) {
     // Arrange
     ComplexNumber z1(0.0, 0.0);
@@ -29,6 +30,7 @@ TEST(Ovcharuk_Oleg_ComplexNumberTest, Can_Do_Operations_With_Zero) {
     ComplexNumber result = (z1 * z2) + (z1 / z2);
     // Assert
     EXPECT_EQ(z1, result);
+}
 
 TEST(Ovcharuk_Oleg_ComplexNumberTest, Can_Property_of_Multi_Conjugate) {
     // Arrange
