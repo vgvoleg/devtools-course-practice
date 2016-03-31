@@ -80,15 +80,16 @@ TEST(Arhipycheva_Anastasia_ComplexNumberTest, DISABLED_Multiplic_When_Null) {
 
 TEST(Arhipycheva_Anastasia_ComplexNumbeкTest, DISABLED_Division_Null) {
   //  Arrage　＆　Act
-  const int re1 = 0;
-  const int re2 = 155;
+  const int re1 = 8;
+  const int re2 = 4;
   const int im1 = 12;
   const int im2 = 6;
   ComplexNumber complex1(re1, im1);
   ComplexNumber complex2(re2, im2);
-  ComplexNumber complex3(0, 2);
-  ComplexNumber complex4 = complex1 / complex2;
+  ComplexNumber complex3(re1+8, im2-2);
+  ComplexNumber complex4 = (complex1 * complex2) / complex3;
+  ComplexNumber rezult(2, 18);
 
   //  Assert
-  EXPECT_EQ(complex3, complex4);
+  EXPECT_EQ(rezult, complex4);
 }
