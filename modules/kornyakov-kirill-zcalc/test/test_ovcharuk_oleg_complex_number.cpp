@@ -22,7 +22,7 @@ TEST(Ovcharuk_Oleg_ComplexNumberTest, Can_Property_of_Addition_Conjugate) {
     EXPECT_DOUBLE_EQ(8.0, (sum.getRe()));
 }
 
-TEST(Ovcharuk_Oleg_ComplexNumberTest, Can_Property_of_Multiplication_Conjugate) {
+TEST(Ovcharuk_Oleg_ComplexNumberTest, Can_Property_of_Multi_Conjugate) {
     // Arrange
     ComplexNumber z(6.0, 4.0);
     ComplexNumber _z(z.getRe(), z.getIm()*(-1));
