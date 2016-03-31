@@ -56,14 +56,14 @@ TEST(Goncharova_Svetlana_ComplexNumberTest, associativ_multiplicat_performed) {
   EXPECT_EQ(z_result, z_expected);
 }
 
-TEST(Goncharova_Svetlana_ComplexNumberTest, multiplication_through_the_power) {
+TEST(Goncharova_Svetlana_ComplexNumberTest, multip_and_div_through_the_power) {
   // Arrange
   ComplexNumber z1(3.0, -2.0);
 
   // Act
-  ComplexNumber z_result = z1*z1*z1;
+  ComplexNumber z_result = z1*z1 / z1;
 
   // Assert
-  ComplexNumber z_expected(-9.0, -46.0);
+  ComplexNumber z_expected(3.0, -2.0);
   EXPECT_EQ(z_result, z_expected);
 }
