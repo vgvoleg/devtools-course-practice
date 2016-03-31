@@ -1,9 +1,10 @@
 // Copyright 2016 Muminov Ruslan
 
 #include <math.h>
-#include <limits>
 
 #include <gtest/gtest.h>
+
+#include <limits>
 
 #include "include/complex_number.h"
 
