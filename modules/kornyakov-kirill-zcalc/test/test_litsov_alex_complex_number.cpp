@@ -68,3 +68,17 @@ TEST(Litsov_Alex_ComplexNumberTest, Mult_Is_Commutative) {
     // Assert
     ASSERT_EQ(res1, res2);
 }
+
+TEST(Litsov_Alex_ComplexNumberTest, Div_Is_Distributive) {
+    // Arrange
+    ComplexNumber a(3.13, 2.9), b(13.82, 122.2311), c(2.15, 21.16);
+
+    // Act
+    ComplexNumber sum = a + b;
+    ComplexNumber res1 = sum / c;
+    ComplexNumber div1 = a / c;
+    ComplexNumber div2 = b / c;
+    ComplexNumber res2 = div1 + div2;
+    // Assert
+    ASSERT_EQ(res1, res2);
+}
