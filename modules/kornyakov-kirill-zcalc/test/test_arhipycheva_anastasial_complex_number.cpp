@@ -78,7 +78,7 @@ TEST(Arhipycheva_Anastasia_ComplexNumberTest, Multiplic_When_Null) {
   EXPECT_EQ(null, complex1*complex2);
 }
 
-TEST(Arhipycheva_Anastasia_ComplexNumberTest, DISABLED_Division_With_Multip) {
+TEST(Arhipycheva_Anastasia_ComplexNumberTest, Division_With_Multip) {
   //  Arrage　＆　Act
   const int re1 = 8;
   const int re2 = 4;
@@ -88,7 +88,7 @@ TEST(Arhipycheva_Anastasia_ComplexNumberTest, DISABLED_Division_With_Multip) {
   ComplexNumber complex2(re2, im2);
   ComplexNumber complex3(re1-6, im2-4);
   ComplexNumber complex4 = (complex1 * complex2) / complex3;
-  ComplexNumber rezult(38.0, -14.0);
+  ComplexNumber rezult(14.0, 34.0);
 
   //  Assert
   EXPECT_EQ(rezult, complex4);
