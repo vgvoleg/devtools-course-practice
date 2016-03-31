@@ -51,7 +51,7 @@ TEST(Arhipycheva_Anastasia_ComplexNumberTest, Comparison_When_Only_Real) {
 
 TEST(Arhipycheva_Anastasia_ComplexNumberTest, Comparison_Different_Types) {
   //  Arrage　＆　Act
-  const int re1 = 123;
+  const int re1 = 124;
   const double re2 = 12.556;
   const double im1 = 13.487;
   const int im2 = 489;
