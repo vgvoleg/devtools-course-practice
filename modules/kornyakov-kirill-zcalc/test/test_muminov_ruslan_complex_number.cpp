@@ -1,6 +1,7 @@
 // Copyright 2016 Muminov Ruslan
 
 #include <math.h>
+#include <limits>
 
 #include <gtest/gtest.h>
 
@@ -14,7 +15,7 @@ double calc_argument(ComplexNumber c) {
     return atan(c.getIm()/c.getRe());
 }
 
-const double epsilon = 0.001;
+const double epsilon = std::numeric_limits<double>::epsilon();
 
 TEST(Muminov_Ruslan_ComplexNumberTest, Does_Triangle_Inequality) {
     // Arrange
@@ -32,7 +33,7 @@ TEST(Muminov_Ruslan_ComplexNumberTest,
      Absolute_Values_Of_Conjugates_Are_Equal) {
     // Arrange
     ComplexNumber z1(2.0, 5.0);
-    ComplexNumber z2(2.0, -5.0);
+    ComplexNumber z2(z1.getRe(), -z1.getIm());
 
     // Act & Assert
     EXPECT_NEAR(calc_abs_value(z1), calc_abs_value(z2), epsilon);
@@ -42,7 +43,7 @@ TEST(Muminov_Ruslan_ComplexNumberTest,
      Conjugates_Product_Is_Equal_Square_Absolute_Value) {
     // Arrange
     ComplexNumber z1(14.0, 4.0);
-    ComplexNumber z2(14.0, -4.0);
+    ComplexNumber z2(z1.getRe(), -z1.getIm());
 
     // Act
     ComplexNumber z = z1*z2;
@@ -57,7 +58,7 @@ TEST(Muminov_Ruslan_ComplexNumberTest,
      Conjugates_Sum_Is_Equal_Double_Real_Part) {
     // Arrange
     ComplexNumber z1(23.0, 10.0);
-    ComplexNumber z2(23.0, -10.0);
+    ComplexNumber z2(z1.getRe(), -z1.getIm());
 
     // Act
     ComplexNumber z = z1 + z2;
