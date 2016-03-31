@@ -85,7 +85,7 @@ TEST(Litsov_Alex_ComplexNumberTest, Disabled_Div_Is_Distributive) {
 
 TEST(Litsov_Alex_ComplexNumberTest, Can_Div_By_One) {
     // Arrange
-    ComplexNumber a(12.31, 42.2), b(1,0);
+    ComplexNumber a(12.31, 42.2), b(1, 0);
 
     // Act
     ComplexNumber div = a / b;
