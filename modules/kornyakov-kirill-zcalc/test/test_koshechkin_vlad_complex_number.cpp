@@ -68,3 +68,27 @@ TEST(Koshechkin_Vlad_ComplexNumberTest, Can_Multiply_One) {
     // Assert
     EXPECT_EQ(v, z);
 }
+
+TEST(Koshechkin_Vlad_ComplexNumberTest, Can_Div_One) {
+    // Arrange
+    ComplexNumber z(1.0, 2.0);
+    ComplexNumber c(1.0, 0.0);
+
+    // Act
+    ComplexNumber v = z / c;
+
+    // Assert
+    EXPECT_EQ(v, z);
+}
+TEST(Koshechkin_Vlad_ComplexNumberTest, Can_Summ_One) {
+    // Arrange
+    ComplexNumber z(1.0, 2.0);
+    ComplexNumber c(1.0, 0.0);
+
+    // Act
+    ComplexNumber v = z + c;
+
+    // Assert
+    EXPECT_NEAR(2.0, v.getRe(), epsilon);
+    EXPECT_NEAR(2.0, v.getIm(), epsilon);
+}
