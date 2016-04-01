@@ -16,7 +16,11 @@ TEST(Sharadze_Georgy_ComplexNumberTest, Can_Make_Few_Multiplications_In_A_Row) {
     EXPECT_EQ(expected_result, result);
 }
 
-TEST(Sharadze_Georgy_ComplexNumberTest, Can_Divide_With_Zero) {
+TEST(Sharadze_Georgy_ComplexNumberTest, Can_Init_With_Zeros) {
+    ASSERT_NO_THROW(ComplexNumber z(0.0, 0.0));
+}
+
+TEST(Sharadze_Georgy_ComplexNumberTest, Divide_With_Zero_Is_Right) {
     // Arrange
     ComplexNumber z0(0.0, 0.0);
     ComplexNumber z1(1.0, 1.0);
@@ -26,6 +30,17 @@ TEST(Sharadze_Georgy_ComplexNumberTest, Can_Divide_With_Zero) {
 
     // Assert
     EXPECT_EQ(z0, result);
+}
+
+TEST(Sharadze_Georgy_ComplexNumberTest, DISABLED_Can_Divide_Zero_On_Zero) {
+    // Arrange
+    ComplexNumber z0(0.0, 0.0);
+    ComplexNumber z1(0.0, 0.0);
+
+    // Act
+    ComplexNumber result;
+
+    // Assert
     ASSERT_NO_THROW(result = z0 / z1);
 }
 
