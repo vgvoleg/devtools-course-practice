@@ -74,7 +74,7 @@ TEST(Polkanov_Nikita_ComplexNumberTest, Can_Get_Imaginary) {
     EXPECT_EQ(im, z.getIm());
 }
 
-TEST(Polkanov_Nikita_ComplexNumberTest, Test_Mult_Commutativity) {
+TEST(Polkanov_Nikita_ComplexNumberTest, Test_Add_Commutativity) {
     // Arrange
     ComplexNumber z1(3.0, 5.0);
     ComplexNumber z2(1.0, 4.0);
@@ -88,7 +88,7 @@ TEST(Polkanov_Nikita_ComplexNumberTest, Test_Mult_Commutativity) {
     EXPECT_EQ(z3, z4);
 }
 
-TEST(Polkanov_Nikita_ComplexNumberTest, Test_Add_Commutativity) {
+TEST(Polkanov_Nikita_ComplexNumberTest, Test_Mult_Commutativity) {
     // Arrange
     ComplexNumber z1(3.0, 5.0);
     ComplexNumber z2(1.0, 4.0);
