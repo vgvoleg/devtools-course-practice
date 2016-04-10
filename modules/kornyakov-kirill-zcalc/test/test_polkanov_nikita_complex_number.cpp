@@ -16,8 +16,8 @@ TEST(Polkanov_Nikita_ComplexNumberTest, Can_Use_Mult_Neutral_Element) {
 
 
     // Assert
-    EXPECT_EQ(re, z1.getRe());
-    EXPECT_EQ(im, z1.getIm());
+    EXPECT_DOUBLE_EQ(re, z1.getRe());
+    EXPECT_DOUBLE_EQ(im, z1.getIm());
 }
 
 TEST(Polkanov_Nikita_ComplexNumberTest, Can_Use_Add_Neutral_Element) {
@@ -32,8 +32,8 @@ TEST(Polkanov_Nikita_ComplexNumberTest, Can_Use_Add_Neutral_Element) {
 
 
     // Assert
-    EXPECT_EQ(re, z1.getRe());
-    EXPECT_EQ(im, z1.getIm());
+    EXPECT_DOUBLE_EQ(re, z1.getRe());
+    EXPECT_DOUBLE_EQ(im, z1.getIm());
 }
 
 TEST(Polkanov_Nikita_ComplexNumberTest, Can_Use_Assign_Chain) {
@@ -60,7 +60,7 @@ TEST(Polkanov_Nikita_ComplexNumberTest, Can_Get_Real) {
 
     // Act
     // Assert
-    EXPECT_EQ(re, z.getRe());
+    EXPECT_DOUBLE_EQ(re, z.getRe());
 }
 
 TEST(Polkanov_Nikita_ComplexNumberTest, Can_Get_Imaginary) {
@@ -71,7 +71,7 @@ TEST(Polkanov_Nikita_ComplexNumberTest, Can_Get_Imaginary) {
 
     // Act
     // Assert
-    EXPECT_EQ(im, z.getIm());
+    EXPECT_DOUBLE_EQ(im, z.getIm());
 }
 
 TEST(Polkanov_Nikita_ComplexNumberTest, Test_Add_Commutativity) {
@@ -100,4 +100,20 @@ TEST(Polkanov_Nikita_ComplexNumberTest, Test_Mult_Commutativity) {
 
     // Assert
     EXPECT_EQ(z3, z4);
+}
+
+TEST(Polkanov_Nikita_ComplexNumberTest, Can_Divide_Numbers) {
+    // Arrange
+    ComplexNumber z1(3.0, 5.0);
+    ComplexNumber z2(1.0, 4.0);
+    double reRes = 23.0 / 17;
+    double imRes = -7.0 / 17;
+    ComplexNumber z3;
+
+    // Act
+    z3 = z1 / z2;
+
+    // Assert
+    EXPECT_DOUBLE_EQ(reRes, z3.getRe());
+    EXPECT_DOUBLE_EQ(imRes, z3.getIm());
 }
