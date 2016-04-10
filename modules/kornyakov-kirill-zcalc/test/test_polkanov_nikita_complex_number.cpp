@@ -73,4 +73,3 @@
 	 // Assert
 	 EXPECT_EQ(im, z.getIm());
  }
- 
