@@ -7,8 +7,7 @@
 #include <limits>
 
 void RandomSearch::Bounds() {
-    for (int i = 0; i < dimention_; i++)
-    {
+    for (int i = 0; i < dimention_; i++) {
         lowerBorder_[i] = -1.0;
         upperBorder_[i] = 1.0;
     }
@@ -28,13 +27,11 @@ RandomSearch::RandomSearch(tFunction function, int dimention, int iterationCount
     upperBorder_ = new double[dimention_];    
 }
 RandomSearch::~RandomSearch() {
-    if (lowerBorder_ != 0)
-    {
+    if (lowerBorder_ != 0) {
         delete[] lowerBorder_;
         lowerBorder_ = 0;
     }
-    if (upperBorder_ != 0)
-    {
+    if (upperBorder_ != 0) {
         delete[] upperBorder_;
         upperBorder_ = 0;
     }
@@ -52,14 +49,12 @@ double RandomSearch::FindMinimum(double* globalMinimum) {
     for (int j = 0; j < dimention_; j++)
         d[j] = upperBorder_[j] - lowerBorder_[j];     
 
-    for (int i = 0; i < iterationCount_; i++)
-    {
+    for (int i = 0; i < iterationCount_; i++) {
         for (int j = 0; j < dimention_; j++)
             x[j] = (((float)rand()) / RAND_MAX) * d[j] + lowerBorder_[j];
 
         val = function_(dimention_, x);
-        if (minimumValue > val)
-        {
+        if (minimumValue > val) {
             minimumValue = val;
             for (int o = 0; o < dimention_; o++)
                 globalMinimum[o] = x[o];
