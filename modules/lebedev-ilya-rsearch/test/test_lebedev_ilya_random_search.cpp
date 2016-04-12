@@ -14,7 +14,6 @@ TEST(Lebedev_Ilya_ComplexNumberTest, Can_Create) {
 
     // Assert
     EXPECT_FALSE (a == 0);
-
 }
 
 TEST(Lebedev_Ilya_ComplexNumberTest, Can_Find_Global_Minimum) {

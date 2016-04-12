@@ -6,8 +6,7 @@
 #include <string>
 #include <limits>
 
-void RandomSearch::Bounds()
-{
+void RandomSearch::Bounds() {
     for (int i = 0; i < dimention_; i++)
     {
         lowerBorder_[i] = -1.0;
@@ -15,8 +14,7 @@ void RandomSearch::Bounds()
     }
 }
 
-RandomSearch::RandomSearch(tFunction function, int dimention, int iterationCount) : function_(function)
-{
+RandomSearch::RandomSearch(tFunction function, int dimention, int iterationCount) : function_(function) {
     lowerBorder_ = 0;
     upperBorder_ = 0;
     if (dimention <= 0)
@@ -29,8 +27,7 @@ RandomSearch::RandomSearch(tFunction function, int dimention, int iterationCount
     lowerBorder_ = new double[dimention_];
     upperBorder_ = new double[dimention_];    
 }
-RandomSearch::~RandomSearch()
-{
+RandomSearch::~RandomSearch() {
     if (lowerBorder_ != 0)
     {
         delete[] lowerBorder_;
@@ -43,8 +40,7 @@ RandomSearch::~RandomSearch()
     }
 }
 
-double RandomSearch::FindMinimum(double* globalMinimum)
-{
+double RandomSearch::FindMinimum(double* globalMinimum) {
 
     Bounds();
 
@@ -72,8 +68,7 @@ double RandomSearch::FindMinimum(double* globalMinimum)
     return minimumValue;
 }
 
-void RandomSearch::SetDimention(int dimention)
-{
+void RandomSearch::SetDimention(int dimention) {
     if (dimention <= 0)
         throw std::string("Not permissible dimension");
 
@@ -88,17 +83,14 @@ void RandomSearch::SetDimention(int dimention)
     upperBorder_ = new double[dimention_];
 }
 
-int RandomSearch::GetDimention()
-{
+int RandomSearch::GetDimention() {
     return dimention_;
 }
 
-void RandomSearch::SetIterationCount(int iterationCount)
-{
+void RandomSearch::SetIterationCount(int iterationCount) {
     iterationCount_ = iterationCount;
 }
 
-int RandomSearch::GetIterationCount()
-{
+int RandomSearch::GetIterationCount() {
     return iterationCount_;
 }

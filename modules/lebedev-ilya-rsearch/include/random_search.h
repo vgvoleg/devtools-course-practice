@@ -5,8 +5,7 @@
 
 typedef double(*tFunction)(int, double*);
 
-class RandomSearch
-{
+class RandomSearch {
 public:
     RandomSearch(tFunction function, int dimention = 1, int iterationCount = 1);
     ~RandomSearch();
@@ -29,4 +28,4 @@ private:
     tFunction function_;
 };
 
-#endif //MODULES_LEBEDEV_ILYA_RSEARCH_INCLUDE_RANDOM_SEARCH_H_
+#endif // MODULES_LEBEDEV_ILYA_RSEARCH_INCLUDE_RANDOM_SEARCH_H_
