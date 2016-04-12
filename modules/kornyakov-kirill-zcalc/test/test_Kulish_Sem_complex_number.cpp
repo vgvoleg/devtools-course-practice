@@ -54,7 +54,7 @@ TEST(Kulish_Sem_complex_test, Can_Check_Triangle_Inequality) {
   // |z1|-|z2|<||z1|-|z2||<|z1+z2|<|z1|+|z2|
   bool triangleCheck = false;
   double fstIneq = vectorlength(cnumb1) - vectorlength(cnumb2);
-  double sndIneq = abs(vectorlength(cnumb1) - vectorlength(cnumb2));
+  double sndIneq = fabs(vectorlength(cnumb1) - vectorlength(cnumb2));
   double trdIneq = vectorlength(cnumb1 + cnumb2);
   double fthIneq = vectorlength(cnumb1) + vectorlength(cnumb2);
 
