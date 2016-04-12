@@ -10,9 +10,9 @@ double RastriginFunction(int dimention, double* x) {
   int j;
   double sum = 0.;
 
-  for (j = 0; j < dimention; j++) 
+  for (j = 0; j < dimention; j++)
     sum += x[j] * x[j] - 10.f * cos(2.f * PI * x[j]) + 10.f;
-  
+
   return sum;
 };
 

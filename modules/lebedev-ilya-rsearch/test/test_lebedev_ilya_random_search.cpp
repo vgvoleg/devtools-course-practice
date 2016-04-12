@@ -24,7 +24,7 @@ TEST(Lebedev_Ilya_ComplexNumberTest, Can_Find_Global_Minimum) {
     double x = 0;
     double eps = 0.01;
 
-    // Act    
+    // Act
     value = a.FindMinimum(&x);
 
     // Assert

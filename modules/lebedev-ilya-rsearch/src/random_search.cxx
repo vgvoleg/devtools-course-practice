@@ -24,7 +24,7 @@ RandomSearch::RandomSearch(tFunction function, int dimention, int iterationCount
     iterationCount_ = iterationCount;
 
     lowerBorder_ = new double[dimention_];
-    upperBorder_ = new double[dimention_];    
+    upperBorder_ = new double[dimention_];
 }
 RandomSearch::~RandomSearch() {
     if (lowerBorder_ != 0) {
@@ -47,7 +47,7 @@ double RandomSearch::FindMinimum(double* globalMinimum) {
     double minimumValue = std::numeric_limits<double>::max();
 
     for (int j = 0; j < dimention_; j++)
-        d[j] = upperBorder_[j] - lowerBorder_[j];     
+        d[j] = upperBorder_[j] - lowerBorder_[j];
 
     for (int i = 0; i < iterationCount_; i++) {
         for (int j = 0; j < dimention_; j++)
