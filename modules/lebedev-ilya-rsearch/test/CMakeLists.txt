@@ -2,8 +2,6 @@ set(target ${TESTS})
 
 file(GLOB srcs "*.cpp")
 
-# include_directories("${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty")
-
 # VS2012 doesn't support correctly the tuples yet,
 # see http://code.google.com/p/googletest/issues/detail?id=412
 if(MSVC)
@@ -15,10 +13,3 @@ if (UNIX)
   target_link_libraries(${target} gtest ${CMAKE_THREAD_LIBS_INIT}  pthread)
 endif (UNIX)
 target_link_libraries(${target} gtest ${LIBRARY})
-
-# TODO(Kornyakov): this is not needed if no testdata
-# add_custom_command(
-#     TARGET ${target}
-#     POST_BUILD
-#     COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_DIR}/testdata" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/testdata"
-# )
