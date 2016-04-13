@@ -13,6 +13,8 @@ if(CMAKE_GENERATOR MATCHES "Makefiles|Ninja" AND NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Release" CACHE STRING "" FORCE)
 endif()
 
+option(COVERAGE "Build with coverage support" OFF)
+
 #
 # Setup output directories
 #
@@ -35,6 +37,10 @@ endforeach()
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" OR
     "${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
     set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -Werror")
+    if(COVERAGE)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
+        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fprofile-arcs -ftest-coverage")
+    endif()
 endif()
 
 #
@@ -59,8 +65,9 @@ message(STATUS "")
 message(STATUS "General configuration for ${PROJECT_NAME}")
 message(STATUS "==================================")
 message(STATUS "")
-message(STATUS "   Compiler:          ${CMAKE_CXX_COMPILER_ID}")
-message(STATUS "   Configuration:     ${CMAKE_BUILD_TYPE}")
+message(STATUS "   Compiler:      ${CMAKE_CXX_COMPILER_ID}")
+message(STATUS "   Configuration: ${CMAKE_BUILD_TYPE}")
+message(STATUS "   Coverage:      ${COVERAGE}")
 # message(STATUS "   Code coverage:     ${WITH_CODE_COVERAGE}")
 message(STATUS "   Detected modules:")
 foreach(subdir ${SUBDIRS})

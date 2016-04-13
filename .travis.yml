@@ -12,10 +12,25 @@ addons:
     packages:
       - g++-4.8
 install:
-  # - sudo pip install cpp-coveralls
-  - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
+  # - pip install cpp-coveralls
+  - wget https://codecov.io/bash -O $HOME/codecov; chmod +x $HOME/codecov
 before_script:
+  - coverage=OFF
+  - if [ "$CXX" = "g++" ]; then
+        export CXX="g++-4.8" CC="gcc-4.8";
+        coverage=ON;
+    fi
 script:
   - ./build-and-test.sh
-# after_success:
+after_success:
+  # Push coverage info on coveralls.io
   # - coveralls --exclude 3rdparty -E ".*\.cpp" --extension cxx --root ../ --build-root ../devtools_build
+
+  # Push coverage info on codecov.io
+  - gcov --version
+  - if [ "${coverage}" = "ON" ]; then
+        $HOME/codecov
+             -p ../devtools_build
+             -x /usr/bin/gcov-4.8
+             -t 79ac1ef0-0ca0-4750-b066-d049df41fc8a;
+    fi
