@@ -26,6 +26,23 @@ TEST(RandomSearch, Throws_When_Dimension_Is_Negative) {
     EXPECT_THROW(RandomSearch(RastriginFunction, bad_dimension), std::string);
 }
 
+TEST(RandomSearch, Throws_When_Iteration_Count_Is_Negative) {
+    // Arrange
+    int bad_count = -1;
+
+    // Act & Assert
+    EXPECT_THROW(RandomSearch(RastriginFunction, 1, bad_count), std::string);
+}
+
+TEST(RandomSearch, Throws_When_Set_Negative_Dimension) {
+    // Arrange
+    RandomSearch a(RastriginFunction, 1, 10000);
+    int bad_dimension = -1;
+
+    // Act & Assert
+    EXPECT_THROW(a.SetDimension(bad_dimension), std::string);
+}
+
 TEST(RandomSearch, Can_Set_And_Get_Dimension) {
     // Arrange
     RandomSearch a(RastriginFunction, 1, 10000);
