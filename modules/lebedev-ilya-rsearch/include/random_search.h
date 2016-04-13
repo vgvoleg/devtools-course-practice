@@ -7,7 +7,8 @@ typedef double(*tFunction)(int, double*);
 
 class RandomSearch {
  public:
-    RandomSearch(tFunction function, int dimention = 1, int iterationCount = 1);
+    explicit RandomSearch(tFunction function,
+        int dimension = 1, int iterationCount = 1);
     ~RandomSearch();
 
     double FindMinimum(double* globalMinimum);

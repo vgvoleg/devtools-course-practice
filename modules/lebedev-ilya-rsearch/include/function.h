@@ -14,7 +14,6 @@ double RastriginFunction(int dimention, double* x) {
     sum += x[j] * x[j] - 10.f * cos(2.f * PI * x[j]) + 10.f;
 
   return sum;
-};
-
+}
 
 #endif  // MODULES_LEBEDEV_ILYA_RSEARCH_INCLUDE_FUNCTION_H_

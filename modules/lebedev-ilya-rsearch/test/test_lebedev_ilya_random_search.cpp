@@ -13,7 +13,7 @@ TEST(Lebedev_Ilya_ComplexNumberTest, Can_Create) {
     a = new RandomSearch(RastriginFunction);
 
     // Assert
-    EXPECT_FALSE (a == 0);
+    EXPECT_NE(nullptr, a);
 }
 
 TEST(Lebedev_Ilya_ComplexNumberTest, Can_Find_Global_Minimum) {

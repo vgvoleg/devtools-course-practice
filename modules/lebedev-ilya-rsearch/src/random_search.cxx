@@ -13,7 +13,8 @@ void RandomSearch::Bounds() {
     }
 }
 
-RandomSearch::RandomSearch(tFunction function, int dimention, int iterationCount) : function_(function) {
+RandomSearch::RandomSearch(tFunction function,
+    int dimention, int iterationCount) : function_(function) {
     lowerBorder_ = 0;
     upperBorder_ = 0;
     if (dimention <= 0)
@@ -38,7 +39,6 @@ RandomSearch::~RandomSearch() {
 }
 
 double RandomSearch::FindMinimum(double* globalMinimum) {
-
     Bounds();
 
     double* x = new double[dimention_];
@@ -49,9 +49,11 @@ double RandomSearch::FindMinimum(double* globalMinimum) {
     for (int j = 0; j < dimention_; j++)
         d[j] = upperBorder_[j] - lowerBorder_[j];
 
+    static unsigned int rand_state = 0;
     for (int i = 0; i < iterationCount_; i++) {
         for (int j = 0; j < dimention_; j++)
-            x[j] = (((float)rand()) / RAND_MAX) * d[j] + lowerBorder_[j];
+            x[j] = (static_cast<float>(rand_r(&rand_state)) / RAND_MAX) *
+                d[j] + lowerBorder_[j];
 
         val = function_(dimention_, x);
         if (minimumValue > val) {

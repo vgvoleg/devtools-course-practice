@@ -25,7 +25,7 @@ TEST(Goncharova_Svetlana_ComplexNumberTest, associativity_amount_is_performed) {
   ComplexNumber z_result = (z1 + z2) + z3;
 
   // Assert
-  ComplexNumber z_expected= z1+(z2+z3);
+  ComplexNumber z_expected = z1+(z2+z3);
   EXPECT_EQ(z_result, z_expected);
 }
 
