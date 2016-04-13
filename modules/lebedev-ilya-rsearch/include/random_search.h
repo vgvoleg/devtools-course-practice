@@ -13,8 +13,8 @@ class RandomSearch {
 
     double FindMinimum(double* globalMinimum);
 
-    void SetDimention(int dimention);
-    int GetDimention();
+    void SetDimension(int dimension);
+    int GetDimension();
     void SetIterationCount(int iterationCount);
     int GetIterationCount();
 
@@ -22,7 +22,7 @@ class RandomSearch {
  private:
     void Bounds();
 
-    int dimention_;
+    int dimension_;
     int iterationCount_;
     double* lowerBorder_;
     double* upperBorder_;
