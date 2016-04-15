@@ -77,7 +77,7 @@ function BuildCMakeProject {
     dir=$cmake_build_dir
     mkdir -p $cmake_build_dir
     cd $cmake_build_dir
-    try cmake -DWITH_CODE_COVERAGE=ON -DCMAKE_BUILD_TYPE=Debug $DIR
+    try cmake -DCOVERAGE=ON -DCMAKE_BUILD_TYPE=Debug $DIR
     try make
 }
 
@@ -105,7 +105,7 @@ function valivatePullRequestTitle {
     else
         echo "FAILURE: Invalid title of the pull request"
         echo "Should be something like: Корняков - Лабораторная работа #1"
-        retcode=1
+        retcode=0 # Do not fail, since the check is not stable
     fi
 
     return $retcode
@@ -127,7 +127,7 @@ function CheckPullRequestNameFormat {
 
 function Main {
     # Clean
-    # CheckPullRequestNameFormat
+    CheckPullRequestNameFormat
     CheckGoogleStyle
     BuildCMakeProject
     CTest
