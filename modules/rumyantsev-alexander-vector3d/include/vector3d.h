@@ -14,6 +14,7 @@ class Vector3D {
   double getX() const;
   double getY() const;
   double getZ() const;
+
   void setX(const double x);
   void setY(const double y);
   void setZ(const double z);
