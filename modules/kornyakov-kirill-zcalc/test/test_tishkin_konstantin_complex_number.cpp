@@ -29,7 +29,6 @@ TEST(Tishkin_Kostya_ComplexNumberTest, Can_Copy_Num) {
 
 TEST(Tishkin_Kostya_ComplexNumberTest, Can_getRE) {
     // Arrange
-    double c = 5.0;
     double d = 2.0;
     // Act
     ComplexNumber a(2.0, 5.0);
@@ -41,7 +40,6 @@ TEST(Tishkin_Kostya_ComplexNumberTest, Can_getRE) {
 TEST(Tishkin_Kostya_ComplexNumberTest, Can_getIM) {
     // Arrange
     double c = 5.0;
-    double d = 2.0;
 
     // Act
     ComplexNumber a(2.0, 5.0);
