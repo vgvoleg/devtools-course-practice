@@ -18,14 +18,16 @@ class Vector3D {
   void setY(const double y);
   void setZ(const double z);
 
-  Vector3D operator + (const Vector3D& v) const;
-  Vector3D operator - (const Vector3D& v) const;
-  Vector3D operator * (const double k);
-  friend Vector3D operator * (const double k, const Vector3D& v) const;
-  Vector3D operator / (const double k) const;
+  Vector3D operator+(const Vector3D& v) const;
+  Vector3D operator-(const Vector3D& v) const;
+  Vector3D operator-() const;
 
-  bool operator == (const Vector3D& v) const;
-  bool operator != (const Vector3D& v) const;
+  Vector3D operator*(const double k) const;
+  friend Vector3D operator*(const double k, const Vector3D& v);
+  Vector3D operator/(const double k) const;
+
+  bool operator==(const Vector3D& v) const;
+  bool operator!=(const Vector3D& v) const;
 
   double magnitude() const;
   void normalize();
@@ -36,7 +38,8 @@ class Vector3D {
   double x_;
   double y_;
   double z_;
-  bool isNullVector(const Vector3D& v) const;
+
+  bool isNullVector() const;
 };
 
 #endif  // MODULES_RUMYANTSEV_ALEXANDER_VECTOR3D_INCLUDE_VECTOR3D_H_
