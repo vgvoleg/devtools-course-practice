@@ -56,3 +56,43 @@ Sample::Sample(vector<double> _sample,
 Sample::~Sample()
 {}
 
+Sample::Sample(const Sample& S)
+{}
+
+Sample& Sample::operator=(const Sample& S)
+{}
+
+int Sample::GetSampleSize()
+{
+    return sample_size;
+}
+
+vector<double> Sample::GetSample();
+{
+    return sample;
+}
+
+vector<double> Sample::GetProbabilities();
+{
+    return probabilities;
+}
+
+double Sample::CalcMathematicalExpectation();
+{}
+
+double Sample::CalcDispersion();
+{}
+
+double Sample::CalcAverageQuadraticDeviation();
+{
+    return sqrt(CalcDispersion());
+}
+
+double Sample::CalcMoment(double relative_point, int exponent);
+{}
+
+double Sample::CalcElementaryMoment(int exponent);
+{}
+
+double Sample::CalcCentralMoment(int exponent);
+{}
