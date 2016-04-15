@@ -2,6 +2,9 @@
 
 #include <gtest/gtest.h>
 
+#include <string>
+#include <iostream>
+
 #include "include/vector3d.h"
 
 TEST(Rumyantsev_Alexander_Vector3DTest, Can_Create_Default_Vector) {
@@ -175,4 +178,190 @@ TEST(Rumyantsev_Alexander_Vector3DTest, Can_Do_Multiple_Assignment) {
   // Assert
   EXPECT_EQ(v1, v3);
   EXPECT_EQ(v2, v3);
+}
+
+TEST(Rumyantsev_Alexander_Vector3DTest, Can_Add_Up_Vectors) {
+  // Arrange
+  Vector3D v1(4.0, 8.0, 15.0);
+  Vector3D v2(16.0, 23.0, 42.0);
+
+  // Act
+  Vector3D v = v1 + v2;
+
+  // Assert
+  Vector3D expected_v(20.0, 31.0, 57.0);
+  ASSERT_EQ(expected_v, v);
+}
+
+TEST(Rumyantsev_Alexander_Vector3DTest, Can_Subtract_Vectors) {
+  // Arrange
+  Vector3D v1(4.0, 8.0, 15.0);
+  Vector3D v2(16.0, 23.0, 42.0);
+
+  // Act
+  Vector3D v = v1 - v2;
+
+  // Assert
+  Vector3D expected_v(-12.0, -15.0, -27.0);
+  ASSERT_EQ(expected_v, v);
+}
+
+TEST(Rumyantsev_Alexander_Vector3DTest, Can_Do_Multiple_Addition) {
+  // Arrange
+  Vector3D v1(19.0, 12.0, -42.0);
+  Vector3D v2(-16.0, 16.0, -28.0);
+  Vector3D v3(16.0, -20.0, 46.0);
+
+  // Act
+  Vector3D v = v1 + v2 + v3;
+
+  // Assert
+  Vector3D expected_v(19.0, 8.0, -24.0);
+  ASSERT_EQ(expected_v, v);
+}
+
+TEST(Rumyantsev_Alexander_Vector3DTest, Can_Do_Multiple_Subtraction) {
+  // Arrange
+  Vector3D v1(0.17, 0.1, -0.26);
+  Vector3D v2(0.16, 0.42, -0.28);
+  Vector3D v3(-0.29, 0.2, 0.48);
+
+  // Act
+  Vector3D v = v1 - v2 - v3;
+
+  // Assert
+  Vector3D expected_v(0.3, -0.52, -0.46);
+  ASSERT_EQ(expected_v, v);
+}
+
+TEST(Rumyantsev_Alexander_Vector3DTest, Sum_Of_Opposite_Vectors_Is_NullVector) {
+  // Arrange
+  Vector3D v1(-2.0, 3.7, -4.0);
+  Vector3D v2(2.0, -3.7, 4.0);
+
+  // Act
+  Vector3D v = v1 + v2;
+
+  // Assert
+  Vector3D expected_v;
+  ASSERT_EQ(expected_v, v);
+}
+
+TEST(Rumyantsev_Alexander_Vector3DTest,
+     Difference_Of_Equal_Vectors_Is_NullVector) {
+  // Arrange
+  Vector3D v1(38.0, -36.0, 9.0);
+  Vector3D v2(v1);
+
+  // Act
+  Vector3D v = v1 - v2;
+
+  // Assert
+  Vector3D expected_v;
+  ASSERT_EQ(expected_v, v);
+}
+
+TEST(Rumyantsev_Alexander_Vector3DTest, Can_Get_Opposite_Vector) {
+  // Arrange
+  Vector3D v1(-10.0, 23.0, 1.0);
+
+  // Act
+  Vector3D v = -v1;
+
+  // Assert
+  Vector3D expected_v(10.0, -23.0, -1.0);
+  ASSERT_EQ(expected_v, v);
+}
+
+TEST(Rumyantsev_Alexander_Vector3DTest, Can_Multiply_On_The_Right_By_Number) {
+  // Arrange
+  Vector3D v1(-12.0, -10.0, 10.0);
+  double k = -0.5;
+
+  // Act
+  Vector3D v = v1 * k;
+
+  // Assert
+  Vector3D expected_v(6.0, 5.0, -5.0);
+  ASSERT_EQ(expected_v, v);
+}
+
+TEST(Rumyantsev_Alexander_Vector3DTest, Can_Multiply_On_The_Right_By_Zero) {
+  // Arrange
+  Vector3D v1(50.0, 34.0, 7.0);
+  double k = 0.0;
+
+  // Act
+  Vector3D v = v1 * k;
+
+  // Assert
+  Vector3D expected_v;
+  ASSERT_EQ(expected_v, v);
+}
+
+TEST(Rumyantsev_Alexander_Vector3DTest, Can_Multiply_On_The_Left_By_Number) {
+  // Arrange
+  Vector3D v1(2.0, -0.3, 11.0);
+  double k = 3.0;
+
+  // Act
+  Vector3D v = k * v1;
+
+  // Assert
+  Vector3D expected_v(6.0, -0.9, 33.0);
+  ASSERT_EQ(expected_v, v);
+}
+
+TEST(Rumyantsev_Alexander_Vector3DTest, Can_Multiply_On_The_Left_By_Zero) {
+  // Arrange
+  Vector3D v1(26.0, -36.0, 25.0);
+  double k = 0.0;
+
+  // Act
+  Vector3D v = k * v1;
+
+  // Assert
+  Vector3D expected_v;
+  ASSERT_EQ(expected_v, v);
+}
+
+TEST(Rumyantsev_Alexander_Vector3DTest, Can_Divide_By_Number) {
+  // Arrange
+  Vector3D v1(-3.0, 4.5, -2.1);
+  double k = 3.0;
+
+  // Act
+  Vector3D v = v1 / k;
+
+  // Assert
+  Vector3D expected_v(-1.0, 1.5, -0.7);
+  ASSERT_EQ(expected_v, v);
+}
+
+TEST(Rumyantsev_Alexander_Vector3DTest, Throws_When_Dividing_By_Zero) {
+  // Arrange
+  Vector3D v(1.0, -28.0, -2.0);
+  double k = 0.0;
+
+  // Act & Assert
+  ASSERT_THROW(v / k, std::string);
+}
+
+TEST(Rumyantsev_Alexander_Vector3DTest, DISABLED_Can_Do_Complex_Arithmetics) {
+  // Arrange
+  Vector3D v1(-1.0, -40.0, 4.4), v2(-37.0, 8.0, 32.0), v3(43.0, 7.0, -27.0),
+           v4(-6.0, 14.0, -29.0);
+  double k1 = 2.0, k2 = 3.0, k3 = 10.0;
+
+  // Act
+  Vector3D v = -v1 + ((k1 * v1) - (v2 * k2)) / k3 + v4;
+
+  // Note:
+  // This test fails with eps = std::numeric_limits<double>::epsilon().
+  // Difference between expected_v.Z and v.Z is 7.10543e-15 when
+  // eps = 2.22045e-16 (Windows 10 x64, C++14).
+
+  // Assert
+  Vector3D expected_v(5.9, 43.6, -42.12);
+  ASSERT_EQ(expected_v, v);
 }

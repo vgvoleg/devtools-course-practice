@@ -72,7 +72,7 @@ Vector3D Vector3D::operator*(const double k) const {
 }
 
 Vector3D operator*(const double k, const Vector3D& v) {
-  return Vector3D(k * v.x_, k * v.y_, k * v.z_);
+  return v * k;
 }
 
 Vector3D Vector3D::operator/(const double k) const {
