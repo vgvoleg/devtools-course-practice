@@ -3,23 +3,33 @@
 #ifndef MODULES_PETROV_KIRILL_ZCALC_INCLUDE_TMONOM_H_
 #define MODULES_PETROV_KIRILL_ZCALC_INCLUDE_TMONOM_H_
 
+class TMonom;
 typedef double tCoeff;
+typedef TMonom* PTMonom;
 
 class TMonom {
 public:
-	TMonom(int coeff = 1, int index = 0);
-	tCoeff  getCoeff	(void);
-	int		getIndex	(void);
-	TMonom& operator=	(const TMonom &tmonom);
-	bool	operator==	(const TMonom &tmonom) const;
-	bool	operator!=	(const TMonom &tmonom) const;
-	bool	operator<   (const TMonom &tmonom) const;
+	TMonom(tCoeff coeff = 0.0, int index = 0);
 
-	friend class TPolinom;
+
+	bool comparisonIndex	(const TMonom &tmonom) const;
+	TMonom& operator=		(const TMonom &tmonom);
+	bool	operator==		(const TMonom &tmonom) const;
+	bool	operator!=		(const TMonom &tmonom) const;
+	bool	operator<		(const TMonom &tmonom) const;
+	bool	operator>		(const TMonom &tmonom) const;
+	TMonom	operator+		(const TMonom &tmonom) const;
+	TMonom	operator-		(const TMonom &tmonom) const;
+	PTMonom comparisionBack	(void);
+
+
+	bool equalsZero(void) const;
+	PTMonom getCopyMonom	(void) const;
+	
 private:
 	tCoeff coeff_;						// коэффициент монома
-	tCoeff index_;						// индекс (свертка степеней)
+	int index_;							// индекс (свертка степеней)				
 };
-typedef TMonom *PTMonom;
+
 
 #endif // MODULES_PETROV_KIRILL_ZCALC_INCLUDE_TMONOM_H_

@@ -11,17 +11,15 @@ using std::list;
 
 enum Variable { x = 1, y = 10, z = 100 };
 
-class TPolinom : public list <TMonom> {
+class TPolynom : public list <TMonom> {
 public:
-	TPolinom(tCoeff monoms[][2] = nullptr, int length = 0);		// конструктор полинома из массива «коэффициент-индекс»
-	TPolinom(TPolinom &tpolinom);								// конструктор копирования
+	TPolynom (const tCoeff monoms[][2], const unsigned length);	// конструктор полинома из массива «коэффициент-индекс»
+	TPolynom (const TPolynom &tpolynom);								// конструктор копирования
 
-	TPolinom	operator+	 (TPolinom &tpolinom);				// сложение полиномов
-	TPolinom	operator-	 (TPolinom &tpolinom);				// сложение полиномов
-	TPolinom&	operator=	 (TPolinom &tpolinom);				// присваивание
-	bool		operator==	 (TPolinom &tpolinom);				// сравнение полиномов
+	TPolynom	operator+	 (const TPolynom &tpolynom) const;				// сложение полиномов
+	TPolynom	operator-	 (const TPolynom &tpolynom) const;				// сложение полиномов
 
-	TPolinom computeDerivative(Variable variable = x);			// нахождение производной
+	TPolynom computeDerivative(Variable variable = x);			// нахождение производной
 };
 
 #endif // MODULES_PETROV_KIRILL_ZCALC_INCLUDE_TPOLYNOM_H_
