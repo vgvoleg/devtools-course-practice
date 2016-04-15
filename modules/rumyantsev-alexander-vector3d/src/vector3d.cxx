@@ -16,9 +16,11 @@ Vector3D::Vector3D(const double x, const double y, const double z)
 Vector3D::Vector3D(const Vector3D& v) : x_(v.x_), y_(v.y_), z_(v.z_) {}
 
 Vector3D& Vector3D::operator=(const Vector3D& v) {
-  x_ = v.x_;
-  y_ = v.y_;
-  z_ = v.z_;
+  if (this != &v) {
+    x_ = v.x_;
+    y_ = v.y_;
+    z_ = v.z_;
+  }
 
   return *this;
 }
@@ -51,4 +53,40 @@ bool Vector3D::isNullVector() const {
   return x_ < eps && x_ > -eps &&
          y_ < eps && y_ > -eps &&
          z_ < eps && z_ > -eps;
+}
+
+Vector3D Vector3D::operator+(const Vector3D& v) const {
+  return Vector3D(x_ + v.x_, y_ + v.y_, z_ + v.z_);
+}
+
+Vector3D Vector3D::operator-(const Vector3D& v) const {
+  return Vector3D(x_ - v.x_, y_ - v.y_, z_ - v.z_);
+}
+
+Vector3D Vector3D::operator-() const {
+  return Vector3D(-x_, -y_, -z_);
+}
+
+Vector3D Vector3D::operator*(const double k) const {
+  return Vector3D(k * x_, k * y_, k * z_);
+}
+
+Vector3D operator*(const double k, const Vector3D& v) {
+  return Vector3D(k * v.x_, k * v.y_, k * v.z_);
+}
+
+Vector3D Vector3D::operator/(const double k) const {
+  if (k < eps && k > -eps) {
+    throw std::string("Can't devide by zero");
+  } else {
+    return Vector3D(x_ / k, y_ / k, z_ / k);
+  }
+}
+
+bool Vector3D::operator==(const Vector3D& v) const {
+  return (*this - v).isNullVector();
+}
+
+bool Vector3D::operator!=(const Vector3D& v) const {
+  return !(*this == v);
 }
