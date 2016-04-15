@@ -10,7 +10,7 @@ TEST(Tishkin_Kostya_ComplexNumberTest, Can_create_twin) {
     ComplexNumber c(0.0, 0.0);
 
     // Act
-	ComplexNumber d = c + a;
+    ComplexNumber d = c + a;
 
     // Assert
     EXPECT_EQ(d, a);
@@ -30,9 +30,9 @@ TEST(Tishkin_Kostya_ComplexNumberTest, Can_Copy_Num) {
 TEST(Tishkin_Kostya_ComplexNumberTest, Can_getRE) {
     // Arrange
     double c = 5.0;
-	double d = 2.0;
+    double d = 2.0;
     // Act
-	ComplexNumber a(2.0, 5.0);
+    ComplexNumber a(2.0, 5.0);
 
     // Assert
     EXPECT_EQ(a.getRe(), d);
@@ -40,15 +40,14 @@ TEST(Tishkin_Kostya_ComplexNumberTest, Can_getRE) {
 
 TEST(Tishkin_Kostya_ComplexNumberTest, Can_getIM) {
     // Arrange
-	double c = 5.0;
-	double d = 2.0;
+    double c = 5.0;
+    double d = 2.0;
 
     // Act
-	ComplexNumber a(2.0, 5.0);
-
+    ComplexNumber a(2.0, 5.0);
 
     // Assert
-	EXPECT_EQ(a.getIm(), c);
+    EXPECT_EQ(a.getIm(), c);
 }
 TEST(Tishkin_Kostya_ComplexNumberTest, Can_setIM) {
     // Arrange
@@ -59,5 +58,5 @@ TEST(Tishkin_Kostya_ComplexNumberTest, Can_setIM) {
 	a.setIm(3.0);
 
     // Assert
-    EXPECT_NE(a,b);
+    EXPECT_NE(a, b);
 }
