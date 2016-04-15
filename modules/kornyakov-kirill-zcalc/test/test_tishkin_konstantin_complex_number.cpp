@@ -55,7 +55,7 @@ TEST(Tishkin_Kostya_ComplexNumberTest, Can_setIM) {
     ComplexNumber b(2.0, 5.0);
 
     // Act
-	a.setIm(3.0);
+    a.setIm(3.0);
 
     // Assert
     EXPECT_NE(a, b);
