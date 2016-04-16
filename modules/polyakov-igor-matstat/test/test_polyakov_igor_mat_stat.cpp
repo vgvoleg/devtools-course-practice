@@ -11,8 +11,10 @@ TEST(Polyakov_Igor_MatStatTest, Is_Initialization_Sample_Correct) {
     // Arrange
 
     int size_sample = 5;
-    vector<double> sample = { 1.0, 3.0, 4.0, -1.0, 0.0 };
-    vector<double> probabilities = {0.2, 0.1, 0.3333, 0.1, 0.2777};
+    double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
+    double mas_probabilities[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
+    vector<double> sample(mas_sample, mas_sample + 5);
+    vector<double> probabilities(mas_probabilities, mas_probabilities + 5);
 
     Sample S(sample, probabilities);
 
@@ -41,8 +43,10 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calc_Mathematical_Expectation_Correct) {
     // Arrange
 
     int size_sample = 5;
-    vector<double> sample = { 1.0, 3.0, 4.0, -1.0, 0.0 };
-    vector<double> probabilities = { 0.2, 0.1, 0.3333, 0.1, 0.2777 };
+    double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
+    double mas_probabilities[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
+    vector<double> sample(mas_sample, mas_sample + 5);
+    vector<double> probabilities(mas_probabilities, mas_probabilities + 5);
 
     Sample S(sample, probabilities);
 
@@ -52,7 +56,7 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calc_Mathematical_Expectation_Correct) {
 
     // Assert
 
-    EXPECT_NEAR(1.9332, mathematical_expectation, SAMPLE_EPSILON);
+    EXPECT_NEAR(1.7332, mathematical_expectation, SAMPLE_EPSILON);
 
 }
 
@@ -61,8 +65,10 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calculate_Dispersion_Correct) {
     // Arrange
 
     int size_sample = 5;
-    vector<double> sample = { 1.0, 3.0, 4.0, -1.0, 0.0 };
-    vector<double> probabilities = { 0.2, 0.1, 0.3333, 0.1, 0.2777 };
+    double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
+    double mas_probabilities[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
+    vector<double> sample(mas_sample, mas_sample + 5);
+    vector<double> probabilities(mas_probabilities, mas_probabilities + 5);
 
     Sample S(sample, probabilities);
 
@@ -72,7 +78,7 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calculate_Dispersion_Correct) {
 
     // Assert
 
-    EXPECT_NEAR(2.7956, dispersion, SAMPLE_EPSILON);
+    EXPECT_NEAR(3.5289, dispersion, SAMPLE_EPSILON);
 
 }
 
@@ -81,8 +87,10 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calc_Average_Quadratic_Deviation_Correct) {
     // Arrange
 
     int size_sample = 5;
-    vector<double> sample = { 1.0, 3.0, 4.0, -1.0, 0.0 };
-    vector<double> probabilities = { 0.2, 0.1, 0.3333, 0.1, 0.2777 };
+    double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
+    double mas_probabilities[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
+    vector<double> sample(mas_sample, mas_sample + 5);
+    vector<double> probabilities(mas_probabilities, mas_probabilities + 5);
 
     Sample S(sample, probabilities);
 
@@ -92,7 +100,7 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calc_Average_Quadratic_Deviation_Correct) {
 
     // Assert
 
-    EXPECT_NEAR(1.672, average_quadratic_deviation, SAMPLE_EPSILON);
+    EXPECT_NEAR(1.8785, average_quadratic_deviation, SAMPLE_EPSILON);
 
 }
 
@@ -101,21 +109,23 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calculate_Moment_Correct) {
     // Arrange
 
     int size_sample = 5;
-    vector<double> sample = { 1.0, 3.0, 4.0, -1.0, 0.0 };
-    vector<double> probabilities = { 0.2, 0.1, 0.3333, 0.1, 0.2777 };
+    double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
+    double mas_probabilities[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
+    vector<double> sample(mas_sample, mas_sample + 5);
+    vector<double> probabilities(mas_probabilities, mas_probabilities + 5);
 
     Sample S(sample, probabilities);
 
     double relative_point = 1.0;
     int exponent = 3;
-
+    
     // Act
 
     double moment = S.CalcMoment(relative_point, exponent);
 
     // Assert
 
-    EXPECT_NEAR(8.7214, moment, SAMPLE_EPSILON);
+    EXPECT_NEAR(8.7324, moment, SAMPLE_EPSILON);
 
 }
 
@@ -124,8 +134,10 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calculate_Elementary_Moment_Correct) {
     // Arrange
 
     int size_sample = 5;
-    vector<double> sample = { 1.0, 3.0, 4.0, -1.0, 0.0 };
-    vector<double> probabilities = { 0.2, 0.1, 0.3333, 0.1, 0.2777 };
+    double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
+    double mas_probabilities[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
+    vector<double> sample(mas_sample, mas_sample + 5);
+    vector<double> probabilities(mas_probabilities, mas_probabilities + 5);
 
     Sample S(sample, probabilities);
 
@@ -146,8 +158,10 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calculate_Central_Moment_Correct) {
     // Arrange
 
     int size_sample = 5;
-    vector<double> sample = { 1.0, 3.0, 4.0, -1.0, 0.0 };
-    vector<double> probabilities = { 0.2, 0.1, 0.3333, 0.1, 0.2777 };
+    double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
+    double mas_probabilities[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
+    vector<double> sample(mas_sample, mas_sample + 5);
+    vector<double> probabilities(mas_probabilities, mas_probabilities + 5);
 
     Sample S(sample, probabilities);
 
@@ -159,6 +173,6 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calculate_Central_Moment_Correct) {
 
     // Assert
 
-    EXPECT_NEAR(-1.6285, central_moment, SAMPLE_EPSILON);
+    EXPECT_NEAR(0.5762, central_moment, SAMPLE_EPSILON);
 
 }
