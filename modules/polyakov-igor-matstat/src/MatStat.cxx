@@ -5,8 +5,6 @@
 #include <string.h>
 #include <cmath>
 
-#define eps 0.001;
-
 bool Sample::IsSummOfProbabilitiesEqualUnity(vector<double> _probabilities)
 {
 
@@ -70,7 +68,7 @@ Sample::Sample(vector<double> _sample,
 
     if (_sample.size() != _probabilities.size())
     {
-        throw std::string("Sizes of _sample and _probabilities must be equal");
+        throw SIZES_OF_SAMPLE_AND_PROB_DIFFER;
     }
     else
     {
@@ -79,7 +77,7 @@ Sample::Sample(vector<double> _sample,
 
     if (!AreProbabilitiesCorrect(_probabilities))
     {
-        throw std::string("Probabilities are not correct.");
+        throw PROBABILITIES_NOT_CORRECT;
     }
     else
     {
@@ -88,10 +86,12 @@ Sample::Sample(vector<double> _sample,
 
     if (!IsSampleCorrect(_sample))
     {
-        throw std::string("Sample is not correct. Values must be different");
+        throw SAMPLE_NOT_CORRECT;
     }
     else
+    {
         sample = _sample;
+    }
 
 }
 

@@ -5,6 +5,14 @@
 
 #include <vector>
 
+
+const int PROBABILITIES_NOT_CORRECT - 3;
+const int SAMPLE_NOT_CORRECT - 2;
+const int SIZES_OF_SAMPLE_AND_PROB_DIFFER - 1;
+
+const double eps = 0.001;
+
+
 class Sample
 {
 
