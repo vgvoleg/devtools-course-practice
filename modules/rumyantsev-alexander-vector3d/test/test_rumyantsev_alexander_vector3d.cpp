@@ -347,21 +347,15 @@ TEST(Rumyantsev_Alexander_Vector3DTest, Throws_When_Dividing_By_Zero) {
   ASSERT_THROW(v / k, std::string);
 }
 
-TEST(Rumyantsev_Alexander_Vector3DTest, DISABLED_Can_Do_Complex_Arithmetics) {
+TEST(Rumyantsev_Alexander_Vector3DTest, Can_Do_Complex_Arithmetics) {
   // Arrange
-  Vector3D v1(-1.0, -40.0, 4.4), v2(-37.0, 8.0, 32.0), v3(43.0, 7.0, -27.0),
-           v4(-6.0, 14.0, -29.0);
-  double k1 = 2.0, k2 = 3.0, k3 = 10.0;
+  Vector3D v1(-1.0, -40.0, 10.0), v2(-12.0, 8.0, 32.0), v3(42.0, -36.0, -27.0);
+  double k1 = 0.5, k2 = 3.0, k3 = 3.0;
 
   // Act
-  Vector3D v = -v1 + ((k1 * v1) - (v2 * k2)) / k3 + v4;
-
-  // Note:
-  // This test fails with eps = std::numeric_limits<double>::epsilon().
-  // Difference between expected_v.Z and v.Z is 7.10543e-15 when
-  // eps = 2.22045e-16 (Windows 10 x64, C++14).
+  Vector3D v = -v1 + k1 * v2 * k2 - v3 / k3;
 
   // Assert
-  Vector3D expected_v(5.9, 43.6, -42.12);
+  Vector3D expected_v(-31.0, 64.0, 47.0);
   ASSERT_EQ(expected_v, v);
 }
