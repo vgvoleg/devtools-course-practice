@@ -28,9 +28,9 @@ public:
     vector<double> GetProbabilities();
 
     double CalcMathematicalExpectation();
-    double CalcDispersion();
-    double CalcAverageQuadraticDeviation();
     double CalcMoment(double relative_point, int exponent);
     double CalcElementaryMoment(int exponent);
+    double CalcDispersion();
+    double CalcAverageQuadraticDeviation();
     double CalcCentralMoment(int exponent);
 };
