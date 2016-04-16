@@ -25,6 +25,7 @@ bool Sample::IsSummOfProbabilitiesEqualUnity(vector<double> _probabilities)
     return true;
 
 }
+
 bool Sample::AreProbabilitiesCorrect(vector<double> _probabilities)
 {
 
@@ -45,6 +46,24 @@ bool Sample::AreProbabilitiesCorrect(vector<double> _probabilities)
 
 }
 
+bool Sample::IsSampleCorrect(vector<double> _sample)
+{
+
+    for (int i = 0; i < _sample.size() - 1; i++)
+    {
+        for (int j = i + 1; j < _sample.size(); j++)
+        {
+            if (_sample[i] == _sample[j])
+            {
+                return false;
+            }
+        }
+    }
+
+    return true;
+
+}
+
 Sample::Sample(vector<double> _sample,
                vector<double> _probabilities)
 {
@@ -58,16 +77,21 @@ Sample::Sample(vector<double> _sample,
         sample_size = _sample.size();
     }
 
-    if (!(Sample::AreProbabilitiesCorrect(_probabilities)))
+    if (!AreProbabilitiesCorrect(_probabilities))
     {
-        throw std::string("Probabilities are not correct");
+        throw std::string("Probabilities are not correct.");
     }
     else
     {
         probabilities = _probabilities;
     }
 
-    sample = _sample;
+    if (!IsSampleCorrect(_sample))
+    {
+        throw std::string("Sample is not correct. Values must be different");
+    }
+    else
+        sample = _sample;
 
 }
 

@@ -1,5 +1,8 @@
 // Copyright 2016 Polyakov Igor
 
+#ifndef MODULES_POLYAKOV_IGOR_MATSTAT_INCLUDE_SAMPLE_H_
+#define MODULES_POLYAKOV_IGOR_MATSTAT_INCLUDE_SAMPLE_H_
+
 #include <vector>
 
 class Sample
@@ -11,8 +14,9 @@ private:
     vector<double> sample; // Значения выборки
     vector<double> probabilities; // Вероятности
 
-    bool AreProbabilitiesCorrect(vector<double> _probabilities);
     bool IsSummOfProbabilitiesEqualUnity(vector<double> _probabilities);
+    bool AreProbabilitiesCorrect(vector<double> _probabilities);
+    bool IsSampleCorrect(vector<double> _sample);
 
 public:
 
@@ -33,4 +37,7 @@ public:
     double CalcDispersion();
     double CalcAverageQuadraticDeviation();
     double CalcCentralMoment(int exponent);
+
 };
+
+#endif  // MODULES_POLYAKOV_IGOR_MATSTAT_INCLUDE_SAMPLE_H_
