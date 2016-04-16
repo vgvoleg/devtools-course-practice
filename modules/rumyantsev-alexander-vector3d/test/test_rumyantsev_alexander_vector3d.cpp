@@ -7,7 +7,7 @@
 
 #include "include/vector3d.h"
 
-TEST(Rumyantsev_Alexander_Vector3DTest, Can_Create_Default_Vector) {
+TEST(Rumyantsev_Alexander_Vector3DTest, Can_Create_Null_Vector) {
   // Arrange & Act
   Vector3D v;
 
@@ -349,7 +349,9 @@ TEST(Rumyantsev_Alexander_Vector3DTest, Throws_When_Dividing_By_Zero) {
 
 TEST(Rumyantsev_Alexander_Vector3DTest, Can_Do_Complex_Arithmetics) {
   // Arrange
-  Vector3D v1(-1.0, -40.0, 10.0), v2(-12.0, 8.0, 32.0), v3(42.0, -36.0, -27.0);
+  Vector3D v1(-1.0, -40.0, 10.0);
+  Vector3D v2(-12.0, 8.0, 32.0);
+  Vector3D v3(42.0, -36.0, -27.0);
   double k1 = 0.5, k2 = 3.0, k3 = 3.0;
 
   // Act
@@ -358,4 +360,133 @@ TEST(Rumyantsev_Alexander_Vector3DTest, Can_Do_Complex_Arithmetics) {
   // Assert
   Vector3D expected_v(-31.0, 64.0, 47.0);
   ASSERT_EQ(expected_v, v);
+}
+
+TEST(Rumyantsev_Alexander_Vector3DTest, Can_Calculate_Magnitude) {
+  // Arrange
+  Vector3D v(2.0, 6.0, 9.0);
+
+  // Act
+  double mgn = v.magnitude();
+
+  // Assert
+  double expected_mgn = 11.0;
+  ASSERT_DOUBLE_EQ(expected_mgn, mgn);
+}
+
+TEST(Rumyantsev_Alexander_Vector3DTest, Magnitude_Of_NullVector_Is_Zero) {
+  // Arrange
+  Vector3D v;
+
+  // Act
+  double mgn = v.magnitude();
+
+  // Assert
+  double expected_mgn = 0.0;
+  ASSERT_DOUBLE_EQ(expected_mgn, mgn);
+}
+
+TEST(Rumyantsev_Alexander_Vector3DTest, Can_Normalize_Vector) {
+  // Arrange
+  Vector3D v(10.0, -2.0, 13.0);
+  Vector3D v_copy(v);
+
+  // Act
+  v.normalize();
+
+  // Assert
+  double mgn = v.magnitude();
+  double cross_mgn = v.cross(v_copy).magnitude();
+  EXPECT_DOUBLE_EQ(1.0, mgn);
+  EXPECT_DOUBLE_EQ(0.0, cross_mgn);
+}
+
+TEST(Rumyantsev_Alexander_Vector3DTest, Throws_When_Normalizing_NullVector) {
+  // Arrange
+  Vector3D v;
+
+  // Act & Assert
+  ASSERT_THROW(v.normalize(), std::string);
+}
+
+TEST(Rumyantsev_Alexander_Vector3DTest, Can_Calculate_Dot_Product) {
+  // Arrange
+  Vector3D v1(-1.0, 4.0, -2.0);
+  Vector3D v2(7.0, 3.0, -0.5);
+
+  // Act
+  double dot_product = v1.dot(v2);
+
+  // Assert
+  ASSERT_DOUBLE_EQ(6.0, dot_product);
+}
+
+TEST(Rumyantsev_Alexander_Vector3DTest,
+     Dot_Product_Of_Orthogonal_Vectors_Is_Zero) {
+  // Arrange
+  Vector3D v1(10.0, 0.0, 0.0);
+  Vector3D v2(0.0, -2.0, 0.0);
+
+  // Act
+  double dot_product = v1.dot(v2);
+
+  // Assert
+  ASSERT_DOUBLE_EQ(0.0, dot_product);
+}
+
+TEST(Rumyantsev_Alexander_Vector3DTest, Can_Calculate_Cross_Product) {
+  // Arrange
+  Vector3D v1(1.0, 0.0, 0.0);
+  Vector3D v2(0.0, 1.0, 0.0);
+
+  // Act
+  Vector3D cross_product = v1.cross(v2);
+
+  // Assert
+  Vector3D expected_v(0.0, 0.0, 1.0);
+  ASSERT_EQ(expected_v, cross_product);
+}
+
+TEST(Rumyantsev_Alexander_Vector3DTest,
+     Cross_Product_Of_Parallel_Vectors_Is_NullVector) {
+  // Arrange
+  Vector3D v1(2.0, 5.0, 7.0);
+  Vector3D v2(6.0, 15.0, 21.0);
+
+  // Act
+  Vector3D cross_product = v1.cross(v2);
+
+  // Assert
+  Vector3D expected_v;
+  ASSERT_EQ(expected_v, cross_product);
+}
+
+TEST(Rumyantsev_Alexander_Vector3DTest,
+     Two_Cross_Products_Are_Opposite_Vectors) {
+  // Arrange
+  Vector3D v1(-7.0, -17.0, 1.0);
+  Vector3D v2(-2.0, 8.0, 9.0);
+
+  // Act
+  Vector3D cross_product1 = v1.cross(v2);
+  Vector3D cross_product2 = v2.cross(v1);
+
+  // Assert
+  Vector3D expected_v;
+  ASSERT_EQ(expected_v, cross_product1 + cross_product2);
+}
+
+TEST(Rumyantsev_Alexander_Vector3DTest,
+     Cross_Product_Is_Orthogonal_To_Vectors) {
+  // Arrange
+  Vector3D v1(22.0, -9.0, -16.0);
+  Vector3D v2(26.0, 2.0, -3.0);
+
+  // Act
+  Vector3D cross_product = v1.cross(v2);
+  Vector3D cross_product2 = v2.cross(v1);
+
+  // Assert
+  EXPECT_DOUBLE_EQ(0.0, cross_product.dot(v1));
+  EXPECT_DOUBLE_EQ(0.0, cross_product.dot(v2));
 }
