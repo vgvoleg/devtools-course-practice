@@ -484,7 +484,6 @@ TEST(Rumyantsev_Alexander_Vector3DTest,
 
   // Act
   Vector3D cross_product = v1.cross(v2);
-  Vector3D cross_product2 = v2.cross(v1);
 
   // Assert
   EXPECT_DOUBLE_EQ(0.0, cross_product.dot(v1));
