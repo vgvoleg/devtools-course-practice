@@ -4,6 +4,8 @@
 #include <cmath>
 #include "include/MatStat.h"
 
+using namespace std;
+
 TEST(Polyakov_Igor_MatStatTest, Is_Initialization_Sample_Correct) {
 
     // Arrange
@@ -12,7 +14,7 @@ TEST(Polyakov_Igor_MatStatTest, Is_Initialization_Sample_Correct) {
     vector<double> sample = { 1.0, 3.0, 4.0, -1.0, 0.0 };
     vector<double> probabilities = {0.2, 0.1, 0.3333, 0.1, 0.2777};
 
-    Sample S(size_sample, sample, probabilities);
+    Sample S(sample, probabilities);
 
     // Act
 
@@ -42,7 +44,7 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calc_Mathematical_Expectation_Correct) {
     vector<double> sample = { 1.0, 3.0, 4.0, -1.0, 0.0 };
     vector<double> probabilities = { 0.2, 0.1, 0.3333, 0.1, 0.2777 };
 
-    Sample S(size_sample, sample, probabilities);
+    Sample S(sample, probabilities);
 
     // Act
 
@@ -62,7 +64,7 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calculate_Dispersion_Correct) {
     vector<double> sample = { 1.0, 3.0, 4.0, -1.0, 0.0 };
     vector<double> probabilities = { 0.2, 0.1, 0.3333, 0.1, 0.2777 };
 
-    Sample S(size_sample, sample, probabilities);
+    Sample S(sample, probabilities);
 
     // Act
 
@@ -82,7 +84,7 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calc_Average_Quadratic_Deviation_Correct) {
     vector<double> sample = { 1.0, 3.0, 4.0, -1.0, 0.0 };
     vector<double> probabilities = { 0.2, 0.1, 0.3333, 0.1, 0.2777 };
 
-    Sample S(size_sample, sample, probabilities);
+    Sample S(sample, probabilities);
 
     // Act
 
@@ -102,7 +104,7 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calculate_Moment_Correct) {
     vector<double> sample = { 1.0, 3.0, 4.0, -1.0, 0.0 };
     vector<double> probabilities = { 0.2, 0.1, 0.3333, 0.1, 0.2777 };
 
-    Sample S(size_sample, sample, probabilities);
+    Sample S(sample, probabilities);
 
     double relative_point = 1.0;
     int exponent = 3;
@@ -125,7 +127,7 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calculate_Elementary_Moment_Correct) {
     vector<double> sample = { 1.0, 3.0, 4.0, -1.0, 0.0 };
     vector<double> probabilities = { 0.2, 0.1, 0.3333, 0.1, 0.2777 };
 
-    Sample S(size_sample, sample, probabilities);
+    Sample S(sample, probabilities);
 
     int exponent = 3;
 
@@ -147,7 +149,7 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calculate_Central_Moment_Correct) {
     vector<double> sample = { 1.0, 3.0, 4.0, -1.0, 0.0 };
     vector<double> probabilities = { 0.2, 0.1, 0.3333, 0.1, 0.2777 };
 
-    Sample S(size_sample, sample, probabilities);
+    Sample S(sample, probabilities);
 
     int exponent = 3;
 

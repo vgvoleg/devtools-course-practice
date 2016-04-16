@@ -5,6 +5,9 @@
 #include <string.h>
 #include <cmath>
 
+
+using namespace std;
+
 bool Sample::IsSummOfProbabilitiesEqualUnity(vector<double> _probabilities)
 {
 
@@ -15,7 +18,7 @@ bool Sample::IsSummOfProbabilitiesEqualUnity(vector<double> _probabilities)
         sum_of_probabilities += _probabilities[i];
     }
 
-    if (abs(1.0 - sum_of_probabilities) > eps)
+    if (abs(1.0 - sum_of_probabilities) > SAMPLE_EPSILON)
     {
         return false;
     }
@@ -63,7 +66,7 @@ bool Sample::IsSampleCorrect(vector<double> _sample)
 }
 
 Sample::Sample(vector<double> _sample,
-               vector<double> _probabilities)
+       vector<double> _probabilities)
 {
 
     if (_sample.size() != _probabilities.size())
@@ -120,6 +123,7 @@ Sample& Sample::operator=(const Sample& S)
     sample = S.sample;
     probabilities = S.probabilities;
 
+    return *this;
 }
 
 int Sample::GetSampleSize()
@@ -129,7 +133,7 @@ int Sample::GetSampleSize()
 
 }
 
-vector<double> Sample::GetSample();
+vector<double> Sample::GetSample()
 {
 
     return sample;
