@@ -57,10 +57,28 @@ Sample::~Sample()
 {}
 
 Sample::Sample(const Sample& S)
-{}
+{
+
+    sample_size = S.sample_size;
+    sample = S.sample;
+    probabilities = S.probabilities;
+
+}
 
 Sample& Sample::operator=(const Sample& S)
-{}
+{
+
+    if (sample_size < S.sample_size)
+    {
+        probabilities.~vector();
+        sample.~vector();
+    }
+
+    sample_size = S.sample_size;
+    sample = S.sample;
+    probabilities = S.probabilities;
+
+}
 
 int Sample::GetSampleSize()
 {
@@ -72,27 +90,37 @@ vector<double> Sample::GetSample();
     return sample;
 }
 
-vector<double> Sample::GetProbabilities();
+vector<double> Sample::GetProbabilities()
 {
     return probabilities;
 }
 
-double Sample::CalcMathematicalExpectation();
-{}
-
-double Sample::CalcDispersion();
-{}
-
-double Sample::CalcAverageQuadraticDeviation();
+double Sample::CalcMathematicalExpectation()
 {
-    return sqrt(CalcDispersion());
+
+    double mathematical_expectation = 0.0;
+
+    for (int i = 0; i < sample_size; i++)
+        mathematical_expectation += sample[i] * probabilities[i];
+
+    return mathematical_expectation;
+
 }
 
-double Sample::CalcMoment(double relative_point, int exponent);
+double Sample::CalcDispersion()
 {}
 
-double Sample::CalcElementaryMoment(int exponent);
+double Sample::CalcAverageQuadraticDeviation()
+{
+    return sqrt(CalcDispersion())
+}
+
+double Sample::CalcMoment(double relative_point,
+                          int exponent)
 {}
 
-double Sample::CalcCentralMoment(int exponent);
+double Sample::CalcElementaryMoment(int exponent)
+{}
+
+double Sample::CalcCentralMoment(int exponent)
 {}
