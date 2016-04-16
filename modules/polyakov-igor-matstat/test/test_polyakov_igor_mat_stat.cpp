@@ -27,14 +27,8 @@ TEST(Polyakov_Igor_MatStatTest, Is_Initialization_Sample_Correct) {
     // Assert
 
     EXPECT_EQ(size_sample, get_size_sample);
-
-    for (int i = 0; i < size_sample; i++)
-    {
-
-        EXPECT_EQ(sample[i], get_sample[i]);
-        EXPECT_EQ(probabilities[i], get_probabilities[i]);
-
-    }
+    EXPECT_EQ(sample, get_sample);
+    EXPECT_EQ(probabilities, get_probabilities);
 
 }
 
