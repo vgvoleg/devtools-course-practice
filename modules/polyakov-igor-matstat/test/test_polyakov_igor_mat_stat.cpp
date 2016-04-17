@@ -147,7 +147,7 @@ TEST(Polyakov_Igor_MatStatTest, Are_Samples_With_Differ_Prob_Inequal) {
 
     // Act & Assert
 
-    EXPECT_EQ(false, S_1 == S_2);
+    ASSERT_FALSE(S_1 == S_2);
 }
 
 TEST(Polyakov_Igor_MatStatTest, Is_Calc_Mathematical_Expectation_Correct) {
