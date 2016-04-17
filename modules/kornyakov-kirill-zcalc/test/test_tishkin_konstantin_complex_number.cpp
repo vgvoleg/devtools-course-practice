@@ -1,10 +1,9 @@
 // Copyright 2016 Tishkin Konstantin
 
 #include "gtest/gtest.h"
-#include "limits.h"
-#include "include/complex_number.h"
 
-const double rez = std::numeric_limits<double>::epsilon();
+#include "include/complex_number.h"
+const double rez = 1.0;
 
 TEST(Tishkin_Kostya_ComplexNumberTest, Can_create_twin) {
     // Arrange
