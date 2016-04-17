@@ -4,6 +4,7 @@
 
 #include <string.h>
 #include <cmath>
+#include <vector>
 
 
 bool Sample::IsSummOfProbabilitiesEqualUnity(std::vector<double> _prob) {
@@ -50,22 +51,19 @@ Sample::Sample(std::vector<double> _sample,
     std::vector<double> _probabilities) {
     if (_sample.size() != _probabilities.size()) {
         throw IncorrectSizesOfSampleAndProbabilities();
-    }
-    else {
+    } else {
         sample_size = _sample.size();
     }
 
     if (!AreProbabilitiesCorrect(_probabilities)) {
         throw IncorrectProbabilities();
-    }
-    else {
+    } else {
         probabilities = _probabilities;
     }
 
     if (!IsSampleCorrect(_sample)) {
         throw IncorrectSample();
-    }
-    else {
+    } else {
         sample = _sample;
     }
 }
