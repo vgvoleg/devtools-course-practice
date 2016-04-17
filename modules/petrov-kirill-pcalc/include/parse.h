@@ -11,13 +11,12 @@ using std::string;
 
 enum TOperation { ADDITION, SUBTRACTION, COMPUTE, SUMMARIZE_ALL };
 
-class Parse {
- public:
-  static int number(const char* arg, const int lower = 0, const int top = 9);
-  static int number(const char arg);
-  static tCoeff value(const char* arg);
-  static TPolynom polynom(const string& arg);
-  static TOperation operation(const string& arg);
+namespace Parse {
+  int number(const char* arg, const int lower = 0, const int top = 9);
+  int number(const char arg);
+  tCoeff value(const char* arg);
+  TPolynom polynom(const string& arg);
+  TOperation operation(const string& arg);
 };
 
 #endif  // MODULES_PETROV_KIRILL_PCALC_INCLUDE_PARSE_H_
