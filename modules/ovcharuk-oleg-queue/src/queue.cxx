@@ -17,16 +17,15 @@ bool Queue::isFull(void) {
 }
 
 Queue::Queue(int DataCountM) {
-    if (DataCountM <= 0)
+    if (DataCountM <= 0) {
         throw "Incorrect size!";
-    else {
+    } else {
         DataCountMax = DataCountM;
         head = NULL;
         tail = NULL;
         DataCount = 0;
     }
 }
- 
 
 Queue::~Queue() {
     while (head)
