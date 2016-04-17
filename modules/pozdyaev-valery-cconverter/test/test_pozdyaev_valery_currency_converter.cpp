@@ -2,7 +2,10 @@
 
 #include <gtest/gtest.h>
 
+#include <windows.h>
 #include <string>
+#include <map>
+#include <vector>
 
 #include "include/currency_converter.h"
 
@@ -166,7 +169,7 @@ TEST(Pozdyaev_Valery_CurrencyConverterTest, Can_Sale_Currency) {
     double bought_USD = converter.exchangeCurrency("EUR", "USD", 12);
 
     // Assert
-    double expected_USD_sum = 14.4;
+    double expected_USD_sum = 14.4;  // selling EUR (= 12) * Bid Price (= 1.2)
     EXPECT_DOUBLE_EQ(bought_USD, expected_USD_sum);
 }
 
@@ -179,7 +182,7 @@ TEST(Pozdyaev_Valery_CurrencyConverterTest, Can_Buy_Currency) {
     double bought_EUR = converter.exchangeCurrency("USD", "EUR", 12);
 
     // Assert
-    double expected_EUR_sum = 7.5;
+    double expected_EUR_sum = 7.5;  // selling USD (= 12) / Ask Price (= 1.6)
     EXPECT_DOUBLE_EQ(bought_EUR, expected_EUR_sum);
 }
 
@@ -236,3 +239,84 @@ TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Add_Pair_Of_Same_Currency) {
     // Act & Assert
     EXPECT_THROW(CurrencyPair("USD/USD", 1, 1), string);
 }
+
+TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Exchange_Same_Currency) {
+    // Arrange
+    CurrencyConverter converter;
+    converter.addCurrencyPair(CurrencyPair("EUR/USD", 1.2, 1.6));
+
+    // Act & Assert
+    EXPECT_THROW(converter.exchangeCurrency("USD", "USD", 10), string);
+}
+
+TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Update_With_Reverse_Pair) {
+    // Arrange
+    CurrencyConverter converter;
+    converter.addCurrencyPair(CurrencyPair("EUR/USD", 1.2, 1.6));
+
+    // Act & Assert
+    CurrencyPair reverse_pair("USD/EUR", 0.8, 0.94);
+    EXPECT_THROW(converter.updateCurrencyPair(reverse_pair), string);
+}
+
+TEST(Pozdyaev_Valery_CurrencyConverterTest, Can_Get_Count_Of_Pairs) {
+    // Arrange
+    CurrencyConverter converter;
+    converter.addCurrencyPair(CurrencyPair("EUR/USD", 1.2, 1.6));
+    converter.addCurrencyPair(CurrencyPair("EUR/RUB", 80.2, 86.6));
+    converter.addCurrencyPair(CurrencyPair("USD/RUB", 65.4, 66.8));
+
+    // Act
+    std::vector<CurrencyPair> pairs = converter.getCurrencyPairs();
+    int pairs_count = pairs.size();
+
+    // Assert
+    int expected_value = 3;
+    EXPECT_EQ(expected_value, pairs_count);
+}
+
+TEST(Pozdyaev_Valery_CurrencyConverterTest, Can_Recieved_Spread_History) {
+    // Arrange
+    CurrencyPair currency_pair("USD/EUR", 0.8005, 0.8015);
+
+    // Act
+    std::map<time_t, int> spread_history = currency_pair.getSpreadHistory();
+    int spread = spread_history.begin()->second;
+
+    // Assert
+    int expected_value = 10;
+    EXPECT_EQ(expected_value, spread);
+}
+
+TEST(Pozdyaev_Valery_CurrencyConverterTest, Can_Remove_All_Pairs) {
+    // Arrange
+    CurrencyConverter converter;
+    converter.addCurrencyPair(CurrencyPair("EUR/USD", 1.2, 1.6));
+    converter.addCurrencyPair(CurrencyPair("EUR/RUB", 80.2, 86.6));
+    converter.addCurrencyPair(CurrencyPair("USD/RUB", 65.4, 66.8));
+
+    // Act
+    converter.removeAllCurrencyPairs();
+    int pairs_count = converter.getCurrencyPairs().size();
+
+    // Assert
+    EXPECT_EQ(0, pairs_count);
+}
+
+TEST(Pozdyaev_Valery_CurrencyConverterTest, Spread_History_Is_Saved) {
+    // Arrange
+    CurrencyPair currency_pair("USD/EUR", 0.8005, 0.8015);
+    Sleep(1000);
+    currency_pair.setAskPrice(0.78);
+    Sleep(1000);
+    currency_pair.setBidPrice(0.57);
+
+    // Act
+    std::map<time_t, int> spread_history = currency_pair.getSpreadHistory();
+    int history_size = spread_history.size();
+
+    // Assert
+    int expected_value = 3;
+    EXPECT_EQ(expected_value, history_size);
+}
+

@@ -2,10 +2,13 @@
 
 #include "include/currency_pair.h"
 
+#include <utility>
+#include <map>
 #include <string>
 #include <regex>
 
 const std::regex currency_code_pattern("[A-Z]{3}\/[A-Z]{3}");
+const double base_lot_size = 10000;
 
 CurrencyPair::CurrencyPair() {
     currency_pair_code_ = "EUR/USD";
@@ -28,11 +31,14 @@ CurrencyPair::CurrencyPair(string currency_pair_code,
     currency_pair_code_ = currency_pair_code;
     bid_price_ = bid_price;
     ask_price_ = ask_price;
+
+    updateSpreadHistory();
 }
 
 void CurrencyPair::setBidPrice(double new_bid_price) {
     if (new_bid_price > 0) {
         bid_price_ = new_bid_price;
+        updateSpreadHistory();
     } else {
         throw string("Incorrect bid price format");
     }
@@ -45,6 +51,7 @@ double CurrencyPair::getBidPrice() {
 void CurrencyPair::setAskPrice(double new_ask_price) {
     if (new_ask_price > 0) {
         ask_price_ = new_ask_price;
+        updateSpreadHistory();
     } else {
         throw string("Incorrect ask price format");
     }
@@ -68,4 +75,16 @@ void CurrencyPair::checkCurrencyPairCode(string currency_pair_code) {
     if (!regex_match(currency_pair_code, currency_code_pattern)) {
         throw string("Incorrect currency pair code");
     }
+}
+
+std::map<time_t, int> CurrencyPair::getSpreadHistory() {
+    return spread_history;
+}
+
+void CurrencyPair::updateSpreadHistory() {
+    time_t now = time(NULL);
+
+    int spread = (ask_price_ - bid_price_) * base_lot_size;
+
+    spread_history.insert(std::pair<time_t, int>(now, spread));
 }

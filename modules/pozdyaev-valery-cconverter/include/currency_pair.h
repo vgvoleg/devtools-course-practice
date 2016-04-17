@@ -4,6 +4,8 @@
 #define MODULES_POZDYAEV_VALERY_CCONVERTER_INCLUDE_CURRENCY_PAIR_H_
 
 #include <string>
+#include <map>
+#include <ctime>
 
 using std::string;
 
@@ -21,10 +23,17 @@ class CurrencyPair {
 
     static void checkCurrencyPairCode(string currency_pair_code);
 
+    std::map<time_t, int> getSpreadHistory();
+
  private:
     string currency_pair_code_;
     double bid_price_;
     double ask_price_;
+
+    // Difference beetwen ask and bid price in points
+    std::map<time_t, int> spread_history;
+
+    void updateSpreadHistory();
 };
 
 #endif  // MODULES_POZDYAEV_VALERY_CCONVERTER_INCLUDE_CURRENCY_PAIR_H_

@@ -20,6 +20,9 @@ class CurrencyConverter {
     double exchangeCurrency(string selling_currency,
         string buying_currency, double sum);
 
+    void removeAllCurrencyPairs();
+    std::vector<CurrencyPair> getCurrencyPairs();
+
  private:
     double buyCurrency(CurrencyPair currency_pair_code, double sum);
     double saleCurrency(CurrencyPair currency_pair_code, double sum);

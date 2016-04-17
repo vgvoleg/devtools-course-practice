@@ -2,7 +2,7 @@
 
 #include "include/currency_converter.h"
 
-
+#include <vector>
 #include <string>
 
 CurrencyConverter::CurrencyConverter() {
@@ -88,4 +88,12 @@ double CurrencyConverter::exchangeCurrency(string selling_currency,
     }
 
     throw std::string("Can not exchange currency. Currency pair is not found");
+}
+
+std::vector<CurrencyPair> CurrencyConverter::getCurrencyPairs() {
+    return currency_pairs;
+}
+
+void CurrencyConverter::removeAllCurrencyPairs() {
+    currency_pairs.clear();
 }
