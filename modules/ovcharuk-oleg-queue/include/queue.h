@@ -38,7 +38,6 @@ class Queue {
     dataValue findMinElemHiPrior(void);
     dataValue findMaxElemSetPrior(int pr = 1);
     dataValue findMinElemSetPrior(int pr = 1);
-
 };
 
 #endif  // MODULES_OVCHARUK_OLEG_QUEUE_INCLUDE_QUEUE_H_
