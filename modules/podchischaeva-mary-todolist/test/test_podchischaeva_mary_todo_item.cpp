@@ -15,7 +15,7 @@ TEST(TODOitem, Can_Create) {
     EXPECT_NE(nullptr, item);
 }
 
-TEST(TODOitem, Can_PrioritySetGet) {
+TEST(TODOitem, Can_Priority_Set_Get) {
     // Arrange
     TODOitem item;
 
@@ -26,7 +26,7 @@ TEST(TODOitem, Can_PrioritySetGet) {
     EXPECT_EQ(1, item.getPriority());
 }
 
-TEST(TODOitem, Can_WrongPrioritySet) {
+TEST(TODOitem, Can_Wrong_Priority_Set) {
     // Arrange
     TODOitem item;
 
@@ -37,7 +37,7 @@ TEST(TODOitem, Can_WrongPrioritySet) {
     EXPECT_EQ(TODOitem::DEFAULT_PRIORITY_VALUE, item.getPriority());
 }
 
-TEST(TODOitem, Can_TitleSetGet) {
+TEST(TODOitem, Can_Title_Set_Get) {
     // Arrange
     TODOitem item;
 
@@ -48,7 +48,7 @@ TEST(TODOitem, Can_TitleSetGet) {
     EXPECT_EQ("abc", item.getTitle());
 }
 
-TEST(TODOitem, Can_TextSetGet) {
+TEST(TODOitem, Can_Text_Set_Get) {
     // Arrange
     TODOitem item;
 
@@ -59,7 +59,7 @@ TEST(TODOitem, Can_TextSetGet) {
     EXPECT_EQ("abc", item.getText());
 }
 
-TEST(TODOitem, Can_IncreasePriority) {
+TEST(TODOitem, Can_Increase_Priority) {
     // Arrange
     TODOitem item;
     int expected_priority = TODOitem::DEFAULT_PRIORITY_VALUE - 1;
@@ -71,7 +71,7 @@ TEST(TODOitem, Can_IncreasePriority) {
     EXPECT_EQ(expected_priority, item.getPriority());
 }
 
-TEST(TODOitem, Can_DecreasePriority) {
+TEST(TODOitem, Can_Decrease_Priority) {
     // Arrange
     TODOitem item;
     int expected_priority = TODOitem::DEFAULT_PRIORITY_VALUE + 1;

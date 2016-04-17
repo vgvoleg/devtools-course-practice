@@ -1,11 +1,11 @@
 // Copyright 2016 Podchischaeva Mary
 
 #include "TODOlist.h"
-#include <stdexcept>
 #include <fstream>
 #include <iostream>
 #include <string>
 #include <vector>
+#include <stdexcept>
 
 using std::exception;
 using std::ifstream;
@@ -31,7 +31,7 @@ size_t TODOlist::size() {
 }
 
 TODOitem TODOlist::getItem(size_t pos) {
-    if ((pos > data.size() - 1) || (pos < 0)) {
+    if (pos >= data.size()) {
         throw std::out_of_range("Out of range!");
     } else {
         return data[pos];
@@ -99,12 +99,10 @@ void TODOlist::load(string filename) {
 }
 
 void TODOlist::deleteItem(size_t pos) {
-    if ((pos > data.size() - 1) || (pos < 0)) {
+    if (pos >= data.size()) {
         throw std::out_of_range("Out of range!");
     } else {
-        vector<TODOitem>::iterator it = data.begin();
-        std::advance(it, pos - 1);
-        data.erase(it);
+        data.erase(data.begin()+pos);
     }
 }
 

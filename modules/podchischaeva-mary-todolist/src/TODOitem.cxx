@@ -14,7 +14,7 @@ TODOitem::TODOitem() {
     this->text = "";
 }
 
-int TODOitem::getPriority() {
+int TODOitem::getPriority() const {
     return this->priority;
 }
 
@@ -28,16 +28,16 @@ void TODOitem::setTitle(string value) {
     this->title = value;
 }
 
-string TODOitem::getTitle() {
+string TODOitem::getTitle() const {
     return this->title;
 }
 
 void TODOitem::setText(string value) {
-    this->title = value;
+    this->text = value;
 }
 
-string TODOitem::getText() {
-    return this->title;
+string TODOitem::getText() const {
+    return this->text;
 }
 
 void TODOitem::increasePriority() {
@@ -49,6 +49,18 @@ void TODOitem::increasePriority() {
 void TODOitem::decreasePriority() {
     if (this->priority < MAX_PRIORITY_VALUE) {
         this->priority++;
+    }
+}
+
+bool TODOitem::operator==(const TODOitem &a) const {
+    if (this->title != a.getTitle()) {
+        return false;
+    } else if (this->text != a.getText()) {
+        return false;
+    } else if (this->priority != a.getPriority()) {
+        return false;
+    } else {
+        return true;
     }
 }
 

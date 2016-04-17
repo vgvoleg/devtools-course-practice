@@ -19,17 +19,19 @@ class TODOitem {
 
     TODOitem();
 
-    int getPriority();
+    int getPriority() const;
     void setPriority(int value);
 
-    string getTitle();
+    string getTitle() const;
     void setTitle(string value);
 
-    string getText();
+    string getText() const;
     void setText(string value);
 
     void increasePriority();
     void decreasePriority();
+
+    bool operator==(const TODOitem &a) const;
 
     ~TODOitem();
 };
