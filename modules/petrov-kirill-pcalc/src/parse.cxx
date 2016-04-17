@@ -4,7 +4,7 @@
 
 #include <string>
 
-#include "base/regex.h"
+#include <regex>
 
 using std::regex;
 using std::regex_iterator;
