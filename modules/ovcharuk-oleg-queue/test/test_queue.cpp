@@ -1,3 +1,5 @@
+//Copyright 2016 Ovcharuk Oleg
+
 #include <gtest\gtest.h>
 #include "include\queue.h"
 

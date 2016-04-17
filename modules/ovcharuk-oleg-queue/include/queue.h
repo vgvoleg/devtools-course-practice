@@ -1,5 +1,6 @@
-#pragma once
-
+// Copyright 2016 Ovcharuk Oleg
+#ifndef QUEUE_H
+#define QUEUE_H
 #include <iostream>
 
 #define EmptyQueue -100
@@ -17,15 +18,14 @@ struct Node {
 };
 
 class Queue {
-private:
+ private:
     Node* head;
     Node* tail;
     int DataCountMax;
     int DataCount;
     bool isEmpty(void);
     bool isFull(void);
-
-public:
+ public:
     Queue(int DataCountM = MemSize);
     ~Queue();
     int put(dataValue val, int pr);
@@ -37,3 +37,5 @@ public:
     dataValue findMaxElemSetPrior(int pr = 1);
     dataValue findMinElemSetPrior(int pr = 1);
 };
+
+#endif
