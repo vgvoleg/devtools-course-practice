@@ -17,7 +17,6 @@ class TMonom {
   TMonom operator+(const TMonom& monom) const;
   bool operator==(const TMonom& monom) const;
   bool operator<(const TMonom& monom) const;
-  
 
   friend  std::ostream& operator<<(std::ostream& os, const TMonom& monom);
 
