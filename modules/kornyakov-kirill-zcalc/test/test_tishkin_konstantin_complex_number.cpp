@@ -1,7 +1,7 @@
 // Copyright 2016 Tishkin Konstantin
 
-#include <gtest/gtest.h>
-#include <limits>
+#include "gtest/gtest.h"
+#include "limits.h"
 #include "include/complex_number.h"
 
 const double rez = std::numeric_limits<double>::epsilon();
