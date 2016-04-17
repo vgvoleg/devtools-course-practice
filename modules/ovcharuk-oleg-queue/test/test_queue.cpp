@@ -267,9 +267,10 @@ TEST(Queue, can_find_min_with_set_prior) {
         A.put(i, 1);
     for (int i = 0; i < 3; i++)
         A.put(i + 10, 2);
+    A.put(5, 2);
     // Assert
     dataValue expected_res1 = 0;
-    dataValue expected_res2 = 10;
+    dataValue expected_res2 = 5;
     EXPECT_EQ(A.findMinElemSetPrior(1), expected_res1);
     EXPECT_EQ(A.findMinElemSetPrior(2), expected_res2);
 }
