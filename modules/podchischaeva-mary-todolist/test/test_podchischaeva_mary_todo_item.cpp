@@ -83,3 +83,41 @@ TEST(TODOitem, Can_Decrease_Priority) {
     EXPECT_EQ(expected_priority, item.getPriority());
 }
 
+TEST(TODOitem, Can_Compare_Items_Title) {
+    // Arrange
+    TODOitem item1;
+    TODOitem item2;
+
+    // Act
+    item1.setTitle("abc");
+    item2.setTitle("def");
+
+    // Assert
+    EXPECT_FALSE(item1 == item2);
+}
+
+TEST(TODOitem, Can_Compare_Items_Text) {
+    // Arrange
+    TODOitem item1;
+    TODOitem item2;
+
+    // Act
+    item1.setText("abc");
+    item2.setText("def");
+
+    // Assert
+    EXPECT_FALSE(item1 == item2);
+}
+
+TEST(TODOitem, Can_Compare_Items_Priority) {
+    // Arrange
+    TODOitem item1;
+    TODOitem item2;
+
+    // Act
+    item1.setPriority(1);
+    item2.setPriority(2);
+
+    // Assert
+    EXPECT_FALSE(item1 == item2);
+}
