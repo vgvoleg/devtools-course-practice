@@ -1,0 +1,30 @@
+// Copyright 2016 Pozdyaev Valery
+
+#ifndef MODULES_POZDYAEV_VALERY_CCONVERTER_INCLUDE_CURRENCY_PAIR_H_
+#define MODULES_POZDYAEV_VALERY_CCONVERTER_INCLUDE_CURRENCY_PAIR_H_
+
+#include <string>
+
+using std::string;
+
+class CurrencyPair {
+ public:
+    CurrencyPair();
+    CurrencyPair(string currency_pair_code, double bid_price, double ask_price);
+
+    void setBidPrice(double new_bid_price);
+    double getBidPrice();
+    void setAskPrice(double new_ask_price);
+    double getAskPrice();
+    void setCurrencyPairCode(string new_currency_pair_code);
+    string getCurrencyPairCode();
+
+    static void checkCurrencyPairCode(string currency_pair_code);
+
+ private:
+    string currency_pair_code_;
+    double bid_price_;
+    double ask_price_;
+};
+
+#endif  // MODULES_POZDYAEV_VALERY_CCONVERTER_INCLUDE_CURRENCY_PAIR_H_
