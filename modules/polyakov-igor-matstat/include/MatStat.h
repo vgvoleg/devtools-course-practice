@@ -6,7 +6,9 @@
 #include <vector>
 #include <exception>
 
+
 const double SAMPLE_EPSILON = 0.001;
+
 
 using namespace std;
 
@@ -20,7 +22,7 @@ public:
 
 class IncorrectProbabilities :public exception {
 public:
-    IncorrectProbabilities(){ // конструктор
+    IncorrectProbabilities(){
         string("Probabilities is not correct.");
     }
 };

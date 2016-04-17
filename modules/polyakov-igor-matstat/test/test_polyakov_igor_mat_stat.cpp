@@ -112,7 +112,7 @@ TEST(Polyakov_Igor_MatStatTest, Can_Assign_Sample_With_Other_Size) {
 
     // Assert
 
-    EXPECT_EQ(S_1, S_2);
+    ASSERT_EQ(S_1, S_2);
 }
 
 TEST(Polyakov_Igor_MatStatTest, Are_Samples_With_Differ_Size_Inequal) {
@@ -163,7 +163,6 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calc_Mathematical_Expectation_Correct) {
 
     // Arrange
 
-    int size_sample = 5;
     double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
     double mas_probabilities[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
     vector<double> sample(mas_sample, mas_sample + 5);
@@ -185,7 +184,6 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calculate_Dispersion_Correct) {
 
     // Arrange
 
-    int size_sample = 5;
     double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
     double mas_probabilities[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
     vector<double> sample(mas_sample, mas_sample + 5);
@@ -207,7 +205,6 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calc_Average_Quadratic_Deviation_Correct) {
 
     // Arrange
 
-    int size_sample = 5;
     double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
     double mas_probabilities[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
     vector<double> sample(mas_sample, mas_sample + 5);
@@ -229,7 +226,6 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calculate_Moment_Correct) {
 
     // Arrange
 
-    int size_sample = 5;
     double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
     double mas_probabilities[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
     vector<double> sample(mas_sample, mas_sample + 5);
@@ -254,7 +250,6 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calculate_Elementary_Moment_Correct) {
 
     // Arrange
 
-    int size_sample = 5;
     double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
     double mas_probabilities[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
     vector<double> sample(mas_sample, mas_sample + 5);
@@ -278,7 +273,6 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calculate_Central_Moment_Correct) {
 
     // Arrange
 
-    int size_sample = 5;
     double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
     double mas_probabilities[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
     vector<double> sample(mas_sample, mas_sample + 5);
@@ -295,5 +289,127 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calculate_Central_Moment_Correct) {
     // Assert
 
     EXPECT_NEAR(0.5762, central_moment, SAMPLE_EPSILON);
+
+}
+
+TEST(Polyakov_Igor_MatStatTest, Is_Dispers_Equal_Central_Moment_Of_Two_Exp) {
+
+    // Arrange
+
+    double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
+    double mas_probabilities[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
+    vector<double> sample(mas_sample, mas_sample + 5);
+    vector<double> probabilities(mas_probabilities, mas_probabilities + 5);
+
+    Sample S(sample, probabilities);
+
+    int exponent = 2;
+
+    // Act
+
+    double dispersion = S.CalcDispersion();
+    double central_moment = S.CalcCentralMoment(exponent);
+
+    // Assert
+
+    EXPECT_NEAR(central_moment, dispersion, SAMPLE_EPSILON);
+
+}
+
+TEST(Polyakov_Igor_MatStatTest, Can_Calc_Dispers_Through_Math_Expectation) {
+
+    // Arrange
+
+    double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
+    double mas_probabilities[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
+    vector<double> sample(mas_sample, mas_sample + 5);
+    vector<double> probabilities(mas_probabilities, mas_probabilities + 5);
+
+    Sample S(sample, probabilities);
+
+    // Act
+
+    double dispersion = S.CalcElementaryMoment(2) -
+                        pow(S.CalcMathematicalExpectation(), 2);
+
+    // Assert
+
+    EXPECT_NEAR(3.5289, dispersion, SAMPLE_EPSILON);
+
+}
+
+TEST(Polyakov_Igor_MatStatTest, Is_Dispersion_Of_Constant_Equal_Zero) {
+
+    // Arrange
+
+    double mas_sample[1] = { 5.0 };
+    double mas_probabilities[5] = { 1.0 };
+    vector<double> sample(mas_sample, mas_sample + 1);
+    vector<double> probabilities(mas_probabilities, mas_probabilities + 1);
+
+    Sample S(sample, probabilities);
+
+    // Act
+
+    double dispersion = S.CalcDispersion();
+
+    // Assert
+
+    EXPECT_NEAR(0.0, dispersion, SAMPLE_EPSILON);
+
+}
+
+TEST(Polyakov_Igor_MatStatTest, Is_Dispersion_Positive) {
+
+    // Arrange
+
+    double mas_sample[5] = { rand(), rand(), rand(), rand(), rand() };
+    double mas_probabilities[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
+    vector<double> sample(mas_sample, mas_sample + 5);
+    vector<double> probabilities(mas_probabilities, mas_probabilities + 5);
+
+    Sample S(sample, probabilities);
+
+    // Act
+
+    double dispersion = S.CalcDispersion();
+
+    // Assert
+
+    ASSERT_LE(0.0, dispersion);
+
+}
+
+TEST(Polyakov_Igor_MatStatTest, Can_Out_Constant_From_Dispersion) {
+
+    // Arrange
+
+    double a = 2.0;
+    double b = 50.5;
+
+    double mas_sample_1[5] = { a * 1.0 + b,
+                             a * 3.0 + b,
+                             a * 4.0 + b,
+                             a * (-1.0) + b,
+                             a * 0.0 + b};
+
+    double mas_sample_2[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
+
+    double mas_probabilities[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
+    vector<double> sample_1(mas_sample_1, mas_sample_1 + 5);
+    vector<double> sample_2(mas_sample_2, mas_sample_2 + 5);
+    vector<double> probabilities(mas_probabilities, mas_probabilities + 5);
+
+    Sample S_1(sample_1, probabilities);
+    Sample S_2(sample_2, probabilities);
+
+    // Act
+
+    double dispersion_1 = S_1.CalcDispersion();
+    double dispersion_2 = S_2.CalcDispersion();
+
+    // Assert
+    // D(a*E + b) = a^2 * D(E)
+    EXPECT_NEAR(dispersion_1, pow(a, 2) * dispersion_2, SAMPLE_EPSILON);
 
 }
