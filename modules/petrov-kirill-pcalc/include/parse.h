@@ -3,10 +3,9 @@
 #ifndef MODULES_PETROV_KIRILL_PCALC_INCLUDE_PARSE_H_
 #define MODULES_PETROV_KIRILL_PCALC_INCLUDE_PARSE_H_
 
-#include "include/tpolynom.h"
-
-#include <string.h>
 #include <string>
+
+#include "include/tpolynom.h"
 
 using std::string;
 
