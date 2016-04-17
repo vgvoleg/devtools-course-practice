@@ -126,7 +126,7 @@ TEST(Polyakov_Igor_MatStatTest, Are_Samples_With_Differ_Size_Inequal) {
 
     // Act & Assert
 
-    EXPECT_EQ(false, S_1 == S_2);
+    ASSERT_FALSE(S_1 == S_2);
 }
 
 TEST(Polyakov_Igor_MatStatTest, Are_Samples_With_Differ_Prob_Inequal) {
@@ -335,7 +335,12 @@ TEST(Polyakov_Igor_MatStatTest, Is_Dispersion_Of_Constant_Equal_Zero) {
 TEST(Polyakov_Igor_MatStatTest, Is_Dispersion_Positive) {
     // Arrange
 
-    double mas_sample[5] = { rand(), rand(), rand(), rand(), rand() };
+    double mas_sample[5] = { (double)rand(),
+                             (double)rand(),
+                             (double)rand(),
+                             (double)rand(),
+                             (double)rand() };
+
     double mas_prob[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
     std::vector<double> sample(mas_sample, mas_sample + 5);
     std::vector<double> probabilities(mas_prob, mas_prob + 5);
