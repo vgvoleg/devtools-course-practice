@@ -1,7 +1,22 @@
 // Copyright 2016 Ovcharuk Oleg
 
-#include <gtest\gtest.h>
-#include <include\queue.h>
+#include <gtest/gtest.h>
+#include <include/queue.h>
+
+TEST(Queue, cant_create_queue_with_incorrect_size) {
+    // Arrange 
+    // Act 
+    // Assert 
+    EXPECT_ANY_THROW(Queue A(-1));
+}
+
+TEST(Queue, can_create_queue_with_correct_size) {
+    // Arrange 
+    // Act 
+    // Assert 
+    EXPECT_NO_THROW(Queue A(5));
+    EXPECT_NO_THROW(Queue B);
+}
 
 TEST(Queue, can_add_element) {
     // Arrange
