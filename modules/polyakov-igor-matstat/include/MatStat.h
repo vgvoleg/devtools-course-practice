@@ -34,9 +34,9 @@ class IncorrectSizesOfSampleAndProbabilities :public std::exception {
 
 class Sample {
  private:
-    int sample_size;  //  Размер выборки
-    std::vector<double> sample;  //  Значения выборки
-    std::vector<double> probabilities;  //  Вероятности
+    int sample_size;
+    std::vector<double> sample;
+    std::vector<double> probabilities;
 
     bool IsSummOfProbabilitiesEqualUnity(std::vector<double> _probabilities);
     bool AreProbabilitiesCorrect(std::vector<double> _probabilities);
