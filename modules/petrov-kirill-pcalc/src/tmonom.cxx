@@ -2,58 +2,85 @@
 
 #include "tmonom.h"
 #include <limits>
+#include <math.h>
+#include <string>
 
-double eps = std::numeric_limits<double>::epsilon();
+const double TMonom::eps = std::numeric_limits<double>::epsilon();
 
 TMonom::TMonom(tCoeff coeff, int index): coeff_(coeff), index_(index) {};
 
-
-
-TMonom& TMonom::operator=(const TMonom &tmonom) {
-	coeff_ = tmonom.coeff_;
-	index_ = tmonom.index_;
-	return *this;
+TMonom& TMonom::operator=(const TMonom &monom) {
+  coeff_ = monom.coeff_;
+  index_ = monom.index_;
+  return *this;
 }
 
-bool TMonom::comparisonIndex(const TMonom &tmonom) const{
-	return index_ == tmonom.index_;
+bool TMonom::comparisonIndex(const TMonom &monom) const{
+  return index_ == monom.index_;
 }
 
-bool TMonom::operator==(const TMonom &tmonom) const {
-	bool equalityCoeff = abs(coeff_ - tmonom.coeff_) < eps;
-	return (index_ == tmonom.index_) && equalityCoeff;
+bool TMonom::operator==(const TMonom &monom) const {
+  bool equalityCoeff = abs(coeff_ - monom.coeff_) < eps;
+  return (index_ == monom.index_) && equalityCoeff;
 }
 
-bool TMonom::operator!=(const TMonom &tmonom) const {
-	return !operator==(tmonom);
+bool TMonom::operator!=(const TMonom &monom) const {
+  return !operator==(monom);
 }
 
-bool TMonom::operator<(const TMonom &tmonom) const {
-	return index_ < tmonom.index_;
+bool TMonom::operator<(const TMonom &monom) const {
+  return index_ < monom.index_;
 }
 
-bool TMonom::operator>(const TMonom & tmonom) const {
-	return index_ > tmonom.index_;
+bool TMonom::operator>(const TMonom & monom) const {
+  return index_ > monom.index_;
 }
 
-TMonom TMonom::operator+(const TMonom & tmonom) const {
-	return TMonom(coeff_ + tmonom.coeff_, index_);
+TMonom TMonom::operator+(const TMonom & monom) const {
+  return TMonom(coeff_ + monom.coeff_, index_);
 }
 
-TMonom TMonom::operator-(const TMonom & tmonom) const {
-	return TMonom(coeff_ - tmonom.coeff_, index_);
+TMonom TMonom::operator-(const TMonom & monom) const {
+  return TMonom(coeff_ - monom.coeff_, index_);
 }
 
-PTMonom TMonom::comparisionBack(void)
-{
-	coeff_ = -coeff_;
-	return this;
+void TMonom::comparisionBack(void) {
+  coeff_ = -coeff_;
+}
+
+tCoeff TMonom::comparisionValue(const tCoeff x, const tCoeff y, const tCoeff z) const {
+  int powerZ = index_ % 10;
+  int powerY = index_ % 100 / 10;
+  int powerX = index_ / 100;
+
+  return coeff_ * pow(x,powerX) * pow(y,powerY) * pow(z,powerZ);
 }
 
 PTMonom TMonom::getCopyMonom(void) const {
-	return new TMonom(coeff_, index_);
+  return new TMonom(coeff_, index_);
+}
+
+bool TMonom::isPositiveCoeff(void) const {
+  return coeff_ > eps;
 }
 
 bool TMonom::equalsZero(void) const {
-	return abs(coeff_) < eps;
+  return abs(coeff_) < eps;
+}
+
+std::ostream & operator<<(std::ostream & os, const TMonom & monom) {
+  auto covertIndex = [](const int index) {
+  	int tmp;
+  	std::string result;
+  	if (tmp = index / 100)
+  		result += tmp > 1 ? "x^" + std::to_string(tmp) : "x";
+  	if (tmp = index % 100 / 10)
+  		result += tmp > 1 ? "y^" + std::to_string(tmp) : "y";
+  	if (tmp = index % 10)
+  		result += tmp > 1 ? "z^" + std::to_string(tmp) : "z";
+  	return result;
+  };
+  
+  os << monom.coeff_ << covertIndex(monom.index_);
+  return os;
 }

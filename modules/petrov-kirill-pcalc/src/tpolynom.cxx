@@ -2,98 +2,71 @@
 
 #include "tpolynom.h"
 
+#include <algorithm> 
+#include <iterator>
+#include <string>
 
-TPolynom::TPolynom(const tCoeff monoms[][2], const unsigned length) {
-	PTMonom ptmonom = nullptr;
-	for (unsigned i = 0; i < length; i++) {
-		ptmonom = new TMonom( static_cast<int> ( monoms[i][0] ), monoms[i][1] );
-		push_back(*ptmonom);
-	}
-	sort([](const TMonom& a, const TMonom& b) {return a > b; });
+TPolynom::TPolynom() {
+  PTMonom nullMonom = new TMonom(0.0, 0);
+  push_back(*nullMonom);
 }
 
-TPolynom::TPolynom(const TPolynom & tpolynom) {
-	PTMonom ptmonom = nullptr;
-	for (auto const monom: tpolynom) {
-		ptmonom = monom.getCopyMonom();
-		push_back(*ptmonom);
-	}
+TPolynom::TPolynom(const tCoeff monoms[][2], const int length) {
+  PTMonom ptmonom = nullptr;
+  for (int i = 0; i < length; i++) {
+  	ptmonom = new TMonom( monoms[i][0] ,static_cast<int> (monoms[i][1]) );
+  	push_back(*ptmonom);
+  }
+  regulation();
 }
 
-TPolynom TPolynom::operator+(const TPolynom & tpolynom) const {
-	const double nullMonom[][2] = { 0.0,0 };
-	TPolynom result (nullMonom,1);
-	PTMonom tmp;
-
-	auto this_monom = this->begin();
-	auto tpolynom_monom = tpolynom.begin();
-
-	while ( this_monom != this->end() || tpolynom_monom !=tpolynom.end() ) {
-
-		if ( this_monom == this->end() ) {
-			tmp = tpolynom_monom->getCopyMonom();
-			++tpolynom_monom;
-		}
-		else if ( tpolynom_monom == tpolynom.end() ) {
-			tmp = this_monom->getCopyMonom();
-			++this_monom;
-		}
-		else if ( *this_monom > *tpolynom_monom ) {
-			tmp = this_monom->getCopyMonom();
-			++this_monom;
-		}
-		else if ( *tpolynom_monom > *this_monom ) {
-			tmp = tpolynom_monom->getCopyMonom();
-			++tpolynom_monom;
-		}
-		else if ( this_monom->comparisonIndex(*tpolynom_monom) ) {
-			tmp = (*this_monom + *tpolynom_monom ).getCopyMonom();
-			++tpolynom_monom;
-			++this_monom;
-		}
-		if (!tmp->equalsZero())
-			result.push_back(*tmp);
-	}
-	if (result.size() != 1)
-		result.pop_front();
-	return result;
+TPolynom::TPolynom(const TPolynom& polynom) {
+  PTMonom ptmonom = nullptr;
+  for (auto const monom: polynom) {
+  	ptmonom = monom.getCopyMonom();
+  	push_back(*ptmonom);
+  }
 }
 
-TPolynom TPolynom::operator-(const TPolynom & tpolynom) const {
-	const double nullMonom[][2] = { 0.0,0 };
-	TPolynom result(nullMonom, 1);
-	PTMonom tmp;
+TPolynom TPolynom::operator+(const TPolynom& polynom) const {
+  	
+  TPolynom result;
+  std::merge(polynom.begin(), polynom.end(), begin(), end(), back_inserter(result) );
+  result.regulation();
 
-	auto this_monom = this->begin();
-	auto tpolynom_monom = tpolynom.begin();
+  return result;
+}
 
-	while (this_monom != this->end() || tpolynom_monom != tpolynom.end()) {
+TPolynom TPolynom::operator-(const TPolynom& polynom) const {
+  TPolynom back=polynom;
+  for_each(back.begin(), back.end(), [](TMonom& monom) { monom.comparisionBack();});
+  return operator+(back);
+}
 
-		if (this_monom == this->end()) {
-			tmp = tpolynom_monom->getCopyMonom()->comparisionBack();
-			++tpolynom_monom;
-		}
-		else if (tpolynom_monom == tpolynom.end()) {
-			tmp = this_monom->getCopyMonom();
-			++this_monom;
-		}
-		else if (*this_monom > *tpolynom_monom) {
-			tmp = this_monom->getCopyMonom();
-			++this_monom;
-		}
-		else if (*tpolynom_monom > *this_monom) {
-			tmp = tpolynom_monom->getCopyMonom()->comparisionBack();
-			++tpolynom_monom;
-		}
-		else if (this_monom->comparisonIndex(*tpolynom_monom)) {
-			tmp = (*this_monom - *tpolynom_monom).getCopyMonom();
-			++tpolynom_monom;
-			++this_monom;
-		}
-		if (!tmp->equalsZero())
-			result.push_back(*tmp);
-	}
-	if (result.size() != 1)
-		result.pop_front();
-	return result;
+tCoeff TPolynom::operator()(const tCoeff x, const tCoeff y, const tCoeff z) const {
+  tCoeff sum = 0.0;
+  for_each(begin(), end(), [&sum,x,y,z](const TMonom& monom) {
+  	sum += monom.comparisionValue(x,y,z);
+  });
+  return sum;
+}
+
+void TPolynom::regulation(void) {
+  sort();
+  for (auto i = next(begin()); i != end(); ++i)
+  	if (i->comparisonIndex(*prev(i))) {
+  		*prev(i) = *prev(i) + *i;
+  		i = prev(erase(i));
+  	}
+  remove_if([](const TMonom mon) { return mon.equalsZero(); });
+  if (empty())
+  	push_back(*new TMonom(0.0, 0));
+}
+
+std::ostream& operator<<(std::ostream& os, const TPolynom& polynom) {
+  os << polynom.front();
+  for_each(next(polynom.begin()), polynom.end(), [&os](const TMonom& monom) {
+  	os << (monom.isPositiveCoeff() ? "+" : "") << monom;
+  });
+  return os;
 }
