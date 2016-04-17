@@ -71,12 +71,6 @@ Sample::Sample(std::vector<double> _sample,
 Sample::~Sample() {
 }
 
-Sample::Sample(const Sample& S) {
-    sample_size = S.sample_size;
-    sample = S.sample;
-    probabilities = S.probabilities;
-}
-
 Sample& Sample::operator=(const Sample& S) {
     sample_size = S.sample_size;
     sample = S.sample;

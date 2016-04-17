@@ -46,8 +46,6 @@ class Sample {
     Sample(std::vector<double> _sample, std::vector<double> _probabilities);
     ~Sample();
 
-    Sample(const Sample& S);
-
     Sample& operator=(const Sample& S);
     bool operator==(const Sample& S) const;
 

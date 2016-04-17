@@ -60,7 +60,7 @@ TEST(Polyakov_Igor_MatStatTest, Is_Handle_Summ_Probability_Not_Equal_One) {
     // Arrange
 
     double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
-    double mas_prob[5] = { 0.2, 0.1, 0.3333, 0.1, 0.0 };
+    double mas_prob[5] = { 0.2, 0.1, 0.3333, 0.1, 5.0 };
     std::vector<double> sample(mas_sample, mas_sample + 5);
     std::vector<double> probabilities(mas_prob, mas_prob + 5);
 
@@ -111,15 +111,15 @@ TEST(Polyakov_Igor_MatStatTest, Can_Assign_Sample_With_Other_Size) {
 TEST(Polyakov_Igor_MatStatTest, Are_Samples_With_Differ_Size_Inequal) {
     // Arrange
 
-    double mas_sample_1[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
-    double mas_prob_1[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
-    std::vector<double> sample_1(mas_sample_1, mas_sample_1 + 5);
-    std::vector<double> probabilities_1(mas_prob_1, mas_prob_1 + 5);
+    double mas_sample_1[4] = { 1.0, 3.0, 4.0, -1.0};
+    double mas_prob_1[4] = { 0.2, 0.1, 0.3333, 0.3667};
+    std::vector<double> sample_1(mas_sample_1, mas_sample_1 + 4);
+    std::vector<double> probabilities_1(mas_prob_1, mas_prob_1 + 4);
 
-    double mas_sample_2[4] = { 1.0, 3.0, 4.0, -1.0};
-    double mas_prob_2[4] = { 0.2, 0.1, 0.3333, 0.3667 };
-    std::vector<double> sample_2(mas_sample_2, mas_sample_2 + 4);
-    std::vector<double> probabilities_2(mas_prob_2, mas_prob_2 + 4);
+    double mas_sample_2[5] = { 1.0, 3.0, 4.0, -1.0, 0.0};
+    double mas_prob_2[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
+    std::vector<double> sample_2(mas_sample_2, mas_sample_2 + 5);
+    std::vector<double> probabilities_2(mas_prob_2, mas_prob_2 + 5);
 
     Sample S_1(sample_1, probabilities_1);
     Sample S_2(sample_2, probabilities_2);
