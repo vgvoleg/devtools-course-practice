@@ -8,14 +8,14 @@
 
 using namespace std;
 
-bool Sample::IsSummOfProbabilitiesEqualUnity(vector<double> _probabilities)
+bool Sample::IsSummOfProbabilitiesEqualUnity(std::vector<double> _prob)
 {
 
     double sum_of_probabilities = 0.0;
 
-    for (int i = 0; i < _probabilities.size(); i++)
+    for (int i = 0; i < _prob.size(); i++)
     {
-        sum_of_probabilities += _probabilities[i];
+        sum_of_probabilities += _prob[i];
     }
 
     if (abs(1.0 - sum_of_probabilities) > SAMPLE_EPSILON)
@@ -27,7 +27,7 @@ bool Sample::IsSummOfProbabilitiesEqualUnity(vector<double> _probabilities)
 
 }
 
-bool Sample::AreProbabilitiesCorrect(vector<double> _probabilities)
+bool Sample::AreProbabilitiesCorrect(std::vector<double> _probabilities)
 {
 
     for (int i = 0; i < _probabilities.size(); i++)
@@ -47,7 +47,7 @@ bool Sample::AreProbabilitiesCorrect(vector<double> _probabilities)
 
 }
 
-bool Sample::IsSampleCorrect(vector<double> _sample)
+bool Sample::IsSampleCorrect(std::vector<double> _sample)
 {
 
     for (int i = 0; i < _sample.size() - 1; i++)
@@ -65,8 +65,8 @@ bool Sample::IsSampleCorrect(vector<double> _sample)
 
 }
 
-Sample::Sample(vector<double> _sample,
-       vector<double> _probabilities)
+Sample::Sample(std::vector<double> _sample,
+               std::vector<double> _probabilities)
 {
 
     if (_sample.size() != _probabilities.size())

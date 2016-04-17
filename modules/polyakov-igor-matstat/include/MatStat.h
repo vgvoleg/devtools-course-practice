@@ -1,36 +1,43 @@
 // Copyright 2016 Polyakov Igor
 
-#ifndef MODULES_POLYAKOV_IGOR_MATSTAT_INCLUDE_SAMPLE_H_
-#define MODULES_POLYAKOV_IGOR_MATSTAT_INCLUDE_SAMPLE_H_
+#ifndef MODULES_POLYAKOV_IGOR_MATSTAT_INCLUDE_MATSTAT_H_
+#define MODULES_POLYAKOV_IGOR_MATSTAT_INCLUDE_MATSTAT_H_
 
 #include <vector>
 #include <exception>
+#include <string>
 
 
 const double SAMPLE_EPSILON = 0.001;
 
 
-using namespace std;
+class IncorrectSample :public std::exception
+{
 
-
-class IncorrectSample :public exception {
 public:
-    IncorrectSample(){
-        string("Sample is not correct. Values must be different.");
+    IncorrectSample()
+    {
+        std::string("Sample is not correct, values must be different");
     }
 };
 
-class IncorrectProbabilities :public exception {
+class IncorrectProbabilities :public std::exception 
+{
+
 public:
-    IncorrectProbabilities(){
-        string("Probabilities is not correct.");
+    IncorrectProbabilities()
+    {
+        std::string("Probabilities is not correct");
     }
 };
 
-class IncorrectSizesOfSampleAndProbabilities :public exception {
+class IncorrectSizesOfSampleAndProbabilities :public std::exception
+{
+
 public:
-    IncorrectSizesOfSampleAndProbabilities(){
-        string("Sizes of sample and probabilities must be identical");
+    IncorrectSizesOfSampleAndProbabilities()
+    {
+        std::string("Sizes of sample and probabilities must be identical");
     }
 };
 
@@ -38,18 +45,16 @@ class Sample
 {
 
 private:
+    int sample_size;  //  Размер выборки
+    std::vector<double> sample;  //  Значения выборки
+    std::vector<double> probabilities;  //  Вероятности
 
-    int sample_size; // Размер выборки
-    vector<double> sample; // Значения выборки
-    vector<double> probabilities; // Вероятности
-
-    bool IsSummOfProbabilitiesEqualUnity(vector<double> _probabilities);
-    bool AreProbabilitiesCorrect(vector<double> _probabilities);
-    bool IsSampleCorrect(vector<double> _sample);
+    bool IsSummOfProbabilitiesEqualUnity(std::vector<double> _probabilities);
+    bool AreProbabilitiesCorrect(std::vector<double> _probabilities);
+    bool IsSampleCorrect(std::vector<double> _sample);
 
 public:
-
-    Sample(vector<double> _sample, vector<double> _probabilities);
+    Sample(std::vector<double> _sample, std::vector<double> _probabilities);
     ~Sample();
 
     Sample(const Sample& S);
@@ -58,8 +63,8 @@ public:
     bool operator==(const Sample& S) const;
 
     int GetSampleSize();
-    vector<double> GetSample();
-    vector<double> GetProbabilities();
+    std::vector<double> GetSample();
+    std::vector<double> GetProbabilities();
 
     double CalcMathematicalExpectation();
     double CalcMoment(double relative_point, int exponent);
@@ -67,7 +72,6 @@ public:
     double CalcDispersion();
     double CalcAverageQuadraticDeviation();
     double CalcCentralMoment(int exponent);
-
 };
 
-#endif  // MODULES_POLYAKOV_IGOR_MATSTAT_INCLUDE_SAMPLE_H_
+#endif  // MODULES_POLYAKOV_IGOR_MATSTAT_INCLUDE_MATSTAT_H_
