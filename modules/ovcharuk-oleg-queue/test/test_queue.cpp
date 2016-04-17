@@ -3,21 +3,6 @@
 #include <gtest\gtest.h>
 #include "include\queue.h"
 
-TEST(Queue, cant_create_queue_with_incorrect_size) {
-    // Arrange
-    // Act
-    // Assert
-    EXPECT_ANY_THROW(Queue A(-1));
-}
-
-TEST(Queue, can_create_queue_with_correct_size) {
-    // Arrange
-    // Act
-    // Assert
-    EXPECT_NO_THROW(Queue A(5));
-    EXPECT_NO_THROW(Queue B);
-}
-
 TEST(Queue, can_add_element) {
     // Arrange
     Queue A;
@@ -57,7 +42,7 @@ TEST(Queue, cant_add_elem_with_incorect_priority) {
     EXPECT_ANY_THROW(A.put(10, -1));
 }
 
-TEST(Queue, can_correct_add_elem_with_higher_priority_to_the_begin) {
+TEST(Queue, can_correct_add_elem_with_hi_prior_to_the_begin) {
     // Arrange
     Queue A(5);
     // Act

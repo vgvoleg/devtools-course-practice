@@ -25,18 +25,10 @@ class Queue {
     int DataCount;
     bool isEmpty(void);
     bool isFull(void);
+
  public:
-    Queue(int DataCountM = MemSize) {
-        if (DataCountM <= 0) {
-            throw "Incorrect size";
-        }
-        else {
-            DataCountMax = DataCountM;
-            head = NULL;
-            tail = NULL;
-            DataCount = 0;
-        }
-    };
+    Queue();
+    Queue(int DataCountM);
     ~Queue();
     int put(dataValue val, int pr);
     dataValue get(void);
@@ -46,6 +38,7 @@ class Queue {
     dataValue findMinElemHiPrior(void);
     dataValue findMaxElemSetPrior(int pr = 1);
     dataValue findMinElemSetPrior(int pr = 1);
+
 };
 
 #endif  // MODULES_OVCHARUK_OLEG_QUEUE_INCLUDE_QUEUE_H_
