@@ -82,8 +82,7 @@ int Queue::put(dataValue val, int pr) {
 int Queue::get(void) {
     if (isEmpty()) {
         return EmptyQueue;
-    }
-    else {
+    } else {
         Node* tmp = head;
         dataValue elem = tmp->value;
         head = tmp->next;
