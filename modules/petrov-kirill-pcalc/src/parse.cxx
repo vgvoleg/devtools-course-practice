@@ -2,17 +2,11 @@
 
 #include "include/parse.h"
 
-#include <../include/regex>
 #include <string>
 #include <vector>
 
-<<<<<<< HEAD
-using std::regex;
-using std::regex_iterator;
-=======
 using std::string;
 using std::vector;
->>>>>>> 91261b7fcb46037f997a07f3456c07ac7dd7eec5
 
 TPolynom Parse::polynom(const string &arg) {
   TPolynom polynom;
@@ -25,7 +19,7 @@ TPolynom Parse::polynom(const string &arg) {
 
   string monom;
   vector<string> monoms;
-  
+
   string buf;
   const string delim_string("+-");
 
@@ -35,10 +29,11 @@ TPolynom Parse::polynom(const string &arg) {
   if (arg[0] !='-' && isdigit(arg[0]))
     str+="+";
   str += arg;
-  if (arg.find_first_of(delim_string, end_idx) == string::npos)
+  if (arg.find_first_of(delim_string, end_idx) == string::npos) {
     monoms.push_back(arg);
-  else {
-    while (string::npos != (beg_idx = str.find_first_not_of(delim_string, end_idx))) {
+  } else {
+    while (string::npos != (beg_idx =
+         str.find_first_not_of(delim_string, end_idx))) {
       monom = str[str.find_first_of(delim_string, end_idx)];
       if (string::npos == (end_idx = str.find_first_of(delim_string, beg_idx)))
         monom += str.substr(beg_idx);
@@ -50,7 +45,6 @@ TPolynom Parse::polynom(const string &arg) {
   try {
     string::size_type pos = 0;
     for (auto mon : monoms) {
-
       pos = mon.find("x^");
       buf = mon.substr(0, pos);
 
@@ -67,12 +61,11 @@ TPolynom Parse::polynom(const string &arg) {
       pmonom = new TMonom(coeff, index);
       polynom.push_back(*pmonom);
     }
-
-  polynom.regulation();
   }
   catch (string) {
     throw string("Wrong polynoms format!");
   }
+  polynom.regulation();
   return polynom;
 }
 
