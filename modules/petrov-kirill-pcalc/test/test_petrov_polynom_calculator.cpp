@@ -1,6 +1,6 @@
 // Copyright 2016 Petrov Kirill
 
-#include "polynom_calculator.h"
+#include "include/polynom_calculator.h"
 
 #include <gtest/gtest.h>
 #include <vector>

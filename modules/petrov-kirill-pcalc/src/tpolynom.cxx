@@ -1,6 +1,6 @@
 // Copyright 2016 Petrov Kirill
 
-#include "tpolynom.h"
+#include "include/tpolynom.h"
 
 #include <algorithm> 
 #include <iterator>

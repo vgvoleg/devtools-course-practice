@@ -1,10 +1,10 @@
 // Copyright 2016 Petrov Kirill
 
-#ifndef MODULES_PETROV_KIRILL_ZCALC_INCLUDE_POLYNOM_CALCULATOR_H_
-#define MODULES_PETROV_KIRILL_ZCALC_INCLUDE_POLYNOM_CALCULATOR_H_
+#ifndef MODULES_PETROV_KIRILL_PCALC_INCLUDE_POLYNOM_CALCULATOR_H_
+#define MODULES_PETROV_KIRILL_PCALC_INCLUDE_POLYNOM_CALCULATOR_H_
 
-#include "tpolynom.h"
-#include "parse.h"
+#include "include/tpolynom.h"
+#include "include/parse.h"
 
 #include <string>
 
@@ -25,12 +25,12 @@ private:
   string message_;
 
   typedef struct {
-  	int			numberPoly;
-  	TPolynom	poly[MAXPOLYNOMS];
-  	TOperation	operation;
-  	tCoeff		Point[NUMBERVARIABLES];
-  	int			idPoly[2];
+    int        numberPoly;
+    TPolynom   poly[MAXPOLYNOMS];
+    TOperation operation;
+    tCoeff     Point[NUMBERVARIABLES];
+    int        idPoly[2];
   } Arguments;
 };
 
-#endif // MODULES_PETROV_KIRILL_ZCALC_INCLUDE_POLYNOM_CALCULATOR_H_
+#endif  // MODULES_PETROV_KIRILL_PCALC_INCLUDE_POLYNOM_CALCULATOR_H_
