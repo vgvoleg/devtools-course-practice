@@ -25,11 +25,11 @@ class PolynomCalculator {
   string message_;
 
   typedef struct {
-    int        numberPoly;
-    TPolynom   poly[MAXPOLYNOMS];
+	int numberPoly;
+    TPolynom poly[MAXPOLYNOMS];
     TOperation operation;
-    tCoeff     Point[NUMBERVARIABLES];
-    int        idPoly[2];
+    int idPoly[2];
+	tCoeff Point[NUMBERVARIABLES];
   } Arguments;
 };
 
