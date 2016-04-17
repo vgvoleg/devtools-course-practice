@@ -1,6 +1,6 @@
 // Copyright 2016 Ovcharuk Oleg
-#ifndef QUEUE_H
-#define QUEUE_H
+#ifndef MODULES_OVCHARUK_OLEG_QUEUE_INCLUDE_QUEUE_H_
+#define MODULES_OVCHARUK_OLEG_QUEUE_INCLUDE_QUEUE_H_
 #include <iostream>
 
 #define EmptyQueue -100
@@ -26,7 +26,8 @@ class Queue {
     bool isEmpty(void);
     bool isFull(void);
  public:
-    Queue(int DataCountM = MemSize);
+    Queue();
+    Queue(int DataCountM);
     ~Queue();
     int put(dataValue val, int pr);
     dataValue get(void);
@@ -38,4 +39,4 @@ class Queue {
     dataValue findMinElemSetPrior(int pr = 1);
 };
 
-#endif
+#endif // MODULES_OVCHARUK_OLEG_QUEUE_INCLUDE_QUEUE_H_
