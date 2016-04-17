@@ -335,11 +335,11 @@ TEST(Polyakov_Igor_MatStatTest, Is_Dispersion_Of_Constant_Equal_Zero) {
 TEST(Polyakov_Igor_MatStatTest, Is_Dispersion_Positive) {
     // Arrange
 
-    double mas_sample[5] = { (double)rand(),
-                             (double)rand(),
-                             (double)rand(),
-                             (double)rand(),
-                             (double)rand() };
+    double mas_sample[5] = { static_cast<double>(rand()),
+                             static_cast<double>(rand()),
+                             static_cast<double>(rand()),
+                             static_cast<double>(rand()),
+                             static_cast<double>(rand()) };
 
     double mas_prob[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
     std::vector<double> sample(mas_sample, mas_sample + 5);
