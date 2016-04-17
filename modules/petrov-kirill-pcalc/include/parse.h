@@ -5,6 +5,7 @@
 
 #include "include/tpolynom.h"
 
+#include <string.h>
 #include <string>
 
 using std::string;
