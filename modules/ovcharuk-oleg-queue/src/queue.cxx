@@ -3,7 +3,7 @@
 #include "include/queue.h"
 
 bool Queue::isEmpty(void) {
-    if (head&&tail)
+    if (head && tail)
         return false;
     else
         return true;
@@ -27,12 +27,10 @@ Queue::~Queue() {
 int Queue::put(dataValue val, int pr) {
     if (pr <= 0) {
         throw "Incorrect priority!";
-    }
-    else {
+    } else {
         if (isFull()) {
             return FullQueue;
-        }
-        else {
+        } else {
             Node* tmp = new Node;
             tmp->value = val;
             tmp->priority = pr;
@@ -42,15 +40,13 @@ int Queue::put(dataValue val, int pr) {
                 head = tail = tmp;
                 DataCount++;
                 return DataOK;
-            }
-            else {
+            } else {
                 Node* srch = head;
                 bool mark = true;
                 while (srch && mark) {
                     if ((srch->priority) > pr) {
                         mark = false;
-                    }
-                    else {
+                    } else {
                         srch = srch->next;
                     }
                 }
@@ -61,8 +57,7 @@ int Queue::put(dataValue val, int pr) {
                     tail = tmp;
                     DataCount++;
                     return DataOK;
-                }
-                else {
+                } else {
                     if (srch->prev) {
                         srch->prev->next = tmp;
                         tmp->next = srch;
@@ -70,8 +65,7 @@ int Queue::put(dataValue val, int pr) {
                         srch->prev = tmp;
                         DataCount++;
                         return DataOK;
-                    }
-                    else {
+                    } else {
                         head = tmp;
                         srch->prev = tmp;
                         tmp->next = srch;
@@ -106,8 +100,7 @@ int Queue::get(void) {
 dataValue Queue::findMaxElem(void) {
     if (isEmpty()) {
         return EmptyQueue;
-    }
-    else {
+    } else {
         Node* tmp = head;
         dataValue max = tmp->value;
         while (tmp) {
@@ -122,8 +115,7 @@ dataValue Queue::findMaxElem(void) {
 dataValue Queue::findMinElem(void) {
     if (isEmpty()) {
         return EmptyQueue;
-    }
-    else {
+    } else {
         Node* tmp = head;
         dataValue min = tmp->value;
         while (tmp) {
@@ -138,8 +130,7 @@ dataValue Queue::findMinElem(void) {
 dataValue Queue::findMaxElemHiPrior(void) {
     if (isEmpty()) {
         return EmptyQueue;
-    }
-    else {
+    } else {
         int hiPrior = head->priority;
         Node* tmp = head;
         dataValue max = tmp->value;
@@ -155,8 +146,7 @@ dataValue Queue::findMaxElemHiPrior(void) {
 dataValue Queue::findMinElemHiPrior(void) {
     if (isEmpty()) {
         return EmptyQueue;
-    }
-    else {
+    } else {
         int hiPrior = head->priority;
         Node* tmp = head;
         dataValue min = tmp->value;
@@ -172,8 +162,7 @@ dataValue Queue::findMinElemHiPrior(void) {
 dataValue Queue::findMaxElemSetPrior(int pr) {
     if (isEmpty()) {
         return EmptyQueue;
-    }
-    else {
+    } else {
         bool mark = false;
         dataValue max;
         Node* tmp = head;
@@ -182,8 +171,7 @@ dataValue Queue::findMaxElemSetPrior(int pr) {
                 if (!mark) {
                     max = tmp->value;
                     mark = true;
-                }
-                else {
+                } else {
                     if ((tmp->value) > max)
                         max = tmp->value;
                 }
@@ -192,8 +180,7 @@ dataValue Queue::findMaxElemSetPrior(int pr) {
         }
         if (mark) {
             return max;
-        }
-        else {
+        } else {
             throw "Incorrect priority!";
         }
     }
@@ -202,8 +189,7 @@ dataValue Queue::findMaxElemSetPrior(int pr) {
 dataValue Queue::findMinElemSetPrior(int pr) {
     if (isEmpty()) {
         return EmptyQueue;
-    }
-    else {
+    } else {
         bool mark = false;
         dataValue min;
         Node* tmp = head;
@@ -212,8 +198,7 @@ dataValue Queue::findMinElemSetPrior(int pr) {
                 if (!mark) {
                     min = tmp->value;
                     mark = true;
-                }
-                else {
+                } else {
                     if ((tmp->value) < min)
                         min = tmp->value;
                 }
@@ -222,8 +207,7 @@ dataValue Queue::findMinElemSetPrior(int pr) {
         }
         if (mark) {
             return min;
-        }
-        else {
+        } else {
             throw "Incorrect priority!";
         }
     }
