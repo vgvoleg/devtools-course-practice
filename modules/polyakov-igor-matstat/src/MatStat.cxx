@@ -10,7 +10,7 @@
 bool Sample::IsSummOfProbabilitiesEqualUnity(std::vector<double> _prob) {
     double sum_of_probabilities = 0.0;
 
-    for (int i = 0; i < _prob.size(); i++) {
+    for (unsigned int i = 0; i < _prob.size(); i++) {
         sum_of_probabilities += _prob[i];
     }
 
@@ -22,7 +22,7 @@ bool Sample::IsSummOfProbabilitiesEqualUnity(std::vector<double> _prob) {
 }
 
 bool Sample::AreProbabilitiesCorrect(std::vector<double> _probabilities) {
-    for (int i = 0; i < _probabilities.size(); i++) {
+    for (unsigned int i = 0; i < _probabilities.size(); i++) {
         if (_probabilities[i] <= 0.0 || _probabilities[i] > 1.0) {
             return false;
         }
@@ -36,8 +36,8 @@ bool Sample::AreProbabilitiesCorrect(std::vector<double> _probabilities) {
 }
 
 bool Sample::IsSampleCorrect(std::vector<double> _sample) {
-    for (int i = 0; i < _sample.size() - 1; i++) {
-        for (int j = i + 1; j < _sample.size(); j++) {
+    for (unsigned int i = 0; i < _sample.size() - 1; i++) {
+        for (unsigned int j = i + 1; j < _sample.size(); j++) {
             if (_sample[i] == _sample[j]) {
                 return false;
             }
