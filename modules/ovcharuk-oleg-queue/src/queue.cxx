@@ -1,6 +1,6 @@
 // Copyright 2016 Ovcharuk Oleg
 
-#include "include/queue.h"
+#include <include/queue.h>
 
 bool Queue::isEmpty(void) {
     if (head && tail)

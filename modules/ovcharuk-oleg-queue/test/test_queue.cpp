@@ -1,7 +1,7 @@
 // Copyright 2016 Ovcharuk Oleg
 
 #include <gtest\gtest.h>
-#include "include\queue.h"
+#include <include\queue.h>
 
 TEST(Queue, can_add_element) {
     // Arrange
