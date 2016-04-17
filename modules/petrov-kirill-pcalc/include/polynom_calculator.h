@@ -3,10 +3,10 @@
 #ifndef MODULES_PETROV_KIRILL_PCALC_INCLUDE_POLYNOM_CALCULATOR_H_
 #define MODULES_PETROV_KIRILL_PCALC_INCLUDE_POLYNOM_CALCULATOR_H_
 
+#include <string>
+
 #include "include/tpolynom.h"
 #include "include/parse.h"
-
-#include <string>
 
 using std::string;
 
@@ -25,11 +25,11 @@ class PolynomCalculator {
   string message_;
 
   typedef struct {
-	int numberPoly;
+    int numberPoly;
     TPolynom poly[MAXPOLYNOMS];
     TOperation operation;
     int idPoly[2];
-	tCoeff Point[NUMBERVARIABLES];
+    tCoeff point[NUMBERVARIABLES];
   } Arguments;
 };
 

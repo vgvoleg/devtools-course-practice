@@ -1,10 +1,10 @@
 // Copyright 2016 Petrov Kirill
 
-#include "include/parse.h"
-
 #include <gtest/gtest.h>
 
-TEST (Parse, can_parse_number) {
+#include "include/parse.h"
+
+TEST(Parse, can_parse_number) {
   // Arrange
   const int start = 1;
   const int finish = 5;
@@ -25,7 +25,7 @@ TEST(Parse, can_catch_the_exception_wrong_number) {
   const char* argv = "a2";
 
   // Act & Assert
-  EXPECT_ANY_THROW( Parse::number(argv, start, finish) );
+  EXPECT_ANY_THROW(Parse::number(argv, start, finish) );
 }
 
 TEST(Parse, can_catch_the_exception_incorrect_value) {
@@ -55,7 +55,8 @@ TEST(Parse, can_parse_polynom) {
 
   // Assert
   const int expected_size = 3;
-  const double expected_mon[][2] = { { 3.0, 112 },{ 1.01, 210 },{ -2.5, 300 } };
+  const double expected_mon[][2] = { { 3.0, 112 }, { 1.01, 210 },
+                                     { -2.5, 300 } };
   const TPolynom expected_P(expected_mon, expected_size);
   EXPECT_EQ(expected_P, polynom);
 }
@@ -65,7 +66,7 @@ TEST(Parse, can_catch_the_exception_wrong_polynoms_format) {
   const char* argv = "1x^2y^1z^0+3^1y^1z^2-2x^3y^0z^0";
 
   // Act & Assert
-  EXPECT_ANY_THROW( Parse::polynom(argv) );
+  EXPECT_ANY_THROW(Parse::polynom(argv) );
 }
 
 TEST(Parse, can_parse_operation) {
@@ -87,3 +88,4 @@ TEST(Parse, can_catch_the_exception_no_such_operation) {
   // Act & Assert
   EXPECT_ANY_THROW(Parse::operation(argv) );
 }
+

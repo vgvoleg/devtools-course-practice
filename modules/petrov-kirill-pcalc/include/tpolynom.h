@@ -3,10 +3,10 @@
 #ifndef MODULES_PETROV_KIRILL_PCALC_INCLUDE_TPOLYNOM_H_
 #define MODULES_PETROV_KIRILL_PCALC_INCLUDE_TPOLYNOM_H_
 
-#include "include/tmonom.h"
-
 #include <iostream>
 #include <list>
+
+#include "include/tmonom.h"
 
 class TPolynom : public std::list <TMonom> {
  public:
@@ -16,11 +16,13 @@ class TPolynom : public std::list <TMonom> {
 
   TPolynom operator+ (const TPolynom& tpolynom) const;
   TPolynom operator- (const TPolynom& tpolynom) const;
-  tCoeff operator() (const tCoeff x = 0, const tCoeff y = 0, const tCoeff z = 0) const;
+  tCoeff operator() (const tCoeff x = 0, const tCoeff y = 0,
+                     const tCoeff z = 0) const;
 
   friend std::ostream& operator<<(std::ostream& os, const TPolynom& polynom);
-  
+
   void regulation(void);
 };
 
-#endif //  MODULES_PETROV_KIRILL_PCALC_INCLUDE_TPOLYNOM_H_
+#endif  // MODULES_PETROV_KIRILL_PCALC_INCLUDE_TPOLYNOM_H_
+

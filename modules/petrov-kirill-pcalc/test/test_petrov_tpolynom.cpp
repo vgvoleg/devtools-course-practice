@@ -1,8 +1,12 @@
 // Copyright 2016 Petrov Kirill
 
-#include "include/tpolynom.h"
-
 #include <gtest/gtest.h>
+
+#include <math.h>
+
+#include <string>
+
+#include "include/tpolynom.h"
 
 TEST(TPolynom, Can_Create) {
   // Arrange
@@ -10,18 +14,17 @@ TEST(TPolynom, Can_Create) {
 
   // Act
   const int size = 3;
-  const double mon[][2] = { { 1.0, 3 },{ 3.0, 4 },{ 1.0, 6 } };
-  P = new TPolynom (mon,size);
+  const double mon[][2] = { { 1.0, 3 }, { 3.0, 4 }, { 1.0, 6 } };
+  P = new TPolynom (mon, size);
 
   // Assert
   EXPECT_NE(P, nullptr);
 }
 
-TEST(TPolynom, Can_Compare)
-{
+TEST(TPolynom, Can_Compare) {
   // Arrange
   const int size = 3;
-  const double mon[][2] = { { 1.0, 3 },{ 2.0, 4 },{ 2.0, 100 } };
+  const double mon[][2] = { { 1.0, 3 }, { 2.0, 4 }, { 2.0, 100 } };
   const TPolynom P1(mon, size);
   const TPolynom P2(mon, size);
 
@@ -29,12 +32,11 @@ TEST(TPolynom, Can_Compare)
   EXPECT_TRUE(P1 == P2);
 }
 
-TEST(TPolynom, Can_Get_Does_Not_Equal)
-{
+TEST(TPolynom, Can_Get_Does_Not_Equal) {
   // Arrange
   const int size = 3;
-  const double mon1[][2] = { { 1.0, 3 },{ 2.0, 4 },{ 2.0, 100 } };
-  const double mon2[][2] = { { 1.0, 3 },{ 2.0, 4 },{ 2.0, 101 } };
+  const double mon1[][2] = { { 1.0, 3 }, { 2.0, 4 }, { 2.0, 100 } };
+  const double mon2[][2] = { { 1.0, 3 }, { 2.0, 4 }, { 2.0, 101 } };
   const TPolynom P1(mon1, size);
   const TPolynom P2(mon2, size);
 
@@ -42,11 +44,10 @@ TEST(TPolynom, Can_Get_Does_Not_Equal)
   EXPECT_TRUE(P1 != P2);
 }
 
-TEST(TPolynom, Can_Create_Via_Copying)
-{
+TEST(TPolynom, Can_Create_Via_Copying) {
   // Arrange
   const int size = 3;
-  const double mon[][2] = { { 1.0, 3 },{ 2.0, 4 },{ 2.0, 100 } };
+  const double mon[][2] = { { 1.0, 3 }, { 2.0, 4 }, { 2.0, 100 } };
   const TPolynom P1(mon, size);
 
   // Act
@@ -55,14 +56,13 @@ TEST(TPolynom, Can_Create_Via_Copying)
   // Act & Assert
   EXPECT_EQ(P1, P2);
 }
-TEST(TPolynom, Can_Assign)
-{
+TEST(TPolynom, Can_Assign) {
   // Arrange
   const int size = 2;
-  const double mon1[][2] = { { 5.0, 3 },{ 2.0, 4 } };
-  const double mon2[][2] = { { 2.0, 6 },{ 1.0, 9 } };
+  const double mon1[][2] = { { 5.0, 3 }, { 2.0, 4 } };
+  const double mon2[][2] = { { 2.0, 6 }, { 1.0, 9 } };
   const TPolynom P1(mon1, size);
-  TPolynom P2 (mon2,size);
+  TPolynom P2(mon2, size);
 
   // Act
   P2 = P1;
@@ -74,23 +74,24 @@ TEST(TPolynom, Can_Assign)
 TEST(TPolynom, Can_Regulate) {
   // Arrange & Act
   const int size = 4;
-  const double mon[][2] = { { 1.5, 3 },{ 1.0, 5 },{ 2.5, 3 }, { 0.0, 1 } };
-  TPolynom P (mon, size);
+  const double mon[][2] = { { 1.5, 3 }, { 1.0, 5 }, { 2.5, 3 }, { 0.0, 1 } };
+  TPolynom P(mon, size);
 
   // Assert
   const int expected_size = 2;
-  const double expected_mon[][2] = { { 4.0, 3 },{ 1.0, 5 } };
+  const double expected_mon[][2] = { { 4.0, 3 }, { 1.0, 5 } };
   const TPolynom expected_P(expected_mon, expected_size);
   EXPECT_EQ(expected_P, P);
 }
 
-TEST(TPolynom, Can_Add_Polynoms)
-{
+TEST(TPolynom, Can_Add_Polynoms) {
   // Arrange
   const int size1 = 5;
   const int size2 = 4;
-  const double mon1[][2] = { { 5.0, 213 },{ 8.0, 321 },{ 10.0, 432 },{ -21.0, 500 },{ 10.0, 999 } };
-  const double mon2[][2] = { { 15.0, 0 },{ -8.0, 321 },{ 1.0, 500 },{ 20.0, 702 } };
+  const double mon1[][2] = { { 5.0, 213 }, { 8.0, 321 }, { 10.0, 432 },
+                             { -21.0, 500 }, { 10.0, 999 } };
+  const double mon2[][2] = { { 15.0, 0 }, { -8.0, 321 },
+                             { 1.0, 500 }, { 20.0, 702 } };
   const TPolynom P1(mon1, size1);
   const TPolynom P2(mon2, size2);
 
@@ -99,18 +100,19 @@ TEST(TPolynom, Can_Add_Polynoms)
 
   // Assert
   const int expected_size = 6;
-  const double expected_mon[][2] = { { 15, 0 }, { 5.0, 213 }, { 10.0, 432 }, { -20.0, 500 }, { 20.0, 702 }, { 10.0, 999 } };
+  const double expected_mon[][2] = { { 15, 0 }, { 5.0, 213 }, { 10.0, 432 },
+                                     { -20.0, 500 }, { 20.0, 702 },
+                                     { 10.0, 999 } };
   const TPolynom expected_P(expected_mon, expected_size);
   EXPECT_EQ(expected_P, P);
 }
 
-TEST(TPolynom, Can_Add_Polynoms_With_The_Same_Index)
-{
+TEST(TPolynom, Can_Add_Polynoms_With_The_Same_Index) {
   // Arrange
   const int size1 = 2;
   const int size2 = 2;
-  const double mon1[][2] = { { 5.0, 2 },{ 8.0, 2 } };
-  const double mon2[][2] = { { 15.0, 3 },{ -8.0, 3 } };
+  const double mon1[][2] = { { 5.0, 2 }, { 8.0, 2 } };
+  const double mon2[][2] = { { 15.0, 3 }, { -8.0, 3 } };
   const TPolynom P1(mon1, size1);
   const TPolynom P2(mon2, size2);
 
@@ -124,15 +126,14 @@ TEST(TPolynom, Can_Add_Polynoms_With_The_Same_Index)
   EXPECT_EQ(expected_P, P);
 }
 
-TEST(TPolynom, Can_Add_Up_Many_Polynoms)
-{
+TEST(TPolynom, Can_Add_Up_Many_Polynoms) {
   // Arrange
   const int size1 = 3;
   const int size2 = 4;
   const int size3 = 3;
-  const double mon1[][2] = { { 5.0, 2 },{ 8.0, 3 },{ 9.0, 4 } };
-  const double mon2[][2] = { { 1.0, 1 },{ -8.0, 3 },{ 1.0, 4 },{ 2.0, 5 } };
-  const double mon3[][2] = { { 10.0, 0 },{ 2.0, 3 },{ 8.0, 5 } };
+  const double mon1[][2] = { { 5.0, 2 }, { 8.0, 3 }, { 9.0, 4 } };
+  const double mon2[][2] = { { 1.0, 1 }, { -8.0, 3 }, { 1.0, 4 }, { 2.0, 5 } };
+  const double mon3[][2] = { { 10.0, 0 }, { 2.0, 3 }, { 8.0, 5 } };
   const TPolynom P1(mon1, size1);
   const TPolynom P2(mon2, size2);
   const TPolynom P3(mon3, size3);
@@ -142,16 +143,16 @@ TEST(TPolynom, Can_Add_Up_Many_Polynoms)
 
   // Assert
   const int expected_size = 6;
-  const double expected_mon[][2] = { { 10.0, 0 },  { 1.0, 1 }, { 5.0, 2 }, { 2.0, 3 }, { 10.0, 4 },{ 10.0, 5 } };
+  const double expected_mon[][2] = { { 10.0, 0 },  { 1.0, 1 }, { 5.0, 2 },
+                                     { 2.0, 3 }, { 10.0, 4 }, { 10.0, 5 } };
   const TPolynom expected_P(expected_mon, expected_size);
   EXPECT_EQ(expected_P, P);
 }
 
-TEST(TPolynom, Can_Add_With_The_Zero_Polynomial)
-{
+TEST(TPolynom, Can_Add_With_The_Zero_Polynomial) {
   // Arrange
   const int size1 = 3;
-  const double mon1[][2] = { { 5.0, 2 },{ 8.0, 3 },{ 9.0, 4 } };
+  const double mon1[][2] = { { 5.0, 2 }, { 8.0, 3 }, { 9.0, 4 } };
   const TPolynom P1(mon1, size1);
   const TPolynom P2;
 
@@ -159,15 +160,14 @@ TEST(TPolynom, Can_Add_With_The_Zero_Polynomial)
   const TPolynom P = P1 + P2;
 
   // Assert
-  const TPolynom expected_P=P1;
+  const TPolynom expected_P = P1;
   EXPECT_EQ(expected_P, P);
 }
 
-TEST(TPolynom, Can_Get_Zero_Monom)
-{
+TEST(TPolynom, Can_Get_Zero_Monom) {
   // Arrange
   const int size = 3;
-  const double mon[][2] = { { 5.0, 213 },{ 8.0, 321 },{ 10.0, 432 } };
+  const double mon[][2] = { { 5.0, 213 }, { 8.0, 321 }, { 10.0, 432 } };
   const TPolynom P1(mon, size);
 
   // Act
@@ -180,8 +180,7 @@ TEST(TPolynom, Can_Get_Zero_Monom)
   EXPECT_EQ(expected_P, P);
 }
 
-TEST(TPolynom, Can_Subtract_Polynoms)
-{
+TEST(TPolynom, Can_Subtract_Polynoms) {
   // Arrange
   const int size1 = 2;
   const int size2 = 3;
@@ -195,20 +194,19 @@ TEST(TPolynom, Can_Subtract_Polynoms)
 
   // Assert
   const int expected_size = 3;
-  const double expected_mon[][2] = { { -7.0, 2 }, { 8.0, 3 },{ 2.0, 4 }, };
+  const double expected_mon[][2] = { { -7.0, 2 }, { 8.0, 3 }, { 2.0, 4 }, };
   const TPolynom expected_P(expected_mon, expected_size);
   EXPECT_EQ(expected_P, P);
 }
 
-TEST(TPolynom, Can_Subtract_Up_Many_Polynoms)
-{
+TEST(TPolynom, Can_Subtract_Up_Many_Polynoms) {
   // Arrange
   const int size1 = 3;
   const int size2 = 1;
   const int size3 = 2;
-  const double mon1[][2] = { { 5.5, 2 },{ 2.0, 1 },{ 9.0, 2 } };
+  const double mon1[][2] = { { 5.5, 2 }, { 2.0, 1 }, { 9.0, 2 } };
   const double mon2[][2] = { { 0.5, 2 } };
-  const double mon3[][2] = { { 10.0, 0 },{ 2.0, 1 } };
+  const double mon3[][2] = { { 10.0, 0 }, { 2.0, 1 } };
   const TPolynom P1(mon1, size1);
   const TPolynom P2(mon2, size2);
   const TPolynom P3(mon3, size3);
@@ -218,16 +216,15 @@ TEST(TPolynom, Can_Subtract_Up_Many_Polynoms)
 
   // Assert
   const int expected_size = 2;
-  const double expected_mon[][2] = { { -10.0, 0 },{ 14.0, 2 } };
+  const double expected_mon[][2] = { { -10.0, 0 }, { 14.0, 2 } };
   const TPolynom expected_P(expected_mon, expected_size);
   EXPECT_EQ(expected_P, P);
 }
 
-TEST(TPolynom, Can_Subtract_From_Zero_Polynomial)
-{
+TEST(TPolynom, Can_Subtract_From_Zero_Polynomial) {
   // Arrange
   const int size1 = 3;
-  const double mon1[][2] = { { 5.0, 2 },{ 8.0, 3 },{ 9.0, 4 } };
+  const double mon1[][2] = { { 5.0, 2 }, { 8.0, 3 }, { 9.0, 4 } };
   const TPolynom P1(mon1, size1);
   const TPolynom P2;
 
@@ -236,16 +233,15 @@ TEST(TPolynom, Can_Subtract_From_Zero_Polynomial)
 
   // Assert
   const int expected_size = 3;
-  const double expected_mon[][2] = { { -5.0, 2 },{ -8.0, 3 },{ -9.0, 4 } };
+  const double expected_mon[][2] = { { -5.0, 2 }, { -8.0, 3 }, { -9.0, 4 } };
   const TPolynom expected_P(expected_mon, expected_size);
   EXPECT_EQ(expected_P, P);
 }
 
-TEST(TPolynom, Can_Ñalculate_Value_At_The_Point)
-{
+TEST(TPolynom, Can_Nalculate_Value_At_The_Point) {
   // Arrange
   const int size1 = 3;
-  const double mon1[][2] = { { 1.0, 201 },{ 2.0, 321 },{ 3.0, 400 } };
+  const double mon1[][2] = { { 1.0, 201 }, { 2.0, 321 }, { 3.0, 400 } };
   const TPolynom P1(mon1, size1);
   const double x_ = 1;
   const double y_ = 2;
@@ -255,15 +251,15 @@ TEST(TPolynom, Can_Ñalculate_Value_At_The_Point)
   const double result = P1(x_, y_, z_);
 
   // Assert
-  const double expected_value = 1.0*pow(x_, 2)*z_ + 2.0*pow(x_, 3)*pow(y_, 2)*z_ + 3.0*pow(x_, 4);
+  const double expected_value = 1.0* pow(x_, 2)*z_ + 2.0*pow(x_, 3)*
+                                     pow(y_, 2)*z_ + 3.0*pow(x_, 4);
   EXPECT_DOUBLE_EQ(expected_value, result);
 }
 
-TEST(TPolynom, Can_Ñalculate_Value_For_X)
-{
+TEST(TPolynom, Can_Nalculate_Value_For_X) {
   // Arrange
   const int size1 = 3;
-  const double mon1[][2] = { { 1.0, 200 },{ 2.0, 300 },{ 3.0, 400 } };
+  const double mon1[][2] = { { 1.0, 200 }, { 2.0, 300 }, { 3.0, 400 } };
   const TPolynom P1(mon1, size1);
   const double x_ = 2.0;
 
@@ -271,12 +267,12 @@ TEST(TPolynom, Can_Ñalculate_Value_For_X)
   const double result = P1(x_);
 
   // Assert
-  const double expected_value = 1.0*pow(x_, 2) + 2.0*pow(x_, 3) + 3.0*pow(x_, 4);
+  const double expected_value = 1.0*pow(x_, 2) + 2.0*pow(x_, 3) +
+                                3.0*pow(x_, 4);
   EXPECT_DOUBLE_EQ(expected_value, result);
 }
 
-TEST(TPolynom, Cant_Figure_Out_For_Empty_Polynomial)
-{
+TEST(TPolynom, Cant_Figure_Out_For_Empty_Polynomial) {
   // Arrange
   const TPolynom P1;
   const double x_ = 2.0;
@@ -289,13 +285,12 @@ TEST(TPolynom, Cant_Figure_Out_For_Empty_Polynomial)
   EXPECT_DOUBLE_EQ(expected_value, result);
 }
 
-TEST(TPolynom, Can_Display_The_Polynomial)
-{
+TEST(TPolynom, Can_Display_The_Polynomial) {
   // Arrange
   const int size1 = 3;
-  const double mon1[][2] = { { 1.0, 200 },{ -2.0, 300 },{ 3.01, 400 } };
+  const double mon1[][2] = { { 1.0, 200 }, { -2.0, 300 }, { 3.01, 400 } };
   const TPolynom P(mon1, size1);
-  
+
   // Act
   std::ostringstream stream;
   stream << P;
@@ -305,8 +300,7 @@ TEST(TPolynom, Can_Display_The_Polynomial)
   EXPECT_EQ(expected_str, stream.str() );
 }
 
-TEST(TPolynom, Can_Display_The_Polynomial_With_One_Monom)
-{
+TEST(TPolynom, Can_Display_The_Polynomial_With_One_Monom) {
   // Arrange
   const int size1 = 1;
   const double mon1[][2] = { { 1.0, 200 } };
@@ -321,8 +315,7 @@ TEST(TPolynom, Can_Display_The_Polynomial_With_One_Monom)
   EXPECT_EQ(expected_str, stream.str());
 }
 
-TEST(TPolynom, Can_Display_Zero_Polynomial)
-{
+TEST(TPolynom, Can_Display_Zero_Polynomial) {
   // Arrange
   const TPolynom P;
 
@@ -335,11 +328,10 @@ TEST(TPolynom, Can_Display_Zero_Polynomial)
   EXPECT_EQ(expected_str, stream.str());
 }
 
-TEST(TPolynom, Can_Display_Complex_Polynomial)
-{
+TEST(TPolynom, Can_Display_Complex_Polynomial) {
   // Arrange
   const int size = 3;
-  const double mon[][2] = { { -5.0, 213 },{ 8.21, 321 },{ 10.0, 432 } };
+  const double mon[][2] = { { -5.0, 213 }, { 8.21, 321 }, { 10.0, 432 } };
   const TPolynom P(mon, size);
 
   // Act
