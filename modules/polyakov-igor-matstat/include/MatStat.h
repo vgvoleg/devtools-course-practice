@@ -4,15 +4,33 @@
 #define MODULES_POLYAKOV_IGOR_MATSTAT_INCLUDE_SAMPLE_H_
 
 #include <vector>
-
-
-const int PROBABILITIES_NOT_CORRECT = -3;
-const int SAMPLE_NOT_CORRECT = -2;
-const int SIZES_OF_SAMPLE_AND_PROB_DIFFER = -1;
+#include <exception>
 
 const double SAMPLE_EPSILON = 0.001;
 
 using namespace std;
+
+
+class IncorrectSample :public exception {
+public:
+    IncorrectSample(){
+        string("Sample is not correct. Values must be different.");
+    }
+};
+
+class IncorrectProbabilities :public exception {
+public:
+    IncorrectProbabilities(){ // конструктор
+        string("Probabilities is not correct.");
+    }
+};
+
+class IncorrectSizesOfSampleAndProbabilities :public exception {
+public:
+    IncorrectSizesOfSampleAndProbabilities(){
+        string("Sizes of sample and probabilities must be identical");
+    }
+};
 
 class Sample
 {

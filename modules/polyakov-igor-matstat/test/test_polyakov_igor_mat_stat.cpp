@@ -32,6 +32,67 @@ TEST(Polyakov_Igor_MatStatTest, Is_Initialization_Sample_Correct) {
 
 }
 
+TEST(Polyakov_Igor_MatStatTest, Is_Handle_Incorrect_Sample) {
+
+    // Arrange
+
+    int size_sample = 5;
+    double mas_sample[5] = { 1.0, 3.0, 4.0, 1.0, 0.0 };
+    double mas_probabilities[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
+    vector<double> sample(mas_sample, mas_sample + 5);
+    vector<double> probabilities(mas_probabilities, mas_probabilities + 5);
+
+    // Act & Assert
+
+    EXPECT_THROW(Sample(sample, probabilities), IncorrectSample);
+}
+
+TEST(Polyakov_Igor_MatStatTest, Is_Handle_Negative_Probability) {
+
+    // Arrange
+
+    int size_sample = 5;
+    double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
+    double mas_probabilities[5] = { 0.2, 0.1, 0.3333, 0.1, -0.2667 };
+    vector<double> sample(mas_sample, mas_sample + 5);
+    vector<double> probabilities(mas_probabilities, mas_probabilities + 5);
+
+    // Act & Assert
+
+    EXPECT_THROW(Sample(sample, probabilities), IncorrectProbabilities);
+}
+
+TEST(Polyakov_Igor_MatStatTest, Is_Handle_Summ_Probability_Not_Equal_One) {
+
+    // Arrange
+
+    int size_sample = 5;
+    double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
+    double mas_probabilities[5] = { 0.2, 0.1, 0.3333, 0.1, 0.0 };
+    vector<double> sample(mas_sample, mas_sample + 5);
+    vector<double> probabilities(mas_probabilities, mas_probabilities + 5);
+
+    // Act & Assert
+
+    EXPECT_THROW(Sample(sample, probabilities), IncorrectProbabilities);
+}
+
+TEST(Polyakov_Igor_MatStatTest, Is_Handle_Sizes_Sample_And_Prob_Differ) {
+
+    // Arrange
+
+    int size_sample = 5;
+    double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0 };
+    double mas_probabilities[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
+    vector<double> sample(mas_sample, mas_sample + 4);
+    vector<double> probabilities(mas_probabilities, mas_probabilities + 5);
+
+    // Act & Assert
+
+    EXPECT_THROW(Sample(sample, probabilities),
+                 IncorrectSizesOfSampleAndProbabilities);
+}
+
 TEST(Polyakov_Igor_MatStatTest, Is_Calc_Mathematical_Expectation_Correct) {
 
     // Arrange

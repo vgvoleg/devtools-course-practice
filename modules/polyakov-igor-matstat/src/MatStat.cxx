@@ -71,7 +71,7 @@ Sample::Sample(vector<double> _sample,
 
     if (_sample.size() != _probabilities.size())
     {
-        throw SIZES_OF_SAMPLE_AND_PROB_DIFFER;
+        throw IncorrectSizesOfSampleAndProbabilities();
     }
     else
     {
@@ -80,7 +80,7 @@ Sample::Sample(vector<double> _sample,
 
     if (!AreProbabilitiesCorrect(_probabilities))
     {
-        throw PROBABILITIES_NOT_CORRECT;
+        throw IncorrectProbabilities();
     }
     else
     {
@@ -89,7 +89,7 @@ Sample::Sample(vector<double> _sample,
 
     if (!IsSampleCorrect(_sample))
     {
-        throw SAMPLE_NOT_CORRECT;
+        throw IncorrectSample();
     }
     else
     {
