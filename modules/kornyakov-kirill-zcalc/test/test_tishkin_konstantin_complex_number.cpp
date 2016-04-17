@@ -1,7 +1,7 @@
 // Copyright 2016 Tishkin Konstantin
 
 #include <gtest/gtest.h>
-
+#include <limits>
 #include "include/complex_number.h"
 
 const double rez = std::numeric_limits<double>::epsilon();
@@ -32,7 +32,7 @@ TEST(Tishkin_Kostya_ComplexNumberTest, Can_Copy_Num) {
 TEST(Tishkin_Kostya_ComplexNumberTest, Can_getRE_getIM) {
     // Arrange
     double d = 2.0;
-	double h = 5.0;
+    double h = 5.0;
     // Act
     ComplexNumber a(2.0, 5.0);
 
@@ -54,25 +54,25 @@ TEST(Tishkin_Kostya_ComplexNumberTest, Can_setIM) {
 }
 
 TEST(Tishkin_Kostya_ComplexNumberTest, Can_Multiply_One) {
-	// Arrange
+    // Arrange
     ComplexNumber a(2.0, 5.0);
     ComplexNumber b(1.0, 0.0);
 
-	// Act
+    // Act
     ComplexNumber c = a * b;
 
-	// Assert
+    // Assert
     EXPECT_EQ(c, a);
 }
 
 TEST(Tishkin_Kostya_ComplexNumberTest, Can_Div_One) {
-	// Arrange
+    // Arrange
     ComplexNumber a(2.0, 5.0);
     ComplexNumber b(1.0, 0.0);
 
-	// Act
+    // Act
     ComplexNumber c = a / b;
 
-	// Assert
+    // Assert
     EXPECT_EQ(c, a);
 }
