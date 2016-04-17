@@ -8,21 +8,21 @@
 
 TEST(Pozdyaev_Valery_CurrencyConverterTest, Can_Create_Converter) {
     // Arrange
-    CurrencyConverter* cconverter;
+    CurrencyConverter* converter;
 
     // Act
-    cconverter = new CurrencyConverter();
+    converter = new CurrencyConverter();
 
     // Assert
-    EXPECT_NE(nullptr, cconverter);
+    EXPECT_NE(nullptr, converter);
 }
 
 TEST(Pozdyaev_Valery_CurrencyConverterTest, Can_Create_Default_Currency_Pair) {
     // Arrange
     CurrencyPair *default_currency_pair;
-    string currency_code = "USD/USD";
-    double bid_price = 1.0;
-    double ask_price = 1.0;
+    string currency_code = "EUR/USD";
+    double bid_price = 1.1;
+    double ask_price = 1.2;
 
     // Act
     default_currency_pair = new CurrencyPair();
@@ -129,25 +129,32 @@ TEST(Pozdyaev_Valery_CurrencyConverterTest, Can_Update_Existing_Currency_Pair) {
     converter.addCurrencyPair(CurrencyPair("EUR/USD", 1.2, 1.6));
 
     // Act
-    converter.addCurrencyPair(CurrencyPair("EUR/USD", 1.3, 1.5));
-    double boughtCurrency = converter.saleCurrency("EUR/USD", 10);
+    converter.updateCurrencyPair(CurrencyPair("EUR/USD", 1.3, 1.5));
+    double bought_USD = converter.exchangeCurrency("EUR", "USD", 10);
 
     // Assert
-    double expected_currency_sum = 13;
-    EXPECT_DOUBLE_EQ(boughtCurrency, expected_currency_sum);
+    double expected_USD_sum = 13;
+    EXPECT_DOUBLE_EQ(bought_USD, expected_USD_sum);
 }
 
-TEST(Pozdyaev_Valery_CurrencyConverterTest, Can_Buy_Currency) {
+TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Update_Through_Add_Func) {
     // Arrange
     CurrencyConverter converter;
     converter.addCurrencyPair(CurrencyPair("EUR/USD", 1.2, 1.6));
 
-    // Act
-    double boughtCurrency = converter.buyCurrency("EUR/USD", 12);
+    // Act & Assert
+    CurrencyPair updated_pair("EUR/USD", 1.3, 1.5);
+    EXPECT_THROW(converter.addCurrencyPair(updated_pair), string);
+}
 
-    // Assert
-    double expected_currency_sum = 7.5;
-    EXPECT_DOUBLE_EQ(boughtCurrency, expected_currency_sum);
+TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Update_Non_Existing_Pair) {
+    // Arrange
+    CurrencyConverter converter;
+    converter.addCurrencyPair(CurrencyPair("EUR/USD", 1.2, 1.6));
+
+    // Act & Assert
+    CurrencyPair non_existing_pair("USD/RUB", 63.2, 65.5);
+    EXPECT_THROW(converter.updateCurrencyPair(non_existing_pair), string);
 }
 
 TEST(Pozdyaev_Valery_CurrencyConverterTest, Can_Sale_Currency) {
@@ -156,45 +163,76 @@ TEST(Pozdyaev_Valery_CurrencyConverterTest, Can_Sale_Currency) {
     converter.addCurrencyPair(CurrencyPair("EUR/USD", 1.2, 1.6));
 
     // Act
-    double boughtCurrency = converter.saleCurrency("EUR/USD", 12);
+    double bought_USD = converter.exchangeCurrency("EUR", "USD", 12);
 
     // Assert
-    double expected_currency_sum = 14.4;
-    EXPECT_DOUBLE_EQ(boughtCurrency, expected_currency_sum);
+    double expected_USD_sum = 14.4;
+    EXPECT_DOUBLE_EQ(bought_USD, expected_USD_sum);
 }
 
-TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Buy_With_Incorrect_Code) {
+TEST(Pozdyaev_Valery_CurrencyConverterTest, Can_Buy_Currency) {
+    // Arrange
+    CurrencyConverter converter;
+    converter.addCurrencyPair(CurrencyPair("EUR/USD", 1.2, 1.6));
+
+    // Act
+    double bought_EUR = converter.exchangeCurrency("USD", "EUR", 12);
+
+    // Assert
+    double expected_EUR_sum = 7.5;
+    EXPECT_DOUBLE_EQ(bought_EUR, expected_EUR_sum);
+}
+
+TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Exchange_Incorrect_Code) {
     // Arrange
     CurrencyConverter converter;
     converter.addCurrencyPair(CurrencyPair("EUR/USD", 1.2, 1.6));
 
     // Act & Assert
-    EXPECT_THROW(converter.buyCurrency("EuR/UsD", 12), string);
+    EXPECT_THROW(converter.exchangeCurrency("UsD", "Eu", 12), string);
 }
 
-TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Sale_With_Incorrect_Code) {
+TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Exchange_Unknown_Currency) {
     // Arrange
     CurrencyConverter converter;
     converter.addCurrencyPair(CurrencyPair("EUR/USD", 1.2, 1.6));
 
     // Act & Assert
-    EXPECT_THROW(converter.saleCurrency("EuR/UsD", 12), string);
+    EXPECT_THROW(converter.exchangeCurrency("USD", "RUB", 12), string);
 }
 
-TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Buy_With_Incorrect_Sum) {
+TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Exchange_Incorrect_Sum) {
     // Arrange
     CurrencyConverter converter;
     converter.addCurrencyPair(CurrencyPair("EUR/USD", 1.2, 1.6));
 
     // Act & Assert
-    EXPECT_THROW(converter.buyCurrency("EUR/USD", -12), string);
+    EXPECT_THROW(converter.exchangeCurrency("USD", "EUR", -12), string);
 }
 
-TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Sale_With_Incorrect_Sum) {
+TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Exchange_Empty_Currency) {
     // Arrange
     CurrencyConverter converter;
     converter.addCurrencyPair(CurrencyPair("EUR/USD", 1.2, 1.6));
 
     // Act & Assert
-    EXPECT_THROW(converter.saleCurrency("EUR/USD", -12), string);
+    EXPECT_THROW(converter.exchangeCurrency("USD", "", 12), string);
+}
+
+TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Add_Revers_Currency_Pair) {
+    // Arrange
+    CurrencyConverter converter;
+    converter.addCurrencyPair(CurrencyPair("EUR/USD", 1.2, 1.6));
+
+    // Act & Assert
+    CurrencyPair reverse_pair("USD/EUR", 1.3, 1.5);
+    EXPECT_THROW(converter.addCurrencyPair(reverse_pair), string);
+}
+
+TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Add_Pair_Of_Same_Currency) {
+    // Arrange
+    CurrencyConverter converter;
+
+    // Act & Assert
+    EXPECT_THROW(CurrencyPair("USD/USD", 1, 1), string);
 }

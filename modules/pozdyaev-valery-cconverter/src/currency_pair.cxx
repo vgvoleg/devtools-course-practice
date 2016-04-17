@@ -2,17 +2,15 @@
 
 #include "include/currency_pair.h"
 
-#include <stdio.h>
-#include <stdlib.h>
 #include <string>
 #include <regex>
 
 const std::regex currency_code_pattern("[A-Z]{3}\/[A-Z]{3}");
 
 CurrencyPair::CurrencyPair() {
-    currency_pair_code_ = "USD/USD";
-    bid_price_ = 1.0;
-    ask_price_ = 1.0;
+    currency_pair_code_ = "EUR/USD";
+    bid_price_ = 1.1;
+    ask_price_ = 1.2;
 }
 
 CurrencyPair::CurrencyPair(string currency_pair_code,
@@ -20,6 +18,11 @@ CurrencyPair::CurrencyPair(string currency_pair_code,
     CurrencyPair::checkCurrencyPairCode(currency_pair_code);
     if (bid_price <= 0 || ask_price <= 0) {
         throw string("Incorrect price format");
+    }
+
+    if (currency_pair_code.substr(0, 3)
+                == currency_pair_code.substr(4, 3)) {
+        throw std::string("Exchange with same currency is not supported");
     }
 
     currency_pair_code_ = currency_pair_code;
