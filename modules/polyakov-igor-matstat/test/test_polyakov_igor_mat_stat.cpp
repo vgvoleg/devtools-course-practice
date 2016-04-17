@@ -60,7 +60,7 @@ TEST(Polyakov_Igor_MatStatTest, Is_Handle_Summ_Probability_Not_Equal_One) {
     // Arrange
 
     double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
-    double mas_prob[5] = { 0.2, 0.1, 0.3333, 0.1, 5.0 };
+    double mas_prob[5] = { 0.2, 0.9, 0.3333, 0.9, 0.9 };
     std::vector<double> sample(mas_sample, mas_sample + 5);
     std::vector<double> probabilities(mas_prob, mas_prob + 5);
 
