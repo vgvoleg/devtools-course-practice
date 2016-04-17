@@ -11,31 +11,28 @@
 const double SAMPLE_EPSILON = 0.001;
 
 
-class IncorrectSample :public std::exception{
+class IncorrectSample :public std::exception {
 public:
-    IncorrectSample()
-    {
+    IncorrectSample() {
         std::string("Sample is not correct, values must be different");
     }
 };
 
 class IncorrectProbabilities :public std::exception {
 public:
-    IncorrectProbabilities()
-    {
+    IncorrectProbabilities() {
         std::string("Probabilities is not correct");
     }
 };
 
-class IncorrectSizesOfSampleAndProbabilities :public std::exception{
+class IncorrectSizesOfSampleAndProbabilities :public std::exception {
 public:
-    IncorrectSizesOfSampleAndProbabilities()
-    {
+    IncorrectSizesOfSampleAndProbabilities() {
         std::string("Sizes of sample and probabilities must be identical");
     }
 };
 
-class Sample{
+class Sample {
 private:
     int sample_size;  //  Размер выборки
     std::vector<double> sample;  //  Значения выборки
