@@ -1,4 +1,4 @@
-//Copyright 2016 Ovcharuk Oleg
+// Copyright 2016 Ovcharuk Oleg
 
 #include <gtest\gtest.h>
 #include "include\queue.h"
@@ -8,7 +8,7 @@ TEST(Queue, can_add_element) {
     Queue A;
     // Act
     // Assert
-    EXPECT_EQ(A.put(20,1), DataOK);
+    EXPECT_EQ(A.put(20, 1), DataOK);
 }
 
 TEST(Queue, can_add_several_elements) {
@@ -17,7 +17,7 @@ TEST(Queue, can_add_several_elements) {
     // Act
     bool expect = true;
     for (int i = 0; i < 5; i++) {
-        if (A.put(i,1) == FullQueue)
+        if (A.put(i, 1) == FullQueue)
             expect = false;
     }
     // Assert
@@ -29,9 +29,9 @@ TEST(Queue, cant_add_elem_into_full_queue) {
     Queue A(5);
     // Act
     for (int i = 0; i < 5; i++)
-        A.put(i,1);
+        A.put(i, 1);
     // Assert
-    EXPECT_EQ(A.put(5,1), FullQueue);
+    EXPECT_EQ(A.put(5, 1), FullQueue);
 }
 
 TEST(Queue, cant_add_elem_with_incorect_priority) {
@@ -89,8 +89,8 @@ TEST(Queue, can_correct_get_elem) {
     // Arrange
     Queue A;
     // Act
-    A.put(10,1);
-    A.put(20,1);
+    A.put(10, 1);
+    A.put(20, 1);
     // Assert
     dataValue expected_res = 10;
     EXPECT_EQ(A.get(), expected_res);
@@ -100,9 +100,9 @@ TEST(Queue, can_correct_get_several_elems) {
     // Arrange
     Queue A;
     // Act
-    A.put(1,1);
-    A.put(2,1);
-    A.put(3,1);
+    A.put(1, 1);
+    A.put(2, 1);
+    A.put(3, 1);
     // Assert
     dataValue expected_res1 = 1;
     dataValue expected_res2 = 2;
@@ -123,7 +123,7 @@ TEST(Queue, can_delete_queue) {
     Queue A;
     // Act
     for (int i = 0; i < MemSize; i++)
-        A.put(i,1);
+        A.put(i, 1);
     A.~Queue();
     // Assert
     EXPECT_EQ(A.get(), EmptyQueue);
@@ -134,7 +134,7 @@ TEST(Queue, can_find_max_elem) {
     Queue A;
     // Act
     for (int i = 0; i < 5; i++)
-        A.put(i,1);
+        A.put(i, 1);
     // Assert
     dataValue expected_res = 4;
     EXPECT_EQ(A.findMaxElem(), expected_res);
@@ -153,7 +153,7 @@ TEST(Queue, can_find_min_elem) {
     Queue A;
     // Act
     for (int i = 0; i < 5; i++)
-        A.put(i,1);
+        A.put(i, 1);
     // Assert
     dataValue expected_res = 0;
     EXPECT_EQ(A.findMinElem(), expected_res);
@@ -237,7 +237,7 @@ TEST(Queue, cant_find_max_with_incorrect_prior) {
     Queue A;
     // Act
     for (int i = 0; i < 10; i++)
-        A.put(i,1);
+        A.put(i, 1);
     // Assert
     EXPECT_ANY_THROW(A.findMaxElemSetPrior(2));
 }
