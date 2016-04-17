@@ -2,9 +2,8 @@
 
 #include "include/parse.h"
 
-#include <string>
-
 #include <../include/regex>
+#include <string>
 
 using std::regex;
 using std::regex_iterator;
