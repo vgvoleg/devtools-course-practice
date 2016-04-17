@@ -14,12 +14,10 @@ class TMonom {
   explicit TMonom(const tCoeff coeff = 0.0, const int index = 0);
 
   TMonom& operator=(const TMonom& monom);
-  bool operator==(const TMonom& monom) const;
-  bool operator!=(const TMonom& monom) const;
-  bool operator<(const TMonom& monom) const;
-  bool operator>(const TMonom& monom) const;
   TMonom operator+(const TMonom& monom) const;
-  TMonom operator-(const TMonom& monom) const;
+  bool operator==(const TMonom& monom) const;
+  bool operator<(const TMonom& monom) const;
+  
 
   friend  std::ostream& operator<<(std::ostream& os, const TMonom& monom);
 

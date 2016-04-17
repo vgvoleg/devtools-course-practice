@@ -27,24 +27,12 @@ bool TMonom::operator==(const TMonom& monom) const {
   return (index_ == monom.index_) && equalityCoeff;
 }
 
-bool TMonom::operator!=(const TMonom& monom) const {
-  return !operator==(monom);
-}
-
 bool TMonom::operator<(const TMonom& monom) const {
   return index_ < monom.index_;
 }
 
-bool TMonom::operator>(const TMonom& monom) const {
-  return index_ > monom.index_;
-}
-
 TMonom TMonom::operator+(const TMonom& monom) const {
   return TMonom(coeff_ + monom.coeff_, index_);
-}
-
-TMonom TMonom::operator-(const TMonom& monom) const {
-  return TMonom(coeff_ - monom.coeff_, index_);
 }
 
 void TMonom::comparisionBack(void) {
