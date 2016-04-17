@@ -26,7 +26,8 @@ class PolynomCalculatorTest : public ::testing::Test {
     output_ = app_(argc, argv);
   }
   void Assert(const string& expected) {
-    EXPECT_TRUE(output_.find(expected) != string::npos);
+    //EXPECT_TRUE(output_.find(expected) != string::npos);
+	  EXPECT_EQ(output_, expected);
   }
  private:
   PolynomCalculator app_;
