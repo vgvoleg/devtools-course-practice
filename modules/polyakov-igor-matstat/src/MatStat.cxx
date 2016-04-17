@@ -6,10 +6,7 @@
 #include <cmath>
 
 
-using namespace std;
-
-bool Sample::IsSummOfProbabilitiesEqualUnity(std::vector<double> _prob)
-{
+bool Sample::IsSummOfProbabilitiesEqualUnity(std::vector<double> _prob){
 
     double sum_of_probabilities = 0.0;
 
@@ -27,8 +24,7 @@ bool Sample::IsSummOfProbabilitiesEqualUnity(std::vector<double> _prob)
 
 }
 
-bool Sample::AreProbabilitiesCorrect(std::vector<double> _probabilities)
-{
+bool Sample::AreProbabilitiesCorrect(std::vector<double> _probabilities){
 
     for (int i = 0; i < _probabilities.size(); i++)
     {
@@ -47,8 +43,7 @@ bool Sample::AreProbabilitiesCorrect(std::vector<double> _probabilities)
 
 }
 
-bool Sample::IsSampleCorrect(std::vector<double> _sample)
-{
+bool Sample::IsSampleCorrect(std::vector<double> _sample){
 
     for (int i = 0; i < _sample.size() - 1; i++)
     {
@@ -66,8 +61,7 @@ bool Sample::IsSampleCorrect(std::vector<double> _sample)
 }
 
 Sample::Sample(std::vector<double> _sample,
-               std::vector<double> _probabilities)
-{
+               std::vector<double> _probabilities){
 
     if (_sample.size() != _probabilities.size())
     {
@@ -98,11 +92,10 @@ Sample::Sample(std::vector<double> _sample,
 
 }
 
-Sample::~Sample()
-{}
+Sample::~Sample(){
+}
 
-Sample::Sample(const Sample& S)
-{
+Sample::Sample(const Sample& S){
 
     sample_size = S.sample_size;
     sample = S.sample;
@@ -110,8 +103,7 @@ Sample::Sample(const Sample& S)
 
 }
 
-Sample& Sample::operator=(const Sample& S)
-{
+Sample& Sample::operator=(const Sample& S){
 
     sample_size = S.sample_size;
     sample = S.sample;
@@ -120,8 +112,7 @@ Sample& Sample::operator=(const Sample& S)
     return *this;
 }
 
-bool Sample::operator==(const Sample& S) const
-{
+bool Sample::operator==(const Sample& S) const{
 
     if (sample_size < S.sample_size)
     {
@@ -140,29 +131,25 @@ bool Sample::operator==(const Sample& S) const
 
 }
 
-int Sample::GetSampleSize()
-{
+int Sample::GetSampleSize(){
 
     return sample_size;
 
 }
 
-vector<double> Sample::GetSample()
-{
+std::vector<double> Sample::GetSample(){
 
     return sample;
 
 }
 
-vector<double> Sample::GetProbabilities()
-{
+std::vector<double> Sample::GetProbabilities(){
 
     return probabilities;
 
 }
 
-double Sample::CalcMathematicalExpectation()
-{
+double Sample::CalcMathematicalExpectation(){
 
     double mathematical_expectation = 0.0;
 
@@ -176,8 +163,7 @@ double Sample::CalcMathematicalExpectation()
 }
 
 double Sample::CalcMoment(double relative_point,
-                          int exponent)
-{
+                          int exponent){
 
     double moment = 0.0;
 
@@ -191,8 +177,7 @@ double Sample::CalcMoment(double relative_point,
 
 }
 
-double Sample::CalcElementaryMoment(int exponent)
-{
+double Sample::CalcElementaryMoment(int exponent){
 
     double elementary_moment = 0.0;
 
@@ -205,8 +190,7 @@ double Sample::CalcElementaryMoment(int exponent)
     return elementary_moment;
 }
 
-double Sample::CalcDispersion()
-{
+double Sample::CalcDispersion(){
     double dispersion = 0.0;
     double mathematical_expectation = CalcMathematicalExpectation();
 
@@ -220,15 +204,13 @@ double Sample::CalcDispersion()
 
 }
 
-double Sample::CalcAverageQuadraticDeviation()
-{
+double Sample::CalcAverageQuadraticDeviation(){
 
     return sqrt(CalcDispersion());
 
 }
 
-double Sample::CalcCentralMoment(int exponent)
-{
+double Sample::CalcCentralMoment(int exponent){
 
     double central_moment = 0.0;
     double mathematical_expectation = CalcMathematicalExpectation();
