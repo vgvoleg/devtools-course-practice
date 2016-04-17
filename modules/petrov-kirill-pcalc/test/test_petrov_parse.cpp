@@ -8,7 +8,7 @@ TEST(Parse, can_parse_number) {
   // Arrange
   const int start = 1;
   const int finish = 5;
-  const char * argv = "3";
+  const char* argv = "3";
 
   // Act
   int result = Parse::number(argv, start, finish);
@@ -40,7 +40,7 @@ TEST(Parse, can_catch_the_exception_went_abroad) {
   // Arrange
   const int start = 1;
   const int finish = 5;
-  const char * argv = "6";
+  const char* argv = "6";
 
   // Act & Assert
   EXPECT_ANY_THROW(Parse::number(argv, start, finish));

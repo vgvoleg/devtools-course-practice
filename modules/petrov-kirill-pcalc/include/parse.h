@@ -13,7 +13,8 @@ enum TOperation { ADDITION, SUBTRACTION, COMPUTE, SUMMARIZE_ALL };
 
 class Parse {
  public:
-  static int number(const char* arg, const int lower, const int top);
+  static int number(const char* arg, const int lower = 0, const int top = 9);
+  static int number(const char arg);
   static tCoeff value(const char* arg);
   static TPolynom polynom(const string& arg);
   static TOperation operation(const string& arg);
