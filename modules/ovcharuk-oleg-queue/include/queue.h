@@ -27,8 +27,7 @@ class Queue {
     bool isFull(void);
 
  public:
-    Queue();
-    Queue(int DataCountM);
+    explicit Queue(int DataCountM = MemSize);
     ~Queue();
     int put(dataValue val, int pr);
     dataValue get(void);

@@ -16,9 +16,6 @@ bool Queue::isFull(void) {
         return false;
 }
 
-Queue::Queue()
-    : DataCountMax(MemSize), head(NULL), tail(NULL), DataCount(0) {}
-
 Queue::Queue(int DataCountM)
     : DataCountMax(DataCountM), head(NULL), tail(NULL), DataCount(0) {}
 
