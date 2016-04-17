@@ -168,7 +168,8 @@ TEST(Queue, can_find_min_elem) {
     Queue A;
     // Act
     for (int i = 0; i < 5; i++)
-        A.put(i, 1);
+        A.put(i + 10, 1);
+    A.put(0, 1);
     // Assert
     dataValue expected_res = 0;
     EXPECT_EQ(A.findMinElem(), expected_res);
@@ -211,8 +212,9 @@ TEST(Queue, can_find_min_with_higher_prior) {
         A.put((i+10), 1);
     for (int i = 0; i < 3; i++)
         A.put(i, 2);
+    A.put(6, 1);
     // Assert
-    dataValue expected_res = 10;
+    dataValue expected_res = 6;
     EXPECT_EQ(A.findMinElemHiPrior(), expected_res);
 }
 
