@@ -36,7 +36,6 @@ TEST(Polyakov_Igor_MatStatTest, Is_Handle_Incorrect_Sample) {
 
     // Arrange
 
-    int size_sample = 5;
     double mas_sample[5] = { 1.0, 3.0, 4.0, 1.0, 0.0 };
     double mas_probabilities[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
     vector<double> sample(mas_sample, mas_sample + 5);
@@ -51,7 +50,6 @@ TEST(Polyakov_Igor_MatStatTest, Is_Handle_Negative_Probability) {
 
     // Arrange
 
-    int size_sample = 5;
     double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
     double mas_probabilities[5] = { 0.2, 0.1, 0.3333, 0.1, -0.2667 };
     vector<double> sample(mas_sample, mas_sample + 5);
@@ -66,7 +64,6 @@ TEST(Polyakov_Igor_MatStatTest, Is_Handle_Summ_Probability_Not_Equal_One) {
 
     // Arrange
 
-    int size_sample = 5;
     double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
     double mas_probabilities[5] = { 0.2, 0.1, 0.3333, 0.1, 0.0 };
     vector<double> sample(mas_sample, mas_sample + 5);
@@ -81,8 +78,7 @@ TEST(Polyakov_Igor_MatStatTest, Is_Handle_Sizes_Sample_And_Prob_Differ) {
 
     // Arrange
 
-    int size_sample = 5;
-    double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0 };
+    double mas_sample[4] = { 1.0, 3.0, 4.0, -1.0 };
     double mas_probabilities[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
     vector<double> sample(mas_sample, mas_sample + 4);
     vector<double> probabilities(mas_probabilities, mas_probabilities + 5);
@@ -91,6 +87,76 @@ TEST(Polyakov_Igor_MatStatTest, Is_Handle_Sizes_Sample_And_Prob_Differ) {
 
     EXPECT_THROW(Sample(sample, probabilities),
                  IncorrectSizesOfSampleAndProbabilities);
+}
+
+TEST(Polyakov_Igor_MatStatTest, Can_Assign_Sample_With_Other_Size) {
+
+    // Arrange
+
+    double mas_sample_1[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
+    double mas_probabilities_1[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
+    vector<double> sample_1(mas_sample_1, mas_sample_1 + 5);
+    vector<double> probabilities_1(mas_probabilities_1, mas_probabilities_1 + 5);
+
+    double mas_sample_2[4] = { 1.0, 3.0, 4.0, -1.0};
+    double mas_probabilities_2[4] = { 0.2, 0.1, 0.3333, 0.3667};
+    vector<double> sample_2(mas_sample_2, mas_sample_2 + 4);
+    vector<double> probabilities_2(mas_probabilities_2, mas_probabilities_2 + 4);
+
+    Sample S_1(sample_1, probabilities_1);
+    Sample S_2(sample_2, probabilities_2);
+
+    // Act
+
+    S_2 = S_1;
+
+    // Assert
+
+    EXPECT_EQ(S_1, S_2);
+}
+
+TEST(Polyakov_Igor_MatStatTest, Are_Samples_With_Differ_Size_Inequal) {
+
+    // Arrange
+
+    double mas_sample_1[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
+    double mas_probabilities_1[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
+    vector<double> sample_1(mas_sample_1, mas_sample_1 + 5);
+    vector<double> probabilities_1(mas_probabilities_1, mas_probabilities_1 + 5);
+
+    double mas_sample_2[4] = { 1.0, 3.0, 4.0, -1.0};
+    double mas_probabilities_2[4] = { 0.2, 0.1, 0.3333, 0.3667 };
+    vector<double> sample_2(mas_sample_2, mas_sample_2 + 4);
+    vector<double> probabilities_2(mas_probabilities_2, mas_probabilities_2 + 4);
+
+    Sample S_1(sample_1, probabilities_1);
+    Sample S_2(sample_2, probabilities_2);
+
+    // Act & Assert
+
+    EXPECT_EQ(false, S_1 == S_2);
+}
+
+TEST(Polyakov_Igor_MatStatTest, Are_Samples_With_Differ_Prob_Inequal) {
+
+    // Arrange
+
+    double mas_sample_1[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
+    double mas_probabilities_1[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
+    vector<double> sample_1(mas_sample_1, mas_sample_1 + 5);
+    vector<double> probabilities_1(mas_probabilities_1, mas_probabilities_1 + 5);
+
+    double mas_sample_2[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
+    double mas_probabilities_2[5] = { 0.2, 0.1, 0.2667, 0.1, 0.3333 };
+    vector<double> sample_2(mas_sample_2, mas_sample_2 + 5);
+    vector<double> probabilities_2(mas_probabilities_2, mas_probabilities_2 + 5);
+
+    Sample S_1(sample_1, probabilities_1);
+    Sample S_2(sample_2, probabilities_2);
+
+    // Act & Assert
+
+    EXPECT_EQ(false, S_1 == S_2);
 }
 
 TEST(Polyakov_Igor_MatStatTest, Is_Calc_Mathematical_Expectation_Correct) {

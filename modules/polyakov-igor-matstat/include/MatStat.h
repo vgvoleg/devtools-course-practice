@@ -53,6 +53,7 @@ public:
     Sample(const Sample& S);
 
     Sample& operator=(const Sample& S);
+    bool operator==(const Sample& S) const;
 
     int GetSampleSize();
     vector<double> GetSample();

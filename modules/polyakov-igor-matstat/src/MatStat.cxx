@@ -113,17 +113,31 @@ Sample::Sample(const Sample& S)
 Sample& Sample::operator=(const Sample& S)
 {
 
-    if (sample_size < S.sample_size)
-    {
-        probabilities.~vector();
-        sample.~vector();
-    }
-
     sample_size = S.sample_size;
     sample = S.sample;
     probabilities = S.probabilities;
 
     return *this;
+}
+
+bool Sample::operator==(const Sample& S) const
+{
+
+    if (sample_size < S.sample_size)
+    {
+        return false;
+    }
+
+    for (int i = 0; i < sample_size; i++)
+    {
+        if (sample[i] != S.sample[i] || probabilities[i] != S.probabilities[i])
+        {
+            return false;
+        }
+    }
+
+    return true;
+
 }
 
 int Sample::GetSampleSize()
