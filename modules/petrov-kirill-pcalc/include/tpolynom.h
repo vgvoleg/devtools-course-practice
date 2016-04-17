@@ -9,16 +9,16 @@
 #include <list>
 
 class TPolynom : public std::list <TMonom> {
-public:
-  TPolynom ();
-  TPolynom (const tCoeff monoms[][2], const int length);
-  TPolynom (const TPolynom& tpolynom);
+ public:
+  TPolynom();
+  TPolynom(const tCoeff monoms[][2], const int length);
+  TPolynom(const TPolynom& tpolynom);
 
-  TPolynom operator+  (const TPolynom& tpolynom) const;
-  TPolynom operator-  (const TPolynom& tpolynom) const;
-  tCoeff   operator() (const tCoeff x = 0, const tCoeff y = 0, const tCoeff z = 0) const;
+  TPolynom operator+ (const TPolynom& tpolynom) const;
+  TPolynom operator- (const TPolynom& tpolynom) const;
+  tCoeff operator() (const tCoeff x = 0, const tCoeff y = 0, const tCoeff z = 0) const;
 
-  friend std::ostream& operator<<(std::ostream& os, const TPolynom& q);
+  friend std::ostream& operator<<(std::ostream& os, const TPolynom& polynom);
   
   void regulation(void);
 };

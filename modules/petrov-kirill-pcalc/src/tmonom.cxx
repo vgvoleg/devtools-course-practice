@@ -1,8 +1,10 @@
 // Copyright 2016 Petrov Kirill
 
 #include "include/tmonom.h"
-#include <limits>
+
 #include <math.h>
+
+#include <limits>
 #include <string>
 
 const double TMonom::eps = std::numeric_limits<double>::epsilon();

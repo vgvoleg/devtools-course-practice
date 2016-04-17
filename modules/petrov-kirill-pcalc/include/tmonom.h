@@ -10,32 +10,32 @@ typedef double tCoeff;
 typedef TMonom* PTMonom;
 
 class TMonom {
-public:
+ public:
   TMonom (tCoeff coeff = 0.0, int index = 0);
   
-  TMonom& operator=   (const TMonom &monom);
-  bool    operator==  (const TMonom &monom) const;
-  bool    operator!=  (const TMonom &monom) const;
-  bool    operator<   (const TMonom &monom) const;
-  bool    operator>   (const TMonom &monom) const;
-  TMonom  operator+   (const TMonom &monom) const;
-  TMonom  operator-   (const TMonom &monom) const;
+  TMonom& operator=(const TMonom &monom);
+  bool operator==(const TMonom &monom) const;
+  bool operator!=(const TMonom &monom) const;
+  bool operator<(const TMonom &monom) const;
+  bool operator>(const TMonom &monom) const;
+  TMonom operator+(const TMonom &monom) const;
+  TMonom operator-(const TMonom &monom) const;
 
   friend  std::ostream& operator<<(std::ostream& os, const TMonom& monom);
 
-  bool   comparisonIndex   (const TMonom &monom) const;
-  void   comparisionBack   (void);
-  tCoeff comparisionValue  (const tCoeff x, const tCoeff y, const tCoeff z) const;
+  bool comparisonIndex(const TMonom &monom) const;
+  void comparisionBack(void);
+  tCoeff comparisionValue(const tCoeff x, const tCoeff y, const tCoeff z) const;
 
-  bool   isPositiveCoeff   (void) const;
-  bool   equalsZero        (void) const;
+  bool isPositiveCoeff(void) const;
+  bool equalsZero(void) const;
 
-  PTMonom getCopyMonom     (void) const;
+  PTMonom getCopyMonom(void) const;
   
-private:
+ private:
   static const double eps;
   tCoeff coeff_;  
-  int    index_;    
+  int index_;    
 };
 
 #endif //  MODULES_PETROV_KIRILL_PCALC_INCLUDE_TMONOM_H_

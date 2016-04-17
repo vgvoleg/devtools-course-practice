@@ -11,11 +11,11 @@
 using std::string;
 
 class PolynomCalculator {
-public:
+ public:
   PolynomCalculator();
   string operator()(int argc, const char** argv);
 
-private:
+ private:
   void help(const char* appname);
 
   static const int MINPOLYNOMS = 1;
