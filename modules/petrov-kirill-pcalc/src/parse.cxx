@@ -11,56 +11,61 @@ using std::vector;
 TPolynom Parse::polynom(const string &arg) {
   TPolynom polynom;
 
+  string str = "";
+
   int index;
   tCoeff coeff;
   PTMonom pmonom;
 
   string monom;
   vector<string> monoms;
-  
+
   string buf;
   const string delim_string("+-");
 
   string::size_type beg_idx = 0;
   string::size_type end_idx = 0;
 
-  if (arg.find_first_of(delim_string, end_idx) == string::npos)
-	  monoms.push_back(arg);
-  else {
-	  while (string::npos != (beg_idx = arg.find_first_not_of(delim_string, end_idx))) {
-		  monom = arg[arg.find_first_of(delim_string, end_idx)];
-		  if (string::npos == (end_idx = arg.find_first_of(delim_string, beg_idx)))
-			  monom += arg.substr(beg_idx);
-		  else
-			  monom += arg.substr(beg_idx, end_idx - beg_idx);
-		  monoms.push_back(monom);
-	  }
+  if (arg[0] !='-' && isdigit(arg[0]))
+    str+="+";
+  str += arg;
+  if (arg.find_first_of(delim_string, end_idx) == string::npos) {
+    monoms.push_back(arg);
+  } else {
+    while (string::npos != (beg_idx =
+         str.find_first_not_of(delim_string, end_idx))) {
+      monom = str[str.find_first_of(delim_string, end_idx)];
+      if (string::npos == (end_idx = str.find_first_of(delim_string, beg_idx)))
+        monom += str.substr(beg_idx);
+      else
+        monom += str.substr(beg_idx, end_idx - beg_idx);
+      monoms.push_back(monom);
+    }
   }
-   try {
-	  string::size_type pos = 0;
-	  for (auto mon : monoms) {
+  try {
+    string::size_type pos = 0;
+    for (auto mon : monoms) {
+      pos = mon.find("x^");
+      buf = mon.substr(0, pos);
 
-		  pos = mon.find("x^");
-		  buf = mon.substr(0, pos);
+      coeff = Parse::value(buf.c_str());
 
-		  coeff = Parse::value(buf.c_str());
+      index = Parse::number(mon[pos + 2]) * 100;
 
-		  index = Parse::number(mon[pos + 2]) * 100;
+      pos = mon.find("y^");
+      index += Parse::number(mon[pos + 2]) * 10;
 
-		  pos = mon.find("y^");
-		  index += Parse::number(mon[pos + 2]) * 10;
+      pos = mon.find("z^");
+      index += Parse::number(mon[pos + 2]) * 1;
 
-		  pos = mon.find("z^");
-		  index += Parse::number(mon[pos + 2]) * 1;
-
-		  pmonom = new TMonom(coeff, index);
-		  polynom.push_back(*pmonom);
-	  }
+      pmonom = new TMonom(coeff, index);
+      polynom.push_back(*pmonom);
+    }
   }
-	catch (string) {
-	  throw string("Wrong polynoms format!");
-	}
-    polynom.regulation();
+  catch (string) {
+    throw string("Wrong polynoms format!");
+  }
+  polynom.regulation();
   return polynom;
 }
 
@@ -88,11 +93,11 @@ int Parse::number(const char* arg, const int lower, const int top) {
 }
 
 int Parse::number(const char arg) {
-	int number = -1;
-	if (!isdigit(arg)) throw string("Wrong number!");
-	else
-		number = arg - '0';
-	return number;
+  int number = -1;
+  if (!isdigit(arg)) throw string("Wrong number!");
+  else
+    number = arg - '0';
+  return number;
 }
 
 tCoeff Parse::value(const char* arg) {

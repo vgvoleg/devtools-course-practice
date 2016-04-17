@@ -64,15 +64,14 @@ std::ostream& operator<<(std::ostream& os, const TMonom& monom) {
   auto covertIndex = [](const int index) {
     int tmp;
     std::string result;
-    if (tmp = index / 100)
+    if ((tmp = index / 100) != 0)
       result += tmp > 1 ? "x^" + std::to_string(tmp) : "x";
-    if (tmp = index % 100 / 10)
+    if ((tmp = index % 100 / 10) != 0)
       result += tmp > 1 ? "y^" + std::to_string(tmp) : "y";
-    if (tmp = index % 10)
+    if ((tmp = index % 10) != 0)
       result += tmp > 1 ? "z^" + std::to_string(tmp) : "z";
     return result;
   };
-
   os << monom.coeff_ << covertIndex(monom.index_);
   return os;
 }
