@@ -7,32 +7,32 @@ TEST(Queue, cant_create_queue_with_incorrect_size) {
     // Arrange
     // Act
     // Assert
-    EXPECT_ANY_THROW(Queue A(-1));
+    EXPECT_ANY_THROW(Queue Q(-1));
 }
 
 TEST(Queue, can_create_queue_with_correct_size) {
     // Arrange
     // Act
     // Assert
-    EXPECT_NO_THROW(Queue A(5));
-    EXPECT_NO_THROW(Queue B);
+    EXPECT_NO_THROW(Queue Q1(5));
+    EXPECT_NO_THROW(Queue Q2);
 }
 
 TEST(Queue, can_add_element) {
     // Arrange
-    Queue A;
+    Queue Q;
     // Act
     // Assert
-    EXPECT_EQ(A.put(20, 1), DATA_OK);
+    EXPECT_EQ(Q.put(20, 1), DATA_OK);
 }
 
 TEST(Queue, can_add_several_elements) {
     // Arrange
-    Queue A;
+    Queue Q;
     // Act
     bool expect = true;
     for (int i = 0; i < 5; i++) {
-        if (A.put(i, 1) == FULL_QUEUE)
+        if (Q.put(i, 1) == FULL_QUEUE)
             expect = false;
     }
     // Assert
@@ -41,60 +41,60 @@ TEST(Queue, can_add_several_elements) {
 
 TEST(Queue, cant_add_elem_into_full_queue) {
     // Arrange
-    Queue A(5);
+    Queue Q(5);
     // Act
     for (int i = 0; i < 5; i++)
-        A.put(i, 1);
+        Q.put(i, 1);
     // Assert
-    EXPECT_EQ(A.put(5, 1), FULL_QUEUE);
+    EXPECT_EQ(Q.put(5, 1), FULL_QUEUE);
 }
 
 TEST(Queue, cant_add_elem_with_incorect_priority) {
     // Arrange
-    Queue A;
+    Queue Q;
     // Act
     // Assert
-    EXPECT_ANY_THROW(A.put(10, -1));
+    EXPECT_ANY_THROW(Q.put(10, -1));
 }
 
 TEST(Queue, can_correct_add_elem_with_hi_prior_to_the_begin) {
     // Arrange
-    Queue A(5);
+    Queue Q(5);
     // Act
-    A.put(10, 2);
-    A.put(11, 2);
-    A.put(9, 1);
+    Q.put(10, 2);
+    Q.put(11, 2);
+    Q.put(9, 1);
     // Assert
     dataValue expected_res = 9;
-    EXPECT_EQ(A.get(), expected_res);
+    EXPECT_EQ(Q.get(), expected_res);
 }
 
 TEST(Queue, can_correct_add_elem_with_higher_priority_to_the_mid) {
     // Arrange
-    Queue A(5);
+    Queue Q(5);
     // Act
-    A.put(1, 1);
-    A.put(3, 3);
-    A.put(2, 2);
+    Q.put(1, 1);
+    Q.put(3, 3);
+    Q.put(2, 2);
     // Assert
     dataValue expected_res1 = 1;
     dataValue expected_res2 = 2;
-    EXPECT_EQ(A.get(), expected_res1);
-    EXPECT_EQ(A.get(), expected_res2);
+    EXPECT_EQ(Q.get(), expected_res1);
+    EXPECT_EQ(Q.get(), expected_res2);
 }
 
 TEST(Queue, can_correct_work_with_priorities) {
     // Arrange
-    Queue A(5);
+    Queue Q(5);
     // Act
-    A.put(3, 3);
-    A.put(4, 4);
-    A.put(1, 1);
-    A.put(2, 2);
-    A.put(5, 5);
+    Q.put(3, 3);
+    Q.put(4, 4);
+    Q.put(1, 1);
+    Q.put(2, 2);
+    Q.put(5, 5);
     bool expect = true;
     for (int i = 0; i < 5; i++)
-        if (A.get() != (i + 1))
+        if (Q.get() != (i + 1))
             expect = false;
     // Assert
     EXPECT_TRUE(expect);
@@ -102,193 +102,193 @@ TEST(Queue, can_correct_work_with_priorities) {
 
 TEST(Queue, can_correct_get_elem) {
     // Arrange
-    Queue A;
+    Queue Q;
     // Act
-    A.put(10, 1);
-    A.put(20, 1);
+    Q.put(10, 1);
+    Q.put(20, 1);
     // Assert
     dataValue expected_res = 10;
-    EXPECT_EQ(A.get(), expected_res);
+    EXPECT_EQ(Q.get(), expected_res);
 }
 
 TEST(Queue, can_correct_get_several_elems) {
     // Arrange
-    Queue A;
+    Queue Q;
     // Act
-    A.put(1, 1);
-    A.put(2, 1);
-    A.put(3, 1);
+    Q.put(1, 1);
+    Q.put(2, 1);
+    Q.put(3, 1);
     // Assert
     dataValue expected_res1 = 1;
     dataValue expected_res2 = 2;
-    EXPECT_EQ(A.get(), expected_res1);
-    EXPECT_EQ(A.get(), expected_res2);
+    EXPECT_EQ(Q.get(), expected_res1);
+    EXPECT_EQ(Q.get(), expected_res2);
 }
 
 TEST(Queue, cant_get_elem_from_empty_queue) {
     // Arrange
-    Queue A;
+    Queue Q;
     // Act
     // Assert
-    EXPECT_EQ(A.get(), EMPTY_QUEUE);
+    EXPECT_EQ(Q.get(), EMPTY_QUEUE);
 }
 
 TEST(Queue, can_delete_queue) {
     // Arrange
-    Queue A;
+    Queue Q;
     // Act
     for (int i = 0; i < MEM_SIZE; i++)
-        A.put(i, 1);
-    A.~Queue();
+        Q.put(i, 1);
+    Q.~Queue();
     // Assert
-    EXPECT_EQ(A.get(), EMPTY_QUEUE);
+    EXPECT_EQ(Q.get(), EMPTY_QUEUE);
 }
 
 TEST(Queue, can_find_max_elem) {
     // Arrange
-    Queue A;
+    Queue Q;
     // Act
     for (int i = 0; i < 5; i++)
-        A.put(i, 1);
+        Q.put(i, 1);
     // Assert
     dataValue expected_res = 4;
-    EXPECT_EQ(A.findMaxElem(), expected_res);
+    EXPECT_EQ(Q.findMaxElem(), expected_res);
 }
 
 TEST(Queue, cant_find_max_in_empty_queue) {
     // Arrange
-    Queue A;
+    Queue Q;
     // Act
     // Assert
-    EXPECT_EQ(A.findMaxElem(), EMPTY_QUEUE);
+    EXPECT_EQ(Q.findMaxElem(), EMPTY_QUEUE);
 }
 
 TEST(Queue, can_find_min_elem) {
     // Arrange
-    Queue A;
+    Queue Q;
     // Act
     for (int i = 0; i < 5; i++)
-        A.put(i + 10, 1);
-    A.put(0, 1);
+        Q.put(i + 10, 1);
+    Q.put(0, 1);
     // Assert
     dataValue expected_res = 0;
-    EXPECT_EQ(A.findMinElem(), expected_res);
+    EXPECT_EQ(Q.findMinElem(), expected_res);
 }
 
 TEST(Queue, cant_find_min_in_empty_queue) {
     // Arrange
-    Queue A;
+    Queue Q;
     // Act
     // Assert
-    EXPECT_EQ(A.findMinElem(), EMPTY_QUEUE);
+    EXPECT_EQ(Q.findMinElem(), EMPTY_QUEUE);
 }
 
 TEST(Queue, can_find_max_with_higher_prior) {
     // Arrange
-    Queue A;
+    Queue Q;
     // Act
     for (int i = 0; i < 3; i++)
-        A.put(i, 1);
+        Q.put(i, 1);
     for (int i = 0; i < 3; i++)
-        A.put((i + 10), 2);
+        Q.put((i + 10), 2);
     // Assert
     dataValue expected_res = 2;
-    EXPECT_EQ(A.findMaxElemHiPrior(), expected_res);
+    EXPECT_EQ(Q.findMaxElemHiPrior(), expected_res);
 }
 
 TEST(Queue, cant_find_max_with_hi_pr_in_empty_queue) {
     // Arrange
-    Queue A;
+    Queue Q;
     // Act
     // Assert
-    EXPECT_EQ(A.findMaxElemHiPrior(), EMPTY_QUEUE);
+    EXPECT_EQ(Q.findMaxElemHiPrior(), EMPTY_QUEUE);
 }
 
 TEST(Queue, can_find_min_with_higher_prior) {
     // Arrange
-    Queue A;
+    Queue Q;
     // Act
     for (int i = 0; i < 3; i++)
-        A.put((i+10), 1);
+        Q.put((i+10), 1);
     for (int i = 0; i < 3; i++)
-        A.put(i, 2);
-    A.put(6, 1);
+        Q.put(i, 2);
+    Q.put(6, 1);
     // Assert
     dataValue expected_res = 6;
-    EXPECT_EQ(A.findMinElemHiPrior(), expected_res);
+    EXPECT_EQ(Q.findMinElemHiPrior(), expected_res);
 }
 
 TEST(Queue, cant_find_min_with_hi_pr_in_empty_queue) {
     // Arrange
-    Queue A;
+    Queue Q;
     // Act
     // Assert
-    EXPECT_EQ(A.findMinElemHiPrior(), EMPTY_QUEUE);
+    EXPECT_EQ(Q.findMinElemHiPrior(), EMPTY_QUEUE);
 }
 
 TEST(Queue, can_find_max_with_set_prior) {
     // Arrange
-    Queue A;
+    Queue Q;
     // Act
     for (int i = 0; i < 3; i++)
-        A.put(i, 1);
+        Q.put(i, 1);
     for (int i = 0; i < 3; i++)
-        A.put(i + 10, 2);
+        Q.put(i + 10, 2);
     // Assert
     dataValue expected_res1 = 2;
     dataValue expected_res2 = 12;
-    EXPECT_EQ(A.findMaxElemSetPrior(1), expected_res1);
-    EXPECT_EQ(A.findMaxElemSetPrior(2), expected_res2);
+    EXPECT_EQ(Q.findMaxElemSetPrior(1), expected_res1);
+    EXPECT_EQ(Q.findMaxElemSetPrior(2), expected_res2);
 }
 
 TEST(Queue, cant_find_max_with_set_prior_in_empty_q) {
     // Arrange
-    Queue A;
+    Queue Q;
     // Act
     // Assert
-    EXPECT_EQ(A.findMaxElemSetPrior(1), EMPTY_QUEUE);
+    EXPECT_EQ(Q.findMaxElemSetPrior(1), EMPTY_QUEUE);
 }
 
 TEST(Queue, cant_find_max_with_incorrect_prior) {
     // Arrange
-    Queue A;
+    Queue Q;
     // Act
     for (int i = 0; i < 10; i++)
-        A.put(i, 1);
+        Q.put(i, 1);
     // Assert
-    EXPECT_ANY_THROW(A.findMaxElemSetPrior(2));
+    EXPECT_ANY_THROW(Q.findMaxElemSetPrior(2));
 }
 
 TEST(Queue, can_find_min_with_set_prior) {
     // Arrange
-    Queue A;
+    Queue Q;
     // Act
     for (int i = 0; i < 3; i++)
-        A.put(i, 1);
+        Q.put(i, 1);
     for (int i = 0; i < 3; i++)
-        A.put(i + 10, 2);
-    A.put(5, 2);
+        Q.put(i + 10, 2);
+    Q.put(5, 2);
     // Assert
     dataValue expected_res1 = 0;
     dataValue expected_res2 = 5;
-    EXPECT_EQ(A.findMinElemSetPrior(1), expected_res1);
-    EXPECT_EQ(A.findMinElemSetPrior(2), expected_res2);
+    EXPECT_EQ(Q.findMinElemSetPrior(1), expected_res1);
+    EXPECT_EQ(Q.findMinElemSetPrior(2), expected_res2);
 }
 
 TEST(Queue, cant_find_min_with_set_prior_in_empty_q) {
     // Arrange
-    Queue A;
+    Queue Q;
     // Act
     // Assert
-    EXPECT_EQ(A.findMinElemSetPrior(1), EMPTY_QUEUE);
+    EXPECT_EQ(Q.findMinElemSetPrior(1), EMPTY_QUEUE);
 }
 
 TEST(Queue, cant_find_min_with_incorrect_prior) {
     // Arrange
-    Queue A;
+    Queue Q;
     // Act
     for (int i = 0; i < 10; i++)
-        A.put(i, 3);
+        Q.put(i, 3);
     // Assert
-    EXPECT_ANY_THROW(A.findMinElemSetPrior(-1));
+    EXPECT_ANY_THROW(Q.findMinElemSetPrior(-1));
 }
