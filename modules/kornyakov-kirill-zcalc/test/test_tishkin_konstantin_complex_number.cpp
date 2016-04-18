@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 
-#include <include/complex_number.h>
+#include "include/complex_number.h"
 
 TEST(Tishkin_Kostya_ComplexNumberTest, Can_create_twin) {
     // Arrange
