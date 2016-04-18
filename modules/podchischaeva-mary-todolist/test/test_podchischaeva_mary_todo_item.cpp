@@ -13,6 +13,9 @@ TEST(TODOitem, Can_Create) {
 
     // Assert
     EXPECT_NE(nullptr, item);
+
+    // Free memory
+    delete item;
 }
 
 TEST(TODOitem, Can_Priority_Set_Get) {
