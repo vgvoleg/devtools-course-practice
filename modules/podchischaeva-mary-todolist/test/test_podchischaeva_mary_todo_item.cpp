@@ -124,3 +124,42 @@ TEST(TODOitem, Can_Compare_Items_Priority) {
     // Assert
     EXPECT_FALSE(item1 == item2);
 }
+
+TEST(TODOitem, Returns_Error_Code_When_Inc_Invalid_Priority) {
+    // Arrange
+    TODOitem item1;
+    int err;
+
+    // Act
+    item1.setPriority(0);
+    err = item1.increasePriority();
+
+    // Assert
+    EXPECT_NE(0, err);
+}
+
+TEST(TODOitem, Returns_Error_Code_When_Dec_Invalid_Priority) {
+    // Arrange
+    TODOitem item1;
+    int err;
+
+    // Act
+    item1.setPriority(5);
+    err = item1.decreasePriority();
+
+    // Assert
+    EXPECT_NE(0, err);
+}
+
+TEST(TODOitem, Returns_Error_Code_When_Set_Invalid_Priority) {
+    // Arrange
+    TODOitem item1;
+    int err;
+
+    // Act
+    err = item1.setPriority(100500);
+
+    // Assert
+    EXPECT_NE(0, err);
+}
+

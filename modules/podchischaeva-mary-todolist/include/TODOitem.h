@@ -20,7 +20,7 @@ class TODOitem {
     TODOitem();
 
     int getPriority() const;
-    void setPriority(int value);
+    int setPriority(int value);
 
     string getTitle() const;
     void setTitle(string value);
@@ -28,10 +28,11 @@ class TODOitem {
     string getText() const;
     void setText(string value);
 
-    void increasePriority();
-    void decreasePriority();
+    int increasePriority();
+    int decreasePriority();
 
     bool operator==(const TODOitem &a) const;
+    static bool priorityCompare(const TODOitem &l, const TODOitem &r);
 
     ~TODOitem();
 };

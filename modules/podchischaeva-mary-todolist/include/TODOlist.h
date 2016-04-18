@@ -22,6 +22,7 @@ class TODOlist {
     TODOitem getItem(size_t pos);
     vector<TODOitem> getAll();
     vector<TODOitem> getByPriority(int priority);
+    vector<TODOitem> sortByPriority();
 
     int search(string title);
 

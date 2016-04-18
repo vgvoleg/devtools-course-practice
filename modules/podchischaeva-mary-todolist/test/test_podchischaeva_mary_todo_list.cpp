@@ -7,6 +7,7 @@
 #include "TODOlist.h"
 
 using std::vector;
+using std::out_of_range;
 
 TEST(TODOlist, Can_Create) {
     // Arrange
@@ -73,7 +74,7 @@ TEST(TODOlist, Throws_When_Get_By_Invalid_Pos) {
     TODOlist list;
 
     // Act & Assert
-    EXPECT_THROW(list.getItem(100500), std::out_of_range);
+    EXPECT_THROW(list.getItem(100500), out_of_range);
 }
 
 TEST(TODOlist, Can_Get_All) {
@@ -94,11 +95,6 @@ TEST(TODOlist, Can_Get_All) {
     temp.setTitle("gik");
     list.addItem(temp);
     v.push_back(temp);
-
-    EXPECT_TRUE(list.getItem(0) == v[0]);
-    EXPECT_TRUE(list.getItem(1) == v[1]);
-    EXPECT_TRUE(list.getItem(2) == v[2]);
-    EXPECT_TRUE(list.getAll() == v);
 
     // Assert
     EXPECT_EQ(list.getAll(), v);
@@ -193,5 +189,28 @@ TEST(TODOlist, Throws_When_Delete_By_Invalid_Pos) {
     list.addItem("abc");
 
     // Act & Assert
-    EXPECT_THROW(list.deleteItem(100500), std::out_of_range);
+    EXPECT_THROW(list.deleteItem(100500), out_of_range);
+}
+
+TEST(TODOlist, Can_Sort_By_Priority) {
+    // Arrange
+    TODOlist list;
+    TODOitem temp1;
+    TODOitem temp2;
+    vector<TODOitem> v;
+
+    // Act
+    temp1.setTitle("abc");
+    temp1.setPriority(0);
+
+    temp2.setTitle("def");
+    temp2.setPriority(5);
+
+    list.addItem(temp2);
+    list.addItem(temp1);
+    v.push_back(temp1);
+    v.push_back(temp2);
+
+    // Assert
+    EXPECT_EQ(list.sortByPriority(), v);
 }

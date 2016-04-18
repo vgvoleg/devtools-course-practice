@@ -18,9 +18,12 @@ int TODOitem::getPriority() const {
     return this->priority;
 }
 
-void TODOitem::setPriority(int value) {
+int TODOitem::setPriority(int value) {
     if (value >= MIN_PRIORITY_VALUE && value <= MAX_PRIORITY_VALUE) {
         this->priority = value;
+        return 0;
+    } else {
+        return -1;
     }
 }
 
@@ -40,15 +43,21 @@ string TODOitem::getText() const {
     return this->text;
 }
 
-void TODOitem::increasePriority() {
+int TODOitem::increasePriority() {
     if (this->priority > MIN_PRIORITY_VALUE) {
         this->priority--;
+        return 0;
+    } else {
+        return -1;
     }
 }
 
-void TODOitem::decreasePriority() {
+int TODOitem::decreasePriority() {
     if (this->priority < MAX_PRIORITY_VALUE) {
         this->priority++;
+        return 0;
+    } else {
+        return -1;
     }
 }
 
@@ -64,5 +73,10 @@ bool TODOitem::operator==(const TODOitem &a) const {
     }
 }
 
+bool TODOitem::priorityCompare(const TODOitem &l, const TODOitem &r) {
+    return (l.priority < r.priority);
+}
+
 TODOitem::~TODOitem() {
 }
+
