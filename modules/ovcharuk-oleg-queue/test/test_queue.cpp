@@ -5,30 +5,26 @@
 
 TEST(Queue, cant_create_queue_with_incorrect_size) {
     // Arrange
-    // Act
-    // Assert
+    // Act & Assert
     EXPECT_ANY_THROW(Queue Q(-1));
 }
 
 TEST(Queue, can_create_queue_with_correct_size_with_param) {
     // Arrange
-    // Act
-    // Assert
+    // Act & Assert
     EXPECT_NO_THROW(Queue Q1(5));
 }
 
 TEST(Queue, can_create_queue_with_correct_size_without_param) {
     // Arrange
-    // Act
-    // Assert
+    // Act & Assert
     EXPECT_NO_THROW(Queue Q2);
 }
 
 TEST(Queue, can_add_element) {
     // Arrange
     Queue Q;
-    // Act
-    // Assert
+    // Act & Assert
     EXPECT_EQ(Q.put(20, 1), DATA_OK);
 }
 
@@ -58,8 +54,7 @@ TEST(Queue, cant_add_elem_into_full_queue) {
 TEST(Queue, cant_add_elem_with_incorect_priority) {
     // Arrange
     Queue Q;
-    // Act
-    // Assert
+    // Act & Assert
     EXPECT_ANY_THROW(Q.put(10, -1));
 }
 
@@ -134,8 +129,7 @@ TEST(Queue, can_correct_get_several_elems) {
 TEST(Queue, cant_get_elem_from_empty_queue) {
     // Arrange
     Queue Q;
-    // Act
-    // Assert
+    // Act & Assert
     EXPECT_EQ(Q.get(), EMPTY_QUEUE);
 }
 
@@ -184,8 +178,7 @@ TEST(Queue, can_find_min_elem) {
 TEST(Queue, cant_find_min_in_empty_queue) {
     // Arrange
     Queue Q;
-    // Act
-    // Assert
+    // Act & Assert
     EXPECT_EQ(Q.findMinElem(), EMPTY_QUEUE);
 }
 
@@ -205,8 +198,7 @@ TEST(Queue, can_find_max_with_higher_prior) {
 TEST(Queue, cant_find_max_with_hi_pr_in_empty_queue) {
     // Arrange
     Queue Q;
-    // Act
-    // Assert
+    // Act & Assert
     EXPECT_EQ(Q.findMaxElemHiPrior(), EMPTY_QUEUE);
 }
 
@@ -227,8 +219,7 @@ TEST(Queue, can_find_min_with_higher_prior) {
 TEST(Queue, cant_find_min_with_hi_pr_in_empty_queue) {
     // Arrange
     Queue Q;
-    // Act
-    // Assert
+    // Act & Assert
     EXPECT_EQ(Q.findMinElemHiPrior(), EMPTY_QUEUE);
 }
 
@@ -250,8 +241,7 @@ TEST(Queue, can_find_max_with_set_prior) {
 TEST(Queue, cant_find_max_with_set_prior_in_empty_q) {
     // Arrange
     Queue Q;
-    // Act
-    // Assert
+    // Act & Assert
     EXPECT_EQ(Q.findMaxElemSetPrior(1), EMPTY_QUEUE);
 }
 
@@ -284,8 +274,7 @@ TEST(Queue, can_find_min_with_set_prior) {
 TEST(Queue, cant_find_min_with_set_prior_in_empty_q) {
     // Arrange
     Queue Q;
-    // Act
-    // Assert
+    // Act & Assert
     EXPECT_EQ(Q.findMinElemSetPrior(1), EMPTY_QUEUE);
 }
 
