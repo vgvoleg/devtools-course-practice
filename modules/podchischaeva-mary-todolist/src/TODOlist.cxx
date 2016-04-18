@@ -96,6 +96,7 @@ void TODOlist::load(string filename) {
         item.setText(line2);
         data[i] = item;
     }
+    file.close();
 }
 
 void TODOlist::deleteItem(size_t pos) {
