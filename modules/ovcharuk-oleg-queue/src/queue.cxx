@@ -2,14 +2,14 @@
 
 #include <include/queue.h>
 
-bool Queue::isEmpty(void) {
+bool Queue::isEmpty(void) const {
     if (head && tail)
         return false;
     else
         return true;
 }
 
-bool Queue::isFull(void) {
+bool Queue::isFull(void) const {
     if (DataCount == DataCountMax)
         return true;
     else
@@ -37,7 +37,7 @@ int Queue::put(dataValue val, int pr) {
         throw "Incorrect priority!";
     } else {
         if (isFull()) {
-            return FullQueue;
+            return FULL_QUEUE;
         } else {
             Node* tmp = new Node;
             tmp->value = val;
@@ -47,7 +47,7 @@ int Queue::put(dataValue val, int pr) {
                 tmp->prev = NULL;
                 head = tail = tmp;
                 DataCount++;
-                return DataOK;
+                return DATA_OK;
             } else {
                 Node* srch = head;
                 bool mark = true;
@@ -64,7 +64,7 @@ int Queue::put(dataValue val, int pr) {
                     tmp->next = NULL;
                     tail = tmp;
                     DataCount++;
-                    return DataOK;
+                    return DATA_OK;
                 } else {
                     if (srch->prev) {
                         srch->prev->next = tmp;
@@ -72,14 +72,14 @@ int Queue::put(dataValue val, int pr) {
                         tmp->prev = srch->prev;
                         srch->prev = tmp;
                         DataCount++;
-                        return DataOK;
+                        return DATA_OK;
                     } else {
                         head = tmp;
                         srch->prev = tmp;
                         tmp->next = srch;
                         tmp->prev = NULL;
                         DataCount++;
-                        return DataOK;
+                        return DATA_OK;
                     }
                 }
             }
@@ -87,9 +87,9 @@ int Queue::put(dataValue val, int pr) {
     }
 }
 
-int Queue::get(void) {
+dataValue Queue::get(void) {
     if (isEmpty()) {
-        return EmptyQueue;
+        return EMPTY_QUEUE;
     } else {
         Node* tmp = head;
         dataValue elem = tmp->value;
@@ -104,9 +104,9 @@ int Queue::get(void) {
     }
 }
 
-dataValue Queue::findMaxElem(void) {
+dataValue Queue::findMaxElem(void) const {
     if (isEmpty()) {
-        return EmptyQueue;
+        return EMPTY_QUEUE;
     } else {
         Node* tmp = head;
         dataValue max = tmp->value;
@@ -119,9 +119,9 @@ dataValue Queue::findMaxElem(void) {
     }
 }
 
-dataValue Queue::findMinElem(void) {
+dataValue Queue::findMinElem(void) const {
     if (isEmpty()) {
-        return EmptyQueue;
+        return EMPTY_QUEUE;
     } else {
         Node* tmp = head;
         dataValue min = tmp->value;
@@ -134,9 +134,9 @@ dataValue Queue::findMinElem(void) {
     }
 }
 
-dataValue Queue::findMaxElemHiPrior(void) {
+dataValue Queue::findMaxElemHiPrior(void) const {
     if (isEmpty()) {
-        return EmptyQueue;
+        return EMPTY_QUEUE;
     } else {
         int hiPrior = head->priority;
         Node* tmp = head;
@@ -150,9 +150,9 @@ dataValue Queue::findMaxElemHiPrior(void) {
     }
 }
 
-dataValue Queue::findMinElemHiPrior(void) {
+dataValue Queue::findMinElemHiPrior(void) const {
     if (isEmpty()) {
-        return EmptyQueue;
+        return EMPTY_QUEUE;
     } else {
         int hiPrior = head->priority;
         Node* tmp = head;
@@ -166,9 +166,9 @@ dataValue Queue::findMinElemHiPrior(void) {
     }
 }
 
-dataValue Queue::findMaxElemSetPrior(int pr) {
+dataValue Queue::findMaxElemSetPrior(int pr) const {
     if (isEmpty()) {
-        return EmptyQueue;
+        return EMPTY_QUEUE;
     } else {
         bool mark = false;
         dataValue max;
@@ -193,9 +193,9 @@ dataValue Queue::findMaxElemSetPrior(int pr) {
     }
 }
 
-dataValue Queue::findMinElemSetPrior(int pr) {
+dataValue Queue::findMinElemSetPrior(int pr) const {
     if (isEmpty()) {
-        return EmptyQueue;
+        return EMPTY_QUEUE;
     } else {
         bool mark = false;
         dataValue min;

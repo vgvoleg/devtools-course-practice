@@ -3,10 +3,10 @@
 #define MODULES_OVCHARUK_OLEG_QUEUE_INCLUDE_QUEUE_H_
 #include <iostream>
 
-#define EmptyQueue -100
-#define FullQueue -101
-#define MemSize 10
-#define DataOK 0
+#define EMPTY_QUEUE -100
+#define FULL_QUEUE -101
+#define MEM_SIZE 10
+#define DATA_OK 0
 
 typedef int dataValue;
 
@@ -23,20 +23,20 @@ class Queue {
     Node* tail;
     int DataCountMax;
     int DataCount;
-    bool isEmpty(void);
-    bool isFull(void);
+    bool isEmpty(void) const;
+    bool isFull(void) const;
 
  public:
-    explicit Queue(int DataCountM = MemSize);
+    explicit Queue(int DataCountM = MEM_SIZE);
     ~Queue();
     int put(dataValue val, int pr);
     dataValue get(void);
-    dataValue findMaxElem(void);
-    dataValue findMinElem(void);
-    dataValue findMaxElemHiPrior(void);
-    dataValue findMinElemHiPrior(void);
-    dataValue findMaxElemSetPrior(int pr = 1);
-    dataValue findMinElemSetPrior(int pr = 1);
+    dataValue findMaxElem(void) const;
+    dataValue findMinElem(void) const;
+    dataValue findMaxElemHiPrior(void) const;
+    dataValue findMinElemHiPrior(void) const;
+    dataValue findMaxElemSetPrior(int pr = 1) const;
+    dataValue findMinElemSetPrior(int pr = 1) const;
 };
 
 #endif  // MODULES_OVCHARUK_OLEG_QUEUE_INCLUDE_QUEUE_H_
