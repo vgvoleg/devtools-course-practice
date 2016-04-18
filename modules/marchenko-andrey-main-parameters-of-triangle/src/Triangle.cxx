@@ -7,46 +7,82 @@ point::point()
     y = 0.0;
 }
 
-point::point(double A, double B)
+point::point(const double A, const double B)
 {
     x = A;
     y = B;
 }
 
-point::point(point &A)
+point::point(const point &p)
 {
-    x = A.x;
-    y = A.y;
+    x = p.x;
+    y = p.y;
 }
 
-point Triangle::get_A()
+point Triangle::get_A() const
 {
     return A;
 }
 
-point Triangle::get_B()
+point Triangle::get_B() const
 {
     return B;
 }
 
-point Triangle::get_C()
+point Triangle::get_C() const
 {
     return C;
 }
 
-void Triangle::set_A(point _A)
+double Triangle::get_A_x() const
+{
+    double x = A.x;
+    return x;
+}
+
+double Triangle::get_A_y() const
+{
+    double y = A.y;
+    return y;
+}
+
+double Triangle::get_B_x() const
+{
+    double x = B.x;
+    return x;
+}
+
+double Triangle::get_B_y() const
+{
+    double y = B.y;
+    return y;
+}
+
+double Triangle::get_C_x() const
+{
+    double x = C.x;
+    return x;
+}
+
+double Triangle::get_C_y() const
+{
+    double y = C.y;
+    return y;
+}
+
+void Triangle::set_A(const point _A)
 {
     A.x = _A.x;
     A.y = _A.y;
 }
 
-void Triangle::set_B(point _B)
+void Triangle::set_B(const point _B)
 {
     B.x = _B.x;
     B.y = _B.y;
 }
 
-void Triangle::set_C(point _C)
+void Triangle::set_C(const point _C)
 {
     C.x = _C.x;
     C.y = _C.y;
@@ -56,33 +92,33 @@ Triangle::Triangle()
 {
     A.x = 0.0;
     A.y = 0.0;
-    B.x = 2.0;
-    B.y = 2.0;
-    C.x = 4.0;
+    B.x = 0.0;
+    B.y = 0.0;
+    C.x = 0.0;
     C.y = 0.0;
 }
 
 Triangle::Triangle(point _A, point _B, point _C)
 {
-    set_A(A);
-    set_B(B);
-    set_C(C);
+    set_A(_A);
+    set_B(_B);
+    set_C(_C);
 }
 
-Triangle::Triangle(Triangle& T)
+Triangle::Triangle(const Triangle& T)
 {
     set_A(T.A);
     set_B(T.B);
     set_C(T.C);
 }
 
-double Triangle::triangle_side_length(point first_point, point second_point)
+double Triangle::triangle_side_length(const point first_point, const point second_point) const
 {
     double side = hypot(second_point.x-first_point.x,second_point.y-first_point.x);
     return side;
 }
 
-double Triangle::angle_A_of_triangle()
+double Triangle::angle_A_of_triangle() const
 {
     double first_side = triangle_side_length(A, B);
     double second_side = triangle_side_length(B, C);
@@ -91,7 +127,7 @@ double Triangle::angle_A_of_triangle()
     return angle;
 }
 
-double Triangle::angle_B_of_triangle()
+double Triangle::angle_B_of_triangle() const
 {
     double first_side = triangle_side_length(A, B);
     double second_side = triangle_side_length(B, C);
@@ -100,7 +136,7 @@ double Triangle::angle_B_of_triangle()
     return angle;
 }
 
-double Triangle::angle_C_of_triangle()
+double Triangle::angle_C_of_triangle() const
 {
     double first_side = triangle_side_length(A, B);
     double second_side = triangle_side_length(B, C);
@@ -109,27 +145,27 @@ double Triangle::angle_C_of_triangle()
     return angle;
 }
 
-double Triangle::cos_of_angle(double angle)
+double Triangle::cos_of_angle(const double angle) const
 {
     return(cos(angle));
 }
 
-double Triangle::sin_of_angle(double angle)
+double Triangle::sin_of_angle(const double angle) const
 {
     return(sin(angle));
 }
 
-double Triangle::tan_of_angle(double angle)
+double Triangle::tan_of_angle(const double angle) const
 {
     return(tan(angle));
 }
 
-double Triangle::ctan_of_angle(double angle)
+double Triangle::ctan_of_angle(const double angle) const
 {
     return(1.0/tan(angle));
 }
 
-double Triangle::perimeter_of_triangle()
+double Triangle::perimeter_of_triangle() const
 {
     double ab = triangle_side_length(A, B);
     double bc = triangle_side_length(B, C);
@@ -138,7 +174,7 @@ double Triangle::perimeter_of_triangle()
     return perimeter;
 }
 
-double Triangle::area_of_triangle()
+double Triangle::area_of_triangle() const
 {
     double ab = triangle_side_length(A, B);
     double bc = triangle_side_length(B, C);
@@ -148,18 +184,30 @@ double Triangle::area_of_triangle()
     return area;
 }
 
-double Triangle::inradius()
+double Triangle::inradius() const
 {
     double p = perimeter_of_triangle() / 2;
     double r = area_of_triangle() / p;
     return r;
 }
 
-double Triangle::circumradius()
+double Triangle::circumradius() const
 {
     double ab = triangle_side_length(A, B);
     double bc = triangle_side_length(B, C);
     double ac = triangle_side_length(A, C);
     double R = (ab*bc*ac) / (4 * area_of_triangle());
     return R;
+}
+
+bool point::operator==(const point& p) const
+{
+    if (this->x == p.x&&this->y == p.y) return true;
+    else return false;
+}
+
+bool Triangle::operator==(const Triangle& T) const
+{
+    if (this->A == T.A&&this->B == T.B&&this->C == T.C) return true;
+    else return false;
 }
