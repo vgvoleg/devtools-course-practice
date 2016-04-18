@@ -4,8 +4,6 @@
 
 #include <include/complex_number.h>
 
-const double rez = 10.0;
-
 TEST(Tishkin_Kostya_ComplexNumberTest, Can_create_twin) {
     // Arrange
     ComplexNumber a(2.0, 5.0);
@@ -31,6 +29,7 @@ TEST(Tishkin_Kostya_ComplexNumberTest, Can_Copy_Num) {
 
 TEST(Tishkin_Kostya_ComplexNumberTest, Can_getRE_getIM) {
     // Arrange
+    const double rez = 10.0;
     double d = 2.0;
     double h = 5.0;
     // Act
