@@ -40,16 +40,16 @@ TEST(Tishkin_Kostya_ComplexNumberTest, Can_getRE_getIM) {
     EXPECT_NEAR(h, a.getIm(), rez);
 }
 
-TEST(Tishkin_Kostya_ComplexNumberTest, Can_setIM) {
+TEST(Tishkin_Kostya_ComplexNumberTest, Can_Div_One) {
     // Arrange
     ComplexNumber a(2.0, 5.0);
-    ComplexNumber b(2.0, 5.0);
+    ComplexNumber b(1.0, 0.0);
 
     // Act
-    a.setIm(3.0);
+    ComplexNumber c = a / b;
 
     // Assert
-    EXPECT_NE(a, b);
+    EXPECT_EQ(c, a);
 }
 
 TEST(Tishkin_Kostya_ComplexNumberTest, Can_Multiply_One) {
@@ -63,15 +63,14 @@ TEST(Tishkin_Kostya_ComplexNumberTest, Can_Multiply_One) {
     // Assert
     EXPECT_EQ(c, a);
 }
-
-TEST(Tishkin_Kostya_ComplexNumberTest, Can_Div_One) {
+TEST(Tishkin_Kostya_ComplexNumberTest, Can_setIM) {
     // Arrange
     ComplexNumber a(2.0, 5.0);
-    ComplexNumber b(1.0, 0.0);
+    ComplexNumber b(2.0, 5.0);
 
     // Act
-    ComplexNumber c = a / b;
+    a.setIm(3.0);
 
     // Assert
-    EXPECT_EQ(c, a);
+    EXPECT_NE(a, b);
 }
