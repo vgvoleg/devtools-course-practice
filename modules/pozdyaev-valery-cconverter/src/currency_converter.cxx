@@ -47,6 +47,8 @@ CurrencyPair& CurrencyConverter::getCurrencyPairByCode(string curr_pair_code) {
             return pair;
         }
     }
+
+    throw std::string("Currency pair is not found");
 }
 
 bool CurrencyConverter::isCurrencyPairPresented(string curr_pair_code) {

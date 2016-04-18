@@ -21,13 +21,13 @@ class CurrencyConverter {
         string buying_currency, double sum);
 
     void removeAllCurrencyPairs();
+    CurrencyPair& getCurrencyPairByCode(string currency_pair_code);
     std::vector<CurrencyPair> getCurrencyPairs();
 
  private:
     double buyCurrency(CurrencyPair currency_pair_code, double sum);
     double saleCurrency(CurrencyPair currency_pair_code, double sum);
 
-    CurrencyPair& getCurrencyPairByCode(string currency_pair_code);
     bool isCurrencyPairPresented(string curr_pair_code);
 
     std::vector<CurrencyPair> currency_pairs;

@@ -338,3 +338,14 @@ TEST(Pozdyaev_Valery_CurrencyConverterTest, Currency_Code_Is_Incorrect) {
     EXPECT_THROW(CurrencyPair::checkCurrencyPairCode(currency_pair_code)
         , string);
 }
+
+TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Get_Unknown_Pair) {
+    // Arrange
+    CurrencyConverter converter;
+    converter.addCurrencyPair(CurrencyPair("EUR/USD", 1.2, 1.6));
+
+    // Act & Assert
+    string unknown_code = "EUR/RUB";
+    EXPECT_THROW(converter.getCurrencyPairByCode(unknown_code)
+        , string);
+}
