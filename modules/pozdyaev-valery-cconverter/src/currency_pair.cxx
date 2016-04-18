@@ -5,9 +5,7 @@
 #include <utility>
 #include <map>
 #include <string>
-#include <regex>
 
-const std::regex currency_code_pattern("[A-Z]{3}\/[A-Z]{3}");
 const double base_lot_size = 10000;
 
 CurrencyPair::CurrencyPair() {
@@ -72,8 +70,19 @@ string CurrencyPair::getCurrencyPairCode() {
 }
 
 void CurrencyPair::checkCurrencyPairCode(string currency_pair_code) {
-    if (!regex_match(currency_pair_code, currency_code_pattern)) {
-        throw string("Incorrect currency pair code");
+    size_t code_size = currency_pair_code.size();
+    int symb_code = 0;
+
+    if (code_size == 7) {
+        for (int i = 0; i < 7; i++) {
+            symb_code = static_cast<int> (currency_pair_code[i]);
+            if ((i == 3 && symb_code != 47)
+                || (i != 3 && (symb_code < 65 || symb_code > 90))) {
+                throw string("Incorrect currency pair code");
+            }
+        }
+    } else {
+        throw string("Incorrect size of currency pair code");
     }
 }
 

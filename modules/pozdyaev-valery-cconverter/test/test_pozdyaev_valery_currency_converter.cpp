@@ -284,7 +284,7 @@ TEST(Pozdyaev_Valery_CurrencyConverterTest, Can_Recieved_Spread_History) {
     int spread = spread_history.begin()->second;
 
     // Assert
-    int expected_value = 10;
+    int expected_value = 10;  // (ask_price - bid_prise) * base_lot_size
     EXPECT_EQ(expected_value, spread);
 }
 
@@ -306,6 +306,8 @@ TEST(Pozdyaev_Valery_CurrencyConverterTest, Can_Remove_All_Pairs) {
 TEST(Pozdyaev_Valery_CurrencyConverterTest, Spread_History_Is_Saved) {
     // Arrange
     CurrencyPair currency_pair("USD/EUR", 0.8005, 0.8015);
+    /* Record time is saved in seconds. Without sleep at least 1 s
+       record in map will be rewritten instead adding a new value*/
     Sleep(1000);
     currency_pair.setAskPrice(0.78);
     Sleep(1000);
@@ -320,3 +322,19 @@ TEST(Pozdyaev_Valery_CurrencyConverterTest, Spread_History_Is_Saved) {
     EXPECT_EQ(expected_value, history_size);
 }
 
+TEST(Pozdyaev_Valery_CurrencyConverterTest, Currency_Code_Is_Correct) {
+    // Arrange
+    string currency_pair_code = "USD/EUR";
+
+    // Act & Assert
+    EXPECT_NO_THROW(CurrencyPair::checkCurrencyPairCode(currency_pair_code));
+}
+
+TEST(Pozdyaev_Valery_CurrencyConverterTest, Currency_Code_Is_Incorrect) {
+    // Arrange
+    string currency_pair_code = "US.EuR";
+
+    // Act & Assert
+    EXPECT_THROW(CurrencyPair::checkCurrencyPairCode(currency_pair_code)
+        , string);
+}
