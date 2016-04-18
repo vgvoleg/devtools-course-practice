@@ -10,11 +10,17 @@ TEST(Queue, cant_create_queue_with_incorrect_size) {
     EXPECT_ANY_THROW(Queue Q(-1));
 }
 
-TEST(Queue, can_create_queue_with_correct_size) {
+TEST(Queue, can_create_queue_with_correct_size_with_param) {
     // Arrange
     // Act
     // Assert
     EXPECT_NO_THROW(Queue Q1(5));
+}
+
+TEST(Queue, can_create_queue_with_correct_size_without_param) {
+    // Arrange
+    // Act
+    // Assert
     EXPECT_NO_THROW(Queue Q2);
 }
 
