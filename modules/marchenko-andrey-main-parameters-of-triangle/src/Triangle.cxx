@@ -114,7 +114,7 @@ Triangle::Triangle(const Triangle& T)
 
 double Triangle::triangle_side_length(const point first_point, const point second_point) const
 {
-    double side = hypot(second_point.x-first_point.x,second_point.y-first_point.x);
+    double side = pow(pow((second_point.x - first_point.x), 2) + pow(second_point.y - first_point.y, 2), 0.5);
     return side;
 }
 
@@ -123,7 +123,7 @@ double Triangle::angle_A_of_triangle() const
     double first_side = triangle_side_length(A, B);
     double second_side = triangle_side_length(B, C);
     double third_side = triangle_side_length(A, C);
-    double angle = acos((pow(second_side,2)+pow(third_side,2)-pow(first_side,2))/2*second_side*third_side);
+    double angle = acos((pow(first_side, 2) + pow(third_side, 2) - pow(second_side, 2)) / (2 * first_side*third_side));
     return angle;
 }
 
@@ -132,7 +132,7 @@ double Triangle::angle_B_of_triangle() const
     double first_side = triangle_side_length(A, B);
     double second_side = triangle_side_length(B, C);
     double third_side = triangle_side_length(A, C);
-    double angle = acos((pow(first_side, 2) + pow(third_side, 2) - pow(second_side, 2)) / 2 * first_side*third_side);
+    double angle = acos((pow(first_side, 2) + pow(second_side, 2) - pow(third_side, 2)) / (2 * first_side*second_side));
     return angle;
 }
 
@@ -141,7 +141,7 @@ double Triangle::angle_C_of_triangle() const
     double first_side = triangle_side_length(A, B);
     double second_side = triangle_side_length(B, C);
     double third_side = triangle_side_length(A, C);
-    double angle = acos((pow(first_side, 2) + pow(second_side, 2) - pow(third_side, 2)) / 2 * first_side*second_side);
+    double angle = acos((pow(second_side, 2) + pow(third_side, 2) - pow(first_side, 2)) / (2 * third_side*second_side));
     return angle;
 }
 
