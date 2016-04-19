@@ -1,5 +1,9 @@
-struct point
-{
+// Copyright 2016 Marchenko Andrey
+
+#ifndef MODULES_MARCHENKO_ANDREY_TRIANGLE_INCLUDE_TRIANGLE_H_
+#define MODULES_MARCHENKO_ANDREY_TRIANGLE_INCLUDE_TRIANGLE_H_
+
+struct point{
     double x;
     double y;
 
@@ -10,13 +14,12 @@ struct point
     bool operator==(const point& p) const;
 };
 
-class Triangle
-{
-private:
+class Triangle{
+ private:
     point A;
     point B;
     point C;
-public:
+ public:
     Triangle();
     Triangle(const point a, const point b, const point c);
     Triangle(const Triangle &T);
@@ -38,7 +41,8 @@ public:
 
     bool operator==(const Triangle& T1) const;
 
-    double triangle_side_length(const point first_point, const point second_point) const;
+    double triangle_side_length(const point first_point,
+        const point second_point) const;
     double angle_A_of_triangle() const;
     double angle_B_of_triangle() const;
     double angle_C_of_triangle() const;
@@ -51,3 +55,5 @@ public:
     double inradius() const;
     double circumradius() const;
 };
+
+#endif  // MODULES_MARCHENKO_ANDREY_TRIANGLE_INCLUDE_TRIANGLE_H_
