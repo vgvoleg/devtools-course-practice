@@ -3,6 +3,24 @@
 #ifndef MODULES_MARCHENKO_ANDREY_MAIN_PARAMETERS_OF_TRIANGLE_INCLUDE_TRIANGLE_H_
 #define MODULES_MARCHENKO_ANDREY_MAIN_PARAMETERS_OF_TRIANGLE_INCLUDE_TRIANGLE_H_
 
+#include <exception>
+#include <string>
+
+class ThreeSamePoints :public std::exception {
+ public:
+     ThreeSamePoints();
+};
+
+class TwoSamePoints :public std::exception {
+ public:
+     TwoSamePoints();
+};
+
+class IncorrectPoints :public std::exception {
+ public:
+    IncorrectPoints();
+};
+
 struct point{
     double x;
     double y;
@@ -22,7 +40,7 @@ class Triangle{
 
  public:
     Triangle();
-    Triangle(const point a, const point b, const point c);
+    Triangle(const point A_, const point B_, const point C_);
     Triangle(const Triangle &T);
 
     point get_A() const;
@@ -36,17 +54,18 @@ class Triangle{
     double get_C_x() const;
     double get_C_y() const;
 
-    void set_A(const point A);
-    void set_B(const point B);
-    void set_C(const point C);
+    int istreanglecorrect(point A_, point B_, point C_);
+    void set_A(const point A_);
+    void set_B(const point B_);
+    void set_C(const point C_);
 
     bool operator==(const Triangle& T1) const;
 
     double triangle_side_length(const point first_point,
         const point second_point) const;
-    double angle_A_of_triangle() const;
-    double angle_B_of_triangle() const;
-    double angle_C_of_triangle() const;
+    double angle_A_of_triangle_in_radians() const;
+    double angle_B_of_triangle_in_radians() const;
+    double angle_C_of_triangle_in_radians() const;
     double cos_of_angle(const double angle) const;
     double sin_of_angle(const double angle) const;
     double tan_of_angle(const double angle) const;
