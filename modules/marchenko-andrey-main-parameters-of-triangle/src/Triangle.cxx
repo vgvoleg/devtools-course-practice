@@ -1,7 +1,7 @@
 // Copyright 2016 Marchenko Andrey
 
 #include <math.h>
-#include "include\Triangle.h"
+#include "include/Triangle.h"
 
 point::point() {
     x = 0.0;
