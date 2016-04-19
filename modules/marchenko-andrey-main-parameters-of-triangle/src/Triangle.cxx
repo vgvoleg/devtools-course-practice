@@ -142,8 +142,9 @@ int Triangle::istreanglecorrect(point _A, point _B, point _C) {
         && ((_B.y - _A.y) == (_A.y - _C.y))
         && ((_B.x - _A.x) == (_A.x - _C.x))) {
         return 3;
-    } else
+    } else {
         return 0;
+    }
 }
 
 Triangle::Triangle(point _A, point _B, point _C) {
