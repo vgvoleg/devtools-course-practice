@@ -77,7 +77,7 @@ Vector3D operator*(const double k, const Vector3D& v) {
 
 Vector3D Vector3D::operator/(const double k) const {
   if (k < eps && k > -eps) {
-    throw std::string("Can't devide by zero");
+    throw std::string("Can't divide by zero");
   } else {
     return Vector3D(x_ / k, y_ / k, z_ / k);
   }

@@ -374,6 +374,19 @@ TEST(Rumyantsev_Alexander_Vector3DTest, Can_Calculate_Magnitude) {
   ASSERT_DOUBLE_EQ(expected_mgn, mgn);
 }
 
+TEST(Rumyantsev_Alexander_Vector3DTest,
+     Can_Calculate_Magnitude_With_Negative_Coords) {
+  // Arrange
+  Vector3D v(-1.1, 1.2, -2.4);
+
+  // Act
+  double mgn = v.magnitude();
+
+  // Assert
+  double expected_mgn = 2.9;
+  ASSERT_DOUBLE_EQ(expected_mgn, mgn);
+}
+
 TEST(Rumyantsev_Alexander_Vector3DTest, Magnitude_Of_NullVector_Is_Zero) {
   // Arrange
   Vector3D v;
