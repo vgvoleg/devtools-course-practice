@@ -331,27 +331,6 @@ TEST(Marchenko_Andrey_TriangleTest,
 }
 
 TEST(Marchenko_Andrey_TriangleTest,
-    Can_Get_Coords_From_Point) {
-    // Arrange
-    point A(0.0, 0.0);
-    point B(2.0, 3.0);
-    point C(4.0, 0.0);
-    Triangle T(A, B, C);
-
-    // Act
-    double A_x = T.get_A_x();
-    double A_y = T.get_A_y();
-    double B_x = T.get_B_x();
-    double B_y = T.get_B_y();
-    double C_x = T.get_C_x();
-    double C_y = T.get_C_y();
-
-    // Assert
-    ASSERT_TRUE(A_x == 0.0 && A_y == 0.0 && B_x == 2.0 &&
-        B_y == 3.0 && C_x == 4.0 && C_y == 0.0);
-}
-
-TEST(Marchenko_Andrey_TriangleTest,
     Can_Create_Two_Triangles_With_Small_Difference) {
     // Arrange
     point A1(0.0, 0.0);
