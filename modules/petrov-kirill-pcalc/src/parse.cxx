@@ -36,7 +36,7 @@ TPolynom Parse::polynom(const string &arg) {
          str.find_first_not_of(string_separator, end_indx))) {
       monom = str[str.find_first_of(string_separator, end_indx)];
       if (string::npos == (end_indx = str.find_first_of
-		                  (string_separator, beg_indx)))
+                          (string_separator, beg_indx)))
         monom += str.substr(beg_indx);
       else
         monom += str.substr(beg_indx, end_indx - beg_indx);
