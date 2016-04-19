@@ -238,7 +238,7 @@ TEST(TPolynom, Can_Subtract_From_Zero_Polynomial) {
   EXPECT_EQ(expected_P, P);
 }
 
-TEST(TPolynom, Can_Nalculate_Value_At_The_Point) {
+TEST(TPolynom, Can_Calculate_Value_At_The_Point) {
   // Arrange
   const int size = 3;
   const double mon[][2] = { { 1.0, 201 }, { 2.0, 321 }, { 3.0, 400 } };
@@ -256,7 +256,7 @@ TEST(TPolynom, Can_Nalculate_Value_At_The_Point) {
   EXPECT_DOUBLE_EQ(expected_value, result);
 }
 
-TEST(TPolynom, Can_Nalculate_Value_For_X) {
+TEST(TPolynom, Can_Calculate_Value_For_X) {
   // Arrange
   const int size = 3;
   const double mon[][2] = { { 1.0, 200 }, { 2.0, 300 }, { 3.0, 400 } };
