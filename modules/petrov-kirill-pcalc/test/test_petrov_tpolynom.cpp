@@ -10,15 +10,15 @@
 
 TEST(TPolynom, Can_Create) {
   // Arrange
-  TPolynom* P;
+  TPolynom* ptrP;
 
   // Act
   const int size = 3;
   const double mon[][2] = { { 1.0, 3 }, { 3.0, 4 }, { 1.0, 6 } };
-  P = new TPolynom (mon, size);
+  ptrP = new TPolynom (mon, size);
 
   // Assert
-  EXPECT_NE(P, nullptr);
+  EXPECT_NE(ptrP, nullptr);
 }
 
 TEST(TPolynom, Can_Compare) {

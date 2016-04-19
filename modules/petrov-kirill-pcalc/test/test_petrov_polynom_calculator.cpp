@@ -33,7 +33,7 @@ class PolynomCalculatorTest : public ::testing::Test {
   string output_;
 };
 
-TEST_F(PolynomCalculatorTest, Do_Print_Help_Without_Arguments) {
+TEST_F(PolynomCalculatorTest, Can_Print_Help_Without_Arguments) {
   const vector<string> args = { };
 
   Act(args);
