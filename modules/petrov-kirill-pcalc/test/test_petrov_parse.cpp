@@ -4,7 +4,7 @@
 
 #include "include/parse.h"
 
-TEST(Parse, can_parse_number) {
+TEST(Parse, Can_Parse_Number) {
   // Arrange
   const int start = 1;
   const int finish = 5;
@@ -18,7 +18,7 @@ TEST(Parse, can_parse_number) {
   EXPECT_EQ(expected_n, result);
 }
 
-TEST(Parse, can_catch_the_exception_wrong_number) {
+TEST(Parse, Can_Catch_The_Exception_Wrong_Number) {
   // Arrange
   const int start = 1;
   const int finish = 5;
@@ -28,7 +28,7 @@ TEST(Parse, can_catch_the_exception_wrong_number) {
   EXPECT_ANY_THROW(Parse::number(argv, start, finish) );
 }
 
-TEST(Parse, can_catch_the_exception_incorrect_value) {
+TEST(Parse, Can_Catch_The_Exception_Incorrect_Value) {
   // Arrange
   const char* argv = "2.s3";
 
@@ -36,7 +36,7 @@ TEST(Parse, can_catch_the_exception_incorrect_value) {
   EXPECT_ANY_THROW(Parse::value(argv));
 }
 
-TEST(Parse, can_catch_the_exception_went_abroad) {
+TEST(Parse, Can_Catch_The_Exception_Went_Abroad) {
   // Arrange
   const int start = 1;
   const int finish = 5;
@@ -46,7 +46,7 @@ TEST(Parse, can_catch_the_exception_went_abroad) {
   EXPECT_ANY_THROW(Parse::number(argv, start, finish));
 }
 
-TEST(Parse, can_parse_polynom) {
+TEST(Parse, Can_Parse_Polynom) {
   // Arrange
   const char* argv = "1.01x^2y^1z^0+3x^1y^1z^2-2.5x^3y^0z^0";
 
@@ -61,7 +61,7 @@ TEST(Parse, can_parse_polynom) {
   EXPECT_EQ(expected_P, polynom);
 }
 
-TEST(Parse, can_catch_the_exception_wrong_polynoms_format) {
+TEST(Parse, Can_Catch_The_Exception_Wrong_Polynoms_Format) {
   // Arrange
   const char* argv = "1x^2y^1z^0+3^1y^1z^2-2x^3y^0z^0";
 
@@ -81,11 +81,10 @@ TEST(Parse, can_parse_operation) {
   EXPECT_EQ(expected_O, operation);
 }
 
-TEST(Parse, can_catch_the_exception_no_such_operation) {
+TEST(Parse, Can_Catch_The_Exception_No_Such_Operation) {
   // Arrange
   const char* argv = "compu1te";
 
   // Act & Assert
   EXPECT_ANY_THROW(Parse::operation(argv) );
 }
-
