@@ -22,7 +22,7 @@ void PolynomCalculator::help(const char* appname) {
     "<operation> is one of '+', '-', 'compute', 'sum_all'.\n\n" +
 
     "If there is a sum or difference of numbers you need to write" +
-	"a number of two polynomials, which made action:\n" +
+    "a number of two polynomials, which made action:\n" +
     "<id Polynom1> <id Polynom2>\n\n"+
     "If the calculation, then after the operation must be in the "+
     "following format :\n" +
