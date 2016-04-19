@@ -1,6 +1,5 @@
 // Copyright 2016 Marchenko Andrey
 #include <gtest/gtest.h>
-#include "math.h"
 #include "include/Triangle.h"
 
 TEST(Marchenko_Andrey_TriangleTest, Can_Create_Default_Triangle){    
