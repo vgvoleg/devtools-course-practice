@@ -7,24 +7,24 @@
 #include <string>
 
 TPolynom::TPolynom() {
-  PTMonom nullMonom = new TMonom(0.0, 0);
-  push_back(*nullMonom);
+  pTMonom pZeroMonom = new TMonom(0.0, 0);
+  push_back(*pZeroMonom);
 }
 
 TPolynom::TPolynom(const tCoeff monoms[][2], const int length) {
-  PTMonom ptmonom = nullptr;
+  pTMonom pTMonom = nullptr;
   for (int i = 0; i < length; i++) {
-    ptmonom = new TMonom(monoms[i][0], static_cast<int> (monoms[i][1]));
-    push_back(*ptmonom);
+    pTMonom = new TMonom(monoms[i][0], static_cast<int> (monoms[i][1]));
+    push_back(*pTMonom);
   }
   regulation();
 }
 
 TPolynom::TPolynom(const TPolynom& polynom) {
-  PTMonom ptmonom = nullptr;
+  pTMonom pTMonom = nullptr;
   for (auto const monom : polynom) {
-    ptmonom = monom.getCopyMonom();
-    push_back(*ptmonom);
+    pTMonom = monom.getCopyMonom();
+    push_back(*pTMonom);
   }
 }
 

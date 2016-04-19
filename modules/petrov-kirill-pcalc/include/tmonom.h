@@ -7,7 +7,7 @@
 
 class TMonom;
 typedef double tCoeff;
-typedef TMonom* PTMonom;
+typedef TMonom* pTMonom;
 
 class TMonom {
  public:
@@ -27,7 +27,7 @@ class TMonom {
   bool isPositiveCoeff(void) const;
   bool equalsZero(void) const;
 
-  PTMonom getCopyMonom(void) const;
+  pTMonom getCopyMonom(void) const;
 
  private:
   static const double eps;

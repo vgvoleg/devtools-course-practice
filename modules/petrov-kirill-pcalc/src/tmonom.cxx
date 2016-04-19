@@ -48,7 +48,7 @@ tCoeff TMonom::comparisionValue(const tCoeff x, const tCoeff y,
   return coeff_ * pow(x, powerX) * pow(y, powerY) * pow(z, powerZ);
 }
 
-PTMonom TMonom::getCopyMonom(void) const {
+pTMonom TMonom::getCopyMonom(void) const {
   return new TMonom(coeff_, index_);
 }
 

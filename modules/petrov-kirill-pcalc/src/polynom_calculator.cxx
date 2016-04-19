@@ -38,16 +38,16 @@ string PolynomCalculator::operator()(int argc, const char ** argv) {
   Arguments Arg;
   try {
     int id = 1;
-    Arg.numberPoly = Parse::number(argv[id++], MINPOLYNOMS, MAXPOLYNOMS);
+    Arg.numberPoly = Parse::number(argv[id++], MIN_POLYNOMS, MAX_POLYNOMS);
 
     for (int i = 0; i < Arg.numberPoly; i++)
       Arg.poly[i] =  Parse::polynom(argv[id++]);
 
-    Arg.operation =    Parse::operation(argv[id++]);
+    Arg.operation = Parse::operation(argv[id++]);
 
     if (Arg.operation == COMPUTE) {
       Arg.idPoly[0] = Parse::number(argv[id++], 1, Arg.numberPoly) - 1;
-      for (int i = 0; i < NUMBERVARIABLES; i++)
+      for (int i = 0; i < NUMBER_VARIABLES; i++)
         Arg.point[i] =  Parse::value(argv[id++]);
     } else if (Arg.operation == ADDITION || Arg.operation == SUBTRACTION) {
       Arg.idPoly[0] = Parse::number(argv[id++], 1, Arg.numberPoly) - 1;

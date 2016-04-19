@@ -18,18 +18,18 @@ class PolynomCalculator {
  private:
   void help(const char* appname);
 
-  static const int MINPOLYNOMS = 1;
-  static const int MAXPOLYNOMS = 10;
-  static const int NUMBERVARIABLES = 3;
+  static const int MIN_POLYNOMS = 1;
+  static const int MAX_POLYNOMS = 10;
+  static const int NUMBER_VARIABLES = 3;
 
   string message_;
 
   typedef struct {
     int numberPoly;
-    TPolynom poly[MAXPOLYNOMS];
+    TPolynom poly[MAX_POLYNOMS];
     TOperation operation;
     int idPoly[2];
-    tCoeff point[NUMBERVARIABLES];
+    tCoeff point[NUMBER_VARIABLES];
   } Arguments;
 };
 

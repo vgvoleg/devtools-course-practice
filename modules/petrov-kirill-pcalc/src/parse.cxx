@@ -15,30 +15,30 @@ TPolynom Parse::polynom(const string &arg) {
 
   int index;
   tCoeff coeff;
-  PTMonom pmonom;
+  pTMonom pMonom;
 
   string monom;
   vector<string> monoms;
 
   string buf;
-  const string delim_string("+-");
+  const string string_separator("+-");
 
-  string::size_type beg_idx = 0;
-  string::size_type end_idx = 0;
+  string::size_type beg_indx = 0;
+  string::size_type end_indx = 0;
 
   if (arg[0] !='-' && isdigit(arg[0]))
     str+="+";
   str += arg;
-  if (arg.find_first_of(delim_string, end_idx) == string::npos) {
+  if (arg.find_first_of(string_separator, end_indx) == string::npos) {
     monoms.push_back(arg);
   } else {
-    while (string::npos != (beg_idx =
-         str.find_first_not_of(delim_string, end_idx))) {
-      monom = str[str.find_first_of(delim_string, end_idx)];
-      if (string::npos == (end_idx = str.find_first_of(delim_string, beg_idx)))
-        monom += str.substr(beg_idx);
+    while (string::npos != (beg_indx =
+         str.find_first_not_of(string_separator, end_indx))) {
+      monom = str[str.find_first_of(string_separator, end_indx)];
+      if (string::npos == (end_indx = str.find_first_of(string_separator, beg_indx)))
+        monom += str.substr(beg_indx);
       else
-        monom += str.substr(beg_idx, end_idx - beg_idx);
+        monom += str.substr(beg_indx, end_indx - beg_indx);
       monoms.push_back(monom);
     }
   }
@@ -58,8 +58,8 @@ TPolynom Parse::polynom(const string &arg) {
       pos = mon.find("z^");
       index += Parse::number(mon[pos + 2]) * 1;
 
-      pmonom = new TMonom(coeff, index);
-      polynom.push_back(*pmonom);
+      pMonom = new TMonom(coeff, index);
+      polynom.push_back(*pMonom);
     }
   }
   catch (string) {
