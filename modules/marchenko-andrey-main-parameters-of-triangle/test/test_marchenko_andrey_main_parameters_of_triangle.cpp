@@ -189,6 +189,28 @@ TEST(Marchenko_Andrey_TriangleTest,
 }
 
 TEST(Marchenko_Andrey_TriangleTest,
+    Cant_Create_Straight_Line_Triangle_When_X_Coords_Are_Idential) {
+    // Arrange
+    point B(4.0, 5.0);
+    point C(4.0, 3.0);
+    point A(4.0, 1.0);
+
+    // Act and Assert
+    EXPECT_THROW(Triangle T(A, B, C), IncorrectPoints);
+}
+
+TEST(Marchenko_Andrey_TriangleTest,
+    Cant_Create_Straight_Line_Triangle_When_Y_Coords_Are_Idential) {
+    // Arrange
+    point B(4.0, 5.0);
+    point C(2.0, 5.0);
+    point A(0.0, 5.0);
+
+    // Act and Assert
+    EXPECT_THROW(Triangle T(A, B, C), IncorrectPoints);
+}
+
+TEST(Marchenko_Andrey_TriangleTest,
     Can_Create_Treangle_With_Non_Zero_Perimeter) {
     // Arrange
     point A(0.0, 0.0);
