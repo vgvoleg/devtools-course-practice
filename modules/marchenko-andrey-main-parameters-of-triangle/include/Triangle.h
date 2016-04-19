@@ -1,7 +1,7 @@
 // Copyright 2016 Marchenko Andrey
 
-#ifndef MODULES_MARCHENKO_ANDREY_TRIANGLE_INCLUDE_TRIANGLE_H_
-#define MODULES_MARCHENKO_ANDREY_TRIANGLE_INCLUDE_TRIANGLE_H_
+#ifndef MODULES_MARCHENKO_ANDREY_MAIN_PARAMETERS_OF_TRIANGLE_INCLUDE_TRIANGLE_H_
+#define MODULES_MARCHENKO_ANDREY_MAIN_PARAMETERS_OF_TRIANGLE_INCLUDE_TRIANGLE_H_
 
 struct point{
     double x;
@@ -19,6 +19,7 @@ class Triangle{
     point A;
     point B;
     point C;
+ 
  public:
     Triangle();
     Triangle(const point a, const point b, const point c);
@@ -56,4 +57,4 @@ class Triangle{
     double circumradius() const;
 };
 
-#endif  // MODULES_MARCHENKO_ANDREY_TRIANGLE_INCLUDE_TRIANGLE_H_
+#endif  // MODULES_MARCHENKO_ANDREY_MAIN_PARAMETERS_OF_TRIANGLE_INCLUDE_TRIANGLE_H_
