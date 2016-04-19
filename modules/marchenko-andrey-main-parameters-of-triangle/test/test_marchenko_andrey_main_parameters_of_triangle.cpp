@@ -1,4 +1,6 @@
 // Copyright 2016 Marchenko Andrey
+
+#include <math.h>
 #include <gtest/gtest.h>
 #include "include/Triangle.h"
 
