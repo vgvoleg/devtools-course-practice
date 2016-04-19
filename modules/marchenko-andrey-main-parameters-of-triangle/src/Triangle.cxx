@@ -1,20 +1,18 @@
 // Copyright 2016 Marchenko Andrey
 
 #include <math.h>
+#include <string.h>
 #include "include/Triangle.h"
 
-ThreeSamePoints::ThreeSamePoints()
-{
+ThreeSamePoints::ThreeSamePoints() {
     std::string("Triangle is not correct, three points are idential");
 }
 
-TwoSamePoints::TwoSamePoints()
-{
+TwoSamePoints::TwoSamePoints() {
     std::string("Triangle is not correct, two points are idential");
 }
 
-IncorrectPoints::IncorrectPoints()
-{
+IncorrectPoints::IncorrectPoints() {
     std::string("Triangle is not correct, all points on one straight line");
 }
 
@@ -106,55 +104,45 @@ Triangle::Triangle() {
     C.y = 0.0;
 }
 
-int Triangle::istreanglecorrect(point _A, point _B, point _C)
-{
+int Triangle::istreanglecorrect(point _A, point _B, point _C) {
     if (_A == _B && _B == _C) {
         return 1;
-    }
-    else if (_A == _B || _A == _C || _B == _C) {
+    } else if (_A == _B || _A == _C || _B == _C) {
         return 2;
-    }
-    else if ((_A.x == _B.x && _B.x == _C.x)
+    } else if ((_A.x == _B.x && _B.x == _C.x)
         || (_A.y == _B.y && _B.y == _C.y)) {
         return 3;
-    }
-    else if ((_C.y > _B.y && _B.y > _A.y)
+    } else if ((_C.y > _B.y && _B.y > _A.y)
         && (_C.x > _B.x && _B.x > _A.x)
         && ((_C.y - _B.y) == (_B.y - _A.y))
         && ((_C.x - _B.x) == (_B.x - _A.x))) {
         return 3;
-    }
-    else if ((_C.y > _A.y && _A.y > _B.y)
+    } else if ((_C.y > _A.y && _A.y > _B.y)
         && (_C.x > _A.x && _A.x > _B.x)
         && ((_C.y - _A.y) == (_A.y - _B.y))
         && ((_C.x - _A.x) == (_A.x - _B.x))) {
         return 3;
-    }
-    else if ((_A.y > _C.y && _C.y > _B.y)
+    } else if ((_A.y > _C.y && _C.y > _B.y)
         && (_A.x > _C.x && _C.x > _B.x)
         && ((_A.y - _C.y) == (_C.y - _B.y))
         && ((_A.x - _C.x) == (_C.x - _B.x))) {
         return 3;
-    }
-    else if ((_A.y > _B.y && _B.y> _C.y)
+    } else if ((_A.y > _B.y && _B.y> _C.y)
         && (_A.x > _B.x && _B.x > _C.x)
         && ((_A.y - _B.y) == (_B.y - _C.y))
         && ((_A.x - _B.x) == (_B.x - _C.x))) {
         return 3;
-    }
-    else if ((_B.y > _C.y && _C.y > _A.y)
+    } else if ((_B.y > _C.y && _C.y > _A.y)
         && (_B.x > _C.x && _C.x > _A.x)
         && ((_B.y - _C.y) == (_C.y - _A.y))
         && ((_B.x - _C.x) == (_C.x - _A.x))) {
         return 3;
-    }
-    else if ((_B.y > _A.y && _A.y > _C.y)
+    } else if ((_B.y > _A.y && _A.y > _C.y)
         && (_B.x > _A.x && _A.x > _C.x)
         && ((_B.y - _A.y) == (_A.y - _C.y))
         && ((_B.x - _A.x) == (_A.x - _C.x))) {
         return 3;
-    }
-    else 
+    } else 
         return 0;
 }
 
