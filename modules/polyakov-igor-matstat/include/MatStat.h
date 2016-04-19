@@ -5,7 +5,6 @@
 
 #include <vector>
 #include <exception>
-#include <string>
 
 
 const double SAMPLE_EPSILON = 0.001;

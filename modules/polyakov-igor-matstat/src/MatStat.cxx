@@ -2,7 +2,7 @@
 
 #include "include/MatStat.h"
 
-#include <string.h>
+#include <string>
 #include <cmath>
 #include <vector>
 
