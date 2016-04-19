@@ -1,7 +1,7 @@
 // Copyright 2016 Marchenko Andrey
 
 #include <math.h>
-#include <string.h>
+#include <string>
 #include "include/Triangle.h"
 
 ThreeSamePoints::ThreeSamePoints() {
@@ -142,7 +142,7 @@ int Triangle::istreanglecorrect(point _A, point _B, point _C) {
         && ((_B.y - _A.y) == (_A.y - _C.y))
         && ((_B.x - _A.x) == (_A.x - _C.x))) {
         return 3;
-    } else 
+    } else
         return 0;
 }
 
