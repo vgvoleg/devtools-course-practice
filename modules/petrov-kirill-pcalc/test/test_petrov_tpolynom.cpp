@@ -223,9 +223,9 @@ TEST(TPolynom, Can_Subtract_Up_Many_Polynoms) {
 
 TEST(TPolynom, Can_Subtract_From_Zero_Polynomial) {
   // Arrange
-  const int size1 = 3;
-  const double mon1[][2] = { { 5.0, 2 }, { 8.0, 3 }, { 9.0, 4 } };
-  const TPolynom P1(mon1, size1);
+  const int size = 3;
+  const double mon[][2] = { { 5.0, 2 }, { 8.0, 3 }, { 9.0, 4 } };
+  const TPolynom P1(mon, size);
   const TPolynom P2;
 
   // Act
@@ -240,45 +240,45 @@ TEST(TPolynom, Can_Subtract_From_Zero_Polynomial) {
 
 TEST(TPolynom, Can_Nalculate_Value_At_The_Point) {
   // Arrange
-  const int size1 = 3;
-  const double mon1[][2] = { { 1.0, 201 }, { 2.0, 321 }, { 3.0, 400 } };
-  const TPolynom P1(mon1, size1);
-  const double x_ = 1;
-  const double y_ = 2;
-  const double z_ = 3;
+  const int size = 3;
+  const double mon[][2] = { { 1.0, 201 }, { 2.0, 321 }, { 3.0, 400 } };
+  const TPolynom P(mon, size);
+  const double x = 1;
+  const double y = 2;
+  const double z = 3;
 
   // Act
-  const double result = P1(x_, y_, z_);
+  const double result = P(x, y, z);
 
   // Assert
-  const double expected_value = 1.0* pow(x_, 2)*z_ + 2.0*pow(x_, 3)*
-                                     pow(y_, 2)*z_ + 3.0*pow(x_, 4);
+  const double expected_value = 1.0* pow(x, 2)*z + 2.0*pow(x, 3)*
+                                     pow(y, 2)*z + 3.0*pow(x, 4);
   EXPECT_DOUBLE_EQ(expected_value, result);
 }
 
 TEST(TPolynom, Can_Nalculate_Value_For_X) {
   // Arrange
-  const int size1 = 3;
-  const double mon1[][2] = { { 1.0, 200 }, { 2.0, 300 }, { 3.0, 400 } };
-  const TPolynom P1(mon1, size1);
-  const double x_ = 2.0;
+  const int size = 3;
+  const double mon[][2] = { { 1.0, 200 }, { 2.0, 300 }, { 3.0, 400 } };
+  const TPolynom P(mon, size);
+  const double x = 2.0;
 
   // Act
-  const double result = P1(x_);
+  const double result = P(x);
 
   // Assert
-  const double expected_value = 1.0*pow(x_, 2) + 2.0*pow(x_, 3) +
-                                3.0*pow(x_, 4);
+  const double expected_value = 1.0*pow(x, 2) + 2.0*pow(x, 3) +
+                                3.0*pow(x, 4);
   EXPECT_DOUBLE_EQ(expected_value, result);
 }
 
 TEST(TPolynom, Cant_Figure_Out_For_Empty_Polynomial) {
   // Arrange
-  const TPolynom P1;
-  const double x_ = 2.0;
+  const TPolynom P;
+  const double x = 2.0;
 
   // Act
-  const double result = P1(x_);
+  const double result = P(x);
 
   // Assert
   const double expected_value = 0.0;
@@ -287,9 +287,9 @@ TEST(TPolynom, Cant_Figure_Out_For_Empty_Polynomial) {
 
 TEST(TPolynom, Can_Display_The_Polynomial) {
   // Arrange
-  const int size1 = 3;
-  const double mon1[][2] = { { 1.0, 200 }, { -2.0, 300 }, { 3.01, 400 } };
-  const TPolynom P(mon1, size1);
+  const int size = 3;
+  const double mon[][2] = { { 1.0, 200 }, { -2.0, 300 }, { 3.01, 400 } };
+  const TPolynom P(mon, size);
 
   // Act
   std::ostringstream stream;
@@ -302,9 +302,9 @@ TEST(TPolynom, Can_Display_The_Polynomial) {
 
 TEST(TPolynom, Can_Display_The_Polynomial_With_One_Monom) {
   // Arrange
-  const int size1 = 1;
-  const double mon1[][2] = { { 1.0, 200 } };
-  const TPolynom P(mon1, size1);
+  const int size = 1;
+  const double mon[][2] = { { 1.0, 200 } };
+  const TPolynom P(mon, size);
 
   // Act
   std::ostringstream stream;

@@ -11,7 +11,7 @@ TEST(Parse, can_parse_number) {
   const char* argv = "3";
 
   // Act
-  int result = Parse::number(argv, start, finish);
+  const int result = Parse::number(argv, start, finish);
 
   // Assert
   const int expected_n = 3;
