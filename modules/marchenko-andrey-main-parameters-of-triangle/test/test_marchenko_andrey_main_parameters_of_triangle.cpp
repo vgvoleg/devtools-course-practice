@@ -338,7 +338,7 @@ TEST(Marchenko_Andrey_TriangleTest,
     point C1(4.0, 0.0);
     point A2(0.0, 0.0);
     point B2(2.001, 3.0);
-    point C2(4.0, 0.0);   
+    point C2(4.0, 0.0);
 
     // Act
     Triangle T1(A1, B1, C1);
