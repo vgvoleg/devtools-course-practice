@@ -338,14 +338,12 @@ TEST(Marchenko_Andrey_TriangleTest,
     point C1(4.0, 0.0);
     point A2(0.0, 0.0);
     point B2(2.001, 3.0);
-    point C2(4.0, 0.0);
+    point C2(4.0, 0.0);   
+
+    // Act
     Triangle T1(A1, B1, C1);
     Triangle T2(A2, B2, C2);
 
-    // Act
-    double area1 = T1.area_of_triangle();
-    double area2 = T2.area_of_triangle();
-
     // Assert
-    ASSERT_FALSE(area1 == area2);
+    ASSERT_FALSE(T1 == T2);
 }
