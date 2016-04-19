@@ -272,7 +272,7 @@ TEST(TPolynom, Can_Calculate_Value_For_X) {
   EXPECT_DOUBLE_EQ(expected_value, result);
 }
 
-TEST(TPolynom, Cant_Figure_Out_For_Empty_Polynomial) {
+TEST(TPolynom, Can_Calculate_In_An_Empty_Polynomial) {
   // Arrange
   const TPolynom P;
   const double x = 2.0;
