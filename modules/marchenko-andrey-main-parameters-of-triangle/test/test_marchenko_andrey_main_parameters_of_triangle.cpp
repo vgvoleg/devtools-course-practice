@@ -326,7 +326,8 @@ TEST(Marchenko_Andrey_TriangleTest,
     double C_y = T.get_C_y();
 
     // Assert
-    ASSERT_TRUE(A_x == 0.0 && A_y == 0.0 && B_x == 2.0 && B_y == 3.0 && C_x == 4.0 && C_y == 0.0);
+    ASSERT_TRUE(A_x == 0.0 && A_y == 0.0 && B_x == 2.0
+        && B_y == 3.0 && C_x == 4.0 && C_y == 0.0);
 }
 
 TEST(Marchenko_Andrey_TriangleTest,
