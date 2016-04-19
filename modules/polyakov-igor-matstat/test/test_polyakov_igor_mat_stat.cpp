@@ -6,14 +6,12 @@
 #include "include/MatStat.h"
 
 
-TEST(Polyakov_Igor_MatStatTest, Is_Initialization_Sample_Correct) {
+TEST(Polyakov_Igor_MatStatTest, Initialization_Sample_Is_Correct) {
     // Arrange
 
     int size_sample = 5;
-    double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
-    double mas_prob[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
-    std::vector<double> sample(mas_sample, mas_sample + 5);
-    std::vector<double> probabilities(mas_prob, mas_prob + 5);
+    std::vector<double> sample { 1.0, 3.0, 4.0, -1.0, 0.0 };
+    std::vector<double> probabilities { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
 
     Sample S(sample, probabilities);
 
@@ -30,71 +28,59 @@ TEST(Polyakov_Igor_MatStatTest, Is_Initialization_Sample_Correct) {
     EXPECT_EQ(probabilities, get_probabilities);
 }
 
-TEST(Polyakov_Igor_MatStatTest, Is_Handle_Incorrect_Sample) {
+TEST(Polyakov_Igor_MatStatTest, Can_Handle_Incorrect_Sample) {
     // Arrange
 
-    double mas_sample[5] = { 1.0, 3.0, 4.0, 1.0, 0.0 };
-    double mas_prob[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
-    std::vector<double> sample(mas_sample, mas_sample + 5);
-    std::vector<double> probabilities(mas_prob, mas_prob + 5);
+    std::vector<double> sample{ 1.0, 3.0, 4.0, 1.0, 0.0 };
+    std::vector<double> probabilities{ 0.2, 0.1, 0.3333, 0.1, 0.2667 };
 
     // Act & Assert
 
     EXPECT_THROW(Sample(sample, probabilities), IncorrectSample);
 }
 
-TEST(Polyakov_Igor_MatStatTest, Is_Handle_Negative_Probability) {
+TEST(Polyakov_Igor_MatStatTest, Can_Handle_Negative_Probability) {
     // Arrange
 
-    double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
-    double mas_prob[5] = { 0.2, 0.1, 0.3333, 0.1, -0.2667 };
-    std::vector<double> sample(mas_sample, mas_sample + 5);
-    std::vector<double> probabilities(mas_prob, mas_prob + 5);
+    std::vector<double> sample{ 1.0, 3.0, 4.0, -1.0, 0.0 };
+    std::vector<double> probabilities{ 0.2, 0.1, 0.3333, 0.1, -0.2667 };
 
     // Act & Assert
 
     EXPECT_THROW(Sample(sample, probabilities), IncorrectProbabilities);
 }
 
-TEST(Polyakov_Igor_MatStatTest, Is_Handle_Summ_Probability_Not_Equal_One) {
+TEST(Polyakov_Igor_MatStatTest, Can_Handle_Summ_Probability_Not_Equal_One) {
     // Arrange
 
-    double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
-    double mas_prob[5] = { 0.2, 0.9, 0.3333, 0.9, 0.9 };
-    std::vector<double> sample(mas_sample, mas_sample + 5);
-    std::vector<double> probabilities(mas_prob, mas_prob + 5);
+    std::vector<double> sample{ 1.0, 3.0, 4.0, -1.0, 0.0 };
+    std::vector<double> probabilities{ 0.2, 0.9, 0.3333, 0.9, 0.9 };
 
     // Act & Assert
 
     EXPECT_THROW(Sample(sample, probabilities), IncorrectProbabilities);
 }
 
-TEST(Polyakov_Igor_MatStatTest, Is_Handle_Sizes_Sample_And_Prob_Differ) {
+TEST(Polyakov_Igor_MatStatTest, Can_Handle_Sizes_Sample_And_Prob_Differ) {
     // Arrange
 
-    double mas_sample[4] = { 1.0, 3.0, 4.0, -1.0 };
-    double mas_prob[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
-    std::vector<double> sample(mas_sample, mas_sample + 4);
-    std::vector<double> probabilities(mas_prob, mas_prob + 5);
+    std::vector<double> sample { 1.0, 3.0, 4.0, -1.0 };
+    std::vector<double> probabilities { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
 
     // Act & Assert
 
     EXPECT_THROW(Sample(sample, probabilities),
-                 IncorrectSizesOfSampleAndProbabilities);
+                 IncorrectSizesOfSampleAndProbs);
 }
 
 TEST(Polyakov_Igor_MatStatTest, Can_Assign_Sample_With_Other_Size) {
     // Arrange
 
-    double mas_sample_1[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
-    double mas_prob_1[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
-    std::vector<double> sample_1(mas_sample_1, mas_sample_1 + 5);
-    std::vector<double> probabilities_1(mas_prob_1, mas_prob_1 + 5);
+    std::vector<double> sample_1 { 1.0, 3.0, 4.0, -1.0, 0.0 };
+    std::vector<double> probabilities_1 { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
 
-    double mas_sample_2[4] = { 1.0, 3.0, 4.0, -1.0};
-    double mas_prob_2[4] = { 0.2, 0.1, 0.3333, 0.3667};
-    std::vector<double> sample_2(mas_sample_2, mas_sample_2 + 4);
-    std::vector<double> probabilities_2(mas_prob_2, mas_prob_2 + 4);
+    std::vector<double> sample_2 { 1.0, 3.0, 4.0, -1.0 };
+    std::vector<double> probabilities_2 { 0.2, 0.1, 0.3333, 0.3667 };
 
     Sample S_1(sample_1, probabilities_1);
     Sample S_2(sample_2, probabilities_2);
@@ -108,18 +94,14 @@ TEST(Polyakov_Igor_MatStatTest, Can_Assign_Sample_With_Other_Size) {
     ASSERT_EQ(S_1, S_2);
 }
 
-TEST(Polyakov_Igor_MatStatTest, Are_Samples_With_Differ_Size_Inequal) {
+TEST(Polyakov_Igor_MatStatTest, Samples_With_Differ_Size_Are_Inequal) {
     // Arrange
 
-    double mas_sample_1[4] = { 1.0, 3.0, 4.0, -1.0};
-    double mas_prob_1[4] = { 0.2, 0.1, 0.3333, 0.3667};
-    std::vector<double> sample_1(mas_sample_1, mas_sample_1 + 4);
-    std::vector<double> probabilities_1(mas_prob_1, mas_prob_1 + 4);
+    std::vector<double> sample_1 { 1.0, 3.0, 4.0, -1.0 };
+    std::vector<double> probabilities_1 { 0.2, 0.1, 0.3333, 0.3667 };
 
-    double mas_sample_2[5] = { 1.0, 3.0, 4.0, -1.0, 0.0};
-    double mas_prob_2[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
-    std::vector<double> sample_2(mas_sample_2, mas_sample_2 + 5);
-    std::vector<double> probabilities_2(mas_prob_2, mas_prob_2 + 5);
+    std::vector<double> sample_2 { 1.0, 3.0, 4.0, -1.0, 0.0 };
+    std::vector<double> probabilities_2 { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
 
     Sample S_1(sample_1, probabilities_1);
     Sample S_2(sample_2, probabilities_2);
@@ -129,18 +111,14 @@ TEST(Polyakov_Igor_MatStatTest, Are_Samples_With_Differ_Size_Inequal) {
     ASSERT_FALSE(S_1 == S_2);
 }
 
-TEST(Polyakov_Igor_MatStatTest, Are_Samples_With_Differ_Prob_Inequal) {
+TEST(Polyakov_Igor_MatStatTest, Samples_With_Differ_Prob_Are_Inequal) {
     // Arrange
 
-    double mas_sample_1[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
-    double mas_prob_1[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
-    std::vector<double> sample_1(mas_sample_1, mas_sample_1 + 5);
-    std::vector<double> probabilities_1(mas_prob_1, mas_prob_1 + 5);
+    std::vector<double> sample_1{ 1.0, 3.0, 4.0, -1.0, 0.0 };
+    std::vector<double> probabilities_1{ 0.2, 0.1, 0.3333, 0.1, 0.2667 };
 
-    double mas_sample_2[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
-    double mas_prob_2[5] = { 0.2, 0.1, 0.2667, 0.1, 0.3333 };
-    std::vector<double> sample_2(mas_sample_2, mas_sample_2 + 5);
-    std::vector<double> probabilities_2(mas_prob_2, mas_prob_2 + 5);
+    std::vector<double> sample_2 { 1.0, 3.0, 4.0, -1.0, 0.0 };
+    std::vector<double> probabilities_2 { 0.2, 0.1, 0.2667, 0.1, 0.3333 };
 
     Sample S_1(sample_1, probabilities_1);
     Sample S_2(sample_2, probabilities_2);
@@ -150,13 +128,11 @@ TEST(Polyakov_Igor_MatStatTest, Are_Samples_With_Differ_Prob_Inequal) {
     ASSERT_FALSE(S_1 == S_2);
 }
 
-TEST(Polyakov_Igor_MatStatTest, Is_Calc_Mathematical_Expectation_Correct) {
+TEST(Polyakov_Igor_MatStatTest, Calc_Mathematical_Expectation_Is_Correct) {
     // Arrange
 
-    double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
-    double mas_prob[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
-    std::vector<double> sample(mas_sample, mas_sample + 5);
-    std::vector<double> probabilities(mas_prob, mas_prob + 5);
+    std::vector<double> sample{ 1.0, 3.0, 4.0, -1.0, 0.0 };
+    std::vector<double> probabilities{ 0.2, 0.1, 0.3333, 0.1, 0.2667 };
 
     Sample S(sample, probabilities);
 
@@ -169,13 +145,11 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calc_Mathematical_Expectation_Correct) {
     EXPECT_NEAR(1.7332, mathematical_expectation, SAMPLE_EPSILON);
 }
 
-TEST(Polyakov_Igor_MatStatTest, Is_Calculate_Dispersion_Correct) {
+TEST(Polyakov_Igor_MatStatTest, Calculate_Dispersion_Is_Correct) {
     // Arrange
 
-    double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
-    double mas_prob[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
-    std::vector<double> sample(mas_sample, mas_sample + 5);
-    std::vector<double> probabilities(mas_prob, mas_prob + 5);
+    std::vector<double> sample{ 1.0, 3.0, 4.0, -1.0, 0.0 };
+    std::vector<double> probabilities{ 0.2, 0.1, 0.3333, 0.1, 0.2667 };
 
     Sample S(sample, probabilities);
 
@@ -188,13 +162,11 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calculate_Dispersion_Correct) {
     EXPECT_NEAR(3.5289, dispersion, SAMPLE_EPSILON);
 }
 
-TEST(Polyakov_Igor_MatStatTest, Is_Calc_Average_Quadratic_Deviation_Correct) {
+TEST(Polyakov_Igor_MatStatTest, Calc_Average_Quadratic_Deviation_Is_Correct) {
     // Arrange
 
-    double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
-    double mas_prob[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
-    std::vector<double> sample(mas_sample, mas_sample + 5);
-    std::vector<double> probabilities(mas_prob, mas_prob + 5);
+    std::vector<double> sample{ 1.0, 3.0, 4.0, -1.0, 0.0 };
+    std::vector<double> probabilities{ 0.2, 0.1, 0.3333, 0.1, 0.2667 };
 
     Sample S(sample, probabilities);
 
@@ -207,13 +179,11 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calc_Average_Quadratic_Deviation_Correct) {
     EXPECT_NEAR(1.8785, average_quadratic_deviation, SAMPLE_EPSILON);
 }
 
-TEST(Polyakov_Igor_MatStatTest, Is_Calculate_Moment_Correct) {
+TEST(Polyakov_Igor_MatStatTest, Calculate_Moment_Is_Correct) {
     // Arrange
 
-    double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
-    double mas_prob[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
-    std::vector<double> sample(mas_sample, mas_sample + 5);
-    std::vector<double> probabilities(mas_prob, mas_prob + 5);
+    std::vector<double> sample{ 1.0, 3.0, 4.0, -1.0, 0.0 };
+    std::vector<double> probabilities{ 0.2, 0.1, 0.3333, 0.1, 0.2667 };
 
     Sample S(sample, probabilities);
 
@@ -229,13 +199,11 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calculate_Moment_Correct) {
     EXPECT_NEAR(8.7324, moment, SAMPLE_EPSILON);
 }
 
-TEST(Polyakov_Igor_MatStatTest, Is_Calculate_Elementary_Moment_Correct) {
+TEST(Polyakov_Igor_MatStatTest, Calculate_Elementary_Moment_Is_Correct) {
     // Arrange
 
-    double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
-    double mas_prob[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
-    std::vector<double> sample(mas_sample, mas_sample + 5);
-    std::vector<double> probabilities(mas_prob, mas_prob + 5);
+    std::vector<double> sample{ 1.0, 3.0, 4.0, -1.0, 0.0 };
+    std::vector<double> probabilities{ 0.2, 0.1, 0.3333, 0.1, 0.2667 };
 
     Sample S(sample, probabilities);
 
@@ -250,13 +218,11 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calculate_Elementary_Moment_Correct) {
     EXPECT_NEAR(24.1312, elementary_moment, SAMPLE_EPSILON);
 }
 
-TEST(Polyakov_Igor_MatStatTest, Is_Calculate_Central_Moment_Correct) {
+TEST(Polyakov_Igor_MatStatTest, Calculate_Central_Moment_Is_Correct) {
     // Arrange
 
-    double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
-    double mas_prob[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
-    std::vector<double> sample(mas_sample, mas_sample + 5);
-    std::vector<double> probabilities(mas_prob, mas_prob + 5);
+    std::vector<double> sample{ 1.0, 3.0, 4.0, -1.0, 0.0 };
+    std::vector<double> probabilities{ 0.2, 0.1, 0.3333, 0.1, 0.2667 };
 
     Sample S(sample, probabilities);
 
@@ -271,13 +237,11 @@ TEST(Polyakov_Igor_MatStatTest, Is_Calculate_Central_Moment_Correct) {
     EXPECT_NEAR(0.5762, central_moment, SAMPLE_EPSILON);
 }
 
-TEST(Polyakov_Igor_MatStatTest, Is_Dispers_Equal_Central_Moment_Of_Two_Exp) {
+TEST(Polyakov_Igor_MatStatTest, Dispers_Is_Central_Moment_Of_Two_Exp) {
     // Arrange
 
-    double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
-    double mas_prob[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
-    std::vector<double> sample(mas_sample, mas_sample + 5);
-    std::vector<double> probabilities(mas_prob, mas_prob + 5);
+    std::vector<double> sample{ 1.0, 3.0, 4.0, -1.0, 0.0 };
+    std::vector<double> probabilities{ 0.2, 0.1, 0.3333, 0.1, 0.2667 };
 
     Sample S(sample, probabilities);
 
@@ -296,10 +260,8 @@ TEST(Polyakov_Igor_MatStatTest, Is_Dispers_Equal_Central_Moment_Of_Two_Exp) {
 TEST(Polyakov_Igor_MatStatTest, Can_Calc_Dispers_Through_Math_Expectation) {
     // Arrange
 
-    double mas_sample[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
-    double mas_prob[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
-    std::vector<double> sample(mas_sample, mas_sample + 5);
-    std::vector<double> probabilities(mas_prob, mas_prob + 5);
+    std::vector<double> sample{ 1.0, 3.0, 4.0, -1.0, 0.0 };
+    std::vector<double> probabilities{ 0.2, 0.1, 0.3333, 0.1, 0.2667 };
 
     Sample S(sample, probabilities);
 
@@ -313,13 +275,11 @@ TEST(Polyakov_Igor_MatStatTest, Can_Calc_Dispers_Through_Math_Expectation) {
     EXPECT_NEAR(3.5289, dispersion, SAMPLE_EPSILON);
 }
 
-TEST(Polyakov_Igor_MatStatTest, Is_Dispersion_Of_Constant_Equal_Zero) {
+TEST(Polyakov_Igor_MatStatTest, Dispersion_Of_Constant_Equal_Is_Zero) {
     // Arrange
 
-    double mas_sample[1] = { 5.0 };
-    double mas_prob[5] = { 1.0 };
-    std::vector<double> sample(mas_sample, mas_sample + 1);
-    std::vector<double> probabilities(mas_prob, mas_prob + 1);
+    std::vector<double> sample { 5.0 };
+    std::vector<double> probabilities { 1.0 };
 
     Sample S(sample, probabilities);
 
@@ -332,14 +292,11 @@ TEST(Polyakov_Igor_MatStatTest, Is_Dispersion_Of_Constant_Equal_Zero) {
     EXPECT_NEAR(0.0, dispersion, SAMPLE_EPSILON);
 }
 
-TEST(Polyakov_Igor_MatStatTest, Is_Dispersion_Positive) {
+TEST(Polyakov_Igor_MatStatTest, Dispersion_Is_Positive) {
     // Arrange
 
-    double mas_sample[5] = { -50.0, -100.0, -60.0, -70.0, 0.0};
-
-    double mas_prob[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
-    std::vector<double> sample(mas_sample, mas_sample + 5);
-    std::vector<double> probabilities(mas_prob, mas_prob + 5);
+    std::vector<double> sample { -50.0, -100.0, -60.0, -70.0, 0.0 };
+    std::vector<double> probabilities { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
 
     Sample S(sample, probabilities);
 
@@ -358,18 +315,14 @@ TEST(Polyakov_Igor_MatStatTest, Can_Out_Constant_From_Dispersion) {
     double a = 2.0;
     double b = 50.5;
 
-    double mas_sample_1[5] = { a * 1.0 + b,
-                             a * 3.0 + b,
-                             a * 4.0 + b,
-                             a * (-1.0) + b,
-                             a * 0.0 + b};
+    std::vector<double> sample_1{ a * 1.0 + b,
+                                  a * 3.0 + b,
+                                  a * 4.0 + b,
+                                  a * (-1.0) + b,
+                                  a * 0.0 + b };
 
-    double mas_sample_2[5] = { 1.0, 3.0, 4.0, -1.0, 0.0 };
-
-    double mas_prob[5] = { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
-    std::vector<double> sample_1(mas_sample_1, mas_sample_1 + 5);
-    std::vector<double> sample_2(mas_sample_2, mas_sample_2 + 5);
-    std::vector<double> probabilities(mas_prob, mas_prob + 5);
+    std::vector<double> sample_2 { 1.0, 3.0, 4.0, -1.0, 0.0 };
+    std::vector<double> probabilities { 0.2, 0.1, 0.3333, 0.1, 0.2667 };
 
     Sample S_1(sample_1, probabilities);
     Sample S_2(sample_2, probabilities);

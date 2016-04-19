@@ -7,7 +7,20 @@
 #include <vector>
 
 
-bool Sample::IsSummOfProbabilitiesEqualUnity(std::vector<double> _prob) {
+IncorrectSample::IncorrectSample() {
+    std::string("Sample is not correct, values must be different");
+}
+
+IncorrectProbabilities::IncorrectProbabilities() {
+    std::string("Probabilities is not correct");
+}
+
+IncorrectSizesOfSampleAndProbs::IncorrectSizesOfSampleAndProbs() {
+    std::string("Sizes of sample and probabilities must be identical");
+}
+
+
+bool Sample::IsSummOfProbsEqualUnity(const std::vector<double> _prob) const {
     double sum_of_probabilities = 0.0;
 
     for (unsigned int i = 0; i < _prob.size(); i++) {
@@ -21,21 +34,21 @@ bool Sample::IsSummOfProbabilitiesEqualUnity(std::vector<double> _prob) {
     return true;
 }
 
-bool Sample::AreProbabilitiesCorrect(std::vector<double> _probabilities) {
-    for (unsigned int i = 0; i < _probabilities.size(); i++) {
-        if (_probabilities[i] <= 0.0 || _probabilities[i] > 1.0) {
+bool Sample::AreProbsCorrect(const std::vector<double> _prob) const {
+    for (unsigned int i = 0; i < _prob.size(); i++) {
+        if (_prob[i] <= 0.0 || _prob[i] > 1.0) {
             return false;
         }
     }
 
-    if (!IsSummOfProbabilitiesEqualUnity(_probabilities)) {
+    if (!IsSummOfProbsEqualUnity(_prob)) {
         return false;
     }
 
     return true;
 }
 
-bool Sample::IsSampleCorrect(std::vector<double> _sample) {
+bool Sample::IsSampleCorrect(const std::vector<double> _sample) const {
     for (unsigned int i = 0; i < _sample.size() - 1; i++) {
         for (unsigned int j = i + 1; j < _sample.size(); j++) {
             if (_sample[i] == _sample[j]) {
@@ -47,15 +60,15 @@ bool Sample::IsSampleCorrect(std::vector<double> _sample) {
     return true;
 }
 
-Sample::Sample(std::vector<double> _sample,
-    std::vector<double> _probabilities) {
+Sample::Sample(const std::vector<double> _sample,
+               const std::vector<double> _probabilities) {
     if (_sample.size() != _probabilities.size()) {
-        throw IncorrectSizesOfSampleAndProbabilities();
+        throw IncorrectSizesOfSampleAndProbs();
     } else {
         sample_size = _sample.size();
     }
 
-    if (!AreProbabilitiesCorrect(_probabilities)) {
+    if (!AreProbsCorrect(_probabilities)) {
         throw IncorrectProbabilities();
     } else {
         probabilities = _probabilities;
@@ -94,19 +107,19 @@ bool Sample::operator==(const Sample& S) const {
     return true;
 }
 
-int Sample::GetSampleSize() {
+int Sample::GetSampleSize() const {
     return sample_size;
 }
 
-std::vector<double> Sample::GetSample() {
+std::vector<double> Sample::GetSample() const {
     return sample;
 }
 
-std::vector<double> Sample::GetProbabilities() {
+std::vector<double> Sample::GetProbabilities() const {
     return probabilities;
 }
 
-double Sample::CalcMathematicalExpectation() {
+double Sample::CalcMathematicalExpectation() const {
     double mathematical_expectation = 0.0;
 
     for (int i = 0; i < sample_size; i++) {
@@ -116,8 +129,8 @@ double Sample::CalcMathematicalExpectation() {
     return mathematical_expectation;
 }
 
-double Sample::CalcMoment(double relative_point,
-                          int exponent) {
+double Sample::CalcMoment(const double relative_point,
+                          const int exponent) const {
     double moment = 0.0;
 
     for (int i = 0; i < sample_size; i++) {
@@ -128,7 +141,7 @@ double Sample::CalcMoment(double relative_point,
     return moment;
 }
 
-double Sample::CalcElementaryMoment(int exponent) {
+double Sample::CalcElementaryMoment(const int exponent) const {
     double elementary_moment = 0.0;
 
     for (int i = 0; i < sample_size; i++) {
@@ -139,7 +152,7 @@ double Sample::CalcElementaryMoment(int exponent) {
     return elementary_moment;
 }
 
-double Sample::CalcDispersion() {
+double Sample::CalcDispersion() const {
     double dispersion = 0.0;
     double mathematical_expectation = CalcMathematicalExpectation();
 
@@ -151,11 +164,11 @@ double Sample::CalcDispersion() {
     return dispersion;
 }
 
-double Sample::CalcAverageQuadraticDeviation() {
+double Sample::CalcAverageQuadraticDeviation() const {
     return sqrt(CalcDispersion());
 }
 
-double Sample::CalcCentralMoment(int exponent) {
+double Sample::CalcCentralMoment(const int exponent) const {
     double central_moment = 0.0;
     double mathematical_expectation = CalcMathematicalExpectation();
 
