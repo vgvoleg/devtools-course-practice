@@ -97,7 +97,7 @@ TEST(Marchenko_Andrey_TriangleTest,
     double side = T.triangle_side_length(T.get_A(), T.get_B());
 
     // Assert
-    EXPECT_FALSE(side==0.0);
+    EXPECT_FALSE(side == 0.0);
 }
 
 TEST(Marchenko_Andrey_TriangleTest,
@@ -200,7 +200,7 @@ TEST(Marchenko_Andrey_TriangleTest,
     double perimeter = T.perimeter_of_triangle();
 
     // Assert
-    EXPECT_FALSE(perimeter==0.0);
+    EXPECT_FALSE(perimeter == 0.0);
 }
 
 TEST(Marchenko_Andrey_TriangleTest,
