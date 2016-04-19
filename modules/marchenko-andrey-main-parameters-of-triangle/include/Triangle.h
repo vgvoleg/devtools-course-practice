@@ -19,7 +19,7 @@ class Triangle{
     point A;
     point B;
     point C;
- 
+
  public:
     Triangle();
     Triangle(const point a, const point b, const point c);
