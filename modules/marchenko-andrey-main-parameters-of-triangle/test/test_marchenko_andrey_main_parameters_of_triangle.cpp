@@ -237,7 +237,7 @@ TEST(Marchenko_Andrey_TriangleTest,
     double angle_C = T.angle_C_of_triangle_in_radians();
 
     // Assert
-    ASSERT_TRUE(angle_A == angle_B && angle_B==angle_C);
+    ASSERT_TRUE(angle_A == angle_B && angle_B == angle_C);
 }
 
 TEST(Marchenko_Andrey_TriangleTest,
