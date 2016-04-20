@@ -29,9 +29,7 @@ TEST(Marchenko_Andrey_TriangleTest,
     Triangle T(A_, B_, C_);
 
     // Assert
-    ASSERT_TRUE(T.get_A() == A_);
-    ASSERT_TRUE(T.get_B() == B_);
-    ASSERT_TRUE(T.get_C() == C_);
+    ASSERT_TRUE(T.get_A() == A_ && T.get_B() == B_ && T.get_C() == C_);
 }
 
 TEST(Marchenko_Andrey_TriangleTest,
@@ -239,8 +237,7 @@ TEST(Marchenko_Andrey_TriangleTest,
     double angle_C = T.angle_C_of_triangle_in_radians();
 
     // Assert
-    ASSERT_TRUE(angle_A == angle_B);
-    ASSERT_TRUE(angle_B == angle_C);
+    ASSERT_TRUE(angle_A == angle_B && angle_B==angle_C);
 }
 
 TEST(Marchenko_Andrey_TriangleTest,
