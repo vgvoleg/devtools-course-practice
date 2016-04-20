@@ -6,7 +6,10 @@
 #include <string>
 
 CurrencyConverter::CurrencyConverter() {
-    currency_pairs.resize(0);
+}
+
+CurrencyConverter::CurrencyConverter(CurrencyPair currency_pair) {
+    addCurrencyPair(currency_pair);
 }
 
 void CurrencyConverter::addCurrencyPair(CurrencyPair currency_pair) {
@@ -33,11 +36,13 @@ void CurrencyConverter::updateCurrencyPair(CurrencyPair currency_pair) {
     }
 }
 
-double CurrencyConverter::buyCurrency(CurrencyPair currency_pair, double sum) {
+double CurrencyConverter::buyCurrency(CurrencyPair currency_pair
+                                                    , double sum) const {
     return sum / currency_pair.getAskPrice();
 }
 
-double CurrencyConverter::saleCurrency(CurrencyPair currency_pair, double sum) {
+double CurrencyConverter::saleCurrency(CurrencyPair currency_pair
+                                                    , double sum) const {
     return sum * currency_pair.getBidPrice();
 }
 
@@ -51,7 +56,7 @@ CurrencyPair& CurrencyConverter::getCurrencyPairByCode(string curr_pair_code) {
     throw std::string("Currency pair is not found");
 }
 
-bool CurrencyConverter::isCurrencyPairPresented(string curr_pair_code) {
+bool CurrencyConverter::isCurrencyPairPresented(string curr_pair_code) const {
     for (CurrencyPair pair : currency_pairs) {
         if (pair.getCurrencyPairCode() == curr_pair_code) {
             return true;
@@ -62,7 +67,7 @@ bool CurrencyConverter::isCurrencyPairPresented(string curr_pair_code) {
 }
 
 double CurrencyConverter::exchangeCurrency(string selling_currency,
-                                           string buying_currency, double sum) {
+    string buying_currency, double sum) {
     if (sum <= 0) {
         throw std::string("Sum must be greater than 0");
     }

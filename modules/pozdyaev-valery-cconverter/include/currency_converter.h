@@ -13,6 +13,7 @@ using std::string;
 class CurrencyConverter {
  public:
     CurrencyConverter();
+    explicit CurrencyConverter(CurrencyPair currency_pair);
 
     void addCurrencyPair(CurrencyPair currency_pair);
     void updateCurrencyPair(CurrencyPair currency_pair);
@@ -25,10 +26,10 @@ class CurrencyConverter {
     std::vector<CurrencyPair> getCurrencyPairs();
 
  private:
-    double buyCurrency(CurrencyPair currency_pair_code, double sum);
-    double saleCurrency(CurrencyPair currency_pair_code, double sum);
+    double buyCurrency(CurrencyPair currency_pair_code, double sum) const;
+    double saleCurrency(CurrencyPair currency_pair_code, double sum) const;
 
-    bool isCurrencyPairPresented(string curr_pair_code);
+    bool isCurrencyPairPresented(string curr_pair_code) const;
 
     std::vector<CurrencyPair> currency_pairs;
 };
