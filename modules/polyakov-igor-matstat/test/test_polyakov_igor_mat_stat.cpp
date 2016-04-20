@@ -408,7 +408,7 @@ TEST(Polyakov_Igor_MatStatTest, Can_Fold_Up_Dispersions) {
 
     dispersion_of_sum_two_rand_vals = el_moment_two_exp_1 +
         2.0 * math_expect_1 * math_expect_2 +
-        el_moment_two_exp_2 - 
+        el_moment_two_exp_2 -
         pow(math_expect_1, 2) -
         2.0 * math_expect_1 * math_expect_2 -
         pow(math_expect_2, 2);
