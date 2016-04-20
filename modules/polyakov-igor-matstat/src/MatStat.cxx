@@ -6,6 +6,7 @@
 #include <cmath>
 #include <vector>
 
+using std::vector;
 
 IncorrectSample::IncorrectSample() {
     std::string("Sample is not correct, values must be different");
@@ -20,7 +21,7 @@ IncorrectSizesOfSampleAndProbs::IncorrectSizesOfSampleAndProbs() {
 }
 
 
-bool Sample::IsSummOfProbsEqualUnity(const std::vector<double> _prob) const {
+bool Sample::IsSummOfProbsEqualUnity(const vector<double> _prob) const {
     double sum_of_probabilities = 0.0;
 
     for (unsigned int i = 0; i < _prob.size(); i++) {
@@ -34,7 +35,7 @@ bool Sample::IsSummOfProbsEqualUnity(const std::vector<double> _prob) const {
     return true;
 }
 
-bool Sample::AreProbsCorrect(const std::vector<double> _prob) const {
+bool Sample::AreProbsCorrect(const vector<double> _prob) const {
     for (unsigned int i = 0; i < _prob.size(); i++) {
         if (_prob[i] <= 0.0 || _prob[i] > 1.0) {
             return false;
@@ -48,7 +49,7 @@ bool Sample::AreProbsCorrect(const std::vector<double> _prob) const {
     return true;
 }
 
-bool Sample::IsSampleCorrect(const std::vector<double> _sample) const {
+bool Sample::IsSampleCorrect(const vector<double> _sample) const {
     for (unsigned int i = 0; i < _sample.size() - 1; i++) {
         for (unsigned int j = i + 1; j < _sample.size(); j++) {
             if (_sample[i] == _sample[j]) {
@@ -60,8 +61,14 @@ bool Sample::IsSampleCorrect(const std::vector<double> _sample) const {
     return true;
 }
 
-Sample::Sample(const std::vector<double> _sample,
-               const std::vector<double> _probabilities) {
+Sample::Sample() {
+    sample_size = 1;
+    sample = { 0.0 };
+    probabilities = { 1.0 };
+}
+
+Sample::Sample(const vector<double> _sample,
+               const vector<double> _probabilities) {
     if (_sample.size() != _probabilities.size()) {
         throw IncorrectSizesOfSampleAndProbs();
     } else {
@@ -111,11 +118,11 @@ int Sample::GetSampleSize() const {
     return sample_size;
 }
 
-std::vector<double> Sample::GetSample() const {
+vector<double> Sample::GetSample() const {
     return sample;
 }
 
-std::vector<double> Sample::GetProbabilities() const {
+vector<double> Sample::GetProbabilities() const {
     return probabilities;
 }
 

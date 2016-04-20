@@ -6,6 +6,7 @@
 #include <vector>
 #include <exception>
 
+using std::vector;
 
 const double SAMPLE_EPSILON = 0.001;
 
@@ -29,24 +30,25 @@ class IncorrectSizesOfSampleAndProbs :public std::exception {
 class Sample {
  private:
     int sample_size;
-    std::vector<double> sample;
-    std::vector<double> probabilities;
+    vector<double> sample;
+    vector<double> probabilities;
 
-    bool IsSummOfProbsEqualUnity(const std::vector<double> _pr) const;
-    bool AreProbsCorrect(const std::vector<double> _pr) const;
-    bool IsSampleCorrect(const std::vector<double> _sample) const;
+    bool IsSummOfProbsEqualUnity(const vector<double> _pr) const;
+    bool AreProbsCorrect(const vector<double> _pr) const;
+    bool IsSampleCorrect(const vector<double> _sample) const;
 
  public:
-    Sample(const std::vector<double> _sample,
-           const std::vector<double> _probabilities);
+    Sample();
+    Sample(const vector<double> _sample,
+           const vector<double> _probabilities);
     ~Sample();
 
     Sample& operator=(const Sample& S);
     bool operator==(const Sample& S) const;
 
     int GetSampleSize() const;
-    std::vector<double> GetSample() const;
-    std::vector<double> GetProbabilities() const;
+    vector<double> GetSample() const;
+    vector<double> GetProbabilities() const;
 
     double CalcMathematicalExpectation() const;
     double CalcMoment(const double relative_point, const int exponent) const;
