@@ -11,16 +11,17 @@ class TODOitem {
     int priority;
     string title;
     string text;
-    static const int MIN_PRIORITY_VALUE = 0;
-    static const int MAX_PRIORITY_VALUE = 5;
 
  public:
     static const int DEFAULT_PRIORITY_VALUE = 3;
+    static const int MAX_PRIORITY_VALUE = 5;
+    static const int MIN_PRIORITY_VALUE = 0;
 
     TODOitem();
+    TODOitem(int priority_val, string title_val, string text_val);
 
     int getPriority() const;
-    int setPriority(int value);
+    void setPriority(int value);
 
     string getTitle() const;
     void setTitle(string value);
@@ -28,8 +29,8 @@ class TODOitem {
     string getText() const;
     void setText(string value);
 
-    int increasePriority();
-    int decreasePriority();
+    void increasePriority();
+    void decreasePriority();
 
     bool operator==(const TODOitem &a) const;
     static bool priorityCompare(const TODOitem &l, const TODOitem &r);

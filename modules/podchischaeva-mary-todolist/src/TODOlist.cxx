@@ -14,18 +14,28 @@ using std::vector;
 using std::string;
 using std::out_of_range;
 using std::sort;
+using std::runtime_error;
 
 TODOlist::TODOlist() {
 }
 
 void TODOlist::addItem(TODOitem value) {
-    this->data.push_back(value);
+    if (search(value.getTitle()) < 0) {
+        this->data.push_back(value);
+    } else {
+        throw runtime_error("Add item with existing title!");
+    }
 }
 
-void TODOlist::addItem(string title) {
-    TODOitem temp;
-    temp.setTitle(title);
-    this->data.push_back(temp);
+void TODOlist::addItem(string title,
+        int priority,
+        string text) {
+    TODOitem temp(priority, title, text);
+    if (search(temp.getTitle()) < 0) {
+        this->data.push_back(temp);
+    } else {
+        throw runtime_error("Add item with existing title!");
+    }
 }
 
 size_t TODOlist::size() {

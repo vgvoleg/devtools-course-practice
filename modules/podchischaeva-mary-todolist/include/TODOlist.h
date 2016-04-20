@@ -11,11 +11,14 @@ using std::vector;
 class TODOlist {
  private:
     vector<TODOitem> data;
+
  public:
     TODOlist();
 
     void addItem(TODOitem value);
-    void addItem(string title);
+    void addItem(string title,
+            int priority = TODOitem::DEFAULT_PRIORITY_VALUE,
+            string text = "");
 
     size_t size();
 

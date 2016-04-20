@@ -8,6 +8,7 @@
 
 using std::vector;
 using std::out_of_range;
+using std::runtime_error;
 
 TEST(TODOlist, Can_Create) {
     // Arrange
@@ -18,6 +19,9 @@ TEST(TODOlist, Can_Create) {
 
     // Assert
     EXPECT_NE(nullptr, list);
+
+    // Free Memory
+    delete list;
 }
 
 TEST(TODOlist, Can_Add_By_Item) {
@@ -34,7 +38,34 @@ TEST(TODOlist, Can_Add_By_Item) {
     EXPECT_NE(-1, list.search("abc"));
 }
 
-TEST(TODOlist, Can_Add_By_Title) {
+TEST(TODOlist, Throw_When_Add_Existing_Title_By_Item) {
+    // Arrange
+    TODOitem item1;
+    TODOitem item2;
+    TODOlist list;
+
+    item1.setTitle("abc");
+    item2.setTitle("abc");
+
+    // Act
+    list.addItem(item1);
+
+    // Assert
+    EXPECT_THROW(list.addItem(item2), runtime_error);
+}
+
+TEST(TODOlist, Can_Add_By_Parameters) {
+    // Arrange
+    TODOlist list;
+
+    // Act
+    list.addItem("abc", 2);
+
+    // Assert
+    EXPECT_NE(-1, list.search("abc"));
+}
+
+TEST(TODOlist, Throw_When_Add_Existing_Title_By_Parameters) {
     // Arrange
     TODOlist list;
 
@@ -42,7 +73,7 @@ TEST(TODOlist, Can_Add_By_Title) {
     list.addItem("abc");
 
     // Assert
-    EXPECT_NE(-1, list.search("abc"));
+    EXPECT_THROW(list.addItem("abc"), runtime_error);
 }
 
 TEST(TODOlist, Can_Get_Size) {
