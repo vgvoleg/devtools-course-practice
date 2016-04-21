@@ -162,17 +162,27 @@ TEST(BinaryTree, Can_Insert_Element) {
     ASSERT_EQ(d.getKey(), Tree.getRoot()->getRight()->getLeft()->getKey());
 }
 
+TEST(BinaryTree, Can_Insert_Element_In_Root) {
+    // Arrange
+    Element a(5);
+    BinaryTree Tree;
+
+    // Act
+    Tree.insertElem(&a);
+
+    // Assert
+    ASSERT_EQ(a.getKey(), Tree.getRoot()->getKey());
+}
+
 TEST(BinaryTree, Can_Get_Order_By_Keys) {
     // Arrange
     Element a(5), b(3), c(7), d(6);
     BinaryTree Tree(&a);
-
-    // Act
     Tree.insertElem(&b);
     Tree.insertElem(&c);
     Tree.insertElem(&d);
 
-    // Assert
+    // Act & Assert
     ASSERT_EQ("3 5 6 7", Tree.getKeysOrder());
 }
 
@@ -180,14 +190,39 @@ TEST(BinaryTree, Can_Get_Values_Order_By_Keys) {
     // Arrange
     Element a(5, "5"), b(3, "3"), c(7, "7"), d(6, "6");
     BinaryTree Tree(&a);
-
-    // Act
     Tree.insertElem(&b);
     Tree.insertElem(&c);
     Tree.insertElem(&d);
 
-    // Assert
+    // Act & Assert
     ASSERT_EQ("3 5 6 7", Tree.getValuesOrderByKeys());
+}
+
+TEST(BinaryTree, Can_Get_Order_By_Keys_In_Subtree) {
+    // Arrange
+    Element a(5), b(3), c(7), d(6);
+    BinaryTree Tree(&a);
+    Tree.insertElem(&b);
+    Tree.insertElem(&c);
+    Tree.insertElem(&d);
+    Element* start = Tree.searchByKey(3);
+
+    // Act & Assert
+    ASSERT_EQ("3", Tree.getKeysOrderInSubtree(start));
+}
+
+TEST(BinaryTree, Can_Get_Values_Order_By_Keys_In_Subtree) {
+    // Arrange
+    Element a(5, "5"), b(3, "3"), c(7, "7"), d(6, "6"), e(4, "4");
+    BinaryTree Tree(&a);
+    Tree.insertElem(&b);
+    Tree.insertElem(&c);
+    Tree.insertElem(&d);
+    Tree.insertElem(&e);
+    Element* start = Tree.searchByKey(7);
+
+    // Act & Assert
+    ASSERT_EQ("6 7", Tree.getValuesOrderInSubtree(start));
 }
 
 TEST(BinaryTree, Can_Make_Copy) {
@@ -215,7 +250,8 @@ TEST(BinaryTree, Can_Do_Assignment) {
     Tree1.insertElem(&d);
 
     // Act
-    BinaryTree Tree2 = Tree1;
+    BinaryTree Tree2;
+    Tree2.operator=(Tree1);
 
     // Assert
     ASSERT_EQ("2 4 5 13", Tree2.getKeysOrder());
@@ -248,10 +284,10 @@ TEST(BinaryTree, Can_Search_By_Value) {
     Tree.insertElem(&e);
 
     // Act
-    Element* match = Tree.searchByValue(d.getValue());
+    Element* match = Tree.searchByValue(e.getValue());
 
     // Assert
-    ASSERT_EQ(match->getValue(), d.getValue());
+    ASSERT_EQ(match->getValue(), e.getValue());
 }
 
 TEST(BinaryTree, Can_Get_Min_By_Key) {
@@ -286,7 +322,7 @@ TEST(BinaryTree, Can_Get_Max_By_Key) {
     ASSERT_EQ(match->getKey(), c.getKey());
 }
 
-TEST(BinaryTree, Can_Get_Successor) {
+TEST(BinaryTree, Can_Get_Successor_After_Highest) {
     // Arrange
     Element a(12, "12"), b(15, "15"), c(132, "132"), d(1, "1"), e(13, "13");
     BinaryTree Tree(&a);
@@ -294,7 +330,24 @@ TEST(BinaryTree, Can_Get_Successor) {
     Tree.insertElem(&c);
     Tree.insertElem(&d);
     Tree.insertElem(&e);
-    Element* tmp = Tree.searchByKey(13);
+    Element* tmp = Tree.searchByKey(132);
+
+    // Act
+    Element* successor = Tree.getSuccessor(tmp);
+
+    // Assert
+    ASSERT_EQ(successor->getKey(), c.getKey());
+}
+
+TEST(BinaryTree, Can_Get_Successor_In_Right_Subtree) {
+    // Arrange
+    Element a(12, "12"), b(15, "15"), c(132, "132"), d(1, "1"), e(13, "13");
+    BinaryTree Tree(&a);
+    Tree.insertElem(&b);
+    Tree.insertElem(&c);
+    Tree.insertElem(&d);
+    Tree.insertElem(&e);
+    Element* tmp = Tree.searchByKey(15);
 
     // Act
     Element* successor = Tree.getSuccessor(tmp);
@@ -317,5 +370,22 @@ TEST(BinaryTree, Can_Get_Predecessor) {
     Element* predecessor = Tree.getPredecessor(tmp);
 
     // Assert
-    ASSERT_EQ(predecessor->getKey(), e.getKey());
+    ASSERT_EQ(predecessor->getKey(), b.getKey());
+}
+
+TEST(BinaryTree, Can_Get_Predecessor_Before_Lowest) {
+    // Arrange
+    Element a(12, "12"), b(15, "15"), c(132, "132"), d(1, "1"), e(13, "13");
+    BinaryTree Tree(&a);
+    Tree.insertElem(&b);
+    Tree.insertElem(&c);
+    Tree.insertElem(&d);
+    Tree.insertElem(&e);
+    Element* tmp = Tree.searchByKey(1);
+
+    // Act
+    Element* predecessor = Tree.getPredecessor(tmp);
+
+    // Assert
+    ASSERT_EQ(predecessor->getKey(), d.getKey());
 }
