@@ -1,3 +1,5 @@
+// Copyright 2016 Litsov Alex
+
 #include "include/BinaryTree.h"
 
 #include <stdlib.h>
@@ -76,9 +78,9 @@ void BinaryTree::_getValuesOrderInSubtree(Element* start, std::string* order) {
     }
 }
 void BinaryTree::DeleteSubtree(Element* tmp) {
-    if(tmp->getLeft() != 0)
+    if (tmp->getLeft() != 0)
         DeleteSubtree(tmp->getLeft());
-    if(tmp->getRight() != 0)
+    if (tmp->getRight() != 0)
         DeleteSubtree(tmp->getRight());
     delete tmp;
 }
@@ -113,25 +115,27 @@ void BinaryTree::insertElem(Element* input) {
     tmp->setParent(y);
     if (y == 0)
         root = tmp;
-    else
+    else {
         if (tmp->getKey() < y->getKey())
             y->setLeft(tmp);
         else
             y->setRight(tmp);
+    }
 }
 Element* BinaryTree::searchByKeyInSubtree(const int& key, Element* start) {
     if (start == 0 || start->getKey() == key)
         return start;
     if (key < start->getKey())
-        return searchByKeyInSubtree(key ,start->getLeft());
+        return searchByKeyInSubtree(key, start->getLeft());
     else
         return searchByKeyInSubtree(key, start->getRight());
 }
-Element* BinaryTree::searchByValueInSubtree(const std::string& value, Element* start) {
-    if(start == 0 || start->getValue() == value)
+Element* BinaryTree::searchByValueInSubtree(const std::string& value,
+    Element* start) {
+    if (start == 0 || start->getValue() == value)
         return start;
-    if(value < start->getValue())
-        return searchByValueInSubtree(value ,start->getLeft());
+    if (value < start->getValue())
+        return searchByValueInSubtree(value, start->getLeft());
     else
         return searchByValueInSubtree(value, start->getRight());
 }
@@ -143,7 +147,7 @@ Element* BinaryTree::searchByValue(const std::string& value) {
 }
 Element* BinaryTree::getMinByKeyInSubtree(Element* start) {
     Element* tmp = start;
-    while(tmp->getLeft() != 0)
+    while (tmp->getLeft() != 0)
         tmp = tmp->getLeft();
     return tmp;
 }
@@ -171,12 +175,11 @@ Element* BinaryTree::getSuccessor(Element* tmp) {
     return y;
 }
 Element* BinaryTree::getPredecessor(Element* tmp) {
-    if(tmp->getLeft() != 0)
+    if (tmp->getLeft() != 0)
         return getMaxByKeyInSubtree(tmp->getLeft());
     Element* x = tmp;
     Element* y = x->getParent();
-    while(y != 0 && x == y->getLeft())
-    {
+    while (y != 0 && x == y->getLeft()) {
         x = y;
         y = y->getParent();
     }
