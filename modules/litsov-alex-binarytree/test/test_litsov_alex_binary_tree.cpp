@@ -144,7 +144,8 @@ TEST(BinaryTree, Can_Create_Correctly) {
     BinaryTree Tree(a);
 
     // Assert
-    ASSERT_EQ(a, Tree.getRoot());
+    ASSERT_EQ(5, Tree.getRoot()->getKey());
+    ASSERT_EQ("e1", Tree.getRoot()->getValue());
 }
 
 TEST(BinaryTree, Can_Insert_Element) {
@@ -172,12 +173,12 @@ TEST(BinaryTree, Can_Get_Order_By_Keys) {
     Tree.insertElem(&d);
 
     // Assert
-    ASSERT_EQ("3 5 6 7 ", Tree.getKeysOrder());
+    ASSERT_EQ("3 5 6 7", Tree.getKeysOrder());
 }
 
 TEST(BinaryTree, Can_Get_Values_Order_By_Keys) {
     // Arrange
-    Element a(5, "5"), b(3, "3"), c(7, "3"), d(6, "6");
+    Element a(5, "5"), b(3, "3"), c(7, "7"), d(6, "6");
     BinaryTree Tree(&a);
 
     // Act
@@ -186,7 +187,7 @@ TEST(BinaryTree, Can_Get_Values_Order_By_Keys) {
     Tree.insertElem(&d);
 
     // Assert
-    ASSERT_EQ("3 5 6 7 ", Tree.getValuesOrderByKeys());
+    ASSERT_EQ("3 5 6 7", Tree.getValuesOrderByKeys());
 }
 
 TEST(BinaryTree, Can_Make_Copy) {
