@@ -252,7 +252,7 @@ TEST(Marchenko_Andrey_TriangleTest,
 
     // Assert
     EXPECT_TRUE(AB + BC >= AC);
-    EXPECT_TRUE(AB + AC >= BC); 
+    EXPECT_TRUE(AB + AC >= BC);
     EXPECT_TRUE(AC + BC >= AB);
 }
 
@@ -326,7 +326,7 @@ TEST(Marchenko_Andrey_TriangleTest,
 
     // Assert
     EXPECT_EQ(A1B1, A1B2);
-    EXPECT_EQ(B1C1, B2C2); 
+    EXPECT_EQ(B1C1, B2C2);
     EXPECT_EQ(A1C1, A2C2);
 }
 
