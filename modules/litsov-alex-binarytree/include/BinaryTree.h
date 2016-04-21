@@ -31,7 +31,7 @@ class BinaryTree {
     Element* root;
 
  private:
-    Element* CopyTree(Element* tmp, Element* parent = 0);
+    Element* CopyTree(Element* tmp, Element* parent = 0) const;
     void _getKeysOrderInSubtree(Element* start, std::string* order);
     void _getValuesOrderInSubtree(Element* start, std::string* order);
     void DeleteSubtree(Element* tmp);

@@ -53,7 +53,7 @@ Element* Element::getParent() {
     return parent;
 }
 
-Element* BinaryTree::CopyTree(Element* tmp, Element* parent) {
+Element* BinaryTree::CopyTree(Element* tmp, Element* parent) const {
     if (tmp == 0)
         return 0;
     Element *NewElement = new Element(tmp->getKey(),
