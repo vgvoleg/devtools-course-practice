@@ -37,6 +37,9 @@ class Triangle{
     point A;
     point B;
     point C;
+    void set_A(const point A_);
+    void set_B(const point B_);
+    void set_C(const point C_);
 
  public:
     Triangle();
@@ -55,9 +58,6 @@ class Triangle{
     double get_C_y() const;
 
     int istreanglecorrect(point A_, point B_, point C_);
-    void set_A(const point A_);
-    void set_B(const point B_);
-    void set_C(const point C_);
 
     bool operator==(const Triangle& T1) const;
 
