@@ -125,7 +125,8 @@ void BinaryTree::insertElem(Element* input) {
             y->setRight(tmp);
     }
 }
-Element* BinaryTree::searchByKeyInSubtree(const int& key, Element* start) const {
+Element* BinaryTree::searchByKeyInSubtree(const int& key,
+    Element* start) const {
     if (start == 0 || start->getKey() == key)
         return start;
     if (key < start->getKey())
