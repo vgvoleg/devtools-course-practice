@@ -192,7 +192,7 @@ TEST(BinaryTree, Can_Get_Values_Order_By_Keys) {
 
 TEST(BinaryTree, Can_Make_Copy) {
     // Arrange
-    Element a(5, "5"), b(3, "3"), c(7, "3"), d(6, "6");
+    Element a(5, "5"), b(3, "3"), c(7, "7"), d(6, "6");
     BinaryTree Tree1(&a);
     Tree1.insertElem(&b);
     Tree1.insertElem(&c);
