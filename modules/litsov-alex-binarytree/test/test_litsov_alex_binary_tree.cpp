@@ -14,11 +14,11 @@ TEST(Element, Can_Create_Correctly) {
     a = new Element(5, "hello", &parent, &right, &left);
 
     // Assert
-    ASSERT_EQ(5, a->getKey());
-    ASSERT_EQ("hello", a->getValue());
-    ASSERT_EQ(&parent, a->getParent());
-    ASSERT_EQ(&right, a->getRight());
-    ASSERT_EQ(&left, a->getLeft());
+    EXPECT_EQ(5, a->getKey());
+    EXPECT_EQ("hello", a->getValue());
+    EXPECT_EQ(&parent, a->getParent());
+    EXPECT_EQ(&right, a->getRight());
+    EXPECT_EQ(&left, a->getLeft());
 }
 
 TEST(Element, Can_Make_Copy) {
