@@ -7,6 +7,8 @@
 
 #include "include/currency_converter.h"
 
+using std::invalid_argument;
+
 TEST(Pozdyaev_Valery_CurrencyPairTest, Can_Create_Default_Currency_Pair) {
     // Arrange
     CurrencyPair *default_currency_pair;
@@ -72,7 +74,8 @@ TEST(Pozdyaev_Valery_CurrencyPairTest, Cannot_Set_Incorrect_Bid_Price) {
     double incorrect_bid_price = -0.5;
 
     // Act & Assert
-    EXPECT_THROW(currency_pair.setBidPrice(incorrect_bid_price), string);
+    EXPECT_THROW(currency_pair.setBidPrice(incorrect_bid_price)
+        , invalid_argument);
 }
 
 TEST(Pozdyaev_Valery_CurrencyPairTest, Cannot_Set_Incorrect_Ask_Price) {
@@ -81,7 +84,8 @@ TEST(Pozdyaev_Valery_CurrencyPairTest, Cannot_Set_Incorrect_Ask_Price) {
     double incorrect_ask_price = -0.5;
 
     // Act & Assert
-    EXPECT_THROW(currency_pair.setAskPrice(incorrect_ask_price), string);
+    EXPECT_THROW(currency_pair.setAskPrice(incorrect_ask_price)
+        , invalid_argument);
 }
 
 TEST(Pozdyaev_Valery_CurrencyPairTest, Cannot_Set_Bad_Currency_Code) {
@@ -90,7 +94,8 @@ TEST(Pozdyaev_Valery_CurrencyPairTest, Cannot_Set_Bad_Currency_Code) {
     string incorrect_code = "Eur.UsD";
 
     // Act & Assert
-    EXPECT_THROW(currency_pair.setCurrencyPairCode(incorrect_code), string);
+    EXPECT_THROW(currency_pair.setCurrencyPairCode(incorrect_code)
+        , invalid_argument);
 }
 
 TEST(Pozdyaev_Valery_CurrencyPairTest, Cannot_Create_Pair_With_Bad_Code) {
@@ -100,7 +105,8 @@ TEST(Pozdyaev_Valery_CurrencyPairTest, Cannot_Create_Pair_With_Bad_Code) {
     double ask_price = 2.2;
 
     // Act & Assert
-    EXPECT_THROW(CurrencyPair(incorrect_code, bid_price, ask_price), string);
+    EXPECT_THROW(CurrencyPair(incorrect_code, bid_price, ask_price)
+        , invalid_argument);
 }
 
 TEST(Pozdyaev_Valery_CurrencyPairTest, Cannot_Create_Pair_With_Bad_Price) {
@@ -110,7 +116,8 @@ TEST(Pozdyaev_Valery_CurrencyPairTest, Cannot_Create_Pair_With_Bad_Price) {
     double ask_price = 2.2;
 
     // Act & Assert
-    EXPECT_THROW(CurrencyPair(code, incorrect_bid_price, ask_price), string);
+    EXPECT_THROW(CurrencyPair(code, incorrect_bid_price, ask_price)
+        , invalid_argument);
 }
 
 TEST(Pozdyaev_Valery_CurrencyPairTest, Can_Recieved_Spread_History) {
@@ -157,5 +164,5 @@ TEST(Pozdyaev_Valery_CurrencyPairTest, Currency_Code_Is_Incorrect) {
 
     // Act & Assert
     EXPECT_THROW(CurrencyPair::checkCurrencyPairCode(currency_pair_code)
-        , string);
+        , invalid_argument);
 }

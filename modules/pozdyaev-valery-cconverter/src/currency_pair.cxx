@@ -6,6 +6,9 @@
 #include <map>
 #include <string>
 
+using std::logic_error;
+using std::invalid_argument;
+
 const double base_lot_size = 10000;
 
 CurrencyPair::CurrencyPair() {
@@ -18,12 +21,7 @@ CurrencyPair::CurrencyPair(string currency_pair_code,
                             double bid_price, double ask_price) {
     CurrencyPair::checkCurrencyPairCode(currency_pair_code);
     if (bid_price <= 0 || ask_price <= 0) {
-        throw string("Incorrect price format");
-    }
-
-    if (currency_pair_code.substr(0, 3)
-                == currency_pair_code.substr(4, 3)) {
-        throw std::string("Exchange with same currency is not supported");
+        throw invalid_argument("Incorrect price format");
     }
 
     currency_pair_code_ = currency_pair_code;
@@ -38,7 +36,7 @@ void CurrencyPair::setBidPrice(double new_bid_price) {
         bid_price_ = new_bid_price;
         updateSpreadHistory();
     } else {
-        throw string("Incorrect bid price format");
+        throw invalid_argument("Incorrect bid price format");
     }
 }
 
@@ -51,7 +49,7 @@ void CurrencyPair::setAskPrice(double new_ask_price) {
         ask_price_ = new_ask_price;
         updateSpreadHistory();
     } else {
-        throw string("Incorrect ask price format");
+        throw invalid_argument("Incorrect ask price format");
     }
 }
 
@@ -74,15 +72,20 @@ void CurrencyPair::checkCurrencyPairCode(string currency_pair_code) {
     int symb_code = 0;
 
     if (code_size == 7) {
+        if (currency_pair_code.substr(0, 3)
+            == currency_pair_code.substr(4, 3)) {
+            throw logic_error("Exchange with same currency is not supported");
+        }
+
         for (int i = 0; i < 7; i++) {
             symb_code = static_cast<int> (currency_pair_code[i]);
             if ((i == 3 && symb_code != 47)
                 || (i != 3 && (symb_code < 65 || symb_code > 90))) {
-                throw string("Incorrect currency pair code");
+                throw invalid_argument("Incorrect currency pair code");
             }
         }
     } else {
-        throw string("Incorrect size of currency pair code");
+        throw invalid_argument("Incorrect size of currency pair code");
     }
 }
 

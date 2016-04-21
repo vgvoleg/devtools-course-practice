@@ -7,6 +7,9 @@
 
 #include "include/currency_converter.h"
 
+using std::logic_error;
+using std::invalid_argument;
+
 TEST(Pozdyaev_Valery_CurrencyConverterTest, Can_Create_Converter) {
     // Arrange
     CurrencyConverter* converter;
@@ -51,7 +54,7 @@ TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Update_Through_Add_Func) {
 
     // Act & Assert
     CurrencyPair updated_pair("EUR/USD", 1.3, 1.5);
-    EXPECT_THROW(converter.addCurrencyPair(updated_pair), string);
+    EXPECT_THROW(converter.addCurrencyPair(updated_pair), logic_error);
 }
 
 TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Update_Non_Existing_Pair) {
@@ -61,7 +64,7 @@ TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Update_Non_Existing_Pair) {
 
     // Act & Assert
     CurrencyPair non_existing_pair("USD/RUB", 63.2, 65.5);
-    EXPECT_THROW(converter.updateCurrencyPair(non_existing_pair), string);
+    EXPECT_THROW(converter.updateCurrencyPair(non_existing_pair), logic_error);
 }
 
 TEST(Pozdyaev_Valery_CurrencyConverterTest, Can_Sale_Currency) {
@@ -96,7 +99,7 @@ TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Exchange_Incorrect_Code) {
     converter.addCurrencyPair(CurrencyPair("EUR/USD", 1.2, 1.6));
 
     // Act & Assert
-    EXPECT_THROW(converter.exchangeCurrency("UsD", "Eu", 12), string);
+    EXPECT_THROW(converter.exchangeCurrency("UsD", "Eu", 12), invalid_argument);
 }
 
 TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Exchange_Unknown_Currency) {
@@ -105,7 +108,7 @@ TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Exchange_Unknown_Currency) {
     converter.addCurrencyPair(CurrencyPair("EUR/USD", 1.2, 1.6));
 
     // Act & Assert
-    EXPECT_THROW(converter.exchangeCurrency("USD", "RUB", 12), string);
+    EXPECT_THROW(converter.exchangeCurrency("USD", "RUB", 12), logic_error);
 }
 
 TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Exchange_Incorrect_Sum) {
@@ -114,7 +117,8 @@ TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Exchange_Incorrect_Sum) {
     converter.addCurrencyPair(CurrencyPair("EUR/USD", 1.2, 1.6));
 
     // Act & Assert
-    EXPECT_THROW(converter.exchangeCurrency("USD", "EUR", -12), string);
+    EXPECT_THROW(converter.exchangeCurrency("USD", "EUR", -12)
+        , invalid_argument);
 }
 
 TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Exchange_Empty_Currency) {
@@ -123,7 +127,7 @@ TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Exchange_Empty_Currency) {
     converter.addCurrencyPair(CurrencyPair("EUR/USD", 1.2, 1.6));
 
     // Act & Assert
-    EXPECT_THROW(converter.exchangeCurrency("USD", "", 12), string);
+    EXPECT_THROW(converter.exchangeCurrency("USD", "", 12), invalid_argument);
 }
 
 TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Add_Revers_Currency_Pair) {
@@ -133,7 +137,7 @@ TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Add_Revers_Currency_Pair) {
 
     // Act & Assert
     CurrencyPair reverse_pair("USD/EUR", 1.3, 1.5);
-    EXPECT_THROW(converter.addCurrencyPair(reverse_pair), string);
+    EXPECT_THROW(converter.addCurrencyPair(reverse_pair), logic_error);
 }
 
 TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Add_Pair_Of_Same_Currency) {
@@ -141,7 +145,7 @@ TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Add_Pair_Of_Same_Currency) {
     CurrencyConverter converter;
 
     // Act & Assert
-    EXPECT_THROW(CurrencyPair("USD/USD", 1, 1), string);
+    EXPECT_THROW(CurrencyPair("USD/USD", 1, 1), logic_error);
 }
 
 TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Exchange_Same_Currency) {
@@ -150,7 +154,7 @@ TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Exchange_Same_Currency) {
     converter.addCurrencyPair(CurrencyPair("EUR/USD", 1.2, 1.6));
 
     // Act & Assert
-    EXPECT_THROW(converter.exchangeCurrency("USD", "USD", 10), string);
+    EXPECT_THROW(converter.exchangeCurrency("USD", "USD", 10), logic_error);
 }
 
 TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Update_With_Reverse_Pair) {
@@ -160,7 +164,7 @@ TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Update_With_Reverse_Pair) {
 
     // Act & Assert
     CurrencyPair reverse_pair("USD/EUR", 0.8, 0.94);
-    EXPECT_THROW(converter.updateCurrencyPair(reverse_pair), string);
+    EXPECT_THROW(converter.updateCurrencyPair(reverse_pair), logic_error);
 }
 
 TEST(Pozdyaev_Valery_CurrencyConverterTest, Can_Get_Count_Of_Pairs) {
@@ -202,5 +206,5 @@ TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Get_Unknown_Pair) {
     // Act & Assert
     string unknown_code = "EUR/RUB";
     EXPECT_THROW(converter.getCurrencyPairByCode(unknown_code)
-        , string);
+        , logic_error);
 }

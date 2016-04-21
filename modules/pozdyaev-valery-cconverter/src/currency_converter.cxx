@@ -5,6 +5,9 @@
 #include <vector>
 #include <string>
 
+using std::logic_error;
+using std::invalid_argument;
+
 CurrencyConverter::CurrencyConverter() {
 }
 
@@ -18,7 +21,7 @@ void CurrencyConverter::addCurrencyPair(CurrencyPair currency_pair) {
 
     if (isCurrencyPairPresented(currency_pair.getCurrencyPairCode())
         || isCurrencyPairPresented(revers_code)) {
-        throw std::string("Pair is already presented. Please use Update");
+        throw logic_error("Pair is already presented. Please use Update");
     }
 
     currency_pairs.push_back(currency_pair);
@@ -27,12 +30,14 @@ void CurrencyConverter::addCurrencyPair(CurrencyPair currency_pair) {
 void CurrencyConverter::updateCurrencyPair(CurrencyPair currency_pair) {
     string currency_code = currency_pair.getCurrencyPairCode();
 
+    CurrencyPair::checkCurrencyPairCode(currency_code);
+
     if (isCurrencyPairPresented(currency_pair.getCurrencyPairCode())) {
         CurrencyPair& pair = getCurrencyPairByCode(currency_code);
         pair.setAskPrice(currency_pair.getAskPrice());
         pair.setBidPrice(currency_pair.getBidPrice());
     } else {
-        throw std::string("Nothing to update");
+        throw logic_error("Nothing to update");
     }
 }
 
@@ -53,7 +58,7 @@ CurrencyPair& CurrencyConverter::getCurrencyPairByCode(string curr_pair_code) {
         }
     }
 
-    throw std::string("Currency pair is not found");
+    throw logic_error("Currency pair is not found");
 }
 
 bool CurrencyConverter::isCurrencyPairPresented(string curr_pair_code) const {
@@ -69,11 +74,12 @@ bool CurrencyConverter::isCurrencyPairPresented(string curr_pair_code) const {
 double CurrencyConverter::exchangeCurrency(string selling_currency,
     string buying_currency, double sum) {
     if (sum <= 0) {
-        throw std::string("Sum must be greater than 0");
+        throw invalid_argument("Sum must be greater than 0");
     }
 
     if (selling_currency == "" || buying_currency == "") {
-        throw std::string("Value of buying or selling currency is empty");
+        throw
+            invalid_argument("Value of buying or selling currency is empty");
     }
 
     CurrencyPair currency_pair;
@@ -94,7 +100,7 @@ double CurrencyConverter::exchangeCurrency(string selling_currency,
         return buyCurrency(currency_pair, sum);
     }
 
-    throw std::string("Can not exchange currency. Currency pair is not found");
+    throw logic_error("Can not exchange currency. Currency pair is not found");
 }
 
 std::vector<CurrencyPair> CurrencyConverter::getCurrencyPairs() {
