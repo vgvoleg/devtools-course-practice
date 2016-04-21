@@ -4,26 +4,29 @@
 #define MODULES_POLYAKOV_IGOR_MATSTAT_INCLUDE_MATSTAT_H_
 
 #include <vector>
-#include <exception>
+#include <stdexcept>
 
 using std::vector;
 
 const double SAMPLE_EPSILON = 0.001;
 
 
-class IncorrectSample :public std::exception {
+class IncorrectSample :public std::runtime_error {
  public:
-     IncorrectSample();
+     IncorrectSample() :
+     std::runtime_error("Sample is not correct, values must be different") {}
 };
 
-class IncorrectProbabilities :public std::exception {
+class IncorrectProbabilities :public std::runtime_error {
  public:
-    IncorrectProbabilities();
+    IncorrectProbabilities() :
+    std::runtime_error("Probabilities is not correct") {}
 };
 
-class IncorrectSizesOfSampleAndProbs :public std::exception {
+class IncorrectSizesOfSampleAndProbs :public std::runtime_error {
  public:
-     IncorrectSizesOfSampleAndProbs();
+     IncorrectSizesOfSampleAndProbs() :
+     std::runtime_error("Sizes of sample and probs must be identical") {}
 };
 
 

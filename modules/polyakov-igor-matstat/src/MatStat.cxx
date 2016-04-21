@@ -8,18 +8,6 @@
 
 using std::vector;
 
-IncorrectSample::IncorrectSample() {
-    std::string("Sample is not correct, values must be different");
-}
-
-IncorrectProbabilities::IncorrectProbabilities() {
-    std::string("Probabilities is not correct");
-}
-
-IncorrectSizesOfSampleAndProbs::IncorrectSizesOfSampleAndProbs() {
-    std::string("Sizes of sample and probabilities must be identical");
-}
-
 
 bool Sample::IsSummOfProbsEqualUnity(const vector<double> _prob) const {
     double sum_of_probabilities = 0.0;
