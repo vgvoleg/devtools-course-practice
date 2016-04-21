@@ -1,19 +1,19 @@
 // Copyright 2016 Litsov Alex
 
-#ifndef MODULES_LITSOV_ALEX_BINARY_TREE_H_
-#define MODULES_LITSOV_ALEX_BINARY_TREE_H_
+#ifndef MODULES_LITSOV_ALEX_BINARYTREE_H_
+#define MODULES_LITSOV_ALEX_BINARYTREE_H_
 
 #include <string>
 
-class Element
-{
+class Element {
     Element* parent;
     Element *right;
     Element *left;
     int key;
     std::string value;
-public:
-    Element(int _key = 0, std::string _value = "", Element* _parent = 0, Element* _right = 0, Element* _left = 0);
+ public:
+    explicit Element(int _key = 0, std::string _value = "", Element* _parent = 0,
+    	Element* _right = 0, Element* _left = 0);
     Element(const Element& tmp);
     ~Element();
     int getKey();
@@ -27,16 +27,15 @@ public:
     Element* getLeft();
     Element* getParent();
 };
-class BinaryTree
-{
+class BinaryTree {
     Element* root;
-private:
+ private:
     Element* CopyTree(Element* tmp, Element* parent = 0);
-    void _getKeysOrderInSubtree(Element* start, std::string& order);
-    void _getValuesOrderInSubtree(Element* start, std::string& order);
+    void _getKeysOrderInSubtree(Element* start, std::string* order);
+    void _getValuesOrderInSubtree(Element* start, std::string* order);
     void DeleteSubtree(Element* tmp);
-public:
-    BinaryTree(Element* _root = 0);
+ public:
+    explicit BinaryTree(Element* _root = 0);
     Element* getRoot() const;
     BinaryTree(const BinaryTree& tmp);
     BinaryTree& operator=(BinaryTree& tmp);
@@ -58,4 +57,4 @@ public:
     std::string getValuesOrderInSubtree(Element* start);
 };
 
-#endif  // MODULES_LITSOV_ALEX_BINARY_TREE_H_
+#endif  // MODULES_LITSOV_ALEX_BINARYTREE_H_

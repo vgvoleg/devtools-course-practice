@@ -73,21 +73,21 @@ Element* BinaryTree::CopyTree(Element* tmp, Element* parent)
     NewElement->setRight(CopyTree(tmp->getRight(), NewElement));
     return NewElement;
 }
-void BinaryTree::_getKeysOrderInSubtree(Element* start, std::string& order)
+void BinaryTree::_getKeysOrderInSubtree(Element* start, std::string* order)
 {
     if(start != 0)
     {
         _getKeysOrderInSubtree(start->getLeft(), order);
-        order += std::to_string(start->getKey()) + " ";
+        *order += std::to_string(start->getKey()) + " ";
         _getKeysOrderInSubtree(start->getRight(), order);
     }
 }
-void BinaryTree::_getValuesOrderInSubtree(Element* start, std::string& order)
+void BinaryTree::_getValuesOrderInSubtree(Element* start, std::string* order)
 {
     if(start != 0)
     {
         _getValuesOrderInSubtree(start->getLeft(), order);
-        order += start->getValue() + " ";
+        *order += start->getValue() + " ";
         _getValuesOrderInSubtree(start->getRight(), order);
     }
 }
@@ -214,28 +214,28 @@ Element* BinaryTree::getPredecessor(Element* tmp)
 std::string BinaryTree::getKeysOrder()
 {
     std::string res = "";
-    _getKeysOrderInSubtree(root, res);
+    _getKeysOrderInSubtree(root, &res);
     res = res.substr(0,res.length()-1);
     return res;
 }
 std::string BinaryTree::getValuesOrderByKeys()
 {
     std::string res = "";
-    _getValuesOrderInSubtree(root, res);
+    _getValuesOrderInSubtree(root, &res);
     res = res.substr(0,res.length()-1);
     return res;
 }
 std::string BinaryTree::getKeysOrderInSubtree(Element* start)
 {
     std::string res = "";
-    _getKeysOrderInSubtree(start, res);
+    _getKeysOrderInSubtree(start, &res);
     res = res.substr(0,res.length()-1);
     return res;
 }
 std::string BinaryTree::getValuesOrderInSubtree(Element* start)
 {
     std::string res = "";
-    _getValuesOrderInSubtree(start, res);
+    _getValuesOrderInSubtree(start, &res);
     res = res.substr(0,res.length()-1);
     return res;
 }
