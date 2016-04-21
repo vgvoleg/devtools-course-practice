@@ -20,7 +20,7 @@ class TwoSamePoints :public std::runtime_error {
 class IncorrectPoints :public std::runtime_error {
  public:
      IncorrectPoints() : std::
-         runtime_error("Triangle is not correct, all points on one straight line") {}
+         runtime_error("Triangle is not correct, all points on one line") {}
 };
 
 struct point{
