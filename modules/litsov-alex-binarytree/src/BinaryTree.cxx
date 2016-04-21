@@ -113,9 +113,9 @@ void BinaryTree::insertElem(Element* input) {
             x = x->getRight();
     }
     tmp->setParent(y);
-    if (y == 0)
+    if (y == 0) {
         root = tmp;
-    else {
+    } else {
         if (tmp->getKey() < y->getKey())
             y->setLeft(tmp);
         else
