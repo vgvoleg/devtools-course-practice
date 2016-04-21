@@ -3,20 +3,17 @@
 #include <math.h>
 #include <string>
 #include "include/Triangle.h"
-#include <iostream>
-
-using namespace std;
 
 ThreeSamePoints::ThreeSamePoints() {
-    cout << "Triangle is not correct, three points are idential";
+    std::exception("Triangle is not correct, three points are idential");
 }
 
 TwoSamePoints::TwoSamePoints() {
-    cout << "Triangle is not correct, two points are idential";
+    std::exception("Triangle is not correct, two points are idential");
 }
 
 IncorrectPoints::IncorrectPoints() {
-    cout << "Triangle is not correct, all points on one straight line";
+    std::exception("Triangle is not correct, all points on one straight line");
 }
 
 point::point() {
@@ -108,8 +105,9 @@ Triangle::Triangle() {
 }
 
 bool are_point_on_straight_line(point _A, point _B, point _C) {
-    int det = _A.x * _B.y + _C.x * _A.y + _B.x * _C.y - _C.x * _B.y - _B.x * _A.y - _A.x * _C.y;
-    if (det == 0) 
+    int det = _A.x * _B.y + _C.x * _A.y + _B.x *
+        _C.y - _C.x * _B.y - _B.x * _A.y - _A.x * _C.y;
+    if (det == 0)
         return 1;
     else
         return 0;
@@ -118,14 +116,11 @@ bool are_point_on_straight_line(point _A, point _B, point _C) {
 int Triangle::istreanglecorrect(point _A, point _B, point _C) {
     if (_A == _B && _B == _C) {
         return 1;
-    }
-    else if (_A == _B || _A == _C || _B == _C) {
+    } else if (_A == _B || _A == _C || _B == _C) {
         return 2;
-    }
-    else if (are_point_on_straight_line(_A, _B, _C) != 0) {
+    } else if (are_point_on_straight_line(_A, _B, _C) != 0) {
         return 3;
-    }
-    else {
+    } else {
         return 0;
     }
 }

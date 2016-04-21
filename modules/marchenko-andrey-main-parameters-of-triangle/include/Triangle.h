@@ -4,7 +4,6 @@
 #define MODULES_MARCHENKO_ANDREY_MAIN_PARAMETERS_OF_TRIANGLE_INCLUDE_TRIANGLE_H_
 
 #include <exception>
-#include <string>
 
 class ThreeSamePoints :public std::exception {
  public:
