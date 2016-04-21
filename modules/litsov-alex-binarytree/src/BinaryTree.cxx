@@ -85,7 +85,7 @@ void BinaryTree::DeleteSubtree(Element* tmp) {
     delete tmp;
 }
 BinaryTree::BinaryTree(Element* _root) {
-    if(_root != 0)
+    if (_root != 0)
         root = new Element(*_root);
     else
         root = 0;
