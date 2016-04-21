@@ -3,16 +3,16 @@
 #ifndef MODULES_RUMYANTSEV_ALEXANDER_VECTOR3D_INCLUDE_VECTOR3D_H_
 #define MODULES_RUMYANTSEV_ALEXANDER_VECTOR3D_INCLUDE_VECTOR3D_H_
 
-#include <exception>
+#include <stdexcept>
 
-class DivisionByZero : public std::exception {
+class DivisionByZero : public std::runtime_error {
  public:
-  virtual char const* what() const;
+  DivisionByZero() : std::runtime_error("Can't divide by zero") {}
 };
 
-class NullVectorNormalizing : public std::exception {
+class NullVectorNormalizing : public std::runtime_error {
  public:
-  virtual char const* what() const;
+  NullVectorNormalizing() : std::runtime_error("Can't normalize null vector") {}
 };
 
 class Vector3D {

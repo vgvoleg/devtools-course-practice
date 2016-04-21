@@ -8,14 +8,6 @@
 
 const double eps = std::numeric_limits<double>::epsilon();
 
-char const* DivisionByZero::what() const {
-  return "Can't divide by zero";
-}
-
-char const* NullVectorNormalizing::what() const {
-  return "Can't normalize null vector";
-}
-
 Vector3D::Vector3D() : x_(0.0), y_(0.0), z_(0.0) {}
 
 Vector3D::Vector3D(const double x, const double y, const double z)
