@@ -1,7 +1,7 @@
 // Copyright 2016 Litsov Alex
 
-#ifndef MODULES_LITSOV_ALEX_BINARYTREE_INCLUDE_BINARYTREE_H_ 
-#define MODULES_LITSOV_ALEX_BINARYTREE_INCLUDE_BINARYTREE_H_ 
+#ifndef MODULES_LITSOV_ALEX_BINARYTREE_INCLUDE_BINARYTREE_H_
+#define MODULES_LITSOV_ALEX_BINARYTREE_INCLUDE_BINARYTREE_H_
 
 #include <string>
 
@@ -12,7 +12,7 @@ class Element {
     int key;
     std::string value;
  public:
-    explicit Element(int _key = 0, std::string _value = "", 
+    explicit Element(int _key = 0, std::string _value = "",
         Element* _parent = 0, Element* _right = 0, Element* _left = 0);
     Element(const Element& tmp);
     ~Element();
@@ -59,4 +59,4 @@ class BinaryTree {
     std::string getValuesOrderInSubtree(Element* start);
 };
 
-#endif  // MODULES_LITSOV_ALEX_BINARYTREE_INCLUDE_BINARYTREE_H_ 
+#endif  // MODULES_LITSOV_ALEX_BINARYTREE_INCLUDE_BINARYTREE_H_
