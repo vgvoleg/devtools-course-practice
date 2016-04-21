@@ -336,7 +336,7 @@ TEST(BinaryTree, Can_Get_Successor_After_Highest) {
     Element* successor = Tree.getSuccessor(tmp);
 
     // Assert
-    ASSERT_EQ(successor->getKey(), c.getKey());
+    ASSERT_EQ(successor, nullptr);
 }
 
 TEST(BinaryTree, Can_Get_Successor_In_Right_Subtree) {
