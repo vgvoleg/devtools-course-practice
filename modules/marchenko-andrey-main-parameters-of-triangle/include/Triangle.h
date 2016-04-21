@@ -7,17 +7,20 @@
 
 class ThreeSamePoints :public std::runtime_error {
  public:
-     ThreeSamePoints() : std::runtime_error("Triangle is not correct, three points are idential") {}
+     ThreeSamePoints() : std::
+         runtime_error("Triangle is not correct, three points are idential") {}
 };
 
 class TwoSamePoints :public std::runtime_error {
  public:
-     TwoSamePoints() : std::runtime_error("Triangle is not correct, two points are idential") {}
+     TwoSamePoints() : std::
+         runtime_error("Triangle is not correct, two points are idential") {}
 };
 
 class IncorrectPoints :public std::runtime_error {
  public:
-     IncorrectPoints() : std::runtime_error("Triangle is not correct, all points on one straight line") {}
+     IncorrectPoints() : std::
+         runtime_error("Triangle is not correct, all points on one straight line") {}
 };
 
 struct point{
