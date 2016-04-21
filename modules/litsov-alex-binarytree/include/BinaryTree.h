@@ -33,8 +33,8 @@ class BinaryTree {
 
  private:
     Element* CopyTree(Element* tmp, Element* parent = 0) const;
-    void _getKeysOrderInSubtree(Element* start, string* order);
-    void _getValuesOrderInSubtree(Element* start, string* order);
+    void _getKeysOrderInSubtree(Element* start, string* order) const;
+    void _getValuesOrderInSubtree(Element* start, string* order) const;
     void DeleteSubtree(Element* tmp);
 
  public:
@@ -44,20 +44,20 @@ class BinaryTree {
     BinaryTree& operator=(const BinaryTree& tmp);
     ~BinaryTree();
     void insertElem(Element* input);
-    Element* searchByKeyInSubtree(const int& key, Element* start);
-    Element* searchByValueInSubtree(const string& value, Element* start);
-    Element* searchByKey(const int& key);
-    Element* searchByValue(const string& value);
-    Element* getMinByKeyInSubtree(Element* start);
-    Element* getMinByKey();
-    Element* getMaxByKeyInSubtree(Element* start);
-    Element* getMaxByKey();
-    Element* getSuccessor(Element* tmp);
-    Element* getPredecessor(Element* tmp);
-    string getKeysOrder();
-    string getValuesOrderByKeys();
-    string getKeysOrderInSubtree(Element* start);
-    string getValuesOrderInSubtree(Element* start);
+    Element* searchByKeyInSubtree(const int& key, Element* start) const;
+    Element* searchByValueInSubtree(const string& value, Element* start) const;
+    Element* searchByKey(const int& key) const;
+    Element* searchByValue(const string& value) const;
+    Element* getMinByKeyInSubtree(Element* start) const;
+    Element* getMinByKey() const;
+    Element* getMaxByKeyInSubtree(Element* start) const;
+    Element* getMaxByKey() const;
+    Element* getSuccessor(Element* tmp) const;
+    Element* getPredecessor(Element* tmp) const;
+    string getKeysOrder() const;
+    string getValuesOrderByKeys() const;
+    string getKeysOrderInSubtree(Element* start) const;
+    string getValuesOrderInSubtree(Element* start) const;
 };
 
 #endif  // MODULES_LITSOV_ALEX_BINARYTREE_INCLUDE_BINARYTREE_H_
