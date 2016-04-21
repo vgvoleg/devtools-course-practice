@@ -3,6 +3,18 @@
 #ifndef MODULES_RUMYANTSEV_ALEXANDER_VECTOR3D_INCLUDE_VECTOR3D_H_
 #define MODULES_RUMYANTSEV_ALEXANDER_VECTOR3D_INCLUDE_VECTOR3D_H_
 
+#include <exception>
+
+class DivisionByZero : public std::exception {
+ public:
+  virtual char const* what() const;
+};
+
+class NullVectorNormalizing : public std::exception {
+ public:
+  virtual char const* what() const;
+};
+
 class Vector3D {
  public:
   Vector3D();

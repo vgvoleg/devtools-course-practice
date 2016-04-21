@@ -273,7 +273,7 @@ TEST(Rumyantsev_Alexander_Vector3DTest, Can_Get_Opposite_Vector) {
   ASSERT_EQ(expected_v, v);
 }
 
-TEST(Rumyantsev_Alexander_Vector3DTest, Can_Multiply_On_The_Right_By_Number) {
+TEST(Rumyantsev_Alexander_Vector3DTest, Can_Multiply_On_The_Right_By_Scalar) {
   // Arrange
   Vector3D v1(-12.0, -10.0, 10.0);
   double k = -0.5;
@@ -299,7 +299,7 @@ TEST(Rumyantsev_Alexander_Vector3DTest, Can_Multiply_On_The_Right_By_Zero) {
   ASSERT_EQ(expected_v, v);
 }
 
-TEST(Rumyantsev_Alexander_Vector3DTest, Can_Multiply_On_The_Left_By_Number) {
+TEST(Rumyantsev_Alexander_Vector3DTest, Can_Multiply_On_The_Left_By_Scalar) {
   // Arrange
   Vector3D v1(2.0, -0.3, 11.0);
   double k = 3.0;
@@ -325,7 +325,7 @@ TEST(Rumyantsev_Alexander_Vector3DTest, Can_Multiply_On_The_Left_By_Zero) {
   ASSERT_EQ(expected_v, v);
 }
 
-TEST(Rumyantsev_Alexander_Vector3DTest, Can_Divide_By_Number) {
+TEST(Rumyantsev_Alexander_Vector3DTest, Can_Divide_By_Scalar) {
   // Arrange
   Vector3D v1(-3.0, 4.5, -2.1);
   double k = 3.0;
@@ -344,7 +344,7 @@ TEST(Rumyantsev_Alexander_Vector3DTest, Throws_When_Dividing_By_Zero) {
   double k = 0.0;
 
   // Act & Assert
-  ASSERT_THROW(v / k, std::string);
+  ASSERT_THROW(v / k, DivisionByZero);
 }
 
 TEST(Rumyantsev_Alexander_Vector3DTest, Can_Do_Complex_Arithmetics) {
@@ -419,7 +419,7 @@ TEST(Rumyantsev_Alexander_Vector3DTest, Throws_When_Normalizing_NullVector) {
   Vector3D v;
 
   // Act & Assert
-  ASSERT_THROW(v.normalize(), std::string);
+  ASSERT_THROW(v.normalize(), NullVectorNormalizing);
 }
 
 TEST(Rumyantsev_Alexander_Vector3DTest, Can_Calculate_Dot_Product) {

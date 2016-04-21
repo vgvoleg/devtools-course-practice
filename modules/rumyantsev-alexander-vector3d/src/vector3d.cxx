@@ -8,6 +8,14 @@
 
 const double eps = std::numeric_limits<double>::epsilon();
 
+char const* DivisionByZero::what() const {
+  return "Can't divide by zero";
+}
+
+char const* NullVectorNormalizing::what() const {
+  return "Can't normalize null vector";
+}
+
 Vector3D::Vector3D() : x_(0.0), y_(0.0), z_(0.0) {}
 
 Vector3D::Vector3D(const double x, const double y, const double z)
@@ -77,7 +85,7 @@ Vector3D operator*(const double k, const Vector3D& v) {
 
 Vector3D Vector3D::operator/(const double k) const {
   if (k < eps && k > -eps) {
-    throw std::string("Can't divide by zero");
+    throw DivisionByZero();
   } else {
     return Vector3D(x_ / k, y_ / k, z_ / k);
   }
@@ -97,7 +105,7 @@ double Vector3D::magnitude() const {
 
 void Vector3D::normalize() {
   if (isNullVector()) {
-    throw std::string("Can't normalize null vector");
+    throw NullVectorNormalizing();
   } else {
     double mgn = magnitude();
     *this = *this / mgn;
