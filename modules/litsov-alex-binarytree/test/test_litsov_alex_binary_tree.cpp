@@ -353,7 +353,7 @@ TEST(BinaryTree, Can_Get_Successor_In_Right_Subtree) {
     Element* successor = Tree.getSuccessor(tmp);
 
     // Assert
-    ASSERT_EQ(successor->getKey(), b.getKey());
+    ASSERT_EQ(successor->getKey(), c.getKey());
 }
 
 TEST(BinaryTree, Can_Get_Predecessor) {
@@ -370,7 +370,7 @@ TEST(BinaryTree, Can_Get_Predecessor) {
     Element* predecessor = Tree.getPredecessor(tmp);
 
     // Assert
-    ASSERT_EQ(predecessor->getKey(), b.getKey());
+    ASSERT_EQ(predecessor->getKey(), e.getKey());
 }
 
 TEST(BinaryTree, Can_Get_Predecessor_Before_Lowest) {
@@ -387,5 +387,5 @@ TEST(BinaryTree, Can_Get_Predecessor_Before_Lowest) {
     Element* predecessor = Tree.getPredecessor(tmp);
 
     // Assert
-    ASSERT_EQ(predecessor->getKey(), d.getKey());
+    ASSERT_EQ(predecessor, nullptr);
 }
