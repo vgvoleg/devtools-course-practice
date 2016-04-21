@@ -4,18 +4,6 @@
 #include <string>
 #include "include/Triangle.h"
 
-ThreeSamePoints::ThreeSamePoints() {
-    std::exception("Triangle is not correct, three points are idential");
-}
-
-TwoSamePoints::TwoSamePoints() {
-    std::exception("Triangle is not correct, two points are idential");
-}
-
-IncorrectPoints::IncorrectPoints() {
-    std::exception("Triangle is not correct, all points on one straight line");
-}
-
 point::point() {
     x = 0.0;
     y = 0.0;

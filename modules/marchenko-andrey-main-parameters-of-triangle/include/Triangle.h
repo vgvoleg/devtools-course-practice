@@ -3,21 +3,21 @@
 #ifndef MODULES_MARCHENKO_ANDREY_MAIN_PARAMETERS_OF_TRIANGLE_INCLUDE_TRIANGLE_H_
 #define MODULES_MARCHENKO_ANDREY_MAIN_PARAMETERS_OF_TRIANGLE_INCLUDE_TRIANGLE_H_
 
-#include <exception>
+#include <stdexcept>
 
-class ThreeSamePoints :public std::exception {
+class ThreeSamePoints :public std::runtime_error {
  public:
-     ThreeSamePoints();
+     ThreeSamePoints() : std::runtime_error("Triangle is not correct, three points are idential") {}
 };
 
-class TwoSamePoints :public std::exception {
+class TwoSamePoints :public std::runtime_error {
  public:
-     TwoSamePoints();
+     TwoSamePoints() : std::runtime_error("Triangle is not correct, two points are idential") {}
 };
 
-class IncorrectPoints :public std::exception {
+class IncorrectPoints :public std::runtime_error {
  public:
-    IncorrectPoints();
+     IncorrectPoints() : std::runtime_error("Triangle is not correct, all points on one straight line") {}
 };
 
 struct point{
