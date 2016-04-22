@@ -163,8 +163,8 @@ TEST(Marchenko_Andrey_TriangleTest,
     Triangle T(A, B, C);
 
     // Act
-    double sin_A = T.sin_of_angle(T.angle_A_of_triangle_in_radians());
-    double sin_B = T.sin_of_angle(T.angle_B_of_triangle_in_radians());
+    double sin_A = sin(T.angle_A_of_triangle_in_radians());
+    double sin_B = sin(T.angle_B_of_triangle_in_radians());
 
     // Assert
     ASSERT_TRUE(sin_A == sin_B);
@@ -179,7 +179,7 @@ TEST(Marchenko_Andrey_TriangleTest,
 
     // Act
     Triangle T(A, B, C);
-    double cos_C = T.cos_of_angle(T.angle_C_of_triangle_in_radians());
+    double cos_C = cos(T.angle_C_of_triangle_in_radians());
 
     // Assert
     ASSERT_NEAR(0.0, cos_C, eps);
@@ -194,8 +194,8 @@ TEST(Marchenko_Andrey_TriangleTest,
     Triangle T(A, B, C);
 
     // Act
-    double tan_A = T.tan_of_angle(T.angle_A_of_triangle_in_radians());
-    double ctan_A = T.ctan_of_angle(T.angle_A_of_triangle_in_radians());
+    double tan_A = tan(T.angle_A_of_triangle_in_radians());
+    double ctan_A = 1/tan(T.angle_A_of_triangle_in_radians());
 
     // Assert
     ASSERT_NEAR(ctan_A, tan_A, eps);
@@ -339,12 +339,12 @@ TEST(Marchenko_Andrey_TriangleTest,
     Triangle T(A, B, C);
 
     // Act
-    double A_x = T.get_A_x();
-    double A_y = T.get_A_y();
-    double B_x = T.get_B_x();
-    double B_y = T.get_B_y();
-    double C_x = T.get_C_x();
-    double C_y = T.get_C_y();
+    double A_x = T.get_A().x;
+    double A_y = T.get_A().y;
+    double B_x = T.get_B().x;
+    double B_y = T.get_B().y;
+    double C_x = T.get_C().x;
+    double C_y = T.get_C().y;
 
     // Assert
     EXPECT_TRUE(A_x == 0.0 && A_y == 0.0 && B_x == 2.0
@@ -367,4 +367,107 @@ TEST(Marchenko_Andrey_TriangleTest,
 
     // Assert
     ASSERT_FALSE(T1 == T2);
+}
+
+TEST(Marchenko_Andrey_TriangleTest, Can_Set_A) {
+    // Arrange
+    Triangle T1;
+    point A(4.0, 5.0);
+
+    // Act
+    T1.set_A(A);
+
+    // Assert
+    ASSERT_TRUE(T1.get_A() == A);
+}
+
+TEST(Marchenko_Andrey_TriangleTest, Can_Set_B) {
+    // Arrange
+    Triangle T1;
+    point B(4.0, 5.0);
+
+    // Act
+    T1.set_B(B);
+
+    // Assert
+    ASSERT_TRUE(T1.get_B() == B);
+}
+
+TEST(Marchenko_Andrey_TriangleTest, Can_Set_C) {
+    // Arrange
+    Triangle T1;
+    point C(4.0, 5.0);
+
+    // Act
+    T1.set_C(C);
+
+    // Assert
+    ASSERT_TRUE(T1.get_C() == C);
+}
+
+TEST(Marchenko_Andrey_TriangleTest, Can_Not_Set_Idential_Point_A) {
+    // Arrange
+    Triangle T1;
+    point A(1.0, 1.0);
+
+    // Act and Assert
+    EXPECT_THROW(T1.set_A(A), TwoSamePoints);
+}
+
+TEST(Marchenko_Andrey_TriangleTest, Can_Not_Set_Idential_Point_B) {
+    // Arrange
+    Triangle T1;
+    point B(0.0, 0.0);
+
+    // Act and Assert
+    EXPECT_THROW(T1.set_B(B), TwoSamePoints);
+}
+
+TEST(Marchenko_Andrey_TriangleTest, Can_Not_Set_Idential_Point_C) {
+    // Arrange
+    Triangle T1;
+    point C(1.0, 1.0);
+
+    // Act and Assert
+    EXPECT_THROW(T1.set_C(C), TwoSamePoints);
+}
+
+TEST(Marchenko_Andrey_TriangleTest, Can_Not_Set_Incorrect_Point_A) {
+    // Arrange
+    point A(0.0, 1.0);
+    point B(2.0, 2.0);
+    point C(4.0, 4.0);
+    point A1(0.0, 0.0);
+
+    // Act
+    Triangle T1(A, B, C);
+
+    //  Assert
+    EXPECT_THROW(T1.set_A(A1), IncorrectPoints);
+}
+
+TEST(Marchenko_Andrey_TriangleTest, Can_Not_Set_Incorrect_Point_B) {
+    point A(0.0, 0.0);
+    point B(2.0, 3.0);
+    point C(4.0, 4.0);
+    point B1(2.0, 2.0);
+
+    // Act
+    Triangle T1(A, B, C);
+
+    //  Assert
+    EXPECT_THROW(T1.set_B(B1), IncorrectPoints);
+}
+
+TEST(Marchenko_Andrey_TriangleTest, Can_Not_Set_Incorrect_Point_C) {
+    point A(0.0, 0.0);
+    point B(2.0, 2.0);
+    point C(4.0, 3.0);
+    point C1(4.0, 4.0);
+
+    // Act
+    Triangle T1(A, B, C);
+
+    //  Assert
+    EXPECT_THROW(T1.set_C(C1), IncorrectPoints);
 }

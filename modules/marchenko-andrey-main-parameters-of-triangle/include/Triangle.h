@@ -35,31 +35,20 @@ struct point{
 };
 
 class Triangle{
- private:
-    point A;
-    point B;
-    point C;
-    void set_A(const point A_);
-    void set_B(const point B_);
-    void set_C(const point C_);
-
  public:
     Triangle();
-    Triangle(const point A_, const point B_, const point C_);
+    Triangle(const point A, const point B, const point C);
     Triangle(const Triangle &T);
 
     point get_A() const;
     point get_B() const;
     point get_C() const;
+    
+    void set_A(const point A);
+    void set_B(const point B);
+    void set_C(const point C);
 
-    double get_A_x() const;
-    double get_A_y() const;
-    double get_B_x() const;
-    double get_B_y() const;
-    double get_C_x() const;
-    double get_C_y() const;
-
-    int istreanglecorrect(point A_, point B_, point C_);
+    int is_triangle_correct(point A, point B, point C);
 
     bool operator==(const Triangle& T1) const;
 
@@ -68,14 +57,15 @@ class Triangle{
     double angle_A_of_triangle_in_radians() const;
     double angle_B_of_triangle_in_radians() const;
     double angle_C_of_triangle_in_radians() const;
-    double cos_of_angle(const double angle) const;
-    double sin_of_angle(const double angle) const;
-    double tan_of_angle(const double angle) const;
-    double ctan_of_angle(const double angle) const;
     double perimeter_of_triangle() const;
     double area_of_triangle() const;
     double inradius() const;
     double circumradius() const;
+
+private:
+    point A;
+    point B;
+    point C;
 };
 
 #endif  // MODULES_MARCHENKO_ANDREY_MAIN_PARAMETERS_OF_TRIANGLE_INCLUDE_TRIANGLE_H_

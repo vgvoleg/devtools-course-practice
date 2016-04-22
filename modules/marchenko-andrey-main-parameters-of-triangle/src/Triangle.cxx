@@ -38,49 +38,58 @@ point Triangle::get_C() const {
     return C;
 }
 
-double Triangle::get_A_x() const {
-    double x = A.x;
-    return x;
-}
-
-double Triangle::get_A_y() const {
-    double y = A.y;
-    return y;
-}
-
-double Triangle::get_B_x() const {
-    double x = B.x;
-    return x;
-}
-
-double Triangle::get_B_y() const {
-    double y = B.y;
-    return y;
-}
-
-double Triangle::get_C_x() const {
-    double x = C.x;
-    return x;
-}
-
-double Triangle::get_C_y() const {
-    double y = C.y;
-    return y;
-}
-
 void Triangle::set_A(const point _A) {
-    A.x = _A.x;
-    A.y = _A.y;
+    int key = is_triangle_correct(_A, B, C);
+    switch (key) {
+    case 0: {
+                A = _A;
+                break;
+    }
+    case 2: {
+                throw TwoSamePoints();
+                break;
+    }
+    case 3: {
+                throw IncorrectPoints();
+                break;
+    }
+    }
 }
 
 void Triangle::set_B(const point _B) {
-    B.x = _B.x;
-    B.y = _B.y;
+    int key = is_triangle_correct(A, _B, C);
+    switch (key) {
+    case 0: {
+                B = _B;
+                break;
+    }
+    case 2: {
+                throw TwoSamePoints();
+                break;
+    }
+    case 3: {
+                throw IncorrectPoints();
+                break;
+    }
+    }
 }
 
 void Triangle::set_C(const point _C) {
-    C.x = _C.x;
-    C.y = _C.y;
+    int key = is_triangle_correct(A, B, _C);
+    switch (key) {
+    case 0: {
+                C = _C;
+                break;
+    }
+    case 2: {
+                throw TwoSamePoints();
+                break;
+    }
+    case 3: {
+                throw IncorrectPoints();
+                break;
+    }
+    }
 }
 
 Triangle::Triangle() {
@@ -101,7 +110,7 @@ bool are_point_on_straight_line(point _A, point _B, point _C) {
         return 0;
 }
 
-int Triangle::istreanglecorrect(point _A, point _B, point _C) {
+int Triangle::is_triangle_correct(point _A, point _B, point _C) {
     if (_A == _B && _B == _C) {
         return 1;
     } else if (_A == _B || _A == _C || _B == _C) {
@@ -114,12 +123,12 @@ int Triangle::istreanglecorrect(point _A, point _B, point _C) {
 }
 
 Triangle::Triangle(point _A, point _B, point _C) {
-    int key = istreanglecorrect(_A, _B, _C);
+    int key = is_triangle_correct(_A, _B, _C);
     switch (key) {
     case 0: {
-                set_A(_A);
-                set_B(_B);
-                set_C(_C);
+                A = _A;
+                B = _B;
+                C = _C;
                 break;
     }
     case 1: {
@@ -138,9 +147,9 @@ Triangle::Triangle(point _A, point _B, point _C) {
 }
 
 Triangle::Triangle(const Triangle& T) {
-    set_A(T.A);
-    set_B(T.B);
-    set_C(T.C);
+    A = T.A;
+    B = T.B;
+    C = T.C;
 }
 
 double Triangle::triangle_side_length(const point first_point,
@@ -175,22 +184,6 @@ double Triangle::angle_C_of_triangle_in_radians() const {
     double angle = acos((pow(second_side, 2) + pow(third_side, 2)
         - pow(first_side, 2)) / (2 * third_side*second_side));
     return angle;
-}
-
-double Triangle::cos_of_angle(const double angle) const {
-    return(cos(angle));
-}
-
-double Triangle::sin_of_angle(const double angle) const {
-    return(sin(angle));
-}
-
-double Triangle::tan_of_angle(const double angle) const {
-    return(tan(angle));
-}
-
-double Triangle::ctan_of_angle(const double angle) const {
-    return(1.0/tan(angle));
 }
 
 double Triangle::perimeter_of_triangle() const {
