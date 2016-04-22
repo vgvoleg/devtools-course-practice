@@ -10,7 +10,7 @@ using std::string;
 template<class ValType>
 class TDeque {
  public:
-  explicit TDeque();
+  TDeque();
   explicit TDeque(const ValType& data);
   ~TDeque();
 
