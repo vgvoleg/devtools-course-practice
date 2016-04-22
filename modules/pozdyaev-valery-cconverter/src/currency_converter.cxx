@@ -57,8 +57,6 @@ CurrencyPair& CurrencyConverter::getCurrencyPairByCode(string curr_pair_code) {
             return pair;
         }
     }
-
-    throw logic_error("Currency pair is not found");
 }
 
 int CurrencyConverter::getCurrencyPairNumberByCode(string curr_pair_code)
@@ -69,8 +67,6 @@ int CurrencyConverter::getCurrencyPairNumberByCode(string curr_pair_code)
             return i;
         }
     }
-
-    throw logic_error("Currency pair is not found");
 }
 
 bool CurrencyConverter::isCurrencyPairPresented(string curr_pair_code) const {
