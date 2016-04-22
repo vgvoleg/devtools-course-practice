@@ -1,4 +1,4 @@
-﻿  // Copyright 2016 Maksimenko Aleksey
+﻿  // Copyright 2016 Maksimenko Alex
 
 #include "include/convertertemp.h"
 
