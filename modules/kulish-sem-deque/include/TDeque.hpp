@@ -53,7 +53,7 @@ class TDeque {
 };
 
 template<class ValType>
-TDeque<ValType>::TDeque() : head(0), tail(0), size(0) {}
+TDeque<ValType>::TDeque() : size(0), head(0), tail(0) {}
 
 template<class ValType>
 TDeque<ValType>::TDeque(const ValType& data) {
