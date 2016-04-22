@@ -29,7 +29,6 @@ class CurrencyConverter {
     double saleCurrency(CurrencyPair currency_pair_code, double sum) const;
 
     bool isCurrencyPairPresented(string curr_pair_code) const;
-    CurrencyPair& getCurrencyPairByCode(string currency_pair_code);
     int getCurrencyPairNumberByCode(string currency_pair_code) const;
 
     std::vector<CurrencyPair> currency_pairs;

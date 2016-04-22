@@ -33,7 +33,12 @@ void CurrencyConverter::updateCurrencyPair(CurrencyPair currency_pair) {
     CurrencyPair::checkCurrencyPairCode(currency_code);
 
     if (isCurrencyPairPresented(currency_pair.getCurrencyPairCode())) {
-        CurrencyPair& pair = getCurrencyPairByCode(currency_code);
+        CurrencyPair& pair = currency_pairs.at(0);
+        for (CurrencyPair& iterator : currency_pairs) {
+            if (iterator.getCurrencyPairCode() == currency_code) {
+                pair = iterator;
+            }
+        }
         pair.setAskPrice(currency_pair.getAskPrice());
         pair.setBidPrice(currency_pair.getBidPrice());
     } else {
@@ -51,14 +56,6 @@ double CurrencyConverter::saleCurrency(CurrencyPair currency_pair
     return sum * currency_pair.getBidPrice();
 }
 
-CurrencyPair& CurrencyConverter::getCurrencyPairByCode(string curr_pair_code) {
-    for (CurrencyPair& pair : currency_pairs) {
-        if (pair.getCurrencyPairCode() == curr_pair_code) {
-            return pair;
-        }
-    }
-}
-
 int CurrencyConverter::getCurrencyPairNumberByCode(string curr_pair_code)
                                                                     const {
     for (size_t i = 0; i < currency_pairs.size(); i++) {
@@ -67,6 +64,8 @@ int CurrencyConverter::getCurrencyPairNumberByCode(string curr_pair_code)
             return i;
         }
     }
+
+    return -1;
 }
 
 bool CurrencyConverter::isCurrencyPairPresented(string curr_pair_code) const {
@@ -96,16 +95,18 @@ double CurrencyConverter::exchangeCurrency(string selling_currency,
 
     CurrencyPair::checkCurrencyPairCode(currency_pair_code);
 
-    if (isCurrencyPairPresented(currency_pair_code)) {
-        int pair_position = getCurrencyPairNumberByCode(currency_pair_code);
+    int pair_position = getCurrencyPairNumberByCode(currency_pair_code);
+
+    if (pair_position >= 0 && pair_position < currency_pairs.size()) {
         currency_pair = currency_pairs.at(pair_position);
         return saleCurrency(currency_pair, sum);
     }
 
     currency_pair_code = buying_currency + "/" + selling_currency;
 
-    if (isCurrencyPairPresented(currency_pair_code)) {
-        int pair_position = getCurrencyPairNumberByCode(currency_pair_code);
+    pair_position = getCurrencyPairNumberByCode(currency_pair_code);
+
+    if (pair_position >= 0 && pair_position < currency_pairs.size()) {
         currency_pair = currency_pairs.at(pair_position);
         return buyCurrency(currency_pair, sum);
     }
