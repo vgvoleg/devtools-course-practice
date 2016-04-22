@@ -156,6 +156,7 @@ void MineSweeper::clean(int i, int j) {
         }
     }
 }
+
 void MineSweeper::check_win() {
     bool is_closed_present = false;
     for (int x = 0; x < static_cast<int>(game_field->get_field_size()); ++x) {
