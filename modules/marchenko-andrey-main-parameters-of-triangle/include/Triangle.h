@@ -43,7 +43,7 @@ class Triangle{
     point get_A() const;
     point get_B() const;
     point get_C() const;
-    
+
     void set_A(const point A);
     void set_B(const point B);
     void set_C(const point C);
@@ -62,7 +62,7 @@ class Triangle{
     double inradius() const;
     double circumradius() const;
 
-private:
+ private:
     point A;
     point B;
     point C;
