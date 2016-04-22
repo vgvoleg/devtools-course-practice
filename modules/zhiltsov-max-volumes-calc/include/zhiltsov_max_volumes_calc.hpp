@@ -11,8 +11,8 @@ template<class Ret, class... Args>
 using function = std::function<Ret(Args...)>;
 
 /*
-Function performs numerical integration of a given function in a given
-boundaries with a given step.
+Function performs numerical computation of a Riemann integral for a given
+function in a given boundaries with a given step.
 
 Parameters:
   lower - lower boundary of intergation interval,
@@ -167,9 +167,7 @@ class VolumeCalculator {
 
 // Implementation
 
-template<class NumberType,
-    class Function = function<NumberType, const NumberType&>
->
+template<class NumberType, class Function>
 NumberType integrate(const NumberType& lower, const NumberType& upper,
     const Function& f, size_t partitionCount
 ) {
