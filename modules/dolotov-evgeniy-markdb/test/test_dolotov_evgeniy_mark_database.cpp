@@ -347,6 +347,12 @@ TEST_F(MarkDatabaseTest, Can_Get_Record_By_Index) {
     EXPECT_EQ(true, record == Record(student, subject, mark));
 }
 
+TEST_F(MarkDatabaseTest, Can_Get_Record_By_Wrong_Index) {
+    // Act && Assert
+    int count = base.numberOfRecords();
+    EXPECT_THROW(base.getRecord(count+1), std::out_of_range);
+}
+
 TEST_F(MarkDatabaseTest, Can_Delete_Exist_Record_By_Index) {
     // Arrange
     Student student = students[0];
