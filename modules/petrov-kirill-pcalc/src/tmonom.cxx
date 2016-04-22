@@ -2,8 +2,7 @@
 
 #include "include/tmonom.h"
 
-#include <math.h>
-
+#include <cmath>
 #include <limits>
 #include <string>
 
