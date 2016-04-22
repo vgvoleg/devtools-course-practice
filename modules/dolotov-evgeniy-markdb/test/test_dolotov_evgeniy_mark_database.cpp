@@ -347,6 +347,39 @@ TEST_F(MarkDatabaseTest, Can_Get_Record_By_Index) {
     EXPECT_EQ(true, record == Record(student, subject, mark));
 }
 
+TEST_F(MarkDatabaseTest, Can_Delete_Exist_Record_By_Index) {
+    // Arrange
+    Student student = students[0];
+    Subject subject = subjects[0];
+    Mark mark = A;
+    Record record(student, subject, mark);
+
+    // Act
+    int index = base.search(student, subject);
+    base.deleteRecord(index);
+
+    // Assert
+    std::vector<Record> getRecords = base.getRecordsList();
+
+    bool isRecordNotExist;
+
+    std::vector<Record>::iterator foundRecord;
+    foundRecord = std::find(getRecords.begin(), getRecords.end(), record);
+    if (foundRecord == getRecords.end()) {
+        isRecordNotExist = true;
+    } else {
+        isRecordNotExist = false;
+    }
+
+    EXPECT_EQ(true, isRecordNotExist);
+}
+
+TEST_F(MarkDatabaseTest, Can_Delete_Not_Exist_Record_By_Index) {
+    // Act && Assert
+    int count = base.numberOfRecords();
+    EXPECT_THROW(base.deleteRecord(count+1), std::out_of_range);
+}
+
 TEST_F(MarkDatabaseTest, Can_Not_Get_Marks_Of_Not_Exist_Student) {
     // Arrange
     Student student = "Brian Butler";
