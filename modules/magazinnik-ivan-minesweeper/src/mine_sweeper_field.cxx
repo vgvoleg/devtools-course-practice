@@ -4,6 +4,8 @@
 #include "include/mine_sweeper_field.h"
 
 using std::invalid_argument;
+int  const Field::MAX_FIELD_LEN = 100;
+int  const Field::MAX_FIELD_VALUE = 10;
 
 Field::Field(unsigned int size) {
     if (size > MAX_FIELD_LEN)
@@ -36,15 +38,15 @@ unsigned int Field::get_field_size() {
 }
 
 unsigned int Field::get_cell(unsigned int x, unsigned int y) {
-    if (x > field_size || y > field_size)
+    if (x >= field_size || y >= field_size)
         throw invalid_argument("invalid cell address");
     return field[x][y];
 }
 
 void Field::set_cell(unsigned int x, unsigned int y, unsigned int value) {
-    if (x > field_size || y > field_size)
+    if (x >= field_size || y >= field_size)
         throw invalid_argument("invalid cell address");
-    if (value > 5)
+    if (value > MAX_FIELD_VALUE)
         throw invalid_argument("invalid value");
     field[x][y] = value;
 }
