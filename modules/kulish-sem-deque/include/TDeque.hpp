@@ -86,18 +86,23 @@ void TDeque<ValType>::delData(ITEM* item) {
 template<class ValType>
 ValType TDeque<ValType>::operator[](const int &value) {
   unsigned counter = 1;
+  ValType result;
   ITEM* item = tail;
 
-  if (value > size) throw string("Trying to get element beyond the deque");
-  while (counter <= value) {
-    if (counter == value) {
-      return *item->data;
-    } else {
-      item = item->previous;
-      counter++;
+  if (value > size || value < 0) result = value;
+  else {
+    while (counter <= value) {
+      if (counter == value) {
+        result = *item->data;
+        break;
+      }
+      else {
+        item = item->previous;
+        counter++;
+      }
     }
   }
-  return -1;
+  return result;
 }
 
 template<class ValType>
