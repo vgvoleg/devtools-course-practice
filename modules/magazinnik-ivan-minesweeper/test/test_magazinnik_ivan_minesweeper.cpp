@@ -110,7 +110,12 @@ void win_game(MineSweeper* game, int size) {
                 if (x == 0 && y == 0) {
                     continue;
                 } else {
-                    game->open_cell(x, y);
+                    try {
+                        game->open_cell(x, y);
+                    }
+                    catch (std::invalid_argument) {
+                        continue;
+                    }
                 }
             }
         }

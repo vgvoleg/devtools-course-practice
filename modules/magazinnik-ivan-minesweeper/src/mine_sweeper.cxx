@@ -62,7 +62,7 @@ bool MineSweeper::empty(int x, int y) {
     if (x >= 0 && x < static_cast<int>(game_field->get_field_size())) {
         if (y >= 0 && y < static_cast<int>(game_field->get_field_size())) {
             if (game_field->get_cell((unsigned int)x,
-                                     (unsigned int)y) == CLOSED_CELL) {
+                                     (unsigned int)y) == OPENED_CELL) {
                 return true;
             }
         }
@@ -133,7 +133,7 @@ void MineSweeper::clean(int i, int j) {
         if ((j >= 0) && (j < static_cast<int>(game_field->get_field_size()))) {
             if (!opened_field->get_cell(i, j)) {
                 opened_field->set_cell(i, j, game_field->get_cell(i, j));
-                if (game_field->get_cell(i, j) == 0) {
+                if (game_field->get_cell(i, j) == 10) {
                     clean(i-1, j-1);
                     clean(i-1, j);
                     clean(i-1, j+1);
