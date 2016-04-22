@@ -238,8 +238,7 @@ void TDeque<ValType>::erase(ValType data, unsigned num) {
         item = item->previous;
 
         delData(temp);
-      } else {
-        if (item->previous == nullptr) {
+      } else { if (item->previous == nullptr) {
           temp = item;
 
           item->next->previous = item->previous;
@@ -263,5 +262,4 @@ void TDeque<ValType>::erase(ValType data, unsigned num) {
     }
   }
 }
-
 #endif  // MODULES_KULISH_SEM_DEQUE_INCLUDE_TDEQUE_H_
