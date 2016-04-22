@@ -1,10 +1,10 @@
 // Copyright Kulish_Sem 2016
 
-using namespace std;
+#ifndef header guard found, suggested CPP variable is: MODULES_KULISH_SEM_DEQUE_INCLUDE_TDEQUE_H_
 
 template<class ValType>
 class TDeque {
-public:
+public: 
   TDeque();
   TDeque(const ValType&);
   ~TDeque();
@@ -23,26 +23,26 @@ public:
   bool isExist(const ValType&)const;
   void erase(ValType, unsigned);
 
-private:
-  struct ITEM
-	{
-		ValType *data;
-		ITEM *next;
-		ITEM *previous;
+private: 
+  struct ITEM {
+    ValType *data;
+    ITEM *next;
+    ITEM *previous;
   };
 
-	ITEM *head;
-	ITEM *tail;
-	ITEM *create(const ValType& data) {
-      ITEM *item = new ITEM;
-      item->data = new ValType;
+  ITEM *head;
+  ITEM *tail;
+  ITEM *create(const ValType& data) {
+    ITEM *item = new ITEM;
+    item->data = new ValType;
 
-      *item->data = data;
-      item->next = 0;
-      item->previous = 0;
+    *item->data = data;
+    item->next = 0;
+    item->previous = 0;
 
-      return item;
+    return item;
   }
+}
 
   unsigned   int size;
 
@@ -56,14 +56,14 @@ template<class ValType>
 TDeque<ValType>::TDeque(const ValType& data) {
   head = create(data);
   tail = head;
-  size=1;
+  size = 1;
 }
 
 template<class ValType>
 TDeque<ValType>::~TDeque() {
   ITEM* item = tail;
 
-  while (item!=head) {
+  while (item != head) {
     ITEM* temp = item->previous;
 
     delete item->data;
@@ -89,8 +89,7 @@ ValType TDeque<ValType>::operator[](const int &value) {
   while (counter <= value) {
     if (counter == value) {
       return *item->data;
-    }
-    else {
+    } else {
       item = item->previous;
       counter++;
     }
@@ -104,8 +103,7 @@ void TDeque<ValType>::addTail(const ValType& data) {
     tmp->previous = tail;
     tail->next = tmp;
     tail = tmp;
-  }
-  else {
+  } else {
     head = create(data);
     tail = head;
   }
@@ -119,8 +117,7 @@ void TDeque<ValType>::addHead(const ValType& data) {
     tmp->next = head;
     head->previous = tmp;
     head = tmp;
-  }
-  else {
+  } else {
     head = create(data);
     tail = head;
   }
@@ -138,8 +135,7 @@ ValType TDeque<ValType>::getTail() {
     delData(tmp);
 
     return data;
-  }
-  else {
+  } else {
     ValType data = *head->data;
 
     head = 0;
@@ -161,8 +157,7 @@ ValType TDeque<ValType>::getHead() {
     delData(tmp);
 
     return data;
-  }
-  else {
+  } else {
     ValType data = *head->data;
 
     head = 0;
@@ -240,8 +235,7 @@ void TDeque<ValType>::erase(ValType data, unsigned num) {
         item = item->previous;
 
         delData(temp);
-      }
-      else
+      } else
         if (item->previous == nullptr) {
           temp = item;
 
@@ -249,8 +243,7 @@ void TDeque<ValType>::erase(ValType data, unsigned num) {
           item = item->previous;
 
           delData(temp);
-        }
-        else {
+        } else {
           temp = item;
 
           item->next->previous = item->previous;
@@ -261,10 +254,11 @@ void TDeque<ValType>::erase(ValType data, unsigned num) {
         }
 
       size--;
-    }
-    else {
+    } else {
       i++;
       item = item->previous;
     }
   }
 }
+
+#endif  //

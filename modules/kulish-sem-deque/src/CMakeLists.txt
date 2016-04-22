@@ -1,8 +1,8 @@
 set(target ${LIBRARY})
 
-file(GLOB hrcs "../include/*.h")
+file(GLOB srcs "*.cxx")
 
-add_library(${target} STATIC ${SOURCES} ${hrcs} ${srcs})
+add_library(${target} STATIC ${srcs})
 set_target_properties(${target}
     PROPERTIES OUTPUT_NAME ${MODULE})
 
@@ -11,4 +11,4 @@ if (UNIX)
 endif (UNIX)
 target_link_libraries(${target} ${LIBRARY_DEPS})
 
-set(LIBRARY_DEPS "${LIBRARY_DEPS};${target}" PARENT_SCOPE) 
+set(LIBRARY_DEPS "${LIBRARY_DEPS};${target}" PARENT_SCOPE)
