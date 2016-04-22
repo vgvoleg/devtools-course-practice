@@ -29,6 +29,8 @@ class MarkDatabase {
     int deleteStudent(Student student);
     int addSubject(Subject subject);
     int deleteSubject(Subject subject);
+    bool isStudentExist(Student student);
+    bool isSubjectExist(Subject subject);
     int addNewRecord(Student student, Subject subject, Mark mark);
     int deleteRecord(Student student, Subject subject);
     int search(Student student, Subject subject);
@@ -47,8 +49,6 @@ class MarkDatabase {
 
  private:
     bool isRecordExist(Student student, Subject subject);
-    bool isStudentExist(Student student);
-    bool isSubjectExist(Subject subject);
     std::vector<Student> students;
     std::vector<Subject> subjects;
     std::vector<Record> records;

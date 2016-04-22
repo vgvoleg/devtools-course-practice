@@ -19,6 +19,8 @@ TEST(Record, Can_Create) {
 
     // Assert
     EXPECT_NE(nullptr, recordPtr);
+
+    delete recordPtr;
 }
 
 TEST(Record, Can_Compare_Identical_Records) {
@@ -40,7 +42,7 @@ TEST(Record, Can_Compare_Not_Identical_Records) {
 }
 
 class MarkDatabaseTest : public ::testing::Test {
- protected:
+protected:
     virtual void SetUp() {
         students.push_back("Alexander Pitts");
         students.push_back("Jesse Perkins");
@@ -77,6 +79,8 @@ TEST_F(MarkDatabaseTest, Can_Create) {
 
     // Assert
     EXPECT_NE(nullptr, basePtr);
+
+    delete basePtr;
 }
 
 TEST_F(MarkDatabaseTest, Can_Add_Not_Exist_Student) {
@@ -87,17 +91,7 @@ TEST_F(MarkDatabaseTest, Can_Add_Not_Exist_Student) {
     base.addStudent(student);
 
     // Assert
-    std::vector<Student> getStudents = base.getStudentsList();
-    bool isStudentExist;
-    std::vector<Student>::iterator foundStudent;
-    foundStudent = std::find(getStudents.begin(), getStudents.end(), student);
-    if (foundStudent == getStudents.end()) {
-        isStudentExist = false;
-    } else {
-        isStudentExist = true;
-    }
-
-    EXPECT_EQ(true, isStudentExist);
+    EXPECT_TRUE(base.isStudentExist(student));
 }
 
 TEST_F(MarkDatabaseTest, Can_Not_Add_Exist_Student) {
@@ -116,17 +110,7 @@ TEST_F(MarkDatabaseTest, Can_Delete_Exist_Student) {
     base.deleteStudent(student);
 
     // Assert
-    std::vector<Student> getStudents = base.getStudentsList();
-    bool isStudentNotExist;
-    std::vector<Student>::iterator foundStudent;
-    foundStudent = std::find(getStudents.begin(), getStudents.end(), student);
-    if (foundStudent == getStudents.end()) {
-        isStudentNotExist = true;
-    } else {
-        isStudentNotExist = false;
-    }
-
-    EXPECT_EQ(true, isStudentNotExist);
+    EXPECT_FALSE(base.isStudentExist(student));
 }
 
 TEST_F(MarkDatabaseTest, Can_Not_Delete_Not_Exist_Student) {
@@ -150,17 +134,7 @@ TEST_F(MarkDatabaseTest, Can_Add_Not_Exist_Subject) {
     base.addSubject(subject);
 
     // Assert
-    std::vector<Subject> getSubjects = base.getSubjectsList();
-    bool isSubjectExist;
-    std::vector<Subject>::iterator foundSubject;
-    foundSubject = std::find(getSubjects.begin(), getSubjects.end(), subject);
-    if (foundSubject == getSubjects.end()) {
-        isSubjectExist = false;
-    } else {
-        isSubjectExist = true;
-    }
-
-    EXPECT_EQ(true, isSubjectExist);
+    EXPECT_TRUE(base.isSubjectExist(subject));
 }
 
 TEST_F(MarkDatabaseTest, Can_Not_Add_Exist_Subject) {
@@ -179,17 +153,7 @@ TEST_F(MarkDatabaseTest, Can_Delete_Exist_Subject) {
     base.deleteSubject(subject);
 
     // Assert
-    std::vector<Subject> getSubjects = base.getSubjectsList();
-    bool isSubjectNotExist;
-    std::vector<Subject>::iterator foundSubject;
-    foundSubject = std::find(getSubjects.begin(), getSubjects.end(), subject);
-    if (foundSubject == getSubjects.end()) {
-        isSubjectNotExist = true;
-    } else {
-        isSubjectNotExist = false;
-    }
-
-    EXPECT_EQ(true, isSubjectNotExist);
+    EXPECT_FALSE(base.isSubjectExist(subject));
 }
 
 TEST_F(MarkDatabaseTest, Can_Not_Delete_Not_Exist_Subject) {
@@ -251,46 +215,19 @@ TEST_F(MarkDatabaseTest, Can_Add_Not_Exist_Record) {
     base.addNewRecord(student, subject, mark);
 
     // Assert
-    std::vector<Record> getRecords = base.getRecordsList();
-
-    Record record(student, subject, mark);
-    bool isRecordExist;
-
-    std::vector<Record>::iterator foundRecord;
-    foundRecord = std::find(getRecords.begin(), getRecords.end(), record);
-    if (foundRecord == getRecords.end()) {
-        isRecordExist = false;
-    } else {
-        isRecordExist = true;
-    }
-
-    EXPECT_EQ(true, isRecordExist);
+    EXPECT_NE(ReturnCode::RecordNotFound, base.search(student, subject));
 }
 
 TEST_F(MarkDatabaseTest, Can_Delete_Exist_Record) {
     // Arrange
     Student student = students[0];
     Subject subject = subjects[0];
-    Mark mark = A;
 
     // Act
     base.deleteRecord(student, subject);
 
     // Assert
-    std::vector<Record> getRecords = base.getRecordsList();
-
-    Record record(student, subject, mark);
-    bool isRecordNotExist;
-
-    std::vector<Record>::iterator foundRecord;
-    foundRecord = std::find(getRecords.begin(), getRecords.end(), record);
-    if (foundRecord == getRecords.end()) {
-        isRecordNotExist = true;
-    } else {
-        isRecordNotExist = false;
-    }
-
-    EXPECT_EQ(true, isRecordNotExist);
+    EXPECT_EQ(ReturnCode::RecordNotFound, base.search(student, subject));
 }
 
 TEST_F(MarkDatabaseTest, Can_Not_Delete_Not_Exist_Record) {
@@ -362,27 +299,13 @@ TEST_F(MarkDatabaseTest, Can_Delete_Exist_Record_By_Index) {
     // Arrange
     Student student = students[0];
     Subject subject = subjects[0];
-    Mark mark = A;
-    Record record(student, subject, mark);
 
     // Act
     int index = base.search(student, subject);
     base.deleteRecord(index);
 
     // Assert
-    std::vector<Record> getRecords = base.getRecordsList();
-
-    bool isRecordNotExist;
-
-    std::vector<Record>::iterator foundRecord;
-    foundRecord = std::find(getRecords.begin(), getRecords.end(), record);
-    if (foundRecord == getRecords.end()) {
-        isRecordNotExist = true;
-    } else {
-        isRecordNotExist = false;
-    }
-
-    EXPECT_EQ(true, isRecordNotExist);
+    EXPECT_EQ(ReturnCode::RecordNotFound, base.search(student, subject));
 }
 
 TEST_F(MarkDatabaseTest, Can_Delete_Not_Exist_Record_By_Index) {
@@ -445,11 +368,11 @@ TEST_F(MarkDatabaseTest, Can_Get_Marks_On_Exist_Subject) {
     // Assert
     unsigned int numberOfCoincidences = 0;
     for (unsigned int i = 0; i < students.size(); i++)
-    for (unsigned int j = 0; j < marks.size(); j++) {
-        if (marks[j].first == students[i] && marks[j].second == mark) {
-            numberOfCoincidences++;
+        for (unsigned int j = 0; j < marks.size(); j++) {
+            if (marks[j].first == students[i] && marks[j].second == mark) {
+                numberOfCoincidences++;
+            }
         }
-    }
 
     EXPECT_EQ(true, numberOfCoincidences == students.size());
     EXPECT_EQ(true, marks.size() == students.size());
