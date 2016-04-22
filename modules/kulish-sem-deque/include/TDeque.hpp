@@ -89,14 +89,14 @@ ValType TDeque<ValType>::operator[](const int &value) {
   ValType result;
   ITEM* item = tail;
 
-  if (value > size || value < 0) result = value;
-  else {
+  if (value > size || value < 0) {
+    result = value;
+  } else {
     while (counter <= value) {
       if (counter == value) {
         result = *item->data;
         break;
-      }
-      else {
+      } else {
         item = item->previous;
         counter++;
       }
