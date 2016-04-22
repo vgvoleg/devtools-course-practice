@@ -123,7 +123,7 @@ TEST_F(MarkDatabaseTest, Can_Not_Delete_Not_Exist_Student) {
 
 TEST_F(MarkDatabaseTest, Can_Count_Students) {
     // Act & Assert
-    EXPECT_EQ(3, base.numberOfStudents());
+    EXPECT_EQ(students.size(), base.numberOfStudents());
 }
 
 TEST_F(MarkDatabaseTest, Can_Add_Not_Exist_Subject) {
@@ -166,7 +166,7 @@ TEST_F(MarkDatabaseTest, Can_Not_Delete_Not_Exist_Subject) {
 
 TEST_F(MarkDatabaseTest, Can_Count_Subjects) {
     // Act & Assert
-    EXPECT_EQ(3, base.numberOfSubjects());
+    EXPECT_EQ(subjects.size(), base.numberOfSubjects());
 }
 
 TEST_F(MarkDatabaseTest, Can_Not_Add_Record_With_Not_Exist_Student) {
@@ -244,7 +244,7 @@ TEST_F(MarkDatabaseTest, Can_Not_Delete_Not_Exist_Record) {
 
 TEST_F(MarkDatabaseTest, Can_Count_Records) {
     // Act && Assert
-    EXPECT_EQ(9, base.numberOfRecords());
+    EXPECT_EQ(records.size(), base.numberOfRecords());
 }
 
 TEST_F(MarkDatabaseTest, Can_Search_Exist_Record) {
