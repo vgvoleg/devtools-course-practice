@@ -58,7 +58,7 @@ double CurrencyConverter::saleCurrency(CurrencyPair currency_pair
 
 int CurrencyConverter::getCurrencyPairNumberByCode(string curr_pair_code)
                                                                     const {
-    for (size_t i = 0; i < currency_pairs.size(); i++) {
+    for (int i = 0; i < currency_pairs.size(); i++) {
         CurrencyPair pair = currency_pairs.at(i);
         if (pair.getCurrencyPairCode() == curr_pair_code) {
             return i;
@@ -95,9 +95,10 @@ double CurrencyConverter::exchangeCurrency(string selling_currency,
 
     CurrencyPair::checkCurrencyPairCode(currency_pair_code);
 
+    int currency_pairs_size = currency_pairs.size();
     int pair_position = getCurrencyPairNumberByCode(currency_pair_code);
 
-    if (pair_position >= 0 && pair_position < currency_pairs.size()) {
+    if (pair_position >= 0 && pair_position < currency_pairs_size) {
         currency_pair = currency_pairs.at(pair_position);
         return saleCurrency(currency_pair, sum);
     }
@@ -106,7 +107,7 @@ double CurrencyConverter::exchangeCurrency(string selling_currency,
 
     pair_position = getCurrencyPairNumberByCode(currency_pair_code);
 
-    if (pair_position >= 0 && pair_position < currency_pairs.size()) {
+    if (pair_position >= 0 && pair_position < currency_pairs_size) {
         currency_pair = currency_pairs.at(pair_position);
         return buyCurrency(currency_pair, sum);
     }
