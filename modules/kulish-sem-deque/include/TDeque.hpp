@@ -86,7 +86,7 @@ void TDeque<ValType>::delData(ITEM* item) {
 template<class ValType>
 ValType TDeque<ValType>::operator[](const int &value) {
   unsigned counter = 1;
-  ValType result=0;
+  ValType result = 0;
   ITEM* item = tail;
 
   if (value > size || value < 0) {
