@@ -11,7 +11,7 @@ template<class ValType>
 class TDeque {
  public:
   explicit TDeque();
-  TDeque(const ValType& data);
+  explicit TDeque(const ValType& data);
   ~TDeque();
 
   void addTail(const ValType&);
