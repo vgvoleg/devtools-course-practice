@@ -1,7 +1,6 @@
 // Copyright Kulish_Sem 2016
-
-#include <string>
 #include <gtest/gtest.h>
+#include <string>
 #include "TDeque.h"
 
 using std::string;
