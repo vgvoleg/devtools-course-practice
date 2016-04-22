@@ -3,14 +3,15 @@
 #include <string>
 
 using std::string;
-
 #ifndef MODULES_KULISH_SEM_DEQUE_INCLUDE_TDEQUE_H_
+#define MODULES_KULISH_SEM_DEQUE_INCLUDE_TDEQUE_H_
+
 
 template<class ValType>
 class TDeque {
-public:
+ public:
   TDeque();
-  TDeque(const ValType&);
+  TDeque(const ValType& data);
   ~TDeque();
 
   void addTail(const ValType&);
@@ -27,7 +28,9 @@ public:
   bool isExist(const ValType&)const;
   void erase(ValType, unsigned);
 
-private:
+ private:
+  unsigned int size;
+
   struct ITEM {
     ValType *data;
     ITEM *next;
@@ -46,11 +49,7 @@ private:
 
     return item;
   }
-}
-
-  unsigned   int size;
-
-  void delData(ITEM*);
+  void delData(ITEM* item);
 };
 
 template<class ValType>
@@ -239,7 +238,8 @@ void TDeque<ValType>::erase(ValType data, unsigned num) {
         item = item->previous;
 
         delData(temp);
-      } else
+      }
+      else {
         if (item->previous == nullptr) {
           temp = item;
 
@@ -256,7 +256,7 @@ void TDeque<ValType>::erase(ValType data, unsigned num) {
 
           delData(temp);
         }
-
+      }
       size--;
     } else {
       i++;
