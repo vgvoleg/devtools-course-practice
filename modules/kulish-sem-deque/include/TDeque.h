@@ -10,7 +10,7 @@ using std::string;
 template<class ValType>
 class TDeque {
  public:
-  TDeque();
+  explicit TDeque();
   TDeque(const ValType& data);
   ~TDeque();
 
@@ -264,4 +264,4 @@ void TDeque<ValType>::erase(ValType data, unsigned num) {
   }
 }
 
-#endif  //
+#endif  // MODULES_KULISH_SEM_DEQUE_INCLUDE_TDEQUE_H_
