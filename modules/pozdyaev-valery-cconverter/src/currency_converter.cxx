@@ -58,7 +58,7 @@ double CurrencyConverter::saleCurrency(CurrencyPair currency_pair
 
 int CurrencyConverter::getCurrencyPairNumberByCode(string curr_pair_code)
                                                                     const {
-    for (int i = 0; i < currency_pairs.size(); i++) {
+    for (size_t i = 0; i < currency_pairs.size(); i++) {
         CurrencyPair pair = currency_pairs.at(i);
         if (pair.getCurrencyPairCode() == curr_pair_code) {
             return i;
