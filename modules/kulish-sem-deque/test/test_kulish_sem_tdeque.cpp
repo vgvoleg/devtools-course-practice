@@ -188,7 +188,7 @@ TEST(TDeque, erase_works) {
     else
       deque.addTail(2);
 
-  // Assert  
+  // Assert
   const int num = 2;
   deque.erase(num, 0);
   EXPECT_FALSE(deque.isExist(num));
@@ -203,7 +203,7 @@ TEST(TDeque, bracers_works) {
     deque.addHead(i);
 
   // Assert
-  const int position=5;
+  const int position = 5;
   const int expected_Result = 4;
   EXPECT_EQ(expected_Result, deque[position]);
 }
