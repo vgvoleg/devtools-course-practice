@@ -30,9 +30,9 @@ Return value:
 
 Usage examples:
 
-// Simple integral of x^2 on interval [0, 30] with step = (30 - 0) / 100:
+// Simple integral of x^2 on interval [0, 30] with a step = (30 - 0) / 1000:
 double result = integrate<double>(0, 30,
-    [] (double x) { return x * x; }, 500
+    [] (double x) { return x * x; }, 1000
 ); // returns approximately 30^3 / 3 = 9000
 
 */

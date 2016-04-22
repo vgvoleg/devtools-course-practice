@@ -50,7 +50,7 @@ TEST(IntegrateTest, Example_1_Is_Working) {
     static constexpr double expectedResult = 9000.0;
 
     double result = volume_calc::integrate<double>(0, 30,
-        [] (double x) { return x * x; }, 500);
+        [] (double x) { return x * x; }, 1000);
 
     ASSERT_NEAR(expectedResult, result, 0.0001 * expectedResult);
 }
