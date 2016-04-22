@@ -4,11 +4,11 @@
 #include <gtest/gtest.h>
 #include "TDeque.h"
 
-using namespace std;
+using std::string;
 
 TEST(TDeque, can_create_deque) {
   // Arrange And Act
-  TDeque<int> *intDeque=new TDeque<int>;
+  TDeque<int> *intDeque = new TDeque<int>;
   TDeque<string> *strigDeque = new TDeque<string>;
   TDeque<double> *doubleDeque = new TDeque<double>;
 
@@ -30,7 +30,7 @@ TEST(TDeque, can_create_not_empty_deque) {
 TEST(TDeque, addHead_works) {
   // Arrange
   TDeque<int> deque;
-  
+
   // Act
   const int N = 10;
   for (int i = 0; i < N; i++)
@@ -45,7 +45,7 @@ TEST(TDeque, addTail_works) {
   TDeque<int> deque;
 
   // Act
-  const int N = 10; // Deque size
+  const int N = 10;
   for (int i = 0; i < N; i++)
     deque.addTail(i);
 
@@ -61,7 +61,7 @@ TEST(TDeque, getHead_works) {
   const int N = 10;
   for (int i = 0; i < N; i++)
     deque.addTail(i);
-  
+
   // Assert
   const int expected_result = 0;
   EXPECT_EQ(expected_result, deque.getHead());
@@ -122,10 +122,10 @@ TEST(TDeque, isExist_works_) {
 
   // Act
   const int N = 10;
-  string str="str";
+  string str = "str";
   for (int i = 0; i < N; i++)
     deque.addHead(str + to_string(i));
-  
+
   // Assert
   EXPECT_TRUE(deque.isExist("str3"));
 }
@@ -208,7 +208,7 @@ TEST(TDeque, bracers_works) {
   EXPECT_EQ(expected_Result, deque[position]);
 }
 
-TEST(TDeque, canå_go_abroad_deque) {
+TEST(TDeque, can_go_abroad_deque) {
   // Arrange
   TDeque<int> deque;
 
