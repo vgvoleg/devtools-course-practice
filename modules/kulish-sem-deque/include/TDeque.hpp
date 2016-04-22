@@ -97,6 +97,7 @@ ValType TDeque<ValType>::operator[](const int &value) {
       counter++;
     }
   }
+  return -1;
 }
 
 template<class ValType>
