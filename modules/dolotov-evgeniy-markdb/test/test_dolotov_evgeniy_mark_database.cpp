@@ -105,7 +105,7 @@ TEST_F(MarkDatabaseTest, Can_Not_Add_Exist_Student) {
     Student student = students[0];
 
     // Act & Assert
-    EXPECT_THROW(base.addStudent(student), StudentAlreadyExist);
+    EXPECT_EQ(ReturnCode::StudentAlreadyExist, base.addStudent(student));
 }
 
 TEST_F(MarkDatabaseTest, Can_Delete_Exist_Student) {
@@ -134,7 +134,7 @@ TEST_F(MarkDatabaseTest, Can_Not_Delete_Not_Exist_Student) {
     Student student = "Brian Butler";
 
     // Act & Assert
-    EXPECT_THROW(base.deleteStudent(student), StudentNotExist);
+    EXPECT_EQ(ReturnCode::StudentNotFound, base.deleteStudent(student));
 }
 
 TEST_F(MarkDatabaseTest, Can_Count_Students) {
@@ -168,7 +168,7 @@ TEST_F(MarkDatabaseTest, Can_Not_Add_Exist_Subject) {
     Subject subject = subjects[0];
 
     // Act & Assert
-    EXPECT_THROW(base.addSubject(subject), SubjectAlreadyExist);
+    EXPECT_EQ(ReturnCode::SubjectAlreadyExist, base.addSubject(subject));
 }
 
 TEST_F(MarkDatabaseTest, Can_Delete_Exist_Subject) {
@@ -197,7 +197,7 @@ TEST_F(MarkDatabaseTest, Can_Not_Delete_Not_Exist_Subject) {
     Subject subject = "Psychology";
 
     // Act & Assert
-    EXPECT_THROW(base.deleteSubject(subject), SubjectNotExist);
+    EXPECT_EQ(ReturnCode::SubjectNotFound, base.deleteSubject(subject));
 }
 
 TEST_F(MarkDatabaseTest, Can_Count_Subjects) {
@@ -212,7 +212,8 @@ TEST_F(MarkDatabaseTest, Can_Not_Add_Record_With_Not_Exist_Student) {
     Mark mark = A;
 
     // Act & Assert
-    EXPECT_THROW(base.addNewRecord(student, subject, mark), StudentNotExist);
+    EXPECT_EQ(ReturnCode::StudentNotFound,
+              base.addNewRecord(student, subject, mark));
 }
 
 TEST_F(MarkDatabaseTest, Can_Not_Add_Record_With_Not_Exist_Subject) {
@@ -222,7 +223,8 @@ TEST_F(MarkDatabaseTest, Can_Not_Add_Record_With_Not_Exist_Subject) {
     Mark mark = A;
 
     // Act & Assert
-    EXPECT_THROW(base.addNewRecord(student, subject, mark), SubjectNotExist);
+    EXPECT_EQ(ReturnCode::SubjectNotFound,
+              base.addNewRecord(student, subject, mark));
 }
 
 TEST_F(MarkDatabaseTest, Can_Not_Add_Exist_Record) {
@@ -232,7 +234,8 @@ TEST_F(MarkDatabaseTest, Can_Not_Add_Exist_Record) {
     Mark mark = A;
 
     // Act & Assert
-    EXPECT_THROW(base.addNewRecord(student, subject, mark), RecordAlreadyExist);
+    EXPECT_EQ(ReturnCode::RecordAlreadyExist,
+              base.addNewRecord(student, subject, mark));
 }
 
 TEST_F(MarkDatabaseTest, Can_Add_Not_Exist_Record) {
@@ -299,7 +302,7 @@ TEST_F(MarkDatabaseTest, Can_Not_Delete_Not_Exist_Record) {
     base.addSubject(subject);
 
     // Act & Assert
-    EXPECT_THROW(base.deleteRecord(student, subject), RecordNotExist);
+    EXPECT_EQ(ReturnCode::RecordNotFound, base.deleteRecord(student, subject));
 }
 
 TEST_F(MarkDatabaseTest, Can_Count_Records) {
@@ -330,7 +333,7 @@ TEST_F(MarkDatabaseTest, Can_Not_Search_Not_Exist_Record) {
     base.addSubject(subject);
 
     // Act & Assert
-    EXPECT_THROW(base.search(student, subject), RecordNotExist);
+    EXPECT_EQ(ReturnCode::RecordNotFound, base.search(student, subject));
 }
 
 TEST_F(MarkDatabaseTest, Can_Get_Record_By_Index) {
@@ -341,7 +344,8 @@ TEST_F(MarkDatabaseTest, Can_Get_Record_By_Index) {
 
     // Act
     int index = base.search(student, subject);
-    Record record = base.getRecord(index);
+    Record record;
+    base.getRecord(index, &record);
 
     // Assert
     EXPECT_EQ(true, record == Record(student, subject, mark));
@@ -350,7 +354,8 @@ TEST_F(MarkDatabaseTest, Can_Get_Record_By_Index) {
 TEST_F(MarkDatabaseTest, Can_Get_Record_By_Wrong_Index) {
     // Act && Assert
     int count = base.numberOfRecords();
-    EXPECT_THROW(base.getRecord(count+1), std::out_of_range);
+    Record record;
+    EXPECT_EQ(ReturnCode::WrongIndex, base.getRecord(count+1, &record));
 }
 
 TEST_F(MarkDatabaseTest, Can_Delete_Exist_Record_By_Index) {
@@ -383,7 +388,7 @@ TEST_F(MarkDatabaseTest, Can_Delete_Exist_Record_By_Index) {
 TEST_F(MarkDatabaseTest, Can_Delete_Not_Exist_Record_By_Index) {
     // Act && Assert
     int count = base.numberOfRecords();
-    EXPECT_THROW(base.deleteRecord(count+1), std::out_of_range);
+    EXPECT_EQ(ReturnCode::WrongIndex, base.deleteRecord(count+1));
 }
 
 TEST_F(MarkDatabaseTest, Can_Not_Get_Marks_Of_Not_Exist_Student) {
@@ -391,7 +396,9 @@ TEST_F(MarkDatabaseTest, Can_Not_Get_Marks_Of_Not_Exist_Student) {
     Student student = "Brian Butler";
 
     // Act & Assert
-    EXPECT_THROW(base.marksOfStudent(student), StudentNotExist);
+    std::vector< std::pair<Subject, Mark> > marks;
+    EXPECT_EQ(ReturnCode::StudentNotFound,
+              base.marksOfStudent(student, &marks));
 }
 
 TEST_F(MarkDatabaseTest, Can_Get_Marks_Of_Exist_Student) {
@@ -400,7 +407,7 @@ TEST_F(MarkDatabaseTest, Can_Get_Marks_Of_Exist_Student) {
     Mark mark = A;
     // Act
     std::vector< std::pair<Subject, Mark> > marks;
-    marks = base.marksOfStudent(student);
+    base.marksOfStudent(student, &marks);
 
     // Assert
     unsigned int numberOfCoincidences = 0;
@@ -421,7 +428,9 @@ TEST_F(MarkDatabaseTest, Can_Not_Get_Marks_On_Not_Exist_Subject) {
     Subject subject = "Psychology";
 
     // Act & Assert
-    EXPECT_THROW(base.marksOnSubject(subject), SubjectNotExist);
+    std::vector< std::pair<Student, Mark> > marks;
+    EXPECT_EQ(ReturnCode::SubjectNotFound,
+              base.marksOnSubject(subject, &marks));
 }
 
 TEST_F(MarkDatabaseTest, Can_Get_Marks_On_Exist_Subject) {
@@ -431,7 +440,7 @@ TEST_F(MarkDatabaseTest, Can_Get_Marks_On_Exist_Subject) {
 
     // Act
     std::vector< std::pair<Student, Mark> > marks;
-    marks = base.marksOnSubject(subject);
+    base.marksOnSubject(subject, &marks);
 
     // Assert
     unsigned int numberOfCoincidences = 0;

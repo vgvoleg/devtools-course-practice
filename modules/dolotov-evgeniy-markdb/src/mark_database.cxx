@@ -1,11 +1,12 @@
 // Copyright 2016 Dolotov Evgeniy
 
-#include "include/mark_database.h"
 #include <algorithm>
 #include <vector>
 #include <string>
 #include <stdexcept>
 #include <utility>
+
+#include "include/mark_database.h"
 
 using std::find;
 using std::string;
@@ -29,23 +30,25 @@ bool MarkDatabase::isSubjectExist(Subject subject) {
     }
 }
 
-void MarkDatabase::addStudent(Student student) {
+int MarkDatabase::addStudent(Student student) {
     if (!isStudentExist(student)) {
         students.push_back(student);
+        return ReturnCode::Success;
     } else {
-        throw StudentAlreadyExist("Student "+student+" already exist!");
+        return ReturnCode::StudentAlreadyExist;
     }
 }
 
-void MarkDatabase::addSubject(Subject subject) {
+int MarkDatabase::addSubject(Subject subject) {
     if (!isSubjectExist(subject)) {
         subjects.push_back(subject);
+        return ReturnCode::Success;
     } else {
-        throw SubjectAlreadyExist("Subject "+subject+" already exist!");
+        return ReturnCode::SubjectAlreadyExist;
     }
 }
 
-void MarkDatabase::deleteStudent(Student student) {
+int MarkDatabase::deleteStudent(Student student) {
     if (isStudentExist(student)) {
         students.erase(find(students.begin(), students.end(), student));
         vector<Record>::iterator record = records.begin();
@@ -56,13 +59,14 @@ void MarkDatabase::deleteStudent(Student student) {
                 record++;
             }
         }
+        return ReturnCode::Success;
     } else {
-        throw StudentNotExist("Student "+student+" not exist!");
+        return ReturnCode::StudentNotFound;
     }
 }
 
 
-void MarkDatabase::deleteSubject(Subject subject) {
+int MarkDatabase::deleteSubject(Subject subject) {
     if (isSubjectExist(subject)) {
         subjects.erase(find(subjects.begin(), subjects.end(), subject));
         vector<Record>::iterator record = records.begin();
@@ -73,8 +77,9 @@ void MarkDatabase::deleteSubject(Subject subject) {
                 record++;
             }
         }
+        return ReturnCode::Success;
     } else {
-        throw SubjectNotExist("Subject "+subject+" not exist!");
+        return ReturnCode::SubjectNotFound;
     }
 }
 
@@ -87,36 +92,30 @@ bool MarkDatabase::isRecordExist(Student student, Subject subject) {
     }
 }
 
-void MarkDatabase::addNewRecord(Student student, Subject subject, Mark mark) {
+int MarkDatabase::addNewRecord(Student student, Subject subject, Mark mark) {
     if (isStudentExist(student)) {
         if (isSubjectExist(subject)) {
             if (!isRecordExist(student, subject)) {
                 records.push_back(Record(student, subject, mark));
+                return ReturnCode::Success;
             } else {
-                throw RecordAlreadyExist("Record about student "
-                                         +student+
-                                         " and subject "
-                                         +subject+
-                                         " already exist!");
+                return ReturnCode::RecordAlreadyExist;
             }
         } else {
-            throw SubjectNotExist("Subject "+subject+" not exist!");
+            return ReturnCode::SubjectNotFound;
         }
     } else {
-        throw StudentNotExist("Student "+student+" not exist!");
+        return ReturnCode::StudentNotFound;
     }
 }
 
-void MarkDatabase::deleteRecord(Student student, Subject subject) {
+int MarkDatabase::deleteRecord(Student student, Subject subject) {
     if (isRecordExist(student, subject)) {
         Record record(student, subject);
         records.erase(find(records.begin(), records.end(), record));
+        return ReturnCode::Success;
     } else {
-        throw RecordNotExist("Record about student "
-                             +student+
-                             " and subject "
-                             +subject+
-                             " not exist!");
+        return ReturnCode::RecordNotFound;
     }
 }
 
@@ -126,57 +125,55 @@ int MarkDatabase::search(Student student, Subject subject) {
         record = find(records.begin(), records.end(), Record(student, subject));
         return std::distance(records.begin(), record);
     } else {
-        throw RecordNotExist("Record about student "
-                             +student+
-                             " and subject "
-                             +subject+
-                             " not exist!");
+        return ReturnCode::RecordNotFound;
     }
 }
 
-Record MarkDatabase::getRecord(unsigned int indexOfRecord) {
+int MarkDatabase::getRecord(unsigned int indexOfRecord, Record* record) {
     if (indexOfRecord < numberOfRecords()) {
-        return records[indexOfRecord];
+        *record = records[indexOfRecord];
+        return ReturnCode::Success;
     } else {
-        throw out_of_range("Index is out of range!");
+        return ReturnCode::WrongIndex;
     }
 }
 
-void MarkDatabase::deleteRecord(unsigned int indexOfRecord) {
+int MarkDatabase::deleteRecord(unsigned int indexOfRecord) {
     if (indexOfRecord < numberOfRecords()) {
         records.erase(records.begin()+indexOfRecord);
+        return ReturnCode::Success;
     } else {
-        throw out_of_range("Index is out of range!");
+        return ReturnCode::WrongIndex;
     }
 }
 
-vector< pair<Subject, Mark> > MarkDatabase::marksOfStudent(Student student) {
+int MarkDatabase::marksOfStudent(Student student,
+                                 vector< pair<Subject, Mark> >* marks) {
     if (isStudentExist(student)) {
-        vector< pair<Subject, Mark> > marks;
         for (unsigned int recID = 0; recID < numberOfRecords(); recID++) {
             Record record = records[recID];
             if (record.student == student) {
-                marks.push_back(std::make_pair(record.subject, record.mark));
+                marks->push_back(std::make_pair(record.subject, record.mark));
             }
         }
-        return marks;
+        return ReturnCode::Success;
     } else {
-         throw StudentNotExist("Student "+student+" not exist!");
+        return ReturnCode::StudentNotFound;
     }
 }
 
-vector< pair<Student, Mark> > MarkDatabase::marksOnSubject(Subject subject) {
+int MarkDatabase::marksOnSubject(Subject subject,
+                                 vector< pair<Student, Mark> >* marks) {
     if (isSubjectExist(subject)) {
-    vector< pair<Student, Mark> > marks;
     for (unsigned int recordID = 0; recordID < numberOfRecords(); recordID++) {
         Record record = records[recordID];
         if (record.subject == subject) {
-            marks.push_back(std::make_pair(record.student, record.mark));
+            marks->push_back(std::make_pair(record.student, record.mark));
         }
     }
-    return marks;
+    return ReturnCode::Success;
     } else {
-        throw SubjectNotExist("Subject "+subject+" not exist!");
+        return ReturnCode::SubjectNotFound;
     }
 }
 

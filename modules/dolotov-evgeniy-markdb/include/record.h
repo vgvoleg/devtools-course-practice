@@ -18,7 +18,7 @@ typedef std::string Subject;
 
 class Record {
  public:
-    Record(Student student, Subject subject, Mark mark = A);
+    explicit Record(Student student = "", Subject subject = "", Mark mark = A);
     Student student;
     Subject subject;
     Mark mark;

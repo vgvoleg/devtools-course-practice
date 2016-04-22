@@ -8,22 +8,36 @@
 #include <utility>
 #include <exception>
 
-#include "include/mark_database_exception.h"
 #include "include/record.h"
+
+namespace ReturnCode {
+enum {
+    StudentNotFound = -7,
+    StudentAlreadyExist = -6,
+    SubjectNotFound = -5,
+    SubjectAlreadyExist = -4,
+    RecordNotFound = -3,
+    RecordAlreadyExist = -2,
+    WrongIndex = -1,
+    Success = 0
+};
+};  // namespace ReturnCode
 
 class MarkDatabase {
  public:
-    void addStudent(Student student);
-    void deleteStudent(Student student);
-    void addSubject(Subject subject);
-    void deleteSubject(Subject subject);
-    void addNewRecord(Student student, Subject subject, Mark mark);
-    void deleteRecord(Student student, Subject subject);
+    int addStudent(Student student);
+    int deleteStudent(Student student);
+    int addSubject(Subject subject);
+    int deleteSubject(Subject subject);
+    int addNewRecord(Student student, Subject subject, Mark mark);
+    int deleteRecord(Student student, Subject subject);
     int search(Student student, Subject subject);
-    Record getRecord(unsigned int indexOfRecord);
-    void deleteRecord(unsigned int indexOfRecord);
-    std::vector< std::pair<Subject, Mark> > marksOfStudent(Student student);
-    std::vector< std::pair<Student, Mark> > marksOnSubject(Subject subject);
+    int getRecord(unsigned int indexOfRecord, Record* record);
+    int deleteRecord(unsigned int indexOfRecord);
+    int marksOfStudent(Student student,
+                       std::vector< std::pair<Subject, Mark> >* marks);
+    int marksOnSubject(Subject subject,
+                       std::vector< std::pair<Student, Mark> >* marks);
     std::vector<Student> getStudentsList();
     std::vector<Subject> getSubjectsList();
     std::vector<Record> getRecordsList();
