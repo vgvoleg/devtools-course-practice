@@ -21,7 +21,7 @@ class TDeque {
   ValType getHead();
   void emplace_Head(ValType);
   void emplace_Tail(ValType);
-  ValType operator[](const int&);
+  ValType operator[](const int& value);
 
   bool isEmpty();
   int dequeSize();
@@ -238,8 +238,7 @@ void TDeque<ValType>::erase(ValType data, unsigned num) {
         item = item->previous;
 
         delData(temp);
-      }
-      else {
+      } else {
         if (item->previous == nullptr) {
           temp = item;
 
