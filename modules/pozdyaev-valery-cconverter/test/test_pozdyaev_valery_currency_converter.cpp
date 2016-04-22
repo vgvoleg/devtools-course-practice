@@ -198,13 +198,3 @@ TEST(Pozdyaev_Valery_CurrencyConverterTest, Can_Remove_All_Pairs) {
     EXPECT_EQ(0, pairs_count);
 }
 
-TEST(Pozdyaev_Valery_CurrencyConverterTest, Cannot_Get_Unknown_Pair) {
-    // Arrange
-    CurrencyConverter converter;
-    converter.addCurrencyPair(CurrencyPair("EUR/USD", 1.2, 1.6));
-
-    // Act & Assert
-    string unknown_code = "EUR/RUB";
-    EXPECT_THROW(converter.getCurrencyPairByCode(unknown_code)
-        , logic_error);
-}

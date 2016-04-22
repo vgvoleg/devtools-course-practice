@@ -19,17 +19,18 @@ class CurrencyConverter {
     void updateCurrencyPair(CurrencyPair currency_pair);
 
     double exchangeCurrency(string selling_currency,
-        string buying_currency, double sum);
+        string buying_currency, double sum) const;
 
     void removeAllCurrencyPairs();
-    CurrencyPair& getCurrencyPairByCode(string currency_pair_code);
-    std::vector<CurrencyPair> getCurrencyPairs();
+    std::vector<CurrencyPair> getCurrencyPairs() const;
 
  private:
     double buyCurrency(CurrencyPair currency_pair_code, double sum) const;
     double saleCurrency(CurrencyPair currency_pair_code, double sum) const;
 
     bool isCurrencyPairPresented(string curr_pair_code) const;
+    CurrencyPair& getCurrencyPairByCode(string currency_pair_code);
+    int getCurrencyPairNumberByCode(string currency_pair_code) const;
 
     std::vector<CurrencyPair> currency_pairs;
 };

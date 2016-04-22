@@ -16,15 +16,15 @@ class CurrencyPair {
     CurrencyPair(string currency_pair_code, double bid_price, double ask_price);
 
     void setBidPrice(double new_bid_price);
-    double getBidPrice();
+    double getBidPrice() const;
     void setAskPrice(double new_ask_price);
-    double getAskPrice();
+    double getAskPrice() const;
     void setCurrencyPairCode(string new_currency_pair_code);
-    string getCurrencyPairCode();
+    string getCurrencyPairCode() const;
 
     static void checkCurrencyPairCode(string currency_pair_code);
 
-    std::map<time_t, int> getSpreadHistory();
+    std::map<time_t, int> getSpreadHistory() const;
 
  private:
     string currency_pair_code_;

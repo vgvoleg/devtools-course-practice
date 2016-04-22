@@ -61,6 +61,18 @@ CurrencyPair& CurrencyConverter::getCurrencyPairByCode(string curr_pair_code) {
     throw logic_error("Currency pair is not found");
 }
 
+int CurrencyConverter::getCurrencyPairNumberByCode(string curr_pair_code)
+                                                                    const {
+    for (size_t i = 0; i < currency_pairs.size(); i++) {
+        CurrencyPair pair = currency_pairs.at(i);
+        if (pair.getCurrencyPairCode() == curr_pair_code) {
+            return i;
+        }
+    }
+
+    throw logic_error("Currency pair is not found");
+}
+
 bool CurrencyConverter::isCurrencyPairPresented(string curr_pair_code) const {
     for (CurrencyPair pair : currency_pairs) {
         if (pair.getCurrencyPairCode() == curr_pair_code) {
@@ -72,7 +84,7 @@ bool CurrencyConverter::isCurrencyPairPresented(string curr_pair_code) const {
 }
 
 double CurrencyConverter::exchangeCurrency(string selling_currency,
-    string buying_currency, double sum) {
+    string buying_currency, double sum) const {
     if (sum <= 0) {
         throw invalid_argument("Sum must be greater than 0");
     }
@@ -89,21 +101,23 @@ double CurrencyConverter::exchangeCurrency(string selling_currency,
     CurrencyPair::checkCurrencyPairCode(currency_pair_code);
 
     if (isCurrencyPairPresented(currency_pair_code)) {
-        currency_pair = getCurrencyPairByCode(currency_pair_code);
+        int pair_position = getCurrencyPairNumberByCode(currency_pair_code);
+        currency_pair = currency_pairs.at(pair_position);
         return saleCurrency(currency_pair, sum);
     }
 
     currency_pair_code = buying_currency + "/" + selling_currency;
 
     if (isCurrencyPairPresented(currency_pair_code)) {
-        currency_pair = getCurrencyPairByCode(currency_pair_code);
+        int pair_position = getCurrencyPairNumberByCode(currency_pair_code);
+        currency_pair = currency_pairs.at(pair_position);
         return buyCurrency(currency_pair, sum);
     }
 
     throw logic_error("Can not exchange currency. Currency pair is not found");
 }
 
-std::vector<CurrencyPair> CurrencyConverter::getCurrencyPairs() {
+std::vector<CurrencyPair> CurrencyConverter::getCurrencyPairs() const {
     return currency_pairs;
 }
 

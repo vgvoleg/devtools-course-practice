@@ -40,7 +40,7 @@ void CurrencyPair::setBidPrice(double new_bid_price) {
     }
 }
 
-double CurrencyPair::getBidPrice() {
+double CurrencyPair::getBidPrice() const {
     return bid_price_;
 }
 
@@ -53,7 +53,7 @@ void CurrencyPair::setAskPrice(double new_ask_price) {
     }
 }
 
-double CurrencyPair::getAskPrice() {
+double CurrencyPair::getAskPrice() const {
     return ask_price_;
 }
 
@@ -63,7 +63,7 @@ void CurrencyPair::setCurrencyPairCode(string new_currency_pair_code) {
     currency_pair_code_ = new_currency_pair_code;
 }
 
-string CurrencyPair::getCurrencyPairCode() {
+string CurrencyPair::getCurrencyPairCode() const {
     return currency_pair_code_;
 }
 
@@ -89,7 +89,7 @@ void CurrencyPair::checkCurrencyPairCode(string currency_pair_code) {
     }
 }
 
-std::map<time_t, int> CurrencyPair::getSpreadHistory() {
+std::map<time_t, int> CurrencyPair::getSpreadHistory() const {
     return spread_history;
 }
 
