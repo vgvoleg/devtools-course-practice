@@ -62,7 +62,7 @@ TEST(TDeque, getHead_works) {
   const int N = 10;
   for (int i = 0; i < N; i++)
     deque.addTail(i);
-  
+
   deque1.addTail(0);
 
   // Assert
@@ -80,7 +80,7 @@ TEST(TDeque, getTail_works) {
   const int N = 10;
   for (int i = 0; i < N; i++)
     deque.addHead(i);
-  
+
   deque1.addHead(0);
 
   // Assert
@@ -216,8 +216,7 @@ TEST(TDeque, bracers_works) {
   EXPECT_EQ(expected_Result, deque[position]);
 }
 
-TEST(TDeque, return_minus_one_then_value_less_than_0)
-{
+TEST(TDeque, return_minus_one_then_value_less_than_0) {
   // Arrange
   TDeque<int> deque;
 
