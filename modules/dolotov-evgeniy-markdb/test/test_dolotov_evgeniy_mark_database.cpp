@@ -334,8 +334,8 @@ TEST_F(MarkDatabaseTest, Can_Get_Marks_Of_Exist_Student) {
 
     // Assert
     unsigned int numberOfCoincidences = 0;
-    for (unsigned int i = 0; i < subjects.size(); i++) {
-        for (unsigned int j = 0; j < marks.size(); j++) {
+    for (size_t i = 0; i < subjects.size(); i++) {
+        for (size_t j = 0; j < marks.size(); j++) {
             if (marks[j].first == subjects[i] && marks[j].second == mark) {
                 numberOfCoincidences++;
             }
@@ -367,8 +367,8 @@ TEST_F(MarkDatabaseTest, Can_Get_Marks_On_Exist_Subject) {
 
     // Assert
     unsigned int numberOfCoincidences = 0;
-    for (unsigned int i = 0; i < students.size(); i++)
-        for (unsigned int j = 0; j < marks.size(); j++) {
+    for (size_t i = 0; i < students.size(); i++)
+        for (size_t j = 0; j < marks.size(); j++) {
             if (marks[j].first == students[i] && marks[j].second == mark) {
                 numberOfCoincidences++;
             }

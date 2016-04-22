@@ -150,7 +150,7 @@ int MarkDatabase::deleteRecord(unsigned int indexOfRecord) {
 int MarkDatabase::marksOfStudent(Student student,
                                  vector< pair<Subject, Mark> >* marks) {
     if (isStudentExist(student)) {
-        for (unsigned int recID = 0; recID < numberOfRecords(); recID++) {
+        for (size_t recID = 0; recID < numberOfRecords(); recID++) {
             Record record = records[recID];
             if (record.student == student) {
                 marks->push_back(std::make_pair(record.subject, record.mark));
@@ -165,7 +165,7 @@ int MarkDatabase::marksOfStudent(Student student,
 int MarkDatabase::marksOnSubject(Subject subject,
                                  vector< pair<Student, Mark> >* marks) {
     if (isSubjectExist(subject)) {
-    for (unsigned int recordID = 0; recordID < numberOfRecords(); recordID++) {
+    for (size_t recordID = 0; recordID < numberOfRecords(); recordID++) {
         Record record = records[recordID];
         if (record.subject == subject) {
             marks->push_back(std::make_pair(record.student, record.mark));
