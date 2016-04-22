@@ -56,28 +56,36 @@ TEST(TDeque, addTail_works) {
 TEST(TDeque, getHead_works) {
   // Arrange
   TDeque<int> deque;
+  TDeque<int> deque1;
 
   // Act
   const int N = 10;
   for (int i = 0; i < N; i++)
     deque.addTail(i);
+  
+  deque1.addTail(0);
 
   // Assert
   const int expected_result = 0;
+  EXPECT_EQ(expected_result, deque1.getHead());
   EXPECT_EQ(expected_result, deque.getHead());
 }
 
 TEST(TDeque, getTail_works) {
   // Arrange
   TDeque<int> deque;
+  TDeque<int> deque1;
 
   // Act
   const int N = 10;
   for (int i = 0; i < N; i++)
     deque.addHead(i);
+  
+  deque1.addHead(0);
 
   // Assert
   const int expected_result = 0;
+  EXPECT_EQ(expected_result, deque1.getTail());
   EXPECT_EQ(expected_result, deque.getTail());
 }
 
@@ -208,7 +216,8 @@ TEST(TDeque, bracers_works) {
   EXPECT_EQ(expected_Result, deque[position]);
 }
 
-TEST(TDeque, can_go_abroad_deque) {
+TEST(TDeque, return_minus_one_then_value_less_than_0)
+{
   // Arrange
   TDeque<int> deque;
 
@@ -217,6 +226,6 @@ TEST(TDeque, can_go_abroad_deque) {
     deque.addHead(i);
 
   // Assert
-  const int position = 51;
-  ASSERT_ANY_THROW(deque[position]);
+  const int position = -1;
+  EXPECT_EQ(position, deque[position]);
 }
