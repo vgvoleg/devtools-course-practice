@@ -1,10 +1,14 @@
 // Copyright Kulish_Sem 2016
 
-#ifndef header guard found, suggested CPP variable is: MODULES_KULISH_SEM_DEQUE_INCLUDE_TDEQUE_H_
+#include <string>
+
+using std::string;
+
+#ifndef MODULES_KULISH_SEM_DEQUE_INCLUDE_TDEQUE_H_
 
 template<class ValType>
 class TDeque {
-public: 
+public:
   TDeque();
   TDeque(const ValType&);
   ~TDeque();
@@ -23,7 +27,7 @@ public:
   bool isExist(const ValType&)const;
   void erase(ValType, unsigned);
 
-private: 
+private:
   struct ITEM {
     ValType *data;
     ITEM *next;
@@ -85,7 +89,7 @@ ValType TDeque<ValType>::operator[](const int &value) {
   unsigned counter = 1;
   ITEM* item = tail;
 
-  if (value > size) throw string("Årying to get element beyond the deque");
+  if (value > size) throw string("Trying to get element beyond the deque");
   while (counter <= value) {
     if (counter == value) {
       return *item->data;
@@ -98,7 +102,7 @@ ValType TDeque<ValType>::operator[](const int &value) {
 
 template<class ValType>
 void TDeque<ValType>::addTail(const ValType& data) {
-  if (head&&tail) {
+  if (head && tail) {
     ITEM *tmp = create(data);
     tmp->previous = tail;
     tail->next = tmp;
@@ -112,7 +116,7 @@ void TDeque<ValType>::addTail(const ValType& data) {
 
 template<class ValType>
 void TDeque<ValType>::addHead(const ValType& data) {
-  if (head&&tail) {
+  if (head && tail) {
     ITEM *tmp = create(data);
     tmp->next = head;
     head->previous = tmp;
@@ -206,7 +210,7 @@ void TDeque<ValType>::erase(ValType data, unsigned num) {
   ITEM *item = tail;
   unsigned i = 0;
   while (item) {
-    if (*item->data == data&&num <= i) {
+    if (*item->data == data && num <= i) {
       ITEM* temp;
 
       if (tail->previous == head) {
