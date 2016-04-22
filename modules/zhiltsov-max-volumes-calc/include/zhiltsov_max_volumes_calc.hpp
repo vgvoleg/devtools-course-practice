@@ -1,3 +1,5 @@
+// Copyright 2016 Zhiltsov Max
+
 #ifndef ZHILTSOV_MAX_VOLUMES_CALC_H_
 #define ZHILTSOV_MAX_VOLUMES_CALC_H_
 
@@ -29,7 +31,7 @@ Return value:
 Usage examples:
 
 // Simple integral of x^2 on interval [0, 30] with step = (30 - 0) / 100:
-double result = integrate<double>(0, 30, 
+double result = integrate<double>(0, 30,
     [] (double x) { return x * x; }, 500
 ); // returns approximately 30^3 / 3 = 9000
 
@@ -42,21 +44,21 @@ NumberType integrate(const NumberType& lower, const NumberType& upper,
 
 /*
 Class for numerical integration of given function in given boundaries
-accoridng to a formula: 
+accoridng to a formula:
   volume = integral(a, b, dx, integral(g, h, dy, integral(u, v, dz, f))),
-where 
-  f = f(x, y) - function to be integrated, 
-  a - const   - first integral lower boundary, 
+where
+  f = f(x, y) - function to be integrated,
+  a - const   - first integral lower boundary,
   b - const   - first integral upper boundary,
-  g = g(x)    - second internal lower boundary, 
-  h = h(x)    - second internal upper boundary, 
+  g = g(x)    - second internal lower boundary,
+  h = h(x)    - second internal upper boundary,
   u = u(x, y) - third internal lower boundary,
   v = v(x, y) - third internal upper boundary.
 
 It allows to use a dependent boundary functions for inner boundaries (functions
 g(x) and h(x), u(x, y) and v(x, y)).
 
-Class template parameter NumberType allows to use a custom numerical types in 
+Class template parameter NumberType allows to use a custom numerical types in
 calculations.
 
 Usage warning:
@@ -95,7 +97,7 @@ float cylinderVolume = calculator.Calculate();
 */
 template<class NumberType = double>
 class VolumeCalculator {
-  public:
+ public:
     using Boundary2Func = function<NumberType, const NumberType&>;
     using Boundary3Func = function<
         NumberType, const NumberType&, const NumberType&>;
@@ -111,15 +113,14 @@ class VolumeCalculator {
         const Boundary2Func& boundary2Min,
         const Boundary2Func& boundary2Max,
         const Boundary3Func& boundary3Min,
-        const Boundary3Func& boundary3Max
-    );
+        const Boundary3Func& boundary3Max);
 
-  private:
+ private:
     static constexpr size_t kDefaultPartitionCount = 100;
 
-  public:
+ public:
     /*
-    Calculates the volume of a figure with the specified description by a 
+    Calculates the volume of a figure with the specified description by a
     numerical integration.
 
     Function parameters:
@@ -130,19 +131,19 @@ class VolumeCalculator {
 
     Return value:
       Number of type NumberType, the result of computation.
-      
+
     */
     NumberType Calculate(size_t partitionCount = kDefaultPartitionCount);
-    
+
     /*
     Calculates the volume of a figure with the specified description by a
     numerical integration.
 
     Function parameters:
-      partitionCount(1, 2, 3) - count of partitions in integration process. 
-        The higher is this value, the more accurate the results is and the 
-        higher duration of computations is. These partition counts is applied 
-        separately to each integral, so complexity grows approximately 
+      partitionCount(1, 2, 3) - count of partitions in integration process.
+        The higher is this value, the more accurate the results is and the
+        higher duration of computations is. These partition counts is applied
+        separately to each integral, so complexity grows approximately
         as n1*n2*n3. Index 1, 2 or 3 stands for integral position, starting from
         outer one.
 
@@ -151,10 +152,9 @@ class VolumeCalculator {
 
     */
     NumberType Calculate(size_t partitionCount1,
-        size_t partitionCount2, size_t partitionCount3
-    );
+        size_t partitionCount2, size_t partitionCount3);
 
-  private:
+ private:
     NumberType boundary1Min;
     NumberType boundary1Max;
     Boundary2Func boundary2Min;
@@ -171,8 +171,8 @@ template<class NumberType,
     class Function = function<NumberType, const NumberType&>
 >
 NumberType integrate(const NumberType& lower, const NumberType& upper,
-    const Function& f, size_t partitionCount)
-{
+    const Function& f, size_t partitionCount
+) {
     const auto step = std::abs(upper - lower) / partitionCount;
     NumberType result(0);
     for (size_t i = 1; i <= partitionCount; ++i) {
@@ -205,11 +205,9 @@ NumberType VolumeCalculator<NumberType>::Calculate(size_t partitionCount) {
                 [&] (const NumberType& y) {
                     return integrate(boundary3Min(x, y), boundary3Max(x, y),
                         [&] (const NumberType& z) { return func(x, y, z); },
-                        partitionCount
-                    );
+                        partitionCount);
                 },
-                partitionCount
-            );
+                partitionCount);
         },
         partitionCount);
 }
@@ -224,11 +222,9 @@ NumberType VolumeCalculator<NumberType>::Calculate(size_t partitionCount1,
                 [&] (const NumberType& y) {
                     return integrate(boundary3Min(x, y), boundary3Max(x, y),
                         [&] (const NumberType& z) { return func(x, y, z); },
-                        partitionCount3
-                    );
+                        partitionCount3);
                 },
-                partitionCount2
-            );
+                partitionCount2);
         },
         partitionCount1);
 }
