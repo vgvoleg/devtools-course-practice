@@ -1,9 +1,10 @@
 // Copyright Kulish_Sem 2016
 #include <gtest/gtest.h>
 #include <string>
-#include "TDeque.h"
+#include "TDeque.hpp"
 
 using std::string;
+using std::to_string;
 
 TEST(TDeque, can_create_deque) {
   // Arrange And Act
