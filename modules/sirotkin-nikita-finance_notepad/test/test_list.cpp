@@ -14,7 +14,7 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, lists_isEmpty_is_worked) {
 }
 
 TEST(Sirotkin_Nikita_FinanceNotepadTest,
-   can_add_and_read_first_element_from_list) {
+    can_add_and_read_first_element_from_list) {
   // Arrange
   lite_list<int> test_list;
   int result;
