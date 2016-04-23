@@ -3,7 +3,7 @@
 #include <gtest/gtest.h>
 #include <math.h>
 
-#include "include/Quaternion.h"
+#include "include/quaternion.h"
 
 TEST(Quaternion, Can_Create_Default) {
     // Arrange
