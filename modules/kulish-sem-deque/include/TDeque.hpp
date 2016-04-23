@@ -13,7 +13,7 @@ template<class V>
 class TDeque {
  public:
   TDeque();
-  explicit TDeque(const V& data);
+  TDeque(const V& data);
   TDeque(const initializer_list<V>&);
   ~TDeque();
 
@@ -58,8 +58,7 @@ TDeque<V>::TDeque(const V& data) {
 }
 
 template<class V>
-TDeque<V>::TDeque(const initializer_list<V>& list) :TDeque()
-{
+TDeque<V>::TDeque(const initializer_list<V>& list) :TDeque() {
   for (const V& elem : list)
     push_Tail(elem);
 }
