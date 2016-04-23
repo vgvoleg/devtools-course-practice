@@ -63,8 +63,8 @@ TEST(TDeque, Can_Push_Head) {
 
 TEST(TDeque, Can_Use_Lnitializer_List) {
   // Arrange
-  TDeque<int> deque = {1, 2, 3, 4, 5};
-
+  TDeque<int> deque ({1, 2, 3, 4, 5});
+  
   // Act And Assert
   const int expected_Result = 1;
   EXPECT_EQ(expected_Result, deque.pop_Head());
@@ -85,7 +85,7 @@ TEST(TDeque, Can_Push_Tail) {
 
 TEST(TDeque, Can_Pop_Head) {
   // Arrange
-  TDeque<int> deque = {1, 2, 3, 4, 5};
+  TDeque<int> deque({1, 2, 3, 4, 5});
 
   // Act And Assert
   const int expected_Result = 1;
@@ -106,7 +106,7 @@ TEST(TDeque, Can_Pop_Head_With_One_Element) {
 
 TEST(TDeque, Can_Pop_Tail) {
   // Arrange
-  TDeque<int> deque = { 0, 1, 2, 3, 4, 5 };
+  TDeque<int> deque({ 0, 1, 2, 3, 4, 5 });
 
   // Act And Assert
   const int expected_Result = 5;
@@ -138,7 +138,7 @@ TEST(TDeque, Destructor_Works) {
 
 TEST(TDeque, Can_Use_IsExist) {
   // Arrange
-  TDeque<string> deque = { "str1", "str2", "str3", "str4", "str5" };
+  TDeque<string> deque({ "str1", "str2", "str3", "str4", "str5" });
 
   // Act And Assert
   string expected_Result = "str3";
@@ -155,7 +155,7 @@ TEST(TDeque, Can_Use_isEmpty) {
 
 TEST(TDeque, Can_Emplace_Head) {
   // Arrange
-  TDeque<int> deque = {1, 2, 3, 4, 5};
+  TDeque<int> deque({1, 2, 3, 4, 5});
 
   // Act And Assert
   const int expected_Result = 10;
@@ -166,7 +166,7 @@ TEST(TDeque, Can_Emplace_Head) {
 
 TEST(TDeque, Can_Emplace_Tail) {
   // Arrange
-  TDeque<int> deque = {1, 2, 3, 4, 5};
+  TDeque<int> deque({1, 2, 3, 4, 5});
 
   // Act
 
@@ -178,7 +178,7 @@ TEST(TDeque, Can_Emplace_Tail) {
 
 TEST(TDeque, Can_Erase_Last_Element) {
   // Arrange
-  TDeque<int> deque = {1, 2, 3, 4, 5};
+  TDeque<int> deque({1, 2, 3, 4, 5});
 
   // Act
   const int position = 0;
@@ -191,7 +191,7 @@ TEST(TDeque, Can_Erase_Last_Element) {
 
 TEST(TDeque, Can_Erase_First_Element) {
   // Arrange
-  TDeque<int> deque = {1, 2, 3, 4, 5};
+  TDeque<int> deque({1, 2, 3, 4, 5});
 
   // Act
   const int position = 0;
@@ -204,7 +204,7 @@ TEST(TDeque, Can_Erase_First_Element) {
 
 TEST(TDeque, Can_Erase_Middle_Element) {
   // Arrange
-  TDeque<int> deque = {1, 2, 3, 4, 5};
+  TDeque<int> deque({1, 2, 3, 4, 5});
 
   // Act
   const int position = 0;
@@ -217,7 +217,7 @@ TEST(TDeque, Can_Erase_Middle_Element) {
 
 TEST(TDeque, Can_Use_Brackets) {
   // Arrange
-  TDeque<int> deque = {1, 2, 3, 4, 5};
+  TDeque<int> deque({1, 2, 3, 4, 5});
 
   // Act And Assert
   const int position = 4;
