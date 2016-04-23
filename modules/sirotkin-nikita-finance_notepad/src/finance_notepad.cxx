@@ -81,7 +81,7 @@ string category_table::getNameOf(int id) {
 note::note(date _notes_date, float _sum, int _categories_id,
            category_table *_table_of_categories, string _comment) :
   notes_date(_notes_date), sum(_sum), categories_id(_categories_id),
-	comment(_comment), table(_table_of_categories) { }
+    comment(_comment), table(_table_of_categories) { }
 
 int note::getCategoriesId() {
   return categories_id;
