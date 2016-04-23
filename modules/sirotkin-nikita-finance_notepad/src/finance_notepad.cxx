@@ -61,7 +61,7 @@ bool date::operator<(const date &other_date) const {
 }
 
 bool date::operator==(const date &other_date) const {
-  return (number == other_date.number) && 
+  return (number == other_date.number) &&
     (month == other_date.month) &&
     (year == other_date.year);
 }
