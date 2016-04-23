@@ -26,9 +26,9 @@ class TDeque {
   void emplace_Tail(const V);
   V operator[](const int& value)const;
 
-  bool isEmpty()const;
-  unsigned dequeSize()const;
-  bool isExist(const V&)const;
+  bool is_Empty()const;
+  unsigned deque_Size()const;
+  bool is_Exist(const V&)const;
   void erase(V, int);
 
  private:
@@ -200,17 +200,17 @@ void TDeque<V>::emplace_Tail(const V data) {
 }
 
 template<class V>
-bool TDeque<V>::isEmpty()const {
+bool TDeque<V>::is_Empty()const {
   return size == 0;
 }
 
 template<class V>
-unsigned TDeque<V>::dequeSize()const {
+unsigned TDeque<V>::deque_Size()const {
   return size;
 }
 
 template<class V>
-bool TDeque<V>::isExist(const V& data) const {
+bool TDeque<V>::is_Exist(const V& data) const {
   ITEM* tmp = head;
 
   while (tmp) {

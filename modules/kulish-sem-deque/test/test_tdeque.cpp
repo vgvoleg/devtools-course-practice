@@ -45,7 +45,7 @@ TEST(TDeque, Can_Create_Not_Empty_Deque) {
   TDeque<int> deque(N);
 
   // Assert
-  EXPECT_EQ(N, deque.dequeSize());
+  EXPECT_EQ(N, deque.deque_Size());
 }
 
 TEST(TDeque, Can_Push_Head) {
@@ -58,13 +58,13 @@ TEST(TDeque, Can_Push_Head) {
     deque.push_Head(i);
 
   // Assert
-  EXPECT_EQ(N, deque.dequeSize());
+  EXPECT_EQ(N, deque.deque_Size());
 }
 
 TEST(TDeque, Can_Use_Lnitializer_List) {
   // Arrange
   TDeque<int> deque({1, 2, 3, 4, 5});
- 
+
   // Act And Assert
   const int expected_Result = 1;
   EXPECT_EQ(expected_Result, deque.pop_Head());
@@ -80,7 +80,7 @@ TEST(TDeque, Can_Push_Tail) {
     deque.push_Tail(i);
 
   // Assert
-  EXPECT_EQ(N, deque.dequeSize());
+  EXPECT_EQ(N, deque.deque_Size());
 }
 
 TEST(TDeque, Can_Pop_Head) {
@@ -133,24 +133,24 @@ TEST(TDeque, Destructor_Works) {
   intDeque->~TDeque();
 
   // Assert
-  EXPECT_TRUE(intDeque->isEmpty());
+  EXPECT_TRUE(intDeque->is_Empty());
 }
 
-TEST(TDeque, Can_Use_IsExist) {
+TEST(TDeque, Can_Use_is_Exist) {
   // Arrange
   TDeque<string> deque({ "str1", "str2", "str3", "str4", "str5" });
 
   // Act And Assert
   string expected_Result = "str3";
-  EXPECT_TRUE(deque.isExist(expected_Result));
+  EXPECT_TRUE(deque.is_Exist(expected_Result));
 }
 
-TEST(TDeque, Can_Use_isEmpty) {
+TEST(TDeque, Can_Use_is_Empty) {
   // Arrange
   TDeque<int> deque;
 
   // Act And Assert
-  EXPECT_TRUE(deque.isEmpty());
+  EXPECT_TRUE(deque.is_Empty());
 }
 
 TEST(TDeque, Can_Emplace_Head) {
@@ -186,7 +186,7 @@ TEST(TDeque, Can_Erase_Last_Element) {
   deque.erase(num, position);
 
   // Assert
-  EXPECT_FALSE(deque.isExist(num));
+  EXPECT_FALSE(deque.is_Exist(num));
 }
 
 TEST(TDeque, Can_Erase_First_Element) {
@@ -199,7 +199,7 @@ TEST(TDeque, Can_Erase_First_Element) {
   deque.erase(num, position);
 
   // Assert
-  EXPECT_FALSE(deque.isExist(num));
+  EXPECT_FALSE(deque.is_Exist(num));
 }
 
 TEST(TDeque, Can_Erase_Middle_Element) {
@@ -212,7 +212,7 @@ TEST(TDeque, Can_Erase_Middle_Element) {
   deque.erase(num, position);
 
   // Assert
-  EXPECT_FALSE(deque.isExist(num));
+  EXPECT_FALSE(deque.is_Exist(num));
 }
 
 TEST(TDeque, Can_Use_Brackets) {
