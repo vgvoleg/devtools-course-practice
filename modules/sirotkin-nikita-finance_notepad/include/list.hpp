@@ -82,8 +82,7 @@ void lite_list<ELEMENTS_TYPE>::addElement(ELEMENTS_TYPE value) {
   if (last == nullptr) {
     head = added;
     current = head;
-  }
-  else {
+  } else {
     last->setNext(added);
   }
   last = added;
@@ -93,13 +92,13 @@ template<class ELEMENTS_TYPE>
 bool lite_list<ELEMENTS_TYPE>::operator++() {
   if (current != nullptr) {
     current = current->getNext();
-    if (current != nullptr)	return true;
-    else {
+	if (current != nullptr) {
+		return true;
+    } else {
       current = head;
       return false;
     }
-  }
-  else {
+  } else {
     return false;
   }
 }
