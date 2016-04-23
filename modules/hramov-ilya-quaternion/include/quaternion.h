@@ -8,9 +8,8 @@
 
 const double epsilon = std::numeric_limits<double>::epsilon();
 
-class Quaternion
-{
-public:
+class Quaternion {
+ public:
     // Fields
     double x;
     double y;
@@ -50,4 +49,4 @@ public:
     bool isZero(const Quaternion &operand) const;
 };
 
-#endif // MODULES_HRAMOV_ILYA_QUATERNION_INCLUDE_QUATERNION_H_
+#endif  // MODULES_HRAMOV_ILYA_QUATERNION_INCLUDE_QUATERNION_H_
