@@ -191,7 +191,7 @@ TEST(TDeque, erase_works) {
   // Act
   const int N = 10;
   for (int i = 0; i < N; i++)
-    deque.addhead(i);
+    deque.addHead(i);
 
   // Assert
   const int numOne = 0;
