@@ -13,17 +13,17 @@ const unsigned int MineSweeper::MINE = 9;
 const unsigned int MineSweeper::CLOSED_CELL = 0;
 const unsigned int MineSweeper::OPENED_CELL = 10;
 MineSweeper::MineSweeper(unsigned int game_size,
-                         unsigned int mine_count, int seed) {
+                         unsigned int mine_count, bool is_static) {
     if (mine_count > game_size*game_size-1)
         throw std::invalid_argument("Invalid mine count");
     game_field = new Field(game_size);
     opened_field = new Field(game_size);
     game_status = GAME_STATUS_START;
     this->mine_count = mine_count;
-    if (seed == -1)
+    if (!is_static)
         random_seed = (unsigned int)time(NULL);
     else
-        random_seed = (unsigned int)seed;
+        random_seed = 0;
 }
 
 MineSweeper::~MineSweeper() {
@@ -36,12 +36,22 @@ void MineSweeper::place_mines(unsigned int curr_x, unsigned int curr_y) {
     unsigned int field_size = game_field->get_field_size();
     unsigned int x = 0;
     unsigned int y = 0;
-    while (current_mine_count < mine_count) {
-        x = rand_r(&random_seed)%field_size;
-        y = rand_r(&random_seed)%field_size;
-        if (game_field->get_cell(x, y) != MINE && x != curr_x && y!= curr_y) {
-            game_field->set_cell(x, y, MINE);
-            current_mine_count++;
+    if (random_seed > 0) {
+        while (current_mine_count < mine_count) {
+            x = rand_r(&random_seed)%field_size;
+            y = rand_r(&random_seed)%field_size;
+            if (game_field->get_cell(x, y) != MINE &&
+                    x != curr_x && y!= curr_y) {
+                game_field->set_cell(x, y, MINE);
+                current_mine_count++;
+            }
+        }
+    } else {
+        unsigned int x_mine_poses[10] = {7, 2, 4, 3, 2, 4, 4, 6, 1, 9};
+        unsigned int y_mine_poses[10] = {1, 2, 2, 3, 4, 3, 9, 7, 6, 1};
+
+        for (unsigned int i = 0; i < field_size; ++i) {
+            game_field->set_cell(x_mine_poses[i], y_mine_poses[i], MINE);
         }
     }
     fill_game_field_with_numbers();

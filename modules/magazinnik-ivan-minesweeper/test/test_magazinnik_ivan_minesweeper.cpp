@@ -1,7 +1,6 @@
 // Copyright 2016 Magaziinik Ivan
 
 #include <gtest/gtest.h>
-#include <iostream>
 
 #include "include/mine_sweeper.h"
 
@@ -40,7 +39,7 @@ TEST(MINEsweeper, can_finalise_game) {
     unsigned int mine_x_pos = 1;
     unsigned int mine_y_pos = 6;
     // Act
-    game = new MineSweeper(10, 10, 0);
+    game = new MineSweeper(10, 10, 1);
     game->open_cell(0, 0);
     game->open_cell(mine_x_pos, mine_y_pos);
     // Assert
@@ -55,7 +54,7 @@ TEST(MINEsweeper, can_get_opened_field_cell) {
     unsigned int mine_y_pos = 6;
 
     // Act
-    game = new MineSweeper(10, 10, 0);
+    game = new MineSweeper(10, 10, 1);
     game->open_cell(0, 0);
     game->open_cell(mine_x_pos, mine_y_pos);
     game->get_opened_field_cell(mine_x_pos, mine_y_pos);
@@ -71,7 +70,7 @@ TEST(MINEsweeper, throw_when_continue_game_after_ends) {
     unsigned int mine_y_pos = 6;
 
     // Act
-    game = new MineSweeper(10, 10, 0);
+    game = new MineSweeper(10, 10, 1);
     game->open_cell(0, 0);
     game->open_cell(mine_x_pos, mine_y_pos);
 
@@ -131,7 +130,7 @@ TEST(MINEsweeper, can_win_game) {
     int size = 10;
 
     // Act
-    game = new MineSweeper(size, size, 0);
+    game = new MineSweeper(size, size, 1);
     win_game(game, size);
 
     // Assert
@@ -191,7 +190,7 @@ TEST(MINEsweeper, is_field_open_correctly_after_mine) {
     unsigned int game_mine_count = 10;
     unsigned int mine_count = 0;
     // Act
-    game = new MineSweeper(10, game_mine_count, 0);
+    game = new MineSweeper(10, game_mine_count, 1);
     game->open_cell(0, 0);
     game->open_cell(mine_x_pos, mine_y_pos);
     Field opened_field = game->get_opened_field();
@@ -218,7 +217,7 @@ TEST(MINEsweeper, is_field_cells_open_correctly_if_empty_is_near) {
     unsigned int expected_val_y_pos = 1;
 
     // Act
-    game = new MineSweeper(10, 10, 0);
+    game = new MineSweeper(10, 10, 1);
     game->open_cell(0, 0);
 
     // Assert

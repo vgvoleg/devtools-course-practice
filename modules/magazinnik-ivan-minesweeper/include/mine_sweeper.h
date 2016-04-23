@@ -32,7 +32,7 @@ class MineSweeper{
     static const unsigned int OPENED_CELL;
 
     MineSweeper(unsigned int game_size = 10,
-                unsigned int mine_count = 10, int seed = -1);
+                unsigned int mine_count = 10, bool is_static = false);
     ~MineSweeper();
     void open_cell(unsigned int x, unsigned int y);
     int get_game_status() const;
