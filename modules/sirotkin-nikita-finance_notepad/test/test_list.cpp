@@ -2,10 +2,10 @@
 
 #include <gtest/gtest.h>
 
-#include "include/list.h"
+#include "include/list.hpp"
 TEST(Sirotkin_Nikita_FinanceNotepadTest, lists_isEmpty_is_worked) {
     // Arrange
-    list<int> test_list;
+    lite_list<int> test_list;
 
     // Act
 
@@ -15,7 +15,7 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, lists_isEmpty_is_worked) {
 
 TEST(Sirotkin_Nikita_FinanceNotepadTest, can_add_and_read_first_element_from_list) {
     // Arrange
-    list<int> test_list;
+    lite_list<int> test_list;
     int result;
     int expect = 1;
 
@@ -29,7 +29,7 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, can_add_and_read_first_element_from_lis
 
 TEST(Sirotkin_Nikita_FinanceNotepadTest, can_read_current_element_in_list) {
     // Arrange
-    list<int> test_list;
+    lite_list<int> test_list;
     int result;
     int expect = 2;
 
@@ -46,7 +46,7 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, can_read_current_element_in_list) {
 
 TEST(Sirotkin_Nikita_FinanceNotepadTest, can_navigte_by_list) {
     // Arrange
-    list<int> test_list;
+    lite_list<int> test_list;
     int result;
     int expect = 3;
 
@@ -65,7 +65,7 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, can_navigte_by_list) {
 
 TEST(Sirotkin_Nikita_FinanceNotepadTest, can_reset_list) {
     // Arrange
-    list<int> test_list;
+    lite_list<int> test_list;
     int result;
     int expect = 1;
 
@@ -85,7 +85,7 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, can_reset_list) {
 
 TEST(Sirotkin_Nikita_FinanceNotepadTest, can_sort_easy_list) {
     // Arrange
-    list<int> test_list;
+    lite_list<int> test_list;
 
     // Act
     test_list.addElement(3);

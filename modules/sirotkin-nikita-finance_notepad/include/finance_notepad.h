@@ -3,7 +3,7 @@
 #define MODULES_SIROTKIN_NIKITA_FINANCE_NOTEPAD_INCLUDE_FINANCE_NOTEPAD_H_
 
 #include <string>
-#include "./list.h"
+#include "./list.hpp"
 
 enum class months {
   JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY,
@@ -50,7 +50,7 @@ class note {
 
 class notepad {
  private:
-  list<note> notes;
+  lite_list<note> notes;
   category_table table_of_categories;
   float pouch;
  public:
@@ -68,4 +68,4 @@ class notepad {
   note getCurrentNote();
 };
 
-#endif // MODULES_SIROTKIN_NIKITA_FINANCE_NOTEPAD_INCLUDE_FINANCE_NOTEPAD_H_
+#endif  // MODULES_SIROTKIN_NIKITA_FINANCE_NOTEPAD_INCLUDE_FINANCE_NOTEPAD_H_
