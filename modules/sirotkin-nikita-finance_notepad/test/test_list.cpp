@@ -118,3 +118,13 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, can_sort_easy_list) {
   ++test_list;
   EXPECT_EQ(4, test_list.getValue());
 }
+
+TEST(Sirotkin_Nikita_FinanceNotepadTest, cat_navigate_by_empty_list) {
+  // Arrange
+  lite_list<int> test_list;
+
+  // Act
+
+  // Assert
+  EXPECT_FALSE(++test_list);
+}

@@ -57,7 +57,7 @@ bool date::operator>(const date &other_date) const {
 }
 
 bool date::operator<(const date &other_date) const {
-  return !((*this) > other_date);
+  return (other_date > (*this));
 }
 
 bool date::operator==(const date &other_date) const {
