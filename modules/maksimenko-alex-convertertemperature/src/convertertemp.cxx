@@ -28,21 +28,21 @@ void ConverterTemp::converter(const Measure measure) {
                     }
                 break;
             case Measure::FAHRENHEIT:
-                if (((value_ - daughternum[1]) / 
+                if (((value_ - daughternum[1]) /
                     daughternum[2] + daughternum[0]) < 0) {
                     retcode_ = Data::ERROR;
                 } else {
-                    value_ = ((value_ - daughternum[1]) / 
+                    value_ = ((value_ - daughternum[1]) /
                         daughternum[2] + daughternum[0]);
                     measure_ = measure;
                     }
                 break;
             case Measure::NUTON:
-                if ((daughternum[4] *(value_) / 
+                if ((daughternum[4] *(value_) /
                     daughternum[3] + daughternum[0]) < 0) {
                     retcode_ = Data::ERROR;
                 } else {
-                    value_ = (daughternum[4] * value_) / 
+                    value_ = (daughternum[4] * value_) /
                         daughternum[3] + daughternum[0];
                     measure_ = measure;
                     }
@@ -71,7 +71,7 @@ void ConverterTemp::converter(const Measure measure) {
     case Measure::FAHRENHEIT:
             switch (measure_) {
             case Measure::KELVIN:
-                value_ = (value_ - daughternum[1]) * 
+                value_ = (value_ - daughternum[1]) *
                     daughternum[2] + daughternum[0];
                 measure_ = measure;
                 break;
@@ -83,7 +83,7 @@ void ConverterTemp::converter(const Measure measure) {
                 measure_ = measure;
                 break;
             case Measure::NUTON:
-                value_ = daughternum[2] *(daughternum[4] *(value_ / 
+                value_ = daughternum[2] *(daughternum[4] *(value_ /
                     daughternum[3])) + daughternum[1];
                 measure_ = measure;
                 break;
@@ -92,7 +92,7 @@ void ConverterTemp::converter(const Measure measure) {
     case Measure::NUTON:
             switch (measure_) {
             case Measure::KELVIN:
-                value_ = (daughternum[3] *(value_ - daughternum[0])) / 
+                value_ = (daughternum[3] *(value_ - daughternum[0])) /
                    daughternum[4];
                 measure_ = measure;
                 break;
@@ -101,7 +101,7 @@ void ConverterTemp::converter(const Measure measure) {
                 measure_ = measure;
                 break;
             case Measure::FAHRENHEIT:
-                value_ = (daughternum[3] *(value_ - daughternum[1]) / 
+                value_ = (daughternum[3] *(value_ - daughternum[1]) /
                     daughternum[2]) / daughternum[4];
                 measure_ = measure;
                 break;
