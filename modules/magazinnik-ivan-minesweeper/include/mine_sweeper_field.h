@@ -10,8 +10,8 @@ class Field {
     void fill_field_with_zero_val();
 
  public:
-    static int  const MAX_FIELD_LEN;
-    static int  const MAX_FIELD_VALUE;
+    static const int MAX_FIELD_LEN;
+    static const int MAX_FIELD_VALUE;
 
     explicit Field(unsigned int size = 10);
     Field(const Field &obj);

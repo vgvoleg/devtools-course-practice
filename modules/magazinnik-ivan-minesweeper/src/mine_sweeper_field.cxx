@@ -4,8 +4,8 @@
 #include "include/mine_sweeper_field.h"
 
 using std::invalid_argument;
-int  const Field::MAX_FIELD_LEN = 100;
-int  const Field::MAX_FIELD_VALUE = 10;
+const int Field::MAX_FIELD_LEN = 100;
+const int Field::MAX_FIELD_VALUE = 10;
 
 Field::Field(unsigned int size) {
     if (size > MAX_FIELD_LEN)
