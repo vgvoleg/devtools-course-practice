@@ -39,7 +39,7 @@ class TDeque {
 
   ITEM *head;
   ITEM *tail;
-  
+
   ITEM *create(const V& data);
   void delData(ITEM* item)const;
 };
