@@ -13,10 +13,6 @@ enum class months {
 };
 
 class date {
- private:
-  char number;
-  months month;
-  int year;
  public:
   date();
   date(char _number, months _month, int _year);
@@ -24,6 +20,10 @@ class date {
   bool operator>(const date &other_date) const;
   bool operator<(const date &other_date) const;
   bool operator==(const date &other_date) const;
+ private:
+  char number;
+  months month;
+  int year;
 };
 
 #define MIN_YEAR 2000

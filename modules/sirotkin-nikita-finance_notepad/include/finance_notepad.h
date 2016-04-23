@@ -9,10 +9,6 @@
 using std::string;
 
 class notepad {
- private:
-  lite_list<note> notes;
-  category_table table_of_categories;
-  float pouch;
  public:
   explicit notepad(float pouch);
   void addNote(date notes_date, float sum, string category,
@@ -26,6 +22,10 @@ class notepad {
   void sortByDate();
   bool operator++();
   note getCurrentNote() const;
+ private:
+  lite_list<note> notes;
+  category_table table_of_categories;
+  float pouch;
 };
 
 #endif  // MODULES_SIROTKIN_NIKITA_FINANCE_NOTEPAD_INCLUDE_FINANCE_NOTEPAD_H_

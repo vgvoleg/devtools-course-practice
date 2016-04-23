@@ -10,12 +10,6 @@
 using std::string;
 
 class note {
- private:
-  date notes_date;
-  float sum;
-  int categories_id;
-  string comment;
-  category_table *table;
  public:
   note(date notes_date, float sum, int categories_id,
        category_table *table_of_categories, string comment = "");
@@ -28,6 +22,12 @@ class note {
   string toFormatedString() const;
   bool operator>(const note &right) const;
   bool operator<(const note &right) const;
+ private:
+  date notes_date;
+  float sum;
+  int categories_id;
+  string comment;
+  category_table *table;
 };
 
 #endif  // MODULES_SIROTKIN_NIKITA_FINANCE_NOTEPAD_INCLUDE_NOTE_H_

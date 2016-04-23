@@ -4,22 +4,19 @@
 
 template<class ELEMENTS_TYPE>
 class node {
- private:
-  ELEMENTS_TYPE value;
-  node<ELEMENTS_TYPE> *next;
  public:
   explicit node(ELEMENTS_TYPE _value);
   void setNext(node<ELEMENTS_TYPE> *_next);
   void setValue(ELEMENTS_TYPE _value);
   ELEMENTS_TYPE getValue();
   node<ELEMENTS_TYPE> *getNext();
+ private:
+  ELEMENTS_TYPE value;
+  node<ELEMENTS_TYPE> *next;
 };
+
 template<class ELEMENTS_TYPE>
 class lite_list {
- private:
-  node<ELEMENTS_TYPE> *head;
-  node<ELEMENTS_TYPE> *last;
-  node<ELEMENTS_TYPE> *current;
  public:
   lite_list();
   ~lite_list();
@@ -31,6 +28,10 @@ class lite_list {
   void sort();
   lite_list(const lite_list<ELEMENTS_TYPE> &copy) = delete;
   void operator=(const lite_list<ELEMENTS_TYPE> &copy) = delete;
+ private:
+  node<ELEMENTS_TYPE> *head;
+  node<ELEMENTS_TYPE> *last;
+  node<ELEMENTS_TYPE> *current;
 };
 
 // node
