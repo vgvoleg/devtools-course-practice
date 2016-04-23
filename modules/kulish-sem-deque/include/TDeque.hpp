@@ -113,7 +113,7 @@ V TDeque<V>::operator[](const int &position)const {
       }
     }
   }
-  return position;
+  return result;
 }
 
 template<class V>

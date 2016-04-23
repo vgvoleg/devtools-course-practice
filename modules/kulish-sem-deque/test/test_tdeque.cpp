@@ -223,7 +223,7 @@ TEST(TDeque, Can_Use_Brackets) {
   EXPECT_EQ(expected_Result, deque[position]);
 }
 
-TEST(TDeque, Return_Zero_Then_Value_Less_Than_Zero) {
+TEST(TDeque, Trow_Then_Position_Less_Than_Zero) {
   // Arrange
   TDeque<int> deque;
 
