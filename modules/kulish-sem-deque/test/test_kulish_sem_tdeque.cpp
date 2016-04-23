@@ -191,18 +191,21 @@ TEST(TDeque, erase_works) {
   // Act
   const int N = 10;
   for (int i = 0; i < N; i++)
-    if (i % 2 == 0)
-      deque.addHead(5);
-    else
-      deque.addTail(2);
+    deque.addhead(i);
 
   // Assert
-  const int num = 2;
-  deque.erase(num, 0);
-  EXPECT_FALSE(deque.isExist(num));
+  const int numOne = 0;
+  const int numTwo=5;
+  const int numThree=9
+  deque.erase(numOne, 0);
+  EXPECT_FALSE(deque.isExist(numOne));
+  deque.erase(numTwo, 0);
+  EXPECT_FALSE(deque.isExist(numTwo));
+  deque.erase(numThree, 0);
+  EXPECT_FALSE(deque.isExist(numThree));
 }
 
-TEST(TDeque, bracers_works) {
+TEST(TDeque, brackets_works) {
   // Arrange
   TDeque<int> deque;
 
