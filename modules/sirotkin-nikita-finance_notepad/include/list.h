@@ -135,4 +135,4 @@ void list<ELEMENTS_TYPE>::sort() {
   }
 }
 
-#endif
+#endif //MODULES_SIROTKIN_NIKITA_FINANCE_NOTEPAD_INCLUDE_LIST_H_
