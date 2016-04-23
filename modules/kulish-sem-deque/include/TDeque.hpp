@@ -1,8 +1,10 @@
 // Copyright Kulish_Sem 2016
 
 #include <string>
+#include <initializer_list>
 
 using std::string;
+using std::initializer_list;
 #ifndef MODULES_KULISH_SEM_DEQUE_INCLUDE_TDEQUE_H_
 #define MODULES_KULISH_SEM_DEQUE_INCLUDE_TDEQUE_H_
 
@@ -12,6 +14,7 @@ class TDeque {
  public:
   TDeque();
   explicit TDeque(const V& data);
+  TDeque(const initializer_list<V>&);
   ~TDeque();
 
   void push_Tail(const V&);
@@ -52,6 +55,13 @@ TDeque<V>::TDeque(const V& data) {
   head = create(data);
   tail = head;
   size = 1;
+}
+
+template<class V>
+TDeque<V>::TDeque(const initializer_list<V>& list) :TDeque()
+{
+  for (const V& elem : list)
+    push_Tail(elem);
 }
 
 template<class V>

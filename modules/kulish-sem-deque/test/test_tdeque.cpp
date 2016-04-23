@@ -61,6 +61,15 @@ TEST(TDeque, Can_Push_Head) {
   EXPECT_EQ(N, deque.dequeSize());
 }
 
+TEST(TDeque, Can_Use_Lnitializer_List) {
+  // Arrange
+  TDeque<int> deque = {1, 2, 3, 4, 5};
+  
+  // Act And Assert
+  const int expected_Result = 1;
+  EXPECT_EQ(expected_Result, deque.pop_Head());
+}
+
 TEST(TDeque, Can_Push_Tail) {
   // Arrange
   TDeque<int> deque;
@@ -76,15 +85,10 @@ TEST(TDeque, Can_Push_Tail) {
 
 TEST(TDeque, Can_Pop_Head) {
   // Arrange
-  TDeque<int> deque;
+  TDeque<int> deque = {1, 2, 3, 4, 5};
 
-  // Act
-  const int N = 10;
-  for (int i = 0; i < N; i++)
-    deque.push_Tail(i);
-
-  // Assert
-  const int expected_Result = 0;
+  // Act And Assert
+  const int expected_Result = 1;
   EXPECT_EQ(expected_Result, deque.pop_Head());
 }
 
@@ -102,15 +106,10 @@ TEST(TDeque, Can_Pop_Head_With_One_Element) {
 
 TEST(TDeque, Can_Pop_Tail) {
   // Arrange
-  TDeque<int> deque;
+  TDeque<int> deque = { 0, 1, 2, 3, 4, 5 };
 
-  // Act
-  const int N = 10;
-  for (int i = 0; i < N; i++)
-    deque.push_Head(i);
-
-  // Assert
-  const int expected_Result = 0;
+  // Act And Assert
+  const int expected_Result = 5;
   EXPECT_EQ(expected_Result, deque.pop_Tail());
 }
 
@@ -128,16 +127,9 @@ TEST(TDeque, Can_Pop_Tail_With_One_Element) {
 
 TEST(TDeque, Destructor_Works) {
   // Arrange
-  TDeque<int>* intDeque = new TDeque<int>();
+  TDeque<int>* intDeque = new TDeque<int>({1, 2, 3, 4, 5});
 
   // Act
-  const int N = 10;
-  for (int i = 0; i < N; i++)
-    if (i % 2 == 0)
-      intDeque->push_Head(i);
-    else
-      intDeque->push_Tail(i);
-
   intDeque->~TDeque();
 
   // Assert
@@ -146,17 +138,11 @@ TEST(TDeque, Destructor_Works) {
 
 TEST(TDeque, Can_Use_IsExist) {
   // Arrange
-  TDeque<string> deque;
+  TDeque<string> deque = { "str1", "str2", "str3", "str4", "str5" };
 
-  // Act
-  const int N = 10;
-  string str = "str";
-  for (int i = 0; i < N; i++)
-    deque.push_Head(str + to_string(i));
-
-  // Assert
-  string expectedResult = "str3";
-  EXPECT_TRUE(deque.isExist(expectedResult));
+  // Act And Assert
+  string expected_Result = "str3";
+  EXPECT_TRUE(deque.isExist(expected_Result));
 }
 
 TEST(TDeque, Can_Use_isEmpty) {
@@ -169,18 +155,10 @@ TEST(TDeque, Can_Use_isEmpty) {
 
 TEST(TDeque, Can_Emplace_Head) {
   // Arrange
-  TDeque<int> deque;
+  TDeque<int> deque = {1, 2, 3, 4, 5};
 
-  // Act
-  const int N = 10;
-  for (int i = 0; i < N; i++)
-    if (i % 2 == 0)
-      deque.push_Head(i);
-    else
-      deque.push_Tail(i);
-
-  // Assert
-  const int expected_Result = N+1;
+  // Act And Assert
+  const int expected_Result = 10;
   deque.emplace_Head(expected_Result);
 
   EXPECT_EQ(expected_Result, deque.pop_Head());
@@ -188,65 +166,21 @@ TEST(TDeque, Can_Emplace_Head) {
 
 TEST(TDeque, Can_Emplace_Tail) {
   // Arrange
-  TDeque<int> deque;
+  TDeque<int> deque = {1, 2, 3, 4, 5};
 
   // Act
-  const int N = 10;
-  for (int i = 0; i < N; i++)
-    if (i % 2 == 0)
-      deque.push_Head(i);
-    else
-      deque.push_Tail(i);
 
-  // Assert
-  const int expected_Result = N +1;
+  // Act And Assert
+  const int expected_Result = 10;
   deque.emplace_Tail(expected_Result);
   EXPECT_EQ(expected_Result, deque.pop_Tail());
 }
 
 TEST(TDeque, Can_Erase_Last_Element) {
   // Arrange
-  TDeque<int> deque;
+  TDeque<int> deque = {1, 2, 3, 4, 5};
 
   // Act
-  const int N = 10;
-  for (int i = 0; i < N; i++)
-    deque.push_Head(i);
-
-  const int position = 0;
-  const int num = 9;
-  deque.erase(num, position);
-
-  // Assert
-  EXPECT_FALSE(deque.isExist(num));
-}
-
-TEST(TDeque, Can_Erase_First_Element) {
-  // Arrange
-  TDeque<int> deque;
-
-  // Act
-  const int N = 10;
-  for (int i = 0; i < N; i++)
-    deque.push_Head(i);
-
-  const int position = 0;
-  const int num = 0;
-  deque.erase(num, position);
-
-  // Assert
-  EXPECT_FALSE(deque.isExist(num));
-}
-
-TEST(TDeque, Can_Erase_Middle_Element) {
-  // Arrange
-  TDeque<int> deque;
-
-  // Act
-  const int N = 10;
-  for (int i = 0; i < N; i++)
-    deque.push_Head(i);
-
   const int position = 0;
   const int num = 5;
   deque.erase(num, position);
@@ -255,18 +189,39 @@ TEST(TDeque, Can_Erase_Middle_Element) {
   EXPECT_FALSE(deque.isExist(num));
 }
 
-TEST(TDeque, Can_Use_Brackets) {
+TEST(TDeque, Can_Erase_First_Element) {
   // Arrange
-  TDeque<int> deque;
+  TDeque<int> deque = {1, 2, 3, 4, 5};
 
   // Act
-  const int N = 10;
-  for (int i = 0; i < N; i++)
-    deque.push_Head(i);
+  const int position = 0;
+  const int num = 1;
+  deque.erase(num, position);
 
   // Assert
-  const int position = 5;
-  const int expected_Result = 4;
+  EXPECT_FALSE(deque.isExist(num));
+}
+
+TEST(TDeque, Can_Erase_Middle_Element) {
+  // Arrange
+  TDeque<int> deque = {1, 2, 3, 4, 5};
+
+  // Act
+  const int position = 0;
+  const int num = 3;
+  deque.erase(num, position);
+
+  // Assert
+  EXPECT_FALSE(deque.isExist(num));
+}
+
+TEST(TDeque, Can_Use_Brackets) {
+  // Arrange
+  TDeque<int> deque = {1, 2, 3, 4, 5};
+
+  // Act And Assert
+  const int position = 4;
+  const int expected_Result = 2;
   EXPECT_EQ(expected_Result, deque[position]);
 }
 
