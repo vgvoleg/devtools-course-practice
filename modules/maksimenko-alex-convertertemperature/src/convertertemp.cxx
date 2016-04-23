@@ -13,58 +13,58 @@ ConverterTemp::ConverterTemp(const double val, const Measure measure) {
 }
 
 void ConverterTemp::converter(const Measure measure) {
-    const double daughternum[5]{ 273.0, 32.0, 1.8, 33.0, 100.0 };
+    const double auxiliarynum[5]{ 273.0, 32.0, 1.8, 33.0, 100.0 };
     switch (measure) {
     case Measure::KELVIN:
             switch (measure_) {
             case Measure::KELVIN:
                 measure_ = measure;
                 break;
-            case Measure::DEGREE:
-                if ((value_ + daughternum[0]) < 0.0) {
+            case Measure::CELSIUS:
+                if ((value_ + auxiliarynum[0]) < 0.0) {
                     retcode_ = Data::ERROR;
                 } else {
-                    value_ = value_ + daughternum[0];
+                    value_ = value_ + auxiliarynum[0];
                     measure_ = measure;
                     }
                 break;
             case Measure::FAHRENHEIT:
-                if (((value_ - daughternum[1]) /
-                    daughternum[2] + daughternum[0]) < 0.0) {
+                if (((value_ - auxiliarynum[1]) /
+                    auxiliarynum[2] + auxiliarynum[0]) < 0.0) {
                     retcode_ = Data::ERROR;
                 } else {
-                    value_ = ((value_ - daughternum[1]) /
-                        daughternum[2] + daughternum[0]);
+                    value_ = ((value_ - auxiliarynum[1]) /
+                        auxiliarynum[2] + auxiliarynum[0]);
                     measure_ = measure;
                     }
                 break;
             case Measure::NUTON:
-                if ((daughternum[4] *(value_) /
-                    daughternum[3] + daughternum[0]) < 0.0) {
+                if ((auxiliarynum[4] *(value_) /
+                    auxiliarynum[3] + auxiliarynum[0]) < 0.0) {
                     retcode_ = Data::ERROR;
                 } else {
-                    value_ = (daughternum[4] * value_) /
-                        daughternum[3] + daughternum[0];
+                    value_ = (auxiliarynum[4] * value_) /
+                        auxiliarynum[3] + auxiliarynum[0];
                     measure_ = measure;
                     }
                 break;
             }
         break;
-    case Measure::DEGREE:
+    case Measure::CELSIUS:
             switch (measure_) {
             case Measure::KELVIN:
-                value_ = value_ - daughternum[0];
+                value_ = value_ - auxiliarynum[0];
                 measure_ = measure;
                 break;
-            case Measure::DEGREE:
+            case Measure::CELSIUS:
                 measure_ = measure;
                 break;
             case Measure::FAHRENHEIT:
-                value_ = (value_ - daughternum[1]) / daughternum[2];
+                value_ = (value_ - auxiliarynum[1]) / auxiliarynum[2];
                 measure_ = measure;
                 break;
             case Measure::NUTON:
-                value_ = daughternum[4] *value_ / daughternum[3];
+                value_ = auxiliarynum[4] *value_ / auxiliarynum[3];
                 measure_ = measure;
                 break;
             }
@@ -72,20 +72,20 @@ void ConverterTemp::converter(const Measure measure) {
     case Measure::FAHRENHEIT:
             switch (measure_) {
             case Measure::KELVIN:
-                value_ = (value_ - daughternum[1]) *
-                    daughternum[2] + daughternum[0];
+                value_ = (value_ - auxiliarynum[1]) *
+                    auxiliarynum[2] + auxiliarynum[0];
                 measure_ = measure;
                 break;
-            case Measure::DEGREE:
-                value_ = daughternum[2] *value_ + daughternum[1];
+            case Measure::CELSIUS:
+                value_ = auxiliarynum[2] *value_ + auxiliarynum[1];
                 measure_ = measure;
                 break;
             case Measure::FAHRENHEIT:
                 measure_ = measure;
                 break;
             case Measure::NUTON:
-                value_ = daughternum[2] *(daughternum[4] *(value_ /
-                    daughternum[3])) + daughternum[1];
+                value_ = auxiliarynum[2] *(auxiliarynum[4] *(value_ /
+                    auxiliarynum[3])) + auxiliarynum[1];
                 measure_ = measure;
                 break;
             }
@@ -93,17 +93,17 @@ void ConverterTemp::converter(const Measure measure) {
     case Measure::NUTON:
             switch (measure_) {
             case Measure::KELVIN:
-                value_ = (daughternum[3] *(value_ - daughternum[0])) /
-                   daughternum[4];
+                value_ = (auxiliarynum[3] *(value_ - auxiliarynum[0])) /
+                   auxiliarynum[4];
                 measure_ = measure;
                 break;
-            case Measure::DEGREE:
-                value_ = daughternum[3] *value_ / daughternum[4];
+            case Measure::CELSIUS:
+                value_ = auxiliarynum[3] *value_ / auxiliarynum[4];
                 measure_ = measure;
                 break;
             case Measure::FAHRENHEIT:
-                value_ = (daughternum[3] *(value_ - daughternum[1]) /
-                    daughternum[2]) / daughternum[4];
+                value_ = (auxiliarynum[3] *(value_ - auxiliarynum[1]) /
+                    auxiliarynum[2]) / auxiliarynum[4];
                 measure_ = measure;
                 break;
             case Measure::NUTON:
