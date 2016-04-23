@@ -107,7 +107,6 @@ V TDeque<V>::operator[](const int &position)const {
     while (counter <= position) {
       if (counter == position) {
         result = *item->data;
-        return result;
       } else {
         item = item->previous;
         counter++;
