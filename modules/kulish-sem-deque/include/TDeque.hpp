@@ -7,63 +7,63 @@ using std::string;
 #define MODULES_KULISH_SEM_DEQUE_INCLUDE_TDEQUE_H_
 
 
-template<class ValType>
+template<class V>
 class TDeque {
  public:
   TDeque();
-  explicit TDeque(const ValType& data);
+  explicit TDeque(const V& data);
   ~TDeque();
 
-  void addTail(const ValType&);
-  void addHead(const ValType&);
+  void push_Tail(const V&);
+  void push_Head(const V&);
 
-  ValType getTail();
-  ValType getHead();
-  void emplace_Head(ValType);
-  void emplace_Tail(ValType);
-  ValType operator[](const int& value);
+  V pop_Tail();
+  V pop_Head();
+  void emplace_Head(const V);
+  void emplace_Tail(const V);
+  V operator[](const int& value)const;
 
-  bool isEmpty();
-  int dequeSize();
-  bool isExist(const ValType&)const;
-  void erase(ValType, unsigned);
+  bool isEmpty()const;
+  int dequeSize()const;
+  bool isExist(const V&)const;
+  void erase(V, unsigned);
 
  private:
   unsigned int size;
 
   struct ITEM {
-    ValType *data;
+    V *data;
     ITEM *next;
     ITEM *previous;
   };
 
   ITEM *head;
   ITEM *tail;
-  ITEM *create(const ValType& data) {
+  ITEM *create(const V& data) {
     ITEM *item = new ITEM;
-    item->data = new ValType;
+    item->data = new V;
 
     *item->data = data;
-    item->next = 0;
-    item->previous = 0;
+    item->next = nullptr;
+    item->previous = nullptr;
 
     return item;
   }
-  void delData(ITEM* item);
+  void delData(ITEM* item)const;
 };
 
-template<class ValType>
-TDeque<ValType>::TDeque() : size(0), head(0), tail(0) {}
+template<class V>
+TDeque<V>::TDeque() : size(0), head(0), tail(0) {}
 
-template<class ValType>
-TDeque<ValType>::TDeque(const ValType& data) {
+template<class V>
+TDeque<V>::TDeque(const V& data) {
   head = create(data);
   tail = head;
   size = 1;
 }
 
-template<class ValType>
-TDeque<ValType>::~TDeque() {
+template<class V>
+TDeque<V>::~TDeque() {
   ITEM* item = tail;
 
   while (item != head) {
@@ -77,16 +77,16 @@ TDeque<ValType>::~TDeque() {
   size = 0;
 }
 
-template<class ValType>
-void TDeque<ValType>::delData(ITEM* item) {
+template<class V>
+void TDeque<V>::delData(ITEM* item)const {
   delete item->data;
   delete item;
 }
 
-template<class ValType>
-ValType TDeque<ValType>::operator[](const int &value) {
+template<class V>
+V TDeque<V>::operator[](const int &value)const {
   unsigned counter = 1;
-  ValType result = 0;
+  V result = 0;
   ITEM* item = tail;
 
   if (value > size || value < 0) {
@@ -105,8 +105,8 @@ ValType TDeque<ValType>::operator[](const int &value) {
   return result;
 }
 
-template<class ValType>
-void TDeque<ValType>::addTail(const ValType& data) {
+template<class V>
+void TDeque<V>::push_Tail(const V& data) {
   if (head && tail) {
     ITEM *tmp = create(data);
     tmp->previous = tail;
@@ -119,8 +119,8 @@ void TDeque<ValType>::addTail(const ValType& data) {
   size++;
 }
 
-template<class ValType>
-void TDeque<ValType>::addHead(const ValType& data) {
+template<class V>
+void TDeque<V>::push_Head(const V& data) {
   if (head && tail) {
     ITEM *tmp = create(data);
     tmp->next = head;
@@ -133,72 +133,72 @@ void TDeque<ValType>::addHead(const ValType& data) {
   size++;
 }
 
-template<class ValType>
-ValType TDeque<ValType>::getTail() {
+template<class V>
+V TDeque<V>::pop_Tail() {
   if (head != tail) {
-    ValType data = *tail->data;
+    V data = *tail->data;
     ITEM *tmp = tail;
 
     tail = tail->previous;
-    tail->next = 0;
+    tail->next = nullptr;
     delData(tmp);
 
     return data;
   } else {
-    ValType data = *head->data;
+    V data = *head->data;
 
-    head = 0;
-    tail = 0;
+    head = nullptr;
+    tail = nullptr;
 
     return data;
   }
   size--;
 }
 
-template<class ValType>
-ValType TDeque<ValType>::getHead() {
+template<class V>
+V TDeque<V>::pop_Head() {
   if (head != tail) {
-    ValType data = *head->data;
+    V data = *head->data;
     ITEM *tmp = head;
 
     head = head->next;
-    head->previous = 0;
+    head->previous = nullptr;
     delData(tmp);
 
     return data;
   } else {
-    ValType data = *head->data;
+    V data = *head->data;
 
-    head = 0;
-    tail = 0;
+    head = nullptr;
+    tail = nullptr;
 
     return data;
   }
   size--;
 }
 
-template<class ValType>
-void TDeque<ValType>::emplace_Head(ValType data) {
+template<class V>
+void TDeque<V>::emplace_Head(const V data) {
   *head->data = data;
 }
 
-template<class ValType>
-void TDeque<ValType>::emplace_Tail(ValType data) {
+template<class V>
+void TDeque<V>::emplace_Tail(const V data) {
   *tail->data = data;
 }
 
-template<class ValType>
-bool TDeque<ValType>::isEmpty() {
+template<class V>
+bool TDeque<V>::isEmpty()const {
   return size == 0 ? true : false;
 }
 
-template<class ValType>
-int TDeque<ValType>::dequeSize() {
+template<class V>
+int TDeque<V>::dequeSize()const {
   return size;
 }
 
-template<class ValType>
-bool TDeque<ValType>::isExist(const ValType& data) const {
+template<class V>
+bool TDeque<V>::isExist(const V& data) const {
   ITEM* tmp = head;
 
   while (tmp) {
@@ -211,8 +211,8 @@ bool TDeque<ValType>::isExist(const ValType& data) const {
 }
 
 
-template<class ValType>
-void TDeque<ValType>::erase(ValType data, const unsigned position) {
+template<class V>
+void TDeque<V>::erase(V data, const unsigned position) {
   ITEM* item = tail;
   ITEM* tmp;
   unsigned counter = 0;
