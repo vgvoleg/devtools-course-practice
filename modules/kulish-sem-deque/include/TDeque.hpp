@@ -52,7 +52,7 @@ TDeque<V>::TDeque() : size(0), head(nullptr), tail(nullptr) {}
 
 template<class V>
 TDeque<V>::TDeque(const V& data) {
-  head = create(data);
+  head = push_Head(data);
   tail = head;
   size = 1;
 }
@@ -114,7 +114,7 @@ V TDeque<V>::operator[](const int &value)const {
       }
     }
   }
-  return -1;
+  return 0;
 }
 
 template<class V>
@@ -154,17 +154,18 @@ V TDeque<V>::pop_Tail() {
     tail = tail->previous;
     tail->next = nullptr;
     delData(tmp);
-
+    size--;
+      
     return data;
   } else {
     V data = *head->data;
 
     head = nullptr;
     tail = nullptr;
-
+    size--;
+    
     return data;
   }
-  size--;
 }
 
 template<class V>
@@ -176,17 +177,18 @@ V TDeque<V>::pop_Head() {
     head = head->next;
     head->previous = nullptr;
     delData(tmp);
-
+    size--;
+    
     return data;
   } else {
     V data = *head->data;
 
     head = nullptr;
     tail = nullptr;
-
+    size--;
+    
     return data;
   }
-  size--;
 }
 
 template<class V>

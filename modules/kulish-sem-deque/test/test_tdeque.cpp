@@ -225,12 +225,12 @@ TEST(TDeque, Can_Use_Brackets) {
   EXPECT_EQ(expected_Result, deque[position]);
 }
 
-TEST(TDeque, Return_Minus_One_Then_Value_Less_Than_Zero) {
+TEST(TDeque, Return_Zero_Then_Value_Less_Than_Zero) {
   // Arrange
   TDeque<int> deque;
 
   // Act And Assert
   const int position = -2;
-  const int expected_Result = -1;
+  const int expected_Result = 0;
   EXPECT_EQ(expected_Result, deque[position]);
 }
