@@ -7,8 +7,6 @@
 using std::string;
 using std::ostringstream;
 
-
-
 template <class TYPE>
 string to_string(TYPE value) {
   ostringstream oss;
@@ -64,6 +62,7 @@ bool date::operator<(const date &other_date) const {
 
 // category_table
 category_table::category_table() {
+  table = new string[table_size];
   table[0] = "Debt";
   table[1] = "Stipend";
   table[2] = "Salary";
@@ -73,6 +72,11 @@ category_table::category_table() {
   table[6] = "Entertainment";
   table[7] = "Taxes";
   table[table_size-1] = "Other";
+}
+
+category_table::~category_table()
+{
+  delete[] table;
 }
 
 int category_table::getIdOf(string name) const {

@@ -4,7 +4,7 @@
 #include <string>
 #include "include/finance_notepad.h"
 
-using namespace std;
+using std::string;
 
 TEST(Sirotkin_Nikita_FinanceNotepadTest, unfit_number_dates_is_set_to_default) {
   // Arrange
@@ -209,7 +209,6 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, note_can_compare_less) {
   // Assert
   EXPECT_TRUE(min < max);
 }
-
 
 TEST(Sirotkin_Nikita_FinanceNotepadTest, can_get_pouch) {
   // Arrange

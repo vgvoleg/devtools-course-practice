@@ -34,9 +34,10 @@ class date {
 #define table_size 9
 class category_table {
  private:
-  string table[table_size];
+  string *table;
  public:
   category_table();
+  ~category_table();
   int getIdOf(string name) const;
   string getNameOf(int id) const;
 };
