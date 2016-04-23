@@ -3,106 +3,101 @@
 #include "include/convertertemp.h"
 
 ConverterTemp::ConverterTemp(const double val, Measure measure) {
-    if ((val < 0) && (measure == KELVIN)) {
+    if ((val < 0) && (measure == Measure::KELVIN)) {
         retcode_ = Data::ERROR;
     } else {
         retcode_ = Data::OK;
-        this->value_ = val;
-        this->measure_ = measure;
+        value_ = val;
+        measure_ = measure;
         }
 }
 
 void ConverterTemp::converter(const Measure measure) {
-    double num1 = 273;
-    double num2 = 32;
-    double num3 = 1.8;
-    double num4 = 33;
-    double num5 = 100;
     switch (measure) {
-    case KELVIN:
+    case Measure::KELVIN:
             switch (measure_) {
-            case KELVIN:
-                this->measure_ = measure;
+            case Measure::KELVIN:
+                measure_ = measure;
                 break;
-            case DEGREE:
-                if ((value_ + num1) < 0) {
+            case Measure::DEGREE:
+                if ((value_ + daughternum[0]) < 0) {
                     retcode_ = Data::ERROR;
                 } else {
-                    this->value_ = value_ + num1;
-                    this->measure_ = measure;
+                    value_ = value_ + daughternum[0];
+                    measure_ = measure;
                     }
                 break;
-            case FAHRENHEIT:
-                if (((value_ - num2) / num3 + num1) < 0) {
+            case Measure::FAHRENHEIT:
+                if (((value_ - daughternum[1]) / daughternum[2] + daughternum[0]) < 0) {
                     retcode_ = Data::ERROR;
                 } else {
-                    this->value_ = (value_ - num2) / num3 + num1;
-                    this->measure_ = measure;
+                    value_ = (value_ - daughternum[1]) / daughternum[2] + daughternum[0];
+                    measure_ = measure;
                     }
                 break;
-            case NUTON:
-                if ((num5*(value_) / num4 + num1) < 0) {
+            case Measure::NUTON:
+                if ((daughternum[4] *(value_) / daughternum[3] + daughternum[0]) < 0) {
                     retcode_ = Data::ERROR;
                 } else {
-                    this->value_ = num5*(value_) / num4 + num1;
-                    this->measure_ = measure;
+                    value_ = (daughternum[4] * value_) / daughternum[3] + daughternum[0];
+                    measure_ = measure;
                     }
                 break;
             }
         break;
-    case DEGREE:
+    case Measure::DEGREE:
             switch (measure_) {
-            case KELVIN:
-                this->value_ = value_ - num1;
-                this->measure_ = measure;
+            case Measure::KELVIN:
+                value_ = value_ - daughternum[0];
+                measure_ = measure;
                 break;
-            case DEGREE:
-                this->measure_ = measure;
+            case Measure::DEGREE:
+                measure_ = measure;
                 break;
-            case FAHRENHEIT:
-                this->value_ = (value_ - num2) / num3;
-                this->measure_ = measure;
+            case Measure::FAHRENHEIT:
+                value_ = (value_ - daughternum[1]) / daughternum[2];
+                measure_ = measure;
                 break;
-            case NUTON:
-                this->value_ = num5*value_ / num4;
-                this->measure_ = measure;
+            case Measure::NUTON:
+                value_ = daughternum[4] *value_ / daughternum[3];
+                measure_ = measure;
                 break;
             }
         break;
-    case FAHRENHEIT:
+    case Measure::FAHRENHEIT:
             switch (measure_) {
-            case KELVIN:
-                this->value_ = (value_ - num2) * num3 + num1;
-                this->measure_ = measure;
+            case Measure::KELVIN:
+                value_ = (value_ - daughternum[1]) * daughternum[2] + daughternum[0];
+                measure_ = measure;
                 break;
-            case DEGREE:
-                this->value_ = num3*value_ + num2;
-                this->measure_ = measure;
+            case Measure::DEGREE:
+                value_ = daughternum[2] *value_ + daughternum[1];
+                measure_ = measure;
                 break;
-            case FAHRENHEIT:
-                this->measure_ = measure;
+            case Measure::FAHRENHEIT:
+                measure_ = measure;
                 break;
-            case NUTON:
-                this->value_ = num3*(num5*(value_ / num4)) + num2;
-                this->measure_ = measure;
+            case Measure::NUTON:
+                value_ = daughternum[2] *(daughternum[4] *(value_ / daughternum[3])) + daughternum[1];
+                measure_ = measure;
                 break;
             }
         break;
-    case NUTON:
+    case Measure::NUTON:
             switch (measure_) {
-            case KELVIN:
-                this->value_ = (num4*(value_ - num1)) / num5;
-                this->measure_ = measure;
+            case Measure::KELVIN:
+                value_ = (daughternum[3] *(value_ - daughternum[0])) / daughternum[4];
+                measure_ = measure;
                 break;
-            case DEGREE:
-                this->value_ = num4*value_ / num5;
-                this->measure_ = measure;
+            case Measure::DEGREE:
+                value_ = daughternum[3] *value_ / daughternum[4];
+                measure_ = measure;
                 break;
-            case FAHRENHEIT:
-                this->value_ = (num4*(value_ - num2) / num3) / num5;
-                this->measure_ = measure;
+            case Measure::FAHRENHEIT:
+                value_ = (daughternum[3] *(value_ - daughternum[1]) / daughternum[2]) / daughternum[4];
+                measure_ = measure;
                 break;
-            case NUTON:
+            case Measure::NUTON:
                 measure_ = measure;
                 break;
             }
@@ -117,4 +112,8 @@ int ConverterTemp::getRetCode() {
 
 const double ConverterTemp::getValue() {
     return value_;
+}
+
+Measure ConverterTemp::getMeasure() {
+    return measure_;
 }
