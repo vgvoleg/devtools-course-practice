@@ -3,42 +3,36 @@
 #ifndef MODULES_KURSAKOV_EVGENY_MASS_CONVERTER_INCLUDE_MASS_CONVERTER_H_
 #define MODULES_KURSAKOV_EVGENY_MASS_CONVERTER_INCLUDE_MASS_CONVERTER_H_
 
+#include <vector>
+#include <string>
+#include <utility>
+
 #include "include/mass_unit.h"
 
-template<typename FromUnit, typename ToUnit>
 class MassConverter {
  public:
-    MassConverter() {
-        if (!std::is_base_of<MassUnit, FromUnit>::value ||
-            !std::is_base_of<MassUnit, ToUnit>::value) {
-            throw std::invalid_argument(
-                    "Template parameters must subclass MassUnit class");
-        }
+    explicit MassConverter(std::vector<MassUnit> units = defaultUnits);
 
-        this->fromUnit = new FromUnit();
-        this->toUnit = new ToUnit();
-    }
+    void addUnit(MassUnit unit);
 
-    virtual ~MassConverter() {
-        delete fromUnit;
-        delete toUnit;
-    }
+    std::vector<MassUnit> getUnits() const;
 
-    double convert(double value) {
-        if (value < 0)
-            throw std::invalid_argument("Value must be not negative");
+    void clearUnits();
 
-        if (value == 0) return 0;
+    double convert(MassUnit from, MassUnit to, double value) const;
 
-        double conversion_coefficient = fromUnit->get_relative_coefficient() /
-                                        toUnit->get_relative_coefficient();
+    std::string to_string(MassUnit unit,
+                          double value,
+                          int precision = 2) const;
 
-        return value * conversion_coefficient;
-    }
+    double from_string(std::string input, MassUnit toUnit) const;
 
  private:
-    MassUnit *fromUnit;
-    MassUnit *toUnit;
+    static const std::vector<MassUnit> defaultUnits;
+
+    std::vector<MassUnit> units;
+
+    std::pair<MassUnit, double> from_string(std::string input) const;
 };
 
 #endif  // MODULES_KURSAKOV_EVGENY_MASS_CONVERTER_INCLUDE_MASS_CONVERTER_H_

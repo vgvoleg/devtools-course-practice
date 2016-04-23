@@ -6,40 +6,25 @@
 #include <string>
 
 class MassUnit {
-
  public:
-    MassUnit() { }
+    MassUnit(double relative_coefficient, std::string qualifier);
 
-    virtual ~MassUnit() { }
-
-    virtual double get_relative_coefficient() = 0;
-
-    virtual std::string get_qualifier() = 0;
-
-    class Kilogram;
-    class Gram;
-};
-
-class MassUnit::Kilogram : public MassUnit {
- public:
-    virtual double get_relative_coefficient() override {
-        return 1;
+    double get_relative_coefficient() const {
+        return relative_coefficient;
     }
 
-    virtual std::string get_qualifier() override {
-        return "kg";
-    }
-};
-
-class MassUnit::Gram : public MassUnit {
- public:
-    virtual double get_relative_coefficient() override {
-        return 0.001;
+    std::string get_qualifier() const {
+        return qualifier;
     }
 
-    virtual std::string get_qualifier() override {
-        return "g";
-    }
+    static const MassUnit Kilogram;
+    static const MassUnit Gram;
+
+    bool operator==(const MassUnit &other) const;
+
+ private:
+    double relative_coefficient;
+    std::string qualifier;
 };
 
 #endif  // MODULES_KURSAKOV_EVGENY_MASS_CONVERTER_INCLUDE_MASS_UNIT_H_
