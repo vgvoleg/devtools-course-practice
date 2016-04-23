@@ -33,7 +33,8 @@ TEST(ConverterTemperature, Can_Convert_Kelvin_To_Kelvin) {
     Temperature.converter(dimension);
 
     // Assert
-    EXPECT_DOUBLE_EQ(Temperature.getValue(), value);
+    const double expected_value = 23.0;
+    EXPECT_DOUBLE_EQ(Temperature.getValue(), expected_value);
 }
 
 TEST(ConverterTemperature, Can_Convert_Kelvin_To_Celsius) {
@@ -43,12 +44,12 @@ TEST(ConverterTemperature, Can_Convert_Kelvin_To_Celsius) {
     ConverterTemp Temperature(value, dimension);
 
     // Act
-    const Measure expected_dimension = Measure::CELSIUS;
-    Temperature.converter(expected_dimension);
+    const Measure result_dimension = Measure::CELSIUS;
+    Temperature.converter(result_dimension);
 
     // Assert
-    const double value2 = -273.0;
-    EXPECT_DOUBLE_EQ(Temperature.getValue(), value2);
+    const double expected_value = -273.0;
+    EXPECT_DOUBLE_EQ(Temperature.getValue(), expected_value);
 }
 
 TEST(ConverterTemperature, Can_Convert_Kelvin_To_Fahrenheit) {
@@ -120,7 +121,8 @@ TEST(ConverterTemperature, Can_Convert_Celsius_To_Celsius) {
     Temperature.converter(dimension);
 
     // Assert
-    EXPECT_DOUBLE_EQ(Temperature.getValue(), value);
+    const double expected_value = 23.0;
+    EXPECT_DOUBLE_EQ(Temperature.getValue(), expected_value);
 }
 
 TEST(ConverterTemperature, Can_Convert_Celsius_To_Fahrenheit) {
@@ -207,7 +209,8 @@ TEST(ConverterTemperature, Can_Convert_Fahrenheit_To_Fahrenheit) {
     Temperature.converter(dimension);
 
     // Assert
-    EXPECT_DOUBLE_EQ(Temperature.getValue(), value);
+    const double expected_value = 32.0;
+    EXPECT_DOUBLE_EQ(Temperature.getValue(), expected_value);
 }
 
 TEST(ConverterTemperature, Can_Convert_Fahrenheit_To_Newton) {
@@ -294,7 +297,8 @@ TEST(ConverterTemperature, Can_Convert_Newton_To_Newton) {
     Temperature.converter(dimension);
 
     // Assert
-    EXPECT_DOUBLE_EQ(Temperature.getValue(), value);
+    const double expected_value = 33.0;
+    EXPECT_DOUBLE_EQ(Temperature.getValue(), expected_value);
 }
 
 TEST(ConverterTemperature, Can_Convert_Multiple_Times) {
@@ -309,7 +313,8 @@ TEST(ConverterTemperature, Can_Convert_Multiple_Times) {
     Temperature.converter(dimension);
 
     // Assert
-    EXPECT_DOUBLE_EQ(Temperature.getValue(), value);
+    const double expected_value = 33.0;
+    EXPECT_DOUBLE_EQ(Temperature.getValue(), expected_value);
 }
 
 TEST(ConverterTemperature, Can_Return_The_Dimension_Of_This_Object) {
@@ -323,5 +328,6 @@ TEST(ConverterTemperature, Can_Return_The_Dimension_Of_This_Object) {
     Temperature.converter(result_dimension);
 
     // Assert
-    EXPECT_EQ(Temperature.getMeasure(), result_dimension);
+    const Measure expected_dimension = Measure::NEWTON;
+    EXPECT_EQ(Temperature.getMeasure(), expected_dimension);
 }
