@@ -1,5 +1,6 @@
 // Copyright 2016 Sirotkin_Nikita
-
+#ifndef MODULES_SIROTKIN_NIKITA_FINANCE_NOTEPAD_INCLUDE_LIST_H_
+#define MODULES_SIROTKIN_NIKITA_FINANCE_NOTEPAD_INCLUDE_LIST_H_
 template<class ELEMENTS_TYPE>
 class node
 {
@@ -133,3 +134,5 @@ void list<ELEMENTS_TYPE>::sort() {
     }
   }
 }
+
+#endif

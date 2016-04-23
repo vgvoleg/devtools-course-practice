@@ -210,3 +210,5 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, cat_group_by_category) {
   // Assert
   EXPECT_EQ(result.compare(expect), 0);
 }
+
+#endif

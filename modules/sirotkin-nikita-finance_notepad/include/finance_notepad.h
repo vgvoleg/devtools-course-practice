@@ -51,7 +51,7 @@ class notepad {
   category_table table_of_categories;
   float pouch;
  public:
-  notepad(float _pouch);
+  explicit notepad(float _pouch);
   void addNote(date _notes_date, float _sum, std::string _category,
                std::string _comment = "");
   float getPouch() const;

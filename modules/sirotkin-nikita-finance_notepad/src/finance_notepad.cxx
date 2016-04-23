@@ -1,7 +1,7 @@
 // Copyright 2016 Sirotkin_Nikita
 
 #include <sstream>
-#include "finance_notepad.h"
+#include "include/finance_notepad.h"
 
 using namespace std;
 
