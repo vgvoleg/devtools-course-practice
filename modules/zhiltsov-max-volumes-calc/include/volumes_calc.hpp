@@ -171,7 +171,7 @@ template<class NumberType, class Function>
 NumberType integrate(const NumberType& lower, const NumberType& upper,
     const Function& f, size_t partitionCount
 ) {
-    const auto step = std::abs(upper - lower) / partitionCount;
+    const auto step = (upper - lower) / partitionCount;
     NumberType result(0);
     for (size_t i = 1; i <= partitionCount; ++i) {
         const auto midPoint = std::rand() / NumberType(RAND_MAX) * step;
