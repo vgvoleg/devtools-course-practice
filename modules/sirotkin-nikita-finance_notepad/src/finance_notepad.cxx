@@ -3,13 +3,11 @@
 #include <sstream>
 #include "include/finance_notepad.h"
 
-using namespace std;
-
 #define WRONG_DATE date(1, months::JANUARY, 2000)
 
 template <class TYPE>
-string to_string(TYPE value) {
-  ostringstream oss;
+std::string to_string(TYPE value) {
+  std::ostringstream oss;
   oss << value;
   return oss.str();
 }
@@ -18,17 +16,17 @@ string to_string(TYPE value) {
 date::date(char _number, months _month, int _year) {
   if (_number > 31 || _year < 2000 || _year > 2100)
     *this = WRONG_DATE;
-  else	{
+  else {
     number = _number;
     month = _month;
     year = _year;
   }
 }
 
-string date::toString() const {
-  string result;
-  result = to_string<int>(number) + "." + to_string<int>(int(month) + 1) +
-           "." + to_string<int>(year);
+std::string date::toString() const {
+  std::string result;
+  std::string result = to_string<int>(number) + "." + to_string<int>(int(month) + 1) +
+                       "." + to_string<int>(year);
   return result;
 }
 
@@ -64,20 +62,20 @@ category_table::category_table() {
   table[8] = "Other";
 }
 
-int category_table::getIdOf(string name) {
+int category_table::getIdOf(std::string name) {
   for (int i = 0; i < 8; ++i)
     if (name == table[i])
       return i;
   return 8;
 }
 
-string category_table::getNameOf(int id) {
+std::string category_table::getNameOf(int id) {
   return table[id];
 }
 
 // note
 note::note(date _notes_date, float _sum, int _categories_id,
-           category_table *_table_of_categories, string _comment) :
+           category_table *_table_of_categories, std::string _comment) :
   notes_date(_notes_date), sum(_sum), categories_id(_categories_id),
   table(_table_of_categories), comment(_comment) {
 
@@ -91,11 +89,11 @@ float note::getSum() {
   return sum;
 }
 
-string note::toString() const {
-  string result;
-  result = notes_date.toString() + "\nSum: " + to_string<float>(sum)
-           + "\nCategory: " + table->getNameOf(categories_id)
-           + "\nComment: " + comment +  "\n___________\n";
+std::string note::toString() const {
+  std::string result;
+  std::string result = notes_date.toString() + "\nSum: " + to_string<float>(sum)
+                       + "\nCategory: " + table->getNameOf(categories_id)
+                       + "\nComment: " + comment +  "\n___________\n";
   return result;
 }
 
@@ -110,10 +108,10 @@ bool note::operator<(const note &right) const {
 // notepad
 notepad::notepad(float _pouch): pouch(_pouch) {
 }
-void notepad::addNote(date _notes_date, float _sum, string _categoriy,
-                      string _comment) {
-  notes.addElement(note(_notes_date, _sum,
-                        table_of_categories.getIdOf(_categoriy), &table_of_categories, _comment));
+void notepad::addNote(date _notes_date, float _sum, std::string _categoriy,
+                      std::string _comment) {
+  notes.addElement(note(_notes_date, _sum, table_of_categories.getIdOf(_categoriy),
+      &table_of_categories, _comment));
   pouch += _sum;
 }
 
@@ -126,13 +124,12 @@ float notepad::getPotentialPouch() {
   return result;
 }
 
-string notepad::notesFromCategoryToString(string category) {
-  string result;
+std::string notepad::notesFromCategoryToString(std::string category) {
+  std::string result;
   notes.reset();
   int category_id = table_of_categories.getIdOf(category);
   bool flag = !(notes.isEmpty());
-  while (flag)
-  {
+  while (flag) {
     if (notes.getValue().getCategoriesId() == category_id)
       result += notes.getValue().toString();
     flag = ++notes;
@@ -140,13 +137,12 @@ string notepad::notesFromCategoryToString(string category) {
   return result;
 }
 
-float notepad::sumFromCategory(string category) {
+float notepad::sumFromCategory(std::string category) {
   float result = 0.f;
   notes.reset();
   int category_id = table_of_categories.getIdOf(category);
   bool flag = !(notes.isEmpty());
-  while (flag)
-  {
+  while (flag) {
     if (notes.getValue().getCategoriesId() == category_id)
       result += notes.getValue().getSum();
     flag = ++notes;
@@ -154,27 +150,24 @@ float notepad::sumFromCategory(string category) {
   return result;
 }
 
-string notepad::toString() {
-  string result;
+std::string notepad::toString() {
+  std::string result;
   notes.reset();
   bool flag = !(notes.isEmpty());
-  while (flag)
-  {
+  while (flag) {
     result += notes.getValue().toString();
     flag = ++notes;
   }
   return result;
 }
 
-string notepad::stringGroupedByCategories() {
-  string result;
+std::string notepad::stringGroupedByCategories() {
+  std::string result;
   bool flag;
-  for (int category_id = 0; category_id < 9; ++category_id)
-  {
+  for (int category_id = 0; category_id < 9; ++category_id) {
     notes.reset();
     flag = !(notes.isEmpty());
-    while (flag)
-    {
+    while (flag) {
       if (notes.getValue().getCategoriesId() == category_id)
         result += notes.getValue().toString();
       flag = ++notes;
