@@ -152,10 +152,8 @@ V TDeque<V>::pop_Tail() {
     tail = tail->previous;
     tail->next = nullptr;
     delData(tmp);
-
   } else {
     V data = *head->data;
-
     head = nullptr;
     tail = nullptr;
   }
@@ -172,10 +170,8 @@ V TDeque<V>::pop_Head() {
     head = head->next;
     head->previous = nullptr;
     delData(tmp);
-
   } else {
     V data = *head->data;
-
     head = nullptr;
     tail = nullptr;
   }
