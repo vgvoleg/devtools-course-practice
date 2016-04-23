@@ -229,6 +229,5 @@ TEST(TDeque, Return_Zero_Then_Value_Less_Than_Zero) {
 
   // Act And Assert
   const int position = -2;
-  const int expected_Result = 0;
-  EXPECT_EQ(expected_Result, deque[position]);
+  EXPECT_ANY_THROW(deque[position]);;
 }
