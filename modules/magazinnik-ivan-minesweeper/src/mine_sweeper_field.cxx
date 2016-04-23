@@ -18,6 +18,19 @@ Field::Field(unsigned int size) {
     fill_field_with_zero_val();
 }
 
+Field::Field(const Field &obj) {
+    this->field_size = obj.field_size;
+    this->field = new unsigned int*[this->field_size];
+    for (unsigned int i =0; i < this->field_size; i++) {
+        this->field[i] = new unsigned int[this->field_size];
+    }
+    for (unsigned int i = 0; i < this->field_size; ++i) {
+        for (unsigned int j = 0; j < this->field_size; ++j) {
+            this->field[i][j] = obj.get_cell(i, j);
+        }
+    }
+}
+
 Field::~Field() {
     for (unsigned int i = 0; i < field_size; ++i) {
         delete[] field[i];
@@ -33,11 +46,11 @@ void Field::fill_field_with_zero_val() {
     }
 }
 
-const unsigned int Field::get_field_size() {
+unsigned int Field::get_field_size() const {
     return field_size;
 }
 
-const unsigned int Field::get_cell(unsigned int x, unsigned int y) {
+unsigned int Field::get_cell(unsigned int x, unsigned int y) const {
     if (x >= field_size || y >= field_size)
         throw invalid_argument("invalid cell address");
     return field[x][y];

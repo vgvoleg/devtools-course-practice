@@ -92,3 +92,17 @@ TEST(MINEsweeper_field, can_set_cell) {
     EXPECT_EQ(value, field->get_cell(x, y));
     delete field;
 }
+
+TEST(MINEsweeper_field, can_create_rihgt_copy) {
+    // Arrange
+    Field field1;
+    unsigned int x = 1;
+    unsigned int y = 1;
+
+    // Act
+    field1.set_cell(1, 1, 1);
+    Field field2 = field1;
+
+    // Assert
+    EXPECT_EQ(field1.get_cell(x, y), field2.get_cell(x, y));
+}

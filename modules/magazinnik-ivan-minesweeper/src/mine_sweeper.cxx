@@ -93,7 +93,7 @@ void MineSweeper::fill_game_field_with_numbers() {
     }
 }
 
-const int MineSweeper::get_game_status() {
+int MineSweeper::get_game_status() const {
     return game_status;
 }
 
@@ -125,8 +125,8 @@ void MineSweeper::finalize_game() {
     game_status = GAME_STATUS_LOSE;
 }
 
-const unsigned int MineSweeper::get_opened_field_cell(unsigned int x,
-                                                unsigned int y) {
+unsigned int MineSweeper::get_opened_field_cell(unsigned int x,
+                                                unsigned int y) const {
     return opened_field->get_cell(x, y);
 }
 

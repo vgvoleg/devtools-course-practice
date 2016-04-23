@@ -35,8 +35,8 @@ class MineSweeper{
                 unsigned int mine_count = 10, int seed = -1);
     ~MineSweeper();
     void open_cell(unsigned int x, unsigned int y);
-    const int get_game_status();
-    const unsigned int get_opened_field_cell(unsigned int x, unsigned int y);
+    int get_game_status() const;
+    unsigned int get_opened_field_cell(unsigned int x, unsigned int y) const;
 };
 
 #endif  // MODULES_MAGAZINNIK_IVAN_MINESWEEPER_INCLUDE_MINE_SWEEPER_H_

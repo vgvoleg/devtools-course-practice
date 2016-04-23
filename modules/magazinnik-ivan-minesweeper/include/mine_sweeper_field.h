@@ -14,9 +14,10 @@ class Field {
     static int  const MAX_FIELD_VALUE;
 
     explicit Field(unsigned int size = 10);
+    Field(const Field &obj);
     ~Field();
-    const unsigned int get_field_size();
-    const unsigned int get_cell(unsigned int x, unsigned int y);
+    unsigned int get_field_size() const;
+    unsigned int get_cell(unsigned int x, unsigned int y) const;
     void set_cell(unsigned int x, unsigned int y, unsigned int value);
 };
 
