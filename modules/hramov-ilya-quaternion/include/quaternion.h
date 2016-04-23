@@ -18,7 +18,7 @@ public:
     double w;
 
     // Constructor
-	Quaternion(
+    Quaternion(
         const double &_x = 0.0,
         const double &_y = 0.0,
         const double &_z = 0.0,
@@ -26,25 +26,27 @@ public:
 
     // Operators
     Quaternion operator+(const Quaternion &operand) const;
-	Quaternion operator-(const Quaternion &operand) const;
-	Quaternion& operator+=(const Quaternion &operand);
-	Quaternion& operator-=(const Quaternion &operand);
-	Quaternion operator*(const Quaternion &operand) const;
-	Quaternion& operator*=(const Quaternion &operand);
-	Quaternion operator!() const; // conjugate
-	Quaternion operator~() const; // inverse
+    Quaternion operator-(const Quaternion &operand) const;
+    Quaternion& operator+=(const Quaternion &operand);
+    Quaternion& operator-=(const Quaternion &operand);
+    Quaternion operator*(const Quaternion &operand) const;
+    Quaternion& operator*=(const Quaternion &operand);
+    Quaternion operator!() const;  // conjugate
+    Quaternion operator~() const;  // inverse
     bool operator==(const Quaternion &operand) const;
     bool operator!=(const Quaternion &operand) const;
-    friend Quaternion operator*(const double &scalar, const Quaternion &operand);
+    friend Quaternion operator*(
+        const double &scalar,
+        const Quaternion &operand);
 
     // Math actions
-	double magnitude() const;
-	double qmagnitude() const;
-	Quaternion normalized() const;
+    double magnitude() const;
+    double qmagnitude() const;
+    Quaternion normalized() const;
     Quaternion inversed() const;
     Quaternion conjugated() const;
 
-private:
+ private:
     bool isZero(const Quaternion &operand) const;
 };
 
