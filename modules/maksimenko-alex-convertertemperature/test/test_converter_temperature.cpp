@@ -3,7 +3,7 @@
 #include <gtest/gtest.h>
 #include "include/convertertemp.h"
 
-TEST(ConverterTemperature, cant_create_negative_kelvin) {
+TEST(ConverterTemperature, Cant_Create_Negative_Kelvin) {
     // Arrange
     const double value = -1.0;
     const Measure dimension = Measure::KELVIN;
@@ -13,7 +13,7 @@ TEST(ConverterTemperature, cant_create_negative_kelvin) {
     EXPECT_EQ(Temperature.getRetCode(), Data::ERROR);
 }
 
-TEST(ConverterTemperature, can_create_temperature) {
+TEST(ConverterTemperature, Can_Create_Temperature) {
     // Arrange
     const double value = 10.0;
     const Measure dimension = Measure::FAHRENHEIT;
@@ -23,7 +23,7 @@ TEST(ConverterTemperature, can_create_temperature) {
     EXPECT_EQ(Temperature.getRetCode(), Data::OK);
 }
 
-TEST(ConverterTemperature, can_convert_kelvin_to_kelvin) {
+TEST(ConverterTemperature, Can_Convert_Kelvin_To_Kelvin) {
     // Arrange
     const double value = 23.0;
     const Measure dimension = Measure::KELVIN;
@@ -36,14 +36,14 @@ TEST(ConverterTemperature, can_convert_kelvin_to_kelvin) {
     EXPECT_DOUBLE_EQ(Temperature.getValue(), value);
 }
 
-TEST(ConverterTemperature, can_convert_kelvin_to_degree) {
+TEST(ConverterTemperature, Can_Convert_Kelvin_To_Celsius) {
     // Arrange
-    const double value1 = 0.0;
+    const double value = 0.0;
     const Measure dimension = Measure::KELVIN;
-    ConverterTemp Temperature(value1, dimension);
+    ConverterTemp Temperature(value, dimension);
 
     // Act
-    const Measure expected_dimension = Measure::DEGREE;
+    const Measure expected_dimension = Measure::CELSIUS;
     Temperature.converter(expected_dimension);
 
     // Assert
@@ -51,7 +51,7 @@ TEST(ConverterTemperature, can_convert_kelvin_to_degree) {
     EXPECT_DOUBLE_EQ(Temperature.getValue(), value2);
 }
 
-TEST(ConverterTemperature, can_convert_kelvin_to_fahrenheit) {
+TEST(ConverterTemperature, Can_Convert_Kelvin_To_Fahrenheit) {
     // Arrange
     const double value = 0.0;
     const Measure dimension = Measure::KELVIN;
@@ -66,7 +66,7 @@ TEST(ConverterTemperature, can_convert_kelvin_to_fahrenheit) {
     EXPECT_DOUBLE_EQ(Temperature.getValue(), expected_value);
 }
 
-TEST(ConverterTemperature, can_convert_kelvin_to_newton) {
+TEST(ConverterTemperature, Can_Convert_Kelvin_To_Newton) {
     // Arrange
     const double value = 274.0;
     const Measure dimension = Measure::KELVIN;
@@ -81,10 +81,10 @@ TEST(ConverterTemperature, can_convert_kelvin_to_newton) {
     EXPECT_DOUBLE_EQ(Temperature.getValue(), expected_value);
 }
 
-TEST(ConverterTemperature, can_convert_degree_to_kelvin) {
+TEST(ConverterTemperature, Can_Convert_Celsius_To_Kelvin) {
     // Arrange
     const double value = 0.0;
-    const Measure dimension = Measure::DEGREE;
+    const Measure dimension = Measure::CELSIUS;
     ConverterTemp Temperature(value, dimension);
 
     // Act
@@ -96,10 +96,10 @@ TEST(ConverterTemperature, can_convert_degree_to_kelvin) {
     EXPECT_DOUBLE_EQ(Temperature.getValue(), expected_value);
 }
 
-TEST(ConverterTemperature, cant_convert_negative_degrees_into_kelvin) {
+TEST(ConverterTemperature, Cant_Convert_Negative_Celsius_Into_Kelvin) {
     // Arrange
     const double value = -274.0;
-    const Measure dimension = Measure::DEGREE;
+    const Measure dimension = Measure::CELSIUS;
     ConverterTemp Temperature(value, dimension);
 
     // Act
@@ -110,10 +110,10 @@ TEST(ConverterTemperature, cant_convert_negative_degrees_into_kelvin) {
     EXPECT_EQ(Temperature.getRetCode(), Data::ERROR);
 }
 
-TEST(ConverterTemperature, can_convert_degree_to_degree) {
+TEST(ConverterTemperature, Can_Convert_Celsius_To_Celsius) {
     // Arrange
     const double value = 23.0;
-    const Measure dimension = Measure::DEGREE;
+    const Measure dimension = Measure::CELSIUS;
     ConverterTemp Temperature(value, dimension);
 
     // Act
@@ -123,41 +123,41 @@ TEST(ConverterTemperature, can_convert_degree_to_degree) {
     EXPECT_DOUBLE_EQ(Temperature.getValue(), value);
 }
 
-TEST(ConverterTemperature, can_convert_degree_to_fahrenheit) {
+TEST(ConverterTemperature, Can_Convert_Celsius_To_Fahrenheit) {
     // Arrange
-    const double value1 = 0.0;
-    const Measure dimension = Measure::DEGREE;
-    ConverterTemp Temperature(value1, dimension);
+    const double value = 0.0;
+    const Measure dimension = Measure::CELSIUS;
+    ConverterTemp Temperature(value, dimension);
 
     // Act
     const Measure result_dimension = Measure::FAHRENHEIT;
     Temperature.converter(result_dimension);
 
     // Assert
-    const double value2 = 32.0;
-    EXPECT_DOUBLE_EQ(Temperature.getValue(), value2);
+    const double expected_value = 32.0;
+    EXPECT_DOUBLE_EQ(Temperature.getValue(), expected_value);
 }
 
-TEST(ConverterTemperature, can_convert_degree_to_newton) {
+TEST(ConverterTemperature, Can_Convert_Celsius_To_Newton) {
     // Arrange
-    const double value1 = 100.0;
-    const Measure dimension = Measure::DEGREE;
-    ConverterTemp Temperature(value1, dimension);
+    const double value = 100.0;
+    const Measure dimension = Measure::CELSIUS;
+    ConverterTemp Temperature(value, dimension);
 
     // Act
     const Measure result_dimension = Measure::NUTON;
     Temperature.converter(result_dimension);
 
     // Assert
-    const double value2 = 33.0;
-    EXPECT_DOUBLE_EQ(Temperature.getValue(), value2);
+    const double expected_value = 33.0;
+    EXPECT_DOUBLE_EQ(Temperature.getValue(), expected_value);
 }
 
-TEST(ConverterTemperature, can_convert_fahrenheit_to_kelvin) {
+TEST(ConverterTemperature, Can_Convert_Fahrenheit_To_Kelvin) {
     // Arrange
-    const double value1 = 32.0;
+    const double value = 32.0;
     const Measure dimension = Measure::FAHRENHEIT;
-    ConverterTemp Temperature(value1, dimension);
+    ConverterTemp Temperature(value, dimension);
 
     // Act
     const Measure result_dimension = Measure::KELVIN;
@@ -168,7 +168,7 @@ TEST(ConverterTemperature, can_convert_fahrenheit_to_kelvin) {
     EXPECT_DOUBLE_EQ(Temperature.getValue(), expected_value);
 }
 
-TEST(ConverterTemperature, cant_convert_fahrenheit_to_negative_kelvin) {
+TEST(ConverterTemperature, Cant_Convert_Fahrenheit_To_Negative_Kelvin) {
     // Arrange
     const double value = -700.0;
     const Measure dimension = Measure::FAHRENHEIT;
@@ -182,14 +182,14 @@ TEST(ConverterTemperature, cant_convert_fahrenheit_to_negative_kelvin) {
     EXPECT_EQ(Temperature.getRetCode(), Data::ERROR);
 }
 
-TEST(ConverterTemperature, can_convert_fahrenheit_to_degree) {
+TEST(ConverterTemperature, Can_Convert_Fahrenheit_To_Celsius) {
     // Arrange
     const double value = 32.0;
     const Measure dimension = Measure::FAHRENHEIT;
     ConverterTemp Temperature(value, dimension);
 
     // Act
-    const Measure result_dimension = Measure::DEGREE;
+    const Measure result_dimension = Measure::CELSIUS;
     Temperature.converter(result_dimension);
 
     // Assert
@@ -197,7 +197,7 @@ TEST(ConverterTemperature, can_convert_fahrenheit_to_degree) {
     EXPECT_DOUBLE_EQ(Temperature.getValue(), expected_value);
 }
 
-TEST(ConverterTemperature, can_convert_fahrenheit_to_fahrenheit) {
+TEST(ConverterTemperature, Can_Convert_Fahrenheit_To_Fahrenheit) {
     // Arrange
     const double value = 32.0;
     const Measure dimension = Measure::FAHRENHEIT;
@@ -210,7 +210,7 @@ TEST(ConverterTemperature, can_convert_fahrenheit_to_fahrenheit) {
     EXPECT_DOUBLE_EQ(Temperature.getValue(), value);
 }
 
-TEST(ConverterTemperature, can_convert_fahrenheit_to_newton) {
+TEST(ConverterTemperature, Can_Convert_Fahrenheit_To_Newton) {
     // Arrange
     const double value = 212.0;
     const Measure dimension = Measure::FAHRENHEIT;
@@ -225,7 +225,7 @@ TEST(ConverterTemperature, can_convert_fahrenheit_to_newton) {
     EXPECT_DOUBLE_EQ(Temperature.getValue(), expected_value);
 }
 
-TEST(ConverterTemperature, can_convert_newton_to_kelvin) {
+TEST(ConverterTemperature, Can_Convert_Newton_To_Kelvin) {
     // Arrange
     const double value = 0.0;
     const Measure dimension = Measure::NUTON;
@@ -240,7 +240,7 @@ TEST(ConverterTemperature, can_convert_newton_to_kelvin) {
     EXPECT_DOUBLE_EQ(Temperature.getValue(), expected_value);
 }
 
-TEST(ConverterTemperature, cant_convert_nuwton_into_negative_kelvin) {
+TEST(ConverterTemperature, Cant_Convert_Nuwton_Into_Negative_Kelvin) {
     // Arrange
     const double value = -700.0;
     const Measure dimension = Measure::NUTON;
@@ -254,14 +254,14 @@ TEST(ConverterTemperature, cant_convert_nuwton_into_negative_kelvin) {
     EXPECT_EQ(Temperature.getRetCode(), Data::ERROR);
 }
 
-TEST(ConverterTemperature, can_convert_newton_to_degree) {
+TEST(ConverterTemperature, Can_Convert_Newton_To_Celsius) {
     // Arrange
     const double value = 33.0;
     const Measure dimension = Measure::NUTON;
     ConverterTemp Temperature(value, dimension);
 
     // Act
-    const Measure result_dimension = Measure::DEGREE;
+    const Measure result_dimension = Measure::CELSIUS;
     Temperature.converter(result_dimension);
 
     // Assert
@@ -269,7 +269,7 @@ TEST(ConverterTemperature, can_convert_newton_to_degree) {
     EXPECT_DOUBLE_EQ(Temperature.getValue(), expected_value);
 }
 
-TEST(ConverterTemperature, can_convert_newton_to_fahrenheit) {
+TEST(ConverterTemperature, Can_Convert_Newton_To_Fahrenheit) {
     // Arrange
     const double value = 33.0;
     const Measure dimension = Measure::NUTON;
@@ -284,7 +284,7 @@ TEST(ConverterTemperature, can_convert_newton_to_fahrenheit) {
     EXPECT_DOUBLE_EQ(Temperature.getValue(), expected_value);
 }
 
-TEST(ConverterTemperature, can_convert_newton_to_newton) {
+TEST(ConverterTemperature, Can_Convert_Newton_To_Newton) {
     // Arrange
     const double value = 33.0;
     const Measure dimension = Measure::NUTON;
@@ -297,10 +297,10 @@ TEST(ConverterTemperature, can_convert_newton_to_newton) {
     EXPECT_DOUBLE_EQ(Temperature.getValue(), value);
 }
 
-TEST(ConverterTemperature, can_i_convert_multiple_times) {
+TEST(ConverterTemperature, Can_I_Convert_Multiple_Times) {
     // Arrange
     const double value = 33.0;
-    const Measure dimension = Measure::DEGREE;
+    const Measure dimension = Measure::CELSIUS;
     ConverterTemp Temperature(value, dimension);
 
     // Act
@@ -312,10 +312,10 @@ TEST(ConverterTemperature, can_i_convert_multiple_times) {
     EXPECT_DOUBLE_EQ(Temperature.getValue(), value);
 }
 
-TEST(ConverterTemperature, can_return_the_dimension_of_this_obj) {
+TEST(ConverterTemperature, Can_Return_The_Dimension_Of_This_Obj) {
     // Arrange
     const double value = 33.0;
-    const Measure dimension = Measure::DEGREE;
+    const Measure dimension = Measure::CELSIUS;
     ConverterTemp Temperature(value, dimension);
 
     // Act
