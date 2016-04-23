@@ -51,14 +51,14 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, dates_with_dif_numbers_can_compare) {
 }
 
 TEST(Sirotkin_Nikita_FinanceNotepadTest, dates_with_dif_months_can_compare) {
-	// Arrange
-	date month_less = date(1, months::JANUARY, 2001);
-	date month_great = date(1, months::MARCH, 2001);
+  // Arrange
+  date month_less = date(1, months::JANUARY, 2001);
+  date month_great = date(1, months::MARCH, 2001);
 
-	// Act
+  // Act
 
-	// Assert
-	EXPECT_TRUE(month_great > month_less);
+  // Assert
+  EXPECT_TRUE(month_great > month_less);
 }
 
 TEST(Sirotkin_Nikita_FinanceNotepadTest, dates_with_dif_year_can_compare) {
@@ -100,7 +100,8 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, table_can_get_category_name) {
   EXPECT_EQ(result.compare(expect), 0);
 }
 
-TEST(Sirotkin_Nikita_FinanceNotepadTest, table_can_get_default_category_by_wrong_id) {
+TEST(Sirotkin_Nikita_FinanceNotepadTest,
+    table_can_get_default_category_by_wrong_id) {
   // Arrange
   category_table table;
   int input = table_size+1;
@@ -114,7 +115,8 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, table_can_get_default_category_by_wrong
   EXPECT_EQ(result.compare(expect), 0);
 }
 
-TEST(Sirotkin_Nikita_FinanceNotepadTest, table_can_get_default_category_by_wrong_name) {
+TEST(Sirotkin_Nikita_FinanceNotepadTest,
+    table_can_get_default_category_by_wrong_name) {
   // Arrange
   category_table table;
   string input = "Something";
@@ -201,13 +203,13 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, note_can_get_comment) {
 TEST(Sirotkin_Nikita_FinanceNotepadTest, note_can_compare_less) {
   // Arrange
   category_table table;
-  note max(MAX_DATE, 10.f, table.getIdOf("Debt"), &table, "Something");
-  note min(MAX_DATE, 10.f, table.getIdOf("Debt"), &table, "Something");
+  note max_note(MAX_DATE, 10.f, table.getIdOf("Debt"), &table, "Something");
+  note min_note(MAX_DATE, 10.f, table.getIdOf("Debt"), &table, "Something");
 
   // Act
 
   // Assert
-  EXPECT_TRUE(min < max);
+  EXPECT_TRUE(min_note < max_note);
 }
 
 TEST(Sirotkin_Nikita_FinanceNotepadTest, can_get_pouch) {
