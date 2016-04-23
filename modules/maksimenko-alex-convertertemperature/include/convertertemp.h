@@ -5,7 +5,7 @@
 
 enum class Data { OK, ERROR };
 
-enum class Measure { KELVIN, NUTON, DEGREE, FAHRENHEIT };
+enum class Measure { KELVIN, NUTON, CELSIUS, FAHRENHEIT };
 
 class ConverterTemp {
  private:
