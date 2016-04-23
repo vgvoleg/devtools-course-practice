@@ -100,7 +100,7 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest,
 }
 
 TEST(Sirotkin_Nikita_FinanceNotepadTest,
-    dates_with_dif_year_can_compare_false){
+    dates_with_dif_year_can_compare_false) {
   // Arrange
   date year_less = date(1, months::JANUARY, 2001);
   date year_great = date(1, months::JANUARY, 2002);
