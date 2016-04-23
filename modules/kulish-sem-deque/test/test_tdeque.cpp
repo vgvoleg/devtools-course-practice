@@ -12,7 +12,7 @@ TEST(TDeque, Can_Create_Int_Deque) {
 
   // Act
   intDeque = new TDeque<int>;
-  
+
   // Assert
   EXPECT_NE(nullptr, intDeque);
 }
@@ -20,8 +20,8 @@ TEST(TDeque, Can_Create_Int_Deque) {
 TEST(TDeque, Can_Create_String_Deque) {
   // Arrange
   TDeque<string> *stringDeque;
-  
-  //Act
+
+  // Act
   stringDeque = new TDeque<string>;
 
   // Assert
@@ -31,8 +31,8 @@ TEST(TDeque, Can_Create_String_Deque) {
 TEST(TDeque, Can_Create_Double_Deque) {
   // Arrange
   TDeque<double> *doubleDeque;
-  
-  //Act
+
+  // Act
   doubleDeque = new TDeque<double>;
 
   // Assert
@@ -212,7 +212,7 @@ TEST(TDeque, Erase_Works_At_The_End) {
   const int N = 10;
   for (int i = 0; i < N; i++)
     deque.push_Head(i);
-    
+
   const int position = 0;
   const int num = 9;
   deque.erase(num, position);
@@ -229,7 +229,7 @@ TEST(TDeque, Erase_Works_At_The_Start) {
   const int N = 10;
   for (int i = 0; i < N; i++)
     deque.push_Head(i);
-    
+
   const int position = 0;
   const int num = 0;
   deque.erase(num, position);
@@ -250,7 +250,7 @@ TEST(TDeque, Erase_Works_At_The_Middle) {
   const int position = 0;
   const int num = 5;
   deque.erase(num, position);
-  
+
   // Assert
   EXPECT_FALSE(deque.isExist(num));
 }
@@ -276,6 +276,6 @@ TEST(TDeque, Return_Minus_One_Then_Value_Less_Than_Zero) {
 
   // Act And Assert
   const int position = -2;
-  const int expected_Result= -1;
+  const int expected_Result = -1;
   EXPECT_EQ(expected_Result, deque[position]);
 }
