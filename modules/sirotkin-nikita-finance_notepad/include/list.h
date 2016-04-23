@@ -1,3 +1,5 @@
+// Copyright 2016 Sirotkin_Nikita
+
 template<class ELEMENTS_TYPE>
 class node
 {

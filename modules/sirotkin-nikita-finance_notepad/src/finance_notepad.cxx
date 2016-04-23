@@ -1,3 +1,5 @@
+// Copyright 2016 Sirotkin_Nikita
+
 #include <sstream>
 #include "finance_notepad.h"
 
@@ -25,7 +27,8 @@ date::date(char _number, months _month, int _year){
 
 string date::toString() const{
 	string result;
-	result = to_string<int>(number) + "."+ to_string<int>(int(month)+1)+"."+ to_string<int>(year);
+	result = to_string<int>(number) + "."+ to_string<int>(int(month)+1)+
+    "."+ to_string<int>(year);
 	return result;
 }
 
@@ -77,8 +80,10 @@ string category_table::getNameOf(int id){
 }
 
 //note
-note::note(date _notes_date, float _sum, int _categories_id, category_table* _table_of_categories, string _comment) :
-  notes_date(_notes_date), sum(_sum), categories_id(_categories_id), table(_table_of_categories), comment(_comment){
+note::note(date _notes_date, float _sum, int _categories_id,
+   category_table* _table_of_categories, string _comment) :
+  notes_date(_notes_date), sum(_sum), categories_id(_categories_id),
+   table(_table_of_categories), comment(_comment){
 
 }
 
@@ -109,8 +114,10 @@ bool note::operator<(const note &right) const{
 //notepad
 notepad::notepad(float _pouch): pouch(_pouch){
 }
-void notepad::addNote(date _notes_date, float _sum, string _categoriy, string _comment){
-	notes.addElement(note(_notes_date, _sum, table_of_categories.getIdOf(_categoriy), &table_of_categories, _comment));
+void notepad::addNote(date _notes_date, float _sum, string _categoriy,
+  string _comment){
+	notes.addElement(note(_notes_date, _sum,
+    table_of_categories.getIdOf(_categoriy), &table_of_categories, _comment));
 	pouch += _sum;
 }
 

@@ -1,9 +1,11 @@
+// Copyright 2016 Sirotkin_Nikita
 #include <string>
 #include "list.h"
 
 enum class months
 {
-	JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER
+	JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY,
+	AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER
 };
 
 class date
@@ -38,7 +40,8 @@ private:
 	std::string comment;
 	category_table *table;
 public:
-	note(date _notes_date, float _sum, int _categories_id, category_table* _table_of_categories, std::string _comment = "");
+	note(date _notes_date, float _sum, int _categories_id,
+		category_table* _table_of_categories, std::string _comment = "");
 	int getCategoriesId();
 	float getSum();
 	std::string toString() const;
@@ -54,7 +57,8 @@ private:
 	float pouch;
 public:
 	notepad(float _pouch);
-	void addNote(date _notes_date, float _sum, std::string _category, std::string _comment = "");
+	void addNote(date _notes_date, float _sum, std::string _category,
+		 std::string _comment = "");
 	float getPouch() const;
 	float getPotentialPouch();
 	std::string notesFromCategoryToString(std::string category);
