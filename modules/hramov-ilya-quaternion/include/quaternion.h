@@ -18,10 +18,10 @@ class Quaternion {
 
     // Constructor
     Quaternion(
-        const double &_x = 0.0,
-        const double &_y = 0.0,
-        const double &_z = 0.0,
-        const double &_w = 0.0);
+        const double &x = 0.0,
+        const double &y = 0.0,
+        const double &z = 0.0,
+        const double &w = 0.0);
 
     // Operators
     Quaternion operator+(const Quaternion &operand) const;

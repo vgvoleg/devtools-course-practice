@@ -4,11 +4,15 @@
 
 // Constructor
 Quaternion::Quaternion(
-    const double &_x,
-    const double &_y,
-    const double &_z,
-    const double &_w)
-    :x(_x), y(_y), z(_z), w(_w) {}
+    const double &x,
+    const double &y,
+    const double &z,
+    const double &w) {
+        this->x = x;
+        this->y = y;
+        this->z = z;
+        this->w = w;
+    }
 
 // Operators
 Quaternion Quaternion::operator+(const Quaternion &operand) const {
