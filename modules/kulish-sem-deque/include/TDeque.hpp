@@ -96,16 +96,16 @@ void TDeque<V>::delData(ITEM* item)const {
 }
 
 template<class V>
-V TDeque<V>::operator[](const int &value)const {
+V TDeque<V>::operator[](const int &positon)const {
   int counter = 1;
   V result = 0;
   ITEM* item = tail;
 
-  if (value > size || value < 0) {
-    result = value;
+  if (positon > size || positon < 0) {
+    result = positon;
   } else {
-    while (counter <= value) {
-      if (counter == value) {
+    while (counter <= positon) {
+      if (counter == positon) {
         result = *item->data;
         return result;
       } else {
@@ -155,7 +155,7 @@ V TDeque<V>::pop_Tail() {
     tail->next = nullptr;
     delData(tmp);
     size--;
-      
+
     return data;
   } else {
     V data = *head->data;
@@ -163,7 +163,7 @@ V TDeque<V>::pop_Tail() {
     head = nullptr;
     tail = nullptr;
     size--;
-    
+
     return data;
   }
 }
@@ -178,7 +178,7 @@ V TDeque<V>::pop_Head() {
     head->previous = nullptr;
     delData(tmp);
     size--;
-    
+
     return data;
   } else {
     V data = *head->data;
@@ -186,7 +186,7 @@ V TDeque<V>::pop_Head() {
     head = nullptr;
     tail = nullptr;
     size--;
-    
+
     return data;
   }
 }
