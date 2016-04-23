@@ -4,11 +4,6 @@
 #define MODULES_MAGAZINNIK_IVAN_MINESWEEPER_INCLUDE_MINE_SWEEPER_FIELD_H_
 
 class Field {
- private:
-    unsigned int **field;
-    unsigned int field_size;
-    void fill_field_with_zero_val();
-
  public:
     static const int MAX_FIELD_LEN;
     static const int MAX_FIELD_VALUE;
@@ -19,6 +14,11 @@ class Field {
     unsigned int get_field_size() const;
     unsigned int get_cell(unsigned int x, unsigned int y) const;
     void set_cell(unsigned int x, unsigned int y, unsigned int value);
+
+ private:
+    unsigned int **field;
+    unsigned int field_size;
+    void fill_field_with_zero_val();
 };
 
 
