@@ -22,7 +22,7 @@ bool TMonom::comparisonIndex(const TMonom& monom) const {
 }
 
 bool TMonom::operator==(const TMonom& monom) const {
-  bool equalityCoeff = abs(coeff_ - monom.coeff_) < eps;
+  bool equalityCoeff = fabs(coeff_ - monom.coeff_) < eps;
   return (index_ == monom.index_) && equalityCoeff;
 }
 
@@ -56,7 +56,7 @@ bool TMonom::isPositiveCoeff(void) const {
 }
 
 bool TMonom::equalsZero(void) const {
-  return abs(coeff_) < eps;
+  return fabs(coeff_) < eps;
 }
 
 std::ostream& operator<<(std::ostream& os, const TMonom& monom) {
