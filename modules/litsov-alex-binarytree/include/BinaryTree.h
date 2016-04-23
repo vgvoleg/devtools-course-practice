@@ -1,6 +1,6 @@
 // Copyright 2016 Litsov Alex
-#ifndef MODULES_BINARYTREE_LITSOV_ALEX_INCLUDE_BINARYTREE_H_
-#define MODULES_BINARYTREE_LITSOV_ALEX_INCLUDE_BINARYTREE_H_
+#ifndef MODULES_LITSOV_ALEX_BINARYTREE_INCLUDE_BINARYTREE_H_
+#define MODULES_LITSOV_ALEX_BINARYTREE_INCLUDE_BINARYTREE_H_
 
 #include <string>
 using std::string;
@@ -38,7 +38,7 @@ class BinaryTree {
     BinaryTree& operator=(const BinaryTree& assigned_tree);
     ~BinaryTree();
     void InsertElem(Element* const input_element);
-    Element* SearchByKeyInSubtree(const int& key,Element* start_element) const;
+    Element* SearchByKeyInSubtree(const int& key, Element* start_element) const;
     Element* SearchByValueInSubtree(const string& value,
         Element* const start_element) const;
     Element* SearchByKey(const int& key) const;
@@ -66,4 +66,4 @@ class BinaryTree {
     Element* root_;
 };
 
-#endif  // MODULES_BINARYTREE_LITSOV_ALEX_INCLUDE_BINARYTREE_H_
+#endif  // MODULES_LITSOV_ALEX_BINARYTREE_INCLUDE_BINARYTREE_H_
