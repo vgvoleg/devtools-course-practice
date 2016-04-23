@@ -16,7 +16,7 @@ bool Sample::IsSummOfProbsEqualUnity(const vector<double> _prob) const {
         sum_of_probabilities += _prob[i];
     }
 
-    if (abs(1.0 - sum_of_probabilities) > SAMPLE_EPSILON) {
+    if (fabs(1.0 - sum_of_probabilities) > SAMPLE_EPSILON) {
         return false;
     }
 
