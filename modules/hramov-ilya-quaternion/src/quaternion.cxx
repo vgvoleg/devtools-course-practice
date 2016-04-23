@@ -81,7 +81,7 @@ bool Quaternion::operator!=(const Quaternion &operand) const {
     return !(*this == operand);
 }
 
-//Math actions
+// Math actions
 double Quaternion::magnitude() const {
     return sqrt(x*x + y*y + z*z + w*w);
 }
