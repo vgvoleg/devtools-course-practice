@@ -80,7 +80,7 @@ TEST(IntegrateTest, Inversed_Boundaries_Is_Not_A_Fault) {
     static constexpr double expectedResult = -9000.0;
 
     double result = volume_calc::integrate<double>(30, 0,
-        [] (double x) { return x * x; }, 1000);
+        [] (double x) { return x * x; }, 1200);
 
     ASSERT_NEAR(expectedResult, result, -0.0001 * expectedResult);
 }
@@ -109,9 +109,9 @@ TEST(IntegrateTest, Linearity_Of_Function_Is_Existing) {
     static constexpr double expectedResult = 50.0 + 333.333;
 
     double first = volume_calc::integrate<double>(0, 10,
-        [] (double x) { return x; }, 300);
+        [] (double x) { return x; }, 500);
     double second = volume_calc::integrate<double>(0, 10,
-        [] (double x) { return x * x; }, 400);
+        [] (double x) { return x * x; }, 500);
 
     ASSERT_NEAR(expectedResult, first + second, 0.0001 * expectedResult);
 }
