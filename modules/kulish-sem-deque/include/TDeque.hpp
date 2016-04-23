@@ -145,15 +145,16 @@ void TDeque<V>::push_Head(const V& data) {
 
 template<class V>
 V TDeque<V>::pop_Tail() {
+  V data;
   if (head != tail) {
-    V data = *tail->data;
+    data = *tail->data;
     ITEM *tmp = tail;
 
     tail = tail->previous;
     tail->next = nullptr;
     delData(tmp);
   } else {
-    V data = *head->data;
+    data = *head->data;
     head = nullptr;
     tail = nullptr;
   }
@@ -163,15 +164,16 @@ V TDeque<V>::pop_Tail() {
 
 template<class V>
 V TDeque<V>::pop_Head() {
+  V data;
   if (head != tail) {
-    V data = *head->data;
+    data = *head->data;
     ITEM *tmp = head;
 
     head = head->next;
     head->previous = nullptr;
     delData(tmp);
   } else {
-    V data = *head->data;
+    data = *head->data;
     head = nullptr;
     tail = nullptr;
   }
