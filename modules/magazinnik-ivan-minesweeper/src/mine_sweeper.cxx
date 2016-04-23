@@ -173,3 +173,7 @@ void MineSweeper::check_win() {
         game_status = GAME_STATUS_WIN;
     }
 }
+
+Field MineSweeper::get_opened_field() const {
+    return *opened_field;
+}
