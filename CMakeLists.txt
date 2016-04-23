@@ -88,7 +88,14 @@ message(STATUS "")
 
 enable_testing()
 
-add_test(
-    NAME can_list_files
-    COMMAND ls
-)
+# function(test_function)
+#   foreach(subdir ${SUBDIRS})
+#       get_filename_component(DIR_NAME ${subdir} NAME)
+#       message(STATUS "    - ${DIR_NAME}")
+#   endforeach()
+# endfunction(test_function)
+#
+# add_test(
+#     NAME cpplint
+#     COMMAND test_function()
+# )
