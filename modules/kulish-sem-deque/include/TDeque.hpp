@@ -51,10 +51,8 @@ template<class V>
 TDeque<V>::TDeque() : size(0), head(nullptr), tail(nullptr) {}
 
 template<class V>
-TDeque<V>::TDeque(const V& data) {
-  head = push_Head(data);
-  tail = head;
-  size = 1;
+TDeque<V>::TDeque(const V& data):TDeque() {
+  push_Head(data);
 }
 
 template<class V>
