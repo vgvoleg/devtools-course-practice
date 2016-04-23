@@ -1,4 +1,7 @@
 // Copyright 2016 Sirotkin_Nikita
+#ifndef MODULES_SIROTKIN_NIKITA_FINANCE_NOTEPAD_INCLUDE_FINANCE_NOTEPAD_H_
+#define MODULES_SIROTKIN_NIKITA_FINANCE_NOTEPAD_INCLUDE_FINANCE_NOTEPAD_H_
+
 #include <string>
 #include "include/list.h"
 
@@ -64,3 +67,5 @@ class notepad {
   bool operator++();
   note getCurrentNote();
 };
+
+#endif
