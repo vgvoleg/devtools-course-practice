@@ -178,7 +178,6 @@ V TDeque<V>::pop_Head() {
 
     head = nullptr;
     tail = nullptr;
-
   }
   size--;
   return data;

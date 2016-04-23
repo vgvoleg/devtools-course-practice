@@ -61,7 +61,7 @@ TEST(TDeque, Can_Push_Head) {
   EXPECT_EQ(N, deque.deque_Size());
 }
 
-TEST(TDeque, Can_Use_Lnitializer_List) {
+TEST(TDeque, Can_Use_Initializer_List) {
   // Arrange
   TDeque<int> deque({1, 2, 3, 4, 5});
 
@@ -167,8 +167,6 @@ TEST(TDeque, Can_Emplace_Head) {
 TEST(TDeque, Can_Emplace_Tail) {
   // Arrange
   TDeque<int> deque({1, 2, 3, 4, 5});
-
-  // Act
 
   // Act And Assert
   const int expected_Result = 10;
