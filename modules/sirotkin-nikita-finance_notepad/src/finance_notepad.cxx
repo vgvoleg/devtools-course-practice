@@ -26,7 +26,7 @@ date::date(char _number, months _month, int _year) {
 
 std::string date::toString() const {
   std::string result;
-  std::string result = to_string<int>(number) + "." + 
+  std::string result = to_string<int>(number) + "." +
      to_string<int>(static_cast<int>(month)) + "." + to_string<int>(year);
   return result;
 }
@@ -110,8 +110,8 @@ notepad::notepad(float _pouch): pouch(_pouch) {
 }
 void notepad::addNote(date _notes_date, float _sum, std::string _categoriy,
                       std::string _comment) {
-  notes.addElement(note(_notes_date, _sum, 
-   table_of_categories.getIdOf(_categoriy), &table_of_categories, _comment));
+  notes.addElement(note(_notes_date, _sum,
+  table_of_categories.getIdOf(_categoriy), &table_of_categories, _comment));
   pouch += _sum;
 }
 

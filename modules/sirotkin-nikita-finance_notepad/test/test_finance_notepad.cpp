@@ -96,7 +96,7 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, can_get_current_note) {
   notepad notes(50.f);
   std::string result;
   std::string expect = "2.1.2016\nSum: -30\nCategory:"
-                       " Debt\nComment: For Noname\n___________\n";
+                  " Debt\nComment: For Noname\n___________\n";
 
   // Act
   notes.addNote(date(2, months::JANUARY, 2016), -30.f, "Debt", "For Noname");
@@ -111,8 +111,8 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, can_translate_notepad_to_string) {
   notepad notes(50.f);
   std::string result;
   std::string expect = "2.1.2016\nSum: -30\nCategory: "
-                       "Debt\nComment: For Noname\n___________\n"
-                       "3.4.2017\nSum: -20\nCategory: Food\nComment: KFC\n___________\n";
+          "Debt\nComment: For Noname\n___________\n"
+          "3.4.2017\nSum: -20\nCategory: Food\nComment: KFC\n___________\n";
 
   // Act
   notes.addNote(date(2, months::JANUARY, 2016), -30.f, "Debt", "For Noname");
@@ -147,8 +147,8 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, can_sort_by_date) {
   notepad notes(50.f);
   std::string result;
   std::string expect = "2.1.2016\nSum: -30\nCategory:"
-                       " Debt\nComment: For Noname\n___________\n"
-                       "3.4.2017\nSum: -20\nCategory: Food\nComment: KFC\n___________\n";
+            " Debt\nComment: For Noname\n___________\n"
+            "3.4.2017\nSum: -20\nCategory: Food\nComment: KFC\n___________\n";
 
   // Act
   notes.addNote(date(3, months::APRIL, 2017), -20.f, "Food", "KFC");
@@ -183,7 +183,8 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, cat_get_notes_from_category) {
                        " Debt\nComment: For Noname\n___________\n";
 
   // Act
-  notes.addNote(date(1, months::DECEMBER, 2015), 30.f, "Stipend", "day of VMK");
+  notes.addNote(date(1, months::DECEMBER, 2015), 30.f, "Stipend", 
+    "day of VMK");
   notes.addNote(date(2, months::JANUARY, 2016), -30.f, "Debt", "For Noname");
   notes.addNote(date(3, months::APRIL, 2017), -20.f, "Food", "KFC");
   result = notes.notesFromCategoryToString("Debt");
@@ -197,9 +198,9 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, cat_group_by_category) {
   notepad notes(50.f);
   std::string result;
   std::string expect = "2.1.2016\nSum: -30\nCategory:"
-                       " Debt\nComment: For Noname\n___________\n"
-                       "1.12.2015\nSum: 30\nCategory: Food\nComment: burger king\n___________\n"
-                       "3.4.2017\nSum: -20\nCategory: Food\nComment: KFC\n___________\n";
+        " Debt\nComment: For Noname\n___________\n"
+        "1.12.2015\nSum: 30\nCategory: Food\nComment: burger king\n___________\n"
+        "3.4.2017\nSum: -20\nCategory: Food\nComment: KFC\n___________\n";
 
   // Act
   notes.addNote(date(1, months::DECEMBER, 2015), 30.f, "Food", "burger king");
