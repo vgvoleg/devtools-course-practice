@@ -45,7 +45,7 @@ TEST(TDeque, Can_Create_Not_Empty_Deque) {
   TDeque<int> deque(N);
 
   // Assert
-  EXPECT_EQ(N, deque.deque_Size());
+  EXPECT_EQ(N, deque.Size());
 }
 
 TEST(TDeque, Can_Push_Head) {
@@ -58,7 +58,7 @@ TEST(TDeque, Can_Push_Head) {
     deque.push_Head(i);
 
   // Assert
-  EXPECT_EQ(N, deque.deque_Size());
+  EXPECT_EQ(N, deque.Size());
 }
 
 TEST(TDeque, Can_Use_Initializer_List) {
@@ -80,7 +80,7 @@ TEST(TDeque, Can_Push_Tail) {
     deque.push_Tail(i);
 
   // Assert
-  EXPECT_EQ(N, deque.deque_Size());
+  EXPECT_EQ(N, deque.Size());
 }
 
 TEST(TDeque, Can_Pop_Head) {

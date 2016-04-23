@@ -27,7 +27,7 @@ class TDeque {
   V operator[](const int& value)const;
 
   bool is_Empty()const;
-  unsigned deque_Size()const;
+  unsigned Size()const;
   bool is_Exist(const V&)const;
   void erase(V, int);
 
@@ -100,7 +100,7 @@ V TDeque<V>::operator[](const int &position)const {
   ITEM* item = tail;
 
   if (position > size || position < 0) {
-    string error="Wrong Position";
+    string error = "Wrong Position";
     result = position;
     throw error;
   } else {
@@ -199,7 +199,7 @@ bool TDeque<V>::is_Empty()const {
 }
 
 template<class V>
-unsigned TDeque<V>::deque_Size()const {
+unsigned TDeque<V>::Size()const {
   return size;
 }
 
