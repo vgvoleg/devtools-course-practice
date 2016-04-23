@@ -63,8 +63,8 @@ TEST(TDeque, Can_Push_Head) {
 
 TEST(TDeque, Can_Use_Lnitializer_List) {
   // Arrange
-  TDeque<int> deque ({1, 2, 3, 4, 5});
-  
+  TDeque<int> deque({1, 2, 3, 4, 5});
+ 
   // Act And Assert
   const int expected_Result = 1;
   EXPECT_EQ(expected_Result, deque.pop_Head());
