@@ -2,9 +2,75 @@
 
 #include <gtest/gtest.h>
 #include <string>
-
 #include "include/finance_notepad.h"
 
+using namespace std;
+
+TEST(Sirotkin_Nikita_FinanceNotepadTest, unfit_number_dates_is_set_to_default) {
+  // Arrange
+  string number_great = date(32, months::JANUARY, 2001).toString();
+  string expect = DEFAULT_DATE.toString();
+
+  // Act
+
+  // Assert
+  EXPECT_EQ(expect.compare(number_great), 0);
+}
+
+TEST(Sirotkin_Nikita_FinanceNotepadTest, great_year_dates_is_set_to_default) {
+  // Arrange
+  string year_great = date(1, months::JANUARY, 2101).toString();
+  string expect = DEFAULT_DATE.toString();
+
+  // Act
+
+  // Assert
+  EXPECT_EQ(expect.compare(year_great), 0);
+}
+
+TEST(Sirotkin_Nikita_FinanceNotepadTest, less_year_dates_is_set_to_default) {
+  // Arrange
+  string year_less = date(1, months::JANUARY, 1999).toString();
+  string expect = DEFAULT_DATE.toString();
+
+  // Act
+
+  // Assert
+  EXPECT_EQ(expect.compare(year_less), 0);
+}
+
+TEST(Sirotkin_Nikita_FinanceNotepadTest, dates_with_dif_numbers_can_compare) {
+  // Arrange
+  date number_less = date(1, months::JANUARY, 2001);
+  date number_great = date(3, months::JANUARY, 2001);
+
+  // Act
+
+  // Assert
+  EXPECT_TRUE(number_less < number_great);
+}
+
+TEST(Sirotkin_Nikita_FinanceNotepadTest, dates_with_dif_months_can_compare) {
+	// Arrange
+	date month_less = date(1, months::JANUARY, 2001);
+	date month_great = date(1, months::MARCH, 2001);
+
+	// Act
+
+	// Assert
+	EXPECT_TRUE(month_great > month_less);
+}
+
+TEST(Sirotkin_Nikita_FinanceNotepadTest, dates_with_dif_year_can_compare) {
+  // Arrange
+  date year_less = date(1, months::JANUARY, 2001);
+  date year_great = date(1, months::JANUARY, 2002);
+
+  // Act
+
+  // Assert
+  EXPECT_TRUE(year_great > year_less);
+}
 
 TEST(Sirotkin_Nikita_FinanceNotepadTest, table_can_get_category_id) {
   // Arrange
@@ -17,15 +83,15 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, table_can_get_category_id) {
   result = table.getIdOf(input);
 
   // Assert
-  ASSERT_EQ(result, expect);
+  EXPECT_EQ(result, expect);
 }
 
 TEST(Sirotkin_Nikita_FinanceNotepadTest, table_can_get_category_name) {
   // Arrange
   category_table table;
   int input = 5;
-  std::string expect = "Food";
-  std::string result;
+  string expect = "Food";
+  string result;
 
   // Act
   result = table.getNameOf(input);
@@ -33,6 +99,117 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, table_can_get_category_name) {
   // Assert
   EXPECT_EQ(result.compare(expect), 0);
 }
+
+TEST(Sirotkin_Nikita_FinanceNotepadTest, table_can_get_default_category_by_wrong_id) {
+  // Arrange
+  category_table table;
+  int input = table_size+1;
+  string expect = "Other";
+  string result;
+
+  // Act
+  result = table.getNameOf(input);
+
+  // Assert
+  EXPECT_EQ(result.compare(expect), 0);
+}
+
+TEST(Sirotkin_Nikita_FinanceNotepadTest, table_can_get_default_category_by_wrong_name) {
+  // Arrange
+  category_table table;
+  string input = "Something";
+  int expect = table_size-1;
+  int result;
+
+  // Act
+  result = table.getIdOf(input);
+
+  // Assert
+  EXPECT_EQ(result, expect);
+}
+
+TEST(Sirotkin_Nikita_FinanceNotepadTest, note_can_get_category_id) {
+  // Arrange
+  category_table table;
+  note debt(DEFAULT_DATE, 10.f, table.getIdOf("Debt"), &table, "Something");
+  int expect = table.getIdOf("Debt");
+  int result;
+
+  // Act
+  result = debt.getCategoriesId();
+
+  // Assert
+  EXPECT_EQ(result, expect);
+}
+
+TEST(Sirotkin_Nikita_FinanceNotepadTest, note_can_get_category_name) {
+  // Arrange
+  category_table table;
+  note debt(DEFAULT_DATE, 10.f, table.getIdOf("Debt"), &table, "Something");
+  string expect = "Debt";
+  string result;
+
+  // Act
+  result = debt.getCategory();
+
+  // Assert
+  EXPECT_EQ(result.compare(expect), 0);
+}
+
+TEST(Sirotkin_Nikita_FinanceNotepadTest, note_can_get_sum) {
+  // Arrange
+  category_table table;
+  note debt(DEFAULT_DATE, 10.f, table.getIdOf("Debt"), &table, "Something");
+  float expect = 10.f;
+  float result;
+
+  // Act
+  result = debt.getSum();
+
+  // Assert
+  EXPECT_FLOAT_EQ(result, expect);
+}
+
+TEST(Sirotkin_Nikita_FinanceNotepadTest, note_can_get_date) {
+  // Arrange
+  category_table table;
+  note debt(MAX_DATE, 10.f, table.getIdOf("Debt"), &table, "Something");
+  date expect = MAX_DATE;
+  date result;
+
+  // Act
+  result = debt.getDate();
+
+  // Assert
+  EXPECT_EQ(result.toString().compare(expect.toString()), 0);
+}
+
+TEST(Sirotkin_Nikita_FinanceNotepadTest, note_can_get_comment) {
+  // Arrange
+  category_table table;
+  note debt(MAX_DATE, 10.f, table.getIdOf("Debt"), &table, "Something");
+  string expect = "Something";
+  string result;
+
+  // Act
+  result = debt.getComment();
+
+  // Assert
+  EXPECT_EQ(result.compare(expect), 0);
+}
+
+TEST(Sirotkin_Nikita_FinanceNotepadTest, note_can_compare_less) {
+  // Arrange
+  category_table table;
+  note max(MAX_DATE, 10.f, table.getIdOf("Debt"), &table, "Something");
+  note min(MAX_DATE, 10.f, table.getIdOf("Debt"), &table, "Something");
+
+  // Act
+
+  // Assert
+  EXPECT_TRUE(min < max);
+}
+
 
 TEST(Sirotkin_Nikita_FinanceNotepadTest, can_get_pouch) {
   // Arrange
@@ -44,7 +221,7 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, can_get_pouch) {
   result = notes.getPouch();
 
   // Assert
-  ASSERT_FLOAT_EQ(result, expect);
+  EXPECT_FLOAT_EQ(result, expect);
 }
 
 TEST(Sirotkin_Nikita_FinanceNotepadTest, pouch_is_sizeable) {
@@ -58,7 +235,7 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, pouch_is_sizeable) {
   result = notes.getPouch();
 
   // Assert
-  ASSERT_FLOAT_EQ(result, expect);
+  EXPECT_FLOAT_EQ(result, expect);
 }
 
 TEST(Sirotkin_Nikita_FinanceNotepadTest, cat_get_sum_from_category) {
@@ -74,30 +251,14 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, cat_get_sum_from_category) {
   result = notes.sumFromCategory("Food");
 
   // Assert
-  ASSERT_FLOAT_EQ(result, expect);
-}
-
-TEST(Sirotkin_Nikita_FinanceNotepadTest, wrong_date_is_set_to_default) {
-  // Arrange
-  notepad notes(50.f);
-  std::string result;
-  std::string expect = "1.1.2000\nSum: -30\nCategory:"
-                       " Debt\nComment: For Noname\n___________\n";
-
-  // Act
-  notes.addNote(date(33, months::JANUARY, 2016), -30.f, "Debt", "For Noname");
-  result = notes.getCurrentNote().toString();
-
-  // Assert
-  EXPECT_EQ(result.compare(expect), 0);
+  EXPECT_FLOAT_EQ(result, expect);
 }
 
 TEST(Sirotkin_Nikita_FinanceNotepadTest, can_get_current_note) {
   // Arrange
   notepad notes(50.f);
   std::string result;
-  std::string expect = "2.1.2016\nSum: -30\nCategory:"
-                       " Debt\nComment: For Noname\n___________\n";
+  std::string expect = "2.1.2016 -30 Debt For Noname";
 
   // Act
   notes.addNote(date(2, months::JANUARY, 2016), -30.f, "Debt", "For Noname");
@@ -111,15 +272,15 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, can_translate_notepad_to_string) {
   // Arrange
   notepad notes(50.f);
   std::string result;
-  std::string expect = "2.1.2016\nSum: -30\nCategory: "
-                       "Debt\nComment: For Noname\n___________\n"
+  std::string expect = "2.1.2016\nSum: -30\nCategory:"
+                       " Debt\nComment: For Noname\n___________\n"
                        "3.4.2017\nSum: -20\nCategory: Food\n"
                        "Comment: KFC\n___________\n";
 
   // Act
   notes.addNote(date(2, months::JANUARY, 2016), -30.f, "Debt", "For Noname");
   notes.addNote(date(3, months::APRIL, 2017), -20.f, "Food", "KFC");
-  result = notes.toString();
+  result = notes.toFormatedString();
 
   // Assert
   EXPECT_EQ(result.compare(expect), 0);
@@ -129,8 +290,7 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, can_navigte_by_notepad) {
   // Arrange
   notepad notes(50.f);
   std::string result;
-  std::string expect = "2.1.2016\nSum: -30\nCategory:"
-                       " Debt\nComment: For Noname\n___________\n";
+  std::string expect = "2.1.2016 -30 Debt For Noname";
 
   // Act
   notes.addNote(date(1, months::DECEMBER, 2015),
@@ -157,7 +317,7 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, can_sort_by_date) {
   notes.addNote(date(3, months::APRIL, 2017), -20.f, "Food", "KFC");
   notes.addNote(date(2, months::JANUARY, 2016), -30.f, "Debt", "For Noname");
   notes.sortByDate();
-  result = notes.toString();
+  result = notes.toFormatedString();
 
   // Assert
   EXPECT_EQ(result.compare(expect), 0);
@@ -175,7 +335,7 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, can_get_potential_pouch) {
   result = notes.getPotentialPouch();
 
   // Assert
-  ASSERT_FLOAT_EQ(result, expect);
+  EXPECT_FLOAT_EQ(result, expect);
 }
 
 TEST(Sirotkin_Nikita_FinanceNotepadTest, cat_get_notes_from_category) {
@@ -189,7 +349,7 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, cat_get_notes_from_category) {
   notes.addNote(date(1, months::DECEMBER, 2015), 30.f, "Stipend", "day of VMK");
   notes.addNote(date(2, months::JANUARY, 2016), -30.f, "Debt", "For Noname");
   notes.addNote(date(3, months::APRIL, 2017), -20.f, "Food", "KFC");
-  result = notes.notesFromCategoryToString("Debt");
+  result = notes.notesFromCategoryToFormatedString("Debt");
 
   // Assert
   EXPECT_EQ(result.compare(expect), 0);
@@ -210,7 +370,7 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, cat_group_by_category) {
   notes.addNote(date(1, months::DECEMBER, 2015), 30.f, "Food", "burger king");
   notes.addNote(date(2, months::JANUARY, 2016), -30.f, "Debt", "For Noname");
   notes.addNote(date(3, months::APRIL, 2017), -20.f, "Food", "KFC");
-  result = notes.stringGroupedByCategories();
+  result = notes.formatedStringGroupedByCategories();
 
   // Assert
   EXPECT_EQ(result.compare(expect), 0);

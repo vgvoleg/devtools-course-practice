@@ -5,8 +5,10 @@
 #include <string>
 #include "./list.hpp"
 
+using namespace std;
+
 enum class months {
-  JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY,
+  JANUARY = 1, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY,
   AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER
 };
 
@@ -16,19 +18,27 @@ class date {
   months month;
   int year;
  public:
+  date();
   date(char _number, months _month, int _year);
-  std::string toString() const;
-  bool operator>(date other_date) const;
-  bool operator<(date other_date) const;
+  string toString() const;
+  bool operator>(const date &other_date) const;
+  bool operator<(const date &other_date) const;
 };
 
+#define MIN_YEAR 2000
+#define MAX_YEAR 2100
+#define MIN_DATE date(1, months::JANUARY, MIN_YEAR)
+#define MAX_DATE date(31, months::DECEMBER, MAX_YEAR)
+#define DEFAULT_DATE MIN_DATE
+
+#define table_size 9
 class category_table {
  private:
-  std::string table[9];
+  string table[table_size];
  public:
   category_table();
-  int getIdOf(std::string name);
-  std::string getNameOf(int id);
+  int getIdOf(string name) const;
+  string getNameOf(int id) const;
 };
 
 class note {
@@ -36,14 +46,18 @@ class note {
   date notes_date;
   float sum;
   int categories_id;
-  std::string comment;
+  string comment;
   category_table *table;
  public:
-  note(date _notes_date, float _sum, int _categories_id,
-       category_table *_table_of_categories, std::string _comment = "");
-  int getCategoriesId();
-  float getSum();
-  std::string toString() const;
+  note(date notes_date, float sum, int categories_id,
+       category_table *table_of_categories, string comment = "");
+  int getCategoriesId() const;
+  float getSum() const;
+  date getDate() const;
+  string getComment() const;
+  string getCategory() const;
+  string toString() const;
+  string toFormatedString() const;
   bool operator>(const note &right) const;
   bool operator<(const note &right) const;
 };
@@ -54,18 +68,18 @@ class notepad {
   category_table table_of_categories;
   float pouch;
  public:
-  explicit notepad(float _pouch);
-  void addNote(date _notes_date, float _sum, std::string _category,
-               std::string _comment = "");
+  explicit notepad(float pouch);
+  void addNote(date notes_date, float sum, string category,
+               string comment = "");
   float getPouch() const;
   float getPotentialPouch();
-  std::string notesFromCategoryToString(std::string category);
-  float sumFromCategory(std::string category);
-  std::string toString();
-  std::string stringGroupedByCategories();
+  string notesFromCategoryToFormatedString(string category);
+  float sumFromCategory(string category);
+  string toFormatedString();
+  string formatedStringGroupedByCategories();
   void sortByDate();
   bool operator++();
-  note getCurrentNote();
+  note getCurrentNote() const;
 };
 
 #endif  // MODULES_SIROTKIN_NIKITA_FINANCE_NOTEPAD_INCLUDE_FINANCE_NOTEPAD_H_

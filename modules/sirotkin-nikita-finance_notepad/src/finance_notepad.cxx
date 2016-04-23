@@ -3,10 +3,11 @@
 #include <sstream>
 #include <string>
 #include "include/finance_notepad.h"
+
 using std::string;
 using std::ostringstream;
 
-#define WRONG_DATE date(1, months::JANUARY, 2000)
+
 
 template <class TYPE>
 string to_string(TYPE value) {
@@ -16,25 +17,33 @@ string to_string(TYPE value) {
 }
 
 // date
-date::date(char _number, months _month, int _year) {
-  if (_number > 31 || _year < 2000 || _year > 2100) {
-    *this = WRONG_DATE;
+date::date()
+{
+  this->number = 1;
+  this->month = months::JANUARY;
+  this->year = MIN_YEAR;
+}
+date::date(char number, months month, int year) {
+  if (number > 31 || number < 0 || year < MIN_YEAR || year > MAX_YEAR) {
+    this->number = 1;
+    this->month = months::JANUARY;
+    this->year = MIN_YEAR;
   } else {
-    number = _number;
-    month = _month;
-    year = _year;
+    this->number = number;
+    this->month = month;
+    this->year = year;
   }
 }
 
 string date::toString() const {
   string result;
   result = to_string<int>(number) + "." +
-          to_string<int>(static_cast<int>(month) + 1) +
+          to_string<int>(static_cast<int>(month)) +
            "." + to_string<int>(year);
   return result;
 }
 
-bool date::operator>(date other_date) const {
+bool date::operator>(const date &other_date) const {
   if (year > other_date.year)
     return true;
   else if (year < other_date.year)
@@ -49,7 +58,7 @@ bool date::operator>(date other_date) const {
     return false;
 }
 
-bool date::operator<(date other_date) const {
+bool date::operator<(const date &other_date) const {
   return !((*this) > other_date);
 }
 
@@ -63,35 +72,58 @@ category_table::category_table() {
   table[5] = "Food";
   table[6] = "Entertainment";
   table[7] = "Taxes";
-  table[8] = "Other";
+  table[table_size-1] = "Other";
 }
 
-int category_table::getIdOf(string name) {
-  for (int i = 0; i < 8; ++i)
+int category_table::getIdOf(string name) const {
+  for (int i = 0; i < table_size; ++i)
     if (name == table[i])
       return i;
-  return 8;
+  return table_size-1;
 }
 
-string category_table::getNameOf(int id) {
-  return table[id];
+string category_table::getNameOf(int id) const {
+  if (id >= 0 && id < table_size) return table[id];
+  else return table[table_size-1];
 }
 
 // note
-note::note(date _notes_date, float _sum, int _categories_id,
-           category_table *_table_of_categories, string _comment) :
-  notes_date(_notes_date), sum(_sum), categories_id(_categories_id),
-    comment(_comment), table(_table_of_categories) { }
+note::note(date notes_date, float sum, int categories_id,
+           category_table *table_of_categories, string comment) { 
+  this->notes_date = notes_date;
+  this->sum = sum;
+  this->categories_id = categories_id;
+  this->table = table_of_categories;
+  this->comment = comment;
+}
 
-int note::getCategoriesId() {
+int note::getCategoriesId() const {
   return categories_id;
 }
 
-float note::getSum() {
+float note::getSum() const {
   return sum;
 }
 
+date note::getDate() const {
+  return notes_date;
+}
+
+string note::getComment() const {
+  return comment;
+}
+
+string note::getCategory() const {
+  return table->getNameOf(categories_id);
+}
+
 string note::toString() const {
+  string result;
+  result = notes_date.toString() + " " + to_string<float>(sum)
+    + " " + table->getNameOf(categories_id) + " " + comment;
+  return result;
+}
+string note::toFormatedString() const {
   string result;
   result = notes_date.toString() + "\nSum: " + to_string<float>(sum)
            + "\nCategory: " + table->getNameOf(categories_id)
@@ -108,14 +140,15 @@ bool note::operator<(const note &right) const {
 }
 
 // notepad
-notepad::notepad(float _pouch): pouch(_pouch) {
+notepad::notepad(float pouch) {
+  this->pouch = pouch;
 }
-void notepad::addNote(date _notes_date, float _sum, string _categoriy,
-                      string _comment) {
-  notes.addElement(note(_notes_date, _sum,
-                        table_of_categories.getIdOf(_categoriy),
-                        &table_of_categories, _comment));
-  pouch += _sum;
+void notepad::addNote(date notes_date, float sum, string categoriy,
+                      string comment) {
+  notes.addElement(note(notes_date, sum,
+                        table_of_categories.getIdOf(categoriy),
+                        &table_of_categories, comment));
+  pouch += sum;
 }
 
 float notepad::getPouch() const {
@@ -123,18 +156,17 @@ float notepad::getPouch() const {
 }
 
 float notepad::getPotentialPouch() {
-  float result = pouch - sumFromCategory("Debt");
-  return result;
+  return pouch - sumFromCategory("Debt");
 }
 
-string notepad::notesFromCategoryToString(string category) {
+string notepad::notesFromCategoryToFormatedString(string category) {
   string result;
   notes.reset();
   int category_id = table_of_categories.getIdOf(category);
   bool flag = !(notes.isEmpty());
   while (flag) {
     if (notes.getValue().getCategoriesId() == category_id)
-      result += notes.getValue().toString();
+      result += notes.getValue().toFormatedString();
     flag = ++notes;
   }
   return result;
@@ -153,18 +185,18 @@ float notepad::sumFromCategory(string category) {
   return result;
 }
 
-string notepad::toString() {
+string notepad::toFormatedString() {
   string result;
   notes.reset();
   bool flag = !(notes.isEmpty());
   while (flag) {
-    result += notes.getValue().toString();
+    result += notes.getValue().toFormatedString();
     flag = ++notes;
   }
   return result;
 }
 
-string notepad::stringGroupedByCategories() {
+string notepad::formatedStringGroupedByCategories() {
   string result;
   bool flag;
   for (int category_id = 0; category_id < 9; ++category_id) {
@@ -172,7 +204,7 @@ string notepad::stringGroupedByCategories() {
     flag = !(notes.isEmpty());
     while (flag) {
       if (notes.getValue().getCategoriesId() == category_id)
-        result += notes.getValue().toString();
+        result += notes.getValue().toFormatedString();
       flag = ++notes;
     }
   }
@@ -187,6 +219,6 @@ bool notepad::operator++() {
   return ++notes;
 }
 
-note notepad::getCurrentNote() {
+note notepad::getCurrentNote() const{
   return notes.getValue();
 }
