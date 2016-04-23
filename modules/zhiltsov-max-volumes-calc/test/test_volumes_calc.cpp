@@ -21,7 +21,7 @@ TEST(VolumeCalculatorTest, Example_1_Is_Working) {
         [] (double x, double y) { return 0.0; },
         [] (double x, double y) { return 10.0; }
     };
-    const double calculatedVolume = calculator.Calculate(100);
+    const double calculatedVolume = calculator.Calculate(200);
 
     ASSERT_NEAR(expectedVolume, calculatedVolume, 0.0001 * expectedVolume);
 }

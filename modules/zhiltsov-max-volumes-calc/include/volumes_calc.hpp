@@ -78,7 +78,7 @@ VolumeCalculator<double> calculator (
     [] (double, double) { return 0.0; },
     [] (double, double) { return 10.0; }
 );
-double sphereVolume = calculator.Calculate(100); // approx. 4/3 * MATH_PI * 10^3
+double sphereVolume = calculator.Calculate(200); // approx. 4/3 * MATH_PI * 10^3
 
 // Calculate a volume of a cylinder with radius 5 and height 10:
 VolumeCalculator<float> calculator (
