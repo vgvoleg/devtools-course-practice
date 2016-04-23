@@ -92,8 +92,8 @@ template<class ELEMENTS_TYPE>
 bool lite_list<ELEMENTS_TYPE>::operator++() {
   if (current != nullptr) {
     current = current->getNext();
-	if (current != nullptr) {
-		return true;
+    if (current != nullptr) {
+      return true;
     } else {
       current = head;
       return false;
