@@ -13,13 +13,13 @@ const unsigned int MineSweeper::MINE = 9;
 const unsigned int MineSweeper::CLOSED_CELL = 0;
 const unsigned int MineSweeper::OPENED_CELL = 10;
 MineSweeper::MineSweeper(unsigned int game_size,
-                         unsigned int mine_count_, int seed) {
-    if (mine_count_ > game_size*game_size-1)
+                         unsigned int mine_count, int seed) {
+    if (mine_count > game_size*game_size-1)
         throw std::invalid_argument("Invalid mine count");
     game_field = new Field(game_size);
     opened_field = new Field(game_size);
     game_status = GAME_STATUS_START;
-    mine_count = mine_count_;
+    this->mine_count = mine_count;
     if (seed == -1)
         random_seed = (unsigned int)time(NULL);
     else
@@ -34,11 +34,13 @@ MineSweeper::~MineSweeper() {
 void MineSweeper::place_mines(unsigned int curr_x, unsigned int curr_y) {
     unsigned int current_mine_count = 0;
     unsigned int field_size = game_field->get_field_size();
+    unsigned int x = 0;
+    unsigned int y = 0;
     while (current_mine_count < mine_count) {
-        unsigned int x = rand_r(&random_seed)%field_size;
-        unsigned int y = rand_r(&random_seed)%field_size;
-        if (game_field->get_cell(x, y) != 9 && x != curr_x && y!= curr_y) {
-            game_field->set_cell(x, y, 9);
+        x = rand_r(&random_seed)%field_size;
+        y = rand_r(&random_seed)%field_size;
+        if (game_field->get_cell(x, y) != MINE && x != curr_x && y!= curr_y) {
+            game_field->set_cell(x, y, MINE);
             current_mine_count++;
         }
     }
@@ -91,7 +93,7 @@ void MineSweeper::fill_game_field_with_numbers() {
     }
 }
 
-int MineSweeper::get_game_status() {
+const int MineSweeper::get_game_status() {
     return game_status;
 }
 
@@ -123,34 +125,34 @@ void MineSweeper::finalize_game() {
     game_status = GAME_STATUS_LOSE;
 }
 
-unsigned int MineSweeper::get_opened_field_cell(unsigned int x,
+const unsigned int MineSweeper::get_opened_field_cell(unsigned int x,
                                                 unsigned int y) {
     return opened_field->get_cell(x, y);
 }
 
-void MineSweeper::clean(int i, int j) {
-    if ((i >= 0) && (i < static_cast<int>(game_field->get_field_size()))) {
-        if ((j >= 0) && (j < static_cast<int>(game_field->get_field_size()))) {
-            if (!opened_field->get_cell(i, j)) {
-                opened_field->set_cell(i, j, game_field->get_cell(i, j));
-                if (game_field->get_cell(i, j) == 10) {
-                    clean(i-1, j-1);
-                    clean(i-1, j);
-                    clean(i-1, j+1);
-                    clean(i, j-1);
-                    clean(i, j+1);
-                    clean(i+1, j-1);
-                    clean(i+1, j);
-                    clean(i+1, j+1);
+void MineSweeper::clean(int x, int y) {
+    if ((x >= 0) && (x < static_cast<int>(game_field->get_field_size()))) {
+        if ((y >= 0) && (y < static_cast<int>(game_field->get_field_size()))) {
+            if (!opened_field->get_cell(x, y)) {
+                opened_field->set_cell(x, y, game_field->get_cell(x, y));
+                if (game_field->get_cell(x, y) == 10) {
+                    clean(x-1, y-1);
+                    clean(x-1, y);
+                    clean(x-1, y+1);
+                    clean(x, y-1);
+                    clean(x, y+1);
+                    clean(x+1, y-1);
+                    clean(x+1, y);
+                    clean(x+1, y+1);
                 } else {
-                    if (empty(i-1, j-1)) clean(i-1, j-1);
-                    if (empty(i-1, j)) clean(i-1, j);
-                    if (empty(i-1, j+1)) clean(i-1, j+1);
-                    if (empty(i, j-1)) clean(i, j-1);
-                    if (empty(i, j+1)) clean(i, j+1);
-                    if (empty(i+1, j-1)) clean(i+1, j-1);
-                    if (empty(i+1, j)) clean(i+1, j);
-                    if (empty(i+1, j+1)) clean(i+1, j+1);
+                    if (empty(x-1, y-1)) clean(x-1, y-1);
+                    if (empty(x-1, y)) clean(x-1, y);
+                    if (empty(x-1, y+1)) clean(x-1, y+1);
+                    if (empty(x, y-1)) clean(x, y-1);
+                    if (empty(x, y+1)) clean(x, y+1);
+                    if (empty(x+1, y-1)) clean(x+1, y-1);
+                    if (empty(x+1, y)) clean(x+1, y);
+                    if (empty(x+1, y+1)) clean(x+1, y+1);
                 }
             }
         }

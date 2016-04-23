@@ -76,6 +76,7 @@ TEST(MINEsweeper, throw_when_continue_game_after_ends) {
 
     // Assert
     EXPECT_THROW(game->open_cell(1, 1), std::invalid_argument);
+    delete game;
 }
 
 TEST(MINEsweeper, throws_when_try_to_open_opened_cell) {
@@ -87,6 +88,7 @@ TEST(MINEsweeper, throws_when_try_to_open_opened_cell) {
     game->open_cell(0, 0);
     // Assert
     EXPECT_THROW(game->open_cell(0, 0), std::invalid_argument);
+    delete game;
 }
 
 bool is_in_massive(int x, int y, int size) {
@@ -133,6 +135,7 @@ TEST(MINEsweeper, can_win_game) {
 
     // Assert
     EXPECT_EQ(MineSweeper::GAME_STATUS_WIN, game->get_game_status());
+    delete game;
 }
 
 TEST(MINEsweeper, can_get_played_status) {
@@ -145,6 +148,7 @@ TEST(MINEsweeper, can_get_played_status) {
 
     // Assert
     EXPECT_EQ(MineSweeper::GAME_STATUS_PLAYING, game->get_game_status());
+    delete game;
 }
 
 TEST(MINEsweeper, can_get_opened_fild_fill) {
@@ -159,4 +163,5 @@ TEST(MINEsweeper, can_get_opened_fild_fill) {
 
     // Assert
     EXPECT_NE(expected_val, game->get_opened_field_cell(x, y));
+    delete game;
 }

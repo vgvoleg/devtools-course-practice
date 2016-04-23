@@ -17,7 +17,7 @@ class MineSweeper{
     void place_mines(unsigned int curr_x, unsigned int curr_y);
     void fill_game_field_with_numbers();
     void finalize_game();
-    void clean(int i, int j);
+    void clean(int x, int y);
     bool mine(int x, int y);
     bool empty(int x, int y);
     void check_win();
@@ -30,12 +30,13 @@ class MineSweeper{
     static const unsigned int MINE;
     static const unsigned int CLOSED_CELL;
     static const unsigned int OPENED_CELL;
+
     MineSweeper(unsigned int game_size = 10,
-                unsigned int mine_count_ = 10, int seed = -1);
+                unsigned int mine_count = 10, int seed = -1);
     ~MineSweeper();
     void open_cell(unsigned int x, unsigned int y);
-    int get_game_status();
-    unsigned int get_opened_field_cell(unsigned int x, unsigned int y);
+    const int get_game_status();
+    const unsigned int get_opened_field_cell(unsigned int x, unsigned int y);
 };
 
 #endif  // MODULES_MAGAZINNIK_IVAN_MINESWEEPER_INCLUDE_MINE_SWEEPER_H_

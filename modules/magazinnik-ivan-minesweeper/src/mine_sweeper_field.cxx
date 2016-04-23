@@ -33,11 +33,11 @@ void Field::fill_field_with_zero_val() {
     }
 }
 
-unsigned int Field::get_field_size() {
+const unsigned int Field::get_field_size() {
     return field_size;
 }
 
-unsigned int Field::get_cell(unsigned int x, unsigned int y) {
+const unsigned int Field::get_cell(unsigned int x, unsigned int y) {
     if (x >= field_size || y >= field_size)
         throw invalid_argument("invalid cell address");
     return field[x][y];

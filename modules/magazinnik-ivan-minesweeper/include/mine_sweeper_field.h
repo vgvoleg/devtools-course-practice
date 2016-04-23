@@ -15,8 +15,8 @@ class Field {
 
     explicit Field(unsigned int size = 10);
     ~Field();
-    unsigned int get_field_size();
-    unsigned int get_cell(unsigned int x, unsigned int y);
+    const unsigned int get_field_size();
+    const unsigned int get_cell(unsigned int x, unsigned int y);
     void set_cell(unsigned int x, unsigned int y, unsigned int value);
 };
 
