@@ -32,7 +32,7 @@ TEST(ConverterTemperature, can_convert_kelvin_to_kelvin) {
     // Act
     Temperature.converter(dimension);
 
-    //Assert
+    // Assert
     EXPECT_DOUBLE_EQ(Temperature.getValue(), value);
 }
 
