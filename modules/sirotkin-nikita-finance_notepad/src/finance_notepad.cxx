@@ -1,6 +1,7 @@
 // Copyright 2016 Sirotkin_Nikita
 
 #include <sstream>
+#include <string>
 #include "include/finance_notepad.h"
 
 #define WRONG_DATE date(1, months::JANUARY, 2000)
@@ -14,9 +15,9 @@ std::string to_string(TYPE value) {
 
 // date
 date::date(char _number, months _month, int _year) {
-  if (_number > 31 || _year < 2000 || _year > 2100)
+  if (_number > 31 || _year < 2000 || _year > 2100) {
     *this = WRONG_DATE;
-  else {
+  } else {
     number = _number;
     month = _month;
     year = _year;
@@ -25,8 +26,8 @@ date::date(char _number, months _month, int _year) {
 
 std::string date::toString() const {
   std::string result;
-  std::string result = to_string<int>(number) + "." + to_string<int>(int(month) + 1) +
-                       "." + to_string<int>(year);
+  std::string result = to_string<int>(number) + "." + 
+     to_string<int>(static_cast<int>(month)) + "." + to_string<int>(year);
   return result;
 }
 
@@ -78,7 +79,6 @@ note::note(date _notes_date, float _sum, int _categories_id,
            category_table *_table_of_categories, std::string _comment) :
   notes_date(_notes_date), sum(_sum), categories_id(_categories_id),
   table(_table_of_categories), comment(_comment) {
-
 }
 
 int note::getCategoriesId() {
@@ -110,8 +110,8 @@ notepad::notepad(float _pouch): pouch(_pouch) {
 }
 void notepad::addNote(date _notes_date, float _sum, std::string _categoriy,
                       std::string _comment) {
-  notes.addElement(note(_notes_date, _sum, table_of_categories.getIdOf(_categoriy),
-      &table_of_categories, _comment));
+  notes.addElement(note(_notes_date, _sum, 
+   table_of_categories.getIdOf(_categoriy), &table_of_categories, _comment));
   pouch += _sum;
 }
 
