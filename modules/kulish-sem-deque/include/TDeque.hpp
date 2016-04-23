@@ -39,16 +39,8 @@ class TDeque {
 
   ITEM *head;
   ITEM *tail;
-  ITEM *create(const V& data) {
-    ITEM *item = new ITEM;
-    item->data = new V;
+  ITEM *create(const V& data);
 
-    *item->data = data;
-    item->next = nullptr;
-    item->previous = nullptr;
-
-    return item;
-  }
   void delData(ITEM* item)const;
 };
 
@@ -75,6 +67,19 @@ TDeque<V>::~TDeque() {
     item = temp;
   }
   size = 0;
+}
+
+template<class V>
+typename TDeque<V>::ITEM * TDeque<V>::create(const V & data)
+{
+  ITEM *item = new ITEM;
+  item->data = new V;
+
+  *item->data = data;
+  item->next = nullptr;
+  item->previous = nullptr;
+
+  return item;
 }
 
 template<class V>
