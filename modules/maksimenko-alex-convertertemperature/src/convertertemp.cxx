@@ -2,12 +2,8 @@
 
 #include "include/convertertemp.h"
 
-#include <limits>
-
-const double eps = std::numeric_limits<double>::epsilon();
-
 ConverterTemp::ConverterTemp(const double val, const Measure measure) {
-    if ((val < eps) && (measure == Measure::KELVIN)) {
+    if ((val < 0.0) && (measure == Measure::KELVIN)) {
         retcode_ = Data::ERROR;
     } else {
         retcode_ = Data::OK;
@@ -25,7 +21,7 @@ void ConverterTemp::converter(const Measure measure) {
                 measure_ = measure;
                 break;
             case Measure::DEGREE:
-                if ((value_ + daughternum[0]) < eps) {
+                if ((value_ + daughternum[0]) < 0.0) {
                     retcode_ = Data::ERROR;
                 } else {
                     value_ = value_ + daughternum[0];
@@ -34,7 +30,7 @@ void ConverterTemp::converter(const Measure measure) {
                 break;
             case Measure::FAHRENHEIT:
                 if (((value_ - daughternum[1]) /
-                    daughternum[2] + daughternum[0]) < eps) {
+                    daughternum[2] + daughternum[0]) < 0.0) {
                     retcode_ = Data::ERROR;
                 } else {
                     value_ = ((value_ - daughternum[1]) /
@@ -44,7 +40,7 @@ void ConverterTemp::converter(const Measure measure) {
                 break;
             case Measure::NUTON:
                 if ((daughternum[4] *(value_) /
-                    daughternum[3] + daughternum[0]) < eps) {
+                    daughternum[3] + daughternum[0]) < 0.0) {
                     retcode_ = Data::ERROR;
                 } else {
                     value_ = (daughternum[4] * value_) /
