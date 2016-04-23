@@ -15,12 +15,12 @@ string to_string(TYPE value) {
 }
 
 // date
-date::date()
-{
+date::date() {
   this->number = 1;
   this->month = months::JANUARY;
   this->year = MIN_YEAR;
 }
+
 date::date(char number, months month, int year) {
   if (number > 31 || number < 0 || year < MIN_YEAR || year > MAX_YEAR) {
     this->number = 1;
@@ -74,8 +74,7 @@ category_table::category_table() {
   table[table_size-1] = "Other";
 }
 
-category_table::~category_table()
-{
+category_table::~category_table() {
   delete[] table;
 }
 
@@ -87,13 +86,16 @@ int category_table::getIdOf(string name) const {
 }
 
 string category_table::getNameOf(int id) const {
-  if (id >= 0 && id < table_size) return table[id];
-  else return table[table_size-1];
+  if (id >= 0 && id < table_size) {
+    return table[id];
+  } else {
+     return table[table_size-1];
+  }
 }
 
 // note
 note::note(date notes_date, float sum, int categories_id,
-           category_table *table_of_categories, string comment) { 
+           category_table *table_of_categories, string comment) {
   this->notes_date = notes_date;
   this->sum = sum;
   this->categories_id = categories_id;
@@ -223,6 +225,6 @@ bool notepad::operator++() {
   return ++notes;
 }
 
-note notepad::getCurrentNote() const{
+note notepad::getCurrentNote() const {
   return notes.getValue();
 }
