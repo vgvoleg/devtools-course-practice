@@ -26,7 +26,7 @@ class TDeque {
   bool isEmpty()const;
   unsigned dequeSize()const;
   bool isExist(const V&)const;
-  void erase(V, unsigned);
+  void erase(V, int);
 
  private:
   unsigned size;
@@ -215,10 +215,10 @@ bool TDeque<V>::isExist(const V& data) const {
 
 
 template<class V>
-void TDeque<V>::erase(V data, const unsigned position) {
+void TDeque<V>::erase(V data, const int position) {
   ITEM* item = tail;
   ITEM* tmp;
-  unsigned counter = 0;
+  int counter = 0;
 
   while (item) {
     if (*item->data == data && position <= counter) {

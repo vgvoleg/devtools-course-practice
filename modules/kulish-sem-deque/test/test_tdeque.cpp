@@ -175,8 +175,7 @@ TEST(TDeque, isEmpty_works) {
   TDeque<int> deque;
 
   // Act And Assert
-  bool isEmpty = deque.isEmpty();
-  EXPECT_TRUE(isEmpty);
+  EXPECT_TRUE(deque.isEmpty());
 }
 
 TEST(TDeque, Emplace_Head_Works) {
@@ -243,7 +242,7 @@ TEST(TDeque, Erase_Works_At_The_Start) {
 
   // Assert
   const int position = 0;
-  const int numTwo = 5;
+  const int numOne = 0;
   deque.erase(numOne, position);
   EXPECT_FALSE(deque.isExist(numOne));
 }
@@ -282,11 +281,7 @@ TEST(TDeque, Return_Minus_One_Then_Value_Less_Than_Zero) {
   // Arrange
   TDeque<int> deque;
 
-  // Act
-  for (int i = 0; i < 50; i++)
-    deque.push_Head(i);
-
-  // Assert
+  // Act And Assert
   const int position = -1;
   EXPECT_EQ(position, deque[position]);
 }
