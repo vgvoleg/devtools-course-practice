@@ -3,7 +3,7 @@
 #include <cmath>
 #include <functional>
 #include "gtest/gtest.h"
-#include "zhiltsov_max_volumes_calc.hpp"
+#include "volumes_calc.hpp"
 
 
 TEST(VolumeCalculatorTest, Example_1_Is_Working) {

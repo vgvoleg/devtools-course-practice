@@ -1,7 +1,7 @@
 // Copyright 2016 Zhiltsov Max
 
-#ifndef ZHILTSOV_MAX_VOLUMES_CALC_H_
-#define ZHILTSOV_MAX_VOLUMES_CALC_H_
+#ifndef VOLUMES_CALC_H_
+#define VOLUMES_CALC_H_
 
 #include <functional>
 
@@ -174,7 +174,7 @@ NumberType integrate(const NumberType& lower, const NumberType& upper,
     const auto step = std::abs(upper - lower) / partitionCount;
     NumberType result(0);
     for (size_t i = 1; i <= partitionCount; ++i) {
-        const auto midPoint = rand() / NumberType(RAND_MAX) * step;
+        const auto midPoint = std::rand() / NumberType(RAND_MAX) * step;
         result += f(lower + step * (i - 1) + midPoint) * step;
     }
     return result;
@@ -237,4 +237,4 @@ NumberType VolumeCalculator<NumberType>::Calculate(size_t partitionCount1,
 
 }  // namespace volume_calc
 
-#endif  // ZHILTSOV_MAX_VOLUMES_CALC_H_
+#endif  // VOLUMES_CALC_H_
