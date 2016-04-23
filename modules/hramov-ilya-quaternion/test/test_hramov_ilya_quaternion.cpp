@@ -128,6 +128,19 @@ TEST(Quaternion, Can_Multiply) {
     EXPECT_TRUE(quat1 == expect);
 }
 
+TEST(Quaternion, Can_Multiply_On_Scalar) {
+    // Arrange
+    Quaternion quat(1.0, 2.0, 3.0, 4.0);
+
+    // Act
+    Quaternion result = 2.0 * quat;
+
+    // Assert
+    Quaternion expect(2.0, 4.0, 6.0, 8.0);
+    EXPECT_TRUE(result == expect);
+}
+
+
 TEST(Quaternion, Can_Conjugate) {
     // Arrange
     Quaternion quat(1.0, 2.0, 3.0, 4.0);
