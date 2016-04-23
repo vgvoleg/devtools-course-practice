@@ -98,7 +98,7 @@ V TDeque<V>::operator[](const int &value)const {
     while (counter <= value) {
       if (counter == value) {
         result = *item->data;
-        break;
+        return result;
       } else {
         item = item->previous;
         counter++;

@@ -118,25 +118,6 @@ TEST(TDeque, Pop_Tail_Works_With_One_Element) {
   EXPECT_EQ(N, deque.pop_Tail());
 }
 
-TEST(TDeque, All_Pop_And_Push_Works) {
-  // Arrange
-  TDeque<int> deque;
-
-  // Act
-  const int N = 50;
-  for (int i = 0; i < N; i++)
-    if (i % 2 == 0)
-      deque.push_Head(i);
-    else
-      deque.push_Tail(i);
-
-  // Assert
-  const int expectedHead = 48;
-  const int expectedTail = 49;
-  EXPECT_EQ(expectedHead, deque.pop_Head());
-  EXPECT_EQ(expectedTail, deque.pop_Tail());
-}
-
 TEST(TDeque, Destructor_Works) {
   // Arrange
   TDeque<int>* intDeque = new TDeque<int>();
@@ -268,7 +249,8 @@ TEST(TDeque, Brackets_Works) {
   TDeque<int> deque;
 
   // Act
-  for (int i = 0; i < 10; i++)
+  const int N = 10;
+  for (int i = 0; i < N; i++)
     deque.push_Head(i);
 
   // Assert
