@@ -195,8 +195,8 @@ TEST(TDeque, erase_works) {
 
   // Assert
   const int numOne = 0;
-  const int numTwo=5;
-  const int numThree=9
+  const int numTwo = 5;
+  const int numThree = 9;
   deque.erase(numOne, 0);
   EXPECT_FALSE(deque.isExist(numOne));
   deque.erase(numTwo, 0);
