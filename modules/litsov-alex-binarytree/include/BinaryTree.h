@@ -1,63 +1,63 @@
-// Copyright 2016 Litsov Alex
-
-#ifndef MODULES_LITSOV_ALEX_BINARYTREE_INCLUDE_BINARYTREE_H_
-#define MODULES_LITSOV_ALEX_BINARYTREE_INCLUDE_BINARYTREE_H_
+#ifndef MODULES_BINARYTREE_INCLUDE_BINARYTREE_H_
+#define MODULES_BINARYTREE_INCLUDE_BINARYTREE_H_
 
 #include <string>
 using std::string;
 
 class Element {
-    Element* parent;
-    Element *right;
-    Element *left;
-    int key;
-    string value;
  public:
-    explicit Element(int _key = 0, string _value = "",
-        Element* _parent = 0, Element* _right = 0, Element* _left = 0);
-    Element(const Element& tmp);
+    explicit Element(const int& init_key = 0, const string& init_value = "",
+        Element* const init_parent = 0, Element* const init_right = 0, Element* const init_left = 0);
+    Element(const Element& init_element);
     ~Element();
-    int getKey() const;
-    void setKey(const int& _key);
-    string getValue() const;
-    void setValue(const string& _value);
-    void setRight(Element* _right);
-    void setLeft(Element *_left);
-    void setParent(Element *_parent);
-    Element* getRight() const;
-    Element* getLeft() const;
-    Element* getParent() const;
-};
-class BinaryTree {
-    Element* root;
+    int GetKey() const;
+    void SetKey(const int& assigned_key);
+    string GetValue() const;
+    void SetValue(const string& assigned_value);
+    void SetRight(Element* const  assigned_right);
+    void SetLeft(Element* const assigned_left);
+    void SetParent(Element* const assigned_parent);
+    Element* GetRight() const;
+    Element* GetLeft() const;
+    Element* GetParent() const;
 
  private:
-    Element* CopyTree(Element* tmp, Element* parent = 0) const;
-    void _getKeysOrderInSubtree(Element* start, string* order) const;
-    void _getValuesOrderInSubtree(Element* start, string* order) const;
-    void DeleteSubtree(Element* tmp);
-
+    Element* parent_;
+    Element *right_;
+    Element *left_;
+    int key_;
+    string value_;
+};
+class BinaryTree {
  public:
-    explicit BinaryTree(Element* _root = 0);
-    Element* getRoot() const;
-    BinaryTree(const BinaryTree& tmp);
-    BinaryTree& operator=(const BinaryTree& tmp);
+    explicit BinaryTree(Element* const init_root = 0);
+    Element* GetRoot() const;
+    BinaryTree(const BinaryTree& init_tree);
+    BinaryTree& operator=(const BinaryTree& assigned_tree);
     ~BinaryTree();
-    void insertElem(Element* input);
-    Element* searchByKeyInSubtree(const int& key, Element* start) const;
-    Element* searchByValueInSubtree(const string& value, Element* start) const;
-    Element* searchByKey(const int& key) const;
-    Element* searchByValue(const string& value) const;
-    Element* getMinByKeyInSubtree(Element* start) const;
-    Element* getMinByKey() const;
-    Element* getMaxByKeyInSubtree(Element* start) const;
-    Element* getMaxByKey() const;
-    Element* getSuccessor(Element* tmp) const;
-    Element* getPredecessor(Element* tmp) const;
-    string getKeysOrder() const;
-    string getValuesOrderByKeys() const;
-    string getKeysOrderInSubtree(Element* start) const;
-    string getValuesOrderInSubtree(Element* start) const;
+    void InsertElem(Element* const input_element);
+    Element* SearchByKeyInSubtree(const int& key, Element* start_element) const;
+    Element* SearchByValueInSubtree(const string& value, Element* const start_element) const;
+    Element* SearchByKey(const int& key) const;
+    Element* SearchByValue(const string& value) const;
+    Element* GetMinByKeyInSubtree(Element* const start_element) const;
+    Element* GetMinByKey() const;
+    Element* GetMaxByKeyInSubtree(Element* const start_element) const;
+    Element* GetMaxByKey() const;
+    Element* GetSuccessor(Element* const specified_element) const;
+    Element* GetPredecessor(Element* const specified_element) const;
+    string GetKeysOrder() const;
+    string GetValuesOrderByKeys() const;
+    string GetKeysOrderInSubtree(Element* const start_element) const;
+    string GetValuesOrderInSubtree(Element* const start_element) const;
+
+ private:
+    Element* CopySubtree(Element* subtree_root, Element* roots_parent = 0) const;
+    void GetKeysOrderInSubtreeRecurse(Element* start_element, string* order) const;
+    void GetValuesOrderInSubtreeRecurse(Element* start_element, string* order) const;
+    void DeleteSubtree(Element* subtree_root);
+
+    Element* root_;
 };
 
-#endif  // MODULES_LITSOV_ALEX_BINARYTREE_INCLUDE_BINARYTREE_H_
+#endif  // MODULES_BINARYTREE_INCLUDE_BINARYTREE_H_
