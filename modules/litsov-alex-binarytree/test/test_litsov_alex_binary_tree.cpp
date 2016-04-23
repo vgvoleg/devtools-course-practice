@@ -1,3 +1,4 @@
+// Copyright 2016 Litsov Alex
 #include <gtest/gtest.h>
 
 #include <string>

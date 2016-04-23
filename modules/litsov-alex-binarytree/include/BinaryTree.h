@@ -1,5 +1,6 @@
-#ifndef MODULES_BINARYTREE_INCLUDE_BINARYTREE_H_
-#define MODULES_BINARYTREE_INCLUDE_BINARYTREE_H_
+// Copyright 2016 Litsov Alex
+#ifndef MODULES_BINARYTREE_LITSOV_ALEX_INCLUDE_BINARYTREE_H_
+#define MODULES_BINARYTREE_LITSOV_ALEX_INCLUDE_BINARYTREE_H_
 
 #include <string>
 using std::string;
@@ -7,7 +8,8 @@ using std::string;
 class Element {
  public:
     explicit Element(const int& init_key = 0, const string& init_value = "",
-        Element* const init_parent = 0, Element* const init_right = 0, Element* const init_left = 0);
+        Element* const init_parent = 0, Element* const init_right = 0,
+        Element* const init_left = 0);
     Element(const Element& init_element);
     ~Element();
     int GetKey() const;
@@ -36,8 +38,9 @@ class BinaryTree {
     BinaryTree& operator=(const BinaryTree& assigned_tree);
     ~BinaryTree();
     void InsertElem(Element* const input_element);
-    Element* SearchByKeyInSubtree(const int& key, Element* start_element) const;
-    Element* SearchByValueInSubtree(const string& value, Element* const start_element) const;
+    Element* SearchByKeyInSubtree(const int& key,Element* start_element) const;
+    Element* SearchByValueInSubtree(const string& value,
+        Element* const start_element) const;
     Element* SearchByKey(const int& key) const;
     Element* SearchByValue(const string& value) const;
     Element* GetMinByKeyInSubtree(Element* const start_element) const;
@@ -52,12 +55,15 @@ class BinaryTree {
     string GetValuesOrderInSubtree(Element* const start_element) const;
 
  private:
-    Element* CopySubtree(Element* subtree_root, Element* roots_parent = 0) const;
-    void GetKeysOrderInSubtreeRecurse(Element* start_element, string* order) const;
-    void GetValuesOrderInSubtreeRecurse(Element* start_element, string* order) const;
+    Element* CopySubtree(Element* subtree_root,
+        Element* roots_parent = 0) const;
+    void GetKeysOrderInSubtreeRecurse(Element* start_element,
+        string* order) const;
+    void GetValuesOrderInSubtreeRecurse(Element* start_element,
+        string* order) const;
     void DeleteSubtree(Element* subtree_root);
 
     Element* root_;
 };
 
-#endif  // MODULES_BINARYTREE_INCLUDE_BINARYTREE_H_
+#endif  // MODULES_BINARYTREE_LITSOV_ALEX_INCLUDE_BINARYTREE_H_
