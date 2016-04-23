@@ -24,12 +24,12 @@ class TDeque {
   V operator[](const int& value)const;
 
   bool isEmpty()const;
-  int dequeSize()const;
+  unsigned dequeSize()const;
   bool isExist(const V&)const;
   void erase(V, unsigned);
 
  private:
-  unsigned int size;
+  unsigned size;
 
   struct ITEM {
     V *data;
@@ -39,13 +39,13 @@ class TDeque {
 
   ITEM *head;
   ITEM *tail;
+  
   ITEM *create(const V& data);
-
   void delData(ITEM* item)const;
 };
 
 template<class V>
-TDeque<V>::TDeque() : size(0), head(0), tail(0) {}
+TDeque<V>::TDeque() : size(0), head(nullptr), tail(nullptr) {}
 
 template<class V>
 TDeque<V>::TDeque(const V& data) {
@@ -61,8 +61,7 @@ TDeque<V>::~TDeque() {
   while (item != head) {
     ITEM* temp = item->previous;
 
-    delete item->data;
-    delete item;
+    delData(item);
 
     item = temp;
   }
@@ -89,7 +88,7 @@ void TDeque<V>::delData(ITEM* item)const {
 
 template<class V>
 V TDeque<V>::operator[](const int &value)const {
-  unsigned counter = 1;
+  int counter = 1;
   V result = 0;
   ITEM* item = tail;
 
@@ -193,11 +192,11 @@ void TDeque<V>::emplace_Tail(const V data) {
 
 template<class V>
 bool TDeque<V>::isEmpty()const {
-  return size == 0 ? true : false;
+  return size == 0;
 }
 
 template<class V>
-int TDeque<V>::dequeSize()const {
+unsigned TDeque<V>::dequeSize()const {
   return size;
 }
 
