@@ -2,8 +2,12 @@
 
 #include "include/convertertemp.h"
 
-ConverterTemp::ConverterTemp(const double val, Measure measure) {
-    if ((val < 0) && (measure == Measure::KELVIN)) {
+#include <limits>
+
+const double eps = std::numeric_limits<double>::epsilon();
+
+ConverterTemp::ConverterTemp(const double val, const Measure measure) {
+    if ((val < eps) && (measure == Measure::KELVIN)) {
         retcode_ = Data::ERROR;
     } else {
         retcode_ = Data::OK;
@@ -13,6 +17,7 @@ ConverterTemp::ConverterTemp(const double val, Measure measure) {
 }
 
 void ConverterTemp::converter(const Measure measure) {
+    const double daughternum[5]{ 273.0, 32.0, 1.8, 33.0, 100.0 };
     switch (measure) {
     case Measure::KELVIN:
             switch (measure_) {
@@ -20,7 +25,7 @@ void ConverterTemp::converter(const Measure measure) {
                 measure_ = measure;
                 break;
             case Measure::DEGREE:
-                if ((value_ + daughternum[0]) < 0) {
+                if ((value_ + daughternum[0]) < eps) {
                     retcode_ = Data::ERROR;
                 } else {
                     value_ = value_ + daughternum[0];
@@ -29,7 +34,7 @@ void ConverterTemp::converter(const Measure measure) {
                 break;
             case Measure::FAHRENHEIT:
                 if (((value_ - daughternum[1]) /
-                    daughternum[2] + daughternum[0]) < 0) {
+                    daughternum[2] + daughternum[0]) < eps) {
                     retcode_ = Data::ERROR;
                 } else {
                     value_ = ((value_ - daughternum[1]) /
@@ -39,7 +44,7 @@ void ConverterTemp::converter(const Measure measure) {
                 break;
             case Measure::NUTON:
                 if ((daughternum[4] *(value_) /
-                    daughternum[3] + daughternum[0]) < 0) {
+                    daughternum[3] + daughternum[0]) < eps) {
                     retcode_ = Data::ERROR;
                 } else {
                     value_ = (daughternum[4] * value_) /
@@ -113,15 +118,15 @@ void ConverterTemp::converter(const Measure measure) {
     }
 }
 
-int ConverterTemp::getRetCode() {
+Data ConverterTemp::getRetCode() {
     return retcode_;
     retcode_ = Data::OK;
 }
 
-const double ConverterTemp::getValue() {
+double ConverterTemp::getValue()const {
     return value_;
 }
 
-Measure ConverterTemp::getMeasure() {
+Measure ConverterTemp::getMeasure()const {
     return measure_;
 }
