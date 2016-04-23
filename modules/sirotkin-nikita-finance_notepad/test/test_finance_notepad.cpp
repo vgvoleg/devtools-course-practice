@@ -39,7 +39,8 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, less_year_dates_is_set_to_default) {
   EXPECT_EQ(expect.compare(year_less), 0);
 }
 
-TEST(Sirotkin_Nikita_FinanceNotepadTest, dates_with_dif_numbers_can_compare) {
+TEST(Sirotkin_Nikita_FinanceNotepadTest,
+    dates_with_dif_numbers_can_compare_true) {
   // Arrange
   date number_less = date(1, months::JANUARY, 2001);
   date number_great = date(3, months::JANUARY, 2001);
@@ -50,7 +51,20 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, dates_with_dif_numbers_can_compare) {
   EXPECT_TRUE(number_less < number_great);
 }
 
-TEST(Sirotkin_Nikita_FinanceNotepadTest, dates_with_dif_months_can_compare) {
+TEST(Sirotkin_Nikita_FinanceNotepadTest,
+    dates_with_dif_numbers_can_compare_false) {
+  // Arrange
+  date number_less = date(1, months::JANUARY, 2001);
+  date number_great = date(3, months::JANUARY, 2001);
+
+  // Act
+
+  // Assert
+  EXPECT_FALSE(number_less > number_great);
+}
+
+TEST(Sirotkin_Nikita_FinanceNotepadTest,
+    dates_with_dif_months_can_compare_true) {
   // Arrange
   date month_less = date(1, months::JANUARY, 2001);
   date month_great = date(1, months::MARCH, 2001);
@@ -61,7 +75,20 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, dates_with_dif_months_can_compare) {
   EXPECT_TRUE(month_great > month_less);
 }
 
-TEST(Sirotkin_Nikita_FinanceNotepadTest, dates_with_dif_year_can_compare) {
+TEST(Sirotkin_Nikita_FinanceNotepadTest,
+    dates_with_dif_months_can_compare_false) {
+  // Arrange
+  date month_less = date(1, months::JANUARY, 2001);
+  date month_great = date(1, months::MARCH, 2001);
+
+  // Act
+
+  // Assert
+  EXPECT_FALSE(month_great < month_less);
+}
+
+TEST(Sirotkin_Nikita_FinanceNotepadTest,
+    dates_with_dif_year_can_compare_true) {
   // Arrange
   date year_less = date(1, months::JANUARY, 2001);
   date year_great = date(1, months::JANUARY, 2002);
@@ -70,6 +97,40 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, dates_with_dif_year_can_compare) {
 
   // Assert
   EXPECT_TRUE(year_great > year_less);
+}
+
+TEST(Sirotkin_Nikita_FinanceNotepadTest,
+    dates_with_dif_year_can_compare_false){
+  // Arrange
+  date year_less = date(1, months::JANUARY, 2001);
+  date year_great = date(1, months::JANUARY, 2002);
+
+  // Act
+
+  // Assert
+  EXPECT_FALSE(year_great < year_less);
+}
+
+TEST(Sirotkin_Nikita_FinanceNotepadTest, dates__can_compare_by_eq_true) {
+  // Arrange
+  date first = MIN_DATE;
+  date second = MIN_DATE;
+
+  // Act
+
+  // Assert
+  EXPECT_TRUE(first == second);
+}
+
+TEST(Sirotkin_Nikita_FinanceNotepadTest, dates__can_compare_by_eq_false) {
+  // Arrange
+  date first = MIN_DATE;
+  date second = MAX_DATE;
+
+  // Act
+
+  // Assert
+  EXPECT_FALSE(first == second);
 }
 
 TEST(Sirotkin_Nikita_FinanceNotepadTest, table_can_get_category_id) {
@@ -183,7 +244,7 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, note_can_get_date) {
   result = debt.getDate();
 
   // Assert
-  EXPECT_EQ(result.toString().compare(expect.toString()), 0);
+  EXPECT_TRUE(expect == result);
 }
 
 TEST(Sirotkin_Nikita_FinanceNotepadTest, note_can_get_comment) {

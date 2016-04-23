@@ -23,6 +23,7 @@ class date {
   string toString() const;
   bool operator>(const date &other_date) const;
   bool operator<(const date &other_date) const;
+  bool operator==(const date &other_date) const;
 };
 
 #define MIN_YEAR 2000

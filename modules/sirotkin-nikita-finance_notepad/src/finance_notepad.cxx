@@ -60,6 +60,12 @@ bool date::operator<(const date &other_date) const {
   return !((*this) > other_date);
 }
 
+bool date::operator==(const date &other_date) const {
+  return (number == other_date.number) && 
+    (month == other_date.month) &&
+    (year == other_date.year);
+}
+
 // category_table
 category_table::category_table() {
   table = new string[table_size];
