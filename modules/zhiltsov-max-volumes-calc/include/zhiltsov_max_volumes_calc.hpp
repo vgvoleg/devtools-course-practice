@@ -198,11 +198,13 @@ VolumeCalculator<NumberType>::VolumeCalculator(const Func& func,
 template<class NumberType>
 NumberType VolumeCalculator<NumberType>::Calculate(size_t partitionCount) {
     return integrate(boundary1Min, boundary1Max,
-        [&] (const NumberType& x) {
+        [this, partitionCount] (const NumberType& x) {
             return integrate(boundary2Min(x), boundary2Max(x),
-                [&] (const NumberType& y) {
+                [this, x, partitionCount] (const NumberType& y) {
                     return integrate(boundary3Min(x, y), boundary3Max(x, y),
-                        [&] (const NumberType& z) { return func(x, y, z); },
+                        [this, x, y, partitionCount] (const NumberType& z) {
+                            return func(x, y, z);
+                        },
                         partitionCount);
                 },
                 partitionCount);
@@ -215,11 +217,17 @@ NumberType VolumeCalculator<NumberType>::Calculate(size_t partitionCount1,
     size_t partitionCount2, size_t partitionCount3
 ) {
     return integrate(boundary1Min, boundary1Max,
-        [&] (const NumberType& x) {
+        [this, partitionCount1, partitionCount2, partitionCount3] (
+            const NumberType& x
+        ) {
             return integrate(boundary2Min(x), boundary2Max(x),
-                [&] (const NumberType& y) {
+                [this, x, partitionCount2, partitionCount3] (
+                    const NumberType& y
+                ) {
                     return integrate(boundary3Min(x, y), boundary3Max(x, y),
-                        [&] (const NumberType& z) { return func(x, y, z); },
+                        [this, x, y, partitionCount3] (const NumberType& z) {
+                            return func(x, y, z);
+                        },
                         partitionCount3);
                 },
                 partitionCount2);
@@ -227,6 +235,6 @@ NumberType VolumeCalculator<NumberType>::Calculate(size_t partitionCount1,
         partitionCount1);
 }
 
-} // namespace volume_calc
+}  // namespace volume_calc
 
-#endif // ZHILTSOV_MAX_VOLUMES_CALC_H_
+#endif  // ZHILTSOV_MAX_VOLUMES_CALC_H_
