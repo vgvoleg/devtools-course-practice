@@ -14,7 +14,7 @@ string to_string(TYPE value) {
   return oss.str();
 }
 
-//date
+// date
 date::date(char _number, months _month, int _year) {
   if (_number > 31 || _year < 2000 || _year > 2100)
     *this = WRONG_DATE;
@@ -51,7 +51,7 @@ bool date::operator<(date other_date) const {
   return !((*this) > other_date);
 }
 
-//category_table
+// category_table
 category_table::category_table() {
   table[0] = "Debt";
   table[1] = "Stipend";
@@ -75,7 +75,7 @@ string category_table::getNameOf(int id) {
   return table[id];
 }
 
-//note
+// note
 note::note(date _notes_date, float _sum, int _categories_id,
            category_table *_table_of_categories, string _comment) :
   notes_date(_notes_date), sum(_sum), categories_id(_categories_id),
@@ -107,7 +107,7 @@ bool note::operator<(const note &right) const {
   return (notes_date < right.notes_date);
 }
 
-//notepad
+// notepad
 notepad::notepad(float _pouch): pouch(_pouch) {
 }
 void notepad::addNote(date _notes_date, float _sum, string _categoriy,

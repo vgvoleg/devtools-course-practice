@@ -3,21 +3,19 @@
 #define MODULES_SIROTKIN_NIKITA_FINANCE_NOTEPAD_INCLUDE_lite_list_H_
 
 template<class ELEMENTS_TYPE>
-class node
-{
+class node {
  private:
   ELEMENTS_TYPE value;
   node<ELEMENTS_TYPE> *next;
  public:
-  node(ELEMENTS_TYPE _value);
+  explicit node(ELEMENTS_TYPE _value);
   void setNext(node<ELEMENTS_TYPE> *_next);
   void setValue(ELEMENTS_TYPE _value);
   ELEMENTS_TYPE getValue();
   node<ELEMENTS_TYPE> *getNext();
 };
 template<class ELEMENTS_TYPE>
-class lite_list
-{
+class lite_list {
  private:
   node<ELEMENTS_TYPE> *head;
   node<ELEMENTS_TYPE> *last;
@@ -35,7 +33,7 @@ class lite_list
   void operator=(const lite_list<ELEMENTS_TYPE> &copy) = delete;
 };
 
-//node
+// node
 template<class ELEMENTS_TYPE>
 node<ELEMENTS_TYPE>::node(ELEMENTS_TYPE _value): value(_value), next(nullptr) {
 }
@@ -60,9 +58,10 @@ void node<ELEMENTS_TYPE>::setValue(ELEMENTS_TYPE _value) {
   value = _value;
 }
 
-//lite_list
+// lite_list
 template<class ELEMENTS_TYPE>
-lite_list<ELEMENTS_TYPE>::lite_list(): head(nullptr), last(nullptr), current(nullptr) {
+lite_list<ELEMENTS_TYPE>::lite_list(): head(nullptr),
+  last(nullptr), current(nullptr) {
 }
 
 template<class ELEMENTS_TYPE>
@@ -83,8 +82,10 @@ void lite_list<ELEMENTS_TYPE>::addElement(ELEMENTS_TYPE value) {
   if (last == nullptr) {
     head = added;
     current = head;
-  }	else
+  }
+  else {
     last->setNext(added);
+  }
   last = added;
 }
 
@@ -97,7 +98,10 @@ bool lite_list<ELEMENTS_TYPE>::operator++() {
       current = head;
       return false;
     }
-  }	else return false;
+  }
+  else {
+    return false;
+  }
 }
 
 template<class ELEMENTS_TYPE>
@@ -136,4 +140,4 @@ void lite_list<ELEMENTS_TYPE>::sort() {
   }
 }
 
-#endif  //MODULES_SIROTKIN_NIKITA_FINANCE_NOTEPAD_INCLUDE_lite_list_H_
+#endif  // MODULES_SIROTKIN_NIKITA_FINANCE_NOTEPAD_INCLUDE_lite_list_H_
