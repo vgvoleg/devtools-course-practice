@@ -13,8 +13,8 @@ template<class V>
 class TDeque {
  public:
   TDeque();
-  TDeque(const V& data);
-  TDeque(const initializer_list<V>&);
+  explicit TDeque(const V& data);
+  explicit TDeque(const initializer_list<V>&);
   ~TDeque();
 
   void push_Tail(const V&);
