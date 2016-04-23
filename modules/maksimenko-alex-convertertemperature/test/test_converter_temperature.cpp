@@ -73,7 +73,7 @@ TEST(ConverterTemperature, Can_Convert_Kelvin_To_Newton) {
     ConverterTemp Temperature(value, dimension);
 
     // Act
-    const Measure result_dimension = Measure::NUTON;
+    const Measure result_dimension = Measure::NEWTON;
     Temperature.converter(result_dimension);
 
     // Assert
@@ -96,7 +96,7 @@ TEST(ConverterTemperature, Can_Convert_Celsius_To_Kelvin) {
     EXPECT_DOUBLE_EQ(Temperature.getValue(), expected_value);
 }
 
-TEST(ConverterTemperature, Cant_Convert_Negative_Celsius_Into_Kelvin) {
+TEST(ConverterTemperature, Cant_Convert_Celsius_To_Negative_Kelvin) {
     // Arrange
     const double value = -274.0;
     const Measure dimension = Measure::CELSIUS;
@@ -145,7 +145,7 @@ TEST(ConverterTemperature, Can_Convert_Celsius_To_Newton) {
     ConverterTemp Temperature(value, dimension);
 
     // Act
-    const Measure result_dimension = Measure::NUTON;
+    const Measure result_dimension = Measure::NEWTON;
     Temperature.converter(result_dimension);
 
     // Assert
@@ -217,7 +217,7 @@ TEST(ConverterTemperature, Can_Convert_Fahrenheit_To_Newton) {
     ConverterTemp Temperature(value, dimension);
 
     // Act
-    const Measure result_dimension = Measure::NUTON;
+    const Measure result_dimension = Measure::NEWTON;
     Temperature.converter(result_dimension);
 
     // Assert
@@ -228,7 +228,7 @@ TEST(ConverterTemperature, Can_Convert_Fahrenheit_To_Newton) {
 TEST(ConverterTemperature, Can_Convert_Newton_To_Kelvin) {
     // Arrange
     const double value = 0.0;
-    const Measure dimension = Measure::NUTON;
+    const Measure dimension = Measure::NEWTON;
     ConverterTemp Temperature(value, dimension);
 
     // Act
@@ -240,10 +240,10 @@ TEST(ConverterTemperature, Can_Convert_Newton_To_Kelvin) {
     EXPECT_DOUBLE_EQ(Temperature.getValue(), expected_value);
 }
 
-TEST(ConverterTemperature, Cant_Convert_Nuwton_Into_Negative_Kelvin) {
+TEST(ConverterTemperature, Cant_Convert_Nuwton_To_Negative_Kelvin) {
     // Arrange
     const double value = -700.0;
-    const Measure dimension = Measure::NUTON;
+    const Measure dimension = Measure::NEWTON;
     const Measure result_dimension = Measure::KELVIN;
     ConverterTemp Temperature(value, dimension);
 
@@ -257,7 +257,7 @@ TEST(ConverterTemperature, Cant_Convert_Nuwton_Into_Negative_Kelvin) {
 TEST(ConverterTemperature, Can_Convert_Newton_To_Celsius) {
     // Arrange
     const double value = 33.0;
-    const Measure dimension = Measure::NUTON;
+    const Measure dimension = Measure::NEWTON;
     ConverterTemp Temperature(value, dimension);
 
     // Act
@@ -272,7 +272,7 @@ TEST(ConverterTemperature, Can_Convert_Newton_To_Celsius) {
 TEST(ConverterTemperature, Can_Convert_Newton_To_Fahrenheit) {
     // Arrange
     const double value = 33.0;
-    const Measure dimension = Measure::NUTON;
+    const Measure dimension = Measure::NEWTON;
     ConverterTemp Temperature(value, dimension);
 
     // Act
@@ -287,7 +287,7 @@ TEST(ConverterTemperature, Can_Convert_Newton_To_Fahrenheit) {
 TEST(ConverterTemperature, Can_Convert_Newton_To_Newton) {
     // Arrange
     const double value = 33.0;
-    const Measure dimension = Measure::NUTON;
+    const Measure dimension = Measure::NEWTON;
     ConverterTemp Temperature(value, dimension);
 
     // Act
@@ -297,14 +297,14 @@ TEST(ConverterTemperature, Can_Convert_Newton_To_Newton) {
     EXPECT_DOUBLE_EQ(Temperature.getValue(), value);
 }
 
-TEST(ConverterTemperature, Can_I_Convert_Multiple_Times) {
+TEST(ConverterTemperature, Can_Convert_Multiple_Times) {
     // Arrange
     const double value = 33.0;
     const Measure dimension = Measure::CELSIUS;
     ConverterTemp Temperature(value, dimension);
 
     // Act
-    const Measure result_dimension = Measure::NUTON;
+    const Measure result_dimension = Measure::NEWTON;
     Temperature.converter(result_dimension);
     Temperature.converter(dimension);
 
@@ -312,14 +312,14 @@ TEST(ConverterTemperature, Can_I_Convert_Multiple_Times) {
     EXPECT_DOUBLE_EQ(Temperature.getValue(), value);
 }
 
-TEST(ConverterTemperature, Can_Return_The_Dimension_Of_This_Obj) {
+TEST(ConverterTemperature, Can_Return_The_Dimension_Of_This_Object) {
     // Arrange
     const double value = 33.0;
     const Measure dimension = Measure::CELSIUS;
     ConverterTemp Temperature(value, dimension);
 
     // Act
-    const Measure result_dimension = Measure::NUTON;
+    const Measure result_dimension = Measure::NEWTON;
     Temperature.converter(result_dimension);
 
     // Assert

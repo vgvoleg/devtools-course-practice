@@ -38,7 +38,7 @@ void ConverterTemp::converter(const Measure measure) {
                     measure_ = measure;
                     }
                 break;
-            case Measure::NUTON:
+            case Measure::NEWTON:
                 if ((auxiliarynum[4] *(value_) /
                     auxiliarynum[3] + auxiliarynum[0]) < 0.0) {
                     retcode_ = Data::ERROR;
@@ -63,7 +63,7 @@ void ConverterTemp::converter(const Measure measure) {
                 value_ = (value_ - auxiliarynum[1]) / auxiliarynum[2];
                 measure_ = measure;
                 break;
-            case Measure::NUTON:
+            case Measure::NEWTON:
                 value_ = auxiliarynum[4] *value_ / auxiliarynum[3];
                 measure_ = measure;
                 break;
@@ -83,14 +83,14 @@ void ConverterTemp::converter(const Measure measure) {
             case Measure::FAHRENHEIT:
                 measure_ = measure;
                 break;
-            case Measure::NUTON:
+            case Measure::NEWTON:
                 value_ = auxiliarynum[2] *(auxiliarynum[4] *(value_ /
                     auxiliarynum[3])) + auxiliarynum[1];
                 measure_ = measure;
                 break;
             }
         break;
-    case Measure::NUTON:
+    case Measure::NEWTON:
             switch (measure_) {
             case Measure::KELVIN:
                 value_ = (auxiliarynum[3] *(value_ - auxiliarynum[0])) /
@@ -106,7 +106,7 @@ void ConverterTemp::converter(const Measure measure) {
                     auxiliarynum[2]) / auxiliarynum[4];
                 measure_ = measure;
                 break;
-            case Measure::NUTON:
+            case Measure::NEWTON:
                 measure_ = measure;
                 break;
             }
