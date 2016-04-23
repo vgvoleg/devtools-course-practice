@@ -87,9 +87,9 @@ TEST(IntegrateTest, Inversed_Boundaries_Is_Not_A_Fault) {
 
 TEST(IntegrateTest, Inversed_Boundaries_Leads_To_Negation) {
     double resultInv = volume_calc::integrate<double>(30, 0,
-        [] (double x) { return x; }, 200);
+        [] (double x) { return x; }, 500);
     double result = volume_calc::integrate<double>(0, 30,
-        [] (double x) { return x; }, 200);
+        [] (double x) { return x; }, 500);
 
     ASSERT_NEAR(result, -1.0 * resultInv, 0.0001 * std::abs(result));
 }
@@ -98,9 +98,9 @@ TEST(IntegrateTest, Linearity_Of_Boundaries_Is_Existing) {
     static constexpr double expectedResult = 450.0;
 
     double first = volume_calc::integrate<double>(0, 10,
-        [] (double x) { return x; }, 200);
+        [] (double x) { return x; }, 500);
     double second = volume_calc::integrate<double>(10, 30,
-        [] (double x) { return x; }, 200);
+        [] (double x) { return x; }, 500);
 
     ASSERT_NEAR(expectedResult, first + second, 0.0001 * expectedResult);
 }
@@ -109,9 +109,9 @@ TEST(IntegrateTest, Linearity_Of_Function_Is_Existing) {
     static constexpr double expectedResult = 50.0 + 333.333;
 
     double first = volume_calc::integrate<double>(0, 10,
-        [] (double x) { return x; }, 500);
+        [] (double x) { return x; }, 1000);
     double second = volume_calc::integrate<double>(0, 10,
-        [] (double x) { return x * x; }, 500);
+        [] (double x) { return x * x; }, 1000);
 
     ASSERT_NEAR(expectedResult, first + second, 0.0001 * expectedResult);
 }
