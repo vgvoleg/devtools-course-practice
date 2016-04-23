@@ -48,7 +48,7 @@ TEST(TDeque, Can_Create_Not_Empty_Deque) {
   EXPECT_EQ(N, deque.dequeSize());
 }
 
-TEST(TDeque, Push_Head_Works) {
+TEST(TDeque, Can_Push_Head) {
   // Arrange
   TDeque<int> deque;
 
@@ -61,7 +61,7 @@ TEST(TDeque, Push_Head_Works) {
   EXPECT_EQ(N, deque.dequeSize());
 }
 
-TEST(TDeque, Push_Tail_Works) {
+TEST(TDeque, Can_Push_Tail) {
   // Arrange
   TDeque<int> deque;
 
@@ -74,7 +74,7 @@ TEST(TDeque, Push_Tail_Works) {
   EXPECT_EQ(N, deque.dequeSize());
 }
 
-TEST(TDeque, Pop_Head_Works) {
+TEST(TDeque, Can_Pop_Head) {
   // Arrange
   TDeque<int> deque;
 
@@ -88,7 +88,7 @@ TEST(TDeque, Pop_Head_Works) {
   EXPECT_EQ(expected_Result, deque.pop_Head());
 }
 
-TEST(TDeque, Pop_Head_Works_With_One_Element) {
+TEST(TDeque, Can_Pop_Head_With_One_Element) {
   // Arrange
   TDeque<int> deque;
 
@@ -100,7 +100,7 @@ TEST(TDeque, Pop_Head_Works_With_One_Element) {
   EXPECT_EQ(N, deque.pop_Head());
 }
 
-TEST(TDeque, Pop_Tail_Works) {
+TEST(TDeque, Can_Pop_Tail) {
   // Arrange
   TDeque<int> deque;
 
@@ -114,7 +114,7 @@ TEST(TDeque, Pop_Tail_Works) {
   EXPECT_EQ(expected_Result, deque.pop_Tail());
 }
 
-TEST(TDeque, Pop_Tail_Works_With_One_Element) {
+TEST(TDeque, Can_Pop_Tail_With_One_Element) {
   // Arrange
   TDeque<int> deque;
 
@@ -144,7 +144,7 @@ TEST(TDeque, Destructor_Works) {
   EXPECT_TRUE(intDeque->isEmpty());
 }
 
-TEST(TDeque, IsExist_Works) {
+TEST(TDeque, Can_Use_IsExist) {
   // Arrange
   TDeque<string> deque;
 
@@ -159,7 +159,7 @@ TEST(TDeque, IsExist_Works) {
   EXPECT_TRUE(deque.isExist(expectedResult));
 }
 
-TEST(TDeque, isEmpty_works) {
+TEST(TDeque, Can_Use_isEmpty) {
   // Arrange
   TDeque<int> deque;
 
@@ -167,7 +167,7 @@ TEST(TDeque, isEmpty_works) {
   EXPECT_TRUE(deque.isEmpty());
 }
 
-TEST(TDeque, Emplace_Head_Works) {
+TEST(TDeque, Can_Emplace_Head) {
   // Arrange
   TDeque<int> deque;
 
@@ -186,7 +186,7 @@ TEST(TDeque, Emplace_Head_Works) {
   EXPECT_EQ(expected_Result, deque.pop_Head());
 }
 
-TEST(TDeque, Emplace_Tail_Works) {
+TEST(TDeque, Can_Emplace_Tail) {
   // Arrange
   TDeque<int> deque;
 
@@ -204,7 +204,7 @@ TEST(TDeque, Emplace_Tail_Works) {
   EXPECT_EQ(expected_Result, deque.pop_Tail());
 }
 
-TEST(TDeque, Erase_Works_At_The_End) {
+TEST(TDeque, Can_Erase_Last_Element) {
   // Arrange
   TDeque<int> deque;
 
@@ -221,7 +221,7 @@ TEST(TDeque, Erase_Works_At_The_End) {
   EXPECT_FALSE(deque.isExist(num));
 }
 
-TEST(TDeque, Erase_Works_At_The_Start) {
+TEST(TDeque, Can_Erase_First_Element) {
   // Arrange
   TDeque<int> deque;
 
@@ -238,7 +238,7 @@ TEST(TDeque, Erase_Works_At_The_Start) {
   EXPECT_FALSE(deque.isExist(num));
 }
 
-TEST(TDeque, Erase_Works_At_The_Middle) {
+TEST(TDeque, Can_Erase_Middle_Element) {
   // Arrange
   TDeque<int> deque;
 
@@ -255,7 +255,7 @@ TEST(TDeque, Erase_Works_At_The_Middle) {
   EXPECT_FALSE(deque.isExist(num));
 }
 
-TEST(TDeque, Brackets_Works) {
+TEST(TDeque, Can_Use_Brackets) {
   // Arrange
   TDeque<int> deque;
 
