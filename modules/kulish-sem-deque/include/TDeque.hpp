@@ -95,7 +95,7 @@ void TDeque<V>::delData(ITEM* item)const {
 
 template<class V>
 V TDeque<V>::operator[](const int &position)const {
-  int counter = 1;
+  int counter = 0;
   V result = 0;
   ITEM* item = tail;
 
@@ -107,6 +107,7 @@ V TDeque<V>::operator[](const int &position)const {
     while (counter <= position) {
       if (counter == position) {
         result = *item->data;
+        break;
       } else {
         item = item->previous;
         counter++;

@@ -219,13 +219,13 @@ TEST(TDeque, Can_Use_Brackets) {
 
   // Act And Assert
   const int position = 4;
-  const int expected_Result = 2;
+  const int expected_Result = 1;
   EXPECT_EQ(expected_Result, deque[position]);
 }
 
 TEST(TDeque, Trow_Then_Position_Less_Than_Zero) {
   // Arrange
-  TDeque<int> deque;
+  TDeque<int> deque({ 1, 2, 3, 4 });
 
   // Act And Assert
   const int position = -2;
