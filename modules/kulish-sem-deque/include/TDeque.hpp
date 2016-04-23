@@ -212,8 +212,7 @@ bool TDeque<ValType>::isExist(const ValType& data) const {
 
 
 template<class ValType>
-void TDeque<ValType>::erase(ValType data, const unsigned position)
-{
+void TDeque<ValType>::erase(ValType data, const unsigned position) {
   ITEM* item = tail;
   ITEM* tmp;
   unsigned counter = 0;
