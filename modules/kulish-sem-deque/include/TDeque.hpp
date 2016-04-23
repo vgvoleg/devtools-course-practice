@@ -210,60 +210,37 @@ bool TDeque<ValType>::isExist(const ValType& data) const {
   return false;
 }
 
+
 template<class ValType>
-void TDeque<ValType>::erase(ValType data, unsigned num) {
-  ITEM *item = tail;
-  unsigned i = 0;
+void TDeque<ValType>::erase(ValType data, const unsigned position)
+{
+  ITEM* item = tail;
+  ITEM* tmp;
+  unsigned counter = 0;
+
   while (item) {
-    if (*item->data == data && num <= i) {
-      ITEM* temp;
-
-      if (tail->previous == head) {
-        delete tail;
-        tail = head;
-        size--;
-
-        if (*head->data == data) {
-          delete head->data;
-          size = 0;
-          break;
-        }
-      }
-
-      if (tail == item && *item->data == data) {
+    if (*item->data == data && position <= counter) {
+      if (item == tail) {
         tail = tail->previous;
-      }
-      if (head == item && *item->data == data) {
-        head = head->next;
-      }
-
-      if (item->next == nullptr) {
-        temp = item;
-
-        item->previous->next = item->next;
-        item = item->previous;
-
-        delData(temp);
-      } else { if (item->previous == nullptr) {
-          temp = item;
-
-          item->next->previous = item->previous;
-          item = item->previous;
-
-          delData(temp);
+        tail->next = nullptr;
+        delData(item);
+        item = tail;
+      } else {
+        if (item == head) {
+          head = head->next;
+          head->previous = nullptr;
+          delData(item);
+          item = head->previous;
         } else {
-          temp = item;
-
+          tmp = item;
           item->next->previous = item->previous;
           item->previous->next = item->next;
           item = item->previous;
-
-          delData(temp);
+          delData(tmp);
         }
       }
-      size--;
     } else {
-      i++;
+      counter++;
       item = item->previous;
     }
   }
