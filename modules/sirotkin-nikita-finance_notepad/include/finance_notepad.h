@@ -5,7 +5,7 @@
 #include <string>
 #include "./list.hpp"
 
-using namespace std;
+using std::string;
 
 enum class months {
   JANUARY = 1, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY,
