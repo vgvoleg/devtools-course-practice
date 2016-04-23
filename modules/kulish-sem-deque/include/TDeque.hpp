@@ -70,8 +70,7 @@ TDeque<V>::~TDeque() {
 }
 
 template<class V>
-typename TDeque<V>::ITEM * TDeque<V>::create(const V & data)
-{
+typename TDeque<V>::ITEM * TDeque<V>::create(const V & data) {
   ITEM *item = new ITEM;
   item->data = new V;
 
