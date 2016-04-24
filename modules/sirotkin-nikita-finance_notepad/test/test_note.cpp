@@ -9,7 +9,8 @@ using std::string;
 TEST(Sirotkin_Nikita_FinanceNotepadTest, note_can_get_category_id) {
   // Arrange
   category_table table;
-  note debt(date(1, months::JANUARY, 2000), 10.f, table.getIdOf("Debt"), &table, "Something");
+  note debt(date(1, months::JANUARY, 2000), 10.f, table.getIdOf("Debt"),
+    &table, "Something");
   int expect = table.getIdOf("Debt");
   int result;
 
@@ -23,7 +24,8 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, note_can_get_category_id) {
 TEST(Sirotkin_Nikita_FinanceNotepadTest, note_can_get_category_name) {
   // Arrange
   category_table table;
-  note debt(date(1, months::JANUARY, 2000), 10.f, table.getIdOf("Debt"), &table, "Something");
+  note debt(date(1, months::JANUARY, 2000), 10.f, table.getIdOf("Debt"),
+    &table, "Something");
   string expect = "Debt";
   string result;
 
@@ -37,7 +39,8 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, note_can_get_category_name) {
 TEST(Sirotkin_Nikita_FinanceNotepadTest, note_can_get_sum) {
   // Arrange
   category_table table;
-  note debt(date(1, months::JANUARY, 2000), 10.f, table.getIdOf("Debt"), &table, "Something");
+  note debt(date(1, months::JANUARY, 2000), 10.f,
+     table.getIdOf("Debt"), &table, "Something");
   float expect = 10.f;
   float result;
 
@@ -51,7 +54,8 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, note_can_get_sum) {
 TEST(Sirotkin_Nikita_FinanceNotepadTest, note_can_get_date) {
   // Arrange
   category_table table;
-  note debt(date(1, months::JANUARY, 2000), 10.f, table.getIdOf("Debt"), &table, "Something");
+  note debt(date(1, months::JANUARY, 2000), 10.f, table.getIdOf("Debt"),
+    &table, "Something");
   date expect = date(1, months::JANUARY, 2000);
   date result;
 
@@ -65,7 +69,8 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, note_can_get_date) {
 TEST(Sirotkin_Nikita_FinanceNotepadTest, note_can_get_comment) {
   // Arrange
   category_table table;
-  note debt(date(1, months::JANUARY, 2000), 10.f, table.getIdOf("Debt"), &table, "Something");
+  note debt(date(1, months::JANUARY, 2000), 10.f, table.getIdOf("Debt"),
+    &table, "Something");
   string expect = "Something";
   string result;
 
@@ -79,8 +84,10 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest, note_can_get_comment) {
 TEST(Sirotkin_Nikita_FinanceNotepadTest, note_can_compare_less) {
   // Arrange
   category_table table;
-  note max_note(date(1, months::JANUARY, 2001), 10.f, table.getIdOf("Debt"), &table, "Something");
-  note min_note(date(1, months::JANUARY, 2000), 10.f, table.getIdOf("Debt"), &table, "Something");
+  note max_note(date(1, months::JANUARY, 2001), 10.f,
+    table.getIdOf("Debt"), &table, "Something");
+  note min_note(date(1, months::JANUARY, 2000), 10.f,
+    table.getIdOf("Debt"), &table, "Something");
 
   // Act
 
