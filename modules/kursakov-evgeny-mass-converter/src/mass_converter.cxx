@@ -7,6 +7,7 @@
 #include <utility>
 #include <sstream>
 #include <iomanip>
+#include <regex>
 
 #include "include/mass_converter.h"
 
@@ -69,6 +70,9 @@ std::string MassConverter::to_string(const MassUnit unit,
 
 std::pair<MassUnit, double>
 MassConverter::from_string(const std::string input) const {
+    if (!MassConverter::check_input(input))
+        throw std::invalid_argument("invalid input");
+
     double value;
     std::string qualifier;
 
@@ -76,15 +80,20 @@ MassConverter::from_string(const std::string input) const {
     inputStringStream >> value;
     inputStringStream >> qualifier;
 
-    if (!inputStringStream.eof() || qualifier.empty())
-        throw std::invalid_argument("Invalid input");
-
     for (auto &unit : units) {
         if (unit.get_qualifier() == qualifier)
             return std::pair<MassUnit, double>(unit, value);
     }
 
     throw std::logic_error("Unit not found");
+}
+
+bool MassConverter::check_input(std::string input) {
+    std::regex check_input_regex("^\\d+(.\\d+)? \\w+$");
+
+    bool valid = std::regex_search(input, check_input_regex);
+
+    return valid;
 }
 
 double MassConverter::from_string(const std::string input,
