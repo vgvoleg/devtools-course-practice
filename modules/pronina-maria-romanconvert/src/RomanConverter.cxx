@@ -2,6 +2,7 @@
 #include "include/RomanConverter.h"
 #include <string>
 #include <vector>
+#include <algorithm>
 const std::vector<int> RomanConverter::values =
 {1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000};
 const std::vector<std::string> RomanConverter::symbols =
@@ -152,8 +153,8 @@ bool RomanConverter::checkNumeralsOrder
         (std::vector<std::string> parsedRoman) {
     auto previous = parsedRoman.front();
     for (auto it = parsedRoman.begin() + 1; it != parsedRoman.end(); ++it) {
-        auto previousPos = find(symbols.begin(), symbols.end(), previous);
-        auto currentPos = find(symbols.begin(), symbols.end(), *it);
+        auto previousPos = std::find(symbols.begin(), symbols.end(), previous);
+        auto currentPos = std::find(symbols.begin(), symbols.end(), *it);
         if (currentPos > previousPos)
             return false;
         previous = *it;
@@ -164,15 +165,15 @@ bool RomanConverter::checkNumeralsOrder
 bool RomanConverter::checkForInvalidSymbols
         (std::vector<std::string> parsedRoman) {
     for (auto it = parsedRoman.begin(); it != parsedRoman.end(); ++it) {
-        auto position = find(symbols.begin(), symbols.end(), *it);
+        auto position = std::find(symbols.begin(), symbols.end(), *it);
         if (position == symbols.end())
             return false;
     }
     return true;
 }
 
-bool RomanConverter::checkArabNumber(int arab) {
-    if ((arab <= 0) || (arab > maxValue))
+bool RomanConverter::checkArabicNumber(int arabic) {
+    if ((arabic <= 0) || (arabic > maxValue))
         return false;
     return true;
 }
@@ -188,7 +189,7 @@ bool RomanConverter::checkRomanNumber(std::string roman) {
     return true;
 }
 
-int RomanConverter::convertRomanToArab(std::string roman) {
+int RomanConverter::convertRomanToArabic(std::string roman) {
     if (!checkRomanNumber(roman)) return -1;
     int result = 0;
     auto parsedRoman = parseRoman(roman);
@@ -204,13 +205,13 @@ int RomanConverter::convertRomanToArab(std::string roman) {
     return result;
 }
 
-std::string RomanConverter::convertArabToRoman(int arab) {
-    if (!checkArabNumber(arab)) return std::string();
+std::string RomanConverter::convertArabicToRoman(int arabic) {
+    if (!checkArabicNumber(arabic)) return std::string();
     std::string result;
-    for (size_t i = values.size() - 1; i >= 0 , arab > 0; i--) {
-        while (arab >= values[i]) {
+    for (size_t i = values.size() - 1; i >= 0 , arabic > 0; i--) {
+        while (arabic >= values[i]) {
             result.append(symbols[i]);
-            arab -= values[i];
+            arabic -= values[i];
         }
     }
 
