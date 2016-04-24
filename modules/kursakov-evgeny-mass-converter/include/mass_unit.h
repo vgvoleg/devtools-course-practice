@@ -11,17 +11,17 @@ class MassUnit {
     MassUnit(double coefficient, std::string qualifier);
 
     MassUnit(const MassUnit &other)
-            : coefficient(other.get_coefficient()),
-              qualifier(other.get_qualifier()) { }
+            : coefficient_(other.coefficient()),
+              qualifier_(other.qualifier()) { }
 
     MassUnit &operator=(const MassUnit &other);
 
-    double get_coefficient() const {
-        return coefficient;
+    double coefficient() const {
+        return coefficient_;
     }
 
-    std::string get_qualifier() const {
-        return qualifier;
+    std::string qualifier() const {
+        return qualifier_;
     }
 
     bool operator==(const MassUnit &other) const;
@@ -29,8 +29,8 @@ class MassUnit {
     bool operator!=(const MassUnit &other) const;
 
  private:
-    double coefficient;
-    std::string qualifier;
+    double coefficient_;
+    std::string qualifier_;
 };
 
 extern const MassUnit kMassUnitKilogram;

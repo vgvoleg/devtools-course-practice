@@ -2,7 +2,7 @@ set(target ${LIBRARY})
 
 file(GLOB srcs "*.cxx")
 
-add_library(${target} STATIC ${srcs})
+add_library(${target} STATIC ${srcs} ../include/mass_converter.h ../include/mass_unit.h)
 set_target_properties(${target}
     PROPERTIES OUTPUT_NAME ${MODULE})
 

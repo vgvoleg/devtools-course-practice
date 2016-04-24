@@ -7,50 +7,49 @@
 #include <utility>
 #include <sstream>
 #include <iomanip>
-#include <regex>
 
 #include "include/mass_converter.h"
 
 MassConverter::MassConverter(std::vector<MassUnit> units) {
-    this->units = std::vector<MassUnit>(units);
+    this->units_ = std::vector<MassUnit>(units);
 
-    auto last = std::unique(this->units.begin(),
-                            this->units.end(),
+    auto last = std::unique(this->units_.begin(),
+                            this->units_.end(),
                             [](const MassUnit &a, const MassUnit &b) {
-                                return a.get_qualifier() == b.get_qualifier();
+                                return a.qualifier() == b.qualifier();
                             });
 
-    if (last != this->units.end())
+    if (last != this->units_.end())
         throw std::invalid_argument("unit qualifiers must be unique");
 }
 
-void MassConverter::addUnit(MassUnit new_unit) {
-    for (auto &unit : units) {
-        if (unit.get_qualifier() == new_unit.get_qualifier())
+void MassConverter::AddUnit(MassUnit new_unit) {
+    for (auto &unit : units_) {
+        if (unit.qualifier() == new_unit.qualifier())
             throw std::invalid_argument("unit is already added to converter");
     }
 
-    units.push_back(new_unit);
+    units_.push_back(new_unit);
 }
 
-std::vector<MassUnit> MassConverter::getUnits() const {
-    return units;
+std::vector<MassUnit> MassConverter::units() const {
+    return units_;
 }
 
-void MassConverter::clearUnits() {
-    units.clear();
+void MassConverter::ClearUnits() {
+    units_.clear();
 }
 
-double MassConverter::convert(const MassUnit from,
-                              const MassUnit to,
+double MassConverter::Convert(MassUnit from,
+                              MassUnit to,
                               double value) const {
     if (value < 0)
         throw std::invalid_argument("value must be not negative");
 
     if (value == 0) return 0;
 
-    double conversion_coefficient = from.get_coefficient() /
-                                    to.get_coefficient();
+    double conversion_coefficient = from.coefficient() /
+            to.coefficient();
 
     return value * conversion_coefficient;
 }
@@ -64,15 +63,12 @@ std::string MassConverter::to_string(const MassUnit unit,
     std::ostringstream stringStream;
     stringStream << std::fixed << std::setprecision(precision) << value;
     stringStream << " ";
-    stringStream << unit.get_qualifier();
+    stringStream << unit.qualifier();
     return stringStream.str();
 }
 
 std::pair<MassUnit, double>
-MassConverter::from_string(const std::string input) const {
-    if (!MassConverter::check_input(input))
-        throw std::invalid_argument("invalid input");
-
+MassConverter::ConvertFromString(std::string input) const {
     double value;
     std::string qualifier;
 
@@ -80,25 +76,20 @@ MassConverter::from_string(const std::string input) const {
     inputStringStream >> value;
     inputStringStream >> qualifier;
 
-    for (auto &unit : units) {
-        if (unit.get_qualifier() == qualifier)
+    if (!inputStringStream.eof() || qualifier.empty())
+        throw std::invalid_argument("Invalid input");
+
+    for (auto &unit : units_) {
+        if (unit.qualifier() == qualifier)
             return std::pair<MassUnit, double>(unit, value);
     }
 
     throw std::logic_error("Unit not found");
 }
 
-bool MassConverter::check_input(std::string input) {
-    std::regex check_input_regex("^\\d+(.\\d+)? \\w+$");
-
-    bool valid = std::regex_search(input, check_input_regex);
-
-    return valid;
-}
-
-double MassConverter::from_string(const std::string input,
-                                  const MassUnit toUnit) const {
-    std::pair<MassUnit, double> result = from_string(input);
-    return convert(result.first, toUnit, result.second);
+double MassConverter::ConvertFromString(std::string input,
+                                        MassUnit toUnit) const {
+    std::pair<MassUnit, double> result = ConvertFromString(input);
+    return Convert(result.first, toUnit, result.second);
 }
 

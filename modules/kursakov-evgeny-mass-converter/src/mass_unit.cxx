@@ -18,7 +18,7 @@ const std::vector<MassUnit> kDefaultMassUnits = {
 
 
 MassUnit::MassUnit(double coefficient, std::string qualifier)
-        : coefficient(coefficient), qualifier(qualifier) {
+        : coefficient_(coefficient), qualifier_(qualifier) {
     if (coefficient <= 0)
         throw std::invalid_argument("coefficient must be positive");
 
@@ -27,15 +27,15 @@ MassUnit::MassUnit(double coefficient, std::string qualifier)
 }
 
 MassUnit &MassUnit::operator=(const MassUnit &z) {
-    coefficient = z.get_coefficient();
-    qualifier = z.get_qualifier();
+    coefficient_ = z.coefficient();
+    qualifier_ = z.qualifier();
 
     return *this;
 }
 
 bool MassUnit::operator==(const MassUnit &other) const {
-    return this->get_qualifier() == other.get_qualifier() &&
-           this->get_coefficient() == other.get_coefficient();
+    return this->qualifier() == other.qualifier() &&
+            this->coefficient() == other.coefficient();
 }
 
 bool MassUnit::operator!=(const MassUnit &other) const {

@@ -25,7 +25,7 @@ TEST(Kursakov_Evgeny_MassConverterTest,
     MassConverter converter;
 
     // Act
-    std::vector<MassUnit> units = converter.getUnits();
+    std::vector<MassUnit> units = converter.units();
 
     // Assert
     std::vector<MassUnit> expected_units = kDefaultMassUnits;
@@ -42,7 +42,7 @@ TEST(Kursakov_Evgeny_MassConverterTest,
 
     // Act
     MassConverter converter(expected_units);
-    std::vector<MassUnit> units = converter.getUnits();
+    std::vector<MassUnit> units = converter.units();
 
     // Assert
     EXPECT_EQ(units, expected_units);
@@ -68,7 +68,7 @@ TEST(Kursakov_Evgeny_MassConverterTest,
 
     // Act & Assert
     EXPECT_THROW(
-            converter.convert(kMassUnitGram,
+            converter.Convert(kMassUnitGram,
                               kMassUnitKilogram,
                               bad_value),
             std::invalid_argument);
@@ -81,7 +81,7 @@ TEST(Kursakov_Evgeny_MassConverterTest,
     double value = 0;
 
     // Act
-    double result = converter.convert(kMassUnitGram,
+    double result = converter.Convert(kMassUnitGram,
                                       kMassUnitKilogram,
                                       value);
 
@@ -97,7 +97,7 @@ TEST(Kursakov_Evgeny_MassConverterTest,
     double value = 1.213;
 
     // Act
-    double result = converter.convert(kMassUnitGram,
+    double result = converter.Convert(kMassUnitGram,
                                       kMassUnitGram,
                                       value);
 
@@ -113,7 +113,7 @@ TEST(Kursakov_Evgeny_MassConverterTest,
     double value = 500;
 
     // Act
-    double result = converter.convert(kMassUnitGram,
+    double result = converter.Convert(kMassUnitGram,
                                       kMassUnitKilogram,
                                       value);
 
@@ -129,7 +129,7 @@ TEST(Kursakov_Evgeny_MassConverterTest,
     double value = 1.2;
 
     // Act
-    double result = converter.convert(kMassUnitKilogram,
+    double result = converter.Convert(kMassUnitKilogram,
                                       kMassUnitGram,
                                       value);
 
@@ -146,10 +146,10 @@ TEST(Kursakov_Evgeny_MassConverterTest,
     MassUnit unit = MassUnit(3.14, "test");
 
     // Act
-    converter.addUnit(unit);
+    converter.AddUnit(unit);
 
     // Assert
-    MassUnit expected_unit = converter.getUnits()[0];
+    MassUnit expected_unit = converter.units()[0];
     EXPECT_EQ(unit, expected_unit);
 }
 
@@ -161,10 +161,10 @@ TEST(Kursakov_Evgeny_MassConverterTest,
     MassUnit unit = MassUnit(3.14, "test");
 
     // Act
-    converter.addUnit(unit);
+    converter.AddUnit(unit);
 
     // Assert
-    EXPECT_THROW(converter.addUnit(unit), std::invalid_argument);
+    EXPECT_THROW(converter.AddUnit(unit), std::invalid_argument);
 }
 
 TEST(Kursakov_Evgeny_MassConverterTest,
@@ -173,10 +173,10 @@ TEST(Kursakov_Evgeny_MassConverterTest,
     MassConverter converter;
 
     // Act
-    converter.clearUnits();
+    converter.ClearUnits();
 
     // Assert
-    EXPECT_TRUE(converter.getUnits().empty());
+    EXPECT_TRUE(converter.units().empty());
 }
 
 TEST(Kursakov_Evgeny_MassConverterTest,
@@ -185,7 +185,7 @@ TEST(Kursakov_Evgeny_MassConverterTest,
     MassConverter converter;
 
     // Act
-    double result = converter.from_string("0.1 kg", kMassUnitGram);
+    double result = converter.ConvertFromString("0.1 kg", kMassUnitGram);
 
     // Assert
     double expected_result = 100;
@@ -198,7 +198,7 @@ TEST(Kursakov_Evgeny_MassConverterTest,
     MassConverter converter;
 
     // Act
-    double result = converter.from_string("0.1 kg", kMassUnitKilogram);
+    double result = converter.ConvertFromString("0.1 kg", kMassUnitKilogram);
 
     // Assert
     double expected_result = 0.1;
@@ -212,8 +212,8 @@ TEST(Kursakov_Evgeny_MassConverterTest,
     MassUnit unit = MassUnit(1000, "Mg");
 
     // Act
-    converter.addUnit(unit);
-    double result = converter.from_string("0.001 Mg", kMassUnitKilogram);
+    converter.AddUnit(unit);
+    double result = converter.ConvertFromString("0.001 Mg", kMassUnitKilogram);
 
     // Assert
     EXPECT_DOUBLE_EQ(result, 1);
@@ -253,7 +253,7 @@ TEST(Kursakov_Evgeny_MassConverterTest,
     MassConverter converter;
 
     // Act & Assert
-    EXPECT_THROW(converter.from_string("2 om", kMassUnitKilogram),
+    EXPECT_THROW(converter.ConvertFromString("2 om", kMassUnitKilogram),
                  std::logic_error);
 }
 
@@ -263,6 +263,6 @@ TEST(Kursakov_Evgeny_MassConverterTest,
     MassConverter converter;
 
     // Act & Assert
-    EXPECT_THROW(converter.from_string("test 2.5 files", kMassUnitKilogram),
+    EXPECT_THROW(converter.ConvertFromString("test 2.5 files", kMassUnitKilogram),
                  std::invalid_argument);
 }

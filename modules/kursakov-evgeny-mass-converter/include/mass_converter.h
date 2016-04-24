@@ -13,25 +13,24 @@ class MassConverter {
  public:
     explicit MassConverter(std::vector<MassUnit> units = kDefaultMassUnits);
 
-    void addUnit(MassUnit unit);
+    void AddUnit(MassUnit unit);
 
-    std::vector<MassUnit> getUnits() const;
+    std::vector<MassUnit> units() const;
 
-    void clearUnits();
+    void ClearUnits();
 
-    double convert(MassUnit from, MassUnit to, double value) const;
+    double Convert(MassUnit from, MassUnit to, double value) const;
 
     std::string to_string(MassUnit unit,
                           double value,
                           int precision = 2) const;
 
-    double from_string(std::string input, MassUnit toUnit) const;
+    double ConvertFromString(std::string input, MassUnit toUnit) const;
 
  private:
-    std::vector<MassUnit> units;
+    std::vector<MassUnit> units_;
 
-    std::pair<MassUnit, double> from_string(std::string input) const;
-    static bool check_input(std::string input);
+    std::pair<MassUnit, double> ConvertFromString(std::string input) const;
 };
 
 #endif  // MODULES_KURSAKOV_EVGENY_MASS_CONVERTER_INCLUDE_MASS_CONVERTER_H_
