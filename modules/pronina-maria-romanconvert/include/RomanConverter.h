@@ -1,6 +1,6 @@
 // Copyright 2016 Pronina Maria
 #include <vector>
-class RomanConvertor
+class RomanConverter
 {
 	static const std::vector<int> values;
 	static const std::vector<std::string> symbols;	

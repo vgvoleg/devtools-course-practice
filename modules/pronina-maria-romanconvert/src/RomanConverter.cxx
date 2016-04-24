@@ -1,10 +1,10 @@
 // Copyright 2016 Pronina Maria
-#include "include/RomanConvertor.h"
-const std::vector<int> RomanConvertor::values = {1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000};
-const std::vector<std::string> RomanConvertor::symbols = {"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M"};
-const int RomanConvertor::maxValue = 3999;
+#include "include/RomanConverter.h"
+const std::vector<int> RomanConverter::values = {1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000};
+const std::vector<std::string> RomanConverter::symbols = {"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M"};
+const int RomanConverter::maxValue = 3999;
 
-std::vector<std::string> RomanConvertor::parseRoman(std::string roman)
+std::vector<std::string> RomanConverter::parseRoman(std::string roman)
 {
 	int state = 0;
 	std::vector<std::string> result;
@@ -151,7 +151,7 @@ std::vector<std::string> RomanConvertor::parseRoman(std::string roman)
 	return result;
 }
 
-bool RomanConvertor::checkNumeralsRepeats(std::vector<std::string> parsedRoman)
+bool RomanConverter::checkNumeralsRepeats(std::vector<std::string> parsedRoman)
 {
 	auto repeatedSymbol = parsedRoman.front();
 	int repeatCount = 1;
@@ -171,7 +171,7 @@ bool RomanConvertor::checkNumeralsRepeats(std::vector<std::string> parsedRoman)
 	}
 	return true;
 }
-bool RomanConvertor::checkForInvalidNumeralsRepeat(std::vector<std::string> parsedRoman)
+bool RomanConverter::checkForInvalidNumeralsRepeat(std::vector<std::string> parsedRoman)
 {
 	auto prev = parsedRoman.front();
 	for(auto it = parsedRoman.begin()+1; it != parsedRoman.end(); ++it)
@@ -186,7 +186,7 @@ bool RomanConvertor::checkForInvalidNumeralsRepeat(std::vector<std::string> pars
 	}
 	return true;
 }
-bool RomanConvertor::checkNumeralsOrder(std::vector<std::string> parsedRoman)
+bool RomanConverter::checkNumeralsOrder(std::vector<std::string> parsedRoman)
 {
 	auto previous = parsedRoman.front();
 	for (auto it = parsedRoman.begin() + 1; it != parsedRoman.end(); ++it)
@@ -200,7 +200,7 @@ bool RomanConvertor::checkNumeralsOrder(std::vector<std::string> parsedRoman)
 	return true;
 }
 
-bool RomanConvertor::checkForInvalidSymbols(std::vector<std::string> parsedRoman)
+bool RomanConverter::checkForInvalidSymbols(std::vector<std::string> parsedRoman)
 {
 	for (auto it = parsedRoman.begin(); it != parsedRoman.end(); ++it)
 	{
@@ -211,14 +211,14 @@ bool RomanConvertor::checkForInvalidSymbols(std::vector<std::string> parsedRoman
 	return true;
 }
 
-bool RomanConvertor::checkArabNumber(int arab)
+bool RomanConverter::checkArabNumber(int arab)
 {
 	if ((arab <= 0) || (arab > maxValue))
 		return false;
 	return true;
 }
 
-bool RomanConvertor::checkRomanNumber(std::string roman)
+bool RomanConverter::checkRomanNumber(std::string roman)
 {	
 	if (roman != roman) return false;
 	if (roman.empty()) return false;	
@@ -230,7 +230,7 @@ bool RomanConvertor::checkRomanNumber(std::string roman)
 	return true;
 }
 
-int RomanConvertor::convertRomanToArab(std::string roman)
+int RomanConverter::convertRomanToArab(std::string roman)
 {
 	if (!checkRomanNumber(roman)) return -1;
 	int result = 0;
@@ -249,7 +249,7 @@ int RomanConvertor::convertRomanToArab(std::string roman)
 	return result;
 }
 
-std::string RomanConvertor::convertArabToRoman(int arab)
+std::string RomanConverter::convertArabToRoman(int arab)
 {
 	if (!checkArabNumber(arab)) return std::string();
 	std::string result;
