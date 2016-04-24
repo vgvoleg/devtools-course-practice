@@ -185,7 +185,7 @@ bool RomanConverter::checkRomanNumber(std::string roman) {
     if (!checkForInvalidSymbols(parsedRoman)) return false;
     if (!checkNumeralsRepeats(parsedRoman)) return false;
     if (!checkNumeralsOrder(parsedRoman)) return false;
-    if (!checkForInvalidNumeralsRepeat(parsedRoman)) return false;
+    if (!checkForInvalidNumerals(parsedRoman)) return false;
     return true;
 }
 
@@ -194,8 +194,8 @@ int RomanConverter::convertRomanToArabic(std::string roman) {
     int result = 0;
     auto parsedRoman = parseRoman(roman);
     for (auto it = parsedRoman.begin(); it != parsedRoman.end(); ++it) {
-        size_t pos = 0;
-        for (pos; pos < symbols.size(); pos++) {
+        size_t pos;
+        for (pos = 0; pos < symbols.size(); pos++) {
             if (symbols[pos] == *it)
                 break;
         }
@@ -208,7 +208,7 @@ int RomanConverter::convertRomanToArabic(std::string roman) {
 std::string RomanConverter::convertArabicToRoman(int arabic) {
     if (!checkArabicNumber(arabic)) return std::string();
     std::string result;
-    for (size_t i = values.size() - 1; i >= 0 , arabic > 0; i--) {
+    for (size_t i = values.size() - 1; i >= 0; i--) {
         while (arabic >= values[i]) {
             result.append(symbols[i]);
             arabic -= values[i];
