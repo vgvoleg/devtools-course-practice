@@ -20,7 +20,7 @@ class date {
   bool operator>(const date &other_date) const;
   bool operator<(const date &other_date) const;
   bool operator==(const date &other_date) const;
-  static const int MIN_YEAR; 
+  static const int MIN_YEAR;
   static const int MAX_YEAR;
  private:
   char number;
