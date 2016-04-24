@@ -8,40 +8,37 @@
 
 #include "include/mass_converter.h"
 
-const std::vector<MassUnit> MassConverter::defaultUnits = {
-        MassUnit::Kilogram,
-        MassUnit::Gram
-};
-
 MassConverter::MassConverter(std::vector<MassUnit> units) {
     this->units = std::vector<MassUnit>(units);
-}
-
-std::vector<MassUnit> MassConverter::getUnits() const {
-    return units;
 }
 
 void MassConverter::addUnit(MassUnit unit) {
     units.push_back(unit);
 }
 
+std::vector<MassUnit> MassConverter::getUnits() const {
+    return units;
+}
+
 void MassConverter::clearUnits() {
     units.clear();
 }
 
-double MassConverter::convert(MassUnit from, MassUnit to, double value) const {
+double MassConverter::convert(const MassUnit from,
+                              const MassUnit to,
+                              double value) const {
     if (value < 0)
-        throw std::invalid_argument("Value must be not negative");
+        throw std::invalid_argument("value must be not negative");
 
     if (value == 0) return 0;
 
-    double conversion_coefficient = from.get_relative_coefficient() /
-                                    to.get_relative_coefficient();
+    double conversion_coefficient = from.get_coefficient() /
+            to.get_coefficient();
 
     return value * conversion_coefficient;
 }
 
-std::string MassConverter::to_string(MassUnit unit,
+std::string MassConverter::to_string(const MassUnit unit,
                                      double value,
                                      int precision) const {
     if (precision < 0)
@@ -55,7 +52,7 @@ std::string MassConverter::to_string(MassUnit unit,
 }
 
 std::pair<MassUnit, double>
-MassConverter::from_string(std::string input) const {
+MassConverter::from_string(const std::string input) const {
     double value;
     std::string qualifier;
 

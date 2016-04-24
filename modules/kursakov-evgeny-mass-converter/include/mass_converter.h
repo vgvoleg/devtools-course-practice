@@ -11,7 +11,7 @@
 
 class MassConverter {
  public:
-    explicit MassConverter(std::vector<MassUnit> units = defaultUnits);
+    explicit MassConverter(std::vector<MassUnit> units = kMassUnitsDefault);
 
     void addUnit(MassUnit unit);
 
@@ -28,8 +28,6 @@ class MassConverter {
     double from_string(std::string input, MassUnit toUnit) const;
 
  private:
-    static const std::vector<MassUnit> defaultUnits;
-
     std::vector<MassUnit> units;
 
     std::pair<MassUnit, double> from_string(std::string input) const;
