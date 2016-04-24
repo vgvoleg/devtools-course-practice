@@ -3,6 +3,7 @@
 #include <stdexcept>
 #include <vector>
 #include <string>
+#include <algorithm>
 #include <utility>
 #include <sstream>
 #include <iomanip>
@@ -11,10 +12,24 @@
 
 MassConverter::MassConverter(std::vector<MassUnit> units) {
     this->units = std::vector<MassUnit>(units);
+
+    auto last = std::unique(this->units.begin(),
+                            this->units.end(),
+                            [](const MassUnit &a, const MassUnit &b) {
+                                return a.get_qualifier() == b.get_qualifier();
+                            });
+
+    if (last != this->units.end())
+        throw std::invalid_argument("unit qualifiers must be unique");
 }
 
-void MassConverter::addUnit(MassUnit unit) {
-    units.push_back(unit);
+void MassConverter::addUnit(MassUnit new_unit) {
+    for (auto &unit : units) {
+        if (unit.get_qualifier() == new_unit.get_qualifier())
+            throw std::invalid_argument("unit is already added to converter");
+    }
+
+    units.push_back(new_unit);
 }
 
 std::vector<MassUnit> MassConverter::getUnits() const {
@@ -34,7 +49,7 @@ double MassConverter::convert(const MassUnit from,
     if (value == 0) return 0;
 
     double conversion_coefficient = from.get_coefficient() /
-            to.get_coefficient();
+                                    to.get_coefficient();
 
     return value * conversion_coefficient;
 }
@@ -60,6 +75,9 @@ MassConverter::from_string(const std::string input) const {
     std::istringstream inputStringStream(input);
     inputStringStream >> value;
     inputStringStream >> qualifier;
+
+    if (!inputStringStream.eof() || qualifier.empty())
+        throw std::invalid_argument("Invalid input");
 
     for (auto &unit : units) {
         if (unit.get_qualifier() == qualifier)

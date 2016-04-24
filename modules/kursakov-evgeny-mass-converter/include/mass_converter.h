@@ -11,7 +11,7 @@
 
 class MassConverter {
  public:
-    explicit MassConverter(std::vector<MassUnit> units = kMassUnitsDefault);
+    explicit MassConverter(std::vector<MassUnit> units = kDefaultMassUnits);
 
     void addUnit(MassUnit unit);
 

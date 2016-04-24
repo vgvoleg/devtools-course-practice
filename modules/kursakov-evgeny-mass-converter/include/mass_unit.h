@@ -36,6 +36,6 @@ class MassUnit {
 extern const MassUnit kMassUnitKilogram;
 extern const MassUnit kMassUnitGram;
 
-extern const std::vector<MassUnit> kMassUnitsDefault;
+extern const std::vector<MassUnit> kDefaultMassUnits;
 
 #endif  // MODULES_KURSAKOV_EVGENY_MASS_CONVERTER_INCLUDE_MASS_UNIT_H_
