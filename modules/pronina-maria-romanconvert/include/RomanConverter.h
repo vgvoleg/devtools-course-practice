@@ -21,4 +21,4 @@ class RomanConvertor {
     static bool checkForInvalidSymbols(std::vector<std::string> parsedRoman);
     static bool checkForInvalidNumerals(std::vector<std::string> parsedRoman);
 };
-
+#endif  // MODULES_PRONINA_MARIA_ROMANCONVERT_INCLUDE_ROMANCONVERTER_H_
