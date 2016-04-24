@@ -200,12 +200,13 @@ int RomanConverter::ConvertRomanToArabic(std::string roman) {
 
 std::string RomanConverter::ConvertArabicToRoman(const int& arabic) {
     if (!CheckArabicNumber(arabic)) return std::string();
+    int copy_arabic = arabic;
     std::string result;
     for (size_t i = values.size(); i != 0; i--) {
-        if (arabic <= 0) break;
-        while (arabic >= values[i-1]) {
+        if (copy_arabic <= 0) break;
+        while (copy_arabic >= values[i-1]) {
             result.append(symbols[i-1]);
-            arabic -= values[i-1];
+            copy_arabic -= values[i-1];
         }
     }
 
