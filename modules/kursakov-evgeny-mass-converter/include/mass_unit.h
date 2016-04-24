@@ -4,10 +4,10 @@
 #define MODULES_KURSAKOV_EVGENY_MASS_CONVERTER_INCLUDE_MASS_UNIT_H_
 
 #include <string>
+#include <vector>
 
 class MassUnit {
-public:
-
+ public:
     MassUnit(double coefficient, std::string qualifier);
 
     MassUnit(const MassUnit &other)
@@ -28,7 +28,7 @@ public:
 
     bool operator!=(const MassUnit &other) const;
 
-private:
+ private:
     double coefficient;
     std::string qualifier;
 };
