@@ -74,7 +74,8 @@ TEST(RomanConverter_Tests, Is_Roman_Without_Four_Repeats_Valid) {
      // Assert
      EXPECT_TRUE(is_valid);
 }
-TEST(RomanConverter_Tests, Is_Roman_With_Incorrect_Combination_Of_IXIV_Invalid) {
+TEST(RomanConverter_Tests,
+    Is_Roman_With_Incorrect_Combination_Of_IXIV_Invalid) {
      // Arrange
      std::string roman = "XLIXIV";
      // Act
@@ -109,7 +110,8 @@ TEST(RomanConverter_Tests, Is_Roman_With_End_Symbol_From_XCI_Valid) {
      // Assert
      EXPECT_TRUE(is_valid);
 }
-TEST(RomanConverter_Tests, Is_Roman_With_End_Symbol_And_Repeats_From_XCI_Valid) {
+TEST(RomanConverter_Tests,
+    Is_Roman_With_End_Symbol_And_Repeats_From_XCI_Valid) {
      // Arrange
      std::string roman = "CXXXII";
      // Act
@@ -127,7 +129,8 @@ TEST(RomanConverter_Tests, Is_Roman_With_Incorrect_Numerals_Use_Invalid) {
      // Assert
      EXPECT_FALSE(is_valid);
 }
-TEST(RomanConverter_Tests, Is_Roman_With_Subs_Numerals_And_Incorrect_Order_Invalid) {
+TEST(RomanConverter_Tests,
+     Is_Roman_With_Subs_Numerals_And_Incorrect_Order_Invalid) {
      // Arrange
      std::string roman = "XIIV";
      // Act
