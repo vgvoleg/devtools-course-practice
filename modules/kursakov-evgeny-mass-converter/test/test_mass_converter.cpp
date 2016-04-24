@@ -141,7 +141,8 @@ TEST(Kursakov_Evgeny_MassConverterTest,
 TEST(Kursakov_Evgeny_MassConverterTest,
      Can_Add_New_Unit) {
     // Arrange
-    MassConverter converter({});
+    std::vector<MassUnit> empty_array;
+    MassConverter converter(empty_array);
     MassUnit unit = MassUnit(3.14, "test");
 
     // Act
@@ -155,7 +156,8 @@ TEST(Kursakov_Evgeny_MassConverterTest,
 TEST(Kursakov_Evgeny_MassConverterTest,
      Throws_When_Add_Existing_Unit) {
     // Arrange
-    MassConverter converter({});
+    std::vector<MassUnit> empty_array;
+    MassConverter converter(empty_array);
     MassUnit unit = MassUnit(3.14, "test");
 
     // Act
