@@ -13,8 +13,8 @@ using std::vector;
 
 class MassConverter {
  public:
-    explicit
-    MassConverter(const std::vector<MassUnit> &units = kDefaultMassUnits);
+    explicit MassConverter(
+        const std::vector<MassUnit> &units = kDefaultMassUnits);
 
     void AddUnit(const MassUnit &unit);
 
