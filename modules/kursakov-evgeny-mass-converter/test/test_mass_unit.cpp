@@ -1,6 +1,7 @@
 // Copyright 2016 Kursakov Evgeny
 
 #include <gtest/gtest.h>
+#include <stdexcept>
 #include <string>
 #include <vector>
 

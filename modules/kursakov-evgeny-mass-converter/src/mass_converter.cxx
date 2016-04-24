@@ -1,5 +1,6 @@
 // Copyright 2016 Kursakov Evgeny
 
+#include <stdexcept>
 #include <vector>
 #include <string>
 #include <utility>
