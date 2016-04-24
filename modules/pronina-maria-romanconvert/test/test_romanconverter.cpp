@@ -232,7 +232,7 @@ TEST(RomanConverter, Can_Convert_Roman_From_C_String) {
      // Arrange
      char * roman = "MMMDCCLXXXVIII";
      // Act
-     int actual = RomanConverter::convertRomanToArabic(roman);
+     int actual = RomanConverter::convertRomanToArabic(std::string(roman));
 
      // Assert
      int expected = 3788;
@@ -243,7 +243,7 @@ TEST(RomanConverter, Can_Check_Roman_From_C_String) {
      // Arrange
      char * roman = "MMMDCCLXXXVIII";
      // Act
-     bool actual = RomanConverter::checkRomanNumber(roman);
+     bool actual = RomanConverter::checkRomanNumber(std::string(roman));
 
      // Assert
      EXPECT_TRUE(actual);
