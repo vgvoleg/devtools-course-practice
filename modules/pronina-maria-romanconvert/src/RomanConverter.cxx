@@ -15,22 +15,21 @@ std::vector<std::string> RomanConverter::parseRoman(std::string roman) {
     for (size_t i = 0; i < roman.length(); ++i) {
         switch (state) {
         case 0: {
-                if (i != roman.length() - 1) {
-                    if (roman[i] == 'I') {
-                        state = 1;
-                        break;
-                    }
-                     if (roman[i] == 'X') {
-                         state = 2;
-                         break;
-                     }
-                    if (roman[i] == 'C') {
-                        state = 3;
-                        break;
-                    }
-                }
+                if (i == roman.length() - 1) {
                     std::string tmp(1, roman[i]);
                     result.push_back(tmp);
+                } else {
+                    if (roman[i] == 'I') {
+                        state = 1;
+                    } else if (roman[i] == 'X') {
+                        state = 2;
+                    } else if (roman[i] == 'C') {
+                        state = 3;
+                    } else {
+                        std::string tmp(1, roman[i]);
+                        result.push_back(tmp);
+                    }
+                }
             }
             break;
         case 1: {
@@ -43,18 +42,12 @@ std::vector<std::string> RomanConverter::parseRoman(std::string roman) {
                     if (i != roman.length() - 1) {
                         if (roman[i] == 'I') {
                             state = 1;
-                            break;
-                        }
-                        if (roman[i] == 'X') {
+                        } else if (roman[i] == 'X') {
                             state = 2;
-                            break;
-                        }
-                        if (roman[i] == 'C') {
+                        } else if (roman[i] == 'C') {
                             state = 3;
-                            break;
                         }
                     }
-
                     std::string tmp(1, roman[i]);
                     result.push_back(tmp);
                     state = 0;
@@ -192,15 +185,11 @@ bool RomanConverter::checkRomanNumber(std::string roman) {
 int RomanConverter::convertRomanToArabic(std::string roman) {
     if (!checkRomanNumber(roman)) return -1;
     int result = 0;
-    auto parsedRoman = parseRoman(roman);
-    for (auto it = parsedRoman.begin(), size_t pos;
-              it != parsedRoman.end(); ++it) {
-        for (pos = 0; pos < symbols.size(); pos++) {
-            if (symbols[pos] == *it)
-                break;
-        }
-
-        result += values[pos];
+    std::vector<std::string> parsedRoman = parseRoman(roman);
+    for (auto it = parsedRoman.begin(); it != parsedRoman.end(); ++it) {
+        auto  indexOfSymbol = std::find(symbols.begin(), symbols.end(), *it) 
+                                - symbols.begin();
+        result += values[indexOfSymbol];
     }
     return result;
 }
