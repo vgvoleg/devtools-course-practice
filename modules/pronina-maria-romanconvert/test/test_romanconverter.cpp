@@ -74,13 +74,13 @@ TEST(RomanConverter_Tests, Is_Roman_Without_Four_Repeats_Valid) {
      // Assert
      EXPECT_TRUE(is_valid);
 }
-TEST(RomanConverter_Tests, Is_Roman_With_Combinations_IV_Repeats_Valid) {
+TEST(RomanConverter_Tests, Is_Roman_With_Incorrect_Combination_Of_IXIV_Invalid) {
      // Arrange
-     std::string roman = "MMMDCCLXXXVIII";
+     std::string roman = "XLIXIV";
      // Act
      bool is_valid = RomanConverter::CheckRomanNumber(roman);
      // Assert
-     EXPECT_TRUE(is_valid);
+     EXPECT_FALSE(is_valid);
 }
 TEST(RomanConverter_Tests, Is_Roman_With_Other_Symbols_Invalid) {
      // Arrange
