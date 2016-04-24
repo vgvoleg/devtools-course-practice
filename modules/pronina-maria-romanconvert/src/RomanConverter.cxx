@@ -181,7 +181,7 @@ bool RomanConverter::checkArabicNumber(int arabic) {
 bool RomanConverter::checkRomanNumber(std::string roman) {
     if (roman != roman) return false;
     if (roman.empty()) return false;
-    auto parsedRoman = parseRoman(roman);
+    std::vector<std::string> parsedRoman = parseRoman(roman);
     if (!checkForInvalidSymbols(parsedRoman)) return false;
     if (!checkNumeralsRepeats(parsedRoman)) return false;
     if (!checkNumeralsOrder(parsedRoman)) return false;
@@ -193,8 +193,7 @@ int RomanConverter::convertRomanToArabic(std::string roman) {
     if (!checkRomanNumber(roman)) return -1;
     int result = 0;
     auto parsedRoman = parseRoman(roman);
-    for (auto it = parsedRoman.begin(); it != parsedRoman.end(); ++it) {
-        size_t pos;
+    for (auto it = parsedRoman.begin(), size_t pos; it != parsedRoman.end(); ++it) {
         for (pos = 0; pos < symbols.size(); pos++) {
             if (symbols[pos] == *it)
                 break;
