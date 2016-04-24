@@ -1,6 +1,6 @@
 // Copyright 2016 Pronina Maria
-#include <string>
 #include <gtest/gtest.h>
+#include <string>
 #include "include/RomanConvertor.h"
 TEST(RomanConverter, Can_Validate_Arab) {
      // Arrange
