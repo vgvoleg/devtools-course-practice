@@ -5,6 +5,8 @@
 
 using std::string;
 
+const int category_table::table_size = 9;
+
 category_table::category_table() {
   table = new string[table_size];
   table[0] = "Debt";

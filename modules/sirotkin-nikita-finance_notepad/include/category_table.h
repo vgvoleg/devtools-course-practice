@@ -6,9 +6,9 @@
 
 using std::string;
 
-#define table_size 9
 class category_table {
  public:
+  static const int table_size;
   category_table();
   ~category_table();
   int getIdOf(string name) const;

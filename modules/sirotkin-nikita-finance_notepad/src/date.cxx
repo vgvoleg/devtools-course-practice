@@ -7,6 +7,10 @@
 using std::string;
 using std::ostringstream;
 
+const int date::MAX_YEAR = 2100;
+const int date::MIN_YEAR = 2000;
+
+
 template <class TYPE>
 string to_string(TYPE value) {
   ostringstream oss;

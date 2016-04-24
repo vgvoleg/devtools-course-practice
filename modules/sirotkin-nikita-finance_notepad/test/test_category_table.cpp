@@ -38,7 +38,7 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest,
     table_can_get_default_category_by_wrong_id) {
   // Arrange
   category_table table;
-  int input = table_size+1;
+  int input = category_table::table_size + 1;
   string expect = "Other";
   string result;
 
@@ -54,7 +54,7 @@ TEST(Sirotkin_Nikita_FinanceNotepadTest,
   // Arrange
   category_table table;
   string input = "Something";
-  int expect = table_size-1;
+  int expect = category_table::table_size - 1;
   int result;
 
   // Act
