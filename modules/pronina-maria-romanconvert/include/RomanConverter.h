@@ -3,7 +3,7 @@
 #define MODULES_PRONINA_MARIA_ROMANCONVERT_INCLUDE_ROMANCONVERTER_H_
 #include <vector>
 #include <string>
-class RomanConvertor {
+class RomanConverter {
     static const std::vector<int> values;
     static const std::vector<std::string> symbols;
     static const int maxValue;
