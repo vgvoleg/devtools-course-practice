@@ -8,11 +8,11 @@ class RomanConverter {
     static const std::vector<std::string> symbols;
     static const int maxValue;
  public:
-    static bool checkArabNumber(int arab);
+    static bool checkArabicNumber(int arabic);
     static bool checkRomanNumber(std::string roman);
     static bool checkCharsRomanNumber(const char * roman);
-    static int convertRomanToArab(std::string roman);
-    static std::string convertArabToRoman(int arab);
+    static int convertRomanToArabic(std::string roman);
+    static std::string convertArabicToRoman(int arabic);
 
  private:
     static std::vector<std::string> parseRoman(std::string roman);
