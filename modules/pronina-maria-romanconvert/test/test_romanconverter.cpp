@@ -1,7 +1,7 @@
 // Copyright 2016 Pronina Maria
 #include <gtest/gtest.h>
 #include "include/RomanConvertor.h"
-
+#include <string>
 TEST(RomanConverter, Can_Validate_Arab) {
      // Arrange
      int arab = 5;
@@ -10,7 +10,7 @@ TEST(RomanConverter, Can_Validate_Arab) {
 
      // Assert
      EXPECT_TRUE(isValid);
- }
+}
 TEST(RomanConverter, Is_Negative_Arab_Invalid) {
      // Arrange
      int arab = -5;
@@ -19,7 +19,7 @@ TEST(RomanConverter, Is_Negative_Arab_Invalid) {
 
      // Assert
      EXPECT_FALSE(isValid);
- }
+}
 
 TEST(RomanConverter, Is_Zero_Arab_Invalid) {
      // Arrange
@@ -29,7 +29,7 @@ TEST(RomanConverter, Is_Zero_Arab_Invalid) {
 
      // Assert
      EXPECT_FALSE(isValid);
- }
+}
 TEST(RomanConverter, Is_Greater_Than_Max_Arab_Invalid) {
      // Arrange
      int arab = 4000;
@@ -38,7 +38,7 @@ TEST(RomanConverter, Is_Greater_Than_Max_Arab_Invalid) {
 
      // Assert
      EXPECT_FALSE(isValid);
- }
+}
 TEST(RomanConverter, Can_Validate_Roman) {
      // Arrange
      std::string roman = "V";
@@ -47,7 +47,7 @@ TEST(RomanConverter, Can_Validate_Roman) {
 
      // Assert
      EXPECT_TRUE(isValid);
- }
+}
 TEST(RomanConverter, Is_Empty_Roman_Invalid) {
      // Arrange
      std::string roman = "";
@@ -56,7 +56,7 @@ TEST(RomanConverter, Is_Empty_Roman_Invalid) {
 
      // Assert
      EXPECT_FALSE(isValid);
- }
+}
 TEST(RomanConverter, Is_Roman_With_Four_Repeats_Invalid) {
      // Arrange
      std::string roman = "IIII";
@@ -65,7 +65,7 @@ TEST(RomanConverter, Is_Roman_With_Four_Repeats_Invalid) {
 
      // Assert
      EXPECT_FALSE(isValid);
- }
+}
 TEST(RomanConverter, Is_Roman_Without_Four_Repeats_Valid) {
      // Arrange
      std::string roman = "MMMDCCLXXXVIII";
@@ -73,7 +73,7 @@ TEST(RomanConverter, Is_Roman_Without_Four_Repeats_Valid) {
      bool isValid = RomanConvertor::checkRomanNumber(roman);
      // Assert
      EXPECT_TRUE(isValid);
- }
+}
 TEST(RomanConverter, Is_Roman_With_Combinations_IV_Repeats_Valid) {
      // Arrange
      std::string roman = "MMMDCCLXXXVIII";
@@ -81,7 +81,7 @@ TEST(RomanConverter, Is_Roman_With_Combinations_IV_Repeats_Valid) {
      bool isValid = RomanConvertor::checkRomanNumber(roman);
      // Assert
      EXPECT_TRUE(isValid);
- }
+}
 TEST(RomanConverter, Is_Roman_With_Other_Symbols_Invalid) {
      // Arrange
      std::string roman = "Ia";
@@ -90,7 +90,7 @@ TEST(RomanConverter, Is_Roman_With_Other_Symbols_Invalid) {
 
      // Assert
      EXPECT_FALSE(isValid);
- }
+}
 TEST(RomanConverter, Is_Simple_Roman_With_Incorrect_Order_Invalid) {
      // Arrange
      std::string roman = "VL";
@@ -99,7 +99,7 @@ TEST(RomanConverter, Is_Simple_Roman_With_Incorrect_Order_Invalid) {
 
      // Assert
      EXPECT_FALSE(isValid);
- }
+}
 TEST(RomanConverter, Is_Roman_With_End_Symbol_From_XCI_Valid) {
      // Arrange
      std::string roman = "X";
@@ -108,7 +108,7 @@ TEST(RomanConverter, Is_Roman_With_End_Symbol_From_XCI_Valid) {
 
      // Assert
      EXPECT_TRUE(isValid);
- }
+}
 TEST(RomanConverter, Is_Roman_With_End_Symbol_And_Repeats_From_XCI_Valid) {
      // Arrange
      std::string roman = "CXXXII";
@@ -117,7 +117,7 @@ TEST(RomanConverter, Is_Roman_With_End_Symbol_And_Repeats_From_XCI_Valid) {
 
      // Assert
      EXPECT_TRUE(isValid);
- }
+}
 TEST(RomanConverter, Is_Roman_With_Incorrect_Numerals_Use_Invalid) {
      // Arrange
      std::string roman = "IXIX";
@@ -126,7 +126,7 @@ TEST(RomanConverter, Is_Roman_With_Incorrect_Numerals_Use_Invalid) {
 
      // Assert
      EXPECT_FALSE(isValid);
- }
+}
 TEST(RomanConverter, Is_Roman_With_Subs_Numerals_And_Incorrect_Order_Invalid) {
      // Arrange
      std::string roman = "XIIV";
@@ -135,7 +135,7 @@ TEST(RomanConverter, Is_Roman_With_Subs_Numerals_And_Incorrect_Order_Invalid) {
 
      // Assert
      EXPECT_FALSE(isValid);
- }
+}
 TEST(RomanConverter, Is_Roman_With_All_Type_Of_Errors_Invalid) {
      // Arrange
      std::string roman = "IIIIIVa";
@@ -144,7 +144,7 @@ TEST(RomanConverter, Is_Roman_With_All_Type_Of_Errors_Invalid) {
 
      // Assert
      EXPECT_FALSE(isValid);
- }
+}
 TEST(RomanConverter, Can_Convert_Arab) {
      // Arrange
      int arab = 2009;
@@ -154,7 +154,7 @@ TEST(RomanConverter, Can_Convert_Arab) {
      // Assert
      std::string expected = "MMIX";
      EXPECT_EQ(expected, actual);
- }
+}
 
 TEST(RomanConverter, Can_Not_Convert_Negative_Arab) {
      // Arrange
@@ -165,7 +165,7 @@ TEST(RomanConverter, Can_Not_Convert_Negative_Arab) {
      // Assert
      std::string expected = "";
      EXPECT_EQ(expected, actual);
- }
+}
 
 TEST(RomanConverter, Can_Not_Convert_Zero_Arab) {
      // Arrange
@@ -176,7 +176,7 @@ TEST(RomanConverter, Can_Not_Convert_Zero_Arab) {
      // Assert
      std::string expected = "";
      EXPECT_EQ(expected, actual);
- }
+}
 TEST(RomanConverter, Can_Not_Convert_Greater_Than_Max_Arab) {
      // Arrange
      int arab = 58900;
@@ -186,7 +186,7 @@ TEST(RomanConverter, Can_Not_Convert_Greater_Than_Max_Arab) {
      // Assert
      std::string expected = "";
      EXPECT_EQ(expected, actual);
- }
+}
 TEST(RomanConverter, Can_Convert_Roman) {
      // Arrange
      std::string roman = "MMMDCCLXXXVIII";
@@ -196,7 +196,7 @@ TEST(RomanConverter, Can_Convert_Roman) {
      // Assert
      int expected = 3788;
      EXPECT_EQ(expected, actual);
- }
+}
 TEST(RomanConverter, Can_Not_Convert_Empty_Roman) {
      // Arrange
      std::string roman = "";
@@ -206,7 +206,7 @@ TEST(RomanConverter, Can_Not_Convert_Empty_Roman) {
      // Assert
      int expected = -1;
      EXPECT_EQ(expected, actual);
- }
+}
 TEST(RomanConverter, Can_Not_Convert_Roman_With_Other_Symbols) {
      // Arrange
      std::string roman = "-1";
@@ -216,7 +216,7 @@ TEST(RomanConverter, Can_Not_Convert_Roman_With_Other_Symbols) {
      // Assert
      int expected = -1;
      EXPECT_EQ(expected, actual);
- }
+}
 TEST(RomanConverter, Can_Not_Convert_Roman_Invalid_Order) {
      // Arrange
      std::string roman = "XXXVMMMDCCLIII";
@@ -226,7 +226,7 @@ TEST(RomanConverter, Can_Not_Convert_Roman_Invalid_Order) {
      // Assert
      int expected = -1;
      EXPECT_EQ(expected, actual);
- }
+}
 
 TEST(RomanConverter, Can_Convert_Roman_From_C_String) {
      // Arrange
@@ -237,7 +237,7 @@ TEST(RomanConverter, Can_Convert_Roman_From_C_String) {
      // Assert
      int expected = 3788;
      EXPECT_EQ(expected, actual);
- }
+}
 
 TEST(RomanConverter, Can_Check_Roman_From_C_String) {
      // Arrange
@@ -245,7 +245,7 @@ TEST(RomanConverter, Can_Check_Roman_From_C_String) {
      // Act
      bool actual = RomanConvertor::checkRomanNumber(roman);
 
-     // Assert    
+     // Assert
      EXPECT_TRUE(actual);
- }
+}
 
