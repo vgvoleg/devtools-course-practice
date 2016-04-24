@@ -4,7 +4,7 @@
 #include <string>
 #include "include/Element.h"
 
-TEST(Element, Can_Create_Correctly) {
+TEST(Element_Test_Cases, Can_Create_Correctly) {
     // Arrange
     Element parent, right, left;
 
@@ -19,17 +19,17 @@ TEST(Element, Can_Create_Correctly) {
     EXPECT_EQ(&left, a.GetLeft());
 }
 
-TEST(Element, Can_Make_Copy) {
+TEST(Element_Test_Cases, Can_Make_Copy) {
     // Arrange & Act
     Element a(5, "hello");
     Element b(a);
 
     // Assert
-    ASSERT_EQ(5, b.GetKey());
-    ASSERT_EQ("hello", b.GetValue());
+    EXPECT_EQ(5, b.GetKey());
+    EXPECT_EQ("hello", b.GetValue());
 }
 
-TEST(Element, Can_Get_Key) {
+TEST(Element_Test_Cases, Can_Get_Key) {
     // Arrange
     Element a(5);
 
@@ -37,7 +37,7 @@ TEST(Element, Can_Get_Key) {
     ASSERT_EQ(5, a.GetKey());
 }
 
-TEST(Element, Can_Set_Key) {
+TEST(Element_Test_Cases, Can_Set_Key) {
     // Arrange
     Element a(5, "eu");
 
@@ -48,7 +48,7 @@ TEST(Element, Can_Set_Key) {
     ASSERT_EQ(12, a.GetKey());
 }
 
-TEST(Element, Can_Get_Value) {
+TEST(Element_Test_Cases, Can_Get_Value) {
     // Arrange
     Element a(5, "hello123");
 
@@ -56,7 +56,7 @@ TEST(Element, Can_Get_Value) {
     ASSERT_EQ("hello123", a.GetValue());
 }
 
-TEST(Element, Can_Set_Value) {
+TEST(Element_Test_Cases, Can_Set_Value) {
     // Arrange
     Element a(5, "eu");
 
@@ -67,7 +67,7 @@ TEST(Element, Can_Set_Value) {
     ASSERT_EQ("abcde", a.GetValue());
 }
 
-TEST(Element, Can_Set_Right) {
+TEST(Element_Test_Cases, Can_Set_Right) {
     // Arrange
     Element a(5, "eu");
     Element b(44, "2ie");
@@ -79,7 +79,7 @@ TEST(Element, Can_Set_Right) {
     ASSERT_EQ(&b, a.GetRight());
 }
 
-TEST(Element, Can_Get_Right) {
+TEST(Element_Test_Cases, Can_Get_Right) {
     // Arrange
     Element a(5, "eu");
     Element b(44, "2ie", 0, &a);
@@ -88,7 +88,7 @@ TEST(Element, Can_Get_Right) {
     ASSERT_EQ(&a, b.GetRight());
 }
 
-TEST(Element, Can_Set_Left) {
+TEST(Element_Test_Cases, Can_Set_Left) {
     // Arrange
     Element a(5, "eu");
     Element b(44, "2ie");
@@ -100,7 +100,7 @@ TEST(Element, Can_Set_Left) {
     ASSERT_EQ(&b, a.GetLeft());
 }
 
-TEST(Element, Can_Get_Left) {
+TEST(Element_Test_Cases, Can_Get_Left) {
     // Arrange
     Element a(5, "eu");
     Element b(44, "2ie", 0, 0, &a);
@@ -109,7 +109,7 @@ TEST(Element, Can_Get_Left) {
     ASSERT_EQ(&a, b.GetLeft());
 }
 
-TEST(Element, Can_Set_Parent) {
+TEST(Element_Test_Cases, Can_Set_Parent) {
     // Arrange
     Element a(5, "eu");
     Element b(44, "2ie");
@@ -121,7 +121,7 @@ TEST(Element, Can_Set_Parent) {
     ASSERT_EQ(&b, a.GetParent());
 }
 
-TEST(Element, Can_Get_Parent) {
+TEST(Element_Test_Cases, Can_Get_Parent) {
     // Arrange
     Element a(5, "eu");
     Element b(44, "2ie", &a);

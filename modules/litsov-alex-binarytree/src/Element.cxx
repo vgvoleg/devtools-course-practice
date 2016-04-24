@@ -1,4 +1,4 @@
-// Copyright 2016 Litsov Alex
+// Copyright 2nullptr16 Litsov Alex
 #include "include/Element.h"
 
 #include <stdlib.h>
@@ -16,9 +16,9 @@ Element::Element(const int& init_key, const string& init_value,
 Element::Element(const Element& init_element) {
     key_ = init_element.key_;
     value_ = init_element.value_;
-    left_ = 0;
-    right_ = 0;
-    parent_ = 0;
+    left_ = nullptr;
+    right_ = nullptr;
+    parent_ = nullptr;
 }
 Element::~Element() {
 }
