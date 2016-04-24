@@ -32,12 +32,18 @@ Queue::~Queue() {
         get();
 }
 
-int Queue::put(dataValue val, int pr) {
+Data Queue::getData(void) {
+    Data tmp = data;
+    data = Data::DataOK;
+    return tmp;
+}
+
+void Queue::put(dataValue val, int pr) {
     if (pr <= 0) {
         throw "Incorrect priority!";
     } else {
         if (isFull()) {
-            return FULL_QUEUE;
+            data = Data::FULL_QUEUE;
         } else {
             Node* tmp = new Node;
             tmp->value = val;
@@ -47,7 +53,7 @@ int Queue::put(dataValue val, int pr) {
                 tmp->prev = NULL;
                 head = tail = tmp;
                 DataCount++;
-                return DATA_OK;
+                data = Data::DataOK;
             } else {
                 Node* srch = head;
                 bool mark = true;
@@ -64,7 +70,7 @@ int Queue::put(dataValue val, int pr) {
                     tmp->next = NULL;
                     tail = tmp;
                     DataCount++;
-                    return DATA_OK;
+                    data = Data::DataOK;
                 } else {
                     if (srch->prev) {
                         srch->prev->next = tmp;
@@ -72,14 +78,14 @@ int Queue::put(dataValue val, int pr) {
                         tmp->prev = srch->prev;
                         srch->prev = tmp;
                         DataCount++;
-                        return DATA_OK;
+                        data = Data::DataOK;
                     } else {
                         head = tmp;
                         srch->prev = tmp;
                         tmp->next = srch;
                         tmp->prev = NULL;
                         DataCount++;
-                        return DATA_OK;
+                        data = Data::DataOK;
                     }
                 }
             }
@@ -89,7 +95,8 @@ int Queue::put(dataValue val, int pr) {
 
 dataValue Queue::get(void) {
     if (isEmpty()) {
-        return EMPTY_QUEUE;
+        data = Data::EMPTY_QUEUE;
+        return 0;
     } else {
         Node* tmp = head;
         dataValue elem = tmp->value;
@@ -104,9 +111,10 @@ dataValue Queue::get(void) {
     }
 }
 
-dataValue Queue::findMaxElem(void) const {
+dataValue Queue::findMaxElem(void) {
     if (isEmpty()) {
-        return EMPTY_QUEUE;
+        data = Data::EMPTY_QUEUE;
+        return 0;
     } else {
         Node* tmp = head;
         dataValue max = tmp->value;
@@ -119,9 +127,10 @@ dataValue Queue::findMaxElem(void) const {
     }
 }
 
-dataValue Queue::findMinElem(void) const {
+dataValue Queue::findMinElem(void) {
     if (isEmpty()) {
-        return EMPTY_QUEUE;
+        data = Data::EMPTY_QUEUE;
+        return 0;
     } else {
         Node* tmp = head;
         dataValue min = tmp->value;
@@ -134,9 +143,10 @@ dataValue Queue::findMinElem(void) const {
     }
 }
 
-dataValue Queue::findMaxElemHiPrior(void) const {
+dataValue Queue::findMaxElemHiPrior(void) {
     if (isEmpty()) {
-        return EMPTY_QUEUE;
+        data = Data::EMPTY_QUEUE;
+        return 0;
     } else {
         int hiPrior = head->priority;
         Node* tmp = head;
@@ -150,9 +160,10 @@ dataValue Queue::findMaxElemHiPrior(void) const {
     }
 }
 
-dataValue Queue::findMinElemHiPrior(void) const {
+dataValue Queue::findMinElemHiPrior(void) {
     if (isEmpty()) {
-        return EMPTY_QUEUE;
+        data = Data::EMPTY_QUEUE;
+        return 0;
     } else {
         int hiPrior = head->priority;
         Node* tmp = head;
@@ -166,9 +177,10 @@ dataValue Queue::findMinElemHiPrior(void) const {
     }
 }
 
-dataValue Queue::findMaxElemSetPrior(int pr) const {
+dataValue Queue::findMaxElemSetPrior(int pr) {
     if (isEmpty()) {
-        return EMPTY_QUEUE;
+        data = Data::EMPTY_QUEUE;
+        return 0;
     } else {
         bool mark = false;
         dataValue max;
@@ -193,9 +205,10 @@ dataValue Queue::findMaxElemSetPrior(int pr) const {
     }
 }
 
-dataValue Queue::findMinElemSetPrior(int pr) const {
+dataValue Queue::findMinElemSetPrior(int pr) {
     if (isEmpty()) {
-        return EMPTY_QUEUE;
+        data = Data::EMPTY_QUEUE;
+        return 0;
     } else {
         bool mark = false;
         dataValue min;
