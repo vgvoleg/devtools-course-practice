@@ -56,7 +56,6 @@ std::vector<std::string> RomanConverter::ParseRoman(std::string roman) {
                     std::string tmp(1, roman[i]);
                     result.push_back(tmp);
                     state = 0;
-                    
                 }
             }
             break;
