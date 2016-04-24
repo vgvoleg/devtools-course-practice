@@ -11,8 +11,8 @@ class MassUnit {
     MassUnit(double coefficient, std::string qualifier);
 
     MassUnit(const MassUnit &other)
-            : coefficient_(other.coefficient()),
-              qualifier_(other.qualifier()) { }
+        : coefficient_(other.coefficient()),
+          qualifier_(other.qualifier()) { }
 
     MassUnit &operator=(const MassUnit &other);
 

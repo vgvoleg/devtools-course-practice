@@ -36,8 +36,8 @@ TEST(Kursakov_Evgeny_MassConverterTest,
      Can_Create_With_Custom_Units) {
     // Arrange
     std::vector<MassUnit> expected_units = {
-            MassUnit(1, "kg"),
-            MassUnit(15, "test")
+        MassUnit(1, "kg"),
+        MassUnit(15, "test")
     };
 
     // Act
@@ -52,8 +52,8 @@ TEST(Kursakov_Evgeny_MassConverterTest,
      Throws_When_Create_With_Duplicate_Units) {
     // Arrange
     std::vector<MassUnit> units = {
-            MassUnit(1, "kg"),
-            MassUnit(1, "kg")
+        MassUnit(1, "kg"),
+        MassUnit(1, "kg")
     };
 
     // Act & Assert
@@ -68,10 +68,10 @@ TEST(Kursakov_Evgeny_MassConverterTest,
 
     // Act & Assert
     EXPECT_THROW(
-            converter.Convert(kMassUnitGram,
-                              kMassUnitKilogram,
-                              bad_value),
-            std::invalid_argument);
+        converter.Convert(kMassUnitGram,
+                          kMassUnitKilogram,
+                          bad_value),
+        std::invalid_argument);
 }
 
 TEST(Kursakov_Evgeny_MassConverterTest,
@@ -264,6 +264,6 @@ TEST(Kursakov_Evgeny_MassConverterTest,
 
     // Act & Assert
     EXPECT_THROW(
-            converter.ConvertFromString("test 2.5 files", kMassUnitKilogram),
-            std::invalid_argument);
+        converter.ConvertFromString("test 2.5 files", kMassUnitKilogram),
+        std::invalid_argument);
 }

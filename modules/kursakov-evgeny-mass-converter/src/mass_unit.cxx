@@ -11,14 +11,14 @@ const MassUnit kMassUnitKilogram = MassUnit(1, "kg");
 const MassUnit kMassUnitTon = MassUnit(1000, "t");
 
 const std::vector<MassUnit> kDefaultMassUnits = {
-        kMassUnitGram,
-        kMassUnitKilogram,
-        kMassUnitTon
+    kMassUnitGram,
+    kMassUnitKilogram,
+    kMassUnitTon
 };
 
 
 MassUnit::MassUnit(double coefficient, std::string qualifier)
-        : coefficient_(coefficient), qualifier_(qualifier) {
+    : coefficient_(coefficient), qualifier_(qualifier) {
     if (coefficient <= 0)
         throw std::invalid_argument("coefficient must be positive");
 
@@ -35,7 +35,7 @@ MassUnit &MassUnit::operator=(const MassUnit &z) {
 
 bool MassUnit::operator==(const MassUnit &other) const {
     return this->qualifier() == other.qualifier() &&
-            this->coefficient() == other.coefficient();
+        this->coefficient() == other.coefficient();
 }
 
 bool MassUnit::operator!=(const MassUnit &other) const {

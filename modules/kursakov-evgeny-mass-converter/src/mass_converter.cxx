@@ -23,7 +23,7 @@ MassConverter::MassConverter(std::vector<MassUnit> units) {
         throw std::invalid_argument("unit qualifiers must be unique");
 }
 
-void MassConverter::AddUnit(MassUnit new_unit) {
+void MassConverter::AddUnit(const MassUnit &new_unit) {
     for (auto &unit : units_) {
         if (unit.qualifier() == new_unit.qualifier())
             throw std::invalid_argument("unit is already added to converter");
@@ -40,21 +40,20 @@ void MassConverter::ClearUnits() {
     units_.clear();
 }
 
-double MassConverter::Convert(MassUnit from,
-                              MassUnit to,
+double MassConverter::Convert(const MassUnit &from,
+                              const MassUnit &to,
                               double value) const {
     if (value < 0)
         throw std::invalid_argument("value must be not negative");
 
     if (value == 0) return 0;
 
-    double conversion_coefficient = from.coefficient() /
-            to.coefficient();
+    double conversion_coefficient = from.coefficient() / to.coefficient();
 
     return value * conversion_coefficient;
 }
 
-std::string MassConverter::to_string(const MassUnit unit,
+std::string MassConverter::to_string(const MassUnit &unit,
                                      double value,
                                      int precision) const {
     if (precision < 0)
@@ -68,7 +67,7 @@ std::string MassConverter::to_string(const MassUnit unit,
 }
 
 std::pair<MassUnit, double>
-MassConverter::ConvertFromString(std::string input) const {
+MassConverter::ConvertFromString(const std::string &input) const {
     double value;
     std::string qualifier;
 
@@ -87,9 +86,9 @@ MassConverter::ConvertFromString(std::string input) const {
     throw std::logic_error("Unit not found");
 }
 
-double MassConverter::ConvertFromString(std::string input,
-                                        MassUnit toUnit) const {
+double MassConverter::ConvertFromString(const std::string &input,
+                                        const MassUnit &to_unit) const {
     std::pair<MassUnit, double> result = ConvertFromString(input);
-    return Convert(result.first, toUnit, result.second);
+    return Convert(result.first, to_unit, result.second);
 }
 
