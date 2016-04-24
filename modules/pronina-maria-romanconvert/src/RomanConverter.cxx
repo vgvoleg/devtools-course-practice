@@ -3,20 +3,21 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-const std::vector<int> RomanConverter::values =
+using namespace  std;
+const vector<int> RomanConverter::values =
 {1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000};
-const std::vector<std::string> RomanConverter::symbols =
+const vector<string> RomanConverter::symbols =
 {"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M"};
 const int RomanConverter::maxValue = 3999;
 
-std::vector<std::string> RomanConverter::parseRoman(std::string roman) {
+vector<string> RomanConverter::ParseRoman(string roman) {
     int state = 0;
-    std::vector<std::string> result;
+    vector<string> result;
     for (size_t i = 0; i < roman.length(); ++i) {
         switch (state) {
         case 0: {
                 if (i == roman.length() - 1) {
-                    std::string tmp(1, roman[i]);
+                    string tmp(1, roman[i]);
                     result.push_back(tmp);
                 } else {
                     if (roman[i] == 'I') {
@@ -26,7 +27,7 @@ std::vector<std::string> RomanConverter::parseRoman(std::string roman) {
                     } else if (roman[i] == 'C') {
                         state = 3;
                     } else {
-                        std::string tmp(1, roman[i]);
+                        string tmp(1, roman[i]);
                         result.push_back(tmp);
                     }
                 }
@@ -42,15 +43,21 @@ std::vector<std::string> RomanConverter::parseRoman(std::string roman) {
                     if (i != roman.length() - 1) {
                         if (roman[i] == 'I') {
                             state = 1;
-                        } else if (roman[i] == 'X') {
+                            break;
+                        }
+                        if (roman[i] == 'X') {
                             state = 2;
-                        } else if (roman[i] == 'C') {
+                            break;
+                        }
+                        if (roman[i] == 'C') {
                             state = 3;
+                            break;
                         }
                     }
-                    std::string tmp(1, roman[i]);
+                    string tmp(1, roman[i]);
                     result.push_back(tmp);
                     state = 0;
+                    
                 }
             }
             break;
@@ -64,18 +71,18 @@ std::vector<std::string> RomanConverter::parseRoman(std::string roman) {
                     if (i != roman.length() - 1) {
                         if (roman[i] == 'I') {
                             state = 1;
-                            break;
+                            continue;
                         }
                         if (roman[i] == 'X') {
                             state = 2;
-                            break;
+                            continue;
                         }
                         if (roman[i] == 'C') {
                             state = 3;
-                            break;
+                            continue;
                         }
                     }
-                    std::string tmp(1, roman[i]);
+                    string tmp(1, roman[i]);
                     result.push_back(tmp);
                     state = 0;
                 }
@@ -91,18 +98,18 @@ std::vector<std::string> RomanConverter::parseRoman(std::string roman) {
                     if (i != roman.length() - 1) {
                         if (roman[i] == 'I') {
                             state = 1;
-                            break;
+                            continue;
                         }
                         if (roman[i] == 'X') {
                             state = 2;
-                            break;
+                            continue;
                         }
                         if (roman[i] == 'C') {
                             state = 3;
-                            break;
+                            continue;
                         }
                     }
-                    std::string tmp(1, roman[i]);
+                    string tmp(1, roman[i]);
                     result.push_back(tmp);
                     state = 0;
                 }
@@ -113,26 +120,26 @@ std::vector<std::string> RomanConverter::parseRoman(std::string roman) {
     return result;
 }
 
-bool RomanConverter::checkNumeralsRepeats
-        (std::vector<std::string> parsedRoman) {
-    auto repeatedSymbol = parsedRoman.front();
-    int repeatCount = 1;
-    for (auto it = parsedRoman.begin() + 1; it != parsedRoman.end(); ++it) {
-        if (*it == repeatedSymbol) {
-            repeatCount++;
+bool RomanConverter::CheckNumeralsRepeats
+        (vector<string> parsed_roman) {
+    auto repeated_symbol = parsed_roman.front();
+    int repeat_count = 1;
+    for (auto it = parsed_roman.begin() + 1; it != parsed_roman.end(); ++it) {
+        if (*it == repeated_symbol) {
+            repeat_count++;
         } else {
-            repeatedSymbol = *it;
-            repeatCount = 1;
+            repeated_symbol = *it;
+            repeat_count = 1;
         }
-        if (repeatCount > 3)
+        if (repeat_count > 3)
             return false;
     }
     return true;
 }
-bool RomanConverter::checkForInvalidNumerals
-        (std::vector<std::string> parsedRoman) {
-    auto prev = parsedRoman.front();
-    for (auto it = parsedRoman.begin()+1; it != parsedRoman.end(); ++it) {
+bool RomanConverter::CheckForInvalidNumerals
+        (vector<string> parsed_roman) {
+    auto prev = parsed_roman.front();
+    for (auto it = parsed_roman.begin()+1; it != parsed_roman.end(); ++it) {
         if ((*it == "I")|| (*it == "X")|| (*it == "M")) {
             prev = *it;
             continue;
@@ -142,12 +149,12 @@ bool RomanConverter::checkForInvalidNumerals
     }
     return true;
 }
-bool RomanConverter::checkNumeralsOrder
-        (std::vector<std::string> parsedRoman) {
-    auto previous = parsedRoman.front();
-    for (auto it = parsedRoman.begin() + 1; it != parsedRoman.end(); ++it) {
-        auto previousPos = std::find(symbols.begin(), symbols.end(), previous);
-        auto currentPos = std::find(symbols.begin(), symbols.end(), *it);
+bool RomanConverter::CheckNumeralsOrder
+        (vector<string> parsed_roman) {
+    auto previous = parsed_roman.front();
+    for (auto it = parsed_roman.begin() + 1; it != parsed_roman.end(); ++it) {
+        auto previousPos = find(symbols.begin(), symbols.end(), previous);
+        auto currentPos = find(symbols.begin(), symbols.end(), *it);
         if (currentPos > previousPos)
             return false;
         previous = *it;
@@ -155,48 +162,47 @@ bool RomanConverter::checkNumeralsOrder
     return true;
 }
 
-bool RomanConverter::checkForInvalidSymbols
-        (std::vector<std::string> parsedRoman) {
-    for (auto it = parsedRoman.begin(); it != parsedRoman.end(); ++it) {
-        auto position = std::find(symbols.begin(), symbols.end(), *it);
+bool RomanConverter::CheckForInvalidSymbols
+        (vector<string> parsed_roman) {
+    for (auto it = parsed_roman.begin(); it != parsed_roman.end(); ++it) {
+        auto position = find(symbols.begin(), symbols.end(), *it);
         if (position == symbols.end())
             return false;
     }
     return true;
 }
 
-bool RomanConverter::checkArabicNumber(int arabic) {
+bool RomanConverter::CheckArabicNumber(int arabic) {
     if ((arabic <= 0) || (arabic > maxValue))
         return false;
     return true;
 }
 
-bool RomanConverter::checkRomanNumber(std::string roman) {
-    if (roman != roman) return false;
+bool RomanConverter::CheckRomanNumber(string roman) {
     if (roman.empty()) return false;
-    std::vector<std::string> parsedRoman = parseRoman(roman);
-    if (!checkForInvalidSymbols(parsedRoman)) return false;
-    if (!checkNumeralsRepeats(parsedRoman)) return false;
-    if (!checkNumeralsOrder(parsedRoman)) return false;
-    if (!checkForInvalidNumerals(parsedRoman)) return false;
+    vector<string> parsed_roman = ParseRoman(roman);
+    if (!CheckForInvalidSymbols(parsed_roman)) return false;
+    if (!CheckNumeralsRepeats(parsed_roman)) return false;
+    if (!CheckNumeralsOrder(parsed_roman)) return false;
+    if (!CheckForInvalidNumerals(parsed_roman)) return false;
     return true;
 }
 
-int RomanConverter::convertRomanToArabic(std::string roman) {
-    if (!checkRomanNumber(roman)) return -1;
+int RomanConverter::ConvertRomanToArabic(string roman) {
+    if (!CheckRomanNumber(roman)) return -1;
     int result = 0;
-    std::vector<std::string> parsedRoman = parseRoman(roman);
+    vector<string> parsedRoman = ParseRoman(roman);
     for (auto it = parsedRoman.begin(); it != parsedRoman.end(); ++it) {
-        auto  indexOfSymbol = std::find(symbols.begin(), symbols.end(), *it) 
+        auto  index_of_symbol = find(symbols.begin(), symbols.end(), *it)
                                 - symbols.begin();
-        result += values[indexOfSymbol];
+        result += values[index_of_symbol];
     }
     return result;
 }
 
-std::string RomanConverter::convertArabicToRoman(int arabic) {
-    if (!checkArabicNumber(arabic)) return std::string();
-    std::string result;
+string RomanConverter::ConvertArabicToRoman(int arabic) {
+    if (!CheckArabicNumber(arabic)) return string();
+    string result;
     for (size_t i = values.size(); i != 0; i--) {
         if (arabic <= 0) break;
         while (arabic >= values[i-1]) {
