@@ -263,6 +263,7 @@ TEST(Kursakov_Evgeny_MassConverterTest,
     MassConverter converter;
 
     // Act & Assert
-    EXPECT_THROW(converter.ConvertFromString("test 2.5 files", kMassUnitKilogram),
-                 std::invalid_argument);
+    EXPECT_THROW(
+            converter.ConvertFromString("test 2.5 files", kMassUnitKilogram),
+            std::invalid_argument);
 }
