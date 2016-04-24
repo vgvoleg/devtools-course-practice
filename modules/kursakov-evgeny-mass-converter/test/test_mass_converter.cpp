@@ -226,7 +226,7 @@ TEST(Kursakov_Evgeny_MassConverterTest,
     double value = 42.266;
 
     // Act
-    std::string result = converter.to_string(kMassUnitKilogram, value);
+    std::string result = converter.ConvertToString(kMassUnitKilogram, value);
 
     // Assert
     std::string expected_result = "42.27 kg";
@@ -240,7 +240,7 @@ TEST(Kursakov_Evgeny_MassConverterTest,
     double value = 42.266182;
 
     // Act
-    std::string result = converter.to_string(kMassUnitKilogram, value, 4);
+    std::string result = converter.ConvertToString(kMassUnitKilogram, value, 4);
 
     // Assert
     std::string expected_result = "42.2662 kg";

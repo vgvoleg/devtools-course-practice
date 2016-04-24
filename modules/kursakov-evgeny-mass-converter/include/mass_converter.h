@@ -25,9 +25,9 @@ class MassConverter {
                    const MassUnit &to,
                    double value) const;
 
-    std::string to_string(const MassUnit &unit,
-                          double value,
-                          int precision = 2) const;
+    std::string ConvertToString(const MassUnit &unit,
+                                double value,
+                                int precision = 2) const;
 
     double ConvertFromString(const std::string &input,
                              const MassUnit &to_unit) const;

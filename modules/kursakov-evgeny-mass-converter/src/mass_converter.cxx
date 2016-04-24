@@ -53,9 +53,9 @@ double MassConverter::Convert(const MassUnit &from,
     return value * conversion_coefficient;
 }
 
-std::string MassConverter::to_string(const MassUnit &unit,
-                                     double value,
-                                     int precision) const {
+std::string MassConverter::ConvertToString(const MassUnit &unit,
+                                           double value,
+                                           int precision) const {
     if (precision < 0)
         throw std::invalid_argument("precision must be positive");
 
