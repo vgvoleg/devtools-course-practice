@@ -228,24 +228,4 @@ TEST(RomanConverter, Can_Not_Convert_Roman_Invalid_Order) {
      EXPECT_EQ(expected, actual);
 }
 
-TEST(RomanConverter, Can_Convert_Roman_From_C_String) {
-     // Arrange
-     char * roman = "MMMDCCLXXXVIII";
-     // Act
-     int actual = RomanConverter::convertRomanToArabic(std::string(roman));
-
-     // Assert
-     int expected = 3788;
-     EXPECT_EQ(expected, actual);
-}
-
-TEST(RomanConverter, Can_Check_Roman_From_C_String) {
-     // Arrange
-     char * roman = "MMMDCCLXXXVIII";
-     // Act
-     bool actual = RomanConverter::checkRomanNumber(std::string(roman));
-
-     // Assert
-     EXPECT_TRUE(actual);
-}
 
