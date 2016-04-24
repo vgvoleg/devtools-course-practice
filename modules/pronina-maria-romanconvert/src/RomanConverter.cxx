@@ -171,7 +171,7 @@ bool RomanConverter::checkNumeralsRepeats(std::vector<std::string> parsedRoman)
 	}
 	return true;
 }
-bool RomanConverter::checkForInvalidNumeralsRepeat(std::vector<std::string> parsedRoman)
+bool RomanConverter::checkForInvalidNumerals(std::vector<std::string> parsedRoman)
 {
 	auto prev = parsedRoman.front();
 	for(auto it = parsedRoman.begin()+1; it != parsedRoman.end(); ++it)
