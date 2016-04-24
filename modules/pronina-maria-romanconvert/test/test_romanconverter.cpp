@@ -1,7 +1,7 @@
 // Copyright 2016 Pronina Maria
+#include <string>
 #include <gtest/gtest.h>
 #include "include/RomanConvertor.h"
-#include <string>
 TEST(RomanConverter, Can_Validate_Arab) {
      // Arrange
      int arab = 5;
