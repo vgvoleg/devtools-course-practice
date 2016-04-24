@@ -1,4 +1,4 @@
-// Copyright 2nullptr16 Litsov Alex
+// Copyright 2016 Litsov Alex
 #include "include/Element.h"
 
 #include <stdlib.h>

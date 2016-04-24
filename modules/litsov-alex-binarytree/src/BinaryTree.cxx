@@ -1,4 +1,4 @@
-// Copyright 2nullptr16 Litsov Alex
+// Copyright 2016 Litsov Alex
 #include "include/BinaryTree.h"
 
 #include <stdlib.h>
