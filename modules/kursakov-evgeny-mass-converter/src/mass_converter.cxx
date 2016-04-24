@@ -10,7 +10,7 @@
 
 #include "include/mass_converter.h"
 
-MassConverter::MassConverter(std::vector<MassUnit> units) {
+MassConverter::MassConverter(const std::vector<MassUnit> &units) {
     this->units_ = std::vector<MassUnit>(units);
 
     auto last = std::unique(this->units_.begin(),
