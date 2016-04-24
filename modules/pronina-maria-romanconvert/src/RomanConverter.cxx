@@ -209,6 +209,7 @@ std::string RomanConverter::convertArabicToRoman(int arabic) {
     if (!checkArabicNumber(arabic)) return std::string();
     std::string result;
     for (size_t i = values.size() - 1; i >= 0; i--) {
+        if (arabic <= 0) break;
         while (arabic >= values[i]) {
             result.append(symbols[i]);
             arabic -= values[i];
