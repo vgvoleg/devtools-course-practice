@@ -9,7 +9,7 @@ class RomanConverter {
     static const int maxValue;
  public:
     static bool CheckArabicNumber(const int& arabic);
-    static bool CheckRomanNumber(std::string roman);    
+    static bool CheckRomanNumber(std::string roman);
     static int ConvertRomanToArabic(std::string roman);
     static std::string ConvertArabicToRoman(const int& arabic);
 
