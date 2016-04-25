@@ -1,7 +1,9 @@
 // Copyright 2016 Arhipycheva Anastasia
 
 #include <iostream>
-using namespace std;
+using std::cout;
+using std::endl;
+
 class TElasticity
 {
 public:
