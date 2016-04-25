@@ -32,4 +32,11 @@ class Exception {
     }
 };
 
+class Incorrect: public std::runtime_error {
+ public:
+    Incorrect() : std::
+                        runtime_error(
+        "Values is not correct") { }
+};
+
 #endif  // MODULES_KOSHECHKIN_VLAD_DETERMINANT_INCLUDE_MATRIX_DETERMENANT_H_
