@@ -1,6 +1,8 @@
 // Copyright 2016 Arhipycheva Anastasia
 
 #ifndef MODULES_ARHIPYCHEVA_ANASTASIA_ELASTICITY_INCLUDE_TELASTICITY_H_
+#define MODULES_ARHIPYCHEVA_ANASTASIA_ELASTICITY_INCLUDE_TELASTICITY_H_
+
 #include <iostream>
 using std::cout;
 using std::endl;
