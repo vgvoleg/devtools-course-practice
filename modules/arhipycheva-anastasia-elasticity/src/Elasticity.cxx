@@ -3,38 +3,41 @@
 #include "TElasticity.h"
 
 int TElasticity::ElasticityByPricePointDo(int Q1, int Q0, float P1, float P0) {
-  if (((P1 - P0)*Q0) == 0)
-    return 1000;  // код ошибки
+  if (((P1 - P0)*Q0) == 0) {
+    return 1000;  // error kod
+  }
   else {
     float Elasticity = ((Q1 - Q0)*P0) / ((P1 - P0)*Q0);
     return Elasticity;
-       }
+  }
 }
 int TElasticity::ElasticityByPriceArcDo(int Q1, int Q0, float P1, float P0) {
-  if (((P1 - P0)*(Q1 + Q0)) == 0)
-    return 1000;  // код ошибки
+  if (((P1 - P0)*(Q1 + Q0)) == 0) {
+    return 1000;  // error kod
+  }
   else {
     float Elasticity = ((Q1 - Q0)*(P1 + P0)) / ((P1 - P0)*(Q1 + Q0));
     return Elasticity;
-       }
+  }
 }
 int TElasticity::ElasticityByIncomeDo(int Q1, int Q0, float I1, float I0) {
-  if (((I1 - I0)*Q0) == 0)
-    return 1000;  // код ошибки
+  if (((I1 - I0)*Q0) == 0) {
+    return 1000;  // error kod
+  }
   else {
     float Elasticity = ((Q1 - Q0)*I0) / ((I1 - I0)*Q0);
     return Elasticity;
-       }
+  }
 }
 int TElasticity::ElasticityCrossDo(int QA1, int QA0, float PB1, float PB0) {
-  if ((PB0*QA0) == 0)
-    return 1000;  // код ошибки
+  if ((PB0*QA0) == 0) {
+    return 1000;  // error kod
+  }
   else {
     float Elasticity = ((QA1 - QA0)*(PB1 - PB0)) / (PB0*QA0);
     return Elasticity;
        }
 }
-
 void TElasticity::ElasticityByPricePoint(int Q1, int Q0, float P1, float P0) {
   float Elasticity = ElasticityByPricePointDo(Q1, Q0, P1, P0);
   cout << "Elasticity By Price Point = ";
@@ -58,14 +61,13 @@ void TElasticity::ElasticityByPricePoint(int Q1, int Q0, float P1, float P0) {
   }
   cout << endl;
 }
-
 void TElasticity::ElasticityByPriceArc(int Q1, int Q0, float P1, float P0) {
   float Elasticity = ElasticityByPriceArcDo(Q1, Q0, P1, P0);
   cout << "Elasticity By Price Arc = ";
   cout << Elasticity << endl;
   if (Elasticity == 0.0) {
     cout << "It is quite inelastic demand ";
-	cout << "- essential commodities (salt, matches); ";
+    cout << "- essential commodities (salt, matches); ";
   }
   if (Elasticity > 1.0) {
     cout << "Elastic demand" << endl;
@@ -83,7 +85,6 @@ void TElasticity::ElasticityByPriceArc(int Q1, int Q0, float P1, float P0) {
   }
   cout << endl;
 }
-
 void TElasticity::ElasticityByIncome(int Q1, int Q0, float I1, float I0) {
   float Elasticity = ElasticityByIncomeDo(Q1, Q0, I1, I0);
   cout << "Elasticity By Income = ";
@@ -98,7 +99,7 @@ void TElasticity::ElasticityByIncome(int Q1, int Q0, float I1, float I0) {
     cout << "The D volume is changed to a smaller percentage than income.";
     cout << "That is,when the income increase in";
     cout << " a certain number of times,the D for a given commodity ";
-	cout << "will increase by a smaller number of times";
+    cout << "will increase by a smaller number of times";
   }
   if (Elasticity > 0.0) {
     cout << "Normal (full) benefit" << endl;
@@ -116,7 +117,6 @@ void TElasticity::ElasticityByIncome(int Q1, int Q0, float I1, float I0) {
   cout << endl;
 
 }
-
 void TElasticity::ElasticityCross(int QA1, int QA0, float PB1, float PB0) {
   float Elasticity = ElasticityCrossDo(QA1, QA0, PB1, PB0);
   cout << "Elasticity Cross = ";
@@ -132,7 +132,6 @@ void TElasticity::ElasticityCross(int QA1, int QA0, float PB1, float PB0) {
     cout << "the consumption of goods B. For example, two brands ";
     cout << "of washing powder";
   }
-
   if (Elasticity < 0.0) {
     cout << "Complementary benefits" << endl;
     cout << "Theoretically Consumers can not change the product A consumption";
@@ -140,6 +139,5 @@ void TElasticity::ElasticityCross(int QA1, int QA0, float PB1, float PB0) {
     cout << "of goods B. A good example - a laptop and accessories.";
   }
   cout << endl;
-
 }
 
