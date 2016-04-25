@@ -12,10 +12,10 @@ TEST(Quaternion, Can_Create_Default) {
     // Act
 
     // Assert
-    EXPECT_EQ(quat.x, 0.0);
-    EXPECT_EQ(quat.y, 0.0);
-    EXPECT_EQ(quat.z, 0.0);
-    EXPECT_EQ(quat.w, 0.0);
+    EXPECT_EQ(quat.getX(), 0.0);
+    EXPECT_EQ(quat.getY(), 0.0);
+    EXPECT_EQ(quat.getZ(), 0.0);
+    EXPECT_EQ(quat.getW(), 0.0);
 }
 
 TEST(Quaternion, Can_Create_Parameterized) {
@@ -25,10 +25,98 @@ TEST(Quaternion, Can_Create_Parameterized) {
     // Act
 
     // Assert
-    EXPECT_EQ(quat.x, 1.0);
-    EXPECT_EQ(quat.y, 2.0);
-    EXPECT_EQ(quat.z, 3.0);
-    EXPECT_EQ(quat.w, 4.0);
+    EXPECT_EQ(quat.getX(), 1.0);
+    EXPECT_EQ(quat.getY(), 2.0);
+    EXPECT_EQ(quat.getZ(), 3.0);
+    EXPECT_EQ(quat.getW(), 4.0);
+}
+
+TEST(Quaternion, Can_Set_X) {
+    // Arrange
+    Quaternion quat;
+
+    // Act
+    quat.setX(1.0);
+    Quaternion expect(1.0, 0.0, 0.0, 0.0);
+
+    // Assert
+    EXPECT_EQ(quat, expect);
+}
+
+TEST(Quaternion, Can_Set_Y) {
+    // Arrange
+    Quaternion quat;
+
+    // Act
+    quat.setY(1.0);
+    Quaternion expect(0.0, 1.0, 0.0, 0.0);
+
+    // Assert
+    EXPECT_EQ(quat, expect);
+}
+
+TEST(Quaternion, Can_Set_Z) {
+    // Arrange
+    Quaternion quat;
+
+    // Act
+    quat.setZ(1.0);
+    Quaternion expect(0.0, 0.0, 1.0, 0.0);
+
+    // Assert
+    EXPECT_EQ(quat, expect);
+}
+
+TEST(Quaternion, Can_Set_W) {
+    // Arrange
+    Quaternion quat;
+
+    // Act
+    quat.setW(1.0);
+    Quaternion expect(0.0, 0.0, 0.0, 1.0);
+
+    // Assert
+    EXPECT_EQ(quat, expect);
+}
+
+TEST(Quaternion, Can_Get_X) {
+    // Arrange
+    Quaternion quat(1.0, 1.0, 1.0, 1.0);
+
+    // Act
+
+    // Assert
+    EXPECT_EQ(quat.getX(), 1.0);
+}
+
+TEST(Quaternion, Can_Get_Y) {
+    // Arrange
+    Quaternion quat(1.0, 1.0, 1.0, 1.0);
+
+    // Act
+
+    // Assert
+    EXPECT_EQ(quat.getY(), 1.0);
+}
+
+TEST(Quaternion, Can_Get_Z) {
+    // Arrange
+    Quaternion quat(1.0, 1.0, 1.0, 1.0);
+
+    // Act
+
+    // Assert
+    EXPECT_EQ(quat.getZ(), 1.0);
+}
+
+TEST(Quaternion, Can_Get_W) {
+    // Arrange
+    Quaternion quat(1.0, 1.0, 1.0, 1.0);
+
+    // Act
+
+    // Assert
+    EXPECT_EQ(quat.getW(), 1.0);
 }
 
 TEST(Quaternion, Can_Compare_Itself) {

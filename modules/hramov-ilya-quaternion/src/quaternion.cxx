@@ -14,6 +14,39 @@ Quaternion::Quaternion(
         this->w = w;
     }
 
+// Setters getters
+void Quaternion::setX(const double &x) {
+    this->x = x;
+}
+
+void Quaternion::setY(const double &y) {
+    this->y = y;
+}
+
+void Quaternion::setZ(const double &z) {
+    this->z = z;
+}
+
+void Quaternion::setW(const double &w) {
+    this->w = w;
+}
+
+double Quaternion::getX() const {
+    return x;
+}
+
+double Quaternion::getY() const {
+    return y;
+}
+
+double Quaternion::getZ() const {
+    return z;
+}
+
+double Quaternion::getW() const {
+    return w;
+}
+
 // Operators
 Quaternion Quaternion::operator+(const Quaternion &operand) const {
     return Quaternion(
@@ -119,7 +152,7 @@ Quaternion Quaternion::inversed() const {
 }
 
 // Other
-bool Quaternion::isZero(const Quaternion &operand) const {
+bool Quaternion::isZero(const Quaternion &operand) {
     return operand.x < epsilon && operand.x > -epsilon &&
         operand.y < epsilon && operand.y > -epsilon &&
         operand.z < epsilon && operand.z > -epsilon &&
