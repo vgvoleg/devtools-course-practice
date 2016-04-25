@@ -122,7 +122,7 @@ TEST(RomanConverter_Tests,
 }
 TEST(RomanConverter_Tests, Is_Roman_With_Incorrect_Numerals_Use_Invalid) {
      // Arrange
-     std::string roman = "IXIX";
+     std::string roman = "XLXL";
      // Act
      bool is_valid = RomanConverter::CheckRomanNumber(roman);
 
@@ -229,6 +229,14 @@ TEST(RomanConverter_Tests, Can_Not_Convert_Roman_Invalid_Order) {
      // Assert
      int expected = -1;
      EXPECT_EQ(expected, actual);
+}
+TEST(RomanConverter_Tests, Is_CC_Valid) {
+    // Arrange
+    std::string roman = "CC";
+    // Act
+    bool is_valid = RomanConverter::CheckRomanNumber(roman);
+    // Assert
+    EXPECT_TRUE(is_valid);
 }
 
 

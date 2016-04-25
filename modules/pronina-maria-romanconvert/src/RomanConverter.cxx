@@ -138,7 +138,7 @@ bool RomanConverter::CheckForInvalidNumerals
         (std::vector<std::string> parsed_roman) {
     auto prev = parsed_roman.front();
     for (auto it = parsed_roman.begin()+1; it != parsed_roman.end(); ++it) {
-        if ((*it == "I")|| (*it == "X")|| (*it == "M")) {
+        if ((*it == "I")|| (*it == "X")|| (*it == "M")|| (*it == "C")) {
             prev = *it;
             continue;
         }
