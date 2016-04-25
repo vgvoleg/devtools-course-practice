@@ -1,7 +1,7 @@
 // Copyright 2016 Arhipycheva Anastasia
 
-#include <iostream>
-
+ #include <iostream>
+ 
 using namespace std;
 
 class TElasticity
