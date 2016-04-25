@@ -8,19 +8,19 @@
 
 class MassUnit {
  public:
-    MassUnit(double coefficient, std::string qualifier);
+    MassUnit(double coefficient, const std::string &qualifier);
 
     MassUnit(const MassUnit &other)
-        : coefficient_(other.coefficient()),
-          qualifier_(other.qualifier()) { }
+        : coefficient_(other.Coefficient()),
+          qualifier_(other.Qualifier()) { }
 
     MassUnit &operator=(const MassUnit &other);
 
-    double coefficient() const {
+    double Coefficient() const {
         return coefficient_;
     }
 
-    std::string qualifier() const {
+    std::string Qualifier() const {
         return qualifier_;
     }
 

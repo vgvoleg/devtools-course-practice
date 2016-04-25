@@ -16,7 +16,7 @@ MassConverter::MassConverter(const std::vector<MassUnit> &units) {
     auto last = std::unique(this->units_.begin(),
                             this->units_.end(),
                             [](const MassUnit &a, const MassUnit &b) {
-                                return a.qualifier() == b.qualifier();
+                                return a.Qualifier() == b.Qualifier();
                             });
 
     if (last != this->units_.end())
@@ -25,14 +25,14 @@ MassConverter::MassConverter(const std::vector<MassUnit> &units) {
 
 void MassConverter::AddUnit(const MassUnit &new_unit) {
     for (auto &unit : units_) {
-        if (unit.qualifier() == new_unit.qualifier())
+        if (unit.Qualifier() == new_unit.Qualifier())
             throw std::invalid_argument("unit is already added to converter");
     }
 
     units_.push_back(new_unit);
 }
 
-std::vector<MassUnit> MassConverter::units() const {
+std::vector<MassUnit> MassConverter::GetUnits() const {
     return units_;
 }
 
@@ -48,7 +48,7 @@ double MassConverter::Convert(const MassUnit &from,
 
     if (value == 0) return 0;
 
-    double conversion_coefficient = from.coefficient() / to.coefficient();
+    double conversion_coefficient = from.Coefficient() / to.Coefficient();
 
     return value * conversion_coefficient;
 }
@@ -62,12 +62,21 @@ std::string MassConverter::ConvertToString(const MassUnit &unit,
     std::ostringstream stringStream;
     stringStream << std::fixed << std::setprecision(precision) << value;
     stringStream << " ";
-    stringStream << unit.qualifier();
+    stringStream << unit.Qualifier();
     return stringStream.str();
 }
 
+double MassConverter::ConvertFromString(const std::string &input,
+                                        const MassUnit &to_unit) const {
+    std::pair<MassUnit, double> result = ParseString(input);
+    return Convert(result.first, to_unit, result.second);
+}
+
 std::pair<MassUnit, double>
-MassConverter::ConvertFromString(const std::string &input) const {
+MassConverter::ParseString(const std::string &input) const {
+    if (!CheckInputString(input))
+        throw std::invalid_argument("Invalid input");
+
     double value;
     std::string qualifier;
 
@@ -75,20 +84,37 @@ MassConverter::ConvertFromString(const std::string &input) const {
     inputStringStream >> value;
     inputStringStream >> qualifier;
 
-    if (!inputStringStream.eof() || qualifier.empty())
-        throw std::invalid_argument("Invalid input");
-
     for (auto &unit : units_) {
-        if (unit.qualifier() == qualifier)
+        if (unit.Qualifier() == qualifier)
             return std::pair<MassUnit, double>(unit, value);
     }
 
     throw std::logic_error("Unit not found");
 }
 
-double MassConverter::ConvertFromString(const std::string &input,
-                                        const MassUnit &to_unit) const {
-    std::pair<MassUnit, double> result = ConvertFromString(input);
-    return Convert(result.first, to_unit, result.second);
+bool MassConverter::CheckInputString(const std::string &input) const {
+    size_t space_pos = input.find_first_of(' ');
+    size_t dot_pos = input.find_first_of('.');
+
+    if (space_pos == std::string::npos)
+        return false;
+    if (input.substr(dot_pos + 1).find_first_of('.') != std::string::npos)
+        return false;
+    if (input.substr(space_pos + 1).find_first_of(' ') != std::string::npos)
+        return false;
+
+    for (auto &character : input.substr(0, space_pos)) {
+        if (!std::isdigit(character) && character != '.') {
+            return false;
+        }
+    }
+
+    for (auto &character : input.substr(space_pos + 1)) {
+        if (!std::isalpha(character)) {
+            return false;
+        }
+    }
+
+    return true;
 }
 

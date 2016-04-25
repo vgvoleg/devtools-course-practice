@@ -18,7 +18,7 @@ class MassConverter {
 
     void AddUnit(const MassUnit &unit);
 
-    std::vector<MassUnit> units() const;
+    std::vector<MassUnit> GetUnits() const;
 
     void ClearUnits();
 
@@ -37,7 +37,8 @@ class MassConverter {
     vector<MassUnit> units_;
 
     std::pair<MassUnit, double>
-        ConvertFromString(const std::string &input) const;
+        ParseString(const std::string &input) const;
+    bool CheckInputString(const std::string &input) const;
 };
 
 #endif  // MODULES_KURSAKOV_EVGENY_MASS_CONVERTER_INCLUDE_MASS_CONVERTER_H_

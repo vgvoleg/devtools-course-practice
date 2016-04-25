@@ -25,7 +25,7 @@ TEST(Kursakov_Evgeny_MassConverterTest,
     MassConverter converter;
 
     // Act
-    std::vector<MassUnit> units = converter.units();
+    std::vector<MassUnit> units = converter.GetUnits();
 
     // Assert
     std::vector<MassUnit> expected_units = kDefaultMassUnits;
@@ -42,7 +42,7 @@ TEST(Kursakov_Evgeny_MassConverterTest,
 
     // Act
     MassConverter converter(expected_units);
-    std::vector<MassUnit> units = converter.units();
+    std::vector<MassUnit> units = converter.GetUnits();
 
     // Assert
     EXPECT_EQ(units, expected_units);
@@ -149,7 +149,7 @@ TEST(Kursakov_Evgeny_MassConverterTest,
     converter.AddUnit(unit);
 
     // Assert
-    MassUnit expected_unit = converter.units()[0];
+    MassUnit expected_unit = converter.GetUnits()[0];
     EXPECT_EQ(unit, expected_unit);
 }
 
@@ -176,7 +176,7 @@ TEST(Kursakov_Evgeny_MassConverterTest,
     converter.ClearUnits();
 
     // Assert
-    EXPECT_TRUE(converter.units().empty());
+    EXPECT_TRUE(converter.GetUnits().empty());
 }
 
 TEST(Kursakov_Evgeny_MassConverterTest,
@@ -264,6 +264,6 @@ TEST(Kursakov_Evgeny_MassConverterTest,
 
     // Act & Assert
     EXPECT_THROW(
-        converter.ConvertFromString("test 2.5 files", kMassUnitKilogram),
+        converter.ConvertFromString("te.st 2.5 files", kMassUnitKilogram),
         std::invalid_argument);
 }

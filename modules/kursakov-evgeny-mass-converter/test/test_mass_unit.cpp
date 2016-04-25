@@ -32,6 +32,12 @@ TEST(Kursakov_Evgeny_MassUnitTest,
 }
 
 TEST(Kursakov_Evgeny_MassUnitTest,
+     Throws_When_Qualifier_Contains_Spaces) {
+    // Act & Assert
+    EXPECT_THROW(new MassUnit(10, "kg f"), std::invalid_argument);
+}
+
+TEST(Kursakov_Evgeny_MassUnitTest,
      Can_Create_Via_Copying) {
     // Arrange
     MassUnit unit(1, "kg");
