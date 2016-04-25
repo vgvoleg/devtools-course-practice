@@ -1,4 +1,4 @@
-sudo: false
+sudo: required
 
 notifications:
   email: false
@@ -7,11 +7,9 @@ language: cpp
 
 os:
   - linux
-  - osx
 
 compiler:
   - gcc
-  - clang
 
 addons:
   apt:
@@ -21,7 +19,7 @@ addons:
       - g++-4.8
 
 install:
-  - wget https://codecov.io/bash -O $HOME/codecov; chmod +x $HOME/codecov
+  - sudo pip install cpp-coveralls
 
 before_script:
   - coverage=OFF
@@ -34,9 +32,9 @@ script:
   - ./build-and-test.sh
 
 after_success:
-  # Push coverage info on codecov.io
+  # Push coverage info on coveralls.io
   - if [ "${coverage}" = "ON" ]; then
-        $HOME/codecov
-             -p ../devtools_build
-             -x /usr/bin/gcov-4.8;
+         coveralls --exclude 3rdparty -E ".*\.cpp" --gcov /usr/bin/gcov-4.8
+         --extension cxx --root ../
+         --build-root ../devtools_build;
     fi
