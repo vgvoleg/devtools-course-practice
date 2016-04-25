@@ -199,7 +199,7 @@ int RomanConverter::ConvertRomanToArabic(const std::string& roman) {
 }
 
 std::string RomanConverter::ConvertArabicToRoman(int arabic) {
-    if (!CheckArabicNumber(arabic)) return std::string();    
+    if (!CheckArabicNumber(arabic)) return std::string();
     std::string result;
     for (size_t i = values.size(); i != 0; i--) {
         if (arabic <= 0) break;
