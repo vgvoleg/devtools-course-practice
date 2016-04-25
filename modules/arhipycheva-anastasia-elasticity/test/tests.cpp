@@ -11,7 +11,7 @@ TEST(TElasticity, ElasticityByPricePointDo_When_Null_1var) {
   TElasticity E;
 
   // Act & Assert
-  EXPECT_EQ(1000, E.ElasticityByPricePointDo(Q1,Q0,P1,P0));
+  EXPECT_EQ(1000, E.ElasticityByPricePointDo(Q1, Q0, P1, P0));
 }
 
 TEST(TElasticity, ElasticityByPricePointDo_When_Null_2var) {
@@ -114,7 +114,7 @@ TEST(TElasticity, ElasticityCrossDo_When_Null_3var) {
 }
 
 TEST(TElasticity, ElasticityByPricePointDo_Not_Null_1ver) {
-	// Arrange
+  // Arrange
   int Q1 = 10, Q0 = 15;
   float P1 = 10, P0 = 5;
   TElasticity E;
