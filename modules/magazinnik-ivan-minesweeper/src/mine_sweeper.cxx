@@ -12,6 +12,7 @@ const int MineSweeper::GAME_STATUS_START = 2;
 const unsigned int MineSweeper::MINE = 9;
 const unsigned int MineSweeper::CLOSED_CELL = 0;
 const unsigned int MineSweeper::OPENED_CELL = 10;
+
 MineSweeper::MineSweeper(unsigned int game_size,
                          unsigned int mine_count, bool is_static) {
     if (mine_count > game_size*game_size-1)
