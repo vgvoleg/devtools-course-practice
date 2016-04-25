@@ -204,7 +204,7 @@ TEST(TElasticity, ElasticityByIncomeDo_Not_Null_ver3) {
   TElasticity E;
 
   // Act & Assert
-  rezult = -9 / 11;
+  rezult = -9 / 5;
   EXPECT_EQ(rezult, E.ElasticityByIncomeDo(Q1, Q0, I1, I0));
 }
 
@@ -269,7 +269,7 @@ TEST(TElasticity, ElasticityByIncomeDo_With_float_P) {
   TElasticity E;
 
   // Act & Assert
-  rezult = -20.01 / 2;
+  rezult = -20.01 / 3;
   EXPECT_EQ(rezult, E.ElasticityByIncomeDo(Q1, Q0, I1, I0));
 }
 
