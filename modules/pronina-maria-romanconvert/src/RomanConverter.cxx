@@ -3,11 +3,11 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-static const std::vector<int> values =
+static const std::vector<int> kValues =
 {1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000};
-static const std::vector<std::string> symbols =
+static const std::vector<std::string> kSymbols =
 {"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M"};
-static const int maxValue = 3999;
+static const int kMaxValue = 3999;
 
 std::vector<std::string> RomanConverter::ParseRoman(const std::string& roman) {
     int state = 0;
@@ -151,8 +151,8 @@ bool RomanConverter::CheckNumeralsOrder
                      (const std::vector<std::string>& parsed_roman) {
     auto previous = parsed_roman.front();
     for (auto it = parsed_roman.begin() + 1; it != parsed_roman.end(); ++it) {
-        auto previousPos = find(symbols.begin(), symbols.end(), previous);
-        auto currentPos = find(symbols.begin(), symbols.end(), *it);
+        auto previousPos = find(kSymbols.begin(), kSymbols.end(), previous);
+        auto currentPos = find(kSymbols.begin(), kSymbols.end(), *it);
         if (currentPos > previousPos)
             return false;
         previous = *it;
@@ -163,15 +163,15 @@ bool RomanConverter::CheckNumeralsOrder
 bool RomanConverter::CheckForInvalidSymbols
                      (const std::vector<std::string>& parsed_roman) {
     for (auto it = parsed_roman.begin(); it != parsed_roman.end(); ++it) {
-        auto position = find(symbols.begin(), symbols.end(), *it);
-        if (position == symbols.end())
+        auto position = find(kSymbols.begin(), kSymbols.end(), *it);
+        if (position == kSymbols.end())
             return false;
     }
     return true;
 }
 
 bool RomanConverter::CheckArabicNumber(int arabic) {
-    if ((arabic <= 0) || (arabic > maxValue))
+    if ((arabic <= 0) || (arabic > kMaxValue))
         return false;
     return true;
 }
@@ -191,9 +191,9 @@ int RomanConverter::ConvertRomanToArabic(const std::string& roman) {
     int result = 0;
     std::vector<std::string> parsedRoman = ParseRoman(roman);
     for (auto it = parsedRoman.begin(); it != parsedRoman.end(); ++it) {
-        auto  index_of_symbol = find(symbols.begin(), symbols.end(), *it)
-                                - symbols.begin();
-        result += values[index_of_symbol];
+        auto  index_of_symbol = find(kSymbols.begin(), kSymbols.end(), *it)
+                                - kSymbols.begin();
+        result += kValues[index_of_symbol];
     }
     return result;
 }
@@ -201,11 +201,11 @@ int RomanConverter::ConvertRomanToArabic(const std::string& roman) {
 std::string RomanConverter::ConvertArabicToRoman(int arabic) {
     if (!CheckArabicNumber(arabic)) return std::string();
     std::string result;
-    for (size_t i = values.size(); i != 0; i--) {
+    for (size_t i = kValues.size(); i != 0; i--) {
         if (arabic <= 0) break;
-        while (arabic >= values[i-1]) {
-            result.append(symbols[i-1]);
-            arabic -= values[i-1];
+        while (arabic >= kValues[i-1]) {
+            result.append(kSymbols[i-1]);
+            arabic -= kValues[i-1];
         }
     }
 
