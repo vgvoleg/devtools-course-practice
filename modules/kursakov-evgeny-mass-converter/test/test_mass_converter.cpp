@@ -258,12 +258,56 @@ TEST(Kursakov_Evgeny_MassConverterTest,
 }
 
 TEST(Kursakov_Evgeny_MassConverterTest,
-     Throws_When_Parse_Invalid_String) {
+     Throws_When_String_Has_No_Qualifier) {
     // Arrange
     MassConverter converter;
 
     // Act & Assert
     EXPECT_THROW(
-        converter.ConvertFromString("te.st 2.5 files", kMassUnitKilogram),
+        converter.ConvertFromString("2.5", kMassUnitKilogram),
+        std::invalid_argument);
+}
+
+TEST(Kursakov_Evgeny_MassConverterTest,
+     Throws_When_String_Has_Two_Spaces) {
+    // Arrange
+    MassConverter converter;
+
+    // Act & Assert
+    EXPECT_THROW(
+        converter.ConvertFromString("2.5 f f", kMassUnitKilogram),
+        std::invalid_argument);
+}
+
+TEST(Kursakov_Evgeny_MassConverterTest,
+     Throws_When_String_Has_Two_Dots) {
+    // Arrange
+    MassConverter converter;
+
+    // Act & Assert
+    EXPECT_THROW(
+        converter.ConvertFromString("2.5.5 kg", kMassUnitKilogram),
+        std::invalid_argument);
+}
+
+TEST(Kursakov_Evgeny_MassConverterTest,
+     Throws_When_String_Has_Letter_In_Number) {
+    // Arrange
+    MassConverter converter;
+
+    // Act & Assert
+    EXPECT_THROW(
+        converter.ConvertFromString("5f.1 kg", kMassUnitKilogram),
+        std::invalid_argument);
+}
+
+TEST(Kursakov_Evgeny_MassConverterTest,
+     Throws_When_String_Has_Invalid_Char_In_Qualifier) {
+    // Arrange
+    MassConverter converter;
+
+    // Act & Assert
+    EXPECT_THROW(
+        converter.ConvertFromString("5.1 k*g", kMassUnitKilogram),
         std::invalid_argument);
 }

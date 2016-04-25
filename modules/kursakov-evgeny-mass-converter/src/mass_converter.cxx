@@ -111,7 +111,7 @@ bool MassConverter::CheckInputString(const std::string &input) const {
     }
 
     for (auto &character : input.substr(space_pos + 1)) {
-        if (!std::isalpha(character)) {
+        if (!std::isalnum(character)) {
             return false;
         }
     }

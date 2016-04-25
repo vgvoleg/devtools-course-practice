@@ -44,8 +44,22 @@ TEST(Kursakov_Evgeny_MassUnitTest,
 
     // Act
     MassUnit excepted_unit = unit;
+
     // Assert
     EXPECT_EQ(unit, excepted_unit);
+}
+
+TEST(Kursakov_Evgeny_MassUnitTest,
+     Can_Create_Via_Assign) {
+    // Arrange
+    MassUnit unit1(1, "kg");
+    MassUnit unit2(1000, "t");
+
+    // Act
+    unit2 = unit1;
+
+    // Assert
+    EXPECT_EQ(unit1, unit2);
 }
 
 TEST(Kursakov_Evgeny_MassUnitTest,
