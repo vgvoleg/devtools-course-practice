@@ -6,7 +6,8 @@ int TElasticity::ElasticityByPricePointDo(int Q1, int Q0, float P1, float P0) {
   if (((P1 - P0)*Q0) == 0) {
     return 1000;  // error kod
   }
-  else {
+  else
+  {
     float Elasticity = ((Q1 - Q0)*P0) / ((P1 - P0)*Q0);
     return Elasticity;
   }
@@ -36,7 +37,7 @@ int TElasticity::ElasticityCrossDo(int QA1, int QA0, float PB1, float PB0) {
   else {
     float Elasticity = ((QA1 - QA0)*(PB1 - PB0)) / (PB0*QA0);
     return Elasticity;
-       }
+  }
 }
 void TElasticity::ElasticityByPricePoint(int Q1, int Q0, float P1, float P0) {
   float Elasticity = ElasticityByPricePointDo(Q1, Q0, P1, P0);
@@ -115,7 +116,6 @@ void TElasticity::ElasticityByIncome(int Q1, int Q0, float I1, float I0) {
     cout << "the consumer. An example is the market barley consumption";
   }
   cout << endl;
-
 }
 void TElasticity::ElasticityCross(int QA1, int QA0, float PB1, float PB0) {
   float Elasticity = ElasticityCrossDo(QA1, QA0, PB1, PB0);
