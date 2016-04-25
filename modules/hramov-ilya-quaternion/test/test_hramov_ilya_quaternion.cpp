@@ -146,7 +146,7 @@ TEST(Quaternion, Can_Compare_Zero) {
 
     // Act
 
-    //Assert
+    // Assert
     EXPECT_TRUE(Quaternion::isZero(quat));
 }
 
