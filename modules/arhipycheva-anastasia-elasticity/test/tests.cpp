@@ -204,7 +204,7 @@ TEST(TElasticity, ElasticityByIncomeDo_Not_Null_ver3) {
   TElasticity E;
 
   // Act & Assert
-  rezult = -9 / 5;
+  rezult = -2;
   EXPECT_EQ(rezult, E.ElasticityByIncomeDo(Q1, Q0, I1, I0));
 }
 
@@ -265,11 +265,11 @@ TEST(TElasticity, ElasticityByPriceArcDo_With_float_P) {
 TEST(TElasticity, ElasticityByIncomeDo_With_float_P) {
   // Arrange
   int Q1 = 10, Q0 = 15;
-  float I1 = 525.25, I0 = 500.25, rezult;
+  float I1 = 500, I0 = 525.50, rezult;
   TElasticity E;
 
   // Act & Assert
-  rezult = -20.01 / 3;
+  rezult = 1051 / 51;
   EXPECT_EQ(rezult, E.ElasticityByIncomeDo(Q1, Q0, I1, I0));
 }
 
