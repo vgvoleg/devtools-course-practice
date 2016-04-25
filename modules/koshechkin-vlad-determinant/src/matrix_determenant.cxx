@@ -1,102 +1,122 @@
-// Copyright 2016 Pozdyaev Valery
+// Copyright 2016 Koshechkin Vlad
 
 #include "include/matrix_determenant.h"
-
+#include <math.h>
 #include <utility>
-#include <map>
-#include <string>
+#include <cstdlib>
+#include <vector>
 
-using std::logic_error;
-using std::invalid_argument;
 
-const double base_lot_size = 10000;
+using std::vector;
 
-CurrencyPair::CurrencyPair() {
-    currency_pair_code_ = "EUR/USD";
-    bid_price_ = 1.1;
-    ask_price_ = 1.2;
-}
+Matrix::Matrix() {
+// create a Matrix object without content
+    n = 0;
+};
 
-CurrencyPair::CurrencyPair(string currency_pair_code,
-                            double bid_price, double ask_price) {
-    CurrencyPair::checkCurrencyPairCode(currency_pair_code);
-    if (bid_price <= 0 || ask_price <= 0) {
-        throw invalid_argument("Incorrect price format");
+Matrix::Matrix(int count_n) {
+
+    if (count_n <= 0) {
+
+        throw Exception("Index for matrix out of range");
+
     }
+    else {
+        n = count_n;
+        p_m.resize(n*n, 0);
 
-    currency_pair_code_ = currency_pair_code;
-    bid_price_ = bid_price;
-    ask_price_ = ask_price;
-
-    updateSpreadHistory();
-}
-
-void CurrencyPair::setBidPrice(double new_bid_price) {
-    if (new_bid_price > 0) {
-        bid_price_ = new_bid_price;
-        updateSpreadHistory();
-    } else {
-        throw invalid_argument("Incorrect bid price format");
     }
-}
+};
 
-double CurrencyPair::getBidPrice() const {
-    return bid_price_;
-}
+Matrix::Matrix(int count_n, vector<int> v) {
 
-void CurrencyPair::setAskPrice(double new_ask_price) {
-    if (new_ask_price > 0) {
-        ask_price_ = new_ask_price;
-        updateSpreadHistory();
-    } else {
-        throw invalid_argument("Incorrect ask price format");
+    if (count_n <= 0) {
+
+        throw Exception("Index for matrix out of range");
+
     }
+    else {
+        n = count_n;
+        p_m = v;
+    }
+};
+
+
+int Matrix::Get(int i, int j) {
+    return p_m[i * n + j];
 }
 
-double CurrencyPair::getAskPrice() const {
-    return ask_price_;
+int Matrix::Set(int i, int j, int value) {
+    return p_m[i * n + j] = value;
 }
 
-void CurrencyPair::setCurrencyPairCode(string new_currency_pair_code) {
-    checkCurrencyPairCode(new_currency_pair_code);
+Matrix Matrix::Minor(const int row, const int col) {
+    if (row > 0 && row <= n && col > 0 && col <= n) {
+        Matrix res(n - 1);
 
-    currency_pair_code_ = new_currency_pair_code;
-}
-
-string CurrencyPair::getCurrencyPairCode() const {
-    return currency_pair_code_;
-}
-
-void CurrencyPair::checkCurrencyPairCode(string currency_pair_code) {
-    size_t code_size = currency_pair_code.size();
-    int symb_code = 0;
-
-    if (code_size == 7) {
-        if (currency_pair_code.substr(0, 3)
-            == currency_pair_code.substr(4, 3)) {
-            throw logic_error("Exchange with same currency is not supported");
-        }
-
-        for (int i = 0; i < 7; i++) {
-            symb_code = static_cast<int> (currency_pair_code[i]);
-            if ((i == 3 && symb_code != 47)
-                || (i != 3 && (symb_code < 65 || symb_code > 90))) {
-                throw invalid_argument("Incorrect currency pair code");
+        // copy the content of the matrix to the minor, except the selected
+        for (int i = 1; i <= (n - (row >= n)); i++) {
+            for (int j = 1; j <= (n - (col >= n)); j++) {
+                res.Set(i - (i > row),
+                        j - (j > row),
+                        p_m[(i - 1) * n + (j - 1)]);
             }
         }
-    } else {
-        throw invalid_argument("Incorrect size of currency pair code");
+        return res;
+    }
+    else {
+        throw Exception("Index for minor out of range");
     }
 }
 
-std::map<time_t, int> CurrencyPair::getSpreadHistory() const {
-    return spread_history;
-}
+double Matrix::Determenant() {
 
-void CurrencyPair::updateSpreadHistory() {
-    time_t now = time(NULL);
+    double det = 1;
 
-    int spread = (ask_price_ - bid_price_) * base_lot_size;
+    // this is a square matrix
+    if (n == 1) {
+        // this is a 1 x 1 matrix
+        det = Get(0, 0);
+    }
+    else {
+        if (n == 2) {
+            // this is a 2 x 2 matrix
+            // the determinant of [a11,a12;a21,a22] is det = a11*a22-a21*a12
+            det = Get(0, 0) * Get(1, 1) - Get(1, 0) * Get(0, 1);
+        }
+        else {
+            // this is a matrix of 3 x 3 or larger
+            for (int i = 0; i <= n; i++) {
+                Matrix M = Minor(0, i);
+                det += (i % 2 + i % 2 - 1) * Get(0, i) * Determenant(M);
+            }
+        }
+    }
 
-    spread_history.insert(std::pair<time_t, int>(now, spread));
-}
+    return det;
+};
+double Matrix::Determenant(Matrix &a) {
+
+    double det = 1;
+
+    // this is a square matrix
+    if (n == 1) {
+        // this is a 1 x 1 matrix
+        det = Get(0, 0);
+    }
+    if (n == 2) {
+        // this is a 2 x 2 matrix
+        // the determinant of [a11,a12;a21,a22] is det = a11*a22-a21*a12
+        det = a.Get(0, 0) * a.Get(1, 1) - a.Get(1, 0) * a.Get(0, 1);
+    }
+    else {
+        // this is a matrix of 3 x 3 or larger
+        for (int i = 1; i <= n; i++) {
+            Matrix M = a.Minor(0, i);
+            det += (i % 2 + i % 2 - 1) * a.Get(0, i) * Determenant(M);
+        }
+    }
+
+
+    return det;
+};

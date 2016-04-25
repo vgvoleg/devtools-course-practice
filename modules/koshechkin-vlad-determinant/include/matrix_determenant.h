@@ -1,20 +1,36 @@
 // Copyright 2016 Koshechkin Vlad
 
-#ifndef MODULES_POZDYAEV_VALERY_CCONVERTER_INCLUDE_CURRENCY_PAIR_H_
-#define MODULES_POZDYAEV_VALERY_CCONVERTER_INCLUDE_CURRENCY_PAIR_H_
+#ifndef MODULES_KOSHECHKIN_VLAD_DETERMENANT_INCLUDE_MATRIX_DETERMENANT_H_
+#define MODULES_KOSHECHKIN_VLAD_DETERMENANT_INCLUDE_MATRIX_DETERMENANT_H_
 
 #include <string>
-#include <map>
-#include <exception>
-#include <ctime>
+#include <stdexcept>
+#include <vector>
 
+using std::vector;
 
 class Matrix {
-        int a[10][10],n;
-        public:
-        matrix();
-        void seeMat();
-        void detmnt();
-    };
+ private:
+    int n;
+    double Determenant(Matrix &a);
 
-#endif  // MODULES_POZDYAEV_VALERY_CCONVERTER_INCLUDE_CURRENCY_PAIR_H_
+ public:
+    vector<int> p_m;
+    Matrix();
+    Matrix(int count_n);
+    Matrix(int count_n, vector<int> matrix);
+    Matrix Minor(const int row, const int col);
+    int Set(int i, int j, int value);
+    int Get(int i, int j);
+    double Determenant();
+};
+
+class Exception {
+ public:
+    const char *msg;
+    Exception(const char *arg)
+        : msg(arg) {
+    }
+};
+
+#endif  // MODULES_KOSHECHKIN_VLAD_DETERMENANT_INCLUDE_MATRIX_DETERMENANT_H_
