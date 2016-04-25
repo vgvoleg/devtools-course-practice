@@ -42,15 +42,15 @@ std::vector<std::string> RomanConverter::ParseRoman(const std::string& roman) {
                     if (i != roman.length() - 1) {
                         if (roman[i] == 'I') {
                             state = 1;
-                            break;
+                            continue;
                         }
                         if (roman[i] == 'X') {
                             state = 2;
-                            break;
+                            continue;
                         }
                         if (roman[i] == 'C') {
                             state = 3;
-                            break;
+                            continue;
                         }
                     }
                     std::string tmp(1, roman[i]);
