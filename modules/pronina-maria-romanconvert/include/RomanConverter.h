@@ -19,7 +19,9 @@ class RomanConverter {
                 (const std::vector<std::string>& parsed_roman);
     static bool CheckNumeralsOrder
                 (const std::vector<std::string>& parsed_roman);
-    static bool CheckForInvalidSymbols(const std::vector<std::string>& parsed_roman);
-    static bool CheckForInvalidNumerals(const std::vector<std::string>& parsed_roman);
+    static bool CheckForInvalidSymbols
+                (const std::vector<std::string>& parsed_roman);
+    static bool CheckForInvalidNumerals
+                (const std::vector<std::string>& parsed_roman);
 };
 #endif  // MODULES_PRONINA_MARIA_ROMANCONVERT_INCLUDE_ROMANCONVERTER_H_
