@@ -6,8 +6,7 @@ int TElasticity::ElasticityByPricePointDo(int Q1, int Q0, float P1, float P0) {
   if (((P1 - P0)*Q0) == 0) {
     return 1000;  // error kod
   }
-  else
-  {
+   else {
     float Elasticity = ((Q1 - Q0)*P0) / ((P1 - P0)*Q0);
     return Elasticity;
   }
