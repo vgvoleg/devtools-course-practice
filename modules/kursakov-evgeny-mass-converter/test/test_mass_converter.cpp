@@ -248,6 +248,17 @@ TEST(Kursakov_Evgeny_MassConverterTest,
 }
 
 TEST(Kursakov_Evgeny_MassConverterTest,
+     Throws_When_Precision_Is_Negative) {
+    // Arrange
+    MassConverter converter;
+    double value = 42.266;
+
+    // Act & Assert
+    EXPECT_THROW(converter.ConvertToString(kMassUnitKilogram, value, -1),
+              std::invalid_argument);
+}
+
+TEST(Kursakov_Evgeny_MassConverterTest,
      Throws_When_Parse_Unknown_Unit) {
     // Arrange
     MassConverter converter;
