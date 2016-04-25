@@ -3,11 +3,11 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-const std::vector<int> RomanConverter::values =
+static const std::vector<int> values =
 {1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000};
-const std::vector<std::string> RomanConverter::symbols =
+static const std::vector<std::string> symbols =
 {"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M"};
-const int RomanConverter::maxValue = 3999;
+static const int maxValue = 3999;
 
 std::vector<std::string> RomanConverter::ParseRoman(const std::string& roman) {
     int state = 0;
@@ -170,7 +170,7 @@ bool RomanConverter::CheckForInvalidSymbols
     return true;
 }
 
-bool RomanConverter::CheckArabicNumber(const int& arabic) {
+bool RomanConverter::CheckArabicNumber(int arabic) {
     if ((arabic <= 0) || (arabic > maxValue))
         return false;
     return true;
@@ -198,15 +198,14 @@ int RomanConverter::ConvertRomanToArabic(const std::string& roman) {
     return result;
 }
 
-std::string RomanConverter::ConvertArabicToRoman(const int& arabic) {
-    if (!CheckArabicNumber(arabic)) return std::string();
-    int copy_arabic = arabic;
+std::string RomanConverter::ConvertArabicToRoman(int arabic) {
+    if (!CheckArabicNumber(arabic)) return std::string();    
     std::string result;
     for (size_t i = values.size(); i != 0; i--) {
-        if (copy_arabic <= 0) break;
-        while (copy_arabic >= values[i-1]) {
+        if (arabic <= 0) break;
+        while (arabic >= values[i-1]) {
             result.append(symbols[i-1]);
-            copy_arabic -= values[i-1];
+            arabic -= values[i-1];
         }
     }
 
