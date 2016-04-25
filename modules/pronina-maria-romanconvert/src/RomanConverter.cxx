@@ -35,8 +35,10 @@ vector<string> RomanConverter::ParseRoman(const string& roman) {
         case 1: {
                 if (roman[i] == 'V') {
                     result.push_back("IV");
+                    state = 0;
                 } else if (roman[i] == 'X') {
                     result.push_back("IX");
+                    state = 0;
                 } else {
                     result.push_back("I");
                     if (i != roman.length() - 1) {
@@ -58,8 +60,10 @@ vector<string> RomanConverter::ParseRoman(const string& roman) {
         case 2: {
                 if (roman[i] == 'L') {
                     result.push_back("XL");
+                    state = 0;
                 } else if (roman[i] == 'C') {
                     result.push_back("XC");
+                    state = 0;
                 } else {
                     result.push_back("X");
                     if (i != roman.length() - 1) {
@@ -81,8 +85,10 @@ vector<string> RomanConverter::ParseRoman(const string& roman) {
         case 3: {
                 if (roman[i] == 'D') {
                     result.push_back("CD");
+                    state = 0;
                 } else if (roman[i] == 'M') {
                     result.push_back("CM");
+                    state = 0;
                 } else {
                     result.push_back("C");
                     if (i != roman.length() - 1) {
@@ -129,13 +135,24 @@ bool RomanConverter::CheckNumeralsRepeats
 bool RomanConverter::CheckForInvalidNumerals
                      (const vector<string>& parsed_roman) {
     auto prev = parsed_roman.front();
+    int  index_of_cur_symbol;
+    int index_of_prev_symbol = find(kSymbols.begin(), kSymbols.end(), prev)
+        - kSymbols.begin();
     for (auto it = parsed_roman.begin()+1; it != parsed_roman.end(); ++it) {
-        if ((*it == "I")|| (*it == "X")|| (*it == "M")|| (*it == "C")) {
-            prev = *it;
-            continue;
-        }
-        if (prev == *it)
+        index_of_cur_symbol = find(kSymbols.begin(), kSymbols.end(), *it)
+                              - kSymbols.begin();
+        int sum = kValues[index_of_prev_symbol] + kValues[index_of_cur_symbol];
+        auto val_it = kValues.begin();
+        while ((*val_it <= sum) && (val_it != kValues.end()-1))
+            ++val_it;
+        if (sum == *val_it)
             return false;
+        --val_it;
+        if ((kValues[index_of_prev_symbol] < *val_it) &&
+            (kValues[index_of_cur_symbol] < *val_it))
+            return false;
+        prev = *it;
+        index_of_prev_symbol = index_of_cur_symbol;
     }
     return true;
 }
