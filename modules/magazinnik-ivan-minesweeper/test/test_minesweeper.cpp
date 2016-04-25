@@ -50,16 +50,16 @@ TEST(MINEsweeper, can_finalise_game) {
 TEST(MINEsweeper, can_get_opened_field_cell) {
     // Arrange
     MineSweeper* game;
-    unsigned int mine_x_pos = 1;
-    unsigned int mine_y_pos = 6;
+    unsigned int x = 0;
+    unsigned int y = 0;
 
     // Act
-    game = new MineSweeper(10, 10, 1);
-    game->open_cell(0, 0);
-    game->open_cell(mine_x_pos, mine_y_pos);
-    game->get_opened_field_cell(mine_x_pos, mine_y_pos);
+    game = new MineSweeper();
+    game->open_cell(x, y);
+    unsigned int value = game->get_opened_field_cell(x, y);
+
     // Assert
-    EXPECT_EQ(0, 0);
+    EXPECT_NE(MineSweeper::CLOSED_CELL, value);
     delete game;
 }
 
