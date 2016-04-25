@@ -1,5 +1,6 @@
 // Copyright 2016 Arhipycheva Anastasia
 
+#ifndef MODULES_ARHIPYCHEVA_ANASTASIA_ELASTICITY_INCLUDE_TELASTICITY_H_
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -17,3 +18,6 @@ public:
   int ElasticityByIncomeDo(int Q1, int Q0, float I1, float I0);
   int ElasticityCrossDo(int QA1, int QA0, float PB1, float PB0);
 };
+
+
+#endif  // MODULES_ARHIPYCHEVA_ANASTASIA_ELASTICITY_INCLUDE_TELASTICITY_H_
