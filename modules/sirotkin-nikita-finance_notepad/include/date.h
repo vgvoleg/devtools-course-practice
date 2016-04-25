@@ -22,6 +22,7 @@ class date {
   bool operator==(const date &other_date) const;
   static const int MIN_YEAR;
   static const int MAX_YEAR;
+  static bool wrongDate(char _number, months _month, int _year);
  private:
   char number;
   months month;

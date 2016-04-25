@@ -64,7 +64,8 @@ string notepad::toFormatedString() {
 string notepad::formatedStringGroupedByCategories() {
   string result;
   bool flag;
-  for (int category_id = 0; category_id < 9; ++category_id) {
+  for (int category_id = 0;
+    category_id < category_table::table_size; ++category_id) {
     notes.reset();
     flag = !(notes.isEmpty());
     while (flag) {

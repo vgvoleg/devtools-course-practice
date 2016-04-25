@@ -6,50 +6,39 @@
 
 using std::string;
 
-TEST(Sirotkin_Nikita_FinanceNotepadTest, great_number_dates_is_set_to_default) {
-  // Arrange
-  date number_great = date(32, months::JANUARY, 2001);
-  date expect = date(1, months::JANUARY, 2000);
-
-
-  // Act
-
-  // Assert
-  EXPECT_TRUE(number_great == expect);
+TEST(Sirotkin_Nikita_FinanceNotepadTest, throw_when_set_number_great_max_31) {
+  // Arrange & Act & Assert
+  EXPECT_THROW(date(32, months::JANUARY, 2010), std::invalid_argument);
 }
 
-TEST(Sirotkin_Nikita_FinanceNotepadTest, less_number_dates_is_set_to_default) {
-  // Arrange
-  date number_great = date(-1, months::JANUARY, 2001);
-  date expect = date(1, months::JANUARY, 2000);
-
-
-  // Act
-
-  // Assert
-  EXPECT_TRUE(number_great == expect);
+TEST(Sirotkin_Nikita_FinanceNotepadTest, throw_when_set_number_great_max_30) {
+  // Arrange & Act & Assert
+  EXPECT_THROW(date(32, months::APRIL, 2010), std::invalid_argument);
 }
 
-TEST(Sirotkin_Nikita_FinanceNotepadTest, great_year_dates_is_set_to_default) {
-  // Arrange
-  date year_great = date(1, months::JANUARY, 2111);
-  date expect = date(1, months::JANUARY, 2000);
-
-  // Act
-
-  // Assert
-  EXPECT_TRUE(year_great == expect);
+TEST(Sirotkin_Nikita_FinanceNotepadTest, throw_when_set_number_great_max_29) {
+  // Arrange & Act & Assert
+  EXPECT_THROW(date(30, months::FEBRUARY, 2010), std::invalid_argument);
 }
 
-TEST(Sirotkin_Nikita_FinanceNotepadTest, less_year_dates_is_set_to_default) {
-  // Arrange
-  date year_less = date(1, months::JANUARY, 1999);
-  date expect = date(1, months::JANUARY, 2000);
+TEST(Sirotkin_Nikita_FinanceNotepadTest, throw_when_set_number_great_max_28) {
+  // Arrange & Act & Assert
+  EXPECT_THROW(date(29, months::FEBRUARY, 2009), std::invalid_argument);
+}
 
-  // Act
+TEST(Sirotkin_Nikita_FinanceNotepadTest, throw_when_less_number_dates) {
+  // Arrange & Act & Assert
+  EXPECT_THROW(date(0, months::JANUARY, 2101), std::invalid_argument);
+}
 
-  // Assert
-  EXPECT_TRUE(year_less == expect);
+TEST(Sirotkin_Nikita_FinanceNotepadTest, throw_when_great_year_dates) {
+  // Arrange & Act & Assert
+  EXPECT_THROW(date(1, months::JANUARY, 2101), std::invalid_argument);
+}
+
+TEST(Sirotkin_Nikita_FinanceNotepadTest, throw_when_less_year_dates) {
+  // Arrange & Act & Assert
+  EXPECT_THROW(date(1, months::JANUARY, 1999), std::invalid_argument);
 }
 
 TEST(Sirotkin_Nikita_FinanceNotepadTest,
