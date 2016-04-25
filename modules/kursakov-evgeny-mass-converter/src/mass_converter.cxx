@@ -85,8 +85,9 @@ MassConverter::ParseString(const std::string &input) const {
     inputStringStream >> qualifier;
 
     for (auto &unit : units_) {
-        if (unit.Qualifier() == qualifier)
+        if (unit.Qualifier() == qualifier) {
             return std::pair<MassUnit, double>(unit, value);
+        }
     }
 
     throw std::logic_error("Unit not found");
