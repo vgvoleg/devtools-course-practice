@@ -17,7 +17,6 @@ Matrix::Matrix() {
 Matrix::Matrix(int count_n) {
     if (count_n <= 0)
         throw Incorrect();
-
     n = count_n;
     p_m.resize(n * n, 0);
 }
@@ -25,7 +24,6 @@ Matrix::Matrix(int count_n) {
 Matrix::Matrix(int count_n, vector<int> v) {
     if (count_n <= 0)
         throw Incorrect();
-
     n = count_n;
     p_m = v;
 }

@@ -12,7 +12,6 @@ using std::vector;
 class Matrix {
  private:
     int n;
-
  public:
     vector<int> p_m;
     Matrix();
@@ -35,7 +34,7 @@ class Exception {
 class Incorrect: public std::runtime_error {
  public:
     Incorrect() : std::
-                        runtime_error(
+                  runtime_error(
         "Values is not correct") { }
 };
 

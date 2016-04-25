@@ -108,18 +108,3 @@ TEST(Correct_work, Right_work_of_second_Minor) {
     // Assert
     EXPECT_EQ(v, minor);
 }
-
-TEST(Correct_work, Right_work_of_Minor1) {
-    // Arrange
-    int n = 3;
-    vector<int> v = {1, 8, 1,
-                     1, 5, 3,
-                     4, 6, 2};
-    vector<int> minor = {1, 4, 3, 2};
-    Matrix m = Matrix(n, v);
-    // Act
-    Matrix res = m.Minor(0, 1);
-    v = res.p_m;
-    // Assert
-    EXPECT_EQ(v, minor);
-}
