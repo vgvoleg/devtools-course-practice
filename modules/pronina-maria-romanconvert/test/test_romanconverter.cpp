@@ -204,9 +204,9 @@ TEST(RomanConverter_Tests, Can_Not_Convert_Zero_Arabic) {
 }
 TEST(RomanConverter_Tests, Can_Not_Convert_Greater_Than_Max_Arabic) {
      // Arrange
-     int arabic = 58900;     
+     int arabic = 58900;
      // Act & Assert
-     EXPECT_THROW(RomanConverter::ConvertArabicToRoman(arabic), 
+     EXPECT_THROW(RomanConverter::ConvertArabicToRoman(arabic),
                   std::invalid_argument);
 }
 TEST(RomanConverter_Tests, Can_Convert_Roman) {
@@ -222,7 +222,7 @@ TEST(RomanConverter_Tests, Can_Not_Convert_Empty_Roman) {
      // Arrange
      string roman = "";
      // Act & Assert
-     EXPECT_THROW(RomanConverter::ConvertRomanToArabic(roman), 
+     EXPECT_THROW(RomanConverter::ConvertRomanToArabic(roman),
                   std::invalid_argument);
 }
 TEST(RomanConverter_Tests, Can_Not_Convert_Roman_With_Other_Symbols) {
@@ -236,7 +236,7 @@ TEST(RomanConverter_Tests, Can_Not_Convert_Roman_Invalid_Order) {
      // Arrange
      string roman = "XXXVMMMDCCLIII";
      // Act & Assert
-     EXPECT_THROW(RomanConverter::ConvertRomanToArabic(roman), 
+     EXPECT_THROW(RomanConverter::ConvertRomanToArabic(roman),
                   std::invalid_argument);
 }
 TEST(RomanConverter_Tests, Is_CC_Valid) {
