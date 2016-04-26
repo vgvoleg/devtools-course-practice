@@ -19,8 +19,8 @@ Matrix::Matrix(const int count_n) {
 Matrix::Matrix(const int count_n, const vector<int> v) {
     if (count_n <= 0)
         throw std::invalid_argument("Count must be positive");
-    long k = v.size();
-    if (sqrt(k)!=count_n)
+    int k = v.size();
+    if (sqrt(k) != count_n)
         throw std::invalid_argument("Vector must have the same size as matrix");
     n = count_n;
     matrix = v;
