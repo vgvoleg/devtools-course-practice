@@ -17,23 +17,23 @@ Matrix::Matrix(int count_n) {
     if (count_n <= 0)
         throw std::invalid_argument("Count must be positive");
     n = count_n;
-    p_m.resize(n * n, 0);
+    matrix.resize(n * n, 0);
 }
 
 Matrix::Matrix(int count_n, vector<int> v) {
     if (count_n <= 0)
         throw std::invalid_argument("Count must be positive");
     n = count_n;
-    p_m = v;
+    matrix = v;
 }
 
 
 int Matrix::Get(int i, int j) const {
-    return p_m[i * n + j];
+    return matrix[i * n + j];
 }
 
 int Matrix::Set(int i, int j, int value) {
-    return p_m[i * n + j] = value;
+    return matrix[i * n + j] = value;
 }
 
 Matrix Matrix::Minor(const int row, const int col) const {
@@ -49,7 +49,7 @@ Matrix Matrix::Minor(const int row, const int col) const {
 
             res.Set(i - (i > row ? 1 : 0),
                     j - (i > col ? 1 : 0),
-                    p_m[i * n + j]);
+                    matrix[i * n + j]);
         }
     }
     return res;

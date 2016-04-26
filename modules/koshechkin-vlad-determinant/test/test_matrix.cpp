@@ -19,7 +19,7 @@ TEST(Correct_work, Can_Create_Emty_Matrix) {
     // Act
     Matrix m = Matrix(n);
     // Assert
-    EXPECT_EQ(m.p_m, v);
+    EXPECT_EQ(m.matrix, v);
 }
 
 TEST(Correct_work, Throws_Count_Negative_In_Emty_Matrix) {
@@ -36,7 +36,7 @@ TEST(Correct_work, Can_Create_Matrix_From_Vector) {
     // Act
     Matrix m = Matrix(n, v);
     // Assert
-    EXPECT_EQ(m.p_m, v);
+    EXPECT_EQ(m.matrix, v);
 }
 
 TEST(Correct_work, Throws_Count_Negative_In_Marix) {
@@ -45,38 +45,6 @@ TEST(Correct_work, Throws_Count_Negative_In_Marix) {
     vector<int> v = {1, 8, 1, 5};
     // Act&Assert
     EXPECT_THROW(Matrix m(n, v), std::invalid_argument);
-}
-
-TEST(Correct_work, Can_Get) {
-    // Arrange
-    int n = 2;
-    vector<int> v = {1, 8, 1, 5};
-    Matrix m = Matrix(n, v);
-    // Act
-    int x00 = m.Get(0, 0);
-    int x11 = m.Get(1, 1);
-    int x01 = m.Get(0, 1);
-    int x10 = m.Get(1, 0);
-    // Assert
-    EXPECT_EQ(x00, 1);
-    EXPECT_EQ(x01, 8);
-    EXPECT_EQ(x10, 1);
-    EXPECT_EQ(x11, 5);
-}
-
-TEST(Correct_work, Can_Set) {
-    // Arrange
-    int n = 2;
-    vector<int> v = {1, 8, 1, 5};
-    Matrix m = Matrix(n, v);
-    // Act
-    m.Set(0, 0, 100);
-    m.Set(1, 1, 19);
-    int x00 = m.Get(0, 0);
-    int x11 = m.Get(1, 1);
-    // Assert
-    EXPECT_EQ(x00, 100);
-    EXPECT_EQ(x11, 19);
 }
 
 TEST(Correct_work, Can_Make_First_Minor) {
@@ -89,7 +57,7 @@ TEST(Correct_work, Can_Make_First_Minor) {
     Matrix m = Matrix(n, v);
     // Act
     Matrix res = m.Minor(0, 0);
-    v = res.p_m;
+    v = res.matrix;
     // Assert
     EXPECT_EQ(v, minor);
 }
@@ -104,7 +72,7 @@ TEST(Correct_work, Can_Make_Second_Minor) {
     Matrix m = Matrix(n, v);
     // Act
     Matrix res = m.Minor(0, 1);
-    v = res.p_m;
+    v = res.matrix;
     // Assert
     EXPECT_EQ(v, minor);
 }
