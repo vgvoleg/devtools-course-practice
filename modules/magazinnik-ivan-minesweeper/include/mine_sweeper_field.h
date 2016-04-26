@@ -18,7 +18,7 @@ class Field {
  private:
     unsigned int **field;
     unsigned int field_size;
-    void fill_field_with_zero_val();
+    void FillFieldWithZeroVal();
 };
 
 

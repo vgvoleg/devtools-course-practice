@@ -15,7 +15,7 @@ Field::Field(unsigned int size) {
     for (unsigned int i = 0; i < size; i++) {
         field[i] = new unsigned int[size];
     }
-    fill_field_with_zero_val();
+    FillFieldWithZeroVal();
 }
 
 Field::Field(const Field &obj) {
@@ -38,7 +38,7 @@ Field::~Field() {
     delete[] field;
 }
 
-void Field::fill_field_with_zero_val() {
+void Field::FillFieldWithZeroVal() {
     for (unsigned int i = 0; i < field_size; i++) {
         for (unsigned int j = 0; j < field_size; j++) {
             field[i][j] = 0;

@@ -40,8 +40,8 @@ TEST(MINEsweeper, can_finalise_game) {
     unsigned int mine_y_pos = 6;
     // Act
     game = new MineSweeper(10, 10, 1);
-    game->open_cell(0, 0);
-    game->open_cell(mine_x_pos, mine_y_pos);
+    game->OpenCell(0, 0);
+    game->OpenCell(mine_x_pos, mine_y_pos);
     // Assert
     EXPECT_EQ(MineSweeper::GAME_STATUS_LOSE, game->get_game_status());
     delete game;
@@ -55,7 +55,7 @@ TEST(MINEsweeper, can_get_opened_field_cell) {
 
     // Act
     game = new MineSweeper();
-    game->open_cell(x, y);
+    game->OpenCell(x, y);
     unsigned int value = game->get_opened_field_cell(x, y);
 
     // Assert
@@ -71,11 +71,11 @@ TEST(MINEsweeper, throw_when_continue_game_after_ends) {
 
     // Act
     game = new MineSweeper(10, 10, 1);
-    game->open_cell(0, 0);
-    game->open_cell(mine_x_pos, mine_y_pos);
+    game->OpenCell(0, 0);
+    game->OpenCell(mine_x_pos, mine_y_pos);
 
     // Assert
-    EXPECT_THROW(game->open_cell(1, 1), std::invalid_argument);
+    EXPECT_THROW(game->OpenCell(1, 1), std::invalid_argument);
     delete game;
 }
 
@@ -85,9 +85,9 @@ TEST(MINEsweeper, throws_when_try_to_open_opened_cell) {
 
     // Act
     game = new MineSweeper();
-    game->open_cell(0, 0);
+    game->OpenCell(0, 0);
     // Assert
-    EXPECT_THROW(game->open_cell(0, 0), std::invalid_argument);
+    EXPECT_THROW(game->OpenCell(0, 0), std::invalid_argument);
     delete game;
 }
 
@@ -103,7 +103,7 @@ bool is_in_massive(int x, int y, int size) {
 }
 
 void win_game(MineSweeper* game, int size) {
-    game->open_cell(0, 0);
+    game->OpenCell(0, 0);
     for (int x = 0; x < size; ++x) {
         for (int y = 0; y < size; ++y) {
             if (is_in_massive(x, y, size)) {
@@ -113,7 +113,7 @@ void win_game(MineSweeper* game, int size) {
                     continue;
                 } else {
                     try {
-                        game->open_cell(x, y);
+                        game->OpenCell(x, y);
                     }
                     catch (std::invalid_argument) {
                         continue;
@@ -144,7 +144,7 @@ TEST(MINEsweeper, can_get_played_status) {
 
     // Act
     game = new MineSweeper();
-    game->open_cell(1, 1);
+    game->OpenCell(1, 1);
 
     // Assert
     EXPECT_EQ(MineSweeper::GAME_STATUS_PLAYING, game->get_game_status());
@@ -159,7 +159,7 @@ TEST(MINEsweeper, can_get_opened_fild_fill) {
     unsigned int expected_val = 0;
     // Act
     game = new MineSweeper();
-    game->open_cell(x, y);
+    game->OpenCell(x, y);
 
     // Assert
     EXPECT_NE(expected_val, game->get_opened_field_cell(x, y));
@@ -174,7 +174,7 @@ TEST(MINEsweeper, can_get_opened_field) {
 
     // Act
     game = new MineSweeper();
-    game->open_cell(x, y);
+    game->OpenCell(x, y);
     Field opened_field = game->get_opened_field();
     delete game;
 
@@ -191,8 +191,8 @@ TEST(MINEsweeper, is_field_open_correctly_after_mine) {
     unsigned int mine_count = 0;
     // Act
     game = new MineSweeper(10, game_mine_count, 1);
-    game->open_cell(0, 0);
-    game->open_cell(mine_x_pos, mine_y_pos);
+    game->OpenCell(0, 0);
+    game->OpenCell(mine_x_pos, mine_y_pos);
     Field opened_field = game->get_opened_field();
 
     for (unsigned int i = 0; i < opened_field.get_field_size(); ++i) {
@@ -218,7 +218,7 @@ TEST(MINEsweeper, is_field_cells_open_correctly_if_empty_is_near) {
 
     // Act
     game = new MineSweeper(10, 10, 1);
-    game->open_cell(0, 0);
+    game->OpenCell(0, 0);
 
     // Assert
     EXPECT_EQ(expected_val,
