@@ -164,7 +164,7 @@ TEST(TElasticity, ElasticityByPricePointDo_Not_Null_5_var) {
   EXPECT_EQ(-1, E.ElasticityByPricePointDo(Q1, Q0, P1, P0));
 }
 
-TEST(TElasticity, ElasticityByPriceArcDo_Not_Null_1 _var) {
+TEST(TElasticity, ElasticityByPriceArcDo_Not_Null_1_var) {
   // Arrange
   int Q1 = 10, Q0 = 15;
   float P1 = 10, P0 = 5, rezult;
