@@ -6,12 +6,12 @@
 #include <map>
 #include <vector>
 
-#include "include/matrix_determenant.h"
+#include "include/matrix.h"
 
 using std::invalid_argument;
 using std::vector;
 
-TEST(Correct_work, Right_work_of_incor_empty_constr) {
+TEST(Correct_work, Can_Create_Emty_Matrix) {
     // Arrange
     int n = 2;
     vector<int> v = {0, 0, 0, 0};
@@ -22,14 +22,14 @@ TEST(Correct_work, Right_work_of_incor_empty_constr) {
     EXPECT_EQ(m.p_m, v);
 }
 
-TEST(Correct_work, Work_of_empty_incor_constr) {
+TEST(Correct_work, Throws_Count_Negative_In_Emty_Matrix) {
     // Arrange
     int n = -2;
     // Act&Assert
-    EXPECT_THROW(Matrix m(n), Incorrect);
+    EXPECT_THROW(Matrix m(n), std::invalid_argument);
 }
 
-TEST(Correct_work, Right_work_of_constr_with_vector) {
+TEST(Correct_work, Can_Create_Matrix_From_Vector) {
     // Arrange
     int n = 2;
     vector<int> v = {1, 8, 1, 5};
@@ -39,15 +39,15 @@ TEST(Correct_work, Right_work_of_constr_with_vector) {
     EXPECT_EQ(m.p_m, v);
 }
 
-TEST(Correct_work, Work_of_constr_with_incor_vector) {
+TEST(Correct_work, Throws_Count_Negative_In_Marix) {
     // Arrange
     int n = -2;
     vector<int> v = {1, 8, 1, 5};
     // Act&Assert
-    EXPECT_THROW(Matrix m(n, v), Incorrect);
+    EXPECT_THROW(Matrix m(n, v), std::invalid_argument);
 }
 
-TEST(Correct_work, Right_work_of_get) {
+TEST(Correct_work, Can_Get) {
     // Arrange
     int n = 2;
     vector<int> v = {1, 8, 1, 5};
@@ -64,7 +64,7 @@ TEST(Correct_work, Right_work_of_get) {
     EXPECT_EQ(x11, 5);
 }
 
-TEST(Correct_work, Right_work_of_set) {
+TEST(Correct_work, Can_Set) {
     // Arrange
     int n = 2;
     vector<int> v = {1, 8, 1, 5};
@@ -79,7 +79,7 @@ TEST(Correct_work, Right_work_of_set) {
     EXPECT_EQ(x11, 19);
 }
 
-TEST(Correct_work, Right_work_of_first_Minor) {
+TEST(Correct_work, Can_Make_First_Minor) {
     // Arrange
     int n = 3;
     vector<int> v = {1, 8, 1,
@@ -94,7 +94,7 @@ TEST(Correct_work, Right_work_of_first_Minor) {
     EXPECT_EQ(v, minor);
 }
 
-TEST(Correct_work, Right_work_of_second_Minor) {
+TEST(Correct_work, Can_Make_Second_Minor) {
     // Arrange
     int n = 3;
     vector<int> v = {1, 8, 1,
@@ -107,4 +107,16 @@ TEST(Correct_work, Right_work_of_second_Minor) {
     v = res.p_m;
     // Assert
     EXPECT_EQ(v, minor);
+}
+
+TEST(Correct_work, Throws_Incorrect_Row_In_Minor) {
+    // Arrange
+    int n = 3;
+    vector<int> v = {1, 8, 1,
+                     1, 5, 3,
+                     4, 6, 2};
+    Matrix m = Matrix(n, v);
+
+    // Act&Assert
+    EXPECT_THROW(m.Minor(0, 4), std::out_of_range);
 }

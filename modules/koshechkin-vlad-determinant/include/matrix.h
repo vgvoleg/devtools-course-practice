@@ -1,7 +1,7 @@
 // Copyright 2016 Koshechkin Vlad
 
-#ifndef MODULES_KOSHECHKIN_VLAD_DETERMINANT_INCLUDE_MATRIX_DETERMENANT_H_
-#define MODULES_KOSHECHKIN_VLAD_DETERMINANT_INCLUDE_MATRIX_DETERMENANT_H_
+#ifndef MODULES_KOSHECHKIN_VLAD_DETERMINANT_INCLUDE_MATRIX_H_
+#define MODULES_KOSHECHKIN_VLAD_DETERMINANT_INCLUDE_MATRIX_H_
 
 #include <string>
 #include <stdexcept>
@@ -20,7 +20,7 @@ class Matrix {
     Matrix Minor(const int row, const int col) const;
     int Set(int i, int j, int value);
     int Get(int i, int j) const;
-    double Determenant(const Matrix &a) const;
+    double Determinant(const Matrix &a) const;
 };
 
 class Exception {
@@ -31,11 +31,4 @@ class Exception {
     }
 };
 
-class Incorrect: public std::runtime_error {
- public:
-    Incorrect() : std::
-                  runtime_error(
-        "Values is not correct") { }
-};
-
-#endif  // MODULES_KOSHECHKIN_VLAD_DETERMINANT_INCLUDE_MATRIX_DETERMENANT_H_
+#endif  // MODULES_KOSHECHKIN_VLAD_DETERMINANT_INCLUDE_MATRIX_H_
