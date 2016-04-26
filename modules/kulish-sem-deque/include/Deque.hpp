@@ -216,7 +216,6 @@ bool Deque<V>::is_Exist(const V& data) const {
   return false;
 }
 
-
 template<class V>
 void Deque<V>::erase(V data, const int position) {
   ITEM* item = tail;
