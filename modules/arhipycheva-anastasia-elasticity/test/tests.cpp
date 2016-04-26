@@ -224,7 +224,7 @@ TEST(TElasticity, ElasticityByPriceArcDo_Not_Null_ver6) {
 
   // Act & Assert
   rezult = 5 / 3;
-  EXPECT_EQ(-1, E.ElasticityByPriceArcDo(Q1, Q0, P1, P0));
+  EXPECT_EQ(rezult, E.ElasticityByPriceArcDo(Q1, Q0, P1, P0));
 }
 
 TEST(TElasticity, ElasticityByIncomeDo_Not_Null_ver1) {
