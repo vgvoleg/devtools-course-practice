@@ -269,7 +269,7 @@ TEST(TElasticity, ElasticityByIncomeDo_Not_Null_ver4) {
   EXPECT_EQ(0, E.ElasticityByIncomeDo(Q1, Q0, I1, I0));
 }
 
-TEST(TElasticity, ElasticityByIncomeDo_Not_Null_ver4) {
+TEST(TElasticity, ElasticityByIncomeDo_Not_Null_ver5) {
   // Arrange
   int Q1 = 15, Q0 = 10;
   float I1 = 10, I0 = 5, rezult;
@@ -280,7 +280,7 @@ TEST(TElasticity, ElasticityByIncomeDo_Not_Null_ver4) {
   EXPECT_EQ(rezult, E.ElasticityByIncomeDo(Q1, Q0, I1, I0));
 }
 
-TEST(TElasticity, ElasticityByIncomeDo_Not_Null_ver4) {
+TEST(TElasticity, ElasticityByIncomeDo_Not_Null_ver6) {
   // Arrange
   int Q1 = 3000, Q0 = 2500;
   float I1 = 100, I0 = 90, rezult;
