@@ -4,116 +4,116 @@
 #include "TElasticity.h"
 
 
-TEST(TElasticity, ElasticityByPricePointDo_When_Null_1var) {
+TEST(TElasticity, ElasticityByPricePointDo_When_Null_1_var) {
   // Arrange
   int Q1 = 10, Q0 = 0;
   float P1 = 10, P0 = 5;
   TElasticity E;
 
   // Act & Assert
-  EXPECT_EQ(1000, E.ElasticityByPricePointDo(Q1, Q0, P1, P0));
+  EXPECT_EQ(E.CODE_ERROR, E.ElasticityByPricePointDo(Q1, Q0, P1, P0));
 }
 
-TEST(TElasticity, ElasticityByPricePointDo_When_Null_2var) {
+TEST(TElasticity, ElasticityByPricePointDo_When_Null_2_var) {
   // Arrange
   int Q1 = 10, Q0 = 5, P1 = 10, P0 = 10;
   TElasticity E;
 
   // Act & Assert
-  EXPECT_EQ(1000, E.ElasticityByPricePointDo(Q1, Q0, P1, P0));
+  EXPECT_EQ(E.CODE_ERROR, E.ElasticityByPricePointDo(Q1, Q0, P1, P0));
 }
 
-TEST(TElasticity, ElasticityByPricePointDo_When_Null_3var) {
+TEST(TElasticity, ElasticityByPricePointDo_When_Null_3_var) {
   // Arrange
   int Q1 = 10, Q0 = 0, P1 = 10, P0 = 10;
   TElasticity E;
 
   // Act & Assert
-  EXPECT_EQ(1000, E.ElasticityByPricePointDo(Q1, Q0, P1, P0));
+  EXPECT_EQ(E.CODE_ERROR, E.ElasticityByPricePointDo(Q1, Q0, P1, P0));
 }
 
-TEST(TElasticity, ElasticityByPriceArcDo_When_Null_1var) {
+TEST(TElasticity, ElasticityByPriceArcDo_When_Null_1_var) {
   // Arrange
   int Q1 = 0, Q0 = 0, P1 = 10, P0 = 5;
   TElasticity E;
 
   // Act & Assert
-  EXPECT_EQ(1000, E.ElasticityByPriceArcDo(Q1, Q0, P1, P0));
+  EXPECT_EQ(E.CODE_ERROR, E.ElasticityByPriceArcDo(Q1, Q0, P1, P0));
 }
 
-TEST(TElasticity, ElasticityByPriceArcDo_When_Null_2var) {
+TEST(TElasticity, ElasticityByPriceArcDo_When_Null_2_var) {
   // Arrange
   int Q1 = 10, Q0 = 5, P1 = 10, P0 = 10;
   TElasticity E;
 
   // Act & Assert
-  EXPECT_EQ(1000, E.ElasticityByPriceArcDo(Q1, Q0, P1, P0));
+  EXPECT_EQ(E.CODE_ERROR, E.ElasticityByPriceArcDo(Q1, Q0, P1, P0));
 }
 
-TEST(TElasticity, ElasticityByPriceArcDo_When_Null_3var) {
+TEST(TElasticity, ElasticityByPriceArcDo_When_Null_3_var) {
   // Arrange
   int Q1 = 0, Q0 = 0, P1 = 10, P0 = 10;
   TElasticity E;
 
   // Act & Assert
-  EXPECT_EQ(1000, E.ElasticityByPriceArcDo(Q1, Q0, P1, P0));
+  EXPECT_EQ(E.CODE_ERROR, E.ElasticityByPriceArcDo(Q1, Q0, P1, P0));
 }
 
-TEST(TElasticity, ElasticityByIncomeDo_When_Null_1var) {
+TEST(TElasticity, ElasticityByIncomeDo_When_Null_1_var) {
   // Arrange
   int Q1 = 10, Q0 = 0, I1 = 10, I0 = 5;
   TElasticity E;
 
   // Act & Assert
-  EXPECT_EQ(1000, E.ElasticityByIncomeDo(Q1, Q0, I1, I0));
+  EXPECT_EQ(E.CODE_ERROR, E.ElasticityByIncomeDo(Q1, Q0, I1, I0));
 }
 
-TEST(TElasticity, ElasticityByIncomeDo_When_Null_2var) {
+TEST(TElasticity, ElasticityByIncomeDo_When_Null_2_var) {
   // Arrange
   int Q1 = 10, Q0 = 5, I1 = 10, I0 = 10;
   TElasticity E;
 
   // Act & Assert
-  EXPECT_EQ(1000, E.ElasticityByIncomeDo(Q1, Q0, I1, I0));
+  EXPECT_EQ(E.CODE_ERROR, E.ElasticityByIncomeDo(Q1, Q0, I1, I0));
 }
 
-TEST(TElasticity, ElasticityByIncomeDo_When_Null_3var) {
+TEST(TElasticity, ElasticityByIncomeDo_When_Null_3_var) {
   // Arrange
   int Q1 = 10, Q0 = 0, I1 = 10, I0 = 10;
   TElasticity E;
 
   // Act & Assert
-  EXPECT_EQ(1000, E.ElasticityByIncomeDo(Q1, Q0, I1, I0));
+  EXPECT_EQ(E.CODE_ERROR, E.ElasticityByIncomeDo(Q1, Q0, I1, I0));
 }
 
-TEST(TElasticity, ElasticityCrossDo_When_Null_1var) {
+TEST(TElasticity, ElasticityCrossDo_When_Null_1_var) {
   // Arrange
   int QA1 = 10, QA0 = 0, PB1 = 10, PB0 = 5;
   TElasticity E;
 
   // Act & Assert
-  EXPECT_EQ(1000, E.ElasticityCrossDo(QA1, QA0, PB1, PB0));
+  EXPECT_EQ(E.CODE_ERROR, E.ElasticityCrossDo(QA1, QA0, PB1, PB0));
 }
 
-TEST(TElasticity, ElasticityCrossDo_When_Null_2var) {
+TEST(TElasticity, ElasticityCrossDo_When_Null_2_var) {
   // Arrange
   int  QA1 = 10, QA0 = 5, PB1 = 10, PB0 = 0;
   TElasticity E;
 
   // Act & Assert
-  EXPECT_EQ(1000, E.ElasticityCrossDo(QA1, QA0, PB1, PB0));
+  EXPECT_EQ(E.CODE_ERROR, E.ElasticityCrossDo(QA1, QA0, PB1, PB0));
 }
 
-TEST(TElasticity, ElasticityCrossDo_When_Null_3var) {
+TEST(TElasticity, ElasticityCrossDo_When_Null_3_var) {
   // Arrange
   int  QA1 = 10, QA0 = 0, PB1 = 10, PB0 = 0;
   TElasticity E;
 
   // Act & Assert
-  EXPECT_EQ(1000, E.ElasticityCrossDo(QA1, QA0, PB1, PB0));
+  EXPECT_EQ(E.CODE_ERROR, E.ElasticityCrossDo(QA1, QA0, PB1, PB0));
 }
 
-TEST(TElasticity, ElasticityByPricePointDo_Not_Null_1ver) {
+TEST(TElasticity, ElasticityByPricePointDo_Not_Null_1_var) {
   // Arrange
   int Q1 = 10, Q0 = 15;
   float P1 = 10, P0 = 5, rezult;
@@ -124,17 +124,17 @@ TEST(TElasticity, ElasticityByPricePointDo_Not_Null_1ver) {
   EXPECT_EQ(rezult, E.ElasticityByPricePointDo(Q1, Q0, P1, P0));
 }
 
-TEST(TElasticity, ElasticityByPricePointDo_Not_Null_2ver) {
+TEST(TElasticity, ElasticityByPricePointDo_Not_Null_2_var) {
   // Arrange
   int Q1 = 3000, Q0 = 2500;
   float P1 = 100, P0 = 100;
   TElasticity E;
 
   // Act & Assert
-  EXPECT_EQ(1000, E.ElasticityByPricePointDo(Q1, Q0, P1, P0));
+  EXPECT_EQ(E.CODE_ERROR, E.ElasticityByPricePointDo(Q1, Q0, P1, P0));
 }
 
-TEST(TElasticity, ElasticityByPricePointDo_Not_Null_3ver) {
+TEST(TElasticity, ElasticityByPricePointDo_Not_Null_3_var) {
   // Arrange
   int Q1 = 3000, Q0 = 2500;
   float P1 = 90, P0 = 100;
@@ -144,7 +144,7 @@ TEST(TElasticity, ElasticityByPricePointDo_Not_Null_3ver) {
   EXPECT_EQ(-2, E.ElasticityByPricePointDo(Q1, Q0, P1, P0));
 }
 
-TEST(TElasticity, ElasticityByPricePointDo_Not_Null_4ver) {
+TEST(TElasticity, ElasticityByPricePointDo_Not_Null_4_var) {
   // Arrange
   int Q1 = 100, Q0 = 100;
   float P1 = 90, P0 = 100;
@@ -154,7 +154,7 @@ TEST(TElasticity, ElasticityByPricePointDo_Not_Null_4ver) {
   EXPECT_EQ(0, E.ElasticityByPricePointDo(Q1, Q0, P1, P0));
 }
 
-TEST(TElasticity, ElasticityByPricePointDo_Not_Null_5ver) {
+TEST(TElasticity, ElasticityByPricePointDo_Not_Null_5_var) {
   // Arrange
   int Q1 = 0, Q0 = 10;
   float P1 = 2, P0 = 1;
@@ -164,7 +164,7 @@ TEST(TElasticity, ElasticityByPricePointDo_Not_Null_5ver) {
   EXPECT_EQ(-1, E.ElasticityByPricePointDo(Q1, Q0, P1, P0));
 }
 
-TEST(TElasticity, ElasticityByPriceArcDo_Not_Null_ver1) {
+TEST(TElasticity, ElasticityByPriceArcDo_Not_Null_1 _var) {
   // Arrange
   int Q1 = 10, Q0 = 15;
   float P1 = 10, P0 = 5, rezult;
@@ -175,17 +175,17 @@ TEST(TElasticity, ElasticityByPriceArcDo_Not_Null_ver1) {
   EXPECT_EQ(rezult, E.ElasticityByPriceArcDo(Q1, Q0, P1, P0));
 }
 
-TEST(TElasticity, ElasticityByPriceArcDo_Not_Null_ver2) {
+TEST(TElasticity, ElasticityByPriceArcDo_Not_Null_2_var) {
   // Arrange
   int Q1 = 3000, Q0 = 2500;
   float P1 = 100, P0 = 100;
   TElasticity E;
 
   // Act & Assert
-  EXPECT_EQ(1000, E.ElasticityByPriceArcDo(Q1, Q0, P1, P0));
+  EXPECT_EQ(E.CODE_ERROR, E.ElasticityByPriceArcDo(Q1, Q0, P1, P0));
 }
 
-TEST(TElasticity, ElasticityByPriceArcDo_Not_Null_ver3) {
+TEST(TElasticity, ElasticityByPriceArcDo_Not_Null_3_var) {
   // Arrange
   int Q1 = 3000, Q0 = 2500;
   float P1 = 90, P0 = 100, rezult;
@@ -196,7 +196,7 @@ TEST(TElasticity, ElasticityByPriceArcDo_Not_Null_ver3) {
   EXPECT_EQ(rezult, E.ElasticityByPriceArcDo(Q1, Q0, P1, P0));
 }
 
-TEST(TElasticity, ElasticityByPriceArcDo_Not_Null_ver4) {
+TEST(TElasticity, ElasticityByPriceArcDo_Not_Null_4_var) {
   // Arrange
   int Q1 = 100, Q0 = 100;
   float P1 = 90, P0 = 100;
@@ -206,7 +206,7 @@ TEST(TElasticity, ElasticityByPriceArcDo_Not_Null_ver4) {
   EXPECT_EQ(0, E.ElasticityByPriceArcDo(Q1, Q0, P1, P0));
 }
 
-TEST(TElasticity, ElasticityByPriceArcDo_Not_Null_ver5) {
+TEST(TElasticity, ElasticityByPriceArcDo_Not_Null_5_var) {
   // Arrange
   int Q1 = 20, Q0 = 10;
   float P1 = 20, P0 = 10;
@@ -216,7 +216,7 @@ TEST(TElasticity, ElasticityByPriceArcDo_Not_Null_ver5) {
   EXPECT_EQ(1, E.ElasticityByPriceArcDo(Q1, Q0, P1, P0));
 }
 
-TEST(TElasticity, ElasticityByPriceArcDo_Not_Null_ver6) {
+TEST(TElasticity, ElasticityByPriceArcDo_Not_Null_6_var) {
   // Arrange
   int Q1 = 20, Q0 = 10;
   float P1 = 30, P0 = 20, rezult;
@@ -227,7 +227,7 @@ TEST(TElasticity, ElasticityByPriceArcDo_Not_Null_ver6) {
   EXPECT_EQ(rezult, E.ElasticityByPriceArcDo(Q1, Q0, P1, P0));
 }
 
-TEST(TElasticity, ElasticityByIncomeDo_Not_Null_ver1) {
+TEST(TElasticity, ElasticityByIncomeDo_Not_Null_1_var) {
   // Arrange
   int Q1 = 10, Q0 = 15;
   float I1 = 10, I0 = 5, rezult;
@@ -238,17 +238,17 @@ TEST(TElasticity, ElasticityByIncomeDo_Not_Null_ver1) {
   EXPECT_EQ(rezult, E.ElasticityByIncomeDo(Q1, Q0, I1, I0));
 }
 
-TEST(TElasticity, ElasticityByIncomeDo_Not_Null_ver2) {
+TEST(TElasticity, ElasticityByIncomeDo_Not_Null_2_var) {
   // Arrange
   int Q1 = 3000, Q0 = 2500;
   float I1 = 100, I0 = 100;
   TElasticity E;
 
   // Act & Assert
-  EXPECT_EQ(1000, E.ElasticityByIncomeDo(Q1, Q0, I1, I0));
+  EXPECT_EQ(E.CODE_ERROR, E.ElasticityByIncomeDo(Q1, Q0, I1, I0));
 }
 
-TEST(TElasticity, ElasticityByIncomeDo_Not_Null_ver3) {
+TEST(TElasticity, ElasticityByIncomeDo_Not_Null_3_var) {
   // Arrange
   int Q1 = 3000, Q0 = 2500;
   float I1 = 90, I0 = 100, rezult;
@@ -259,7 +259,7 @@ TEST(TElasticity, ElasticityByIncomeDo_Not_Null_ver3) {
   EXPECT_EQ(rezult, E.ElasticityByIncomeDo(Q1, Q0, I1, I0));
 }
 
-TEST(TElasticity, ElasticityByIncomeDo_Not_Null_ver4) {
+TEST(TElasticity, ElasticityByIncomeDo_Not_Null_4_var) {
   // Arrange
   int Q1 = 10, Q0 = 10;
   float I1 = 90, I0 = 100;
@@ -269,7 +269,7 @@ TEST(TElasticity, ElasticityByIncomeDo_Not_Null_ver4) {
   EXPECT_EQ(0, E.ElasticityByIncomeDo(Q1, Q0, I1, I0));
 }
 
-TEST(TElasticity, ElasticityByIncomeDo_Not_Null_ver5) {
+TEST(TElasticity, ElasticityByIncomeDo_Not_Null_5_var) {
   // Arrange
   int Q1 = 15, Q0 = 10;
   float I1 = 10, I0 = 5, rezult;
@@ -280,7 +280,7 @@ TEST(TElasticity, ElasticityByIncomeDo_Not_Null_ver5) {
   EXPECT_EQ(rezult, E.ElasticityByIncomeDo(Q1, Q0, I1, I0));
 }
 
-TEST(TElasticity, ElasticityByIncomeDo_Not_Null_ver6) {
+TEST(TElasticity, ElasticityByIncomeDo_Not_Null_6_var) {
   // Arrange
   int Q1 = 3000, Q0 = 2500;
   float I1 = 100, I0 = 90, rezult;
@@ -291,7 +291,7 @@ TEST(TElasticity, ElasticityByIncomeDo_Not_Null_ver6) {
   EXPECT_EQ(rezult, E.ElasticityByIncomeDo(Q1, Q0, I1, I0));
 }
 
-TEST(TElasticity, ElasticityCrossDo_Not_Null_ver1) {
+TEST(TElasticity, ElasticityCrossDo_Not_Null_1_var) {
   // Arrange
   int QA1 = 10, QA0 = 15;
   float PB1 = 10, PB0 = 5, rezult;
@@ -302,7 +302,7 @@ TEST(TElasticity, ElasticityCrossDo_Not_Null_ver1) {
   EXPECT_EQ(rezult, E.ElasticityCrossDo(QA1, QA0, PB1, PB0));
 }
 
-TEST(TElasticity, ElasticityCrossDo_Not_Null_ver2) {
+TEST(TElasticity, ElasticityCrossDo_Not_Null_2_var) {
   // Arrange
   int QA1 = 3000, QA0 = 2500;
   float PB1 = 100, PB0 = 100;
@@ -312,7 +312,7 @@ TEST(TElasticity, ElasticityCrossDo_Not_Null_ver2) {
   EXPECT_EQ(0, E.ElasticityCrossDo(QA1, QA0, PB1, PB0));
 }
 
-TEST(TElasticity, ElasticityCrossDo_Not_Null_ver3) {
+TEST(TElasticity, ElasticityCrossDo_Not_Null_3_var) {
   // Arrange
   int QA1 = 3000, QA0 = 2500;
   float PB1 = 90, PB0 = 100, rezult;
