@@ -1,56 +1,56 @@
 // Copyright Kulish_Sem 2016
 #include <gtest/gtest.h>
 #include <string>
-#include "TDeque.hpp"
+#include "Deque.hpp"
 
 using std::string;
 using std::to_string;
 
-TEST(TDeque, Can_Create_Int_Deque) {
+TEST(Deque, Can_Create_Int_Deque) {
   // Arrange
-  TDeque<int> *intDeque;
+  Deque<int> *inDeque;
 
   // Act
-  intDeque = new TDeque<int>;
+  inDeque = new Deque<int>;
 
   // Assert
-  EXPECT_NE(nullptr, intDeque);
+  EXPECT_NE(nullptr, inDeque);
 }
 
-TEST(TDeque, Can_Create_String_Deque) {
+TEST(Deque, Can_Create_String_Deque) {
   // Arrange
-  TDeque<string> *stringDeque;
+  Deque<string> *stringDeque;
 
   // Act
-  stringDeque = new TDeque<string>;
+  stringDeque = new Deque<string>;
 
   // Assert
   EXPECT_NE(nullptr, stringDeque);
 }
 
-TEST(TDeque, Can_Create_Double_Deque) {
+TEST(Deque, Can_Create_Double_Deque) {
   // Arrange
-  TDeque<double> *doubleDeque;
+  Deque<double> *doubleDeque;
 
   // Act
-  doubleDeque = new TDeque<double>;
+  doubleDeque = new Deque<double>;
 
   // Assert
   EXPECT_NE(nullptr, doubleDeque);
 }
 
-TEST(TDeque, Can_Create_Not_Empty_Deque) {
+TEST(Deque, Can_Create_Not_Empty_Deque) {
   // Arrange & Act
   const int N = 1;
-  TDeque<int> deque(N);
+  Deque<int> deque(N);
 
   // Assert
   EXPECT_EQ(N, deque.Size());
 }
 
-TEST(TDeque, Can_Push_Head) {
+TEST(Deque, Can_Push_Head) {
   // Arrange
-  TDeque<int> deque;
+  Deque<int> deque;
 
   // Act
   const int N = 10;
@@ -61,18 +61,18 @@ TEST(TDeque, Can_Push_Head) {
   EXPECT_EQ(N, deque.Size());
 }
 
-TEST(TDeque, Can_Use_Initializer_List) {
+TEST(Deque, Can_Use_Initializer_List) {
   // Arrange
-  TDeque<int> deque({1, 2, 3, 4, 5});
+  Deque<int> deque({1, 2, 3, 4, 5});
 
   // Act & Assert
   const int expected_Result = 1;
   EXPECT_EQ(expected_Result, deque.pop_Head());
 }
 
-TEST(TDeque, Can_Push_Tail) {
+TEST(Deque, Can_Push_Tail) {
   // Arrange
-  TDeque<int> deque;
+  Deque<int> deque;
 
   // Act
   const int N = 10;
@@ -83,18 +83,18 @@ TEST(TDeque, Can_Push_Tail) {
   EXPECT_EQ(N, deque.Size());
 }
 
-TEST(TDeque, Can_Pop_Head) {
+TEST(Deque, Can_Pop_Head) {
   // Arrange
-  TDeque<int> deque({1, 2, 3, 4, 5});
+  Deque<int> deque({1, 2, 3, 4, 5});
 
   // Act & Assert
   const int expected_Result = 1;
   EXPECT_EQ(expected_Result, deque.pop_Head());
 }
 
-TEST(TDeque, Can_Pop_Head_With_One_Element) {
+TEST(Deque, Can_Pop_Head_With_One_Element) {
   // Arrange
-  TDeque<int> deque;
+  Deque<int> deque;
 
   // Act
   const int N = 10;
@@ -104,18 +104,18 @@ TEST(TDeque, Can_Pop_Head_With_One_Element) {
   EXPECT_EQ(N, deque.pop_Head());
 }
 
-TEST(TDeque, Can_Pop_Tail) {
+TEST(Deque, Can_Pop_Tail) {
   // Arrange
-  TDeque<int> deque({ 0, 1, 2, 3, 4, 5 });
+  Deque<int> deque({ 0, 1, 2, 3, 4, 5 });
 
   // Act & Assert
   const int expected_Result = 5;
   EXPECT_EQ(expected_Result, deque.pop_Tail());
 }
 
-TEST(TDeque, Can_Pop_Tail_With_One_Element) {
+TEST(Deque, Can_Pop_Tail_With_One_Element) {
   // Arrange
-  TDeque<int> deque;
+  Deque<int> deque;
 
   // Act
   const int N = 10;
@@ -125,37 +125,37 @@ TEST(TDeque, Can_Pop_Tail_With_One_Element) {
   EXPECT_EQ(N, deque.pop_Tail());
 }
 
-TEST(TDeque, Destructor_Works) {
+TEST(Deque, Destructor_Works) {
   // Arrange
-  TDeque<int>* intDeque = new TDeque<int>({1, 2, 3, 4, 5});
+  Deque<int>* inDeque = new Deque<int>({1, 2, 3, 4, 5});
 
   // Act
-  intDeque->~TDeque();
+  inDeque->~Deque();
 
   // Assert
-  EXPECT_TRUE(intDeque->is_Empty());
+  EXPECT_TRUE(inDeque->is_Empty());
 }
 
-TEST(TDeque, Can_Use_is_Exist) {
+TEST(Deque, Can_Use_is_Exist) {
   // Arrange
-  TDeque<string> deque({ "str1", "str2", "str3", "str4", "str5" });
+  Deque<string> deque({ "str1", "str2", "str3", "str4", "str5" });
 
   // Act & Assert
   string expected_Result = "str3";
   EXPECT_TRUE(deque.is_Exist(expected_Result));
 }
 
-TEST(TDeque, Can_Use_is_Empty) {
+TEST(Deque, Can_Use_is_Empty) {
   // Arrange
-  TDeque<int> deque;
+  Deque<int> deque;
 
   // Act & Assert
   EXPECT_TRUE(deque.is_Empty());
 }
 
-TEST(TDeque, Can_Emplace_Head) {
+TEST(Deque, Can_Emplace_Head) {
   // Arrange
-  TDeque<int> deque({1, 2, 3, 4, 5});
+  Deque<int> deque({1, 2, 3, 4, 5});
 
   // Act & Assert
   const int expected_Result = 10;
@@ -164,9 +164,9 @@ TEST(TDeque, Can_Emplace_Head) {
   EXPECT_EQ(expected_Result, deque.pop_Head());
 }
 
-TEST(TDeque, Can_Emplace_Tail) {
+TEST(Deque, Can_Emplace_Tail) {
   // Arrange
-  TDeque<int> deque({1, 2, 3, 4, 5});
+  Deque<int> deque({1, 2, 3, 4, 5});
 
   // Act & Assert
   const int expected_Result = 10;
@@ -174,9 +174,9 @@ TEST(TDeque, Can_Emplace_Tail) {
   EXPECT_EQ(expected_Result, deque.pop_Tail());
 }
 
-TEST(TDeque, Can_Erase_Last_Element) {
+TEST(Deque, Can_Erase_Last_Element) {
   // Arrange
-  TDeque<int> deque({1, 2, 3, 4, 5});
+  Deque<int> deque({1, 2, 3, 4, 5});
 
   // Act
   const int position = 0;
@@ -187,9 +187,9 @@ TEST(TDeque, Can_Erase_Last_Element) {
   EXPECT_FALSE(deque.is_Exist(number));
 }
 
-TEST(TDeque, Can_Erase_First_Element) {
+TEST(Deque, Can_Erase_First_Element) {
   // Arrange
-  TDeque<int> deque({1, 2, 3, 4, 5});
+  Deque<int> deque({1, 2, 3, 4, 5});
 
   // Act
   const int position = 0;
@@ -200,9 +200,9 @@ TEST(TDeque, Can_Erase_First_Element) {
   EXPECT_FALSE(deque.is_Exist(number));
 }
 
-TEST(TDeque, Can_Erase_Middle_Element) {
+TEST(Deque, Can_Erase_Middle_Element) {
   // Arrange
-  TDeque<int> deque({1, 2, 3, 4, 5});
+  Deque<int> deque({1, 2, 3, 4, 5});
 
   // Act
   const int position = 0;
@@ -213,9 +213,9 @@ TEST(TDeque, Can_Erase_Middle_Element) {
   EXPECT_FALSE(deque.is_Exist(number));
 }
 
-TEST(TDeque, Can_Use_Brackets) {
+TEST(Deque, Can_Use_Brackets) {
   // Arrange
-  TDeque<int> deque({1, 2, 3, 4, 5});
+  Deque<int> deque({1, 2, 3, 4, 5});
 
   // Act & Assert
   const int position = 4;
@@ -223,9 +223,9 @@ TEST(TDeque, Can_Use_Brackets) {
   EXPECT_EQ(expected_Result, deque[position]);
 }
 
-TEST(TDeque, Trow_Then_Position_Less_Than_Zero) {
+TEST(Deque, Trow_Then_Position_Less_Than_Zero) {
   // Arrange
-  TDeque<int> deque({ 1, 2, 3, 4 });
+  Deque<int> deque({ 1, 2, 3, 4 });
 
   // Act & Assert
   const int position = -2;

@@ -5,17 +5,17 @@
 
 using std::string;
 using std::initializer_list;
-#ifndef MODULES_KULISH_SEM_DEQUE_INCLUDE_TDEQUE_H_
-#define MODULES_KULISH_SEM_DEQUE_INCLUDE_TDEQUE_H_
+#ifndef MODULES_KULISH_SEM_DEQUE_INCLUDE_DEQUE_H_
+#define MODULES_KULISH_SEM_DEQUE_INCLUDE_DEQUE_H_
 
 
 template<class V>
-class TDeque {
+class Deque {
  public:
-  TDeque();
-  explicit TDeque(const V& data);
-  explicit TDeque(const initializer_list<V>&);
-  ~TDeque();
+  Deque();
+  explicit Deque(const V& data);
+  explicit Deque(const initializer_list<V>&);
+  ~Deque();
 
   void push_Tail(const V&);
   void push_Head(const V&);
@@ -48,21 +48,21 @@ class TDeque {
 };
 
 template<class V>
-TDeque<V>::TDeque() : size(0), head(nullptr), tail(nullptr) {}
+Deque<V>::Deque() : size(0), head(nullptr), tail(nullptr) {}
 
 template<class V>
-TDeque<V>::TDeque(const V& data):TDeque() {
+Deque<V>::Deque(const V& data):Deque() {
   push_Head(data);
 }
 
 template<class V>
-TDeque<V>::TDeque(const initializer_list<V>& list) :TDeque() {
+Deque<V>::Deque(const initializer_list<V>& list) :Deque() {
   for (const V& elem : list)
     push_Tail(elem);
 }
 
 template<class V>
-TDeque<V>::~TDeque() {
+Deque<V>::~Deque() {
   ITEM* item = tail;
 
   while (item != head) {
@@ -76,7 +76,7 @@ TDeque<V>::~TDeque() {
 }
 
 template<class V>
-typename TDeque<V>::ITEM * TDeque<V>::create(const V & data) {
+typename Deque<V>::ITEM * Deque<V>::create(const V & data) {
   ITEM *item = new ITEM;
   item->data = new V;
 
@@ -88,13 +88,13 @@ typename TDeque<V>::ITEM * TDeque<V>::create(const V & data) {
 }
 
 template<class V>
-void TDeque<V>::delData(ITEM* item)const {
+void Deque<V>::delData(ITEM* item)const {
   delete item->data;
   delete item;
 }
 
 template<class V>
-V TDeque<V>::operator[](const int &position)const {
+V Deque<V>::operator[](const int &position)const {
   int counter = 0;
   V result = 0;
   ITEM* item = tail;
@@ -118,7 +118,7 @@ V TDeque<V>::operator[](const int &position)const {
 }
 
 template<class V>
-void TDeque<V>::push_Tail(const V& data) {
+void Deque<V>::push_Tail(const V& data) {
   if (head && tail) {
     ITEM *tmp = create(data);
     tmp->previous = tail;
@@ -132,7 +132,7 @@ void TDeque<V>::push_Tail(const V& data) {
 }
 
 template<class V>
-void TDeque<V>::push_Head(const V& data) {
+void Deque<V>::push_Head(const V& data) {
   if (head && tail) {
     ITEM *tmp = create(data);
     tmp->next = head;
@@ -146,7 +146,7 @@ void TDeque<V>::push_Head(const V& data) {
 }
 
 template<class V>
-V TDeque<V>::pop_Tail() {
+V Deque<V>::pop_Tail() {
   V data;
   if (head != tail) {
     data = *tail->data;
@@ -165,7 +165,7 @@ V TDeque<V>::pop_Tail() {
 }
 
 template<class V>
-V TDeque<V>::pop_Head() {
+V Deque<V>::pop_Head() {
   V data;
   if (head != tail) {
     data = *head->data;
@@ -184,27 +184,27 @@ V TDeque<V>::pop_Head() {
 }
 
 template<class V>
-void TDeque<V>::emplace_Head(const V data) {
+void Deque<V>::emplace_Head(const V data) {
   *head->data = data;
 }
 
 template<class V>
-void TDeque<V>::emplace_Tail(const V data) {
+void Deque<V>::emplace_Tail(const V data) {
   *tail->data = data;
 }
 
 template<class V>
-bool TDeque<V>::is_Empty()const {
+bool Deque<V>::is_Empty()const {
   return size == 0;
 }
 
 template<class V>
-unsigned TDeque<V>::Size()const {
+unsigned Deque<V>::Size()const {
   return size;
 }
 
 template<class V>
-bool TDeque<V>::is_Exist(const V& data) const {
+bool Deque<V>::is_Exist(const V& data) const {
   ITEM* tmp = head;
 
   while (tmp) {
@@ -218,7 +218,7 @@ bool TDeque<V>::is_Exist(const V& data) const {
 
 
 template<class V>
-void TDeque<V>::erase(V data, const int position) {
+void Deque<V>::erase(V data, const int position) {
   ITEM* item = tail;
   ITEM* tmp;
   int counter = 0;
@@ -250,4 +250,4 @@ void TDeque<V>::erase(V data, const int position) {
     }
   }
 }
-#endif  // MODULES_KULISH_SEM_DEQUE_INCLUDE_TDEQUE_H_
+#endif  // MODULES_KULISH_SEM_DEQUE_INCLUDE_DEQUE_H_
