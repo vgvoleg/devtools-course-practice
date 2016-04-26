@@ -144,6 +144,26 @@ TEST(TElasticity, ElasticityByPricePointDo_Not_Null_3ver) {
   EXPECT_EQ(-2, E.ElasticityByPricePointDo(Q1, Q0, P1, P0));
 }
 
+TEST(TElasticity, ElasticityByPricePointDo_Not_Null_4ver) {
+  // Arrange
+  int Q1 = 100, Q0 = 100;
+  float P1 = 90, P0 = 100;
+  TElasticity E;
+
+  // Act & Assert
+  EXPECT_EQ(0, E.ElasticityByPricePointDo(Q1, Q0, P1, P0));
+}
+
+TEST(TElasticity, ElasticityByPricePointDo_Not_Null_5ver) {
+  // Arrange
+  int Q1 = 0, Q0 = 10;
+  float P1 = 2, P0 = 1;
+  TElasticity E;
+
+  // Act & Assert
+  EXPECT_EQ(-1, E.ElasticityByPricePointDo(Q1, Q0, P1, P0));
+}
+
 TEST(TElasticity, ElasticityByPriceArcDo_Not_Null_ver1) {
   // Arrange
   int Q1 = 10, Q0 = 15;
@@ -176,6 +196,37 @@ TEST(TElasticity, ElasticityByPriceArcDo_Not_Null_ver3) {
   EXPECT_EQ(rezult, E.ElasticityByPriceArcDo(Q1, Q0, P1, P0));
 }
 
+TEST(TElasticity, ElasticityByPriceArcDo_Not_Null_ver4) {
+  // Arrange
+  int Q1 = 100, Q0 = 100;
+  float P1 = 90, P0 = 100;
+  TElasticity E;
+
+  // Act & Assert
+  EXPECT_EQ(0, E.ElasticityByPriceArcDo(Q1, Q0, P1, P0));
+}
+
+TEST(TElasticity, ElasticityByPriceArcDo_Not_Null_ver5) {
+  // Arrange
+  int Q1 = 20, Q0 = 10;
+  float P1 = 20, P0 = 10;
+  TElasticity E;
+
+  // Act & Assert
+  EXPECT_EQ(1, E.ElasticityByPriceArcDo(Q1, Q0, P1, P0));
+}
+
+TEST(TElasticity, ElasticityByPriceArcDo_Not_Null_ver6) {
+  // Arrange
+  int Q1 = 20, Q0 = 10;
+  float P1 = 30, P0 = 20, rezult;
+  TElasticity E;
+
+  // Act & Assert
+  rezult = 5 / 3;
+  EXPECT_EQ(-1, E.ElasticityByPriceArcDo(Q1, Q0, P1, P0));
+}
+
 TEST(TElasticity, ElasticityByIncomeDo_Not_Null_ver1) {
   // Arrange
   int Q1 = 10, Q0 = 15;
@@ -205,6 +256,38 @@ TEST(TElasticity, ElasticityByIncomeDo_Not_Null_ver3) {
 
   // Act & Assert
   rezult = -2;
+  EXPECT_EQ(rezult, E.ElasticityByIncomeDo(Q1, Q0, I1, I0));
+}
+
+TEST(TElasticity, ElasticityByIncomeDo_Not_Null_ver4) {
+  // Arrange
+  int Q1 = 10, Q0 = 10;
+  float I1 = 90, I0 = 100;
+  TElasticity E;
+
+  // Act & Assert
+  EXPECT_EQ(0, E.ElasticityByIncomeDo(Q1, Q0, I1, I0));
+}
+
+TEST(TElasticity, ElasticityByIncomeDo_Not_Null_ver4) {
+  // Arrange
+  int Q1 = 15, Q0 = 10;
+  float I1 = 10, I0 = 5, rezult;
+  TElasticity E;
+
+  // Act & Assert
+  rezult = 1 / 2;
+  EXPECT_EQ(rezult, E.ElasticityByIncomeDo(Q1, Q0, I1, I0));
+}
+
+TEST(TElasticity, ElasticityByIncomeDo_Not_Null_ver4) {
+  // Arrange
+  int Q1 = 3000, Q0 = 2500;
+  float I1 = 100, I0 = 90, rezult;
+  TElasticity E;
+
+  // Act & Assert
+  rezult = 9 / 5;
   EXPECT_EQ(rezult, E.ElasticityByIncomeDo(Q1, Q0, I1, I0));
 }
 
