@@ -46,8 +46,6 @@ double MassConverter::Convert(const MassUnit &from,
     if (value < 0)
         throw std::invalid_argument("value must be not negative");
 
-    if (value == 0) return 0;
-
     double conversion_coefficient = from.Coefficient() / to.Coefficient();
 
     return value * conversion_coefficient;
