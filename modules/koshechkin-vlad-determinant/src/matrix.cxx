@@ -9,30 +9,29 @@
 
 using std::vector;
 
-Matrix::Matrix() {
-    n = 0;
-}
-
-Matrix::Matrix(int count_n) {
+Matrix::Matrix(const int count_n) {
     if (count_n <= 0)
         throw std::invalid_argument("Count must be positive");
     n = count_n;
     matrix.resize(n * n, 0);
 }
 
-Matrix::Matrix(int count_n, vector<int> v) {
+Matrix::Matrix(const int count_n, const vector<int> v) {
     if (count_n <= 0)
         throw std::invalid_argument("Count must be positive");
+    long k = v.size();
+    if (sqrt(k)!=count_n)
+        throw std::invalid_argument("Vector must have the same size as matrix");
     n = count_n;
     matrix = v;
 }
 
 
-int Matrix::Get(int i, int j) const {
+int Matrix::Get(const int i, const int j) const {
     return matrix[i * n + j];
 }
 
-int Matrix::Set(int i, int j, int value) {
+int Matrix::Set(const int i, const int j, const int value) {
     return matrix[i * n + j] = value;
 }
 
@@ -48,7 +47,7 @@ Matrix Matrix::Minor(const int row, const int col) const {
             if (j == col) continue;
 
             res.Set(i - (i > row ? 1 : 0),
-                    j - (i > col ? 1 : 0),
+                    j - (j > col ? 1 : 0),
                     matrix[i * n + j]);
         }
     }

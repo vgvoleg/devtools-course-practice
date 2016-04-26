@@ -1,4 +1,4 @@
-// Copyright 2016 Pozdyaev Valery
+// Copyright 2016 Koshechkin Vlad
 
 #include <gtest/gtest.h>
 
