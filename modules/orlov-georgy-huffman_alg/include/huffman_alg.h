@@ -20,7 +20,7 @@ using std::ostream;
 using std::string;
 
 typedef map<char, int> FreqMap;
-typedef map<char, vector<bool> > TableMap;
+typedef map<char, vector<bool>> TableMap;
 
 class Huff {
  public:
@@ -29,7 +29,7 @@ class Huff {
         char symbol;
         Node *left, *right;
 
-        Node() { left = right = NULL; }
+        Node() { left = right = nullptr; }
 
         Node(Node *L, Node *R) {
             left = L;
@@ -47,7 +47,6 @@ class Huff {
     FreqMap ReadString(string);
     void FillNodeList(FreqMap);
     void CreateTree();
-//    void PrintTree(Node*, unsigned int);
     void BuildTable(Node* root);
 
     list<Node*> GetNodeList() { return nodeList; }

@@ -48,22 +48,6 @@ void Huff::CreateTree() {
     }
 }
 
-/*void Huff::PrintTree(Huff::Node* root, unsigned int k = 0) {
-    if(root != NULL) {
-        PrintTree(root->left, k + 3);
-
-        for (unsigned int i = 0; i < k; i++)
-            cout << "  ";
-        if (root->left == NULL && root->right == NULL)
-            cout << root->number << " ("
-            << root->symbol << ")" << endl;
-        else
-            cout << root->number << endl;
-        PrintTree(root->right, k + 3);
-		
-    }
-}*/
-
 void Huff::BuildTable(Huff::Node* root) {
     if (root->left != NULL) {
         code.push_back(0);
