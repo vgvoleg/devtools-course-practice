@@ -90,7 +90,8 @@ bool MarkDatabase::isRecordExist(Student student, Subject subject) const {
     }
 }
 
-ReturnCode MarkDatabase::addNewRecord(Student student, Subject subject, Mark mark) {
+ReturnCode MarkDatabase::addNewRecord(Student student,
+                                      Subject subject, Mark mark) {
     if (isStudentExist(student)) {
         if (isSubjectExist(subject)) {
             if (!isRecordExist(student, subject)) {
@@ -117,10 +118,12 @@ ReturnCode MarkDatabase::deleteRecord(Student student, Subject subject) {
     }
 }
 
-ReturnCode MarkDatabase::search(Student student, Subject subject, size_t* index) const {
+ReturnCode MarkDatabase::search(Student student,
+                                Subject subject, size_t* index) const {
     if (isRecordExist(student, subject)) {
         *index = distance(records.begin(),
-                          find(records.begin(), records.end(), Record(student, subject)));
+                          find(records.begin(), records.end(),
+                               Record(student, subject)));
         return ReturnCode::Success;
     } else {
         *index = -1;
@@ -128,7 +131,8 @@ ReturnCode MarkDatabase::search(Student student, Subject subject, size_t* index)
     }
 }
 
-ReturnCode MarkDatabase::getRecord(unsigned int indexOfRecord, Record* record) const {
+ReturnCode MarkDatabase::getRecord(unsigned int indexOfRecord,
+                                   Record* record) const {
     if (indexOfRecord < numberOfRecords()) {
         *record = records[indexOfRecord];
         return ReturnCode::Success;

@@ -34,8 +34,8 @@ TEST(Record, Can_Compare_Identical_Records) {
 
 TEST(Record, Can_Compare_Not_Identical_Records) {
     // Arrange
-    Record record1("Alexander Pitts", "Math",Mark::A);
-    Record record2("Alexander Pitts", "Biology",Mark::A);
+    Record record1("Alexander Pitts", "Math", Mark::A);
+    Record record2("Alexander Pitts", "Biology", Mark::A);
 
     // Act && Assert
     EXPECT_NE(true, record1 == record2);
@@ -59,7 +59,7 @@ class MarkDatabaseTest : public ::testing::Test {
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                base.addNewRecord(students[i], subjects[j],Mark::A);
+                base.addNewRecord(students[i], subjects[j], Mark::A);
                 records.push_back(Record(students[i], subjects[j], Mark::A));
             }
         }

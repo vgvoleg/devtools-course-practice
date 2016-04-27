@@ -18,7 +18,9 @@ typedef std::string Subject;
 
 struct Record {
  public:
-    explicit Record(Student student = "", Subject subject = "", Mark mark = Mark::A);
+    explicit Record(Student student = "",
+                    Subject subject = "",
+                    Mark mark = Mark::A);
     Student student;
     Subject subject;
     Mark mark;
