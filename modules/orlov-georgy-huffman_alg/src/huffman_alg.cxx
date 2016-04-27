@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-ostream& operator<<(ostream& os, map<char, int> m) {
+ostream& operator<<(ostream& os, map<char, int>& m) {
     map<char, int>::iterator itr;
     for (itr = m.begin(); itr != m.end(); ++itr) {
         os << itr->first << ": " << itr->second << endl;
@@ -13,7 +13,7 @@ ostream& operator<<(ostream& os, map<char, int> m) {
     return os;
 }
 
-ostream& operator<<(ostream& os, map<char, vector<bool> > t) {
+ostream& operator<<(ostream& os, map<char, vector<bool> >& t) {
     map<char, vector<bool> >::iterator itr;
     vector<bool>::iterator vitr;
     for (itr = t.begin(); itr != t.end(); ++itr) {

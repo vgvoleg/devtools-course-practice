@@ -56,8 +56,8 @@ class Huff {
     list<Node*> nodeList;
     map<char, vector<bool> > table;
 
-    friend ostream& operator<<(ostream& os, map<char, int> m);
-    friend ostream& operator<<(ostream& os, map<char, vector<bool> > t);
+    friend ostream& operator<<(ostream& os, map<char, int>& m);
+    friend ostream& operator<<(ostream& os, map<char, vector<bool> >& t);
     friend bool operator==(const Node&, const Node&);
 };
 
