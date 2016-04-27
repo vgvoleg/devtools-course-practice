@@ -1,11 +1,11 @@
 // Copyright 2016 Orlov Georgy
 
-#include "gtest/gtest.h"
-#include "include/huffman_alg.h"
 #include <map>
 #include <string>
 #include <list>
 #include <vector>
+#include "gtest/gtest.h"
+#include "include/huffman_alg.h"
 
 TEST(huffman_alg, Can_Creade_Node) {
     // Arrange
