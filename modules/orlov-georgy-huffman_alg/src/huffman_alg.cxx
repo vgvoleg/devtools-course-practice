@@ -5,17 +5,17 @@
 #include <string>
 #include <vector>
 
-ostream& operator<<(ostream& os, FreqMap& m) {
-    map<char, int>::iterator itr;
+ostream& operator<<(ostream& os, const FreqMap& m) {
+    map<char, int>::const_iterator itr;
     for (itr = m.begin(); itr != m.end(); ++itr) {
         os << itr->first << ": " << itr->second << endl;
     }
     return os;
 }
 
-ostream& operator<<(ostream& os, TableMap& t) {
-    map<char, vector<bool> >::iterator itr;
-    vector<bool>::iterator vitr;
+ostream& operator<<(ostream& os, const TableMap& t) {
+    map<char, vector<bool> >::const_iterator itr;
+    vector<bool>::const_iterator vitr;
     for (itr = t.begin(); itr != t.end(); ++itr) {
         os << itr->first << ": ";
         for (vitr = itr->second.begin(); vitr != itr->second.end(); ++vitr)
