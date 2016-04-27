@@ -5,7 +5,7 @@
 
 #include <string>
 
-enum Mark {
+enum class Mark : int {
     A = 5,
     B = 4,
     C = 3,
@@ -16,9 +16,9 @@ enum Mark {
 typedef std::string Student;
 typedef std::string Subject;
 
-class Record {
+struct Record {
  public:
-    explicit Record(Student student = "", Subject subject = "", Mark mark = A);
+    explicit Record(Student student = "", Subject subject = "", Mark mark = Mark::A);
     Student student;
     Subject subject;
     Mark mark;

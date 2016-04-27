@@ -14,7 +14,7 @@ using std::vector;
 using std::pair;
 using std::out_of_range;
 
-bool MarkDatabase::isStudentExist(Student student) {
+bool MarkDatabase::isStudentExist(Student student) const {
     if (find(students.begin(), students.end(), student) == students.end()) {
         return false;
     } else {
@@ -22,7 +22,7 @@ bool MarkDatabase::isStudentExist(Student student) {
     }
 }
 
-bool MarkDatabase::isSubjectExist(Subject subject) {
+bool MarkDatabase::isSubjectExist(Subject subject) const {
     if (find(subjects.begin(), subjects.end(), subject) == subjects.end()) {
         return false;
     } else {
@@ -30,7 +30,7 @@ bool MarkDatabase::isSubjectExist(Subject subject) {
     }
 }
 
-int MarkDatabase::addStudent(Student student) {
+ReturnCode MarkDatabase::addStudent(Student student) {
     if (!isStudentExist(student)) {
         students.push_back(student);
         return ReturnCode::Success;
@@ -39,7 +39,7 @@ int MarkDatabase::addStudent(Student student) {
     }
 }
 
-int MarkDatabase::addSubject(Subject subject) {
+ReturnCode MarkDatabase::addSubject(Subject subject) {
     if (!isSubjectExist(subject)) {
         subjects.push_back(subject);
         return ReturnCode::Success;
@@ -48,15 +48,14 @@ int MarkDatabase::addSubject(Subject subject) {
     }
 }
 
-int MarkDatabase::deleteStudent(Student student) {
+ReturnCode MarkDatabase::deleteStudent(Student student) {
     if (isStudentExist(student)) {
         students.erase(find(students.begin(), students.end(), student));
-        vector<Record>::iterator record = records.begin();
-        for ( ; record != records.end(); ) {
+        for (auto record = records.begin() ; record != records.end(); ) {
             if (record->student == student) {
                 record = records.erase(record);
             } else {
-                record++;
+                ++record;
             }
         }
         return ReturnCode::Success;
@@ -66,15 +65,14 @@ int MarkDatabase::deleteStudent(Student student) {
 }
 
 
-int MarkDatabase::deleteSubject(Subject subject) {
+ReturnCode MarkDatabase::deleteSubject(Subject subject) {
     if (isSubjectExist(subject)) {
         subjects.erase(find(subjects.begin(), subjects.end(), subject));
-        vector<Record>::iterator record = records.begin();
-        for ( ; record != records.end(); ) {
+        for (auto record = records.begin() ; record != records.end(); ) {
             if (record->subject == subject) {
                 record = records.erase(record);
             } else {
-                record++;
+                ++record;
             }
         }
         return ReturnCode::Success;
@@ -83,7 +81,7 @@ int MarkDatabase::deleteSubject(Subject subject) {
     }
 }
 
-bool MarkDatabase::isRecordExist(Student student, Subject subject) {
+bool MarkDatabase::isRecordExist(Student student, Subject subject) const {
     Record record(student, subject);
     if (find(records.begin(), records.end(), record) == records.end()) {
         return false;
@@ -92,7 +90,7 @@ bool MarkDatabase::isRecordExist(Student student, Subject subject) {
     }
 }
 
-int MarkDatabase::addNewRecord(Student student, Subject subject, Mark mark) {
+ReturnCode MarkDatabase::addNewRecord(Student student, Subject subject, Mark mark) {
     if (isStudentExist(student)) {
         if (isSubjectExist(subject)) {
             if (!isRecordExist(student, subject)) {
@@ -109,7 +107,7 @@ int MarkDatabase::addNewRecord(Student student, Subject subject, Mark mark) {
     }
 }
 
-int MarkDatabase::deleteRecord(Student student, Subject subject) {
+ReturnCode MarkDatabase::deleteRecord(Student student, Subject subject) {
     if (isRecordExist(student, subject)) {
         Record record(student, subject);
         records.erase(find(records.begin(), records.end(), record));
@@ -119,17 +117,18 @@ int MarkDatabase::deleteRecord(Student student, Subject subject) {
     }
 }
 
-int MarkDatabase::search(Student student, Subject subject) {
+ReturnCode MarkDatabase::search(Student student, Subject subject, size_t* index) const {
     if (isRecordExist(student, subject)) {
-        vector<Record>::iterator record;
-        record = find(records.begin(), records.end(), Record(student, subject));
-        return std::distance(records.begin(), record);
+        *index = distance(records.begin(),
+                          find(records.begin(), records.end(), Record(student, subject)));
+        return ReturnCode::Success;
     } else {
+        *index = -1;
         return ReturnCode::RecordNotFound;
     }
 }
 
-int MarkDatabase::getRecord(unsigned int indexOfRecord, Record* record) {
+ReturnCode MarkDatabase::getRecord(unsigned int indexOfRecord, Record* record) const {
     if (indexOfRecord < numberOfRecords()) {
         *record = records[indexOfRecord];
         return ReturnCode::Success;
@@ -138,7 +137,7 @@ int MarkDatabase::getRecord(unsigned int indexOfRecord, Record* record) {
     }
 }
 
-int MarkDatabase::deleteRecord(unsigned int indexOfRecord) {
+ReturnCode MarkDatabase::deleteRecord(unsigned int indexOfRecord) {
     if (indexOfRecord < numberOfRecords()) {
         records.erase(records.begin()+indexOfRecord);
         return ReturnCode::Success;
@@ -147,8 +146,8 @@ int MarkDatabase::deleteRecord(unsigned int indexOfRecord) {
     }
 }
 
-int MarkDatabase::marksOfStudent(Student student,
-                                 vector< pair<Subject, Mark> >* marks) {
+ReturnCode MarkDatabase::marksOfStudent(Student student,
+                                 vector< pair<Subject, Mark> >* marks) const {
     if (isStudentExist(student)) {
         for (size_t recID = 0; recID < numberOfRecords(); recID++) {
             Record record = records[recID];
@@ -162,8 +161,8 @@ int MarkDatabase::marksOfStudent(Student student,
     }
 }
 
-int MarkDatabase::marksOnSubject(Subject subject,
-                                 vector< pair<Student, Mark> >* marks) {
+ReturnCode MarkDatabase::marksOnSubject(Subject subject,
+                                 vector< pair<Student, Mark> >* marks) const {
     if (isSubjectExist(subject)) {
     for (size_t recordID = 0; recordID < numberOfRecords(); recordID++) {
         Record record = records[recordID];
@@ -177,27 +176,27 @@ int MarkDatabase::marksOnSubject(Subject subject,
     }
 }
 
-vector<Student> MarkDatabase::getStudentsList() {
+vector<Student> MarkDatabase::getStudentsList() const {
     return students;
 }
 
-vector<Subject> MarkDatabase::getSubjectsList() {
+vector<Subject> MarkDatabase::getSubjectsList() const {
     return subjects;
 }
 
-vector<Record> MarkDatabase::getRecordsList() {
+vector<Record> MarkDatabase::getRecordsList() const {
     return records;
 }
 
-size_t MarkDatabase::numberOfStudents() {
+size_t MarkDatabase::numberOfStudents() const {
     return students.size();
 }
 
-size_t MarkDatabase::numberOfSubjects() {
+size_t MarkDatabase::numberOfSubjects() const {
     return subjects.size();
 }
 
-size_t MarkDatabase::numberOfRecords() {
+size_t MarkDatabase::numberOfRecords() const {
     return records.size();
 }
 

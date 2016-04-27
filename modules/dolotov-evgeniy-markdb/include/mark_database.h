@@ -10,45 +10,43 @@
 
 #include "include/record.h"
 
-namespace ReturnCode {
-enum {
-    StudentNotFound = -7,
-    StudentAlreadyExist = -6,
-    SubjectNotFound = -5,
-    SubjectAlreadyExist = -4,
-    RecordNotFound = -3,
-    RecordAlreadyExist = -2,
-    WrongIndex = -1,
-    Success = 0
+enum class ReturnCode {
+    StudentNotFound,
+    StudentAlreadyExist,
+    SubjectNotFound,
+    SubjectAlreadyExist,
+    RecordNotFound,
+    RecordAlreadyExist,
+    WrongIndex,
+    Success
 };
-};  // namespace ReturnCode
 
 class MarkDatabase {
  public:
-    int addStudent(Student student);
-    int deleteStudent(Student student);
-    int addSubject(Subject subject);
-    int deleteSubject(Subject subject);
-    bool isStudentExist(Student student);
-    bool isSubjectExist(Subject subject);
-    int addNewRecord(Student student, Subject subject, Mark mark);
-    int deleteRecord(Student student, Subject subject);
-    int search(Student student, Subject subject);
-    int getRecord(unsigned int indexOfRecord, Record* record);
-    int deleteRecord(unsigned int indexOfRecord);
-    int marksOfStudent(Student student,
-                       std::vector< std::pair<Subject, Mark> >* marks);
-    int marksOnSubject(Subject subject,
-                       std::vector< std::pair<Student, Mark> >* marks);
-    std::vector<Student> getStudentsList();
-    std::vector<Subject> getSubjectsList();
-    std::vector<Record> getRecordsList();
-    size_t numberOfStudents();
-    size_t numberOfSubjects();
-    size_t numberOfRecords();
+    ReturnCode addStudent(Student student);
+    ReturnCode deleteStudent(Student student);
+    ReturnCode addSubject(Subject subject);
+    ReturnCode deleteSubject(Subject subject);
+    bool isStudentExist(Student student) const;
+    bool isSubjectExist(Subject subject) const;
+    ReturnCode addNewRecord(Student student, Subject subject, Mark mark);
+    ReturnCode deleteRecord(Student student, Subject subject);
+    ReturnCode search(Student student, Subject subject, size_t* index) const;
+    ReturnCode getRecord(unsigned int indexOfRecord, Record* record) const;
+    ReturnCode deleteRecord(unsigned int indexOfRecord);
+    ReturnCode marksOfStudent(Student student,
+                       std::vector< std::pair<Subject, Mark> >* marks) const;
+    ReturnCode marksOnSubject(Subject subject,
+                       std::vector< std::pair<Student, Mark> >* marks) const;
+    std::vector<Student> getStudentsList() const;
+    std::vector<Subject> getSubjectsList() const;
+    std::vector<Record> getRecordsList() const;
+    size_t numberOfStudents() const;
+    size_t numberOfSubjects() const;
+    size_t numberOfRecords() const;
 
  private:
-    bool isRecordExist(Student student, Subject subject);
+    bool isRecordExist(Student student, Subject subject) const;
     std::vector<Student> students;
     std::vector<Subject> subjects;
     std::vector<Record> records;
