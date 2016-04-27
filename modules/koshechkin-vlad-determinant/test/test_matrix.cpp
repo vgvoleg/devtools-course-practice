@@ -46,7 +46,7 @@ TEST(MatrixTest, Throws_Count_Negative_In_Marix) {
     EXPECT_THROW(Matrix m(n, v), std::invalid_argument);
 }
 
-TEST(MatrixTest, Throws_Vecor_Less_Size_In_Marix) {
+TEST(MatrixTest, Throws_Vecor_More_Size_In_Marix) {
     // Arrange
     int n = 1;
     vector<int> v = {1, 8, 1, 5};
@@ -54,7 +54,7 @@ TEST(MatrixTest, Throws_Vecor_Less_Size_In_Marix) {
     EXPECT_THROW(Matrix m(n, v), std::invalid_argument);
 }
 
-TEST(MatrixTest, Throws_Vecor_More_Size_In_Marix) {
+TEST(MatrixTest, Throws_Vecor_Less_Size_In_Marix) {
     // Arrange
     int n = 5;
     vector<int> v = {1, 8, 1, 5};

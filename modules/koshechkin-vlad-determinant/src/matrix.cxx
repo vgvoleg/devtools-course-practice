@@ -22,6 +22,7 @@ Matrix::Matrix(const int count_n, const vector<int> v) {
     int k = v.size();
     if (sqrt(k) != count_n)
         throw std::invalid_argument("Vector must have the same size as matrix");
+
     n = count_n;
     matrix = v;
 }
