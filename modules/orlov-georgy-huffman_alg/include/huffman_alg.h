@@ -19,6 +19,9 @@ using std::vector;
 using std::ostream;
 using std::string;
 
+typedef map<char, int> FreqMap;
+typedef map<char, vector<bool> > TableMap;
+
 class Huff {
  public:
     struct Node {
@@ -41,23 +44,23 @@ class Huff {
         }
     };
 
-    map<char, int> ReadString(string);
-    void FillNodeList(map<char, int>);
+    FreqMap ReadString(string);
+    void FillNodeList(FreqMap);
     void CreateTree();
 //  void PrintTree(Node*, unsigned int);
     void BuildTable(Node* root);
 
     list<Node*> GetNodeList() { return nodeList; }
     Node* getRoot() { return nodeList.front(); }
-    map<char, vector<bool> > GetTable() { return table; }
+    TableMap GetTable() { return table; }
 
  private:
     vector<bool> code;
     list<Node*> nodeList;
-    map<char, vector<bool> > table;
+    TableMap table;
 
-    friend ostream& operator<<(ostream& os, map<char, int>& m);
-    friend ostream& operator<<(ostream& os, map<char, vector<bool> >& t);
+    friend ostream& operator<<(ostream& os, FreqMap& m);
+    friend ostream& operator<<(ostream& os, TableMap& t);
     friend bool operator==(const Node&, const Node&);
 };
 

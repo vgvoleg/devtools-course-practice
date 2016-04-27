@@ -74,8 +74,8 @@ TEST(huffman_alg, Can_Right_Read_String) {
     // Arrange
     Huff huf;
     string str = "test";
-    map<char, int> expected_m;
-    map<char, int> test_m;
+    FreqMap expected_m;
+    FreqMap test_m;
 
     // Act
     expected_m['t'] = 2;
@@ -91,7 +91,7 @@ TEST(huffman_alg, Can_Right_Display_The_Map_Char_Int) {
     // Arrange
     Huff huf;
     string str = "test";
-    map<char, int> test_m;
+    FreqMap test_m;
 
     // Act
     std::ostringstream stream;
@@ -107,7 +107,7 @@ TEST(huffman_alg, Can_Right_Display_The_Map_Like_Table) {
     // Arrange
     Huff huf;
     vector<bool> test_vect;
-    map<char, vector<bool> > test_m;
+    TableMap test_m;
 
     // Act
     test_vect.push_back(0);
@@ -125,7 +125,7 @@ TEST(huffman_alg, Can_Fill_Node_List) {
     // Arrange
     Huff huf;
     string str = "test";
-    map<char, int> m;
+    FreqMap m;
     list<Huff::Node*> l;
 
     // Act
@@ -187,7 +187,7 @@ TEST(huffman_alg, Fill_Node_List_Right) {
     // Arrange
     Huff huf;
     string str = "ttt";
-    map<char, int> m;
+    FreqMap m;
     list<Huff::Node*> l;
 
     // Act
@@ -207,7 +207,7 @@ TEST(huffman_alg, Can_Create_Tree) {
     // Arrange
     Huff huf;
     string str = "test that horrible algorithm";
-    map<char, int> m;
+    FreqMap m;
 
     // Act
     m = huf.ReadString(str);
@@ -215,7 +215,7 @@ TEST(huffman_alg, Can_Create_Tree) {
     huf.CreateTree();
 
     // Assert
-    int expected_node_list_size = 1;
+    unsigned int expected_node_list_size = 1;
     EXPECT_TRUE(expected_node_list_size == huf.GetNodeList().size());
 }
 
@@ -223,7 +223,7 @@ TEST(huffman_alg, Can_Build_Table_Right) {
     // Arrange
     Huff huf;
     string str = "test";
-    map<char, int> m;
+    FreqMap m;
 
     // Act
     m = huf.ReadString(str);

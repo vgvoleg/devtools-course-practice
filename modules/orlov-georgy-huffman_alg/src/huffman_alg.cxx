@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-ostream& operator<<(ostream& os, map<char, int>& m) {
+ostream& operator<<(ostream& os, FreqMap& m) {
     map<char, int>::iterator itr;
     for (itr = m.begin(); itr != m.end(); ++itr) {
         os << itr->first << ": " << itr->second << endl;
@@ -13,7 +13,7 @@ ostream& operator<<(ostream& os, map<char, int>& m) {
     return os;
 }
 
-ostream& operator<<(ostream& os, map<char, vector<bool> >& t) {
+ostream& operator<<(ostream& os, TableMap& t) {
     map<char, vector<bool> >::iterator itr;
     vector<bool>::iterator vitr;
     for (itr = t.begin(); itr != t.end(); ++itr) {
@@ -45,7 +45,7 @@ map<char, int> Huff::ReadString(string str) {
     return m;
 }
 
-void Huff::FillNodeList(map<char, int> m) {
+void Huff::FillNodeList(FreqMap m) {
     map<char, int>::iterator itr;
     for (itr = m.begin(); itr != m.end(); ++itr) {
         Node *p = new Node;
