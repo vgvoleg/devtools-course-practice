@@ -1,17 +1,16 @@
 // Copyright 2016 Kochetova Dasha
 
 #include "include/sqr_eq.h"
+#include <set> 
 
-Equation::Equation()
-{
+Equation::Equation(){
     _a = 1;
     _b = 1;
     _c = 1;
     error = false;
 }
 
-Equation::Equation (DType a, DType b, DType c)
-{
+Equation::Equation(DType a, DType b, DType c){
     if (a != 0)
     {
         _a = a;
@@ -24,22 +23,19 @@ Equation::Equation (DType a, DType b, DType c)
       //  cout << "Error! You are give not the quadratic equation" << endl;
 }
 
-void Equation::PutParametrs(DType a, DType b, DType c)
-{
+void Equation::PutParametrs(DType a, DType b, DType c){
     _a = a;
     _b = b;
     _c = c;
 }
 
-DType Equation::Discrim ()
-{
+DType Equation::Discrim(){
     DType _dis;
     _dis = (_b *_b) - (4 * _a * _c);
     return _dis;
 }
 
-set<double> Equation::SolveDiscrim()
-{
+set<double> Equation::SolveDiscrim(){
     set <double> rootset;
     DType dis = Discrim();
     if (dis < 0)
@@ -69,38 +65,31 @@ set<double> Equation::SolveDiscrim()
     return rootset;
 }
 
-DType Equation::GetA()
-{
+DType Equation::GetA(){
     return _a;
 }
 
-DType Equation::GetB()
-{
+DType Equation::GetB(){
     return _b;
 }
 
-DType Equation::GetC()
-{
+DType Equation::GetC(){
     return _c;
 }
 
-double Equation::GetX1()
-{
+double Equation::GetX1(){
     return _x1;
 }
 
-double Equation::GetX2()
-{
+double Equation::GetX2(){
     return _x2;
 }
 
-bool Equation::GetFlag()
-{
+bool Equation::GetFlag(){
     return error;
 }
 
-set<double> Equation::SolveViet()
-{
+set<double> Equation::SolveViet(){
     set <double> rootset;
     double sum = fabs(_a) + fabs(_b) + fabs(_c);
     double p = -(_b / _a);
@@ -125,8 +114,7 @@ set<double> Equation::SolveViet()
     return rootset;
 }
 
-void Equation::SolveComplex()
-{
+void Equation::SolveComplex(){
     DType dis = Discrim();
     if (dis < 0)
     {
@@ -142,8 +130,7 @@ void Equation::SolveComplex()
         error = true; 
 }
 
-array<double,2> Equation::ParabolaTop()
-{
+array<double,2> Equation::ParabolaTop(){
     std::array<double, 2> topcoordinat;
     if (_a == 0)
         error = true;
@@ -162,12 +149,10 @@ array<double,2> Equation::ParabolaTop()
     return topcoordinat;
 }
 
-complex<DType> Equation::GetCx1()
-{
+complex<DType> Equation::GetCx1(){
     return _cx1;
 }
 
-complex<DType> Equation::GetCx2()
-{
+complex<DType> Equation::GetCx2(){
     return _cx2;
 }
