@@ -3,6 +3,7 @@
 #include "include/huffman_alg.h"
 #include <vector>
 #include <map>
+#include <list>
 #include <string>
 
 bool operator==(const Huff::Node& l, const Huff::Node& r) {
@@ -87,7 +88,7 @@ string Huff::GetStringFromTable(TableMap Tbl, string str) {
             buf.push_back(1);
         else
             buf.push_back(0);
-        for (auto& itr: Tbl)
+        for (auto& itr : Tbl)
             if (itr.second == buf) {
                 result += itr.first;
                 buf.clear();
