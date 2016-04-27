@@ -1,19 +1,22 @@
 // Copyright 2016 Kochetova Dasha
-
 #pragma once
+
+#ifndef MODULES_KOCHETOVA_DASHA_SQR_EQ_INCLUDE_SQR_EQ_H_
+#define MODULES_KOCHETOVA_DASHA_SQR_EQ_INCLUDE_SQR_EQ_H_
+
 #include <iostream>
 #include <math.h>
 #include <set>
 #include <complex>
 #include <array>
-
-using namespace std;
+//using namespace std;
+using std::cout;
 
 typedef double DType;
 
 class Equation
 {
-private:
+private: 
     DType _a;
     DType _b;
     DType _c;
@@ -23,7 +26,7 @@ private:
     complex<DType> _cx2;
     bool error;
 
-public:
+public: 
     Equation();
     Equation(DType a, DType b, DType c);
     DType Discrim();
@@ -41,3 +44,4 @@ public:
     bool GetFlag();
     void PutParametrs(DType a, DType b, DType c);
 };
+#endif
