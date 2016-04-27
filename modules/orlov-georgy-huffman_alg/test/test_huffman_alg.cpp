@@ -5,6 +5,7 @@
 #include <string>
 #include <list>
 #include <vector>
+#include <algorithm>
 #include "gtest/gtest.h"
 #include "include/huffman_alg.h"
 
@@ -242,8 +243,8 @@ TEST(huffman_alg, Can_Build_Table_Right) {
     std::ostringstream stream;
     for (auto& itr : huf.GetTable()) {
         stream << itr.first << ": ";
-        for (auto& vitr : itr.second)
-            stream << vitr;
+        std::copy(itr.second.begin(), itr.second.end(),
+            std::ostream_iterator<bool>(stream, ""));
         stream << endl;
     }
 
