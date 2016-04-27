@@ -1,7 +1,7 @@
 // Copyright 2016 Sharadze Georgy
 
-#ifndef MODULES_SHARADZE_GEORGY_ZCALC_INCLUDE_COMPLEX_NUMBER_H_ 
-#define MODULES_SHARADZE_GEORGY_ZCALC_INCLUDE_COMPLEX_NUMBER_H_ 
+#ifndef MODULES_SHARADZE_GEORGY_ZCALC_INCLUDE_COMPLEX_NUMBER_H_
+#define MODULES_SHARADZE_GEORGY_ZCALC_INCLUDE_COMPLEX_NUMBER_H_
 
 class ComplexNumber {
  public:
@@ -24,10 +24,11 @@ class ComplexNumber {
     friend ComplexNumber calc(const ComplexNumber& z1,
         const ComplexNumber& z2,
         const char op);
+
  private:
     double re;
     double im;
     bool equalsToZero(const ComplexNumber& z) const;
 };
 
-#endif // MODULES_SHARADZE_GEORGY_ZCALC_INCLUDE_COMPLEX_NUMBER_H_ 
+#endif  // MODULES_SHARADZE_GEORGY_ZCALC_INCLUDE_COMPLEX_NUMBER_H_
