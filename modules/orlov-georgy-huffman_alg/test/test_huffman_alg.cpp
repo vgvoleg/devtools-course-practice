@@ -118,8 +118,8 @@ TEST(huffman_alg, Can_Right_Display_The_Map_Like_Table) {
     test_m['s'] = test_vect;
     for (auto& itr : test_m) {
         stream << itr.first << ": ";
-        for (auto& vitr : itr.second)
-            stream << vitr;
+        std::copy(itr.second.begin(), itr.second.end(),
+            std::ostream_iterator<bool>(stream, ""));
         stream << endl;
     }
 
