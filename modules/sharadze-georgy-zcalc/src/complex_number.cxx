@@ -60,9 +60,9 @@ ComplexNumber ComplexNumber::operator / (const ComplexNumber& z) const {
         throw std::string("Can\'t divide with zero");
     } else {
         ComplexNumber result;
-        result.setRe((getRe() * z.getRe() + getIm() * z.getIm()) 
+        result.setRe((getRe() * z.getRe() + getIm() * z.getIm())
                      / (z.getRe() * z.getRe() + z.getIm() * z.getIm()));
-        result.setIm((z.getRe() * getIm() - getRe() * z.getIm()) 
+        result.setIm((z.getRe() * getIm() - getRe() * z.getIm())
                      / (z.getRe() * z.getRe() + z.getIm() * z.getIm()));
         return result;
     }
@@ -92,8 +92,8 @@ bool ComplexNumber::equalsToZero(const ComplexNumber& z) const {
     return (z.getRe() == 0 && z.getIm() == 0);
 }
 
-ComplexNumber calc(const ComplexNumber& z1, 
-                   const ComplexNumber& z2, 
+ComplexNumber calc(const ComplexNumber& z1,
+                   const ComplexNumber& z2,
                    const char op) {
     if (op == '+') {
         return z1 + z2;
