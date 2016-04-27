@@ -83,7 +83,7 @@ void Huff::BuildTable(Huff::Node* root) {
 string Huff::GetStringFromTable(TableMap Tbl, string str) {
     string result;
     vector<bool> buf;
-    for (int i = 0; i < str.size(); i++) {
+    for (unsigned int i = 0; i < str.size(); i++) {
         if (str[i] == '1')
             buf.push_back(1);
         else
