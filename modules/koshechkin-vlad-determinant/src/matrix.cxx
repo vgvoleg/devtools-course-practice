@@ -27,6 +27,9 @@ Matrix::Matrix(const int count_n, const vector<int> v) {
     matrix = v;
 }
 
+const vector<int> &Matrix::to_vector() {
+    return matrix;
+}
 
 int Matrix::Get(const int i, const int j) const {
     return matrix[i * n + j];

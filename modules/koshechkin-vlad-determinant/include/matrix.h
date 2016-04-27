@@ -11,16 +11,17 @@ using std::vector;
 
 class Matrix {
  public:
-    vector<int> matrix;
     explicit Matrix(const int count_n);
     Matrix(const int count_n, const vector<int> matrix);
     Matrix Minor(const int row, const int col) const;
     double Determinant(const Matrix &a) const;
+    const vector<int> &to_vector();
 
  private:
     int n;
     int Get(const int i, const int j) const;
     int Set(const int i, const int j, const int value);
+    vector<int> matrix;
 };
 
 #endif  // MODULES_KOSHECHKIN_VLAD_DETERMINANT_INCLUDE_MATRIX_H_

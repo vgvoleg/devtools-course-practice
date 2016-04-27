@@ -18,7 +18,7 @@ TEST(MatrixTest, Can_Create_Empty_Matrix) {
     // Act
     Matrix m = Matrix(n);
     // Assert
-    EXPECT_EQ(m.matrix, v);
+    EXPECT_EQ(m.to_vector(), v);
 }
 
 TEST(MatrixTest, Throws_Count_Negative_In_Empty_Matrix) {
@@ -35,7 +35,7 @@ TEST(MatrixTest, Can_Create_Matrix_From_Vector) {
     // Act
     Matrix m = Matrix(n, v);
     // Assert
-    EXPECT_EQ(m.matrix, v);
+    EXPECT_EQ(m.to_vector(), v);
 }
 
 TEST(MatrixTest, Throws_Count_Negative_In_Marix) {
@@ -72,7 +72,7 @@ TEST(MatrixTest, Can_Make_First_Minor) {
     Matrix m = Matrix(n, v);
     // Act
     Matrix res = m.Minor(0, 0);
-    v = res.matrix;
+    v = res.to_vector();
     // Assert
     EXPECT_EQ(v, minor);
 }
@@ -87,7 +87,7 @@ TEST(MatrixTest, Can_Make_Second_Minor) {
     Matrix m = Matrix(n, v);
     // Act
     Matrix res = m.Minor(0, 1);
-    v = res.matrix;
+    v = res.to_vector();
     // Assert
     EXPECT_EQ(v, minor);
 }
