@@ -81,6 +81,7 @@ void Huff::CreateTree() {
         else
             cout << root->number << endl;
         PrintTree(root->right, k + 3);
+		
     }
 }*/
 
