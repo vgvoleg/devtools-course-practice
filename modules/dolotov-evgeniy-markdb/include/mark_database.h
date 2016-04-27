@@ -23,20 +23,22 @@ enum class ReturnCode {
 
 class MarkDatabase {
  public:
-    ReturnCode addStudent(Student student);
-    ReturnCode deleteStudent(Student student);
-    ReturnCode addSubject(Subject subject);
-    ReturnCode deleteSubject(Subject subject);
-    bool isStudentExist(Student student) const;
-    bool isSubjectExist(Subject subject) const;
-    ReturnCode addNewRecord(Student student, Subject subject, Mark mark);
-    ReturnCode deleteRecord(Student student, Subject subject);
-    ReturnCode search(Student student, Subject subject, size_t* index) const;
-    ReturnCode getRecord(unsigned int indexOfRecord, Record* record) const;
-    ReturnCode deleteRecord(unsigned int indexOfRecord);
-    ReturnCode marksOfStudent(Student student,
+    ReturnCode addStudent(const Student& student);
+    ReturnCode deleteStudent(const Student& student);
+    ReturnCode addSubject(const Subject& subject);
+    ReturnCode deleteSubject(const Subject& subject);
+    bool isStudentExist(const Student& student) const;
+    bool isSubjectExist(const Subject& subject) const;
+    ReturnCode addNewRecord(const Student& student, const Subject& subject,
+                            const Mark& mark);
+    ReturnCode deleteRecord(const Student& student, const Subject& subject);
+    ReturnCode search(const Student& student, const Subject& subject,
+                      size_t* index) const;
+    ReturnCode getRecord(const size_t& indexOfRecord, Record* record) const;
+    ReturnCode deleteRecord(const size_t& indexOfRecord);
+    ReturnCode marksOfStudent(const Student& student,
                        std::vector< std::pair<Subject, Mark> >* marks) const;
-    ReturnCode marksOnSubject(Subject subject,
+    ReturnCode marksOnSubject(const Subject& subject,
                        std::vector< std::pair<Student, Mark> >* marks) const;
     std::vector<Student> getStudentsList() const;
     std::vector<Subject> getSubjectsList() const;
@@ -46,7 +48,7 @@ class MarkDatabase {
     size_t numberOfRecords() const;
 
  private:
-    bool isRecordExist(Student student, Subject subject) const;
+    bool isRecordExist(const Student& student, const Subject& subject) const;
     std::vector<Student> students;
     std::vector<Subject> subjects;
     std::vector<Record> records;
