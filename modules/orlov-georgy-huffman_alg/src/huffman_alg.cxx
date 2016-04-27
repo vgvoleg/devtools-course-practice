@@ -1,6 +1,7 @@
 // Copyright 2016 Orlov Georgy
 
-#include  "include/huffman_alg.h"
+#include "include/huffman_alg.h"
+#include <vector>
 #include <map>
 #include <string>
 
@@ -11,6 +12,18 @@ bool operator==(const Huff::Node& l, const Huff::Node& r) {
         return false;
     else
         return true;
+}
+
+list<Huff::Node*> Huff::GetNodeList() {
+    return nodeList;
+}
+
+Huff::Node* Huff::getRoot() {
+    return nodeList.front();
+}
+
+TableMap Huff::GetTable() {
+    return table;
 }
 
 map<char, int> Huff::ReadString(string str) {

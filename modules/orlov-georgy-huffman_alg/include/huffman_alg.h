@@ -52,15 +52,9 @@ class Huff {
     void BuildTable(Node* root);
     string GetStringFromTable(TableMap, string);
 
-    list<Node*> GetNodeList() {
-        return nodeList;
-    }
-    Node* getRoot() {
-        return nodeList.front();
-    }
-    TableMap GetTable() {
-        return table;
-    }
+    list<Node*> GetNodeList();
+    Node* getRoot();
+    TableMap GetTable();
 
  private:
     vector<bool> code;

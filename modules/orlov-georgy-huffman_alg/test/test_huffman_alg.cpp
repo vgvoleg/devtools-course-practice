@@ -44,8 +44,10 @@ TEST(huffman_alg, Parent_Node_Number_Is_Sum_Of_Sons_Nodes_Numbers) {
     // Act
     leftSon = new Huff::Node;
     leftSon->number = 5;
+
     rightSon = new Huff::Node;
     rightSon->number = 10;
+
     parent = new Huff::Node(leftSon, rightSon);
 
     // Assert
@@ -61,9 +63,11 @@ TEST(huffman_alg, Compare_Method_Is_Work) {
     // Act
     second = new Huff::Node;
     second->number = 5;
-    l.push_back(second);
+
     first = new Huff::Node;
     first->number = 3;
+
+    l.push_back(second);
     l.push_back(first);
     l.sort(Huff::Compare());
 
@@ -82,6 +86,7 @@ TEST(huffman_alg, Can_Right_Read_String) {
     expected_m['t'] = 2;
     expected_m['e'] = 1;
     expected_m['s'] = 1;
+
     test_m = huf.ReadString(str);
 
     // Assert
@@ -106,11 +111,13 @@ TEST(huffman_alg, Can_Fill_Node_List) {
 
 TEST(huffman_alg, Nodes_Compare_Operator_True_Right) {
     // Arrange
-    Huff::Node *node_1, *node_2;
+    Huff::Node *node_1;
+    Huff::Node *node_2;
 
     // Act
     node_1 = new Huff::Node;
     node_2 = new Huff::Node;
+
     node_1->symbol = node_2->symbol = 's';
     node_1->number = node_2->number = 2;
 
@@ -120,12 +127,14 @@ TEST(huffman_alg, Nodes_Compare_Operator_True_Right) {
 
 TEST(huffman_alg, Nodes_Compare_Operator_Symbol_False_Right) {
     // Arrange
-    Huff::Node *node_1, *node_2;
+    Huff::Node *node_1;
+    Huff::Node *node_2;
 
     // Act
     node_1 = new Huff::Node;
     node_1->symbol = 'r';
     node_1->number = 2;
+
     node_2 = new Huff::Node;
     node_2->symbol = 's';
     node_2->number = 2;
@@ -136,12 +145,14 @@ TEST(huffman_alg, Nodes_Compare_Operator_Symbol_False_Right) {
 
 TEST(huffman_alg, Nodes_Compare_Operator_Number_False_Right) {
     // Arrange
-    Huff::Node *node_1, *node_2;
+    Huff::Node *node_1;
+    Huff::Node *node_2;
 
     // Act
     node_1 = new Huff::Node;
     node_1->symbol = 's';
     node_1->number = 3;
+
     node_2 = new Huff::Node;
     node_2->symbol = 's';
     node_2->number = 2;
@@ -215,20 +226,26 @@ TEST(huffman_alg, Can_Build_Table_Right) {
 TEST(huffman_alg, Can_Right_Return_String_From_Table) {
     // Arrange
     Huff huf;
-    vector<bool> vect1, vect2, vect3;
+    vector<bool> vect_1;
+    vector<bool> vect_2;
+    vector<bool> vect_3;
     string str = "01001101110";
     string actual_str;
+    TableMap Tbl;
 
     // Act
-    TableMap Tbl;
-    vect1.push_back(0);
-    vect2.push_back(1);
-    vect2.push_back(0);
-    vect3.push_back(1);
-    vect3.push_back(1);
-    Tbl['a'] = vect1;
-    Tbl['b'] = vect2;
-    Tbl['c'] = vect3;
+    vect_1.push_back(0);
+
+    vect_2.push_back(1);
+    vect_2.push_back(0);
+
+    vect_3.push_back(1);
+    vect_3.push_back(1);
+
+    Tbl['a'] = vect_1;
+    Tbl['b'] = vect_2;
+    Tbl['c'] = vect_3;
+
     actual_str = huf.GetStringFromTable(Tbl, str);
 
     // Assert
