@@ -96,7 +96,7 @@ TEST(huffman_alg, Can_Right_Display_The_Map_Char_Int) {
     // Act
     std::ostringstream stream;
     test_m = huf.ReadString(str);
-    for (auto& itr: test_m)
+    for (auto& itr : test_m)
         stream << itr.first << ": " << itr.second << endl;
 
     // Assert
