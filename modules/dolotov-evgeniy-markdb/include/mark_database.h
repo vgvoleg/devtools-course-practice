@@ -27,8 +27,8 @@ class MarkDatabase {
     ReturnCode deleteStudent(const Student& student);
     ReturnCode addSubject(const Subject& subject);
     ReturnCode deleteSubject(const Subject& subject);
-    ReturnCode searchStudent(const Student& student, size_t* index = 0) const;
-    ReturnCode searchSubject(const Subject& subject, size_t* index = 0) const;
+    ReturnCode searchStudent(const Student& student, size_t* index = nullptr) const;
+    ReturnCode searchSubject(const Subject& subject, size_t* index = nullptr) const;
     ReturnCode addNewRecord(const Student& student, const Subject& subject,
                             const Mark& mark);
     ReturnCode deleteRecord(const Student& student, const Subject& subject);

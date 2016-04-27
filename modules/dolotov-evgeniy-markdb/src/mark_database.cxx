@@ -18,7 +18,7 @@ ReturnCode MarkDatabase::searchStudent(const Student& student,
                                        size_t* index) const {
     auto findStudent = find(students.begin(), students.end(), student);
     if (findStudent != students.end()) {
-        if (index !=0) {
+        if (index != nullptr) {
             *index = distance(students.begin(), findStudent);
         }
         return ReturnCode::Success;
@@ -128,7 +128,7 @@ ReturnCode MarkDatabase::search(const Student& student,
     auto findRecord = find(records.begin(), records.end(),
                            Record(student, subject));
     if (findRecord != records.end()) {
-        if (index !=0) {
+        if (index !=nullptr) {
             *index = distance(records.begin(), findRecord);
         }
         return ReturnCode::Success;
