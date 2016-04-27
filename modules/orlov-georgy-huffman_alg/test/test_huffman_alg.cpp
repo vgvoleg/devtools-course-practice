@@ -88,47 +88,6 @@ TEST(huffman_alg, Can_Right_Read_String) {
     EXPECT_EQ(expected_m, test_m);
 }
 
-TEST(huffman_alg, Can_Right_Display_The_Map_Char_Int) {
-    // Arrange
-    Huff huf;
-    string str = "test";
-    FreqMap test_m;
-
-    // Act
-    std::ostringstream stream;
-    test_m = huf.ReadString(str);
-    for (auto& itr : test_m)
-        stream << itr.first << ": " << itr.second << endl;
-
-    // Assert
-    const std::string expected_str = "e: 1\ns: 1\nt: 2\n";
-    EXPECT_EQ(expected_str, stream.str());
-}
-
-TEST(huffman_alg, Can_Right_Display_The_Map_Like_Table) {
-    // Arrange
-    Huff huf;
-    vector<bool> test_vect;
-    TableMap test_m;
-
-    // Act
-    test_vect.push_back(0);
-    test_vect.push_back(1);
-
-    std::ostringstream stream;
-    test_m['s'] = test_vect;
-    for (auto& itr : test_m) {
-        stream << itr.first << ": ";
-        std::copy(itr.second.begin(), itr.second.end(),
-            std::ostream_iterator<bool>(stream, ""));
-        stream << endl;
-    }
-
-    // Assert
-    const std::string expected_str = "s: 01\n";
-    EXPECT_EQ(expected_str, stream.str());
-}
-
 TEST(huffman_alg, Can_Fill_Node_List) {
     // Arrange
     Huff huf;

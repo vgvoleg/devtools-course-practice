@@ -47,7 +47,7 @@ class Huff {
     FreqMap ReadString(string);
     void FillNodeList(FreqMap);
     void CreateTree();
-//  void PrintTree(Node*, unsigned int);
+//    void PrintTree(Node*, unsigned int);
     void BuildTable(Node* root);
 
     list<Node*> GetNodeList() { return nodeList; }
