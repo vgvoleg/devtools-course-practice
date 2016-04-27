@@ -18,10 +18,11 @@ class Matrix {
     const vector<int> &to_vector();
 
  private:
-    int n;
+    int size_;
+    vector<int> data_;
+
     int Get(const int i, const int j) const;
     int Set(const int i, const int j, const int value);
-    vector<int> matrix;
 };
 
 #endif  // MODULES_KOSHECHKIN_VLAD_DETERMINANT_INCLUDE_MATRIX_H_
