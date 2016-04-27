@@ -4,19 +4,22 @@
 #ifndef MODULES_KOCHETOVA_DASHA_SQR_EQ_INCLUDE_SQR_EQ_H_
 #define MODULES_KOCHETOVA_DASHA_SQR_EQ_INCLUDE_SQR_EQ_H_
 
-#include <iostream>
 #include <math.h>
+#include <iostream>
 #include <set>
 #include <complex>
 #include <array>
-//using namespace std;
+
 using std::cout;
+using std::endl;
+using std::complex;
+using std::set;
+using std::array;
 
 typedef double DType;
 
-class Equation
-{
-private: 
+class Equation {
+ private:
     DType _a;
     DType _b;
     DType _c;
@@ -26,14 +29,14 @@ private:
     complex<DType> _cx2;
     bool error;
 
-public: 
+ public:
     Equation();
     Equation(DType a, DType b, DType c);
     DType Discrim();
     set<double> SolveDiscrim();
     set<double> SolveViet();
     void SolveComplex();
-    array<double,2> ParabolaTop();
+    array<double, 2> ParabolaTop();
     DType GetA();
     DType GetB();
     DType GetC();
@@ -44,4 +47,4 @@ public:
     bool GetFlag();
     void PutParametrs(DType a, DType b, DType c);
 };
-#endif
+#endif  // MODULES_KOCHETOVA_DASHA_SQR_EQ_INCLUDE_SQR_EQ_H_
