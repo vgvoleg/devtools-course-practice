@@ -96,7 +96,8 @@ TEST(huffman_alg, Can_Right_Display_The_Map_Char_Int) {
     // Act
     std::ostringstream stream;
     test_m = huf.ReadString(str);
-    stream << test_m;
+    for (auto& itr: test_m)
+        stream << itr.first << ": " << itr.second << endl;
 
     // Assert
     const std::string expected_str = "e: 1\ns: 1\nt: 2\n";
@@ -112,9 +113,15 @@ TEST(huffman_alg, Can_Right_Display_The_Map_Like_Table) {
     // Act
     test_vect.push_back(0);
     test_vect.push_back(1);
+
     std::ostringstream stream;
     test_m['s'] = test_vect;
-    stream << test_m;
+    for (auto& itr : test_m) {
+        stream << itr.first << ": ";
+        for (auto& vitr : itr.second)
+            stream << vitr;
+        stream << endl;
+    }
 
     // Assert
     const std::string expected_str = "s: 01\n";
@@ -233,7 +240,12 @@ TEST(huffman_alg, Can_Build_Table_Right) {
     huf.BuildTable(root);
 
     std::ostringstream stream;
-    stream << huf.GetTable();
+    for (auto& itr : huf.GetTable()) {
+        stream << itr.first << ": ";
+        for (auto& vitr : itr.second)
+            stream << vitr;
+        stream << endl;
+    }
 
     // Assert
     const std::string expected_str = "e: 10\ns: 11\nt: 0\n";

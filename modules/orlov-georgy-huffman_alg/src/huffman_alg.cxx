@@ -3,27 +3,6 @@
 #include  "include/huffman_alg.h"
 #include <map>
 #include <string>
-#include <vector>
-
-ostream& operator<<(ostream& os, const FreqMap& m) {
-    map<char, int>::const_iterator itr;
-    for (itr = m.begin(); itr != m.end(); ++itr) {
-        os << itr->first << ": " << itr->second << endl;
-    }
-    return os;
-}
-
-ostream& operator<<(ostream& os, const TableMap& t) {
-    map<char, vector<bool> >::const_iterator itr;
-    vector<bool>::const_iterator vitr;
-    for (itr = t.begin(); itr != t.end(); ++itr) {
-        os << itr->first << ": ";
-        for (vitr = itr->second.begin(); vitr != itr->second.end(); ++vitr)
-            os << *vitr;
-        os << endl;
-    }
-    return os;
-}
 
 bool operator==(const Huff::Node& l, const Huff::Node& r) {
     if (l.number != r.number)

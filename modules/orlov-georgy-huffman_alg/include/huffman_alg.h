@@ -54,9 +54,6 @@ class Huff {
     Node* getRoot() { return nodeList.front(); }
     TableMap GetTable() { return table; }
 
-    friend ostream& operator<<(ostream& os, const FreqMap& m);
-    friend ostream& operator<<(ostream& os, const TableMap& t);
-
  private:
     vector<bool> code;
     list<Node*> nodeList;
