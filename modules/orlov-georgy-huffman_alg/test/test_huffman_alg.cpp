@@ -1,5 +1,6 @@
 // Copyright 2016 Orlov Georgy
 
+#include <sstream>
 #include <map>
 #include <string>
 #include <list>
