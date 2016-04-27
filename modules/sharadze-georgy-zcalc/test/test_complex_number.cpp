@@ -1,7 +1,7 @@
 // Copyright 2016 Sharadze Georgy
 
-#include "include\complex_number.h"
-#include "gtest\gtest.h"
+#include "include/complex_number.h"
+#include "gtest/gtest.h"
 
 TEST(Sharadze_Georgy_ComplexNumberTest,
      Can_Create_Complex_Number_Without_Param) {
