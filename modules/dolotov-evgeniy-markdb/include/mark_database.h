@@ -27,13 +27,13 @@ class MarkDatabase {
     ReturnCode deleteStudent(const Student& student);
     ReturnCode addSubject(const Subject& subject);
     ReturnCode deleteSubject(const Subject& subject);
-    bool isStudentExist(const Student& student) const;
-    bool isSubjectExist(const Subject& subject) const;
+    ReturnCode searchStudent(const Student& student, size_t* index = 0) const;
+    ReturnCode searchSubject(const Subject& subject, size_t* index = 0) const;
     ReturnCode addNewRecord(const Student& student, const Subject& subject,
                             const Mark& mark);
     ReturnCode deleteRecord(const Student& student, const Subject& subject);
     ReturnCode search(const Student& student, const Subject& subject,
-                      size_t* index) const;
+                      size_t* index = 0) const;
     ReturnCode getRecord(const size_t& indexOfRecord, Record* record) const;
     ReturnCode deleteRecord(const size_t& indexOfRecord);
     ReturnCode marksOfStudent(const Student& student,
@@ -48,7 +48,7 @@ class MarkDatabase {
     size_t numberOfRecords() const;
 
  private:
-    bool isRecordExist(const Student& student, const Subject& subject) const;
+//    bool isRecordExist(const Student& student, const Subject& subject) const;
     std::vector<Student> students;
     std::vector<Subject> subjects;
     std::vector<Record> records;

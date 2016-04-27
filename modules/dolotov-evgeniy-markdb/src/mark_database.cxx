@@ -14,24 +14,34 @@ using std::vector;
 using std::pair;
 using std::out_of_range;
 
-bool MarkDatabase::isStudentExist(const Student& student) const {
-    if (find(students.begin(), students.end(), student) == students.end()) {
-        return false;
+ReturnCode MarkDatabase::searchStudent(const Student& student,
+                                       size_t* index) const {
+    auto findStudent = find(students.begin(), students.end(), student);
+    if (findStudent != students.end()) {
+        if (index !=0) {
+        *index = distance(students.begin(), findStudent);
+        }
+        return ReturnCode::Success;
     } else {
-        return true;
+        return ReturnCode::StudentNotFound;
     }
 }
 
-bool MarkDatabase::isSubjectExist(const Subject& subject) const {
-    if (find(subjects.begin(), subjects.end(), subject) == subjects.end()) {
-        return false;
+ReturnCode MarkDatabase::searchSubject(const Subject& subject,
+                                       size_t* index) const {
+    auto findSubject = find(subjects.begin(), subjects.end(), subject);
+    if (findSubject != subjects.end()) {
+        if (index !=0) {
+            *index = distance(subjects.begin(), findSubject);
+        }
+        return ReturnCode::Success;
     } else {
-        return true;
+        return ReturnCode::SubjectNotFound;
     }
 }
 
 ReturnCode MarkDatabase::addStudent(const Student& student) {
-    if (!isStudentExist(student)) {
+    if (searchStudent(student) == ReturnCode::StudentNotFound) {
         students.push_back(student);
         return ReturnCode::Success;
     } else {
@@ -40,7 +50,7 @@ ReturnCode MarkDatabase::addStudent(const Student& student) {
 }
 
 ReturnCode MarkDatabase::addSubject(const Subject& subject) {
-    if (!isSubjectExist(subject)) {
+    if (searchSubject(subject) == ReturnCode::SubjectNotFound) {
         subjects.push_back(subject);
         return ReturnCode::Success;
     } else {
@@ -49,8 +59,9 @@ ReturnCode MarkDatabase::addSubject(const Subject& subject) {
 }
 
 ReturnCode MarkDatabase::deleteStudent(const Student& student) {
-    if (isStudentExist(student)) {
-        students.erase(find(students.begin(), students.end(), student));
+    size_t index;
+    if (searchStudent(student, &index) == ReturnCode::Success) {
+        students.erase(students.begin() + index);
         for (auto record = records.begin() ; record != records.end(); ) {
             if (record->student == student) {
                 record = records.erase(record);
@@ -66,8 +77,9 @@ ReturnCode MarkDatabase::deleteStudent(const Student& student) {
 
 
 ReturnCode MarkDatabase::deleteSubject(const Subject& subject) {
-    if (isSubjectExist(subject)) {
-        subjects.erase(find(subjects.begin(), subjects.end(), subject));
+    size_t index;
+    if (searchSubject(subject, &index) == ReturnCode::Success) {
+        subjects.erase(subjects.begin() + index);
         for (auto record = records.begin() ; record != records.end(); ) {
             if (record->subject == subject) {
                 record = records.erase(record);
@@ -81,22 +93,12 @@ ReturnCode MarkDatabase::deleteSubject(const Subject& subject) {
     }
 }
 
-bool MarkDatabase::isRecordExist(const Student& student,
-                                 const Subject& subject) const {
-    Record record(student, subject);
-    if (find(records.begin(), records.end(), record) == records.end()) {
-        return false;
-    } else {
-        return true;
-    }
-}
-
 ReturnCode MarkDatabase::addNewRecord(const Student& student,
                                       const Subject& subject,
                                       const Mark& mark) {
-    if (isStudentExist(student)) {
-        if (isSubjectExist(subject)) {
-            if (!isRecordExist(student, subject)) {
+    if (searchStudent(student) == ReturnCode::Success) {
+        if (searchSubject(subject) == ReturnCode::Success) {
+            if (search(student, subject) == ReturnCode::RecordNotFound) {
                 records.push_back(Record(student, subject, mark));
                 return ReturnCode::Success;
             } else {
@@ -112,7 +114,7 @@ ReturnCode MarkDatabase::addNewRecord(const Student& student,
 
 ReturnCode MarkDatabase::deleteRecord(const Student& student,
                                       const Subject& subject) {
-    if (isRecordExist(student, subject)) {
+    if (search(student, subject) == ReturnCode::Success) {
         Record record(student, subject);
         records.erase(find(records.begin(), records.end(), record));
         return ReturnCode::Success;
@@ -123,13 +125,14 @@ ReturnCode MarkDatabase::deleteRecord(const Student& student,
 
 ReturnCode MarkDatabase::search(const Student& student,
                                 const Subject& subject, size_t* index) const {
-    if (isRecordExist(student, subject)) {
-        *index = distance(records.begin(),
-                          find(records.begin(), records.end(),
-                               Record(student, subject)));
+    auto findRecord = find(records.begin(), records.end(),
+                           Record(student, subject));
+    if (findRecord != records.end()) {
+        if (index !=0) {
+        *index = distance(records.begin(), findRecord);
+        }
         return ReturnCode::Success;
     } else {
-        *index = -1;
         return ReturnCode::RecordNotFound;
     }
 }
@@ -155,7 +158,7 @@ ReturnCode MarkDatabase::deleteRecord(const size_t& indexOfRecord) {
 
 ReturnCode MarkDatabase::marksOfStudent(const Student& student,
                                  vector< pair<Subject, Mark> >* marks) const {
-    if (isStudentExist(student)) {
+    if (searchStudent(student) == ReturnCode::Success) {
         for (size_t recID = 0; recID < numberOfRecords(); recID++) {
             Record record = records[recID];
             if (record.student == student) {
@@ -170,7 +173,7 @@ ReturnCode MarkDatabase::marksOfStudent(const Student& student,
 
 ReturnCode MarkDatabase::marksOnSubject(const Subject& subject,
                                  vector< pair<Student, Mark> >* marks) const {
-    if (isSubjectExist(subject)) {
+    if (searchSubject(subject) == ReturnCode::Success) {
     for (size_t recordID = 0; recordID < numberOfRecords(); recordID++) {
         Record record = records[recordID];
         if (record.subject == subject) {

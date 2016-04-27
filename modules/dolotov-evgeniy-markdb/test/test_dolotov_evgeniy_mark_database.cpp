@@ -91,7 +91,7 @@ TEST_F(MarkDatabaseTest, Can_Add_Not_Exist_Student) {
     base.addStudent(student);
 
     // Assert
-    EXPECT_TRUE(base.isStudentExist(student));
+    EXPECT_EQ(ReturnCode::Success, base.searchStudent(student));
 }
 
 TEST_F(MarkDatabaseTest, Can_Not_Add_Exist_Student) {
@@ -110,7 +110,7 @@ TEST_F(MarkDatabaseTest, Can_Delete_Exist_Student) {
     base.deleteStudent(student);
 
     // Assert
-    EXPECT_FALSE(base.isStudentExist(student));
+    EXPECT_EQ(ReturnCode::StudentNotFound, base.searchStudent(student));
 }
 
 TEST_F(MarkDatabaseTest, Can_Not_Delete_Not_Exist_Student) {
@@ -134,7 +134,7 @@ TEST_F(MarkDatabaseTest, Can_Add_Not_Exist_Subject) {
     base.addSubject(subject);
 
     // Assert
-    EXPECT_TRUE(base.isSubjectExist(subject));
+    EXPECT_EQ(ReturnCode::Success, base.searchSubject(subject));
 }
 
 TEST_F(MarkDatabaseTest, Can_Not_Add_Exist_Subject) {
@@ -153,7 +153,7 @@ TEST_F(MarkDatabaseTest, Can_Delete_Exist_Subject) {
     base.deleteSubject(subject);
 
     // Assert
-    EXPECT_FALSE(base.isSubjectExist(subject));
+    EXPECT_EQ(ReturnCode::SubjectNotFound, base.searchSubject(subject));
 }
 
 TEST_F(MarkDatabaseTest, Can_Not_Delete_Not_Exist_Subject) {
