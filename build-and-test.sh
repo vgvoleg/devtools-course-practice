@@ -77,7 +77,7 @@ function BuildCMakeProject {
     dir=$cmake_build_dir
     mkdir -p $cmake_build_dir
     cd $cmake_build_dir
-    try cmake -DWITH_CODE_COVERAGE=ON -DCMAKE_BUILD_TYPE=Debug $DIR
+    try cmake -DCOVERAGE=ON -DCMAKE_BUILD_TYPE=Debug $DIR
     try make
 }
 
@@ -96,7 +96,7 @@ function GoogleTest {
     done
 }
 
-function valivatePullRequestTitle {
+function validatePullRequestTitle {
     retcode=0
 
     pattern=".* - Лабораторная работа #[0-9].*"
@@ -105,7 +105,7 @@ function valivatePullRequestTitle {
     else
         echo "FAILURE: Invalid title of the pull request"
         echo "Should be something like: Корняков - Лабораторная работа #1"
-        retcode=1
+        retcode=0 # NOTE: Do not fail, since the check is not stable
     fi
 
     return $retcode
@@ -121,13 +121,13 @@ function CheckPullRequestNameFormat {
 
         pr_title=`curl $github_api_repo/pulls/$TRAVIS_PULL_REQUEST | grep title | cut -d \" -f4`
         echo "PR#$TRAVIS_PULL_REQUEST title: $pr_title"
-        try valivatePullRequestTitle
+        try validatePullRequestTitle
     fi
 }
 
 function Main {
     # Clean
-    # CheckPullRequestNameFormat
+    CheckPullRequestNameFormat
     CheckGoogleStyle
     BuildCMakeProject
     CTest
