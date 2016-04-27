@@ -65,3 +65,20 @@ void Huff::BuildTable(Huff::Node* root) {
     if (code.size() != 0)
         code.pop_back();
 }
+
+string Huff::GetStringFromTable(TableMap Tbl, string str) {
+    string result;
+    vector<bool> buf;
+    for (int i = 0; i < str.size(); i++) {
+        if (str[i] == '1')
+            buf.push_back(1);
+        else
+            buf.push_back(0);
+        for (auto& itr: Tbl)
+            if (itr.second == buf) {
+                result += itr.first;
+                buf.clear();
+            }
+    }
+    return result;
+}

@@ -211,3 +211,27 @@ TEST(huffman_alg, Can_Build_Table_Right) {
     const std::string expected_str = "e: 10\ns: 11\nt: 0\n";
     EXPECT_EQ(expected_str, stream.str());
 }
+
+TEST(huffman_alg, Can_Right_Return_String_From_Table) {
+    // Arrange
+    Huff huf;
+    vector<bool> vect1, vect2, vect3;
+    string str = "01001101110";
+    string actual_str;
+
+    // Act
+    TableMap Tbl;
+    vect1.push_back(0);
+    vect2.push_back(1);
+    vect2.push_back(0);
+    vect3.push_back(1);
+    vect3.push_back(1);
+    Tbl['a'] = vect1;
+    Tbl['b'] = vect2;
+    Tbl['c'] = vect3;
+    actual_str = huf.GetStringFromTable(Tbl, str);
+
+    // Assert
+    string expected_str = "abacacb";
+    EXPECT_EQ(expected_str, actual_str);
+}

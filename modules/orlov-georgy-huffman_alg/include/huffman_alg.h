@@ -29,7 +29,9 @@ class Huff {
         char symbol;
         Node *left, *right;
 
-        Node() { left = right = nullptr; }
+        Node() {
+            left = right = nullptr;
+        }
 
         Node(Node *L, Node *R) {
             left = L;
@@ -48,10 +50,17 @@ class Huff {
     void FillNodeList(FreqMap);
     void CreateTree();
     void BuildTable(Node* root);
+    string GetStringFromTable(TableMap, string);
 
-    list<Node*> GetNodeList() { return nodeList; }
-    Node* getRoot() { return nodeList.front(); }
-    TableMap GetTable() { return table; }
+    list<Node*> GetNodeList() {
+        return nodeList;
+    }
+    Node* getRoot() {
+        return nodeList.front();
+    }
+    TableMap GetTable() {
+        return table;
+    }
 
  private:
     vector<bool> code;
