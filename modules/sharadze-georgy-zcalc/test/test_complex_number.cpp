@@ -3,7 +3,8 @@
 #include "include\complex_number.h"
 #include "gtest\gtest.h"
 
-TEST(Sharadze_Georgy_ComplexNumberTest, Can_Create_Complex_Number_Without_Param) {
+TEST(Sharadze_Georgy_ComplexNumberTest,
+     Can_Create_Complex_Number_Without_Param) {
     // Arrange & Act
     ComplexNumber z;
 
@@ -21,7 +22,7 @@ TEST(Sharadze_Georgy_ComplexNumberTest, Can_Create_Complex_Number_With_Param) {
 
 TEST(Sharadze_Georgy_ComplexNumberTest, Can_Create_Complex_Number_With_Copy) {
     // Arrange
-    ComplexNumber z1(2.1,2.3);
+    ComplexNumber z1(2.1, 2.3);
 
     // Act
     ComplexNumber z2(z1);
@@ -105,7 +106,7 @@ TEST(Sharadze_Georgy_ComplexNumberTest, Can_Do_Multiplication_Correctly) {
     ComplexNumber z1(_re1, _im1);
     ComplexNumber z2(_re2, _im2);
     ComplexNumber actual = z1 * z2;
-    ComplexNumber expected(_re1 * _re2 - _im1 * _im2, 
+    ComplexNumber expected(_re1 * _re2 - _im1 * _im2,
                            _re1 * _im2 + _re2 * _im1);
 
     // Assert
@@ -119,13 +120,14 @@ TEST(Sharadze_Georgy_ComplexNumberTest, Can_Do_Division_Correctly) {
     const double _im1 = 5.1;
     const double _re2 = 5.0;
     const double _im2 = 4.9;
+    ComplexNumber expected;
 
     // Act
     ComplexNumber z1(_re1, _im1);
     ComplexNumber z2(_re2, _im2);
     ComplexNumber actual = z1 / z2;
-    ComplexNumber expected((_re1 * _re2 + _im1 * _im2) / (_re2 * _re2 + _im2 * _im2),
-                           (_re2 * _im1 - _re1 * _im2) / (_re2 * _re2 + _im2 * _im2));
+    expected.setRe((_re1 * _re2 + _im1 * _im2) / (_re2 * _re2 + _im2 * _im2));
+    expected.setIm((_re2 * _im1 - _re1 * _im2) / (_re2 * _re2 + _im2 * _im2));
 
     // Assert
     EXPECT_DOUBLE_EQ(expected.getRe(), actual.getRe());
