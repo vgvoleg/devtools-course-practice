@@ -61,4 +61,4 @@ class Huff {
     friend bool operator==(const Node&, const Node&);
 };
 
-#endif // MODULES_ORLOV_GEORGY_HUFFMAN_ALG_INCLUDE_HUFFMAN_ALG_H_
+#endif  // MODULES_ORLOV_GEORGY_HUFFMAN_ALG_INCLUDE_HUFFMAN_ALG_H_
