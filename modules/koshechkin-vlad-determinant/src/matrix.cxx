@@ -32,10 +32,16 @@ const vector<int> &Matrix::to_vector() {
 }
 
 int Matrix::Get(const int i, const int j) const {
+    if (i < 0 || i >= size_ || j < 0 || j >= size_)
+        throw std::invalid_argument("Incorrect row or col");
+
     return data_[i * size_ + j];
 }
 
 int Matrix::Set(const int i, const int j, const int value) {
+    if (i < 0 || i >= size_ || j < 0 || j >= size_)
+        throw std::invalid_argument("Incorrect row or col");
+
     return data_[i * size_ + j] = value;
 }
 

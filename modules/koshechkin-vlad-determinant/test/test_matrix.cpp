@@ -92,7 +92,44 @@ TEST(MatrixTest, Can_Make_Second_Minor) {
     EXPECT_EQ(v, minor);
 }
 
-TEST(MatrixTest, Throws_Incorrect_Row_In_Minor) {
+TEST(MatrixTest, Throws_Negative_Row_In_Minor) {
+    // Arrange
+    int n = 3;
+    vector<int> v = {1, 8, 1,
+                     1, 5, 3,
+                     4, 6, 2};
+    Matrix m = Matrix(n, v);
+
+    // Act&Assert
+    EXPECT_THROW(m.Minor(-4, 0), std::out_of_range);
+}
+
+TEST(MatrixTest, Throws_Negative_Col_In_Minor) {
+    // Arrange
+    int n = 3;
+    vector<int> v = {1, 8, 1,
+                     1, 5, 3,
+                     4, 6, 2};
+    Matrix m = Matrix(n, v);
+
+    // Act&Assert
+    EXPECT_THROW(m.Minor(0, -4), std::out_of_range);
+}
+
+TEST(MatrixTest, Throws_Too_Big_Row_In_Minor) {
+    // Arrange
+    int n = 3;
+    vector<int> v = {1, 8, 1,
+                     1, 5, 3,
+                     4, 6, 2};
+    Matrix m = Matrix(n, v);
+
+    // Act&Assert
+    EXPECT_THROW(m.Minor(4, 0), std::out_of_range);
+}
+
+
+TEST(MatrixTest, Throws_Too_Big_Col_In_Minor) {
     // Arrange
     int n = 3;
     vector<int> v = {1, 8, 1,
@@ -102,4 +139,116 @@ TEST(MatrixTest, Throws_Incorrect_Row_In_Minor) {
 
     // Act&Assert
     EXPECT_THROW(m.Minor(0, 4), std::out_of_range);
+}
+
+TEST(MatrixTest, Can_Set_Element) {
+    // Arrange
+    int n = 2;
+    vector<int> v = {1, 8, 1, 5};
+    Matrix m = Matrix(n, v);
+    // Act
+    m.Set(0, 0, 100);
+    m.Set(1, 1, 19);
+    int x00 = m.Get(0, 0);
+    int x11 = m.Get(1, 1);
+    // Assert
+    EXPECT_EQ(x00, 100);
+    EXPECT_EQ(x11, 19);
+}
+
+TEST(MatrixTest, Throws_When_Set_Negative_Row) {
+    // Arrange
+    int n = 2;
+    vector<int> v = {1, 8, 1, 5};
+    Matrix m = Matrix(n, v);
+
+    // Act&Assert
+    EXPECT_THROW(m.Set(-1, 0, 100), std::invalid_argument);
+}
+
+TEST(MatrixTest, Throws_When_Set_Negative_Col) {
+    // Arrange
+    int n = 2;
+    vector<int> v = {1, 8, 1, 5};
+    Matrix m = Matrix(n, v);
+
+    // Act&Assert
+    EXPECT_THROW(m.Set(0, -1, 100), std::invalid_argument);
+}
+
+TEST(MatrixTest, Throws_When_Set_Too_Big_Row) {
+    // Arrange
+    int n = 2;
+    vector<int> v = {1, 8, 1, 5};
+    Matrix m = Matrix(n, v);
+
+    // Act&Assert
+    EXPECT_THROW(m.Set(3, 0, 100), std::invalid_argument);
+}
+
+TEST(MatrixTest, Throws_When_Set_Too_Big_Col) {
+    // Arrange
+    int n = 2;
+    vector<int> v = {1, 8, 1, 5};
+    Matrix m = Matrix(n, v);
+
+    // Act&Assert
+    EXPECT_THROW(m.Set(0, 3, 100), std::invalid_argument);
+}
+
+TEST(MatrixTest, Can_Get_Element) {
+    // Arrange
+    int n = 2;
+    vector<int> v = {1, 8, 1, 5};
+    Matrix m = Matrix(n, v);
+    // Act
+    int x00 = m.Get(0, 0);
+    int x11 = m.Get(1, 1);
+    int x01 = m.Get(0, 1);
+    int x10 = m.Get(1, 0);
+    // Assert
+    EXPECT_EQ(x00, 1);
+    EXPECT_EQ(x01, 8);
+    EXPECT_EQ(x10, 1);
+    EXPECT_EQ(x11, 5);
+}
+
+TEST(MatrixTest, Throws_When_Get_Negative_Row) {
+    // Arrange
+    int n = 2;
+    vector<int> v = {1, 8, 1, 5};
+    Matrix m = Matrix(n, v);
+
+    // Act&Assert
+    EXPECT_THROW(m.Get(-1, 0), std::invalid_argument);
+}
+
+TEST(MatrixTest, Throws_When_Get_Negative_Col) {
+    // Arrange
+    int n = 2;
+    vector<int> v = {1, 8, 1, 5};
+    Matrix m = Matrix(n, v);
+
+    // Act&Assert
+    EXPECT_THROW(m.Get(0, -1), std::invalid_argument);
+}
+
+TEST(MatrixTest, Throws_When_Get_Too_Big_Row) {
+    // Arrange
+    int n = 2;
+    vector<int> v = {1, 8, 1, 5};
+    Matrix m = Matrix(n, v);
+
+    // Act&Assert
+    EXPECT_THROW(m.Get(3, 0), std::invalid_argument);
+}
+
+TEST(MatrixTest, Throws_When_Get_Too_Big_Col) {
+    // Arrange
+    int n = 2;
+    vector<int> v = {1, 8, 1, 5};
+    Matrix m = Matrix(n, v);
+
+    // Act&Assert
+    EXPECT_THROW(m.Get(0, 3), std::invalid_argument);
 }
