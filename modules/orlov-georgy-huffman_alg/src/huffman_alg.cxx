@@ -1,4 +1,9 @@
-#include  "include\huffman_alg.h"
+// Copyright 2016 Orlov Georgy
+
+#include  "include/huffman_alg.h"
+#include <map>
+#include <string>
+#include <vector>
 
 ostream& operator<<(ostream& os, map<char, int> m) {
     map<char, int>::iterator itr;
@@ -30,7 +35,6 @@ bool operator==(const Huff::Node& l, const Huff::Node& r) {
 }
 
 map<char, int> Huff::ReadString(string str) {
-
     map<char, int> m;
 
     for (unsigned int i = 0; i < str.length(); i++) {
@@ -52,7 +56,6 @@ void Huff::FillNodeList(map<char, int> m) {
 }
 
 void Huff::CreateTree() {
-
     while (nodeList.size() != 1) {
         nodeList.sort(Compare());
 
