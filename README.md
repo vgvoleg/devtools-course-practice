@@ -32,7 +32,7 @@
 
 ![](https://codecov.io/gh/UNN-VMK-Software/devtools-course-practice/branch/master/graphs/icicle.svg)
 
-### Sunbusrt
+### Sunburst
 
 ![](https://codecov.io/gh/UNN-VMK-Software/devtools-course-practice/branch/master/graphs/sunburst.svg)
 
