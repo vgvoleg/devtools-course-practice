@@ -20,4 +20,3 @@ void Moment::printInfo()
         <<"Month - "<<month<<endl
         <<"Year - "<<year<<endl;
 }
-

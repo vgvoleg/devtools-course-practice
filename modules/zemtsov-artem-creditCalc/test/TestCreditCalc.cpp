@@ -132,4 +132,3 @@ TEST(creditPerson, can_make_new_normal_installmen)
     // Assert
     
 }
-

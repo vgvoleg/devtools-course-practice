@@ -70,6 +70,5 @@ public:
     void discoverCost(const double costImp);//setCost with cout "Enter the cost"
     };
 
-
-
 #endif /* creditCalc_h */
+
