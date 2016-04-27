@@ -100,7 +100,7 @@ TEST(huffman_alg, Can_Right_Display_The_Map_Char_Int) {
 
     // Assert
     const std::string expected_str = "e: 1\ns: 1\nt: 2\n";
-	int a = 1, b = 1;
+    int a = 1, b = 1;
     EXPECT_EQ(a, b);
 }
 
