@@ -173,10 +173,12 @@ TEST(Sharadze_Georgy_ComplexNumberTest, Can_Compare_Equal) {
     ComplexNumber z2(z1);
 
     // Act
-    bool result = (z1 == z2);
+    bool resultTrue = (z1 == z2);
+    bool resultFalse = (z1 != z2);
 
     // Assert
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(resultTrue);
+    EXPECT_FALSE(resultFalse);
 }
 
 TEST(Sharadze_Georgy_ComplexNumberTest, Can_Compare_Not_Equal) {
@@ -189,10 +191,12 @@ TEST(Sharadze_Georgy_ComplexNumberTest, Can_Compare_Not_Equal) {
     ComplexNumber z2(_re2, _im2);
 
     // Act
-    bool result = (z1 != z2);
+    bool resultFalse = (z1 == z2);
+    bool resultTrue = (z1 != z2);
 
     // Assert
-    EXPECT_TRUE(result);
+    EXPECT_TRUE(resultTrue);
+    EXPECT_FALSE(resultFalse);
 }
 
 TEST(Sharadze_Georgy_ComplexNumberTest, Can_Calc_With_Sum) {
