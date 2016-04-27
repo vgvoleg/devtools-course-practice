@@ -4,7 +4,7 @@
 #include <iostream>
 #include "include/tstack.hpp"
 
-const int SIZE = 20;
+const int SIZE = 10;
 
 TEST(tstack, check_push_pop_top_of_stack) {
     // Arrange
