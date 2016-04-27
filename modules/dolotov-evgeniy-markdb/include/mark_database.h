@@ -10,25 +10,26 @@
 
 #include "include/record.h"
 
-enum class ReturnCode {
-    StudentNotFound,
-    StudentAlreadyExist,
-    SubjectNotFound,
-    SubjectAlreadyExist,
-    RecordNotFound,
-    RecordAlreadyExist,
-    WrongIndex,
-    Success
-};
-
 class MarkDatabase {
  public:
+    enum class ReturnCode {
+        StudentNotFound,
+        StudentAlreadyExist,
+        SubjectNotFound,
+        SubjectAlreadyExist,
+        RecordNotFound,
+        RecordAlreadyExist,
+        WrongIndex,
+        Success
+    };
     ReturnCode addStudent(const Student& student);
     ReturnCode deleteStudent(const Student& student);
     ReturnCode addSubject(const Subject& subject);
     ReturnCode deleteSubject(const Subject& subject);
-    ReturnCode searchStudent(const Student& student, size_t* index = nullptr) const;
-    ReturnCode searchSubject(const Subject& subject, size_t* index = nullptr) const;
+    ReturnCode searchStudent(const Student& student,
+                             size_t* index = nullptr) const;
+    ReturnCode searchSubject(const Subject& subject,
+                             size_t* index = nullptr) const;
     ReturnCode addNewRecord(const Student& student, const Subject& subject,
                             const Mark& mark);
     ReturnCode deleteRecord(const Student& student, const Subject& subject);
