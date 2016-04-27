@@ -148,12 +148,9 @@ TEST(MatrixTest, Can_Set_Element) {
     Matrix m = Matrix(n, v);
     // Act
     m.Set(0, 0, 100);
-    m.Set(1, 1, 19);
     int x00 = m.Get(0, 0);
-    int x11 = m.Get(1, 1);
     // Assert
     EXPECT_EQ(x00, 100);
-    EXPECT_EQ(x11, 19);
 }
 
 TEST(MatrixTest, Throws_When_Set_Negative_Row) {
