@@ -48,7 +48,6 @@ class MarkDatabase {
     size_t numberOfRecords() const;
 
  private:
-//    bool isRecordExist(const Student& student, const Subject& subject) const;
     std::vector<Student> students;
     std::vector<Subject> subjects;
     std::vector<Record> records;
