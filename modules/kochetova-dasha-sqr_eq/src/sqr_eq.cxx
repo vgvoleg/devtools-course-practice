@@ -1,48 +1,45 @@
 // Copyright 2016 Kochetova Dasha
 
 #include "include/sqr_eq.h"
-#include <set> 
+#include <set>
 
-Equation::Equation(){
+Equation::Equation() {
     _a = 1;
     _b = 1;
     _c = 1;
     error = false;
 }
 
-Equation::Equation(DType a, DType b, DType c){
-    if (a != 0)
-    {
+Equation::Equation(DType a, DType b, DType c) {
+    if (a != 0) {
         _a = a;
         _b = b;
         _c = c;
-        error = false;
-    }
+        error = false; }
     else
         error = true;
       //  cout << "Error! You are give not the quadratic equation" << endl;
 }
 
-void Equation::PutParametrs(DType a, DType b, DType c){
+void Equation::PutParametrs(DType a, DType b, DType c) {
     _a = a;
     _b = b;
     _c = c;
 }
 
-DType Equation::Discrim(){
+DType Equation::Discrim() {
     DType _dis;
     _dis = (_b *_b) - (4 * _a * _c);
     return _dis;
 }
 
-set<double> Equation::SolveDiscrim(){
+set<double> Equation::SolveDiscrim() {
     set <double> rootset;
     DType dis = Discrim();
     if (dis < 0)
         //      cout << "The equation has no real roots" << endl;
         SolveComplex();
-    else if (dis > 0)
-    {
+    else if (dis > 0) {
         double di = sqrt(dis);
         _x1 = (-_b + di) / (2 * _a);
         rootset.insert(_x1);
@@ -54,8 +51,7 @@ set<double> Equation::SolveDiscrim(){
         cout << "di =" << di << endl;
         cout << "x1 = " << _x1 << ", x2 = " << _x2 << endl;
     }
-    else
-    {
+    else {
         _x1 = -_b / (2 * _a);
         rootset.insert(_x1);
 
@@ -65,42 +61,39 @@ set<double> Equation::SolveDiscrim(){
     return rootset;
 }
 
-DType Equation::GetA(){
+DType Equation::GetA() {
     return _a;
 }
 
-DType Equation::GetB(){
+DType Equation::GetB() {
     return _b;
 }
 
-DType Equation::GetC(){
+DType Equation::GetC() {
     return _c;
 }
 
-double Equation::GetX1(){
+double Equation::GetX1() {
     return _x1;
 }
 
-double Equation::GetX2(){
+double Equation::GetX2() {
     return _x2;
 }
 
-bool Equation::GetFlag(){
+bool Equation::GetFlag() {
     return error;
 }
 
-set<double> Equation::SolveViet(){
+set<double> Equation::SolveViet() {
     set <double> rootset;
     double sum = fabs(_a) + fabs(_b) + fabs(_c);
     double p = -(_b / _a);
     double q = _c / _a;
 
-    for (double i = -sum; i <= sum; i++)
-    {
-        for (double j = i; j <= sum; j++)
-        {
-            if (i + j == p && i*j == q)
-            {
+    for (double i = -sum; i <= sum; i++) {
+        for (double j = i; j <= sum; j++) {
+            if (i + j == p && i*j == q) {
                 _x1 = j;
                 rootset.insert(_x1);
                 _x2 = i;
@@ -114,10 +107,9 @@ set<double> Equation::SolveViet(){
     return rootset;
 }
 
-void Equation::SolveComplex(){
+void Equation::SolveComplex() {
     DType dis = Discrim();
-    if (dis < 0)
-    {
+    if (dis < 0) {
         double _im = sqrt(-dis);
         complex<DType> x1 (-_b / 2, _im / 2);
         _cx1 = x1;
@@ -130,12 +122,11 @@ void Equation::SolveComplex(){
         error = true; 
 }
 
-array<double,2> Equation::ParabolaTop(){
+array<double,2> Equation::ParabolaTop() {
     std::array<double, 2> topcoordinat;
     if (_a == 0)
         error = true;
-    else
-    {
+    else {
         double x0 = -_b / (2 * _a);
         topcoordinat[0] = x0;
         double y0 = (_a*x0*x0) + (_b*x0) + _c;
@@ -149,10 +140,10 @@ array<double,2> Equation::ParabolaTop(){
     return topcoordinat;
 }
 
-complex<DType> Equation::GetCx1(){
+complex<DType> Equation::GetCx1() {
     return _cx1;
 }
 
-complex<DType> Equation::GetCx2(){
+complex<DType> Equation::GetCx2() {
     return _cx2;
 }
