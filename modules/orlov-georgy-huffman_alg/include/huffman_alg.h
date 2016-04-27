@@ -1,19 +1,26 @@
-//Copyright 2016 Orlov Georgy
+// Copyright 2016 Orlov Georgy
 
-#ifndef MODULES_ORLOV_GEORGY_HUFFMAN_ALG_INCLUDE_HUFFMAN_ALG_H
-#define MODULES_ORLOV_GEORGY_HUFFMAN_ALG_INCLUDE_HUFFMAN_ALG_H
+#ifndef MODULES_ORLOV_GEORGY_HUFFMAN_ALG_INCLUDE_HUFFMAN_ALG_H_
+#define MODULES_ORLOV_GEORGY_HUFFMAN_ALG_INCLUDE_HUFFMAN_ALG_H_
 
 
 #include <iostream>
+#include <string>
 #include <vector>
 #include <map>
 #include <list>
 #include <fstream>
 
-using namespace std;
+using std::cout;
+using std::endl;
+using std::list;
+using std::map;
+using std::vector;
+using std::ostream;
+using std::string;
 
 class Huff {
-public:
+ public:
     struct Node {
         int number;
         char symbol;
@@ -44,7 +51,7 @@ public:
     Node* getRoot() { return nodeList.front(); }
     map<char, vector<bool> > GetTable() { return table; }
 
-private:
+ private:
     vector<bool> code;
     list<Node*> nodeList;
     map<char, vector<bool> > table;
@@ -54,4 +61,4 @@ private:
     friend bool operator==(const Node&, const Node&);
 };
 
-#endif
+#endif // MODULES_ORLOV_GEORGY_HUFFMAN_ALG_INCLUDE_HUFFMAN_ALG_H_
