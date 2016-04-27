@@ -42,7 +42,7 @@ TEST(Record, Can_Compare_Not_Identical_Records) {
 }
 
 class MarkDatabaseTest : public ::testing::Test {
- protected:
+protected:
     virtual void SetUp() {
         students.push_back("Alexander Pitts");
         students.push_back("Jesse Perkins");

@@ -19,7 +19,7 @@ ReturnCode MarkDatabase::searchStudent(const Student& student,
     auto findStudent = find(students.begin(), students.end(), student);
     if (findStudent != students.end()) {
         if (index !=0) {
-        *index = distance(students.begin(), findStudent);
+            *index = distance(students.begin(), findStudent);
         }
         return ReturnCode::Success;
     } else {
@@ -129,7 +129,7 @@ ReturnCode MarkDatabase::search(const Student& student,
                            Record(student, subject));
     if (findRecord != records.end()) {
         if (index !=0) {
-        *index = distance(records.begin(), findRecord);
+            *index = distance(records.begin(), findRecord);
         }
         return ReturnCode::Success;
     } else {
@@ -157,7 +157,7 @@ ReturnCode MarkDatabase::deleteRecord(const size_t& indexOfRecord) {
 }
 
 ReturnCode MarkDatabase::marksOfStudent(const Student& student,
-                                 vector< pair<Subject, Mark> >* marks) const {
+                                        vector< pair<Subject, Mark> >* marks) const {
     if (searchStudent(student) == ReturnCode::Success) {
         for (size_t recID = 0; recID < numberOfRecords(); recID++) {
             Record record = records[recID];
@@ -172,15 +172,15 @@ ReturnCode MarkDatabase::marksOfStudent(const Student& student,
 }
 
 ReturnCode MarkDatabase::marksOnSubject(const Subject& subject,
-                                 vector< pair<Student, Mark> >* marks) const {
+                                        vector< pair<Student, Mark> >* marks) const {
     if (searchSubject(subject) == ReturnCode::Success) {
-    for (size_t recordID = 0; recordID < numberOfRecords(); recordID++) {
-        Record record = records[recordID];
-        if (record.subject == subject) {
-            marks->push_back(std::make_pair(record.student, record.mark));
+        for (size_t recordID = 0; recordID < numberOfRecords(); recordID++) {
+            Record record = records[recordID];
+            if (record.subject == subject) {
+                marks->push_back(std::make_pair(record.student, record.mark));
+            }
         }
-    }
-    return ReturnCode::Success;
+        return ReturnCode::Success;
     } else {
         return ReturnCode::SubjectNotFound;
     }
