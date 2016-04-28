@@ -4,15 +4,13 @@
 #include "include/convertertemp.h"
 
 TEST(ConverterTemperature, Cant_Create_Negative_Kelvin) {
-    // Arrange
-    const double value = 23.32e-40;
+    // Act
+    const double value = -23.0;
     const Measure dimension = Measure::KELVIN;
     ConverterTemp temperature(value, dimension);
 
-    // Act & Assert
-    const Measure dimension1 = Measure::CELSIUS;
-    temperature.converter(dimension1);
-    EXPECT_EQ(temperature.getValue(), value - 273);
+    // Assert
+    EXPECT_EQ(temperature.getRetCode(), Data::ERROR);
 }
 
 TEST(ConverterTemperature, Can_Create_Temperature) {
