@@ -115,12 +115,61 @@ TEST(creditPerson, no_throw_then_try_set_normal_installment)
     // Arrange
     CreditPerson example;
     const int newInstallment=500;
+    const int cost=9999;
     
-    // Act and Assert
+    // Act
+    example.discoverCost(cost);
+    
+    // Assert
     EXPECT_NO_THROW(example.newInstallment(newInstallment));
 }
 
-TEST(creditPerson, can_make_new_normal_installmen)
+TEST(creditPerson, can_make_new_normal_installment)
+{
+    // Arrange
+    CreditPerson example;
+    const int exampleCost=20000;
+    const double newInstallment=10000;
+    
+    // Act
+    double needToPay;
+    example.discoverCost(exampleCost);
+    needToPay=example.newInstallment(newInstallment);
+    
+    // Assert
+    EXPECT_EQ(needToPay, exampleCost-newInstallment);
+}
+
+TEST(creditPerson, can_make_full_pay_installment)
+{
+    // Arrange
+    CreditPerson example;
+    const int exampleCost=20000;
+    
+    // Act
+    double needToPay;
+    example.discoverCost(exampleCost);
+    needToPay=example.newInstallment(exampleCost);
+    
+    // Assert
+    EXPECT_EQ(0,example.getBalanceOfTheDebt());
+}
+
+TEST(creditPerson, cant_make_installment_more_than_balance_of_debt)
+{
+    // Arrange
+    CreditPerson example;
+    const int exampleCost=20000;
+    
+    // Act
+    double needToPay;
+    example.discoverCost(exampleCost);
+    
+    // Assert
+    EXPECT_ANY_THROW(needToPay=example.newInstallment(exampleCost+1));
+}
+
+TEST(creditPerson, can_get_balance_of_debt_and_dicovere_the_cost)
 {
     // Arrange
     CreditPerson example;
@@ -129,6 +178,38 @@ TEST(creditPerson, can_make_new_normal_installmen)
     // Act
     example.discoverCost(exampleCost);
     
-    // Assert
-    
+    //Assert
+    EXPECT_EQ(exampleCost, example.getBalanceOfTheDebt() );
 }
+
+TEST(creditPerson, throw_then_discover_the_cost_less_or_equal_zero)
+{
+    // Arrange
+    CreditPerson example;
+    
+    // Act and Assert
+    for (int exampleCost=-5; exampleCost<=0; exampleCost++) {
+       EXPECT_ANY_THROW(example.discoverCost(exampleCost) );
+    }
+}
+
+TEST(creditPerson, can_calc_cost_with_procents_than)
+{
+    // Arrange
+    CreditPerson example;
+    const int cost=100;
+    int procent=10;
+    
+    // Act and Assert
+    for (int i=1; i<=100; i++)
+    {
+        example.discoverCost(cost);
+        example.setFinishTimeByUser(i);
+        example.setProcentByUser(procent);
+        EXPECT_EQ(cost+cost*procent/100*((double)i/12), example.performTheCalculation() );
+    }
+}
+
+
+
+

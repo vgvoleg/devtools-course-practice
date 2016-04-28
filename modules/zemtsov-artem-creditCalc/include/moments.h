@@ -10,10 +10,6 @@
 #define moment_hpp
 
 #include <stdio.h>
-
-
-
-
 #include <iostream>
 #include <stdio.h>
 using namespace std;
@@ -22,6 +18,7 @@ class Moment
 {
 private:
     int day,month,year;
+    
 public:
     Moment()
     {
@@ -29,16 +26,14 @@ public:
         month=0;
         year=0;
     }
-    //get
+    // get
     int getDay(){return day;}
     int getMonth(){return month;}
     int getYear(){return year;}
-    //set
+    // set
     void setTime(int day,int month,int year);
-    //show info
+    // show info
     void printInfo() ;
-    
 };
 
 #endif /* moment_hpp */
-

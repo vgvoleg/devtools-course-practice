@@ -45,7 +45,7 @@ void CreditPerson::setProcentByUser(const double procentImp)
 {
     try {
         if ( (procentImp>=0)&&(procentImp<=100) )
-             procent=procentImp/100;//30%=0,3
+             procent=procentImp/100;// 30%=0,3
         else
             throw 1;
     } catch (int err) {
@@ -58,14 +58,20 @@ void CreditPerson::setProcentByUser(const double procentImp)
    
 }
 
-void CreditPerson::newInstallment(const double installmentImp)
+double CreditPerson::newInstallment(const double installmentImp)
 {
 
     try {
-        if (installmentImp<0)
-            throw 1;
-        else
+        if (installmentImp>=0)
+        {
             paymentExecution(installmentImp);
+            return needToPay;
+        }
+        else
+        {
+            throw 1;
+            return -1;
+        }
     } catch (int err) {
         if (err==1)
         {
@@ -73,22 +79,19 @@ void CreditPerson::newInstallment(const double installmentImp)
             throw 1;
         }
     }
-    
+    return NULL;
 }
 
-void CreditPerson::performTheCalculation()
+double CreditPerson::performTheCalculation()
 {
     if (creditTime>=12)
-    {
-    needToPay=cost+cost*procent* (creditTime/12);//calc cost with
-    }
+        needToPay=cost+cost*procent*( (double)creditTime/12);// calc cost with
     else
         if (creditTime){
             needToPay=cost+cost*procent*((double)creditTime/12);
-            cout<<"Cred time"<<(double)creditTime/12<<endl;
         }
-    middlePay=needToPay/creditTime;//calc everemonth pay
-
+    middlePay=needToPay/creditTime;// calc everemonth pay
+    return needToPay;
 }
 
 void CreditPerson::setCreditTime(const int timeImp)
@@ -98,10 +101,13 @@ void CreditPerson::setCreditTime(const int timeImp)
 
 void CreditPerson::discoverCost(const double costImp)
 {
-    cost=costImp;
     try {
-        if (cost<1)
+        if (costImp<=0)
             throw 1;
+        else
+        {
+            setCost(costImp);
+        }
     }
     catch (int err) {
         if (err==1)
@@ -117,28 +123,23 @@ void CreditPerson::paymentExecution(const double payImp)
 {
     try
     {
-        if (payImp<0) throw 1;//throw if payment less than zero
-        
+        if ( (payImp<0)||(payImp>needToPay) )throw 1;// throw if payment less than zero
         else
         {
-           needToPay-=payImp;
-           yourEnter+=payImp;
-            
-           if(payImp==middlePay)
+           if(payImp!=needToPay)// middle pay
            {
-               middlePay=needToPay/creditTime;
-               
+               needToPay-=payImp;
+               yourEnter+=payImp;
            }
-            else
-                if(payImp==needToPay)//full pay
-                {
-                    creditTime=0;
-                    setEarlyFinish();
-                }
-            
+            else// full pay
+            {
+                needToPay-=payImp;
+                yourEnter+=payImp;
+                creditTime=0;
+                setEarlyFinish();
+            }
         }
     }
-    
     
     catch (int err)
     {
@@ -233,14 +234,5 @@ void CreditPerson::checkYear(int yearImp)
 
 void CreditPerson::setEarlyFinish()
 {
-    int dayImp=0,monthImp=0,yearImp=0;
-    cout<<"You successfuly closed your credit"<<endl
-        <<"pls enter day of close ";
-    cin>>dayImp;
-    cout<<"enter month ";
-    cin>>monthImp;
-    cout<<"Year ";
-    cin >>yearImp;
-    
-    finishDay.setTime(dayImp, monthImp, yearImp);
+    cout<<"You successfuly closed your credit"<<endl;
 }

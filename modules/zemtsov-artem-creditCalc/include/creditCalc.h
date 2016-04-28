@@ -15,40 +15,42 @@
 class CreditPerson
 {
 private:
-    //variables
+    // variables
     Moment startDay,finishDay;
-    int creditTime;//credit period
+    int creditTime;// credit period
     double procent;
-    double cost;//start price
-    double yourEnter;//start enter
-    double needToPay;//price with procent
-    double middlePay;//everymonth pay
-    //methods
+    double cost;// start price
+    double yourEnter;// start enter
+    double needToPay;// price with procent
+    double middlePay;// everymonth pay
+    // methods
     
-    //set
+    // set
     void setStartTime(const int dayImp,const int monthImp,const int yearImp) ;
     void setCreditTime(const int timeImp);
     void setFinishDay(const int dayImp,const int monthImp,const int yearImp);
     void setEarlyFinish();
-    void setCost(const double costImp){cost=costImp;}
+    void setCost(const double costImp){cost=costImp;needToPay=costImp;}
     
-    //get
+    // get
     int getStartDay() {return startDay.getDay();}
     int getStartMonth() {return startDay.getMonth() ;}
     int getStartYear() {return startDay.getYear() ;}
-    //math methods
+    
+    // math methods
     void paymentExecution(const double payImp);
     
-    //check
+    // check
     void checkDay(int dayImp);
     void checkMonth(int monthImp);
     void checkYear(int yearImp);
     
-    //show info
+    // show info
     void printInfoAboutFinish();
+    void printInfo();// print day month and year
     
 public:
-    //constructors
+    // constructors
     CreditPerson() {
         creditTime=0;
         procent=0;
@@ -56,19 +58,17 @@ public:
         yourEnter=0;
         needToPay=0;
     }
-    //set
+    // set
     void setProcentByUser(const double procentImp) ;
     void setStartTimeByUser(const int dayImp,const int monthImp,const int yearImp);
     void setFinishTimeByUser(const int creditTimeImp);
     
-    //show info
-    void printInfo();//print day month and year
-    
-    //math methods
-    void newInstallment(const double installmentImp);//new installment by person
-    void performTheCalculation();//calculating price with procent
-    void discoverCost(const double costImp);//setCost with cout "Enter the cost"
-    };
+    // get
+    double getBalanceOfTheDebt(){return needToPay;}
 
+    // math methods
+    double newInstallment(const double installmentImp);// new installment by person
+    double performTheCalculation();// calculating price with procent
+    void discoverCost(const double costImp);// setCost
+};
 #endif /* creditCalc_h */
-
