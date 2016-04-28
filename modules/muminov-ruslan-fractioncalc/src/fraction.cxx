@@ -52,7 +52,7 @@ fraction fraction::operator+(const fraction& z) const {
 fraction fraction::operator-(const fraction& z) const {
     fraction difference;
 
-    difference.setNum(this->getNum() * z.getDenom() 
+    difference.setNum(this->getNum() * z.getDenom()
         - z.getNum() * this->getDenom());
     difference.setDenom(this->getDenom() * z.getDenom());
     difference.reduction();
@@ -98,8 +98,11 @@ int fraction::NOD() const {
     int num = this->getNum();
     int denom = this->getDenom();
     while (num != denom)
-        if (num > denom) num -= denom;
-        else denom -= num;
+        if (num > denom) {
+            num -= denom;
+        } else {
+            denom -= num;
+        }
     return num;
 }
 
