@@ -1,4 +1,4 @@
- // Copyright 2016 Kochetova Dasha
+  // Copyright 2016 Kochetova Dasha
 
 #ifndef MODULES_KOCHETOVA_DASHA_SQR_EQ_INCLUDE_SQR_EQ_H_
 #define MODULES_KOCHETOVA_DASHA_SQR_EQ_INCLUDE_SQR_EQ_H_
@@ -41,7 +41,7 @@ class Equation {
 
     array<double, 2> ParabolaTop();
 
-private:
+ private:
     DType _a;
     DType _b;
     DType _c;
