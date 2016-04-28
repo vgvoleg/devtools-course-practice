@@ -77,8 +77,8 @@ vector<int> color_converter::XYZtoRGB(const vector<double> _XYZ) const {
 vector<double> color_converter::XYZtoHSV(const vector<double> _XYZ) const {
     vector<double> HSV(3), RGB(3);
     vector<int> RGB1(3);
-    double H;
-    double S;
+    double H=0.0;
+    double S=0.0;
     RGB1 = XYZtoRGB(_XYZ);
     double var_R = (1.0*RGB1[0] / 255.0);
     double var_G = (1.0*RGB1[1] / 255.0);
