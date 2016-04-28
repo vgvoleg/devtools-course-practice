@@ -15,7 +15,7 @@ fraction::fraction(const int numerator, const int denominator) {
 }
 
 fraction::fraction(const fraction& z)
-                             : numerator_(z.getNum()), denominator_(z.getDenom()) {}
+            : numerator_(z.getNum()), denominator_(z.getDenom()) {}
 
 fraction& fraction::operator=(const fraction& z) {
     numerator_ = z.getNum();
@@ -52,7 +52,8 @@ fraction fraction::operator+(const fraction& z) const {
 fraction fraction::operator-(const fraction& z) const {
     fraction difference;
 
-    difference.setNum(this->getNum() * z.getDenom() - z.getNum() * this->getDenom());
+    difference.setNum(this->getNum() * z.getDenom() 
+        - z.getNum() * this->getDenom());
     difference.setDenom(this->getDenom() * z.getDenom());
     difference.reduction();
 
@@ -98,7 +99,7 @@ int fraction::NOD() const {
     int denom = this->getDenom();
     while (num != denom)
         if (num > denom) num -= denom;
-            else denom -= num;
+        else denom -= num;
     return num;
 }
 
