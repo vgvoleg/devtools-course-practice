@@ -201,7 +201,7 @@ color_converter::color_converter(const vector<int> _Color, string _name_space){
     }
 }
 
-color_converter::color_converter(const vector<double> _Color){
+color_converter::color_converter(const vector<double> HSV){
     XYZ = new vector<double>(3);
     *XYZ = { 0.0, 0.0, 0.0 };
     if (_name_space = "HSV"){
