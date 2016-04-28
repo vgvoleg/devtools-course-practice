@@ -131,11 +131,11 @@ TEST(Voevodin_Andrew_Color_Converter, Check_GetHSV) {
   color_converter cc5(_vec11);
     // Act
   _vec2 = cc.GetHSV();
-  _vec4 = cc.GetHSV();
-  _vec6 = cc.GetHSV();
-  _vec8 = cc.GetHSV();
-  _vec10 = cc.GetHSV();
-  _vec12 = cc.GetHSV();
+  _vec4 = cc1.GetHSV();
+  _vec6 = cc2.GetHSV();
+  _vec8 = cc3.GetHSV();
+  _vec10 = cc4.GetHSV();
+  _vec12 = cc5.GetHSV();
     // Assert
   EXPECT_DOUBLE_EQ(_vec1[0], _vec2[0]);
   EXPECT_DOUBLE_EQ(_vec1[1], _vec2[1]);
