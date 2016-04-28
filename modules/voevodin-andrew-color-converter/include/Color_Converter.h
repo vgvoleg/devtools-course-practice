@@ -20,7 +20,7 @@ class IncorrectValueOfRGB :public std::runtime_error {
 class IncorrectValueOfHSV :public std::runtime_error {
  public:
     IncorrectValueOfHSV() :
-        std::runtime_error("Value HSV is not correct, H: 0-1; S: 0-1; V: 0-1") {}
+        std::runtime_error("Value HSV is not correct, H: 0-1; S,V: 0-1") {}
 };
 
 class IncorrectValueOfLAB :public std::runtime_error {
