@@ -259,8 +259,8 @@ TEST(QuadraticEquationTest, solve_eq_with_complex_root_error) {
 }
 
 TEST(QuadraticEquationTest, solve_eq_complex_root_error_discrim) {
-	Equation eq(1, 3, 1);
-	eq.SolveComplex();
+    Equation eq(1, 3, 1);
+    eq.SolveComplex();
 
-	EXPECT_TRUE(eq.GetFlag());
+    EXPECT_TRUE(eq.GetFlag());
 }
