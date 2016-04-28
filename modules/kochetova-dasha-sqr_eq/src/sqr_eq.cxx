@@ -37,7 +37,6 @@ set<double> Equation::SolveDiscrim() {
     set <double> rootset;
     DType dis = Discrim();
     if (dis < 0) {
-        //      cout << "The equation has no real roots" << endl;
         SolveComplex();
     } else { if (dis > 0) {
             double di = sqrt(dis);

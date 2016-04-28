@@ -1,5 +1,4 @@
-// Copyright 2016 Kochetova Dasha
-#pragma once
+ // Copyright 2016 Kochetova Dasha
 
 #ifndef MODULES_KOCHETOVA_DASHA_SQR_EQ_INCLUDE_SQR_EQ_H_
 #define MODULES_KOCHETOVA_DASHA_SQR_EQ_INCLUDE_SQR_EQ_H_
@@ -19,7 +18,30 @@ using std::array;
 typedef double DType;
 
 class Equation {
- private:
+ public:
+    Equation();
+    Equation(DType a, DType b, DType c);
+    void PutParametrs(DType a, DType b, DType c);
+
+    DType GetA();
+    DType GetB();
+    DType GetC();
+
+    double GetX1();
+    double GetX2();
+    complex<DType> GetCx1();
+    complex<DType> GetCx2();
+
+    bool GetFlag();
+
+    DType Discrim();
+    set<double> SolveDiscrim();
+    set<double> SolveViet();
+    void SolveComplex();
+
+    array<double, 2> ParabolaTop();
+
+private:
     DType _a;
     DType _b;
     DType _c;
@@ -28,23 +50,5 @@ class Equation {
     double _x2;
     complex<DType> _cx2;
     bool error;
-
- public:
-    Equation();
-    Equation(DType a, DType b, DType c);
-    DType Discrim();
-    set<double> SolveDiscrim();
-    set<double> SolveViet();
-    void SolveComplex();
-    array<double, 2> ParabolaTop();
-    DType GetA();
-    DType GetB();
-    DType GetC();
-    DType GetX1();
-    complex<DType> GetCx1();
-    double GetX2();
-    complex<DType> GetCx2();
-    bool GetFlag();
-    void PutParametrs(DType a, DType b, DType c);
 };
 #endif  // MODULES_KOCHETOVA_DASHA_SQR_EQ_INCLUDE_SQR_EQ_H_
