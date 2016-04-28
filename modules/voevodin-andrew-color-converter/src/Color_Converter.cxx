@@ -100,7 +100,7 @@ vector<double> color_converter::XYZtoHSV(const vector<double> _XYZ) const {
         HSV[1] = 1 - min / max;
     HSV[2] = max;
 
-    HSV[0] = (int)(HSV[0] + 0.5);
+	HSV[0] = static_cast<int>(HSV[0] + 0.5);
     return HSV;
 }
 
@@ -128,9 +128,9 @@ vector<int> color_converter::XYZtoLAB(const vector<double> _XYZ) const {
     LAB1[1] = (500.0 * (var_X - var_Y));
     LAB1[2] = (200.0 * (var_Y - var_Z));
     for (unsigned int i = 0; i < LAB.size(); i++) {
-        if (LAB1[i] < 0) LAB[i] = (int)(LAB1[i] - 0.9);
+		if (LAB1[i] < 0) LAB[i] = static_cast<int>(LAB1[i] - 0.9);
         else
-            LAB[i] = (int)(LAB1[i] + 0.9);
+			LAB[i] = static_cast<int>(LAB1[i] + 0.9);
     }
     return LAB;
 }
@@ -173,7 +173,7 @@ vector<double> color_converter::HSVtoXYZ(const vector<double> HSV) const {
     if ((HSV[0] < 300.0) && (HSV[0] >= 240.0)) RGB = { x, 0.0, c };
     if ((HSV[0] <= 360.0) && (HSV[0] >= 300.0)) RGB = { c, 0.0, x };
     for (unsigned int i = 0; i < RGB.size(); i++)
-        RGB1[i] =(int)((RGB[i] + m)*255.0+0.9);
+		RGB1[i] = static_cast<int>((RGB[i] + m)*255.0 + 0.9);
     return RGBToXYZ(RGB1);
 }
 
@@ -204,19 +204,18 @@ vector<double> color_converter::LABtoXYZ(const vector<int> LAB) const {
 
 color_converter::color_converter(const vector<int> _Color, string _name_space) {
     XYZ = new vector<double>(3);
-    if (!RightSizeVector(_Color)) { throw IncorrectSizeOfVector(); }
-    else {
-        if (_name_space == "RGB"){
+	if (!RightSizeVector(_Color)) {
+		throw IncorrectSizeOfVector();
+    } else {
+        if (_name_space == "RGB") {
             if (!IsRGBinRange(_Color)) throw IncorrectValueOfRGB();
-            else 
+            else
                 *XYZ = RGBToXYZ(_Color);
-        }
-        else if (_name_space == "LAB"){
+        } else if (_name_space == "LAB") {
             if (!IsLABinRange(_Color)) throw IncorrectValueOfLAB();
             else
                 *XYZ = LABtoXYZ(_Color);
-        }
-        else {
+        } else {
              throw IncorrectInputNamespace();
         }
     }
@@ -225,8 +224,9 @@ color_converter::color_converter(const vector<int> _Color, string _name_space) {
 color_converter::color_converter(const vector<double> HSV = { 0.0, 0.0, 0.0 }) {
     XYZ = new vector<double>(3);
     *XYZ = { 0.0, 0.0, 0.0 };
-        if (!RightSizeVector(_Color)) { throw IncorrectSizeOfVector(); }
-        else {
+    if (!RightSizeVector(_Color)) {
+       throw IncorrectSizeOfVector();
+    } else {
             if (!IsHSVinRange(_Color)) throw IncorrectValueOfHSV();
             else
                 *XYZ = HSVtoXYZ(_Color);
@@ -263,8 +263,9 @@ vector<double> color_converter::GetXYZ() const {
 }
 
 void color_converter::SetRGBVector(const vector<int> RGB) {
-	if (!RightSizeVector(RGB)) { throw IncorrectSizeOfVector(); }
-    else {
+	if (!RightSizeVector(RGB)) {
+       throw IncorrectSizeOfVector();
+    } else {
         if (!IsRGBinRange(RGB)) throw IncorrectValueOfRGB();
         else
             *XYZ = RGBToXYZ(RGB);
@@ -272,8 +273,9 @@ void color_converter::SetRGBVector(const vector<int> RGB) {
 }
 
 void color_converter::SetHSVVector(const vector<double> HSV) {
-	if (!RightSizeVector(HSV)) { throw IncorrectSizeOfVector(); }
-    else {
+	if (!RightSizeVector(HSV)) {
+       throw IncorrectSizeOfVector();
+    } else {
         if (!IsHSVinRange(HSV)) throw IncorrectValueOfHSV();
         else 
             *XYZ = HSVtoXYZ(HSV);
@@ -281,8 +283,9 @@ void color_converter::SetHSVVector(const vector<double> HSV) {
 }
 
 void color_converter::SetLABVector(const vector<int> LAB) {
-    if (!RightSizeVector(LAB)) { throw IncorrectSizeOfVector(); }
-    else {
+    if (!RightSizeVector(LAB)) {
+       throw IncorrectSizeOfVector();
+    } else {
         if (!IsLABinRange(LAB)) throw IncorrectValueOfLAB();
         else
             *XYZ = LABtoXYZ(LAB);
