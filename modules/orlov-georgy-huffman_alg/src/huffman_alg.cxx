@@ -37,14 +37,14 @@ map<char, int> Huff::readString(string str) {
         for (unsigned int i = 0; i < str.length(); i++) {
             char symb = str[i];
             map[symb]++;
-        }       
+        }
 
         return map;
     }
     catch (int error) {
         if (error == 1) {
             cout << "String is empty" << endl;
-            throw 1;  // для google tests
+            throw 1;  // for google tests
         }
     }
 }
@@ -113,7 +113,7 @@ string Huff::decoding(TableMap Tbl, string str) {
     catch (int error) {
         if (error == 1) {
             cout << "String contains not only 0 or 1" << endl;
-            throw 1;  // для google tests
+            throw 1;  // for google tests
         }
     }
 }
