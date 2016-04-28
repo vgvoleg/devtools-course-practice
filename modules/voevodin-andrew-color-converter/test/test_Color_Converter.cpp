@@ -76,7 +76,7 @@ TEST(Voevodin_Andrew_Color_Converter, Check_Copy_Constructor) {
 TEST(Voevodin_Andrew_Color_Converter, Check_Operator_Equal) {
     // Arrange
     vector<double> _vec1({ 1.0, 0.0, 0.0 });
-    color_converter cc(_vec1);
+     const color_converter cc(_vec1);
 
     // Act
     color_converter cc1 = cc;
