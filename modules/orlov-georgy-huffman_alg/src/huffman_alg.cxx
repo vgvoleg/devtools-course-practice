@@ -28,25 +28,19 @@ TableMap Huff::getTable() {
 }
 
 map<char, int> Huff::readString(string str) {
-    try {
-        if (str == "")
-            throw 1;
-
-        map<char, int> map;
-
-        for (unsigned int i = 0; i < str.length(); i++) {
-            char symb = str[i];
-            map[symb]++;
-        }
-
-        return map;
+    if (str == "") {
+        cout << "String is empty" << endl;
+        throw 1;
     }
-    catch (int error) {
-        if (error == 1) {
-            cout << "String is empty" << endl;
-            throw 1;  // for google tests
-        }
+
+    map<char, int> map;
+
+    for (unsigned int i = 0; i < str.length(); i++) {
+        char symb = str[i];
+        map[symb]++;
     }
+
+    return map;
 }
 
 void Huff::fillNodeList(FreqMap map) {
@@ -91,29 +85,22 @@ void Huff::buildTable(Huff::Node* root) {
 }
 
 string Huff::decoding(TableMap Tbl, string str) {
-    try {
-        string result;
-        vector<bool> buf;
-        for (unsigned int i = 0; i < str.size(); i++) {
-            if (str[i] != '0' && str[i] != '1')
-                throw 1;
-            else if (str[i] == '1')
-                buf.push_back(1);
-            else
-                buf.push_back(0);
-            for (auto& itr : Tbl)
-                if (itr.second == buf) {
-                    result += itr.first;
-                    buf.clear();
-                }
-        }
-        return result;
-    }
-
-    catch (int error) {
-        if (error == 1) {
+    string result;
+    vector<bool> buf;
+    for (unsigned int i = 0; i < str.size(); i++) {
+        if (str[i] != '0' && str[i] != '1') {
             cout << "String contains not only 0 or 1" << endl;
-            throw 1;  // for google tests
+            throw 1;
         }
+        else if (str[i] == '1')
+            buf.push_back(1);
+        else
+            buf.push_back(0);
+        for (auto& itr : Tbl)
+            if (itr.second == buf) {
+                result += itr.first;
+                buf.clear();
+            }
     }
+    return result;
 }
