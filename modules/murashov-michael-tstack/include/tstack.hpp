@@ -27,8 +27,8 @@ class Stack {
     bool        operator>=  (const Stack<T>&) const;
     bool        operator<   (const Stack<T>&) const;
     bool        operator>   (const Stack<T>&) const;
-    Stack<T>&  operator=   (const Stack<T>&);
-    Stack<T>&  operator+   (const Stack<T>&);
+    Stack<T>&   operator=   (const Stack<T>&);
+    Stack<T>&   operator+   (const Stack<T>&);
 
     template<class V>
     friend void swap_st(Stack<V>*, Stack<V>*);
@@ -48,7 +48,6 @@ class Stack {
 };
 
 
-
 template<class T>
 typename Stack<T>::NODE* Stack<T>::create_node(const T& data) {
     NODE* temp = new NODE;
@@ -58,7 +57,6 @@ typename Stack<T>::NODE* Stack<T>::create_node(const T& data) {
 
     return temp;
 }
-
 
 
 template<class T>
@@ -72,10 +70,8 @@ void Stack<T>::del_node(NODE* elem) {
 }
 
 
-
 template<class T>
 Stack<T>::Stack() : size_(0), top_(nullptr) { }
-
 
 
 template<class T>
@@ -97,7 +93,6 @@ Stack<T>::Stack(const Stack<T>& st) {
 }
 
 
-
 template<class T>
 Stack<T>::~Stack() {
     NODE* temp;
@@ -108,7 +103,6 @@ Stack<T>::~Stack() {
     }
     size_ = 0;
 }
-
 
 
 template<class T>
@@ -126,7 +120,6 @@ void Stack<T>::push(const T& data) {
 }
 
 
-
 template<class T>
 void Stack<T>::pop(void) {
     if (!empty()) {
@@ -136,7 +129,6 @@ void Stack<T>::pop(void) {
         size_--;
     }
 }
-
 
 
 template<class T>
@@ -149,19 +141,16 @@ T Stack<T>::top(void) const {
 }
 
 
-
 template<class T>
 SizeType Stack<T>::getSize(void) const {
     return size_;
 }
 
 
-
 template<class T>
 bool Stack<T>::empty(void) const {
     return (size_ == 0);
 }
-
 
 
 template<class T>
@@ -185,12 +174,10 @@ bool Stack<T>::operator==(const Stack<T>& st) const {
 }
 
 
-
 template<class T>
 bool Stack<T>::operator!=(const Stack<T>& st) const {
     return (!operator==(st));
 }
-
 
 
 template<class T>
@@ -199,12 +186,10 @@ bool Stack<T>::operator<=(const Stack<T>& st) const {
 }
 
 
-
 template<class T>
 bool Stack<T>::operator>=(const Stack<T>& st) const {
     return (operator>(st) || operator==(st));
 }
-
 
 
 template<class T>
@@ -228,7 +213,6 @@ bool Stack<T>::operator<(const Stack<T>& st) const {
 }
 
 
-
 template<class T>
 bool Stack<T>::operator>(const Stack<T>& st) const {
     if (size_ > st.size_) {
@@ -248,7 +232,6 @@ bool Stack<T>::operator>(const Stack<T>& st) const {
 
     return false;
 }
-
 
 
 template<class T>
@@ -274,7 +257,6 @@ Stack<T>& Stack<T>::operator=(const Stack<T>& st) {
 }
 
 
-
 template<class T>
 Stack<T>& Stack<T>::operator+(const Stack<T>& st) {
     if (!st.empty()) {
@@ -294,7 +276,6 @@ Stack<T>& Stack<T>::operator+(const Stack<T>& st) {
 
     return *this;
 }
-
 
 
 template<class V>
