@@ -73,14 +73,14 @@ TEST(FractionTest, Can_Set_Denominator) {
 
 TEST(FractionTest, Can_Add_Fraction) {
     // Arrange
-    fraction z1(3, 14);
+    fraction z1(0, 14);
     fraction z2(1, 7);
 
     // Act
     fraction z = z1 + z2;
 
     // Assert
-    fraction expected_z(5, 14);
+    fraction expected_z(1, 7);
     EXPECT_EQ(expected_z, z);
 }
 
