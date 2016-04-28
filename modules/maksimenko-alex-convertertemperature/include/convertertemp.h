@@ -15,7 +15,7 @@ class ConverterTemp {
     double getValue(void)const;
     Measure getMeasure(void)const;
     void setValue(const double);
-    void installMeasureWithChangVal(const Measure);
+    void installMeasureWithoutChangVal(const Measure);
 
  private:
     Data retcode_;
