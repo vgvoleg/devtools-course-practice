@@ -350,7 +350,7 @@ TEST(Voevodin_Andrew_Color_Converter, Check_LABToHSV) {
     // Act
     _vec1 = cc.LABToHSV(_vec);
     // Assert
-	EXPECT_NEAR(_vec1[0], 0.04167, 0.001);
+    EXPECT_NEAR(_vec1[0], 0.04167, 0.001);
     EXPECT_NEAR(_vec1[1], 0.4776, 0.0001);
     EXPECT_NEAR(_vec1[2], 0.2627, 0.0001);
 }
