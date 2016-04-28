@@ -25,7 +25,7 @@ bool color_converter::IsRGBinRange(const vector<int> RGB) const {
 }
 
 bool color_converter::IsHSVinRange(const vector<double> HSV) const {
-    if ((HSV[0] > = 360.0) || (HSV[0] < 0.0) ||
+    if ((HSV[0] >= 360.0) || (HSV[0] < 0.0) ||
        (HSV[1] > 1.0) || (HSV[1] < 0.0) ||
        (HSV[2] > 1.0) || (HSV[2] < 0.0)) return false;
     return true;
@@ -223,15 +223,15 @@ color_converter::color_converter(const vector<int> _Color, string _name_space) {
     }
 }
 
-color_converter::color_converter(const vector<double> HSV = { 0.0, 0.0, 0.0 }) {
+color_converter::color_converter(const vector<double> HSV) {
     XYZ = new vector<double>(3);
     *XYZ = { 0.0, 0.0, 0.0 };
-    if (!RightSizeVector(_Color)) {
+    if (!RightSizeVector(HSV)) {
        throw IncorrectSizeOfVector();
     } else {
-            if (!IsHSVinRange(_Color)) throw IncorrectValueOfHSV();
+            if (!IsHSVinRange(HSV)) throw IncorrectValueOfHSV();
             else
-                *XYZ = HSVtoXYZ(_Color);
+                *XYZ = HSVtoXYZ(HSV);
         }
 }
 
