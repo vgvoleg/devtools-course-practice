@@ -67,17 +67,17 @@ void Huff::createTree() {
 }
 
 void Huff::buildTable(Huff::Node* root) {
-    if (root->left != NULL) {
+    if (root->left != nullptr) {
         code.push_back(0);
         buildTable(root->left);
     }
 
-    if (root->right != NULL) {
+    if (root->right != nullptr) {
         code.push_back(1);
         buildTable(root->right);
     }
 
-    if (root->left == NULL && root->right == NULL)
+    if (root->left == nullptr && root->right == nullptr)
         table[root->symbol] = code;
 
     if (code.size() != 0)
