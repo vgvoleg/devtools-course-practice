@@ -27,13 +27,13 @@ Matrix::Matrix(const int count_n, const vector<int> &v) {
     data_ = v;
 }
 
-vector<int> Matrix::operator[](const int row_number) {
-    if (row_number < 0 || row_number >= size_)
+vector<int> Matrix::operator[](const int row_numder) {
+    if (row_numder < 0 || row_numder >= size_)
         throw std::invalid_argument("Incorrect row number");
 
     vector<int> row;
     for (int j = 0; j < size_; j++)
-        row.push_back(data_[row_number*size_+j]);
+        row.push_back(data_[row_numder*size_+j]);
         return row;
 }
 
