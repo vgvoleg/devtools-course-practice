@@ -16,7 +16,7 @@ Matrix::Matrix(const int count_n) {
     data_.resize(size_ * size_, 0);
 }
 
-Matrix::Matrix(const int count_n, const vector<int> v) {
+Matrix::Matrix(const int count_n, const vector<int> &v) {
     if (count_n <= 0)
         throw std::invalid_argument("Count must be positive");
     int k = v.size();

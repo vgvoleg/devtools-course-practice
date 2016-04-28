@@ -12,7 +12,7 @@ using std::vector;
 class Matrix {
  public:
     explicit Matrix(const int count_n);
-    Matrix(const int count_n, const vector<int> matrix);
+    Matrix(const int count_n, const vector<int>& matrix);
     Matrix Minor(const int row, const int col) const;
     double Determinant(const Matrix &a) const;
     const vector<int> &to_vector();
