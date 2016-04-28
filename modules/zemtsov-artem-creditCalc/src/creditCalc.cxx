@@ -35,21 +35,14 @@ void CreditPerson::setProcentByUser(const double procentImp) {
 }
 
 double CreditPerson::newInstallment(const double installmentImp) {
-    try {
         if (installmentImp >= 0) {
             paymentExecution(installmentImp);
             return needToPay;
         } else {
             throw 1;
-            return -1;
-        }
-    } catch (int err) {
-        if (err == 1) {
             std::cout<< "Invalide installment(must be more than 0)"<< std::endl;
             throw 1;
         }
-    }
-return 0.0;
 }
 
 double CreditPerson::performTheCalculation() {
