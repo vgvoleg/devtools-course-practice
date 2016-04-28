@@ -22,7 +22,7 @@ TEST(Determinant_properties, Can_Calc_Det_Of_Mat_1x1) {
     EXPECT_DOUBLE_EQ(determ, 1);
 }
 
-TEST(Determinant_properties, CCan_Calc_Det_Of_Mat_2x2) {
+TEST(Determinant_properties, Can_Calc_Det_Of_Mat_2x2) {
     // Arrange
     int n = 2;
     vector<int> v = {1, 2,
