@@ -96,6 +96,8 @@ bool fraction::equalsZero(const fraction& z) const {
 
 int fraction::NOD() const {
     int num = this->getNum();
+    if (num == 0)
+        return 1;
     int denom = this->getDenom();
     while (num != denom)
         if (num > denom) {
