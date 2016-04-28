@@ -85,7 +85,7 @@ Expression Parser::parse() {
     return parse_binary_expression(0);
 }
 
-double eval(const Expression& e) {
+double Parser::eval(const Expression& e) {
     switch (e.args.size()) {
     case 2: {
         auto a = eval(e.args[0]);
@@ -128,12 +128,12 @@ double eval(const Expression& e) {
         if (e.token == "cos"){
             return cos(a);
         }
-        throw std::runtime_error("Unknown unary operator");
+        throw runtime_error("Unknown unary operator");
     }
 
     case 0:
         return strtod(e.token.c_str(), nullptr);
     }
 
-    throw std::runtime_error("Unknown expression type");
+    throw runtime_error("Unknown expression type");
 }
