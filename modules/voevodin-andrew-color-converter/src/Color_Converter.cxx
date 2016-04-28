@@ -3,7 +3,7 @@
 #include "include/Color_Converter.h"
 #include <string>
 #include <vector>
-#include "math.h"
+#include <math.h>
 
 using std::string;
 using std::vector;
@@ -201,12 +201,15 @@ color_converter::color_converter(const vector<int> _Color, string _name_space){
     }
 }
 
-color_converter::color_converter(const vector<double> _Color){
+color_converter::color_converter(const vector<double> _Color, string _name_space = "HSV"){
     XYZ = new vector<double>(3);
-    if (!RightSizeVector(_Color)) throw IncorrectSizeOfVector();
-    else{
-        if (!IsHSVinRange(_Color)) throw IncorrectValueOfHSV();
-        else *XYZ = HSVtoXYZ(_Color);
+    *XYZ = { 0.0, 0.0, 0.0 };
+    if (_name_space = "HSV"){
+        if (!RightSizeVector(_Color)) throw IncorrectSizeOfVector();
+        else{
+            if (!IsHSVinRange(_Color)) throw IncorrectValueOfHSV();
+            else *XYZ = HSVtoXYZ(_Color);
+        }
     }
 }
 

@@ -1,9 +1,9 @@
 // Copyright 2016 Voevodin Andrew
 
 #include <gtest/gtest.h>
+#include "include/Color_Converter.h"
 #include <math.h>
 #include <string>
-#include "include/Color_Converter.h"
 #include <vector>
 
 /*проверка конструкторов*/
