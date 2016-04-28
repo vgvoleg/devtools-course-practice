@@ -6,71 +6,81 @@
 #include <list>
 #include <string>
 
-bool operator==(const Huff::Node& l, const Huff::Node& r) {
-    if (l.number != r.number)
+bool operator==(const Huff::Node& left, const Huff::Node& right) {
+    if (left.number != right.number)
         return false;
-    else if (l.symbol != r.symbol)
+    else if (left.symbol != right.symbol)
         return false;
     else
         return true;
 }
 
-list<Huff::Node*> Huff::GetNodeList() {
-    return nodeList;
+list<Huff::Node*> Huff::getNodeList() {
+    return node_list;
 }
 
 Huff::Node* Huff::getRoot() {
-    return nodeList.front();
+    return node_list.front();
 }
 
-TableMap Huff::GetTable() {
+TableMap Huff::getTable() {
     return table;
 }
 
-map<char, int> Huff::ReadString(string str) {
-    map<char, int> m;
+map<char, int> Huff::readString(string str) {
+    try {
+        if (str == "")
+            throw 1;
 
-    for (unsigned int i = 0; i < str.length(); i++) {
-        char symb = str[i];
-        m[symb]++;
+        map<char, int> map;
+
+        for (unsigned int i = 0; i < str.length(); i++) {
+            char symb = str[i];
+            map[symb]++;
+        }       
+
+        return map;
     }
-
-    return m;
+    catch (int error) {
+        if (error == 1) {
+            cout << "String is empty" << endl;
+            throw 1;  // для google tests
+        }
+    }
 }
 
-void Huff::FillNodeList(FreqMap m) {
-    map<char, int>::iterator itr;
-    for (itr = m.begin(); itr != m.end(); ++itr) {
+void Huff::fillNodeList(FreqMap map) {
+    for (auto& itr : map) {
         Node *p = new Node;
-        p->symbol = itr->first;
-        p->number = itr->second;
-        nodeList.push_back(p);
+        p->symbol = itr.first;
+        p->number = itr.second;
+        node_list.push_back(p);
     }
 }
 
-void Huff::CreateTree() {
-    while (nodeList.size() != 1) {
-        nodeList.sort(Compare());
+void Huff::createTree() {
+    while (node_list.size() != 1) {
+        node_list.sort(Compare());
 
-        Node *SonL = nodeList.front();
-        nodeList.pop_front();
-        Node *SonR = nodeList.front();
-        nodeList.pop_front();
+        Node *SonL = node_list.front();
+        node_list.pop_front();
+        Node *SonR = node_list.front();
+        node_list.pop_front();
 
         Node *parent = new Node(SonL, SonR);
-        nodeList.push_back(parent);
+        node_list.push_back(parent);
     }
 }
 
-void Huff::BuildTable(Huff::Node* root) {
+void Huff::buildTable(Huff::Node* root) {
     if (root->left != NULL) {
         code.push_back(0);
-        BuildTable(root->left);
+        buildTable(root->left);
     }
 
     if (root->right != NULL) {
         code.push_back(1);
-        BuildTable(root->right);
+        buildTable(root->right);
     }
 
     if (root->left == NULL && root->right == NULL)
@@ -80,19 +90,30 @@ void Huff::BuildTable(Huff::Node* root) {
         code.pop_back();
 }
 
-string Huff::GetStringFromTable(TableMap Tbl, string str) {
-    string result;
-    vector<bool> buf;
-    for (unsigned int i = 0; i < str.size(); i++) {
-        if (str[i] == '1')
-            buf.push_back(1);
-        else
-            buf.push_back(0);
-        for (auto& itr : Tbl)
-            if (itr.second == buf) {
-                result += itr.first;
-                buf.clear();
-            }
+string Huff::decoding(TableMap Tbl, string str) {
+    try {
+        string result;
+        vector<bool> buf;
+        for (unsigned int i = 0; i < str.size(); i++) {
+            if (str[i] != '0' && str[i] != '1')
+                throw 1;
+            else if (str[i] == '1')
+                buf.push_back(1);
+            else
+                buf.push_back(0);
+            for (auto& itr : Tbl)
+                if (itr.second == buf) {
+                    result += itr.first;
+                    buf.clear();
+                }
+        }
+        return result;
     }
-    return result;
+
+    catch (int error) {
+        if (error == 1) {
+            cout << "String contains not only 0 or 1" << endl;
+            throw 1;  // для google tests
+        }
+    }
 }

@@ -46,19 +46,19 @@ class Huff {
         }
     };
 
-    FreqMap ReadString(string);
-    void FillNodeList(FreqMap);
-    void CreateTree();
-    void BuildTable(Node* root);
-    string GetStringFromTable(TableMap, string);
+    FreqMap readString(string);
+    void fillNodeList(FreqMap);
+    void createTree();
+    void buildTable(Node* root);
+    string decoding(TableMap, string);
 
-    list<Node*> GetNodeList();
+    list<Node*> getNodeList();
     Node* getRoot();
-    TableMap GetTable();
+    TableMap getTable();
 
  private:
     vector<bool> code;
-    list<Node*> nodeList;
+    list<Node*> node_list;
     TableMap table;
 
     friend bool operator==(const Node&, const Node&);

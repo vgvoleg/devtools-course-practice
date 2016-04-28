@@ -9,7 +9,7 @@
 #include "gtest/gtest.h"
 #include "include/huffman_alg.h"
 
-TEST(huffman_alg, Can_Creade_Node) {
+TEST(huffman_alg, Can_Create_Node) {
     // Arrange
     Huff::Node *node;
 
@@ -20,7 +20,7 @@ TEST(huffman_alg, Can_Creade_Node) {
     EXPECT_NE(nullptr, node);
 }
 
-TEST(huffman_alg, Can_Creade_Node_From_Two_Other_Nodes) {
+TEST(huffman_alg, Can_Create_Node_From_Two_Other_Nodes) {
     // Arrange
     Huff::Node *parent;
     Huff::Node *leftSon;
@@ -75,38 +75,47 @@ TEST(huffman_alg, Compare_Method_Is_Work) {
     EXPECT_EQ(first, l.front());
 }
 
+TEST(huffman_alg, Throws_When_String_Is_Empty) {
+    // Arrange
+    Huff huf;
+    string str = "";
+    FreqMap map;
+
+    // Act & Assert
+    ASSERT_ANY_THROW(map = huf.readString(str));
+}
+
 TEST(huffman_alg, Can_Right_Read_String) {
     // Arrange
     Huff huf;
     string str = "test";
-    FreqMap expected_m;
-    FreqMap test_m;
+    FreqMap expected_map;
+    FreqMap test_map;
 
     // Act
-    expected_m['t'] = 2;
-    expected_m['e'] = 1;
-    expected_m['s'] = 1;
+    expected_map['t'] = 2;
+    expected_map['e'] = 1;
+    expected_map['s'] = 1;
 
-    test_m = huf.ReadString(str);
+    test_map = huf.readString(str);
 
     // Assert
-    EXPECT_EQ(expected_m, test_m);
+    EXPECT_EQ(expected_map, test_map);
 }
 
 TEST(huffman_alg, Can_Fill_Node_List) {
     // Arrange
     Huff huf;
     string str = "test";
-    FreqMap m;
-    list<Huff::Node*> l;
+    FreqMap map;
 
     // Act
-    m = huf.ReadString(str);
-    huf.FillNodeList(m);
+    map = huf.readString(str);
+    huf.fillNodeList(map);
 
     // Assert
     const int expected_list_size = 3;
-    EXPECT_EQ(expected_list_size, huf.GetNodeList().size());
+    EXPECT_EQ(expected_list_size, huf.getNodeList().size());
 }
 
 TEST(huffman_alg, Nodes_Compare_Operator_True_Right) {
@@ -165,53 +174,55 @@ TEST(huffman_alg, Fill_Node_List_Right) {
     // Arrange
     Huff huf;
     string str = "ttt";
-    FreqMap m;
-    list<Huff::Node*> l;
+    FreqMap map;
+    list<Huff::Node*> list;
+
 
     // Act
     Huff::Node *node = new Huff::Node;
     node->number = 3;
     node->symbol = 't';
-    l.push_back(node);
+    list.push_back(node);
 
-    m = huf.ReadString(str);
-    huf.FillNodeList(m);
+    map = huf.readString(str);
+    huf.fillNodeList(map);
 
     // Assert
-    EXPECT_TRUE(*l.front() == *huf.GetNodeList().front());
+    std::list<Huff::Node*> expected_list = huf.getNodeList();
+    EXPECT_TRUE(*list.front() == *expected_list.front());
 }
 
 TEST(huffman_alg, Can_Create_Tree) {
     // Arrange
     Huff huf;
     string str = "test that horrible algorithm";
-    FreqMap m;
+    FreqMap map;
 
     // Act
-    m = huf.ReadString(str);
-    huf.FillNodeList(m);
-    huf.CreateTree();
+    map = huf.readString(str);
+    huf.fillNodeList(map);
+    huf.createTree();
 
     // Assert
     unsigned int expected_node_list_size = 1;
-    EXPECT_TRUE(expected_node_list_size == huf.GetNodeList().size());
+    EXPECT_TRUE(expected_node_list_size == huf.getNodeList().size());
 }
 
 TEST(huffman_alg, Can_Build_Table_Right) {
     // Arrange
     Huff huf;
     string str = "test";
-    FreqMap m;
+    FreqMap map;
 
     // Act
-    m = huf.ReadString(str);
-    huf.FillNodeList(m);
-    huf.CreateTree();
+    map = huf.readString(str);
+    huf.fillNodeList(map);
+    huf.createTree();
     Huff::Node* root = huf.getRoot();
-    huf.BuildTable(root);
+    huf.buildTable(root);
 
     std::ostringstream stream;
-    for (auto& itr : huf.GetTable()) {
+    for (auto& itr : huf.getTable()) {
         stream << itr.first << ": ";
         std::copy(itr.second.begin(), itr.second.end(),
             std::ostream_iterator<bool>(stream, ""));
@@ -223,7 +234,23 @@ TEST(huffman_alg, Can_Build_Table_Right) {
     EXPECT_EQ(expected_str, stream.str());
 }
 
-TEST(huffman_alg, Can_Right_Return_String_From_Table) {
+TEST(huffman_alg, Throws_When_Decoding_Input_Is_Wrong_String) {
+    // Arrange
+    Huff huf;
+    vector<bool> vect;
+    string str = "010ab1010";
+    string actual_str;
+    TableMap Tbl;
+
+    // Act
+    vect.push_back(1);
+    Tbl['a'] = vect;
+
+    // Assert
+    ASSERT_ANY_THROW(actual_str = huf.decoding(Tbl, str));
+}
+
+TEST(huffman_alg, Can_Right_Decode) {
     // Arrange
     Huff huf;
     vector<bool> vect_1;
@@ -246,7 +273,7 @@ TEST(huffman_alg, Can_Right_Return_String_From_Table) {
     Tbl['b'] = vect_2;
     Tbl['c'] = vect_3;
 
-    actual_str = huf.GetStringFromTable(Tbl, str);
+    actual_str = huf.decoding(Tbl, str);
 
     // Assert
     string expected_str = "abacacb";
