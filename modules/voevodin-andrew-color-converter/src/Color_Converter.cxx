@@ -94,7 +94,7 @@ vector<double> color_converter::XYZtoHSV(const vector<double> _XYZ) const {
 
     double V = var_Max;
 
-    if (del_Max == 0){
+    if (del_Max == 0) {
        H = 0;
        S = 0;
      } else {
@@ -186,7 +186,7 @@ vector<double> color_converter::HSVtoXYZ(const vector<double> HSV) const {
     double var_g;
     double var_b;
     double H = HSV[0];
-    if (HSV[1] == 0.0){
+    if (HSV[1] == 0.0) {
         RGB1[0] = HSV[2] * 255.0;
         RGB1[1] = HSV[2] * 255.0;
         RGB1[2] = HSV[2] * 255.0;
@@ -206,9 +206,11 @@ vector<double> color_converter::HSVtoXYZ(const vector<double> HSV) const {
 
              if (var_i == 3) { var_r = var_1; var_g = var_2; var_b = V; }
 
-             if (var_i == 4) { var_r = var_3; var_g = var_1; var_b = V; }
-        else {
-             var_r = V; var_g = var_1; var_b = var_2; }
+             if (var_i == 4) {
+                            var_r = var_3; var_g = var_1; var_b = V;
+             } else {
+             var_r = V; var_g = var_1; var_b = var_2;
+             }
         RGB1[0] = static_cast<int>(var_r * 255.0);
         RGB1[1] = static_cast<int>(var_g * 255.0);
         RGB1[2] = static_cast<int>(var_b * 255.0);
