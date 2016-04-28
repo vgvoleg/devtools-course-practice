@@ -25,7 +25,7 @@ bool color_converter::IsRGBinRange(const vector<int> RGB) const {
 }
 
 bool color_converter::IsHSVinRange(const vector<double> HSV) const {
-    if ((HSV[0] >= 360.0) || (HSV[0] < 0.0) ||
+    if ((HSV[0] > 1.0) || (HSV[0] < 0.0) ||
        (HSV[1] > 1.0) || (HSV[1] < 0.0) ||
        (HSV[2] > 1.0) || (HSV[2] < 0.0)) return false;
     return true;
@@ -77,30 +77,45 @@ vector<int> color_converter::XYZtoRGB(const vector<double> _XYZ) const {
 vector<double> color_converter::XYZtoHSV(const vector<double> _XYZ) const {
     vector<double> HSV(3), RGB(3);
     vector<int> RGB1(3);
-
+    double H;
+    double S;
     RGB1 = XYZtoRGB(_XYZ);
-    for (unsigned int i = 0; i < RGB1.size(); i++)
-        RGB[i] = 1.0*RGB1[i] / 255.0;
-    double max = RGB[0], min = RGB[0];
-    for (unsigned int i = 1; i < RGB.size(); i++) {
-        if (RGB[i] < min) min = RGB[i];
-        if (RGB[i] > max) max = RGB[i];
-    }
-    if (max == min) HSV[0] = 0.0;
-    else if (RGB[1] >= RGB[2]) HSV[0] = 60.0*(RGB[1] - RGB[2])
-         / (max - min);
-    else if (RGB[1] < RGB[2]) HSV[0] = 60.0*(RGB[1] - RGB[2])
-         / (max - min) + 360.0;
-    else if (RGB[1] == max) HSV[0] = 60.0*(RGB[2] - RGB[0])
-         / (max - min) + 120.0;
-    else if (max == RGB[2]) HSV[0] = 60.0*(RGB[0] - RGB[1])
-         / (max - min) + 240.0;
-    if (max == 0) HSV[1] = 0.0;
-    else
-        HSV[1] = 1 - min / max;
-    HSV[2] = max;
+    double var_R = (1.0*RGB1[0] / 255.0);                     
+    double var_G = (1.0*RGB1[1] / 255.0);
+    double var_B = (1.0*RGB1[2] / 255.0);
 
-    HSV[0] = static_cast<int>(HSV[0] + 0.5);
+    double var_Min=1.0*RGB1[0]/255.0;
+    double var_Max=1.0*RGB1[0]/255.0;
+    for (unsigned int i = 1; i < RGB1.size(); i++) {
+        if (1.0*RGB1[i] / 255.0 < var_Min) var_Min = 1.0*RGB1[i] / 255.0;
+        if (1.0*RGB1[i] / 255.0 > var_Max) var_Max = 1.0*RGB1[i] / 255.0;
+    }
+    double del_Max = var_Max - var_Min;
+
+    double V = var_Max;
+
+    if (del_Max == 0)                 
+    {
+       H = 0;
+       S = 0;
+     } else {
+           S = del_Max / var_Max;
+
+           double del_R = (((var_Max - var_R) / 6.0) + (del_Max / 2.0)) / del_Max;
+           double del_G = (((var_Max - var_G) / 6.0) + (del_Max / 2.0)) / del_Max;
+           double del_B = (((var_Max - var_B) / 6.0) + (del_Max / 2.0)) / del_Max;
+
+           if (var_R == var_Max) H = del_B - del_G;
+           else if (var_G == var_Max) H = (1.0 / 3.0) + del_R - del_B;
+           else if (var_B == var_Max) H = (2.0 / 3.0) + del_G - del_R;
+
+           if (H <= 0.0) H += 1.0;
+           if (H >= 1.0) H -= 1.0;
+    }
+    HSV[0] = H;
+    HSV[1] = S;
+    HSV[2] = V;
+
     return HSV;
 }
 
@@ -165,17 +180,33 @@ vector<double> color_converter::RGBToXYZ(const vector<int> RGB) const {
 vector<double> color_converter::HSVtoXYZ(const vector<double> HSV) const {
     vector<double> RGB(3);
     vector<int> RGB1(3);
-    double c = HSV[1] * HSV[2];
-    double x = c*(1 - fabs(static_cast<int>(HSV[0] / 60.0) % 2 - 1));
-    double m = HSV[2] - c;
-    if ((HSV[0] < 60.0) && (HSV[0] >= 0.0)) RGB = { c, x, 0.0 };
-    if ((HSV[0] < 120.0) && (HSV[0] >= 60.0)) RGB = { x, c, 0.0 };
-    if ((HSV[0] < 180.0) && (HSV[0] >= 120.0)) RGB = { 0.0, c, x };
-    if ((HSV[0] < 240.0) && (HSV[0] >= 180.0)) RGB = { 0.0, x, c };
-    if ((HSV[0] < 300.0) && (HSV[0] >= 240.0)) RGB = { x, 0.0, c };
-    if ((HSV[0] <= 360.0) && (HSV[0] >= 300.0)) RGB = { c, 0.0, x };
-    for (unsigned int i = 0; i < RGB.size(); i++)
-        RGB1[i] = static_cast<int>((RGB[i] + m)*255.0 + 0.9);
+    double var_r;
+    double var_g;
+    double var_b;
+    double H = HSV[0];
+    if (HSV[1] == 0.0)
+    {
+        RGB1[0] = HSV[2] * 255.0;
+        RGB1[1] = HSV[2] * 255.0;
+        RGB1[2] = HSV[2] * 255.0;
+     } else {
+        double var_h = H * 6.0;
+        if (var_h == 6.0) var_h = 0.0;
+        int var_i = static_cast<int>(var_h);
+        double var_1 = HSV[2] * (1.0 - HSV[1]);
+        double var_2 = HSV[2] * (1.0 - HSV[1] * (var_h - var_i));
+        double var_3 = HSV[2] * (1.0 - HSV[1] * (1.0 - (var_h - var_i)));
+        double V = HSV[2];
+        if (var_i == 0) { var_r = V; var_g = var_3; var_b = var_1; }
+        else if (var_i == 1) { var_r = var_2; var_g = V; var_b = var_1; }
+        else if (var_i == 2) { var_r = var_1; var_g = V; var_b = var_3; }
+        else if (var_i == 3) { var_r = var_1; var_g = var_2; var_b = V; }
+        else if (var_i == 4) { var_r = var_3; var_g = var_1; var_b = V; }
+        else { var_r = V; var_g = var_1; var_b = var_2; }
+        RGB1[0] = static_cast<int>(var_r * 255.0);
+        RGB1[1] = static_cast<int>(var_g * 255.0);
+        RGB1[2] = static_cast<int>(var_b * 255.0);
+    }
     return RGBToXYZ(RGB1);
 }
 
