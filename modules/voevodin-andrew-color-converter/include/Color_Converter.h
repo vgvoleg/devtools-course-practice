@@ -12,37 +12,37 @@ using std::string;
 using std::vector;
 
 class IncorrectInputNamespace: public std::runtime_error {
-public: 
+ public:
 IncorrectInputNamespace() :
     std::runtime_error("Name_color_space is not correct, use: RGB, HSV, LAB") {}
 };
 
 class IncorrectValueOfRGB :public std::runtime_error {
-public: 
+ public:
 IncorrectValueOfRGB() :
     std::runtime_error("Value RGB is not correct, values - 0 to 255") {}
 };
 
 class IncorrectValueOfHSV :public std::runtime_error {
-public: 
+ public:
 IncorrectValueOfHSV() :
     std::runtime_error("Value HSV is not correct, H: 0-360; S: 0-1; V: 0-1") {}
 };
 
 class IncorrectValueOfLAB :public std::runtime_error {
-public: 
+ public:
 IncorrectValueOfLAB() :
-    std::runtime_error("Value LAB is not correct, L: 0-100; a:-127 - 128; b:-127 - 128") {}
+std::runtime_error("Value LAB is not correct,L:0-100;a:-127-128;b:-127-128") {}
 };
 
 class IncorrectSizeOfVector :public std::runtime_error {
-public: 
+ public:
 IncorrectSizeOfVector() :
     std::runtime_error("Size vector is not correct, size must be equal to 3") {}
 };
 
 class color_converter {
-private: 
+ private:
     vector<double> *XYZ;
 
     bool RightSizeVector(const vector<double> _vector) const;
@@ -61,10 +61,10 @@ private:
 
     double FunctionLAB(const double s) const;
 
-public: 
+ public:
     color_converter();
     color_converter(const vector<int> _Color, string _name_space);
-    color_converter(const vector<double> HSV, string _name_space="HSV");
+    color_converter(const vector<double> HSV, string _name_space = "HSV");
     color_converter(const color_converter&  _color_vector);
     ~color_converter();
     color_converter& operator=(const color_converter&  _color_vector);
