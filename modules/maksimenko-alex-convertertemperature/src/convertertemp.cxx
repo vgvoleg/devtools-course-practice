@@ -135,7 +135,7 @@ void ConverterTemp::setValue(const double val) {
     }
 }
 
-void ConverterTemp::setMeasure(const Measure msr) {
+void ConverterTemp::installMeasureWithChangVal(const Measure msr) {
     if ((value_ < 0.0) && (msr == Measure::KELVIN)) {
         retcode_ = Data::ERROR;
     } else {

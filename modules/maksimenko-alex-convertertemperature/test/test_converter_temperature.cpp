@@ -369,7 +369,7 @@ TEST(ConverterTemperature, Can_Set_The_Measure) {
 
     // Act
     const Measure result_dimension = Measure::NEWTON;
-    temperature.setMeasure(result_dimension);
+    temperature.installMeasureWithChangVal(result_dimension);
 
     // Assert
     const Measure expected_dimension = Measure::NEWTON;
@@ -384,7 +384,7 @@ TEST(ConverterTemperature, Cant_Set_The_Kelvin_To_The_Negative_Value) {
 
     // Act
     const Measure result_dimension = Measure::KELVIN;
-    temperature.setMeasure(result_dimension);
+    temperature.installMeasureWithChangVal(result_dimension);
 
     // Assert
     EXPECT_EQ(temperature.getRetCode(), Data::ERROR);
