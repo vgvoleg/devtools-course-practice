@@ -47,7 +47,6 @@ class color_converter {
     static vector<int> HSVToLAB(const vector<double> hsv);
 
  private:
-
     static bool IncorrectSizeVector(const vector<double> vector);
     static bool IncorrectSizeVector(const vector<int> vector);
     static bool IsRGBinRange(const vector<int> rgb);
