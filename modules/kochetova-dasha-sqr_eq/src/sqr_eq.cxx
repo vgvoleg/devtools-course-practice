@@ -39,24 +39,24 @@ set<double> Equation::SolveDiscrim() {
     if (dis < 0)
         //      cout << "The equation has no real roots" << endl;
         SolveComplex();
-	else { if (dis > 0) {
-			double di = sqrt(dis);
-			_x1 = (-_b + di) / (2 * _a);
-			rootset.insert(_x1);
+    else { if (dis > 0) {
+            double di = sqrt(dis);
+            _x1 = (-_b + di) / (2 * _a);
+            rootset.insert(_x1);
 
-			_x2 = (-_b - di) / (2 * _a);
-			rootset.insert(_x2);
+            _x2 = (-_b - di) / (2 * _a);
+            rootset.insert(_x2);
 
-			cout << "Discriminant = " << dis << endl;
-			cout << "di =" << di << endl;
-			cout << "x1 = " << _x1 << ", x2 = " << _x2 << endl;
-		} else {
-			_x1 = -_b / (2 * _a);
-			rootset.insert(_x1);
+            cout << "Discriminant = " << dis << endl;
+            cout << "di =" << di << endl;
+            cout << "x1 = " << _x1 << ", x2 = " << _x2 << endl;
+        } else {
+            _x1 = -_b / (2 * _a);
+            rootset.insert(_x1);
 
-			cout << "Discriminant = " << dis << endl;
-			cout << "x = " << _x1 << endl;
-		} }
+            cout << "Discriminant = " << dis << endl;
+            cout << "x = " << _x1 << endl;
+        } }
     return rootset;
 }
 
@@ -91,17 +91,16 @@ set<double> Equation::SolveViet() {
     double q = _c / _a;
 
     for (double i = -sum; i <= sum; i++) {
-		for (double j = i; j <= sum; j++) {
-			if (i + j == p && i*j == q) {
-				_x1 = j;
-				rootset.insert(_x1);
-				_x2 = i;
-				rootset.insert(_x2);
-				break;
-			}
-			else {
-				error = true;
-			} }
+        for (double j = i; j <= sum; j++) {
+            if (i + j == p && i*j == q) {
+                _x1 = j;
+                rootset.insert(_x1);
+                _x2 = i;
+                rootset.insert(_x2);
+                break;
+            } else {
+                error = true;
+            } }
     }
     return rootset;
 }
@@ -116,18 +115,16 @@ void Equation::SolveComplex() {
         complex<DType> x2(-_b / 2, -_im / 2);
         _cx2 = x2;
         cout << "x2=" << real(x2) << imag(x2) << "i" << endl;
-	}
-	else {
-		error = true;
-	}
+    } else {
+        error = true;
+    }
 }
 
 array<double, 2> Equation::ParabolaTop() {
     std::array<double, 2> topcoordinat;
-	if (_a == 0) {
-		error = true;
-	}
-    else {
+    if (_a == 0) {
+        error = true;
+    } else {
         double x0 = -_b / (2 * _a);
         topcoordinat[0] = x0;
         double y0 = (_a*x0*x0) + (_b*x0) + _c;
