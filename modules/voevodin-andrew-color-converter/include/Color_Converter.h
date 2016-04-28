@@ -12,27 +12,27 @@ using std::string;
 using std::vector;
 
 class IncorrectValueOfRGB :public std::runtime_error {
-public:
+ public:
     IncorrectValueOfRGB() :
         std::runtime_error("Value RGB is not correct, values - 0 to 255") {}
 };
 
 class IncorrectValueOfHSV :public std::runtime_error {
-public:
+ public:
     IncorrectValueOfHSV() :
         std::runtime_error("Value HSV is not correct, H: 0-1; S: 0-1; V: 0-1") {}
 };
 
 class IncorrectValueOfLAB :public std::runtime_error {
-public:
+ public:
     IncorrectValueOfLAB() :
-        std::runtime_error("Value LAB is not correct,L:0-100;a:-127-128;b:-127-128") {}
+        std::runtime_error("Value LAB is not correct,L:0-100;a,b:-127-128") {}
 };
 
 class IncorrectSizeOfVector :public std::runtime_error {
-public:
+ public:
     IncorrectSizeOfVector() :
-        std::runtime_error("Size vector is not correct, size must be equal to 3") {}
+        std::runtime_error("Size vector is not correct, size must be - 3") {}
 };
 
 class color_converter {
@@ -58,6 +58,5 @@ class color_converter {
 
     static vector<double> RGBToXYZ(const vector<int> rgb);
     static vector<double> LABToXYZ(const vector<int> lab);
-
 };
 #endif  // MODULES_VOEVODIN_ANDREW_COLOR_CONVERTER_INCLUDE_COLOR_CONVERTER_H_
