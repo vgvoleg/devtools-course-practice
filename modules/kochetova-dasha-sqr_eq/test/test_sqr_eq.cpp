@@ -3,6 +3,7 @@
 #include <gtest/gtest.h>
 
 #include "include/sqr_eq.h"
+#include <set>
 
 TEST(QuadraticEquationTest, can_create_object_without_parameters_A) {
     int a = 1;
@@ -37,7 +38,7 @@ TEST(QuadraticEquationTest, can_create_object_without_parameters_error) {
 TEST(QuadraticEquationTest, can_create_object_with_parameters_A) {
     int a = 2;
 
-    Equation eq(2,1,1);
+    Equation eq(2, 1, 1);
 
     EXPECT_EQ(a, eq.GetA());
 }
@@ -117,7 +118,7 @@ TEST(QuadraticEquationTest, solve_eq_without_param) {
 TEST(QuadraticEquationTest, correct_discrim_with_param) {
     int dis = 1;
 
-    Equation eq(2,3,1);
+    Equation eq(2, 3, 1);
 
     EXPECT_EQ(dis, eq.Discrim());
 }
@@ -132,7 +133,7 @@ TEST(QuadraticEquationTest, solve_eq_with_one_root) {
 }
 
 TEST(QuadraticEquationTest, solve_eq_with_two_root) {
-    set<DType> roots = { -3,-1 };
+    set<DType> roots = { -3, -1 };
 
     Equation eq(1, 4, 3);
 
@@ -140,7 +141,7 @@ TEST(QuadraticEquationTest, solve_eq_with_two_root) {
 }
 
 TEST(QuadraticEquationTest, solve_incomplete_eq_b) {
-    set<DType> roots = { -3,3 };
+    set<DType> roots = { -3, 3 };
 
     Equation eq(1, 0, -9);
 
@@ -148,7 +149,7 @@ TEST(QuadraticEquationTest, solve_incomplete_eq_b) {
 }
 
 TEST(QuadraticEquationTest, solve_incomplete_eq_c) {
-    set<DType> roots = {-3,0};
+    set<DType> roots = {-3, 0};
 
     Equation eq(1, 3, 0);
 
@@ -161,7 +162,7 @@ TEST(QuadraticEquationTest, solve_eq_with_larger_values_x1) {
 
     eq.SolveDiscrim();
 
-    EXPECT_NEAR(x1, eq.GetX1(),0.0001);
+    EXPECT_NEAR(x1, eq.GetX1(), 0.0001);
 }
 
 TEST(QuadraticEquationTest, solve_eq_with_larger_values_x2) {
@@ -179,7 +180,7 @@ TEST(QuadraticEquationTest, solve_eq_with_two_double_roots_1) {
 
     eq.SolveDiscrim();
 
-    EXPECT_NEAR(x1, eq.GetX1(),0.0001);
+    EXPECT_NEAR(x1, eq.GetX1(), 0.0001);
 }
 
 TEST(QuadraticEquationTest, solve_eq_with_two__double_roots_2) {
@@ -188,7 +189,7 @@ TEST(QuadraticEquationTest, solve_eq_with_two__double_roots_2) {
     Equation eq(5, 9, 1);
     eq.SolveDiscrim();
 
-    EXPECT_NEAR(x2, eq.GetX2(),0.0001);
+    EXPECT_NEAR(x2, eq.GetX2(), 0.0001);
 }
 
 TEST(QuadraticEquationTest, solve_viet_without_param_error) {
@@ -209,7 +210,7 @@ TEST(QuadraticEquationTest, solve_viet_without_error) {
 }
 
 TEST(QuadraticEquationTest, can_calculate_parabola_top) {
-    std::array<double,2> top = { 2.5,-0.25 };
+    std::array<double,2> top = { 2.5, -0.25 };
 
     Equation eq(1, -5, 6);
 
