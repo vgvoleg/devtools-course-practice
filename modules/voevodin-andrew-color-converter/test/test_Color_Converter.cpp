@@ -1,10 +1,10 @@
 // Copyright 2016 Voevodin Andrew
 
-#include "include/Color_Converter.h"
+#include <gtest/gtest.h>
 #include <math.h>
 #include <vector>
 #include <string>
-#include <gtest/gtest.h>
+#include "include/Color_Converter.h"
 
 
 TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Vector) {
