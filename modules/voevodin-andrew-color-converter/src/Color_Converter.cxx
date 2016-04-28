@@ -84,8 +84,8 @@ vector<double> color_converter::XYZtoHSV(const vector<double> _XYZ) const {
     double var_G = (1.0*RGB1[1] / 255.0);
     double var_B = (1.0*RGB1[2] / 255.0);
 
-    double var_Min=1.0*RGB1[0]/255.0;
-    double var_Max=1.0*RGB1[0]/255.0;
+    double var_Min = 1.0 * RGB1[0] / 255.0;
+    double var_Max = 1.0 * RGB1[0] / 255.0;
     for (unsigned int i = 1; i < RGB1.size(); i++) {
         if (1.0*RGB1[i] / 255.0 < var_Min) var_Min = 1.0*RGB1[i] / 255.0;
         if (1.0*RGB1[i] / 255.0 > var_Max) var_Max = 1.0*RGB1[i] / 255.0;
@@ -101,9 +101,12 @@ vector<double> color_converter::XYZtoHSV(const vector<double> _XYZ) const {
      } else {
            S = del_Max / var_Max;
 
-           double del_R = (((var_Max - var_R) / 6.0) + (del_Max / 2.0)) / del_Max;
-           double del_G = (((var_Max - var_G) / 6.0) + (del_Max / 2.0)) / del_Max;
-           double del_B = (((var_Max - var_B) / 6.0) + (del_Max / 2.0)) / del_Max;
+           double del_R = (((var_Max - var_R) / 6.0) +
+                 (del_Max / 2.0)) / del_Max;
+           double del_G = (((var_Max - var_G) / 6.0) +
+                 (del_Max / 2.0)) / del_Max;
+           double del_B = (((var_Max - var_B) / 6.0) +
+                 (del_Max / 2.0)) / del_Max;
 
            if (var_R == var_Max) H = del_B - del_G;
            else if (var_G == var_Max) H = (1.0 / 3.0) + del_R - del_B;
@@ -198,11 +201,16 @@ vector<double> color_converter::HSVtoXYZ(const vector<double> HSV) const {
         double var_3 = HSV[2] * (1.0 - HSV[1] * (1.0 - (var_h - var_i)));
         double V = HSV[2];
         if (var_i == 0) { var_r = V; var_g = var_3; var_b = var_1; }
-        else if (var_i == 1) { var_r = var_2; var_g = V; var_b = var_1; }
-        else if (var_i == 2) { var_r = var_1; var_g = V; var_b = var_3; }
-        else if (var_i == 3) { var_r = var_1; var_g = var_2; var_b = V; }
-        else if (var_i == 4) { var_r = var_3; var_g = var_1; var_b = V; }
-        else { var_r = V; var_g = var_1; var_b = var_2; }
+        else 
+             if (var_i == 1) { var_r = var_2; var_g = V; var_b = var_1; }
+        else
+             if (var_i == 2) { var_r = var_1; var_g = V; var_b = var_3; }
+        else
+             if (var_i == 3) { var_r = var_1; var_g = var_2; var_b = V; }
+        else
+             if (var_i == 4) { var_r = var_3; var_g = var_1; var_b = V; }
+        else { 
+             var_r = V; var_g = var_1; var_b = var_2; }
         RGB1[0] = static_cast<int>(var_r * 255.0);
         RGB1[1] = static_cast<int>(var_g * 255.0);
         RGB1[2] = static_cast<int>(var_b * 255.0);
