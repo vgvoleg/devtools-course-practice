@@ -62,9 +62,9 @@ class color_converter {
     double FunctionLAB(const double s) const;
 
  public:
-    color_converter();
+
     color_converter(const vector<int> _Color, string _name_space);
-	color_converter(const vector<double> HSV);
+    color_converter(const vector<double> HSV = {0.0, 0.0, 0.0});
     color_converter(const color_converter&  _color_vector);
     ~color_converter();
     color_converter& operator=(const color_converter&  _color_vector);

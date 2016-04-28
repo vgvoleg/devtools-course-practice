@@ -177,12 +177,6 @@ vector<double> color_converter::LABtoXYZ(const vector<int> LAB) const{
 }
 
 
-
-color_converter::color_converter(){
-    XYZ = new vector<double>(3);
-    *XYZ = { 0.0, 0.0, 0.0 };
-}
-
 color_converter::color_converter(const vector<int> _Color, string _name_space){
     XYZ = new vector<double>(3);
     if (!RightSizeVector(_Color)) throw IncorrectSizeOfVector();
@@ -201,7 +195,7 @@ color_converter::color_converter(const vector<int> _Color, string _name_space){
     }
 }
 
-color_converter::color_converter(const vector<double> HSV){
+color_converter::color_converter(const vector<double> HSV = { 0.0, 0.0, 0.0 }){
     XYZ = new vector<double>(3);
     *XYZ = { 0.0, 0.0, 0.0 };
     if (_name_space = "HSV"){
