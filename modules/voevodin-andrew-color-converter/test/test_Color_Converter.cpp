@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-/*проверка конструкторов*/
+
 TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Vector) {
     // Arrange
     vector<int> _vec({ 0, 0, 0, 0 });
