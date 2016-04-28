@@ -19,7 +19,6 @@ class Parser {
 public:
     Parser(const char* input) : input(input) {}
     Expression parse();
-    double eval(const Expression& e);
 private:
     string parse_token();
     Expression parse_simple_expression();
