@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 #include <iostream>
-#include "include/TStack.hpp"
+#include "include/tstack.hpp"
 
 const int SIZE = 10;
 
