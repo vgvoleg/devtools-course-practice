@@ -8,7 +8,7 @@ enum class Data { OK, ERROR };
 enum class Measure { KELVIN, NEWTON, CELSIUS, FAHRENHEIT };
 
 class ConverterTemp {
-public:
+ public:
     explicit ConverterTemp(const double, const Measure);
     void converter(const Measure);
     Data getRetCode(void);
@@ -17,7 +17,7 @@ public:
     void setValue(const double);
     void setMeasure(const Measure);
 
-private:
+ private:
     Data retcode_;
     double value_;
     Measure measure_;
