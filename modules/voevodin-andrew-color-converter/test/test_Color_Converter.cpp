@@ -216,8 +216,8 @@ TEST(Voevodin_Andrew_Color_Converter, Check_SetLABVector) {
     // Arrange
     vector<int> _vec1({ 80, -120, -20 });
     vector<int> _vec2({ 2, 2, 2 });
-    color_converter cc;
-    color_converter cc1;
+	color_converter cc({1.0, 1.0, 1.0});
+	color_converter cc1({ 1.0, 1.0, 1.0 });
 
     // Act
     cc.SetLABVector(_vec1);
@@ -261,7 +261,7 @@ TEST(Voevodin_Andrew_Color_Converter, Check_HSVToRGB) {
     // Arrange
     vector<double> _vec({ 0.0, 1.0, 1.0 });
     vector<int> _vec1;
-    color_converter cc;
+	color_converter cc({1.0, 1.0, 1.0});
     // Act
     _vec1 = cc.HSVToRGB(_vec);
     // Assert
