@@ -198,13 +198,11 @@ color_converter::color_converter(const vector<int> _Color, string _name_space){
 color_converter::color_converter(const vector<double> HSV = { 0.0, 0.0, 0.0 }){
     XYZ = new vector<double>(3);
     *XYZ = { 0.0, 0.0, 0.0 };
-    if (_name_space = "HSV"){
         if (!RightSizeVector(_Color)) throw IncorrectSizeOfVector();
         else{
             if (!IsHSVinRange(_Color)) throw IncorrectValueOfHSV();
             else *XYZ = HSVtoXYZ(_Color);
         }
-    }
 }
 
 color_converter::color_converter(const color_converter& _color_vector){
