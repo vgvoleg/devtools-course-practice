@@ -146,12 +146,8 @@ TEST(creditPerson, cant_make_installment_more_than_balance_of_debt) {
     CreditPerson example;
     const int exampleCost = 20000;
 
-    // Act
-    double needToPay;
-    example.discoverCost(exampleCost);
-
-    // Assert
-    EXPECT_ANY_THROW(needToPay = example.newInstallment(exampleCost + 1));
+    // Act and Assert
+    EXPECT_ANY_THROW(example.newInstallment(exampleCost + 1));
 }
 
 TEST(creditPerson, can_get_balance_of_debt_and_dicovere_the_cost) {
