@@ -25,7 +25,5 @@ class Moment{
     int getYear() { return year; }
     // set
     void setTime(int day, int month, int year);
-    // show info
-    void printInfo();
 };
 #endif  //  MODULES_ZEMTSOV_ARTEM_CREDITCALC_INCLUDE_MOMENTS_H_

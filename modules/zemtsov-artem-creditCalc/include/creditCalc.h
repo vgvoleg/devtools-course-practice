@@ -36,9 +36,6 @@ class CreditPerson{
     void checkDay(int dayImp);
     void checkMonth(int monthImp);
     void checkYear(int yearImp);
-    // show info
-    void printInfoAboutFinish();
-    void printInfo();  //  print day month and year
 
  public:
     // constructors

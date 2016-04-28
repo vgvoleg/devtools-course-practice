@@ -20,23 +20,6 @@ void CreditPerson::setFinishDay
     finishDay.setTime(dayImp, monthImp, yearImp);
 }
 
-void CreditPerson::printInfo() {
-    std::cout << "Info about your cred" << std::endl
-    << "Your get credit at:" << std::endl;
-    startDay.printInfo();
-    std::cout << "Your procent = " << procent << std::endl
-    << "Your enter = " << yourEnter << std::endl
-    <<"You need to pay = " << needToPay << std::endl
-    <<"";
-}
-
-void CreditPerson::printInfoAboutFinish() {
-    std::cout << "Info about finish" << std::endl
-        <<"You need to pay = "<< needToPay<< std::endl
-        <<"Final day is "<< std::endl;
-    finishDay.printInfo();
-}
-
 void CreditPerson::setProcentByUser(const double procentImp) {
     try {
         if ( (procentImp >= 0) && (procentImp <= 100) )
@@ -66,7 +49,7 @@ double CreditPerson::newInstallment(const double installmentImp) {
             throw 1;
         }
     }
-    return 0.0;
+return 0.0;
 }
 
 double CreditPerson::performTheCalculation() {
@@ -135,7 +118,7 @@ void CreditPerson::setStartTimeByUser
 
 void CreditPerson::setFinishTimeByUser
     (const int creditTimeImp) {
-    creditTime = creditTimeImp;
+    setCreditTime(creditTimeImp);
     try {
         if (creditTime < 1) {
             throw 1;} else {
