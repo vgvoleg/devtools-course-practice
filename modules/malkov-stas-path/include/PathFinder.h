@@ -1,4 +1,7 @@
-#pragma once
+#ifndef PATH_FINDER
+#define PATH_FINDER
+
+#define PATH_NOT_EXISTS -1      // GetDistance возвращает при отсутствии пути к точке
 
 /* Алгоритм Дейкстры.
 С помощью SetGraph передаем указатель на таблицу расстояний между vertice_num вершин, 
@@ -12,9 +15,13 @@ class PathFinder {
     bool* _Visited;                                         // Посещенные вершины
     void UpdateGraph();                                     // Обработка графа
     void Reset();                                           // Сбрасывает все данные
+    void CheckVetricesWithoutPath();                        // Проверка вершин без пути
 public:
     PathFinder();
     PathFinder(int**, int, int = 0);
     void SetGraph(int**, int, int = 0);                     // Установка графа и параметров
     int GetDistance(int);                                   // Получение расстояния
+    int* GetDistances();                                    // Получение всех расстояний
 };
+
+#endif
