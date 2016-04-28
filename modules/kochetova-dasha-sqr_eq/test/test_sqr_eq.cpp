@@ -1,8 +1,7 @@
 // Copyright 2016 Kochetova Dasha
 
-#include <gtest/gtest.h>
-
 #include "include/sqr_eq.h"
+#include <gtest/gtest.h>
 #include <set>
 
 TEST(QuadraticEquationTest, can_create_object_without_parameters_A) {
@@ -210,7 +209,7 @@ TEST(QuadraticEquationTest, solve_viet_without_error) {
 }
 
 TEST(QuadraticEquationTest, can_calculate_parabola_top) {
-    std::array<double,2> top = { 2.5, -0.25 };
+    std::array<double, 2> top = { 2.5, -0.25 };
 
     Equation eq(1, -5, 6);
 
