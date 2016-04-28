@@ -8,17 +8,19 @@ enum class Data { OK, ERROR };
 enum class Measure { KELVIN, NEWTON, CELSIUS, FAHRENHEIT };
 
 class ConverterTemp {
- private:
-    Data retcode_;
-    double value_;
-    Measure measure_;
-
- public:
+public:
     explicit ConverterTemp(const double, const Measure);
     void converter(const Measure);
     Data getRetCode(void);
     double getValue(void)const;
     Measure getMeasure(void)const;
+    void setValue(const double);
+    void setMeasure(const Measure);
+
+private:
+    Data retcode_;
+    double value_;
+    Measure measure_;
 };
 
 #endif  // MODULES_MAKSIMENKO_ALEX_CONVERTERTEMPERATURE_INCLUDE_CONVERTERTEMP_H_

@@ -5,12 +5,14 @@
 
 TEST(ConverterTemperature, Cant_Create_Negative_Kelvin) {
     // Arrange
-    const double value = -1.0;
+    const double value = 23.32e-40;
     const Measure dimension = Measure::KELVIN;
     ConverterTemp temperature(value, dimension);
 
     // Act & Assert
-    EXPECT_EQ(temperature.getRetCode(), Data::ERROR);
+    const Measure dimension1 = Measure::CELSIUS;
+    temperature.converter(dimension1);
+    EXPECT_EQ(temperature.getValue(), value - 273);
 }
 
 TEST(ConverterTemperature, Can_Create_Temperature) {
@@ -330,4 +332,62 @@ TEST(ConverterTemperature, Can_Return_The_Dimension_Of_This_Object) {
     // Assert
     const Measure expected_dimension = Measure::NEWTON;
     EXPECT_EQ(temperature.getMeasure(), expected_dimension);
+}
+
+TEST(ConverterTemperature, Can_Set_The_Value) {
+    // Arrange
+    const double value = 33.0;
+    const Measure dimension = Measure::CELSIUS;
+    ConverterTemp temperature(value, dimension);
+
+    // Act
+    const double result_value = 77.0;
+    temperature.setValue(result_value);
+
+    // Assert
+    const double expected_value = 77.0;
+    EXPECT_EQ(temperature.getValue(), expected_value);
+}
+
+TEST(ConverterTemperature, Cant_Set_Negative_Kelvin) {
+    // Arrange
+    const double value = 33.0;
+    const Measure dimension = Measure::KELVIN;
+    ConverterTemp temperature(value, dimension);
+
+    // Act
+    const double result_value = -7.0;
+    temperature.setValue(result_value);
+
+    // Assert
+    EXPECT_EQ(temperature.getRetCode(), Data::ERROR);
+}
+
+TEST(ConverterTemperature, Can_Set_The_Measure) {
+    // Arrange
+    const double value = 33.0;
+    const Measure dimension = Measure::KELVIN;
+    ConverterTemp temperature(value, dimension);
+
+    // Act
+    const Measure result_dimension = Measure::NEWTON;
+    temperature.setMeasure(result_dimension);
+
+    // Assert
+    const Measure expected_dimension = Measure::NEWTON;
+    EXPECT_EQ(temperature.getMeasure(), expected_dimension);
+}
+
+TEST(ConverterTemperature, Cant_Set_The_Kelvin_To_The_Negative_Value) {
+    // Arrange
+    const double value = -33.0;
+    const Measure dimension = Measure::CELSIUS;
+    ConverterTemp temperature(value, dimension);
+
+    // Act
+    const Measure result_dimension = Measure::KELVIN;
+    temperature.setMeasure(result_dimension);
+
+    // Assert
+    EXPECT_EQ(temperature.getRetCode(), Data::ERROR);
 }

@@ -126,3 +126,19 @@ double ConverterTemp::getValue()const {
 Measure ConverterTemp::getMeasure()const {
     return measure_;
 }
+
+void ConverterTemp::setValue(const double val) {
+    if ((val < 0.0) && (measure_ == Measure::KELVIN)) {
+        retcode_ = Data::ERROR;
+    } else {
+        value_ = val;
+    }
+}
+
+void ConverterTemp::setMeasure(const Measure msr) {
+    if ((value_ < 0.0) && (msr == Measure::KELVIN)) {
+        retcode_ = Data::ERROR;
+    } else {
+        measure_ = msr;
+    }
+}
