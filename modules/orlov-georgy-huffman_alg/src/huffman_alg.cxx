@@ -91,8 +91,7 @@ string Huff::decoding(TableMap Tbl, string str) {
         if (str[i] != '0' && str[i] != '1') {
             cout << "String contains not only 0 or 1" << endl;
             throw 1;
-        }
-        else if (str[i] == '1')
+        } else if (str[i] == '1')
             buf.push_back(1);
         else
             buf.push_back(0);
