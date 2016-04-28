@@ -1,7 +1,9 @@
 // Copyright 2016 Kochetova Dasha
 
+#pragma once
 #include <set>
 #include "include/sqr_eq.h"
+
 #include <gtest/gtest.h>
 
 TEST(QuadraticEquationTest, can_create_object_without_parameters_A) {
