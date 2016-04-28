@@ -36,10 +36,10 @@ DType Equation::Discrim() {
 set<double> Equation::SolveDiscrim() {
     set <double> rootset;
     DType dis = Discrim();
-	if (dis < 0) {
-		//      cout << "The equation has no real roots" << endl;
-		SolveComplex();
-	} else { if (dis > 0) {
+    if (dis < 0) {
+        //      cout << "The equation has no real roots" << endl;
+        SolveComplex();
+    } else { if (dis > 0) {
             double di = sqrt(dis);
             _x1 = (-_b + di) / (2 * _a);
             rootset.insert(_x1);
