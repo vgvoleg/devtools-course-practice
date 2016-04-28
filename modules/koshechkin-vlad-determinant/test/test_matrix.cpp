@@ -249,3 +249,35 @@ TEST(MatrixTest, Throws_When_Get_Too_Big_Col) {
     // Act&Assert
     EXPECT_THROW(m.Get(0, 3), std::invalid_argument);
 }
+
+TEST(MatrixTest, Can_Get_Row) {
+    // Arrange
+    int n = 2;
+    vector<int> v = {1, 8,
+                     1, 5};
+    vector<int> row = {1, 8};
+    Matrix m = Matrix(n, v);
+
+    // Act&Assert
+    EXPECT_EQ(m[0], row);
+}
+
+TEST(MatrixTest, Throws_When_Get_Row_With_Too_Big_Number_Of_Row) {
+    // Arrange
+    int n = 2;
+    vector<int> v = {1, 8, 1, 5};
+    Matrix m = Matrix(n, v);
+
+    // Act&Assert
+    EXPECT_THROW(m[3], std::invalid_argument);
+}
+
+TEST(MatrixTest, Throws_When_Get_Row_With_Negative_Number_Of_Row) {
+    // Arrange
+    int n = 2;
+    vector<int> v = {1, 8, 1, 5};
+    Matrix m = Matrix(n, v);
+
+    // Act&Assert
+    EXPECT_THROW(m[-3], std::invalid_argument);
+}

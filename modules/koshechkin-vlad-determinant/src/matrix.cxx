@@ -27,6 +27,16 @@ Matrix::Matrix(const int count_n, const vector<int> &v) {
     data_ = v;
 }
 
+vector<int> Matrix::operator[](const int row_number) {
+    if (row_number < 0 || row_number >= size_)
+        throw std::invalid_argument("Incorrect row number");
+
+    vector<int> row;
+    for (int j = 0; j < size_; j++)
+        row.push_back(data_[row_number*size_+j]);
+        return row;
+}
+
 const vector<int> &Matrix::to_vector() {
     return data_;
 }
@@ -65,17 +75,17 @@ Matrix Matrix::Minor(const int row, const int col) const {
 }
 
 
-double Matrix::Determinant(const Matrix &a) const {
-    if (a.size_ == 1)
-        return a.Get(0, 0);
+double Matrix::Determinant() const {
+    if (size_ == 1)
+        return Get(0, 0);
 
-    if (a.size_ == 2)
-        return a.Get(0, 0) * a.Get(1, 1) - a.Get(1, 0) * a.Get(0, 1);
+    if (size_ == 2)
+        return Get(0, 0) * Get(1, 1) - Get(1, 0) * Get(0, 1);
 
     double det = 0;
     for (int i = 0; i < size_; i++) {
-        Matrix M = a.Minor(0, i);
-        det = det + (pow(-1, i + 2) * a.Get(0, i) * Determinant(M));
+        Matrix M = Minor(0, i);
+        det = det + (pow(-1, i + 2) * Get(0, i) * M.Determinant());
     }
     return det;
 }

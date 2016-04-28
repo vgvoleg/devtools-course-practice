@@ -17,7 +17,7 @@ TEST(Determinant_properties, Can_Calc_Det_Of_Mat_1x1) {
     vector<int> v = {1};
     Matrix m(n, v);
     // Act
-    double determ = m.Determinant(m);
+    double determ = m.Determinant();
     // Assert
     EXPECT_DOUBLE_EQ(determ, 1);
 }
@@ -29,7 +29,7 @@ TEST(Determinant_properties, Can_Calc_Det_Of_Mat_2x2) {
                      4, 5};
     Matrix m(n, v);
     // Act
-    double determ = m.Determinant(m);
+    double determ = m.Determinant();
     // Assert
     EXPECT_DOUBLE_EQ(determ, -3);
 }
@@ -43,7 +43,7 @@ TEST(Determinant_properties, Can_Calc_Det_Of_Mat_3x3) {
                      7, 8, 1};
     Matrix m(n, v);
     // Act
-    double determ = m.Determinant(m);
+    double determ = m.Determinant();
     // Assert
     EXPECT_DOUBLE_EQ(determ, 24);
 }
@@ -61,8 +61,8 @@ TEST(Determinant_properties,
     Matrix m1(n, v1);
     Matrix m2(n, v2);
     // Act
-    double determ1 = m1.Determinant(m1);
-    double determ2 = m2.Determinant(m2);
+    double determ1 = m1.Determinant();
+    double determ2 = m2.Determinant();
     // Assert
     EXPECT_DOUBLE_EQ(determ1, determ2);
 }
@@ -76,7 +76,7 @@ TEST(Determinant_properties,
                      7, 8, 1};
     Matrix m(n, v);
     // Act
-    double determ = m.Determinant(m);
+    double determ = m.Determinant();
     // Assert
     EXPECT_DOUBLE_EQ(determ, 0);
 }
@@ -89,7 +89,7 @@ TEST(Determinant_properties, Is_Determ_Of_Matrix_With_Multiple_Row_Null) {
                      7, 8, 1};
     Matrix m(n, v);
     // Act
-    double determ = m.Determinant(m);
+    double determ = m.Determinant();
     // Assert
     EXPECT_DOUBLE_EQ(determ, 0);
 }
@@ -102,7 +102,7 @@ TEST(Determinant_properties, Is_Determ_Of_Matrix_E_One) {
                      0, 0, 1};
     Matrix m(n, v);
     // Act
-    double determ = m.Determinant(m);
+    double determ = m.Determinant();
     // Assert
     EXPECT_DOUBLE_EQ(determ, 1);
 }
@@ -121,8 +121,8 @@ TEST(Determinant_properties,
     Matrix m1(n, v1);
     Matrix m2(n, v2);
     // Act
-    double determ1 = m1.Determinant(m1);
-    double determ2 = m2.Determinant(m2);
+    double determ1 = m1.Determinant();
+    double determ2 = m2.Determinant();
     // Assert
     EXPECT_DOUBLE_EQ(determ1, -determ2);
 }
@@ -136,7 +136,7 @@ TEST(Determinant_properties,
                      0, 0, 1};
     Matrix m(n, v);
     // Act
-    double determ = m.Determinant(m);
+    double determ = m.Determinant();
     // Assert
     EXPECT_DOUBLE_EQ(determ, 0);
 }
@@ -155,8 +155,8 @@ TEST(Determinant_properties,
     Matrix m1(n, v1);
     Matrix m2(n, v2);
     // Act
-    double determ1 = m1.Determinant(m1);
-    double determ2 = m2.Determinant(m2);
+    double determ1 = m1.Determinant();
+    double determ2 = m2.Determinant();
     // Assert
     EXPECT_DOUBLE_EQ(2 * determ1, determ2);
 }
