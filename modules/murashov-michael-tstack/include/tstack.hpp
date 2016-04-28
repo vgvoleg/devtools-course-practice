@@ -5,33 +5,33 @@
 
 #include <iostream>
 
-typedef unsigned int size_type;
+typedef unsigned int SizeType;
 
 template <class T>
-class tstack {
+class TStack {
  public:
-    tstack();
-    explicit tstack(const tstack<T>&);
-    ~tstack();
+    TStack();
+    explicit TStack(const TStack<T>&);
+    ~TStack();
 
     void push(const T&);
     void pop(void);
     T top(void) const;
 
-    size_type get_size(void) const;
+    SizeType getSize(void) const;
     bool empty(void) const;
 
-    bool operator==(const tstack<T>&) const;
-    bool operator!=(const tstack<T>&) const;
-    bool operator<=(const tstack<T>&) const;
-    bool operator>=(const tstack<T>&) const;
-    bool operator<(const tstack<T>&) const;
-    bool operator>(const tstack<T>&) const;
-    tstack<T>& operator=(const tstack<T>&);
-    tstack<T>& operator+(const tstack<T>&);
+    bool        operator==  (const TStack<T>&) const;
+    bool        operator!=  (const TStack<T>&) const;
+    bool        operator<=  (const TStack<T>&) const;
+    bool        operator>=  (const TStack<T>&) const;
+    bool        operator<   (const TStack<T>&) const;
+    bool        operator>   (const TStack<T>&) const;
+    TStack<T>&  operator=   (const TStack<T>&);
+    TStack<T>&  operator+   (const TStack<T>&);
 
     template<class V>
-    friend void swap_st(tstack<V>*, tstack<V>*);
+    friend void swap_st(TStack<V>*, TStack<V>*);
 
  protected:
     struct NODE {
@@ -39,16 +39,18 @@ class tstack {
         NODE* next;
     };
 
-    size_type size;
-    NODE* _top;
+    SizeType size_;
+    NODE* top_;
 
     // utility methods
     NODE* create_node(const T& data);
     void del_node(NODE* elem);
 };
 
+
+
 template<class T>
-typename tstack<T>::NODE* tstack<T>::create_node(const T& data) {
+typename TStack<T>::NODE* TStack<T>::create_node(const T& data) {
     NODE* temp = new NODE;
     temp->data = new T;
     *temp->data = data;
@@ -57,8 +59,10 @@ typename tstack<T>::NODE* tstack<T>::create_node(const T& data) {
     return temp;
 }
 
+
+
 template<class T>
-void tstack<T>::del_node(NODE* elem) {
+void TStack<T>::del_node(NODE* elem) {
     if (elem != nullptr) {
         if (elem->data != nullptr)
             delete elem->data;
@@ -67,90 +71,108 @@ void tstack<T>::del_node(NODE* elem) {
     }
 }
 
-template<class T>
-tstack<T>::tstack() : size(0), _top(nullptr) { }
+
 
 template<class T>
-tstack<T>::tstack(const tstack<T>& st) {
-    size = 0;
+TStack<T>::TStack() : size_(0), top_(nullptr) { }
 
-    tstack<T> temp;
-    NODE* elem = st._top;
-    for (size_type i = 0; i < st.size; i++) {
+
+
+template<class T>
+TStack<T>::TStack(const TStack<T>& st) {
+    size_ = 0;
+
+    TStack<T> temp;
+    NODE* elem = st.top_;
+    for (SizeType i = 0; i < st.size_; i++) {
         temp.push(*elem->data);
         elem = elem->next;
     }
 
-    elem = temp._top;
-    for (size_type i = 0; i < temp.size; i++) {
+    elem = temp.top_;
+    for (SizeType i = 0; i < temp.size_; i++) {
         push(*elem->data);
         elem = elem->next;
     }
 }
 
-template<class T>
-tstack<T>::~tstack() {
-    NODE* temp;
-    while (_top != nullptr) {
-        temp = _top->next;
-        del_node(_top);
-        _top = temp;
-    }
-    size = 0;
-}
+
 
 template<class T>
-void tstack<T>::push(const T& data) {
+TStack<T>::~TStack() {
+    NODE* temp;
+    while (top_ != nullptr) {
+        temp = top_->next;
+        del_node(top_);
+        top_ = temp;
+    }
+    size_ = 0;
+}
+
+
+
+template<class T>
+void TStack<T>::push(const T& data) {
     if (!empty()) {
         NODE* temp = create_node(data);
 
-        temp->next = _top;
-        _top = temp;
-        size++;
+        temp->next = top_;
+        top_ = temp;
+        size_++;
     } else {
-        _top = create_node(data);
-        size = 1;
+        top_ = create_node(data);
+        size_ = 1;
     }
 }
 
+
+
 template<class T>
-void tstack<T>::pop(void) {
+void TStack<T>::pop(void) {
     if (!empty()) {
-        NODE* temp = _top;
-        _top = _top->next;
+        NODE* temp = top_;
+        top_ = top_->next;
         del_node(temp);
-        size--;
+        size_--;
     }
 }
 
+
+
 template<class T>
-T tstack<T>::top(void) const {
+T TStack<T>::top(void) const {
     T temp = (T)0;
     if (!empty())
-        temp = *_top->data;
+        temp = *top_->data;
 
     return temp;
 }
 
-template<class T>
-size_type tstack<T>::get_size(void) const {
-    return size;
-}
+
 
 template<class T>
-bool tstack<T>::empty(void) const {
-    return (size == 0);
+SizeType TStack<T>::getSize(void) const {
+    return size_;
 }
 
+
+
 template<class T>
-bool tstack<T>::operator==(const tstack<T>& st) const {
-    if (size != st.size) {
+bool TStack<T>::empty(void) const {
+    return (size_ == 0);
+}
+
+
+
+template<class T>
+bool TStack<T>::operator==(const TStack<T>& st) const {
+    if (size_ != st.size_) {
         return false;
     } else {
-        NODE* temp = _top;
-        NODE* temp_st = st._top;
+        NODE* temp = top_;
+        NODE* temp_st = st.top_;
 
-        for (size_type i = 0; i < size; i++) {
+        for (SizeType i = 0; i < size_; i++) {
             if (*temp->data != *temp_st->data)
                 return false;
 
@@ -162,30 +184,38 @@ bool tstack<T>::operator==(const tstack<T>& st) const {
     return true;
 }
 
+
+
 template<class T>
-bool tstack<T>::operator!=(const tstack<T>& st) const {
+bool TStack<T>::operator!=(const TStack<T>& st) const {
     return (!operator==(st));
 }
 
+
+
 template<class T>
-bool tstack<T>::operator<=(const tstack<T>& st) const {
+bool TStack<T>::operator<=(const TStack<T>& st) const {
     return (operator<(st) || operator==(st));
 }
 
+
+
 template<class T>
-bool tstack<T>::operator>=(const tstack<T>& st) const {
+bool TStack<T>::operator>=(const TStack<T>& st) const {
     return (operator>(st) || operator==(st));
 }
 
+
+
 template<class T>
-bool tstack<T>::operator<(const tstack<T>& st) const {
-    if (size < st.size) {
+bool TStack<T>::operator<(const TStack<T>& st) const {
+    if (size_ < st.size_) {
         return true;
     } else {
-        NODE* temp = _top;
-        NODE* temp_st = st._top;
+        NODE* temp = top_;
+        NODE* temp_st = st.top_;
 
-        for (size_type i = 0; i < size; i++) {
+        for (SizeType i = 0; i < size_; i++) {
             if (*temp->data < *temp_st->data)
                 return true;
 
@@ -197,15 +227,17 @@ bool tstack<T>::operator<(const tstack<T>& st) const {
     return false;
 }
 
+
+
 template<class T>
-bool tstack<T>::operator>(const tstack<T>& st) const {
-    if (size > st.size) {
+bool TStack<T>::operator>(const TStack<T>& st) const {
+    if (size_ > st.size_) {
         return true;
     } else {
-        NODE* temp = _top;
-        NODE* temp_st = st._top;
+        NODE* temp = top_;
+        NODE* temp_st = st.top_;
 
-        for (size_type i = 0; i < size; i++) {
+        for (SizeType i = 0; i < size_; i++) {
             if (*temp->data > *temp_st->data)
                 return true;
 
@@ -217,20 +249,22 @@ bool tstack<T>::operator>(const tstack<T>& st) const {
     return false;
 }
 
+
+
 template<class T>
-tstack<T>& tstack<T>::operator=(const tstack<T>& st) {
+TStack<T>& TStack<T>::operator=(const TStack<T>& st) {
     if (this != &st) {
-        this->~tstack();
+        this->~TStack();
 
-        tstack<T> temp;
-        NODE* elem = st._top;
-        for (size_type i = 0; i < st.size; i++) {
+        TStack<T> temp;
+        NODE* elem = st.top_;
+        for (SizeType i = 0; i < st.size_; i++) {
             temp.push(*elem->data);
             elem = elem->next;
         }
 
-        elem = temp._top;
-        for (size_type i = 0; i < temp.size; i++) {
+        elem = temp.top_;
+        for (SizeType i = 0; i < temp.size_; i++) {
             push(*elem->data);
             elem = elem->next;
         }
@@ -238,19 +272,21 @@ tstack<T>& tstack<T>::operator=(const tstack<T>& st) {
 
     return *this;
 }
+
+
 
 template<class T>
-tstack<T>& tstack<T>::operator+(const tstack<T>& st) {
+TStack<T>& TStack<T>::operator+(const TStack<T>& st) {
     if (!st.empty()) {
-        tstack<T> temp;
-        NODE* elem = st._top;
-        for (size_type i = 0; i < st.size; i++) {
+        TStack<T> temp;
+        NODE* elem = st.top_;
+        for (SizeType i = 0; i < st.size_; i++) {
             temp.push(*elem->data);
             elem = elem->next;
         }
 
-        elem = temp._top;
-        for (size_type i = 0; i < temp.size; i++) {
+        elem = temp.top_;
+        for (SizeType i = 0; i < temp.size_; i++) {
             push(*elem->data);
             elem = elem->next;
         }
@@ -258,11 +294,13 @@ tstack<T>& tstack<T>::operator+(const tstack<T>& st) {
 
     return *this;
 }
+
+
 
 template<class V>
-void swap_st(tstack<V>* st_1, tstack<V>* st_2) {
+void swap_st(TStack<V>* st_1, TStack<V>* st_2) {
     if (st_1 != st_2) {
-        tstack<V> temp(*st_1);
+        TStack<V> temp(*st_1);
         *st_1 = *st_2;
         *st_2 = temp;
     }
