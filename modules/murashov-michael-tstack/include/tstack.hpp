@@ -8,11 +8,11 @@
 typedef unsigned int SizeType;
 
 template <class T>
-class TStack {
+class Stack {
  public:
-    TStack();
-    explicit TStack(const TStack<T>&);
-    ~TStack();
+    Stack();
+    explicit Stack(const Stack<T>&);
+    ~Stack();
 
     void push(const T&);
     void pop(void);
@@ -21,17 +21,17 @@ class TStack {
     SizeType getSize(void) const;
     bool empty(void) const;
 
-    bool        operator==  (const TStack<T>&) const;
-    bool        operator!=  (const TStack<T>&) const;
-    bool        operator<=  (const TStack<T>&) const;
-    bool        operator>=  (const TStack<T>&) const;
-    bool        operator<   (const TStack<T>&) const;
-    bool        operator>   (const TStack<T>&) const;
-    TStack<T>&  operator=   (const TStack<T>&);
-    TStack<T>&  operator+   (const TStack<T>&);
+    bool        operator==  (const Stack<T>&) const;
+    bool        operator!=  (const Stack<T>&) const;
+    bool        operator<=  (const Stack<T>&) const;
+    bool        operator>=  (const Stack<T>&) const;
+    bool        operator<   (const Stack<T>&) const;
+    bool        operator>   (const Stack<T>&) const;
+    Stack<T>&  operator=   (const Stack<T>&);
+    Stack<T>&  operator+   (const Stack<T>&);
 
     template<class V>
-    friend void swap_st(TStack<V>*, TStack<V>*);
+    friend void swap_st(Stack<V>*, Stack<V>*);
 
  protected:
     struct NODE {
@@ -50,7 +50,7 @@ class TStack {
 
 
 template<class T>
-typename TStack<T>::NODE* TStack<T>::create_node(const T& data) {
+typename Stack<T>::NODE* Stack<T>::create_node(const T& data) {
     NODE* temp = new NODE;
     temp->data = new T;
     *temp->data = data;
@@ -62,7 +62,7 @@ typename TStack<T>::NODE* TStack<T>::create_node(const T& data) {
 
 
 template<class T>
-void TStack<T>::del_node(NODE* elem) {
+void Stack<T>::del_node(NODE* elem) {
     if (elem != nullptr) {
         if (elem->data != nullptr)
             delete elem->data;
@@ -74,15 +74,15 @@ void TStack<T>::del_node(NODE* elem) {
 
 
 template<class T>
-TStack<T>::TStack() : size_(0), top_(nullptr) { }
+Stack<T>::Stack() : size_(0), top_(nullptr) { }
 
 
 
 template<class T>
-TStack<T>::TStack(const TStack<T>& st) {
+Stack<T>::Stack(const Stack<T>& st) {
     size_ = 0;
 
-    TStack<T> temp;
+    Stack<T> temp;
     NODE* elem = st.top_;
     for (SizeType i = 0; i < st.size_; i++) {
         temp.push(*elem->data);
@@ -99,7 +99,7 @@ TStack<T>::TStack(const TStack<T>& st) {
 
 
 template<class T>
-TStack<T>::~TStack() {
+Stack<T>::~Stack() {
     NODE* temp;
     while (top_ != nullptr) {
         temp = top_->next;
@@ -112,7 +112,7 @@ TStack<T>::~TStack() {
 
 
 template<class T>
-void TStack<T>::push(const T& data) {
+void Stack<T>::push(const T& data) {
     if (!empty()) {
         NODE* temp = create_node(data);
 
@@ -128,7 +128,7 @@ void TStack<T>::push(const T& data) {
 
 
 template<class T>
-void TStack<T>::pop(void) {
+void Stack<T>::pop(void) {
     if (!empty()) {
         NODE* temp = top_;
         top_ = top_->next;
@@ -140,7 +140,7 @@ void TStack<T>::pop(void) {
 
 
 template<class T>
-T TStack<T>::top(void) const {
+T Stack<T>::top(void) const {
     T temp = (T)0;
     if (!empty())
         temp = *top_->data;
@@ -151,21 +151,21 @@ T TStack<T>::top(void) const {
 
 
 template<class T>
-SizeType TStack<T>::getSize(void) const {
+SizeType Stack<T>::getSize(void) const {
     return size_;
 }
 
 
 
 template<class T>
-bool TStack<T>::empty(void) const {
+bool Stack<T>::empty(void) const {
     return (size_ == 0);
 }
 
 
 
 template<class T>
-bool TStack<T>::operator==(const TStack<T>& st) const {
+bool Stack<T>::operator==(const Stack<T>& st) const {
     if (size_ != st.size_) {
         return false;
     } else {
@@ -187,28 +187,28 @@ bool TStack<T>::operator==(const TStack<T>& st) const {
 
 
 template<class T>
-bool TStack<T>::operator!=(const TStack<T>& st) const {
+bool Stack<T>::operator!=(const Stack<T>& st) const {
     return (!operator==(st));
 }
 
 
 
 template<class T>
-bool TStack<T>::operator<=(const TStack<T>& st) const {
+bool Stack<T>::operator<=(const Stack<T>& st) const {
     return (operator<(st) || operator==(st));
 }
 
 
 
 template<class T>
-bool TStack<T>::operator>=(const TStack<T>& st) const {
+bool Stack<T>::operator>=(const Stack<T>& st) const {
     return (operator>(st) || operator==(st));
 }
 
 
 
 template<class T>
-bool TStack<T>::operator<(const TStack<T>& st) const {
+bool Stack<T>::operator<(const Stack<T>& st) const {
     if (size_ < st.size_) {
         return true;
     } else {
@@ -230,7 +230,7 @@ bool TStack<T>::operator<(const TStack<T>& st) const {
 
 
 template<class T>
-bool TStack<T>::operator>(const TStack<T>& st) const {
+bool Stack<T>::operator>(const Stack<T>& st) const {
     if (size_ > st.size_) {
         return true;
     } else {
@@ -252,11 +252,11 @@ bool TStack<T>::operator>(const TStack<T>& st) const {
 
 
 template<class T>
-TStack<T>& TStack<T>::operator=(const TStack<T>& st) {
+Stack<T>& Stack<T>::operator=(const Stack<T>& st) {
     if (this != &st) {
-        this->~TStack();
+        this->~Stack();
 
-        TStack<T> temp;
+        Stack<T> temp;
         NODE* elem = st.top_;
         for (SizeType i = 0; i < st.size_; i++) {
             temp.push(*elem->data);
@@ -276,9 +276,9 @@ TStack<T>& TStack<T>::operator=(const TStack<T>& st) {
 
 
 template<class T>
-TStack<T>& TStack<T>::operator+(const TStack<T>& st) {
+Stack<T>& Stack<T>::operator+(const Stack<T>& st) {
     if (!st.empty()) {
-        TStack<T> temp;
+        Stack<T> temp;
         NODE* elem = st.top_;
         for (SizeType i = 0; i < st.size_; i++) {
             temp.push(*elem->data);
@@ -298,9 +298,9 @@ TStack<T>& TStack<T>::operator+(const TStack<T>& st) {
 
 
 template<class V>
-void swap_st(TStack<V>* st_1, TStack<V>* st_2) {
+void swap_st(Stack<V>* st_1, Stack<V>* st_2) {
     if (st_1 != st_2) {
-        TStack<V> temp(*st_1);
+        Stack<V> temp(*st_1);
         *st_1 = *st_2;
         *st_2 = temp;
     }
