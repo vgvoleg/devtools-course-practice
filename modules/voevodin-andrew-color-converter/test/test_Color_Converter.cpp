@@ -183,7 +183,7 @@ TEST(Voevodin_Andrew_Color_Converter, Check_SetHSVVector) {
     cc.SetHSVVector(_vec2);
 
     // Assert
-    EXPECT_DOUBLE_EQ(cc.GetHSV()[0], 60.0);
+    EXPECT_DOUBLE_EQ(cc.GetHSV()[0], 10.0);
     EXPECT_DOUBLE_EQ(cc.GetHSV()[1], 1.0);
     EXPECT_DOUBLE_EQ(cc.GetHSV()[2], 1.0);
 }
