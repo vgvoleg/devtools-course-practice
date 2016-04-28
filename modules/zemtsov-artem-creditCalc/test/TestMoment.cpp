@@ -1,7 +1,7 @@
 // Copyright 2016 Zemtsov Artem
 
 #include <gtest/gtest.h>
-#include <include/Moments.h>
+#include <include/moments.h>
 
 TEST(Moments, can_get_and_set_day) {
     // Arrange
