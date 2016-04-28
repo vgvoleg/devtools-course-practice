@@ -166,7 +166,7 @@ vector<double> color_converter::HSVtoXYZ(const vector<double> HSV) const {
     vector<double> RGB(3);
     vector<int> RGB1(3);
     double c = HSV[1] * HSV[2];
-    double x = c*(1 - fabs((HSV[0] / 60.0) - 1));
+    double x = c*(1 - fabs((HSV[0] / 120.0) - 1));
     double m = HSV[2] - c;
     if ((HSV[0] < 60.0) && (HSV[0] >= 0.0)) RGB = { c, x, 0.0 };
     if ((HSV[0] < 120.0) && (HSV[0] >= 60.0)) RGB = { x, c, 0.0 };
