@@ -88,9 +88,10 @@ TEST(FractionTest, Can_Difference_Fraction) {
     // Arrange
     fraction z1(3, 14);
     fraction z2(1, 7);
+    fraction z;
 
     // Act
-    fraction z = z1 - z2;
+    z = z1 - z2;
 
     // Assert
     fraction expected_z(1, 14);
