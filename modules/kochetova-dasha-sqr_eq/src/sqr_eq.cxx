@@ -99,8 +99,7 @@ set<double> Equation::SolveViet() {
                 _x2 = i;
                 rootset.insert(_x2);
                 break;
-            }
-            else
+            } else
                 error = true;
         }
     }
@@ -111,18 +110,17 @@ void Equation::SolveComplex() {
     DType dis = Discrim();
     if (dis < 0) {
         double _im = sqrt(-dis);
-        complex<DType> x1 (-_b / 2, _im / 2);
+        complex<DType> x1(-_b / 2, _im / 2);
         _cx1 = x1;
-        cout << "x1=" <<real(x1)<<"+"<< imag(x1) << "i" << endl;
-        complex<DType> x2 (-_b / 2, -_im / 2);
+        cout << "x1=" << real(x1) << "+"<< imag(x1) << "i" << endl;
+        complex<DType> x2(-_b / 2, -_im / 2);
         _cx2 = x2;
-        cout << "x2=" <<real(x2)<< imag(x2) << "i" << endl;
-    }
-    else
+        cout << "x2=" << real(x2) << imag(x2) << "i" << endl;
+    } else
         error = true; 
 }
 
-array<double,2> Equation::ParabolaTop() {
+array<double, 2> Equation::ParabolaTop() {
     std::array<double, 2> topcoordinat;
     if (_a == 0)
         error = true;
