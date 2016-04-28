@@ -22,6 +22,7 @@ public:
     void SetGraph(int**, int, int = 0);                     // Установка графа и параметров
     int GetDistance(int);                                   // Получение расстояния
     int* GetDistances();                                    // Получение всех расстояний
+    void SetStartVertex(int);                      // Установка начальной вершины
 };
 
 #endif

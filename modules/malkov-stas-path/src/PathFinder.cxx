@@ -41,6 +41,7 @@ void PathFinder::UpdateGraph() {
                 _Distance[j] = _Distance[im] + _Graph[im][j];
         _Visited[im] = true;
     }
+    CheckVetricesWithoutPath();
 }
 
 void PathFinder::CheckVetricesWithoutPath() {
@@ -51,7 +52,6 @@ void PathFinder::CheckVetricesWithoutPath() {
 
 void PathFinder::Reset() {
     if (_IsInitialized) {
-        delete[] _Graph;
         delete _Distance;
         delete _Visited;
     }
@@ -67,6 +67,8 @@ void PathFinder::Reset() {
 int PathFinder::GetDistance(int vertex) {
     if (!_IsInitialized)
         throw std::exception("Not Initialized");
+    if (vertex < 0 || vertex >= _Size)
+        throw std::exception("Vertex Index Out Of Range");
     return _Distance[vertex];
 }
 
@@ -74,4 +76,12 @@ int* PathFinder::GetDistances() {
     if (!_IsInitialized)
         throw std::exception("Not Initialized");
     return _Distance;
+}
+
+void PathFinder::SetStartVertex(int index) {
+    if (!_IsInitialized)
+        throw std::exception("Not Initialized");
+    if (index < 0 || index >= _Size)
+        throw std::exception("Start Vertex Index Out Of Range");
+    SetGraph(_Graph, _Size, index);
 }
