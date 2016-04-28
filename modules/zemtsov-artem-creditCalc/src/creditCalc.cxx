@@ -66,7 +66,7 @@ double CreditPerson::newInstallment(const double installmentImp) {
             throw 1;
         }
     }
-    return NULL;
+    return 0.0;
 }
 
 double CreditPerson::performTheCalculation() {
