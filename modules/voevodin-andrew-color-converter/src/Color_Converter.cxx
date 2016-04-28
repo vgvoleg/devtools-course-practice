@@ -45,7 +45,7 @@ vector<int> color_converter::XYZToRGB(const vector<double> xyz) {
     double var_Z = xyz[2] / 100.0;
 
     double var_R = var_X *  3.2404542 + var_Y * (-1.5371385)
-	    + var_Z * (-0.4985314);
+        + var_Z * (-0.4985314);
     double var_G = var_X * (-0.9693660) + var_Y *  1.87560108
         + var_Z *  0.0415560;
     double var_B = var_X *  0.0556434 + var_Y * (-0.2040259)
@@ -94,8 +94,7 @@ vector<int> color_converter::XYZToLAB(const vector<double> xyz) {
     for (unsigned int i = 0; i < LAB.size(); i++) {
         if (LAB1[i] < 0) {
              LAB[i] = static_cast<int>(LAB1[i] - 0.9);
-        }
-        else {
+        } else {
             LAB[i] = static_cast<int>(LAB1[i] + 0.9);
         }
     }
@@ -110,7 +109,7 @@ vector<double> color_converter::RGBToXYZ(const vector<int> rgb) {
 
     if (var_R > 0.04045) var_R = pow(((var_R + 0.055) / 1.055), 2.4);
     else
-	    var_R = var_R / 12.92;
+        var_R = var_R / 12.92;
     if (var_G > 0.04045) var_G = pow(((var_G + 0.055) / 1.055), 2.4);
     else
         var_G = var_G / 12.92;
@@ -155,8 +154,9 @@ vector<int> color_converter::HSVToRGB(const vector<double> hsv) {
     if (!IncorrectSizeVector(hsv)) {
         throw IncorrectSizeOfVector();
     } else {
-        if (!IsHSVinRange(hsv)) throw IncorrectValueOfHSV();
-        else {
+        if (!IsHSVinRange(hsv)) {
+            throw IncorrectValueOfHSV();
+        } else {
             vector<int> RGB1(3);
             double var_r;
             double var_g;
@@ -172,7 +172,8 @@ vector<int> color_converter::HSVToRGB(const vector<double> hsv) {
                 int var_i = static_cast<int>(var_h);
                 double var_1 = hsv[2] * (1.0 - hsv[1]);
                 double var_2 = hsv[2] * (1.0 - hsv[1] * (var_h - var_i));
-                double var_3 = hsv[2] * (1.0 - hsv[1] * (1.0 - (var_h - var_i)));
+                double var_3 = hsv[2] * (1.0 - hsv[1] * 
+                    (1.0 - (var_h - var_i)));
                 double V = hsv[2];
                 if (var_i == 0) {
                     var_r = V; var_g = var_3; var_b = var_1;
@@ -204,9 +205,10 @@ vector<int> color_converter::HSVToRGB(const vector<double> hsv) {
 vector<int> color_converter::LABToRGB(const vector<int> lab) {
     if (!IncorrectSizeVector(lab)) {
         throw IncorrectSizeOfVector();
-    }
-    else {
-        if (!IsLABinRange(lab)) throw IncorrectValueOfLAB();
+    } else {
+        if (!IsLABinRange(lab)) {
+            throw IncorrectValueOfLAB();
+        }
         else {
             return XYZToRGB(LABToXYZ(lab));
         }
@@ -217,9 +219,10 @@ vector<int> color_converter::LABToRGB(const vector<int> lab) {
 vector<double> color_converter::RGBToHSV(const vector<int> rgb) {
     if (!IncorrectSizeVector(rgb)) {
         throw IncorrectSizeOfVector();
-    }
-    else {
-        if (!IsRGBinRange(rgb)) throw IncorrectValueOfRGB();
+    } else {
+        if (!IsRGBinRange(rgb)) {
+            throw IncorrectValueOfRGB();
+        }
         else {
             vector<double> HSV(3);
             vector<int> RGB1(rgb);
@@ -232,16 +235,15 @@ vector<double> color_converter::RGBToHSV(const vector<int> rgb) {
             double var_Min = 1.0 * RGB1[0] / 255.0;
             double var_Max = 1.0 * RGB1[0] / 255.0;
             for (unsigned int i = 1; i < RGB1.size(); i++) {
-                if (1.0*RGB1[i] / 255.0 < var_Min) var_Min = 1.0*RGB1[i] / 255.0;
-                if (1.0*RGB1[i] / 255.0 > var_Max) var_Max = 1.0*RGB1[i] / 255.0;
+              if (1.0*RGB1[i] / 255.0 < var_Min) var_Min = 1.0*RGB1[i] / 255.0;
+              if (1.0*RGB1[i] / 255.0 > var_Max) var_Max = 1.0*RGB1[i] / 255.0;
             }
             double del_Max = var_Max - var_Min;
             double V = var_Max;
             if (del_Max == 0) {
                 H = 0.0;
                 S = 0.0;
-            }
-            else {
+            } else {
                 S = del_Max / var_Max;
 
                 double del_R = (((var_Max - var_R) / 6.0) +
@@ -270,10 +272,10 @@ vector<double> color_converter::RGBToHSV(const vector<int> rgb) {
 vector<double> color_converter::LABToHSV(const vector<int> lab) {
     if (!IncorrectSizeVector(lab)) {
         throw IncorrectSizeOfVector();
-    }
-    else {
-        if (!IsLABinRange(lab)) throw IncorrectValueOfLAB();
-        else {
+    } else {
+		if (!IsLABinRange(lab)) {
+            throw IncorrectValueOfLAB();
+        } else {
             return RGBToHSV(LABToRGB(lab));
         }
     }
@@ -283,10 +285,10 @@ vector<double> color_converter::LABToHSV(const vector<int> lab) {
 vector<int> color_converter::RGBToLAB(const vector<int> rgb) {
     if (!IncorrectSizeVector(rgb)) {
         throw IncorrectSizeOfVector();
-    }
-    else {
-        if (!IsRGBinRange(rgb)) throw IncorrectValueOfRGB();
-        else {
+    } else {
+        if (!IsRGBinRange(rgb)) {
+            throw IncorrectValueOfRGB();
+        } else {
             return XYZToLAB(RGBToXYZ(rgb));
         }
     }
@@ -295,10 +297,10 @@ vector<int> color_converter::RGBToLAB(const vector<int> rgb) {
 vector<int> color_converter::HSVToLAB(const vector<double> hsv) {
     if (!IncorrectSizeVector(hsv)) {
         throw IncorrectSizeOfVector();
-    }
-    else {
-        if (!IsHSVinRange(hsv)) throw IncorrectValueOfHSV();
-        else {
+    } else {
+        if (!IsHSVinRange(hsv)) {
+            throw IncorrectValueOfHSV();
+        } else {
             return RGBToLAB(HSVToRGB(hsv));
         }
     }
