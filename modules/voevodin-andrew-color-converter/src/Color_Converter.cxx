@@ -175,7 +175,7 @@ vector<double> color_converter::HSVtoXYZ(const vector<double> HSV) const {
     if ((HSV[0] < 300.0) && (HSV[0] >= 240.0)) RGB = { x, 0.0, c };
     if ((HSV[0] <= 360.0) && (HSV[0] >= 300.0)) RGB = { c, 0.0, x };
     for (unsigned int i = 0; i < RGB.size(); i++)
-	     RGB1[i] = static_cast<int>((RGB[i] + m)*255.0 + 0.9);
+        RGB1[i] = static_cast<int>((RGB[i] + m)*255.0 + 0.9);
     return RGBToXYZ(RGB1);
 }
 
@@ -279,7 +279,7 @@ void color_converter::SetHSVVector(const vector<double> HSV) {
        throw IncorrectSizeOfVector();
     } else {
         if (!IsHSVinRange(HSV)) throw IncorrectValueOfHSV();
-        else 
+        else
             *XYZ = HSVtoXYZ(HSV);
     }
 }
