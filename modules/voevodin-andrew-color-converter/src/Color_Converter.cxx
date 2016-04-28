@@ -38,11 +38,6 @@ bool color_converter::IsLABinRange(const vector<int> LAB) const {
     return true;
 }
 
-double color_converter::FunctionLAB(const double s) const {
-    if (s > pow(6.0 / 29.0, 3)) return pow(s, 1.0 / 3.0);
-    return (1.0 / 3.0)*pow(29.0 / 6.0, 2)*s + 4.0 / 29.0;
-}
-
 vector<int> color_converter::XYZtoRGB(const vector<double> _XYZ) const {
     vector<int> RGB(3);
 
@@ -95,8 +90,8 @@ vector<double> color_converter::XYZtoHSV(const vector<double> _XYZ) const {
     double V = var_Max;
 
     if (del_Max == 0) {
-       H = 0;
-       S = 0;
+       H = 0.0;
+       S = 0.0;
      } else {
            S = del_Max / var_Max;
 

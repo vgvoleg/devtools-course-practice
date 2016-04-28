@@ -59,8 +59,6 @@ class color_converter {
     vector<double> HSVtoXYZ(const vector<double> HSV) const;
     vector<double> LABtoXYZ(const vector<int> LAB) const;
 
-    double FunctionLAB(const double s) const;
-
  public:
     color_converter(const vector<int> _Color, string _name_space);
     color_converter(const vector<double> HSV = {0.0, 0.0, 0.0});

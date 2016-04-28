@@ -123,12 +123,18 @@ TEST(Voevodin_Andrew_Color_Converter, Check_GetHSV) {
   vector<double> _vec10;
   vector<double> _vec11({ 0.85, 1.0, 1.0 });
   vector<double> _vec12;
+  vector<double> _vec13({ 0.0, 0.0, 0.0 });
+  vector<double> _vec14;
+  vector<double> _vec15({ 0.2, 0.5, 1.0 });
+  vector<double> _vec16;
   color_converter cc(_vec1);
   color_converter cc1(_vec3);
   color_converter cc2(_vec5);
   color_converter cc3(_vec7);
   color_converter cc4(_vec9);
   color_converter cc5(_vec11);
+  color_converter cc6(_vec13);
+  color_converter cc7(_vec15);
     // Act
   _vec2 = cc.GetHSV();
   _vec4 = cc1.GetHSV();
@@ -136,6 +142,8 @@ TEST(Voevodin_Andrew_Color_Converter, Check_GetHSV) {
   _vec8 = cc3.GetHSV();
   _vec10 = cc4.GetHSV();
   _vec12 = cc5.GetHSV();
+  _vec14 = cc6.GetHSV();
+  _vec16 = cc7.GetHSV();
     // Assert
   EXPECT_NEAR(_vec1[0], _vec2[0], 0.01);
   EXPECT_NEAR(_vec1[1], _vec2[1], 0.01);
@@ -160,6 +168,14 @@ TEST(Voevodin_Andrew_Color_Converter, Check_GetHSV) {
   EXPECT_NEAR(_vec11[0], _vec12[0], 0.01);
   EXPECT_NEAR(_vec11[1], _vec12[1], 0.01);
   EXPECT_NEAR(_vec11[2], _vec12[2], 0.01);
+
+  EXPECT_NEAR(_vec13[0], _vec14[0], 0.01);
+  EXPECT_NEAR(_vec13[1], _vec14[1], 0.01);
+  EXPECT_NEAR(_vec13[2], _vec14[2], 0.01);
+
+  EXPECT_NEAR(_vec15[0], _vec16[0], 0.01);
+  EXPECT_NEAR(_vec15[1], _vec16[1], 0.01);
+  EXPECT_NEAR(_vec15[2], _vec16[2], 0.01);
 }
 
 TEST(Voevodin_Andrew_Color_Converter, Check_GetLAB) {
