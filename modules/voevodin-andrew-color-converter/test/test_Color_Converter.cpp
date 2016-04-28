@@ -1,10 +1,10 @@
 // Copyright 2016 Voevodin Andrew
 
-#include <gtest/gtest.h>
 #include "include/Color_Converter.h"
 #include <math.h>
-#include <string>
 #include <vector>
+#include <string>
+#include <gtest/gtest.h>
 
 
 TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Vector) {
@@ -65,7 +65,7 @@ TEST(Voevodin_Andrew_Color_Converter, Check_Copy_Constructor) {
     // Arrange
     vector<int> _vec1({1, 0, 0});
     color_converter cc(_vec1, "RGB");
-    // Act 
+    // Act
     color_converter cc1(cc);
     // Assert
     EXPECT_DOUBLE_EQ(cc.GetXYZ()[0], cc1.GetXYZ()[0]);
@@ -78,7 +78,7 @@ TEST(Voevodin_Andrew_Color_Converter, Check_Operator_Equal) {
     vector<double> _vec1({ 1.0, 0.0, 0.0 });
     color_converter cc(_vec1);
 
-    // Act 
+    // Act
     color_converter cc1 = cc;
 
     // Assert
@@ -93,7 +93,7 @@ TEST(Voevodin_Andrew_Color_Converter, Check_GetRGB) {
     vector<int> _vec2;
     color_converter cc(_vec1, "RGB");
 
-    // Act 
+    // Act
     _vec2 = cc.GetRGB();
 
     // Assert
@@ -108,7 +108,7 @@ TEST(Voevodin_Andrew_Color_Converter, Check_GetHSV) {
     vector<double> _vec2;
     color_converter cc(_vec1);
 
-    // Act 
+    // Act
     _vec2 = cc.GetHSV();
 
     // Assert
@@ -123,7 +123,7 @@ TEST(Voevodin_Andrew_Color_Converter, Check_GetLAB) {
     vector<int> _vec2;
     color_converter cc(_vec1, "LAB");
 
-    // Act 
+    // Act
     _vec2 = cc.GetLAB();
 
     // Assert
@@ -140,7 +140,7 @@ TEST(Voevodin_Andrew_Color_Converter, Check_SetRGBVector) {
     vector<int> _vec2({ 1, 1, 1 });
     color_converter cc(_vec1);
 
-    // Act 
+    // Act
     cc.SetRGBVector(_vec2);
 
     // Assert
@@ -178,10 +178,10 @@ TEST(Voevodin_Andrew_Color_Converter, Check_SetHSVVector) {
     vector<double> _vec1({ 1.0, 1.0, 1.0 });
     vector<double> _vec2({ 10.0, 1.0, 1.0 });
     color_converter cc(_vec1);
-    
-    // Act 
+
+    // Act
     cc.SetHSVVector(_vec2);
-    
+
     // Assert
     EXPECT_DOUBLE_EQ(cc.GetHSV()[0], _vec2[0]);
     EXPECT_DOUBLE_EQ(cc.GetHSV()[1], _vec2[1]);
@@ -219,7 +219,7 @@ TEST(Voevodin_Andrew_Color_Converter, Check_SetLABVector) {
     color_converter cc;
     color_converter cc1;
 
-    // Act 
+    // Act
     cc.SetLABVector(_vec1);
     cc1.SetLABVector(_vec2);
 
@@ -264,7 +264,7 @@ TEST(Voevodin_Andrew_Color_Converter, Check_HSVToRGB) {
     color_converter cc;
     // Act
     _vec1 = cc.HSVToRGB(_vec);
-    //Assert
+    // Assert
     EXPECT_EQ(_vec1[0], 255);
     EXPECT_EQ(_vec1[1], 0);
     EXPECT_EQ(_vec1[2], 0);
@@ -277,7 +277,7 @@ TEST(Voevodin_Andrew_Color_Converter, Check_LABToRGB) {
     color_converter cc(_vec, "LAB");
     // Act
     _vec1 = cc.LABToRGB(_vec);
-    //Assert
+    // Assert
     EXPECT_EQ(_vec1[0], cc.GetRGB()[0]);
     EXPECT_EQ(_vec1[1], cc.GetRGB()[1]);
     EXPECT_EQ(_vec1[2], cc.GetRGB()[2]);
@@ -291,7 +291,7 @@ TEST(Voevodin_Andrew_Color_Converter, Check_RGBToHSV) {
     color_converter cc(_vec, "RGB");
     // Act
     _vec1 = cc.RGBToHSV(_vec);
-    //Assert
+    // Assert
     EXPECT_DOUBLE_EQ(_vec1[0], 0.0);
     EXPECT_DOUBLE_EQ(_vec1[1], 1.0);
     EXPECT_DOUBLE_EQ(_vec1[2], 1.0);
@@ -304,7 +304,7 @@ TEST(Voevodin_Andrew_Color_Converter, Check_LABToHSV) {
     color_converter cc(_vec, "LAB");
     // Act
     _vec1 = cc.LABToHSV(_vec);
-    //Assert
+    // Assert
     EXPECT_DOUBLE_EQ(_vec1[0], 15.0);
     EXPECT_NEAR(_vec1[1], 0.4776, 0.0001);
     EXPECT_NEAR(_vec1[2], 0.2627, 0.0001);
@@ -318,7 +318,7 @@ TEST(Voevodin_Andrew_Color_Converter, Check_HSVToLAB) {
     color_converter cc(_vec);
     // Act
     _vec1 = cc.HSVToLAB(_vec);
-    //Assert
+    // Assert
     EXPECT_EQ(_vec1[0], 54);
     EXPECT_EQ(_vec1[1], 80);
     EXPECT_EQ(_vec1[2], 68);
@@ -331,7 +331,7 @@ TEST(Voevodin_Andrew_Color_Converter, Check_RGBToLAB) {
     color_converter cc(_vec, "RGB");
     // Act
     _vec1 = cc.RGBToLAB(_vec);
-    //Assert
+    // Assert
     EXPECT_EQ(_vec1[0], 58);
     EXPECT_EQ(_vec1[1], 69);
     EXPECT_EQ(_vec1[2], 69);
