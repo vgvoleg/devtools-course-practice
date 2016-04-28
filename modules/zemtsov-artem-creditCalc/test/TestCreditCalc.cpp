@@ -134,9 +134,8 @@ TEST(creditPerson, can_make_full_pay_installment) {
     const int exampleCost = 20000;
 
     // Act
-    double needToPay;
     example.discoverCost(exampleCost);
-    needToPay = example.newInstallment(exampleCost);
+    example.newInstallment(exampleCost);
 
     // Assert
     EXPECT_EQ(0, example.getBalanceOfTheDebt());
