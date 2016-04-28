@@ -1,45 +1,49 @@
 // Copyright 2016 Voevodin Andrew
 
 #include "include/Color_Converter.h"
-#include <string>
-#include <vector>
 #include <math.h>
+#include <vector>
+#include <string>
 
 using std::string;
 using std::vector;
 
-bool color_converter::RightSizeVector(const vector<double> _vector) const{
+bool color_converter::RightSizeVector(const vector<double> _vector) const {
     if (_vector.size() != 3) return false;
-    else return true;
+    return true;
 }
 
-bool color_converter::RightSizeVector(const vector<int> _vector) const{
+bool color_converter::RightSizeVector(const vector<int> _vector) const {
     if (_vector.size() != 3) return false;
-    else return true;
+    return true;
 }
 
-bool color_converter::IsRGBinRange(const vector<int> RGB) const{
+bool color_converter::IsRGBinRange(const vector<int> RGB) const {
     for (unsigned int i = 0; i < RGB.size(); i++)
-        if ((RGB[i]>255) || (RGB[i]<0)) return false;
+        if ((RGB[i] > 255) || (RGB[i] < 0)) return false;
     return true;
 }
 
-bool color_converter::IsHSVinRange(const vector<double> HSV) const{
-    if ((HSV[0]>=360.0) || (HSV[0]<0.0) || (HSV[1]>1.0) || (HSV[1]<0.0) || (HSV[2]>1.0) || (HSV[2]<0.0)) return false;
+bool color_converter::IsHSVinRange(const vector<double> HSV) const {
+    if ((HSV[0] > = 360.0) || (HSV[0] < 0.0) || 
+       (HSV[1] > 1.0) || (HSV[1] < 0.0) || 
+       (HSV[2] > 1.0) || (HSV[2] < 0.0)) return false;
     return true;
 }
 
-bool color_converter::IsLABinRange(const vector<int> LAB) const{
-    if ((LAB[0]>100) || (LAB[0]<0) || (LAB[1]>128) || (LAB[1]<-127) || (LAB[2]>128) || (LAB[2]<-127)) return false;
+bool color_converter::IsLABinRange(const vector<int> LAB) const {
+    if ((LAB[0] > 100) || (LAB[0] < 0) || 
+        (LAB[1] > 128) || (LAB[1] < -127) || 
+        (LAB[2] > 128) || (LAB[2] < -127)) return false;
     return true;
 }
 
-double color_converter::FunctionLAB(const double s) const{
+double color_converter::FunctionLAB(const double s) const {
     if (s > pow(6.0 / 29.0, 3)) return pow(s, 1.0 / 3.0);
-    else return (1.0 / 3.0)*pow(29.0 / 6.0, 2)*s + 4.0 / 29.0;
+    return (1.0 / 3.0)*pow(29.0 / 6.0, 2)*s + 4.0 / 29.0;
 }
 
-vector<int> color_converter::XYZtoRGB(const vector<double> _XYZ) const{
+vector<int> color_converter::XYZtoRGB(const vector<double> _XYZ) const {
     vector<int> RGB(3);
 
     double	var_X = _XYZ[0] / 100.0;
