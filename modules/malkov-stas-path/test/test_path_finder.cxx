@@ -1,7 +1,8 @@
 // Copyright 2016 Malkov Stanislav
 
 #include <gtest/gtest.h>
-#include "PathFinder.h"
+
+#include "../include/PathFinder.h"
 
 TEST(PathFinder, CanGetDistance) {
     // Arrange
