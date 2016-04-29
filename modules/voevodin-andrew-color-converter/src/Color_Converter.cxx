@@ -158,16 +158,15 @@ vector<int> color_converter::HSVToRGB(const vector<double>& hsv) {
     if (hsv[1] == 0.0) {
        for (size_t i = 0; i < RGB_res.size(); i++)
             RGB_res[i] = hsv[2] * kMaxValueInRGB;
-	}
-	else {
-		double normalized_angle_H = H * 6.0;
-		if (normalized_angle_H == 6.0) normalized_angle_H = 0.0;
-		int normalized_basis_angle_H = static_cast<int>(normalized_angle_H);
-		intermediate_HSV[0] = hsv[2] * (1.0 - hsv[1]);
-		intermediate_HSV[1] = hsv[2] * (1.0 - hsv[1] *
-			(normalized_angle_H - normalized_basis_angle_H));
-		intermediate_HSV[2] = hsv[2] * (1.0 - hsv[1] *
-			(1.0 - (normalized_angle_H - normalized_basis_angle_H)));
+    } else {
+        double normalized_angle_H = H * 6.0;
+        if (normalized_angle_H == 6.0) normalized_angle_H = 0.0;
+        int normalized_basis_angle_H = static_cast<int>(normalized_angle_H);
+        intermediate_HSV[0] = hsv[2] * (1.0 - hsv[1]);
+        intermediate_HSV[1] = hsv[2] * (1.0 - hsv[1] *
+		 (normalized_angle_H - normalized_basis_angle_H));
+        intermediate_HSV[2] = hsv[2] * (1.0 - hsv[1] *
+		 (1.0 - (normalized_angle_H - normalized_basis_angle_H)));
         switch ((normalized_basis_angle_H)) {
         case 0:
             norm_RGB[0] = hsv[2];
