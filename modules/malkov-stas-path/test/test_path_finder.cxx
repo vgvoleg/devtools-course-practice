@@ -18,8 +18,8 @@ TEST(PathFinder, CanGetAllDistances) {
     // Arrange
     int** gr = new int*[2];
     // Act
-    for (int i = 0; i < 2; i++)     // 1 2  1->2:2
-        gr[i] = new int[2]{ 1, 2 }; // 1 2  1->1:0
+    for (int i = 0; i < 2; i++)      // 1 2  1->2:2
+        gr[i] = new int[2]{ 1, 2 };  // 1 2  1->1:0
     PathFinder p(gr, 2, 0);
     int* d = p.GetDistances();
     // Assert
@@ -55,7 +55,7 @@ TEST(PathFinder, CanCheckWhenPathNotExists) {
 TEST(PathFinder, CanInitializeAfterInstantiate) {
     // Arrange
     PathFinder p;
-    int** gr= new int*;
+    int** gr = new int*;
     *gr = new int(0);
     // Act
     p.SetGraph(gr, 1, 0);
@@ -223,7 +223,7 @@ TEST(PathFinder, ThrowsExceptionWhenSetPathToNonInitialzied) {
     EXPECT_ANY_THROW(p.SetGraph(0, 0, 0));
 }
 
-TEST(PathFinder, ThrowsExceptionWhenSetPathWithFromIndexOutOfBounds) {  // Зато название говорящее
+TEST(PathFinder, ThrowsExceptionWhenSetPathWithFromIndexOutOfBounds) {
     // Arrange
     int** gr = new int*;
     *gr = new int(0);
@@ -285,7 +285,7 @@ TEST(PathFinder, ThrowsExceptionWhenSetPathWithTooLargeDistance) {
     EXPECT_ANY_THROW(p.SetPath(0, 0, INT_MAX));
 }
 
-TEST(PathFinder, ThrowsExceptionWhenSetPathToSelfVertexWithDistanceGreaterThanZero) {
+TEST(PathFinder, ThrowsExceptionWhenSetPathToSelfVertexWithPositiveDistance) {
     // Arrange
     int** gr = new int*;
     *gr = new int(0);
