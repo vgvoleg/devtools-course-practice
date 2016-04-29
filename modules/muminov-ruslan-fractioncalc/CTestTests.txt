@@ -44,28 +44,28 @@ add_test(
     COMMAND ${APPLICATION} 2 3 1 6 +
 )
 set_tests_properties (${prefix}_can_Add_Fractions
-  PROPERTIES PASS_REGULAR_EXPRESSION "Numerator = 5 Denomenator = 6")
+  PROPERTIES PASS_REGULAR_EXPRESSION "Numerator = 5 Denominator = 6")
 
 add_test(
     NAME ${prefix}_can_Diff_Fractions
     COMMAND ${APPLICATION} 13 7 10 14 -
 )
 set_tests_properties (${prefix}_can_Diff_Fractions
-  PROPERTIES PASS_REGULAR_EXPRESSION "Numerator = 8 Denomenator = 7")
+  PROPERTIES PASS_REGULAR_EXPRESSION "Numerator = 8 Denominator = 7")
 
 add_test(
     NAME ${prefix}_can_Mult_Fractions
     COMMAND ${APPLICATION} 10 11 3 8 *
 )
 set_tests_properties (${prefix}_can_Mult_Fractions
-  PROPERTIES PASS_REGULAR_EXPRESSION "Numerator = 15 Denomenator = 44")
+  PROPERTIES PASS_REGULAR_EXPRESSION "Numerator = 15 Denominator = 44")
 
 add_test(
     NAME ${prefix}_can_Divide_Fractions
     COMMAND ${APPLICATION} 1 30 1 20 /
 )
 set_tests_properties (${prefix}_can_Divide_Fractions
-  PROPERTIES PASS_REGULAR_EXPRESSION "Numerator = 2 Denomenator = 3")
+  PROPERTIES PASS_REGULAR_EXPRESSION "Numerator = 2 Denominator = 3")
 
 add_test(
     NAME ${prefix}_can_Detect_Divide_By_Zero

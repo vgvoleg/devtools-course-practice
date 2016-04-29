@@ -78,7 +78,7 @@ TEST_F(FractionCalculatorTest, Can_Add_Fractions) {
 
     Act(args);
 
-    Assert("Numerator = 5 Denomenator = 6");
+    Assert("Numerator = 5 Denominator = 6");
 }
 
 TEST_F(FractionCalculatorTest, Can_Diff_Fractions) {
@@ -86,7 +86,7 @@ TEST_F(FractionCalculatorTest, Can_Diff_Fractions) {
 
     Act(args);
 
-    Assert("Numerator = 8 Denomenator = 7");
+    Assert("Numerator = 8 Denominator = 7");
 }
 
 TEST_F(FractionCalculatorTest, Can_Mult_Fractions) {
@@ -94,7 +94,7 @@ TEST_F(FractionCalculatorTest, Can_Mult_Fractions) {
 
     Act(args);
 
-    Assert("Numerator = 15 Denomenator = 44");
+    Assert("Numerator = 15 Denominator = 44");
 }
 
 TEST_F(FractionCalculatorTest, Can_Divide_Fractions) {
@@ -102,7 +102,7 @@ TEST_F(FractionCalculatorTest, Can_Divide_Fractions) {
 
     Act(args);
 
-    Assert("Numerator = 2 Denomenator = 3");
+    Assert("Numerator = 2 Denominator = 3");
 }
 
 TEST_F(FractionCalculatorTest, Can_Detect_Divide_By_Zero) {
