@@ -6,7 +6,7 @@
 
 const int SIZE = 10;
 
-TEST(Stack, check_push_pop_top_of_stack) {
+TEST(Stack, Check_Push_Pop_Top_Of_Stack) {
     // Arrange
     Stack<int> st;
     for (int i = 0; i < SIZE; i++)
@@ -22,7 +22,7 @@ TEST(Stack, check_push_pop_top_of_stack) {
     }
 }
 
-TEST(Stack, can_top_from_empty_stack) {
+TEST(Stack, Can_Top_From_Empty_Stack) {
     // Arrange
     Stack<int> st;
 
@@ -30,7 +30,7 @@ TEST(Stack, can_top_from_empty_stack) {
     EXPECT_EQ(st.top(), 0);
 }
 
-TEST(Stack, check_overload_equality_identical) {
+TEST(Stack, Check_Overload_Equality_Identical) {
     // Arrange
     Stack<int> st;
     Stack<int> extented_st;
@@ -44,7 +44,7 @@ TEST(Stack, check_overload_equality_identical) {
     EXPECT_TRUE(st == extented_st);
 }
 
-TEST(Stack, check_overload_equality_not_identical) {
+TEST(Stack, Check_Overload_Equality_Not_Identical) {
     // Arrange
     Stack<int> st;
     Stack<int> extented_st;
@@ -58,7 +58,7 @@ TEST(Stack, check_overload_equality_not_identical) {
     EXPECT_FALSE(st == extented_st);
 }
 
-TEST(Stack, check_overload_equality_by_size) {
+TEST(Stack, Check_Overload_Equality_By_Size) {
     // Arrange
     Stack<int> st;
     Stack<int> extented_st;
@@ -74,7 +74,7 @@ TEST(Stack, check_overload_equality_by_size) {
     EXPECT_FALSE(st == extented_st);
 }
 
-TEST(Stack, can_create_copy_stack) {
+TEST(Stack, Can_Create_Copy_Stack) {
     // Arrange
     Stack<int> st;
     for (int i = 0; i < SIZE; i++)
@@ -87,7 +87,7 @@ TEST(Stack, can_create_copy_stack) {
     EXPECT_EQ(st, copy_st);
 }
 
-TEST(Stack, check_overload_not_equality_identical) {
+TEST(Stack, Check_Overload_Not_Equality_Identical) {
     // Arrange
     Stack<int> st;
     Stack<int> extented_st;
@@ -101,7 +101,7 @@ TEST(Stack, check_overload_not_equality_identical) {
     EXPECT_FALSE(st != extented_st);
 }
 
-TEST(Stack, check_overload_not_equality_not_identical) {
+TEST(Stack, Check_Overload_Not_Equality_Not_Identical) {
     // Arrange
     Stack<int> st;
     Stack<int> extented_st;
@@ -115,7 +115,7 @@ TEST(Stack, check_overload_not_equality_not_identical) {
     EXPECT_TRUE(st != extented_st);
 }
 
-TEST(Stack, check_overload_not_equality_by_size) {
+TEST(Stack, Check_Overload_Not_Equality_By_Size) {
     // Arrange
     Stack<int> st;
     Stack<int> extented_st;
@@ -131,7 +131,7 @@ TEST(Stack, check_overload_not_equality_by_size) {
     EXPECT_TRUE(st != extented_st);
 }
 
-TEST(Stack, check_overload_assignment) {
+TEST(Stack, Check_Overload_Assignment) {
     // Arrange
     Stack<int> st;
     for (int i = 0; i < SIZE; i++)
@@ -146,7 +146,7 @@ TEST(Stack, check_overload_assignment) {
     EXPECT_EQ(st, extented_st);
 }
 
-TEST(Stack, can_get_size_of_stack) {
+TEST(Stack, Can_Get_Size_Of_Stack) {
     // Arrange
     Stack<int> st;
     for (int i = 0; i < SIZE; i++)
@@ -156,7 +156,7 @@ TEST(Stack, can_get_size_of_stack) {
     EXPECT_EQ(SIZE, st.getSize());
 }
 
-TEST(Stack, check_empty_of_stack) {
+TEST(Stack, Check_Empty_Of_Stack) {
     // Arrange
     Stack<int> st;
 
@@ -164,7 +164,7 @@ TEST(Stack, check_empty_of_stack) {
     EXPECT_TRUE(st.empty());
 }
 
-TEST(Stack, check_not_empty_of_stack) {
+TEST(Stack, Check_Not_Empty_Of_Stack) {
     // Arrange
     Stack<int> st;
     for (int i = 0; i < SIZE; i++)
@@ -174,7 +174,7 @@ TEST(Stack, check_not_empty_of_stack) {
     EXPECT_FALSE(st.empty());
 }
 
-TEST(Stack, check_overload_more_data) {
+TEST(Stack, Check_Overload_More_Data) {
     // Arrange
     Stack<int> st;
     Stack<int> more_st;
@@ -188,7 +188,7 @@ TEST(Stack, check_overload_more_data) {
     EXPECT_TRUE(more_st > st);
 }
 
-TEST(Stack, check_overload_more_size) {
+TEST(Stack, Check_Overload_More_Size) {
     // Arrange
     Stack<int> st;
     Stack<int> more_st;
@@ -204,7 +204,7 @@ TEST(Stack, check_overload_more_size) {
     EXPECT_TRUE(more_st > st);
 }
 
-TEST(Stack, check_overload_less_data) {
+TEST(Stack, Check_Overload_Less_Data) {
     Stack<int> st;
     Stack<int> more_st;
 
@@ -217,7 +217,7 @@ TEST(Stack, check_overload_less_data) {
     EXPECT_TRUE(st < more_st);
 }
 
-TEST(Stack, check_overload_less_size) {
+TEST(Stack, Check_Overload_Less_Size) {
     Stack<int> st;
     Stack<int> more_st;
 
@@ -232,7 +232,7 @@ TEST(Stack, check_overload_less_size) {
     EXPECT_TRUE(st < more_st);
 }
 
-TEST(Stack, check_overload_more_and_equal_not_identical) {
+TEST(Stack, Check_Overload_More_And_Equal_Not_Identical) {
     // Arrange
     Stack<int> st;
     Stack<int> more_st;
@@ -246,7 +246,7 @@ TEST(Stack, check_overload_more_and_equal_not_identical) {
     EXPECT_TRUE(more_st >= st);
 }
 
-TEST(Stack, check_overload_more_and_equal_identical) {
+TEST(Stack, Check_Overload_More_And_Equal_Identical) {
     // Arrange
     Stack<int> st;
     Stack<int> more_st;
@@ -260,7 +260,7 @@ TEST(Stack, check_overload_more_and_equal_identical) {
     EXPECT_TRUE(more_st >= st);
 }
 
-TEST(Stack, check_overload_less_and_equal_not_identical) {
+TEST(Stack, Check_Overload_Less_And_Equal_Not_Identical) {
     // Arrange
     Stack<int> st;
     Stack<int> more_st;
@@ -274,7 +274,7 @@ TEST(Stack, check_overload_less_and_equal_not_identical) {
     EXPECT_TRUE(st <= more_st);
 }
 
-TEST(Stack, check_overload_less_and_equal_identical) {
+TEST(Stack, Check_Overload_Less_And_Equal_Identical) {
     // Arrange
     Stack<int> st;
     Stack<int> more_st;
@@ -288,7 +288,7 @@ TEST(Stack, check_overload_less_and_equal_identical) {
     EXPECT_TRUE(st <= more_st);
 }
 
-TEST(Stack, check_overload_plus) {
+TEST(Stack, Check_Overload_Plus) {
     // Arrange
     Stack<int> st_1;
     Stack<int> st_2;
@@ -310,7 +310,7 @@ TEST(Stack, check_overload_plus) {
     }
 }
 
-TEST(Stack, can_swap_two_stacks) {
+TEST(Stack, Can_Swap_Two_Stacks) {
     // Arrange
     Stack<int> st_1;
     Stack<int> st_2;
