@@ -38,7 +38,7 @@ void PathFinder::UpdateGraph() {
             break;
         int im = index_of_min_distance;
         for (int j = 0; j < _Size; j++)
-            if (im != j && _Graph[im][j] && 
+            if (im != j && _Graph[im][j] &&
                 _Distance[im] + _Graph[im][j] < _Distance[j])
                 _Distance[j] = _Distance[im] + _Graph[im][j];
         _Visited[im] = true;
