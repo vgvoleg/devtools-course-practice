@@ -49,107 +49,164 @@ TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Vector_In_RGBToHSV) {
     EXPECT_THROW(color_converter::RGBToHSV(rgb), IncorrectSizeOfVector);
 }
 
-TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Value_In_HSVToRGB) {
+TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Value1_In_HSVToRGB) {
     // Arrange
-    vector<double> _vec1({ 5.0, 0.0, 0.0 });
-    vector<double> _vec2({ 0.0, 5.0, 0.0 });
-    vector<double> _vec3({ 0.0, 0.0, 5.0 });
+    vector<double> _vec({ 5.0, 0.0, 0.0 });
     // Act & Assert
-    EXPECT_THROW(color_converter::HSVToRGB(_vec1), IncorrectValueOfHSV);
-    EXPECT_THROW(color_converter::HSVToRGB(_vec2), IncorrectValueOfHSV);
-    EXPECT_THROW(color_converter::HSVToRGB(_vec3), IncorrectValueOfHSV);
+    EXPECT_THROW(color_converter::HSVToRGB(_vec), IncorrectValueOfHSV);
 }
 
-TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Value_In_HSVToLAB) {
+TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Value2_In_HSVToRGB) {
     // Arrange
-    vector<double> _vec1({ 5.0, 0.0, 0.0 });
-    vector<double> _vec2({ 0.0, 5.0, 0.0 });
-    vector<double> _vec3({ 0.0, 0.0, 5.0 });
+    vector<double> _vec({ 0.0, 5.0, 0.0 });
     // Act & Assert
-    EXPECT_THROW(color_converter::HSVToLAB(_vec1), IncorrectValueOfHSV);
-    EXPECT_THROW(color_converter::HSVToLAB(_vec2), IncorrectValueOfHSV);
-    EXPECT_THROW(color_converter::HSVToLAB(_vec3), IncorrectValueOfHSV);
+    EXPECT_THROW(color_converter::HSVToRGB(_vec), IncorrectValueOfHSV);
 }
 
-TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Value_Vector_LABToRGB) {
+TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Value3_In_HSVToRGB) {
     // Arrange
-    vector<int> _vec1({ -1, 0, 0 });
-    vector<int> _vec2({ 0, 200, 0 });
-    vector<int> _vec3({ 0, 0, 200 });
+    vector<double> _vec({ 0.0, 0.0, 5.0 });
     // Act & Assert
-    EXPECT_THROW(color_converter::LABToRGB(_vec1), IncorrectValueOfLAB);
-    EXPECT_THROW(color_converter::LABToRGB(_vec2), IncorrectValueOfLAB);
-    EXPECT_THROW(color_converter::LABToRGB(_vec3), IncorrectValueOfLAB);
+    EXPECT_THROW(color_converter::HSVToRGB(_vec), IncorrectValueOfHSV);
 }
 
-TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Value_Vector_LABToHSV) {
+TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Value1_In_HSVToLAB) {
     // Arrange
-    vector<int> _vec1({ -1, 0, 0 });
-    vector<int> _vec2({ 0, 200, 0 });
-    vector<int> _vec3({ 0, 0, 200 });
+    vector<double> _vec({ 5.0, 0.0, 0.0 });
     // Act & Assert
-    EXPECT_THROW(color_converter::LABToHSV(_vec1), IncorrectValueOfLAB);
-    EXPECT_THROW(color_converter::LABToHSV(_vec2), IncorrectValueOfLAB);
-    EXPECT_THROW(color_converter::LABToHSV(_vec3), IncorrectValueOfLAB);
+    EXPECT_THROW(color_converter::HSVToLAB(_vec), IncorrectValueOfHSV);
 }
 
-TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Value_Vector_RGBToLAB) {
+TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Value2_In_HSVToLAB) {
     // Arrange
-    vector<int> _vec1({ -1, 0, 0 });
-    vector<int> _vec2({ 0, -1, 0 });
-    vector<int> _vec3({ 0, 0, -1 });
+    vector<double> _vec({ 0.0, 5.0, 0.0 });
     // Act & Assert
-    EXPECT_THROW(color_converter::RGBToLAB(_vec1), IncorrectValueOfRGB);
-    EXPECT_THROW(color_converter::RGBToLAB(_vec2), IncorrectValueOfRGB);
-    EXPECT_THROW(color_converter::RGBToLAB(_vec3), IncorrectValueOfRGB);
+    EXPECT_THROW(color_converter::HSVToLAB(_vec), IncorrectValueOfHSV);
 }
 
-TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Value_Vector_RGBToHSV) {
+TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Value3_In_HSVToLAB) {
     // Arrange
-    vector<int> _vec1({ -1, 0, 0 });
-    vector<int> _vec2({ 0, -1, 0 });
-    vector<int> _vec3({ 0, 0, -1 });
+    vector<double> _vec({ 0.0, 0.0, 5.0 });
     // Act & Assert
-    EXPECT_THROW(color_converter::RGBToHSV(_vec1), IncorrectValueOfRGB);
-    EXPECT_THROW(color_converter::RGBToHSV(_vec2), IncorrectValueOfRGB);
-    EXPECT_THROW(color_converter::RGBToHSV(_vec3), IncorrectValueOfRGB);
+    EXPECT_THROW(color_converter::HSVToLAB(_vec), IncorrectValueOfHSV);
+}
+
+TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Value1_Vector_LABToRGB) {
+    // Arrange
+    vector<int> _vec({ -1, 0, 0 });
+    // Act & Assert
+    EXPECT_THROW(color_converter::LABToRGB(_vec), IncorrectValueOfLAB);
+}
+
+TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Value2_Vector_LABToRGB) {
+    // Arrange
+    vector<int> _vec({ 0, 200, 0 });
+    // Act & Assert
+    EXPECT_THROW(color_converter::LABToRGB(_vec), IncorrectValueOfLAB);
+}
+
+TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Value3_Vector_LABToRGB) {
+    // Arrange
+    vector<int> _vec({ 0, 0, 200 });
+    // Act & Assert
+    EXPECT_THROW(color_converter::LABToRGB(_vec), IncorrectValueOfLAB);
+}
+
+TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Value1_Vector_LABToHSV) {
+    // Arrange
+    vector<int> _vec({ -1, 0, 0 });
+    // Act & Assert
+    EXPECT_THROW(color_converter::LABToHSV(_vec), IncorrectValueOfLAB);
+}
+
+TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Value2_Vector_LABToHSV) {
+    // Arrange
+    vector<int> _vec({ 0, 200, 0 });
+    // Act & Assert
+    EXPECT_THROW(color_converter::LABToHSV(_vec), IncorrectValueOfLAB);
+}
+
+TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Value3_Vector_LABToHSV) {
+    // Arrange
+    vector<int> _vec({ 0, 0, 200 });
+    // Act & Assert
+    EXPECT_THROW(color_converter::LABToHSV(_vec), IncorrectValueOfLAB);
+}
+
+TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Value1_Vector_RGBToLAB) {
+    // Arrange
+    vector<int> _vec({ -1, 0, 0 });
+    // Act & Assert
+    EXPECT_THROW(color_converter::RGBToLAB(_vec), IncorrectValueOfRGB);
+}
+
+TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Value2_Vector_RGBToLAB) {
+    // Arrange
+    vector<int> _vec({ 0, -1, 0 });
+    // Act & Assert
+    EXPECT_THROW(color_converter::RGBToLAB(_vec), IncorrectValueOfRGB);
+}
+
+TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Value3_Vector_RGBToLAB) {
+    // Arrange
+    vector<int> _vec({ 0, 0, -1 });
+    // Act & Assert
+    EXPECT_THROW(color_converter::RGBToLAB(_vec), IncorrectValueOfRGB);
+}
+
+TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Value1_Vector_RGBToHSV) {
+    // Arrange
+    vector<int> _vec({ -1, 0, 0 });
+    // Act & Assert
+    EXPECT_THROW(color_converter::RGBToHSV(_vec), IncorrectValueOfRGB);
+}
+
+TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Value2_Vector_RGBToHSV) {
+    // Arrange
+    vector<int> _vec({ 0, -1, 0 });
+    // Act & Assert
+    EXPECT_THROW(color_converter::RGBToHSV(_vec), IncorrectValueOfRGB);
+}
+
+TEST(Voevodin_Andrew_Color_Converter, Check_Incorrect_Value3_Vector_RGBToHSV) {
+    // Arrange
+    vector<int> _vec({ 0, 0, -1 });
+    // Act & Assert
+    EXPECT_THROW(color_converter::RGBToHSV(_vec), IncorrectValueOfRGB);
 }
 
 TEST(Voevodin_Andrew_Color_Converter, Check_HSVToRGB) {
     // Arrange
     vector<double> hsv{ 0.0, 1.0, 1.0 };
-    vector<int> rgb;
+    vector<int> rgb(3);
+    vector<int> rgb_res{ 255, 0, 0};
     // Act
     rgb = color_converter::HSVToRGB(hsv);
     // Assert
-    EXPECT_EQ(rgb[0], 255);
-    EXPECT_EQ(rgb[1], 0);
-    EXPECT_EQ(rgb[2], 0);
+    EXPECT_EQ(rgb, rgb_res);
 }
 
 TEST(Voevodin_Andrew_Color_Converter, Check_LABToRGB) {
     // Arrange
     vector<int> lab{ 20, 10, 18 };
     vector<int> rgb;
+    vector<int> rgb_res{ 197, 6, 2 };
     // Act
     rgb = color_converter::LABToRGB(lab);
     // Assert
-    EXPECT_EQ(rgb[0], 69);
-    EXPECT_EQ(rgb[1], 43);
-    EXPECT_EQ(rgb[2], 23);
+    EXPECT_EQ(rgb, rgb_res);
 }
 
 
 TEST(Voevodin_Andrew_Color_Converter, Check_RGBToHSV) {
     // Arrange
     vector<double> hsv;
-    vector<int> rgb({ 255, 0, 0 });
+    vector<int> rgb{ 255, 0, 0 };
+    vector<double> hsv_res{ 0.0, 1.0, 1.0 };
     // Act
     hsv = color_converter::RGBToHSV(rgb);
     // Assert
-    EXPECT_DOUBLE_EQ(hsv[0], 0.0);
-    EXPECT_DOUBLE_EQ(hsv[1], 1.0);
-    EXPECT_DOUBLE_EQ(hsv[2], 1.0);
+    EXPECT_EQ(hsv, hsv_res);
 }
 
 TEST(Voevodin_Andrew_Color_Converter, Check_LABToHSV) {
@@ -159,9 +216,9 @@ TEST(Voevodin_Andrew_Color_Converter, Check_LABToHSV) {
     // Act
     hsv = color_converter::LABToHSV(lab);
     // Assert
-    EXPECT_NEAR(hsv[0], 0.04167, 0.001);
-    EXPECT_NEAR(hsv[1], 0.4776, 0.0001);
-    EXPECT_NEAR(hsv[2], 0.2627, 0.0001);
+    EXPECT_NEAR(hsv[0], 0.001745, 0.00001);
+    EXPECT_NEAR(hsv[1], 0.979487, 0.00001);
+    EXPECT_NEAR(hsv[2], 0.7647, 0.00001);
 }
 
 
@@ -172,9 +229,9 @@ TEST(Voevodin_Andrew_Color_Converter, Check_HSVToLAB) {
     // Act
     lab = color_converter::HSVToLAB(hsv);
     // Assert
-    EXPECT_EQ(lab[0], 54);
+    EXPECT_EQ(lab[0], 53);
     EXPECT_EQ(lab[1], 80);
-    EXPECT_EQ(lab[2], 68);
+    EXPECT_EQ(lab[2], 67);
 }
 
 TEST(Voevodin_Andrew_Color_Converter, Check_RGBToLAB) {
@@ -184,7 +241,7 @@ TEST(Voevodin_Andrew_Color_Converter, Check_RGBToLAB) {
     // Act
     lab = color_converter::RGBToLAB(rgb);
     // Assert
-    EXPECT_EQ(lab[0], 58);
-    EXPECT_EQ(lab[1], 69);
+    EXPECT_EQ(lab[0], 57);
+    EXPECT_EQ(lab[1], 68);
     EXPECT_EQ(lab[2], 69);
 }

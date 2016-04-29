@@ -37,26 +37,26 @@ class IncorrectSizeOfVector :public std::runtime_error {
 
 class color_converter {
  public:
-    static vector<int> HSVToRGB(const vector<double> hsv);
-    static vector<int> LABToRGB(const vector<int> lab);
+    static vector<int> HSVToRGB(const vector<double>& hsv);
+    static vector<int> LABToRGB(const vector<int>& lab);
 
-    static vector<double> RGBToHSV(const vector<int> rgb);
-    static vector<double> LABToHSV(const vector<int> lab);
+    static vector<double> RGBToHSV(const vector<int>& rgb);
+    static vector<double> LABToHSV(const vector<int>& lab);
 
-    static vector<int> RGBToLAB(const vector<int> rgb);
-    static vector<int> HSVToLAB(const vector<double> hsv);
+    static vector<int> RGBToLAB(const vector<int>& rgb);
+    static vector<int> HSVToLAB(const vector<double>& hsv);
 
  private:
-    static bool IncorrectSizeVector(const vector<double> vector);
-    static bool IncorrectSizeVector(const vector<int> vector);
-    static bool IsRGBinRange(const vector<int> rgb);
-    static bool IsHSVinRange(const vector<double> hsv);
-    static bool IsLABinRange(const vector<int> lab);
+    static bool IncorrectSizeVector(const vector<double>& vector);
+    static bool IncorrectSizeVector(const vector<int>& vector);
+    static bool IsRGBVectorinRange(const vector<int>& rgb);
+    static bool IsHSVVectorinRange(const vector<double>& hsv);
+    static bool IsLABVectorinRange(const vector<int>& lab);
 
-    static vector<int> XYZToRGB(const vector<double> xyz);
-    static vector<int> XYZToLAB(const vector<double> xyz);
+    static vector<int> XYZToRGB(const vector<double>& xyz);
+    static vector<int> XYZToLAB(const vector<double>& xyz);
 
-    static vector<double> RGBToXYZ(const vector<int> rgb);
-    static vector<double> LABToXYZ(const vector<int> lab);
+    static vector<double> RGBToXYZ(const vector<int>& rgb);
+    static vector<double> LABToXYZ(const vector<int>& lab);
 };
 #endif  // MODULES_VOEVODIN_ANDREW_COLOR_CONVERTER_INCLUDE_COLOR_CONVERTER_H_
