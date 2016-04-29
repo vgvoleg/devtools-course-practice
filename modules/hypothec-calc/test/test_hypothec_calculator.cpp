@@ -63,7 +63,7 @@ TEST(HypothecCalculatorTest, Can_Use_Init_Constructor) {
     EXPECT_EQ(first_payment, calc.getFirstPayment());
 }
 
-TEST(HypothecCalculatorTest, Test_Init_Constructor_Invalid_Property_Cost) {
+TEST(HypothecCalculatorTest, Cannot_Create_With_Invalid_Property_Cost) {
     // Arrange
     int property_cost = -2000000;
     int first_payment = 500000;
@@ -75,7 +75,7 @@ TEST(HypothecCalculatorTest, Test_Init_Constructor_Invalid_Property_Cost) {
             HypothecCalculator(property_cost, first_payment, term, percent));
 }
 
-TEST(HypothecCalculatorTest, Test_Init_Constructor_Invalid_First_Payment) {
+TEST(HypothecCalculatorTest, Cannot_Create_With_Invalid_First_Payment) {
     // Arrange
     int property_cost = 2000000;
     int first_payment = -500000;
@@ -88,7 +88,7 @@ TEST(HypothecCalculatorTest, Test_Init_Constructor_Invalid_First_Payment) {
 }
 
 TEST(HypothecCalculatorTest,
-        Test_Init_Constructor_First_Payment_Lesser_Than_Property_Cost) {
+			Cannot_Create_With_First_Payment_Lesser_Than_Property_Cost) {
     // Arrange
     int property_cost = 2000000;
     int first_payment = 5000000;
@@ -100,7 +100,7 @@ TEST(HypothecCalculatorTest,
             HypothecCalculator(property_cost, first_payment, term, percent));
 }
 
-TEST(HypothecCalculatorTest, Test_Init_Constructor_Invalid_Percent) {
+TEST(HypothecCalculatorTest, Cannot_Create_With_Invalid_Percent) {
     // Arrange
     int property_cost = 2000000;
     int first_payment = 500000;
@@ -112,7 +112,7 @@ TEST(HypothecCalculatorTest, Test_Init_Constructor_Invalid_Percent) {
             HypothecCalculator(property_cost, first_payment, term, percent));
 }
 
-TEST(HypothecCalculatorTest, Test_Init_Constructor_Invalid_Percent_2) {
+TEST(HypothecCalculatorTest, Cannot_Create_With_Invalid_Percent_2) {
     // Arrange
     int property_cost = 2000000;
     int first_payment = 500000;
@@ -124,7 +124,7 @@ TEST(HypothecCalculatorTest, Test_Init_Constructor_Invalid_Percent_2) {
             HypothecCalculator(property_cost, first_payment, term, percent));
 }
 
-TEST(HypothecCalculatorTest, Test_Init_Constructor_Invalid_Term) {
+TEST(HypothecCalculatorTest, Cannot_Create_With_Invalid_Term) {
     // Arrange
     int property_cost = 2000000;
     int first_payment = 500000;
@@ -136,7 +136,7 @@ TEST(HypothecCalculatorTest, Test_Init_Constructor_Invalid_Term) {
             HypothecCalculator(property_cost, first_payment, term, percent));
 }
 
-TEST(HypothecCalculatorTest, Test_Init_Constructor_Invalid_Term_2) {
+TEST(HypothecCalculatorTest, Cannot_Create_With_Invalid_Term_2) {
     // Arrange
     int property_cost = 2000000;
     int first_payment = 500000;
