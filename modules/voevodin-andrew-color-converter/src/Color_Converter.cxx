@@ -75,7 +75,7 @@ vector<int> color_converter::XYZToRGB(const vector<double>& xyz) {
             norm_RGB[i] = 12.92 * norm_RGB[i];
     }
 
-    for (size_t i = 0; i < norm_XYZ.size(); i++){
+    for (size_t i = 0; i < norm_XYZ.size(); i++) {
         RGB[i] = static_cast<int>(norm_RGB[i] * kMaxValueInRGB + 0.5);
     }
     return RGB;
@@ -160,7 +160,8 @@ vector<int> color_converter::HSVToRGB(const vector<double>& hsv) {
             RGB_res[i] = hsv[2] * kMaxValueInRGB;
     } else {
         double normalized_angle_H = hsv[0] * 6.0;
-        int normalized_basis_angle_H = static_cast<int>(normalized_angle_H + 0.5);
+        int normalized_basis_angle_H = 
+                       static_cast<int>(normalized_angle_H + 0.5);
         if (normalized_basis_angle_H == 6) normalized_angle_H = 0;
         intermediate_HSV[0] = hsv[2] * (1.0 - hsv[1]);
         intermediate_HSV[1] = hsv[2] * (1.0 - hsv[1] *
