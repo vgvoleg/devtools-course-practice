@@ -32,7 +32,7 @@ string Huff::printTable() {
     for (auto& itr : getTable()) {
         result += itr.first;
         result.append(": ");
-        for (auto& vitr : itr.second) {
+        for (auto vitr : itr.second) {
             if (vitr == 0)
                 result.append("0");
             else
