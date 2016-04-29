@@ -69,10 +69,10 @@ vector<int> color_converter::XYZToRGB(const vector<double>& xyz) {
             norm_RGB[i] = norm_RGB[i] + norm_XYZ[j] * kMatrCoefXYZToRGB[i][j];
 
     for (size_t i = 0; i < norm_XYZ.size(); i++) {
-        if (norm_RGB[0] > kEpsilon_In_XYZToRGB)
-           norm_RGB[0] = 1.055 * pow(norm_RGB[0], (1.0 / 2.4)) - 0.055;
+        if (norm_RGB[i] > kEpsilon_In_XYZToRGB)
+           norm_RGB[i] = 1.055 * pow(norm_RGB[i], (1.0 / 2.4)) - 0.055;
         else
-            norm_RGB[0] = 12.92 * norm_RGB[0];
+            norm_RGB[i] = 12.92 * norm_RGB[i];
     }
 
     for (size_t i = 0; i < norm_XYZ.size(); i++)
@@ -164,9 +164,9 @@ vector<int> color_converter::HSVToRGB(const vector<double>& hsv) {
         int normalized_basis_angle_H = static_cast<int>(normalized_angle_H);
         intermediate_HSV[0] = hsv[2] * (1.0 - hsv[1]);
         intermediate_HSV[1] = hsv[2] * (1.0 - hsv[1] *
-		 (normalized_angle_H - normalized_basis_angle_H));
+           (normalized_angle_H - normalized_basis_angle_H));
         intermediate_HSV[2] = hsv[2] * (1.0 - hsv[1] *
-		 (1.0 - (normalized_angle_H - normalized_basis_angle_H)));
+           (1.0 - (normalized_angle_H - normalized_basis_angle_H)));
         switch ((normalized_basis_angle_H)) {
         case 0:
             norm_RGB[0] = hsv[2];
