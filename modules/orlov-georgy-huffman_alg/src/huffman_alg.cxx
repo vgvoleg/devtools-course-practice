@@ -87,7 +87,6 @@ void Huff::buildTable(Huff::Node* root) {
 string Huff::decoding(TableMap Tbl, string str) {
     string result;
     vector<bool> buf;
-
     for (unsigned int i = 0; i < str.size(); i++) {
         if (str[i] != '0' && str[i] != '1') {
             cout << "String contains not only 0 or 1" << endl;
