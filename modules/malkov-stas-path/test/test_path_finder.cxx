@@ -4,317 +4,292 @@
 
 #include "../include/PathFinder.h"
 
-TEST(PathFinder, CanGetDistance) {
+TEST(PathFinder, Can_Get_Distance) {
     // Arrange
-    int** gr;
-    gr = new int*;
-    *gr = new int(0);
-    // Act
-    // Assert
-    PathFinder p(gr, 1, 0);
-    ASSERT_EQ(p.GetDistance(0), 0);
+    int** graph;
+    graph = new int*;
+    *graph = new int(0);
+    // Act & Assert
+    PathFinder pathFinder(graph, 1, 0);
+    EXPECT_EQ(pathFinder.GetDistance(0), 0);
 }
 
-TEST(PathFinder, CanGetAllDistances) {
+TEST(PathFinder, Can_Get_All_Distances) {
     // Arrange
-    int** gr = new int*[2];
+    int** graph = new int*[2];
     // Act
     for (int i = 0; i < 2; i++)      // 1 2  1->2:2
-        gr[i] = new int[2]{ 1, 2 };  // 1 2  1->1:0
-    PathFinder p(gr, 2, 0);
-    int* d = p.GetDistances();
+        graph[i] = new int[2]{ 1, 2 };  // 1 2  1->1:0
+    PathFinder pathFinder(graph, 2, 0);
+    int* d = pathFinder.GetDistances();
     // Assert
     EXPECT_EQ(d[0], 0);
     EXPECT_EQ(d[1], 2);
 }
 
-TEST(PathFinder, CanGetShortestPath) {
+TEST(PathFinder, Can_Get_Shortest_Path) {
     // Arrange
-    int** gr = new int*[3];
+    int** graph = new int*[3];
     // Act
     for (int i = 0; i < 3; i++)
-        gr[i] = new int[3]{ 0, 0, 0 };
-    gr[0][1] = 3;
-    gr[1][2] = 5;
-    gr[0][2] = 6;
+        graph[i] = new int[3]{ 0, 0, 0 };
+    graph[0][1] = 3;
+    graph[1][2] = 5;
+    graph[0][2] = 6;
     // Assert
-    PathFinder p(gr, 3, 0);
-    EXPECT_EQ(p.GetDistance(2), 6);
+    PathFinder pathFinder(graph, 3, 0);
+    EXPECT_EQ(pathFinder.GetDistance(2), 6);
 }
 
-TEST(PathFinder, CanCheckWhenPathNotExists) {
+TEST(PathFinder, Can_Check_When_Path_Not_Exists) {
     // Arrange
-    int** gr = new int*[2];
+    int** graph = new int*[2];
     for (int i = 0; i < 2; i++)
-        gr[i] = new int[2]{ 0, 0 };
-    PathFinder p(gr, 2, 0);
-    // Act
-    // Assert
-    EXPECT_EQ(p.GetDistance(1), PATH_NOT_EXISTS);
+        graph[i] = new int[2]{ 0, 0 };
+    PathFinder pathFinder(graph, 2, 0);
+    // Act & Assert
+    EXPECT_EQ(pathFinder.GetDistance(1), PathFinder::PATH_NOT_EXISTS);
 }
 
-TEST(PathFinder, CanInitializeAfterInstantiate) {
+TEST(PathFinder, Can_Initialize_After_Instantiate) {
     // Arrange
-    PathFinder p;
-    int** gr = new int*;
-    *gr = new int(0);
+    PathFinder pathFinder;
+    int** graph = new int*;
+    *graph = new int(0);
     // Act
-    p.SetGraph(gr, 1, 0);
+    pathFinder.SetGraph(graph, 1, 0);
     // Assert
-    EXPECT_EQ(p.GetDistance(0), 0);
+    EXPECT_EQ(pathFinder.GetDistance(0), 0);
 }
 
-TEST(PathFinder, CanReInitialize) {
+TEST(PathFinder, Can_Re_Initialize) {
     // Arrange
-    PathFinder p;
-    int** gr1 = new int*;
-    *gr1 = new int(0);
-    int** gr2 = new int*[2];
+    PathFinder pathFinder;
+    int** graph1 = new int*;
+    *graph1 = new int(0);
+    int** graph2 = new int*[2];
     for (int i = 0; i < 2; i++)
-        gr2[i] = new int[2]{ 1, 2 };
+        graph2[i] = new int[2]{ 1, 2 };
     // Act
-    p.SetGraph(gr1, 1, 0);
-    p.SetGraph(gr2, 2, 0);
+    pathFinder.SetGraph(graph1, 1, 0);
+    pathFinder.SetGraph(graph2, 2, 0);
     // Assert
-    EXPECT_EQ(p.GetDistance(1), 2);
+    EXPECT_EQ(pathFinder.GetDistance(1), 2);
 }
 
-TEST(PathFinder, CanSetStartVertex) {
+TEST(PathFinder, Can_Set_Start_Vertex) {
     // Arrange
-    int** gr = new int*[3];
+    int** graph = new int*[3];
     // Act
     for (int i = 0; i < 3; i++)
-        gr[i] = new int[3]{ 0, 0, 0 };
-    gr[0][1] = 3;
-    gr[1][2] = 5;
-    gr[0][2] = 6;
+        graph[i] = new int[3]{ 0, 0, 0 };
+    graph[0][1] = 3;
+    graph[1][2] = 5;
+    graph[0][2] = 6;
     // Assert
-    PathFinder p(gr, 3, 0);
-    EXPECT_EQ(p.GetDistance(2), 6);
-    p.SetStartVertex(1);
-    EXPECT_EQ(p.GetDistance(2), 5);
+    PathFinder pathFinder(graph, 3, 0);
+    EXPECT_EQ(pathFinder.GetDistance(2), 6);
+    pathFinder.SetStartVertex(1);
+    EXPECT_EQ(pathFinder.GetDistance(2), 5);
 }
 
-TEST(PathFinder, CanSetPath) {
+TEST(PathFinder, Can_Set_Path) {
     // Arrange
-    int** gr = new int*;
-    *gr = new int(0);
-    PathFinder p(gr, 1, 0);
-    // Act
-    // Assert
-    EXPECT_NO_THROW(p.SetPath(0, 0, 0));
+    int** graph = new int*;
+    *graph = new int(0);
+    PathFinder pathFinder(graph, 1, 0);
+    // Act & Assert
+    EXPECT_NO_THROW(pathFinder.SetPath(0, 0, 0));
 }
 
-TEST(PathFinder, CanSetPathToSelfVertexEqualZero) {
+TEST(PathFinder, Can_Set_Path_To_Self_Vertex_Equal_Zero) {
     // Arrange
-    int** gr = new int*;
-    *gr = new int(0);
-    PathFinder p(gr, 1, 0);
-    // Act
-    // Assert
-    EXPECT_NO_THROW(p.SetPath(0, 0, 0));
+    int** graph = new int*;
+    *graph = new int(0);
+    PathFinder pathFinder(graph, 1, 0);
+    // Act & Assert
+    EXPECT_NO_THROW(pathFinder.SetPath(0, 0, 0));
 }
 
-TEST(PathFinder, CanFindShortestPathAfterSettingNewPath) {
+TEST(PathFinder, Can_Find_Shortest_Path_After_Setting_New_Path) {
     // Arrange
-    int** gr = new int*[3];
+    int** graph = new int*[3];
     // Act
     for (int i = 0; i < 3; i++)
-        gr[i] = new int[3]{ 0, 0, 0 };
-    gr[0][1] = 3;
-    gr[1][2] = 5;
+        graph[i] = new int[3]{ 0, 0, 0 };
+    graph[0][1] = 3;
+    graph[1][2] = 5;
     // Assert
-    PathFinder p(gr, 3, 0);
-    EXPECT_EQ(p.GetDistance(2), 8);
-    p.SetPath(0, 2, 6);
-    EXPECT_EQ(p.GetDistance(2), 6);
+    PathFinder pathFinder(graph, 3, 0);
+    EXPECT_EQ(pathFinder.GetDistance(2), 8);
+    pathFinder.SetPath(0, 2, 6);
+    EXPECT_EQ(pathFinder.GetDistance(2), 6);
 }
 
-TEST(PathFinder, ThrowsExceptionWhenGetDistanceNotInitialized) {
+TEST(PathFinder, Throws_Exception_When_Get_Distance_Not_Initialized) {
     // Arrange
-    PathFinder p;
-    // Act
-    // Assert
-    EXPECT_ANY_THROW(p.GetDistance(0));
+    PathFinder pathFinder;
+    // Act & Assert
+    EXPECT_ANY_THROW(pathFinder.GetDistance(0));
 }
 
-TEST(PathFinder, ThrowsExceptionWhenGetDistancesNotInitialized) {
+TEST(PathFinder, Throws_Exception_When_Get_Distances_Not_Initialized) {
     // Arrange
-    PathFinder p;
-    // Act
-    // Assert
-    EXPECT_ANY_THROW(p.GetDistances());
+    PathFinder pathFinder;
+    // Act & Assert
+    EXPECT_ANY_THROW(pathFinder.GetDistances());
 }
 
-TEST(PathFinder, ThrowsExceptionWithNullGraph) {
-    // Arrange
-    // Act
-    // Assert
-    EXPECT_ANY_THROW(PathFinder p(0, 0, 0));
+TEST(PathFinder, Throws_Exception_With_Null_Graph) {
+    // Arrange & Act & Assert
+    EXPECT_ANY_THROW(PathFinder pathFinder(0, 0, 0));
 }
 
-TEST(PathFinder, ThrowsExceptionWithNegativeSize) {
+TEST(PathFinder, Throws_Exception_With_Negative_Size) {
     // Arrange
-    PathFinder p;
-    int** gr = new int*;
-    *gr = new int(0);
-    // Act
-    // Assert
-    EXPECT_ANY_THROW(p.SetGraph(gr, -1, 0));
+    PathFinder pathFinder;
+    int** graph = new int*;
+    *graph = new int(0);
+    // Act & Assert
+    EXPECT_ANY_THROW(pathFinder.SetGraph(graph, -1, 0));
 }
 
-TEST(PathFinder, ThrowsExceptionWithNegativeStartIndex) {
+TEST(PathFinder, Throws_Exception_With_Negative_Start_Index) {
     // Arrange
-    PathFinder p;
-    int** gr = new int*;
-    *gr = new int(0);
-    // Act
-    // Assert
-    EXPECT_ANY_THROW(p.SetGraph(gr, 1, -1));
+    PathFinder pathFinder;
+    int** graph = new int*;
+    *graph = new int(0);
+    // Act & Assert
+    EXPECT_ANY_THROW(pathFinder.SetGraph(graph, 1, -1));
 }
 
-TEST(PathFinder, ThrowsExceptionWithStartIndexOutOfRange) {
+TEST(PathFinder, Throws_Exception_With_Start_Index_Out_Of_Range) {
     // Arrange
-    PathFinder p;
-    int** gr = new int*;
-    *gr = new int(0);
-    // Act
-    // Assert
-    EXPECT_ANY_THROW(p.SetGraph(gr, 1, 5));
+    PathFinder pathFinder;
+    int** graph = new int*;
+    *graph = new int(0);
+    // Act & Assert
+    EXPECT_ANY_THROW(pathFinder.SetGraph(graph, 1, 5));
 }
 
-TEST(PathFinder, ThrowExceptionWhenSetNewStartVertexToNonInitialized) {
+TEST(PathFinder, Throws_Exception_Set_New_Start_Vertex_To_Non_Initialized) {
     // Arrange
-    PathFinder p;
-    // Act
-    // Assert
-    EXPECT_ANY_THROW(p.SetStartVertex(0));
+    PathFinder pathFinder;
+    // Act & Assert
+    EXPECT_ANY_THROW(pathFinder.SetStartVertex(0));
 }
 
-TEST(PathFinder, ThrowExceptionWithSettingNewStartVertexNegative) {
+TEST(PathFinder, Throws_Exception_With_Setting_New_Start_Vertex_Negative) {
     // Arrange
-    int** gr = new int*;
-    *gr = new int(0);
-    PathFinder p(gr, 1, 0);
-    // Act
-    // Assert
-    EXPECT_ANY_THROW(p.SetStartVertex(-1));
+    int** graph = new int*;
+    *graph = new int(0);
+    PathFinder pathFinder(graph, 1, 0);
+    // Act & Assert
+    EXPECT_ANY_THROW(pathFinder.SetStartVertex(-1));
 }
 
-TEST(PathFinder, ThrowExceptionWithSettingNewStartVertexOutOfRange) {
+TEST(PathFinder, Throws_Exception_With_New_Start_Vertex_Out_Of_Range) {
     // Arrange
-    int** gr = new int*;
-    *gr = new int(0);
-    PathFinder p(gr, 1, 0);
-    // Act
-    // Assert
-    EXPECT_ANY_THROW(p.SetStartVertex(5));
+    int** graph = new int*;
+    *graph = new int(0);
+    PathFinder pathFinder(graph, 1, 0);
+    // Act & Assert
+    EXPECT_ANY_THROW(pathFinder.SetStartVertex(5));
 }
 
-TEST(PathFinder, ThrowsExceptionWithDistanceIndexOutOfRange) {
+TEST(PathFinder, Throws_Exception_With_Distance_Index_Out_Of_Range) {
     // Arrange
-    int** gr = new int*;
-    *gr = new int(0);
-    PathFinder p(gr, 1, 0);
-    // Act
-    // Assert
-    EXPECT_ANY_THROW(p.GetDistance(2));
+    int** graph = new int*;
+    *graph = new int(0);
+    PathFinder pathFinder(graph, 1, 0);
+    // Act & Assert
+    EXPECT_ANY_THROW(pathFinder.GetDistance(2));
 }
 
-TEST(PathFinder, ThrowsExceptionWhenSetPathToNonInitialzied) {
+TEST(PathFinder, Throws_Exception_When_Set_Path_To_Non_Initialzied) {
     // Arrange
-    PathFinder p;
-    // Act
-    // Assert
-    EXPECT_ANY_THROW(p.SetPath(0, 0, 0));
+    PathFinder pathFinder;
+    // Act & Assert
+    EXPECT_ANY_THROW(pathFinder.SetPath(0, 0, 0));
 }
 
-TEST(PathFinder, ThrowsExceptionWhenSetPathWithFromIndexOutOfBounds) {
+TEST(PathFinder, Throws_Exception_Set_Path_With_From_Index_Out_Of_Bounds) {
     // Arrange
-    int** gr = new int*;
-    *gr = new int(0);
-    PathFinder p(gr, 1, 0);
-    // Act
-    // Assert
-    EXPECT_ANY_THROW(p.SetPath(10, 0, 5));
+    int** graph = new int*;
+    *graph = new int(0);
+    PathFinder pathFinder(graph, 1, 0);
+    // Act & Assert
+    EXPECT_ANY_THROW(pathFinder.SetPath(10, 0, 5));
 }
 
-TEST(PathFinder, ThrowsExceptionWhenSetPathWithFromIndexNegative) {
+TEST(PathFinder, Throws_Exception_When_Set_Path_With_From_Index_Negative) {
     // Arrange
-    int** gr = new int*;
-    *gr = new int(0);
-    PathFinder p(gr, 1, 0);
-    // Act
-    // Assert
-    EXPECT_ANY_THROW(p.SetPath(-1, 0, 5));
+    int** graph = new int*;
+    *graph = new int(0);
+    PathFinder pathFinder(graph, 1, 0);
+    // Act & Assert
+    EXPECT_ANY_THROW(pathFinder.SetPath(-1, 0, 5));
 }
 
-TEST(PathFinder, ThrowsExceptionWhenSetPathWithToIndexOutOfBounds) {
+TEST(PathFinder, Throws_Exception_When_Set_Path_With_To_Index_Out_Of_Bounds) {
     // Arrange
-    int** gr = new int*;
-    *gr = new int(0);
-    PathFinder p(gr, 1, 0);
-    // Act
-    // Assert
-    EXPECT_ANY_THROW(p.SetPath(0, 10, 5));
+    int** graph = new int*;
+    *graph = new int(0);
+    PathFinder pathFinder(graph, 1, 0);
+    // Act & Assert
+    EXPECT_ANY_THROW(pathFinder.SetPath(0, 10, 5));
 }
 
-TEST(PathFinder, ThrowsExceptionWhenSetPathWithToIndexNegative) {
+TEST(PathFinder, Throws_Exception_When_Set_Path_With_To_Index_Negative) {
     // Arrange
-    int** gr = new int*;
-    *gr = new int(0);
-    PathFinder p(gr, 1, 0);
-    // Act
-    // Assert
-    EXPECT_ANY_THROW(p.SetPath(0, -1, 5));
+    int** graph = new int*;
+    *graph = new int(0);
+    PathFinder pathFinder(graph, 1, 0);
+    // Act & Assert
+    EXPECT_ANY_THROW(pathFinder.SetPath(0, -1, 5));
 }
 
-TEST(PathFinder, ThrowsExceptionWhenSetPathWithNegativeDistance) {
+TEST(PathFinder, Throws_Exception_When_Set_Path_With_Negative_Distance) {
     // Arrange
-    int** gr = new int*[2];
+    int** graph = new int*[2];
     for (int i = 0; i < 2; i++)
-        gr[i] = new int[2]{ 0, 0 };
-    PathFinder p(gr, 2, 0);
-    // Act
-    // Assert
-    EXPECT_ANY_THROW(p.SetPath(0, 1, -1));
+        graph[i] = new int[2]{ 0, 0 };
+    PathFinder pathFinder(graph, 2, 0);
+    // Act & Assert
+    EXPECT_ANY_THROW(pathFinder.SetPath(0, 1, -1));
 }
 
-TEST(PathFinder, ThrowsExceptionWhenSetPathWithTooLargeDistance) {
+TEST(PathFinder, Throws_Exception_When_Set_Path_With_Too_Large_Distance) {
     // Arrange
-    int** gr = new int*[2];
+    int** graph = new int*[2];
     for (int i = 0; i < 2; i++)
-        gr[i] = new int[2]{ 0, 0 };
-    PathFinder p(gr, 2, 0);
-    // Act
-    // Assert
-    EXPECT_ANY_THROW(p.SetPath(0, 0, MAX_DISTANCE));
+        graph[i] = new int[2]{ 0, 0 };
+    PathFinder pathFinder(graph, 2, 0);
+    // Act & Assert
+    EXPECT_ANY_THROW(pathFinder.SetPath(0, 0, PathFinder::MAX_DISTANCE));
 }
 
-TEST(PathFinder, ThrowsExceptionWhenSetPathToSelfVertexWithPositiveDistance) {
+TEST(PathFinder, Throws_Exception_Set_Path_To_Self_With_Positive_Distance) {
     // Arrange
-    int** gr = new int*;
-    *gr = new int(0);
-    PathFinder p(gr, 1, 0);
-    // Act
-    // Assert
-    EXPECT_ANY_THROW(p.SetPath(0, 0, 1));
+    int** graph = new int*;
+    *graph = new int(0);
+    PathFinder pathFinder(graph, 1, 0);
+    // Act & Assert
+    EXPECT_ANY_THROW(pathFinder.SetPath(0, 0, 1));
 }
 
-TEST(PathFinder, CanDeleteNotInitialized) {
+TEST(PathFinder, Can_Delete_Not_Initialized) {
     // Arrange
-    PathFinder* p = new PathFinder();
-    // Act
-    // Assert
-    EXPECT_NO_THROW(delete p);
+    PathFinder* pathFinder = new PathFinder();
+    // Act & Assert
+    EXPECT_NO_THROW(delete pathFinder);
 }
 
-TEST(PathFinder, CanDeleteInitialized) {
+TEST(PathFinder, Can_Delete_Initialized) {
     // Arrange
-    int** gr = new int*;
-    *gr = new int(0);
-    PathFinder* p = new PathFinder(gr, 1, 0);
-    // Act
-    // Assert
-    EXPECT_NO_THROW(delete p);
+    int** graph = new int*;
+    *graph = new int(0);
+    PathFinder* pathFinder = new PathFinder(graph, 1, 0);
+    // Act & Assert
+    EXPECT_NO_THROW(delete pathFinder);
 }
