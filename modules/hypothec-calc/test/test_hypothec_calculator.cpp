@@ -71,8 +71,9 @@ TEST(HypothecCalculatorTest, Cannot_Create_With_Invalid_Property_Cost) {
     int term = 120;
 
     // Act & Assert
-    EXPECT_ANY_THROW(
-            HypothecCalculator(property_cost, first_payment, term, percent));
+    EXPECT_THROW(
+            HypothecCalculator(property_cost, first_payment, term, percent),
+            std::invalid_argument);
 }
 
 TEST(HypothecCalculatorTest, Cannot_Create_With_Invalid_First_Payment) {
@@ -83,8 +84,9 @@ TEST(HypothecCalculatorTest, Cannot_Create_With_Invalid_First_Payment) {
     int term = 120;
 
     // Act & Assert
-    EXPECT_ANY_THROW(
-            HypothecCalculator(property_cost, first_payment, term, percent));
+    EXPECT_THROW(
+            HypothecCalculator(property_cost, first_payment, term, percent),
+            std::invalid_argument);
 }
 
 TEST(HypothecCalculatorTest,
@@ -96,8 +98,9 @@ TEST(HypothecCalculatorTest,
     int term = 120;
 
     // Act & Assert
-    EXPECT_ANY_THROW(
-            HypothecCalculator(property_cost, first_payment, term, percent));
+    EXPECT_THROW(
+            HypothecCalculator(property_cost, first_payment, term, percent),
+            std::invalid_argument);
 }
 
 TEST(HypothecCalculatorTest, Cannot_Create_With_Invalid_Percent) {
@@ -108,8 +111,9 @@ TEST(HypothecCalculatorTest, Cannot_Create_With_Invalid_Percent) {
     int term = 120;
 
     // Act & Assert
-    EXPECT_ANY_THROW(
-            HypothecCalculator(property_cost, first_payment, term, percent));
+    EXPECT_THROW(
+            HypothecCalculator(property_cost, first_payment, term, percent),
+            std::invalid_argument);
 }
 
 TEST(HypothecCalculatorTest, Cannot_Create_With_Invalid_Percent_2) {
@@ -120,8 +124,9 @@ TEST(HypothecCalculatorTest, Cannot_Create_With_Invalid_Percent_2) {
     int term = 120;
 
     // Act & Assert
-    EXPECT_ANY_THROW(
-            HypothecCalculator(property_cost, first_payment, term, percent));
+    EXPECT_THROW(
+            HypothecCalculator(property_cost, first_payment, term, percent),
+            std::invalid_argument);
 }
 
 TEST(HypothecCalculatorTest, Cannot_Create_With_Invalid_Term) {
@@ -132,8 +137,9 @@ TEST(HypothecCalculatorTest, Cannot_Create_With_Invalid_Term) {
     int term = -120;
 
     // Act & Assert
-    EXPECT_ANY_THROW(
-            HypothecCalculator(property_cost, first_payment, term, percent));
+    EXPECT_THROW(
+            HypothecCalculator(property_cost, first_payment, term, percent),
+            std::invalid_argument);
 }
 
 TEST(HypothecCalculatorTest, Cannot_Create_With_Invalid_Term_2) {
@@ -144,8 +150,9 @@ TEST(HypothecCalculatorTest, Cannot_Create_With_Invalid_Term_2) {
     int term = 1200;
 
     // Act & Assert
-    EXPECT_ANY_THROW(
-            HypothecCalculator(property_cost, first_payment, term, percent));
+    EXPECT_THROW(
+            HypothecCalculator(property_cost, first_payment, term, percent),
+            std::invalid_argument);
 }
 
 TEST(HypothecCalculatorTest, Can_Set_Property_Cost) {
@@ -202,7 +209,7 @@ TEST(HypothecCalculatorTest, Cannot_Set_Invalid_Property_Cost) {
     HypothecCalculator calc = HypothecCalculator();
 
     // Act & Assert
-    EXPECT_ANY_THROW(calc.setPropertyCost(property_cost));
+    EXPECT_THROW(calc.setPropertyCost(property_cost), std::invalid_argument);
 }
 
 TEST(HypothecCalculatorTest, Cannot_Set_Invalid_Percent) {
@@ -211,7 +218,7 @@ TEST(HypothecCalculatorTest, Cannot_Set_Invalid_Percent) {
     HypothecCalculator calc = HypothecCalculator();
 
     // Act & Assert
-    EXPECT_ANY_THROW(calc.setPercent(percent));
+    EXPECT_THROW(calc.setPercent(percent), std::invalid_argument);
 }
 
 TEST(HypothecCalculatorTest, Cannot_Set_Invalid_Percent_2) {
@@ -220,7 +227,7 @@ TEST(HypothecCalculatorTest, Cannot_Set_Invalid_Percent_2) {
     HypothecCalculator calc = HypothecCalculator();
 
     // Act & Assert
-    EXPECT_ANY_THROW(calc.setPercent(percent));
+    EXPECT_THROW(calc.setPercent(percent), std::invalid_argument);
 }
 
 TEST(HypothecCalculatorTest, Cannot_Set_Invalid_Term) {
@@ -229,7 +236,7 @@ TEST(HypothecCalculatorTest, Cannot_Set_Invalid_Term) {
     HypothecCalculator calc = HypothecCalculator();
 
     // Act & Assert
-    EXPECT_ANY_THROW(calc.setTerm(term));
+    EXPECT_THROW(calc.setTerm(term), std::invalid_argument);
 }
 
 TEST(HypothecCalculatorTest, Cannot_Set_Invalid_Term_2) {
@@ -238,7 +245,7 @@ TEST(HypothecCalculatorTest, Cannot_Set_Invalid_Term_2) {
     HypothecCalculator calc = HypothecCalculator();
 
     // Act & Assert
-    EXPECT_ANY_THROW(calc.setTerm(term));
+    EXPECT_THROW(calc.setTerm(term), std::invalid_argument);
 }
 
 TEST(HypothecCalculatorTest, Cannot_Set_Invalid_First_Payment) {
@@ -247,7 +254,7 @@ TEST(HypothecCalculatorTest, Cannot_Set_Invalid_First_Payment) {
     HypothecCalculator calc = HypothecCalculator();
 
     // Act & Assert
-    EXPECT_ANY_THROW(calc.setFirstPayment(first_payment));
+    EXPECT_THROW(calc.setFirstPayment(first_payment), std::invalid_argument);
 }
 
 TEST(HypothecCalculatorTest,
@@ -259,7 +266,7 @@ TEST(HypothecCalculatorTest,
     calc.setFirstPayment(HypothecCalculator::DEFAULT_PROPERTY_COST * 2);
 
     // Assert
-    EXPECT_ANY_THROW(calc.calculate());
+    EXPECT_THROW(calc.calculate(), std::invalid_argument);
 }
 
 TEST(HypothecCalculatorTest, Can_Calculate) {
