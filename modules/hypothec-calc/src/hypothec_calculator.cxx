@@ -54,7 +54,7 @@ void HypothecCalculator::calculate() {
     }
 
     double monthly_percent = percent_ / (100.0 * 12.0);
-    double k = std::pow(1 + monthly_percent, term_);
+    double k = pow(1 + monthly_percent, term_);
     monthly_payment_ = hypothec_amount * ((monthly_percent * k) / (k - 1));
     overpayment_ = monthly_payment_ * term_ - hypothec_amount;
 }
