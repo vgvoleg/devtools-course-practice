@@ -218,9 +218,9 @@ vector<double> color_converter::RGBToHSV(const vector<int>& rgb) {
     double CurrentMinValueInRGB = 1.0 * RGB_res[0] / MaxValueInRGB;
     double CurrentMaxValueInRGB = 1.0 * RGB_res[0] / MaxValueInRGB;
     for (unsigned int i = 1; i < RGB_res.size(); i++) {
-      if (1.0*RGB_res[i] / 255.0 < CurrentMinValueInRGB)
+        if (1.0*RGB_res[i] / MaxValueInRGB < CurrentMinValueInRGB)
          CurrentMinValueInRGB = 1.0*RGB_res[i] / MaxValueInRGB;
-      if (1.0*RGB_res[i] / 255.0 > CurrentMaxValueInRGB)
+        if (1.0*RGB_res[i] / MaxValueInRGB > CurrentMaxValueInRGB)
          CurrentMaxValueInRGB = 1.0*RGB_res[i] / MaxValueInRGB;
     }
     double DifMaxInRGB = CurrentMaxValueInRGB - CurrentMinValueInRGB;
