@@ -190,7 +190,7 @@ TEST(Voevodin_Andrew_Color_Converter, Check_LABToRGB) {
     // Arrange
     vector<int> lab{ 20, 10, 18 };
     vector<int> rgb;
-    vector<int> rgb_res{ 197, 6, 2 };
+    vector<int> rgb_res{ 69, 42, 22 };
     // Act
     rgb = color_converter::LABToRGB(lab);
     // Assert
@@ -216,9 +216,9 @@ TEST(Voevodin_Andrew_Color_Converter, Check_LABToHSV) {
     // Act
     hsv = color_converter::LABToHSV(lab);
     // Assert
-    EXPECT_NEAR(hsv[0], 0.001745, 0.00001);
-    EXPECT_NEAR(hsv[1], 0.979487, 0.00001);
-    EXPECT_NEAR(hsv[2], 0.7647, 0.00001);
+    EXPECT_NEAR(hsv[0], 0.040404, 0.00001);
+    EXPECT_NEAR(hsv[1], 0.492537, 0.00001);
+    EXPECT_NEAR(hsv[2], 0.262745, 0.00001);
 }
 
 
