@@ -79,7 +79,7 @@ TEST(PathFinder, CanReInitialize) {
     EXPECT_EQ(p.GetDistance(1), 2);
 }
 
-TEST(PathFinder, CanSetStartIndex) {
+TEST(PathFinder, CanSetStartVertex) {
     // Arrange
     int** gr = new int*[3];
     // Act
@@ -188,9 +188,9 @@ TEST(PathFinder, ThrowsExceptionWithStartIndexOutOfRange) {
 
 TEST(PathFinder, ThrowExceptionWithSettingNewStartIndexNegative) {
     // Arrange
-    PathFinder p;
     int** gr = new int*;
     *gr = new int(0);
+    PathFinder p(gr, 1, 0);
     // Act
     // Assert
     EXPECT_ANY_THROW(p.SetStartVertex(-1));
@@ -198,9 +198,9 @@ TEST(PathFinder, ThrowExceptionWithSettingNewStartIndexNegative) {
 
 TEST(PathFinder, ThrowExceptionWithSettingNewStartIndexOutOfRange) {
     // Arrange
-    PathFinder p;
     int** gr = new int*;
     *gr = new int(0);
+    PathFinder p(gr, 1, 0);
     // Act
     // Assert
     EXPECT_ANY_THROW(p.SetStartVertex(5));
@@ -221,7 +221,7 @@ TEST(PathFinder, ThrowsExceptionWhenSetPathToNonInitialzied) {
     PathFinder p;
     // Act
     // Assert
-    EXPECT_ANY_THROW(p.SetGraph(0, 0, 0));
+    EXPECT_ANY_THROW(p.SetPath(0, 0, 0));
 }
 
 TEST(PathFinder, ThrowsExceptionWhenSetPathWithFromIndexOutOfBounds) {
@@ -293,7 +293,7 @@ TEST(PathFinder, ThrowsExceptionWhenSetPathToSelfVertexWithPositiveDistance) {
     PathFinder p(gr, 1, 0);
     // Act
     // Assert
-    EXPECT_ANY_THROW(p.SetPath(0, 0, MAX_DISTANCE));
+    EXPECT_ANY_THROW(p.SetPath(0, 0, 1));
 }
 
 TEST(PathFinder, CanDeleteNotInitialized) {
