@@ -142,7 +142,7 @@ string BinaryTree::GetKeysOrder() const {
 }
 string BinaryTree::GetValuesOrderByKeys() const {
     string order;
-    GetValuesOrderInSubtree(root_->GetLeft(), &order);
+    GetValuesOrderInSubtree(root_, &order);
     return order;
 }
 void BinaryTree::GetValuesOrderInSubtree(Element* const start_element,
