@@ -88,7 +88,7 @@ TEST(HypothecCalculatorTest, Cannot_Create_With_Invalid_First_Payment) {
 }
 
 TEST(HypothecCalculatorTest,
-        Cannot_Create_With_First_Payment_Lesser_Than_Property_Cost) {
+        Cannot_Create_With_First_Payment_Bigger_Than_Property_Cost) {
     // Arrange
     int property_cost = 2000000;
     int first_payment = 5000000;
@@ -251,7 +251,7 @@ TEST(HypothecCalculatorTest, Cannot_Set_Invalid_First_Payment) {
 }
 
 TEST(HypothecCalculatorTest,
-        Test_Calculate_First_Payment_Lesser_Than_Property_Cost) {
+        Cannot_Calculate_With_First_Payment_Bigger_Than_Property_Cost) {
     // Arrange
     HypothecCalculator calc = HypothecCalculator();
 
