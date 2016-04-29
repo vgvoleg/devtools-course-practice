@@ -14,7 +14,7 @@ TEST(Moments, can_get_and_set_day) {
     example.setTime(day, month, year);
 
     // Assert
-    EXPECT_EQ(4, example.getDay() );
+    EXPECT_EQ(day, example.getDay() );
 }
 
 TEST(Moments, can_get_and_set_month) {
@@ -28,7 +28,7 @@ TEST(Moments, can_get_and_set_month) {
     example.setTime(day, month, year);
 
     // Assert
-    EXPECT_EQ(4, example.getMonth() );
+    EXPECT_EQ(day, example.getMonth() );
 }
 
 TEST(Moments, can_get_and_set_year) {
@@ -42,5 +42,5 @@ TEST(Moments, can_get_and_set_year) {
     example.setTime(day, month, year);
 
     // Assert
-    EXPECT_EQ(2076, example.getYear() );
+    EXPECT_EQ(year, example.getYear() );
 }
