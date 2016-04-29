@@ -188,9 +188,9 @@ TEST(Voevodin_Andrew_Color_Converter, Check_HSVToRGB1) {
 
 TEST(Voevodin_Andrew_Color_Converter, Check_HSVToRGB2) {
     // Arrange
-    vector<double> hsv{ 0.167, 0.0, 0.0 };
+    vector<double> hsv{ 0.167, 1.0, 1.0 };
     vector<int> rgb(3);
-    vector<int> rgb_res{ 0, 0, 0 };
+    vector<int> rgb_res{ 254, 255, 0 };
     // Act
     rgb = color_converter::HSVToRGB(hsv);
     // Assert
@@ -199,9 +199,9 @@ TEST(Voevodin_Andrew_Color_Converter, Check_HSVToRGB2) {
 
 TEST(Voevodin_Andrew_Color_Converter, Check_HSVToRGB3) {
     // Arrange
-    vector<double> hsv{ 0.34, 0.0, 0.0 };
+    vector<double> hsv{ 0.34, 1.0, 1.0 };
     vector<int> rgb(3);
-    vector<int> rgb_res{ 0, 0, 0 };
+    vector<int> rgb_res{ 0, 255, 10 };
     // Act
     rgb = color_converter::HSVToRGB(hsv);
     // Assert
@@ -210,9 +210,9 @@ TEST(Voevodin_Andrew_Color_Converter, Check_HSVToRGB3) {
 
 TEST(Voevodin_Andrew_Color_Converter, Check_HSVToRGB4) {
     // Arrange
-    vector<double> hsv{ 0.51, 0.0, 0.0 };
+    vector<double> hsv{ 0.51, 1.0, 1.0 };
     vector<int> rgb(3);
-    vector<int> rgb_res{ 0, 0, 0 };
+    vector<int> rgb_res{ 0, 239, 255 };
     // Act
     rgb = color_converter::HSVToRGB(hsv);
     // Assert
@@ -221,9 +221,9 @@ TEST(Voevodin_Andrew_Color_Converter, Check_HSVToRGB4) {
 
 TEST(Voevodin_Andrew_Color_Converter, Check_HSVToRGB5) {
     // Arrange
-    vector<double> hsv{ 0.67, 0.0, 0.0 };
+    vector<double> hsv{ 0.67, 1.0, 1.0 };
     vector<int> rgb(3);
-    vector<int> rgb_res{ 0, 0, 0 };
+    vector<int> rgb_res{ 5, 0, 255 };
     // Act
     rgb = color_converter::HSVToRGB(hsv);
     // Assert
@@ -232,9 +232,9 @@ TEST(Voevodin_Andrew_Color_Converter, Check_HSVToRGB5) {
 
 TEST(Voevodin_Andrew_Color_Converter, Check_HSVToRGB6) {
     // Arrange
-    vector<double> hsv{ 0.85, 0.0, 0.0 };
+    vector<double> hsv{ 0.85, 1.0, 1.0 };
     vector<int> rgb(3);
-    vector<int> rgb_res{ 0, 0, 0 };
+    vector<int> rgb_res{ 255, 0, 229 };
     // Act
     rgb = color_converter::HSVToRGB(hsv);
     // Assert
@@ -254,7 +254,18 @@ TEST(Voevodin_Andrew_Color_Converter, Check_LABToRGB1) {
 
 TEST(Voevodin_Andrew_Color_Converter, Check_LABToRGB2) {
     // Arrange
-    vector<int> lab{ 43, 0, 0 };
+    vector<int> lab{ 0, 0, 0 };
+    vector<int> rgb;
+    vector<int> rgb_res{ 0, 0, 0 };
+    // Act
+    rgb = color_converter::LABToRGB(lab);
+    // Assert
+    EXPECT_EQ(rgb, rgb_res);
+}
+
+TEST(Voevodin_Andrew_Color_Converter, Check_LABToRGB3) {
+    // Arrange
+    vector<int> lab{ 43, 0, -0 };
     vector<int> rgb;
     vector<int> rgb_res{ 102, 102, 102 };
     // Act
