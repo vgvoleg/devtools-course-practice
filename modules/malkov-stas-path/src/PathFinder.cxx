@@ -6,7 +6,6 @@
 #include <exception>
 
 PathFinder::PathFinder() {
-
 }
 
 PathFinder::PathFinder(int** graph, int vertice_num, int start_vertex) {
@@ -39,7 +38,8 @@ void PathFinder::UpdateGraph() {
             break;
         int im = index_of_min_distance;
         for (int j = 0; j < _Size; j++)
-            if (im != j && _Graph[im][j] && _Distance[im] + _Graph[im][j] < _Distance[j])
+            if (im != j && _Graph[im][j] && 
+                _Distance[im] + _Graph[im][j] < _Distance[j])
                 _Distance[j] = _Distance[im] + _Graph[im][j];
         _Visited[im] = true;
     }
@@ -89,7 +89,7 @@ void PathFinder::SetStartVertex(int vertex) {
 }
 
 void PathFinder::SetPath(int from, int to, int distance) {
-    if(!_IsInitialized)
+    if (!_IsInitialized)
         throw std::exception("Not Initialized");
     if (from < 0 || from >= _Size)
         throw std::exception("Index From Out Of Bounds");
