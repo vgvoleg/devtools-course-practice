@@ -203,8 +203,7 @@ vector<int> color_converter::LABToRGB(const vector<int> lab) {
     } else {
         if (!IsLABinRange(lab)) {
             throw IncorrectValueOfLAB();
-        }
-        else {
+        } else {
             return XYZToRGB(LABToXYZ(lab));
         }
     }
@@ -217,8 +216,7 @@ vector<double> color_converter::RGBToHSV(const vector<int> rgb) {
     } else {
         if (!IsRGBinRange(rgb)) {
             throw IncorrectValueOfRGB();
-        }
-        else {
+        } else {
             vector<double> HSV(3);
             vector<int> RGB1(rgb);
             double H = 0.0;
