@@ -136,9 +136,8 @@ Element* BinaryTree::GetPredecessor(Element* const specified_element) {
     return y;
 }
 string BinaryTree::GetKeysOrder() const {
-    string res = "";
+    string res;
     GetKeysOrderInSubtree(root_, &res);
-    res = res.substr(0, res.length()-1);
     return res;
 }
 string BinaryTree::GetValuesOrderByKeys() const {

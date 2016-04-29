@@ -63,7 +63,7 @@ TEST(BinaryTree_Test_Cases, Can_Get_Values_Order_By_Keys) {
     Tree.InsertElem(&d);
 
     // Act & Assert
-    ASSERT_EQ("3 5 6 7", Tree.GetValuesOrderByKeys());
+    ASSERT_EQ("3;5;6;7;", Tree.GetValuesOrderByKeys());
 }
 
 TEST(BinaryTree_Test_Cases, Can_Get_Order_By_Keys_In_Subtree) {
@@ -113,8 +113,8 @@ TEST(BinaryTree_Test_Cases, Can_Make_Copy) {
     BinaryTree Tree2(Tree1);
 
     // Assert
-    EXPECT_EQ("3 5 6 7", Tree2.GetKeysOrder());
-    EXPECT_EQ("3 5 6 7", Tree2.GetValuesOrderByKeys());
+    EXPECT_EQ("3;5;6;7;", Tree2.GetKeysOrder());
+    EXPECT_EQ("3;5;6;7;", Tree2.GetValuesOrderByKeys());
 }
 
 TEST(BinaryTree_Test_Cases, Can_Do_Assignment) {
@@ -130,8 +130,8 @@ TEST(BinaryTree_Test_Cases, Can_Do_Assignment) {
     Tree2.operator=(Tree1);
 
     // Assert
-    EXPECT_EQ("2 4 5 13", Tree2.GetKeysOrder());
-    EXPECT_EQ("2 4 5 13", Tree2.GetValuesOrderByKeys());
+    EXPECT_EQ("2;4;5;13;", Tree2.GetKeysOrder());
+    EXPECT_EQ("2;4;5;13;", Tree2.GetValuesOrderByKeys());
 }
 
 TEST(BinaryTree_Test_Cases, Can_Search_By_Key) {
