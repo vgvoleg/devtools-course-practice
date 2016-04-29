@@ -172,25 +172,20 @@ vector<int> color_converter::HSVToRGB(const vector<double> hsv) {
                 int var_i = static_cast<int>(var_h);
                 double var_1 = hsv[2] * (1.0 - hsv[1]);
                 double var_2 = hsv[2] * (1.0 - hsv[1] * (var_h - var_i));
-                double var_3 = hsv[2] * (1.0 - hsv[1] * 
+                double var_3 = hsv[2] * (1.0 - hsv[1] *
                     (1.0 - (var_h - var_i)));
                 double V = hsv[2];
                 if (var_i == 0) {
                     var_r = V; var_g = var_3; var_b = var_1;
-                }
-                else if (var_i == 1) {
+                } else if (var_i == 1) {
                     var_r = var_2; var_g = V; var_b = var_1;
-                }
-                else if (var_i == 2) {
+                } else if (var_i == 2) {
                     var_r = var_1; var_g = V; var_b = var_3;
-                }
-                else if (var_i == 3) {
+                } else if (var_i == 3) {
                     var_r = var_1; var_g = var_2; var_b = V;
-                }
-                else if (var_i == 4) {
+                } else if (var_i == 4) {
                     var_r = var_3; var_g = var_1; var_b = V;
-                }
-                else {
+                } else {
                     var_r = V; var_g = var_1; var_b = var_2;
                 }
                 RGB1[0] = static_cast<int>(var_r * 255.0);
@@ -273,7 +268,7 @@ vector<double> color_converter::LABToHSV(const vector<int> lab) {
     if (!IncorrectSizeVector(lab)) {
         throw IncorrectSizeOfVector();
     } else {
-		if (!IsLABinRange(lab)) {
+        if (!IsLABinRange(lab)) {
             throw IncorrectValueOfLAB();
         } else {
             return RGBToHSV(LABToRGB(lab));
