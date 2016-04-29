@@ -5,6 +5,9 @@
 #include <iostream>
 #include <exception>
 
+const int PathFinder::PATH_NOT_EXISTS = -1;
+const int PathFinder::MAX_DISTANCE = 100000000;
+
 PathFinder::PathFinder() {
     _IsInitialized = false;
 }

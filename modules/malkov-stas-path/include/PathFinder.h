@@ -5,8 +5,8 @@
 
 class PathFinder {
  public:
-    static const int PATH_NOT_EXISTS = -1;
-    static const int MAX_DISTANCE = 100000000;
+    static const int PATH_NOT_EXISTS;
+    static const int MAX_DISTANCE;
 
     PathFinder();
     PathFinder(int** graph, int vertice_num, int start_vertex);
