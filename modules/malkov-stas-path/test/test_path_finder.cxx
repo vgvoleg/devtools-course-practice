@@ -148,12 +148,9 @@ TEST(PathFinder, ThrowsExceptionWhenGetDistancesNotInitialized) {
 
 TEST(PathFinder, ThrowsExceptionWithNullGraph) {
     // Arrange
-    PathFinder p;
-    int** gr = new int*;
-    *gr = new int(0);
     // Act
     // Assert
-    EXPECT_ANY_THROW(p.SetGraph(gr, 1, 5));
+    EXPECT_ANY_THROW(PathFinder p(0, 0, 0));
 }
 
 TEST(PathFinder, ThrowsExceptionWithNegativeSize) {
@@ -186,7 +183,15 @@ TEST(PathFinder, ThrowsExceptionWithStartIndexOutOfRange) {
     EXPECT_ANY_THROW(p.SetGraph(gr, 1, 5));
 }
 
-TEST(PathFinder, ThrowExceptionWithSettingNewStartIndexNegative) {
+TEST(PathFinder, ThrowExceptionWhenSetNewStartVertexToNonInitialized) {
+    // Arrange
+    PathFinder p;
+    // Act
+    // Assert
+    EXPECT_ANY_THROW(p.SetStartVertex(0));
+}
+
+TEST(PathFinder, ThrowExceptionWithSettingNewStartVertexNegative) {
     // Arrange
     int** gr = new int*;
     *gr = new int(0);
@@ -196,7 +201,7 @@ TEST(PathFinder, ThrowExceptionWithSettingNewStartIndexNegative) {
     EXPECT_ANY_THROW(p.SetStartVertex(-1));
 }
 
-TEST(PathFinder, ThrowExceptionWithSettingNewStartIndexOutOfRange) {
+TEST(PathFinder, ThrowExceptionWithSettingNewStartVertexOutOfRange) {
     // Arrange
     int** gr = new int*;
     *gr = new int(0);
