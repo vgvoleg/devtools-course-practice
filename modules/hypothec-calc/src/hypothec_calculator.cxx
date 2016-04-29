@@ -1,8 +1,8 @@
 // Copyright 2016 Polkanov Nikita
 
 #include "include/hypothec_calculator.h"
-#include <stdexcept>
 #include <math.h>
+#include <stdexcept>
 
 
 const int HypothecCalculator::DEFAULT_PROPERTY_COST = 3000000;
