@@ -19,7 +19,7 @@ const vector<vector<double>> kMatrCoefRGBToXYZ{
     { 0.2126729, 0.7151522, 0.0721750 },
     { 0.0193339, 0.1191920, 0.9503041 },
 };
- e
+
 const double kEpsilon_In_lab = 0.008856;
 const double kEpsilon_In_RGBToXYZ = 0.04045;
 const double kEpsilon_In_XYZToRGB = 0.0031308;
