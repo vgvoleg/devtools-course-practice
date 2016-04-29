@@ -4,8 +4,8 @@
 #include <string>
 
 ComplexNumber::ComplexNumber() {
-    re = 0;
-    im = 0;
+    re = 0.0;
+    im = 0.0;
 }
 
 ComplexNumber::ComplexNumber(double _re, double _im) {
@@ -75,21 +75,15 @@ ComplexNumber ComplexNumber::operator = (const ComplexNumber& z) {
 }
 
 bool ComplexNumber::operator==(const ComplexNumber& z) const {
-    if (this -> getIm() == z.getIm() && this -> getRe() == z.getRe())
-        return true;
-    else
-        return false;
+    return (this->getRe() == z.getRe() && this->getIm() == z.getIm());
 }
 
 bool ComplexNumber::operator!=(const ComplexNumber& z) const {
-    if (this -> getIm() == z.getIm() && this -> getRe() == z.getRe())
-        return false;
-    else
-        return true;
+    return !(*this == z);
 }
 
 bool ComplexNumber::equalsToZero(const ComplexNumber& z) const {
-    return (z.getRe() == 0 && z.getIm() == 0);
+    return (z.getRe() == 0.0 && z.getIm() == 0.0);
 }
 
 ComplexNumber calc(const ComplexNumber& z1,
