@@ -14,7 +14,8 @@ class BinaryTree {
     BinaryTree& operator=(const BinaryTree& assigned_tree);
     ~BinaryTree();
     void InsertElem(Element* const input_element);
-    static Element* SearchByKeyInSubtree(const int& key, Element* start_element);
+    static Element* SearchByKeyInSubtree(const int& key,
+        Element* start_element);
     static Element* SearchByValueInSubtree(const string& value,
         Element* const start_element);
     Element* SearchByKey(const int& key) const;
@@ -25,8 +26,10 @@ class BinaryTree {
     static Element* GetPredecessor(Element* const specified_element);
     string GetKeysOrder() const;
     string GetValuesOrderByKeys() const;
-    static void GetKeysOrderInSubtree(Element* const start_element, string* order);
-    static void GetValuesOrderInSubtree(Element* const start_element, string* order);
+    static void GetKeysOrderInSubtree(Element* const start_element,
+        string* order);
+    static void GetValuesOrderInSubtree(Element* const start_element,
+        string* order);
     static Element* GetMinByKeyInSubtree(Element* const start_element);
     static Element* GetMaxByKeyInSubtree(Element* const start_element);
 
