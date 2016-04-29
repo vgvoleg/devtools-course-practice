@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 
-#include "PathFinder.h"
+#include "../include/PathFinder.h"
 
 int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);
