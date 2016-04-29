@@ -170,7 +170,7 @@ vector<int> color_converter::HSVToRGB(const vector<double>& hsv) {
     if (normalized_basis_angle_H == 0) {
         norm_RGB[0] = hsv[2];
         norm_RGB[1] = intermediate_HSV[2];
-		norm_RGB[2] = intermediate_HSV[0];
+        norm_RGB[2] = intermediate_HSV[0];
     } else if (normalized_basis_angle_H == 1) {
         norm_RGB[0] = intermediate_HSV[1];
         norm_RGB[1] = hsv[2];
