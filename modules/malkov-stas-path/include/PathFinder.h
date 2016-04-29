@@ -1,5 +1,7 @@
-#ifndef PATH_FINDER
-#define PATH_FINDER
+// Copyright 2016 Malkov Stanislav
+
+#ifndef MODULES_MALKOV_STAS_PATH_INCLUDE_PATHFINDER_H_
+#define MODULES_MALKOV_STAS_PATH_INCLUDE_PATHFINDER_H_
 
 #define PATH_NOT_EXISTS -1      // GetDistance возвращает при отсутствии пути к точке
 
