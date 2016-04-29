@@ -154,7 +154,7 @@ vector<int> color_converter::HSVToRGB(const vector<double> hsv) {
     if (!IncorrectSizeVector(hsv)) {
         throw IncorrectSizeOfVector();
     } else {
-        if (!IsHSVinRange(hsv)) {
+        if (!IsHSVVectorinRange(hsv)) {
             throw IncorrectValueOfHSV();
         } else {
             vector<int> RGB1(3);
@@ -201,7 +201,7 @@ vector<int> color_converter::LABToRGB(const vector<int> lab) {
     if (!IncorrectSizeVector(lab)) {
         throw IncorrectSizeOfVector();
     } else {
-        if (!IsLABinRange(lab)) {
+        if (!IsLABVectorinRange(lab)) {
             throw IncorrectValueOfLAB();
         } else {
             return XYZToRGB(LABToXYZ(lab));
@@ -214,7 +214,7 @@ vector<double> color_converter::RGBToHSV(const vector<int> rgb) {
     if (!IncorrectSizeVector(rgb)) {
         throw IncorrectSizeOfVector();
     } else {
-        if (!IsRGBinRange(rgb)) {
+        if (!IsRGBVectorinRange(rgb)) {
             throw IncorrectValueOfRGB();
         } else {
             vector<double> HSV(3);
@@ -266,7 +266,7 @@ vector<double> color_converter::LABToHSV(const vector<int> lab) {
     if (!IncorrectSizeVector(lab)) {
         throw IncorrectSizeOfVector();
     } else {
-        if (!IsLABinRange(lab)) {
+        if (!IsLABVectorinRange(lab)) {
             throw IncorrectValueOfLAB();
         } else {
             return RGBToHSV(LABToRGB(lab));
@@ -279,7 +279,7 @@ vector<int> color_converter::RGBToLAB(const vector<int> rgb) {
     if (!IncorrectSizeVector(rgb)) {
         throw IncorrectSizeOfVector();
     } else {
-        if (!IsRGBinRange(rgb)) {
+        if (!IsRGBVectorinRange(rgb)) {
             throw IncorrectValueOfRGB();
         } else {
             return XYZToLAB(RGBToXYZ(rgb));
@@ -291,7 +291,7 @@ vector<int> color_converter::HSVToLAB(const vector<double> hsv) {
     if (!IncorrectSizeVector(hsv)) {
         throw IncorrectSizeOfVector();
     } else {
-        if (!IsHSVinRange(hsv)) {
+        if (!IsHSVVectorinRange(hsv)) {
             throw IncorrectValueOfHSV();
         } else {
             return RGBToLAB(HSVToRGB(hsv));
