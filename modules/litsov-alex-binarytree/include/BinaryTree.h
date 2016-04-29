@@ -14,29 +14,25 @@ class BinaryTree {
     BinaryTree& operator=(const BinaryTree& assigned_tree);
     ~BinaryTree();
     void InsertElem(Element* const input_element);
-    Element* SearchByKeyInSubtree(const int& key, Element* start_element) const;
-    Element* SearchByValueInSubtree(const string& value,
-        Element* const start_element) const;
+    static Element* SearchByKeyInSubtree(const int& key, Element* start_element);
+    static Element* SearchByValueInSubtree(const string& value,
+        Element* const start_element);
     Element* SearchByKey(const int& key) const;
     Element* SearchByValue(const string& value) const;
-    Element* GetMinByKey() const;
-    Element* GetMaxByKey() const;
-    Element* GetSuccessor(Element* const specified_element) const;
-    Element* GetPredecessor(Element* const specified_element) const;
+    static Element* GetMinByKey(Element* const root_elem);
+    static Element* GetMaxByKey(Element* const root_elem);
+    static Element* GetSuccessor(Element* const specified_element);
+    static Element* GetPredecessor(Element* const specified_element);
     string GetKeysOrder() const;
     string GetValuesOrderByKeys() const;
-    string GetKeysOrderInSubtree(Element* const start_element) const;
-    string GetValuesOrderInSubtree(Element* const start_element) const;
+    static void GetKeysOrderInSubtree(Element* const start_element, string* order);
+    static void GetValuesOrderInSubtree(Element* const start_element, string* order);
+    static Element* GetMinByKeyInSubtree(Element* const start_element);
+    static Element* GetMaxByKeyInSubtree(Element* const start_element);
 
  private:
     Element* CopySubtree(Element* subtree_root,
         Element* roots_parent = 0) const;
-    Element* GetMinByKeyInSubtree(Element* const start_element) const;
-    Element* GetMaxByKeyInSubtree(Element* const start_element) const;
-    void GetKeysOrderInSubtreeRecurse(Element* start_element,
-        string* order) const;
-    void GetValuesOrderInSubtreeRecurse(Element* start_element,
-        string* order) const;
     void DeleteSubtree(Element* subtree_root);
 
     Element* root_;

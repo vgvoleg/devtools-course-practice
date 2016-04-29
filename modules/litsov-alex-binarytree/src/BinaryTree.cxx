@@ -15,20 +15,12 @@ Element* BinaryTree::CopySubtree(Element* const subtree_root,
     new_element->SetRight(CopySubtree(subtree_root->GetRight(), new_element));
     return new_element;
 }
-void BinaryTree::GetKeysOrderInSubtreeRecurse(Element* const start_element,
-                                              string* order) const {
+void BinaryTree::GetKeysOrderInSubtree(Element* const start_element,
+                                              string* order) {
     if (start_element != nullptr) {
-        GetKeysOrderInSubtreeRecurse(start_element->GetLeft(), order);
-        *order += std::to_string(start_element->GetKey()) + " ";
-        GetKeysOrderInSubtreeRecurse(start_element->GetRight(), order);
-    }
-}
-void BinaryTree::GetValuesOrderInSubtreeRecurse(Element* const start_element,
-                                                string* order) const {
-    if (start_element != nullptr) {
-        GetValuesOrderInSubtreeRecurse(start_element->GetLeft(), order);
-        *order += start_element->GetValue() + " ";
-        GetValuesOrderInSubtreeRecurse(start_element->GetRight(), order);
+        GetKeysOrderInSubtree(start_element->GetLeft(), order);
+        *order += std::to_string(start_element->GetKey()) + ";";
+        GetKeysOrderInSubtree(start_element->GetRight(), order);
     }
 }
 void BinaryTree::DeleteSubtree(Element* const subtree_root) {
@@ -80,7 +72,7 @@ void BinaryTree::InsertElem(Element* const input_element) {
     }
 }
 Element* BinaryTree::SearchByKeyInSubtree(const int& key,
-    Element* const start_element) const {
+    Element* const start_element) {
     if (start_element == nullptr || start_element->GetKey() == key)
         return start_element;
     if (key < start_element->GetKey())
@@ -89,7 +81,7 @@ Element* BinaryTree::SearchByKeyInSubtree(const int& key,
         return SearchByKeyInSubtree(key, start_element->GetRight());
 }
 Element* BinaryTree::SearchByValueInSubtree(const string& value,
-    Element* const start_element) const {
+    Element* const start_element) {
     if (start_element == nullptr || start_element->GetValue() == value)
         return start_element;
     if (value < start_element->GetValue())
@@ -103,28 +95,25 @@ Element* BinaryTree::SearchByKey(const int& key) const {
 Element* BinaryTree::SearchByValue(const string& value) const {
     return SearchByValueInSubtree(value, root_);
 }
-Element* BinaryTree::GetMinByKeyInSubtree(Element* const start_element)
-const {
+Element* BinaryTree::GetMinByKeyInSubtree(Element* const start_element) {
     Element* tmp = start_element;
     while (tmp->GetLeft() != nullptr)
         tmp = tmp->GetLeft();
     return tmp;
 }
-Element* BinaryTree::GetMinByKey() const {
-    return GetMinByKeyInSubtree(root_);
+Element* BinaryTree::GetMinByKey(Element* const root_elem) {
+    return GetMinByKeyInSubtree(root_elem);
 }
-Element* BinaryTree::GetMaxByKeyInSubtree(Element* const start_element)
-const {
+Element* BinaryTree::GetMaxByKeyInSubtree(Element* const start_element) {
     Element* tmp = start_element;
     while (tmp->GetRight() != nullptr)
         tmp = tmp->GetRight();
     return tmp;
 }
-Element* BinaryTree::GetMaxByKey() const {
-    return GetMaxByKeyInSubtree(root_);
+Element* BinaryTree::GetMaxByKey(Element* const root_elem) {
+    return GetMaxByKeyInSubtree(root_elem);
 }
-Element* BinaryTree::GetSuccessor(Element* const specified_element)
-const {
+Element* BinaryTree::GetSuccessor(Element* const specified_element) {
     if (specified_element->GetRight() != nullptr)
         return GetMinByKeyInSubtree(specified_element->GetRight());
     Element* x = specified_element;
@@ -135,8 +124,7 @@ const {
     }
     return y;
 }
-Element* BinaryTree::GetPredecessor(Element* const specified_element)
-const {
+Element* BinaryTree::GetPredecessor(Element* const specified_element) {
     if (specified_element->GetLeft() != nullptr)
         return GetMaxByKeyInSubtree(specified_element->GetLeft());
     Element* x = specified_element;
@@ -149,27 +137,20 @@ const {
 }
 string BinaryTree::GetKeysOrder() const {
     string res = "";
-    GetKeysOrderInSubtreeRecurse(root_, &res);
+    GetKeysOrderInSubtree(root_, &res);
     res = res.substr(0, res.length()-1);
     return res;
 }
 string BinaryTree::GetValuesOrderByKeys() const {
-    string res = "";
-    GetValuesOrderInSubtreeRecurse(root_, &res);
-    res = res.substr(0, res.length()-1);
-    return res;
+    string order;
+    GetValuesOrderInSubtree(root_->GetLeft(), &order);
+    return order;
 }
-string BinaryTree::GetKeysOrderInSubtree(Element* const start_element)
-const {
-    string res = "";
-    GetKeysOrderInSubtreeRecurse(start_element, &res);
-    res = res.substr(0, res.length()-1);
-    return res;
-}
-string BinaryTree::GetValuesOrderInSubtree(Element* const start_element)
-const {
-    string res = "";
-    GetValuesOrderInSubtreeRecurse(start_element, &res);
-    res = res.substr(0, res.length()-1);
-    return res;
+void BinaryTree::GetValuesOrderInSubtree(Element* const start_element,
+                                         string* order) {
+    if (start_element != nullptr) {
+        GetValuesOrderInSubtree(start_element->GetLeft(), order);
+        *order += std::to_string(start_element->GetKey()) + ";";
+        GetValuesOrderInSubtree(start_element->GetRight(), order);
+    }
 }

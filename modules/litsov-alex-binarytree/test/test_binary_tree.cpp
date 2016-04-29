@@ -51,7 +51,7 @@ TEST(BinaryTree_Test_Cases, Can_Get_Order_By_Keys) {
     Tree.InsertElem(&d);
 
     // Act & Assert
-    ASSERT_EQ("3 5 6 7", Tree.GetKeysOrder());
+    ASSERT_EQ("3;5;6;7;", Tree.GetKeysOrder());
 }
 
 TEST(BinaryTree_Test_Cases, Can_Get_Values_Order_By_Keys) {
@@ -74,9 +74,13 @@ TEST(BinaryTree_Test_Cases, Can_Get_Order_By_Keys_In_Subtree) {
     Tree.InsertElem(&c);
     Tree.InsertElem(&d);
     Element* start_element = Tree.SearchByKey(3);
+    string order;
+
+    //Act
+    Tree.GetKeysOrderInSubtree(start_element, &order);
 
     // Act & Assert
-    ASSERT_EQ("3", Tree.GetKeysOrderInSubtree(start_element));
+    ASSERT_EQ("3;", order );
 }
 
 TEST(BinaryTree_Test_Cases, Can_Get_Values_Order_By_Keys_In_Subtree) {
@@ -88,9 +92,13 @@ TEST(BinaryTree_Test_Cases, Can_Get_Values_Order_By_Keys_In_Subtree) {
     Tree.InsertElem(&d);
     Tree.InsertElem(&e);
     Element* start_element = Tree.SearchByKey(7);
+    string res;
+
+    //Act
+    Tree.GetValuesOrderInSubtree(start_element, &res);
 
     // Act & Assert
-    ASSERT_EQ("6 7", Tree.GetValuesOrderInSubtree(start_element));
+    ASSERT_EQ("6;7;", res);
 }
 
 TEST(BinaryTree_Test_Cases, Can_Make_Copy) {
@@ -168,7 +176,7 @@ TEST(BinaryTree_Test_Cases, Can_Get_Min_By_Key) {
     Tree.InsertElem(&e);
 
     // Act
-    Element match = *Tree.GetMinByKey();
+    Element match = *Tree.GetMinByKey(Tree.GetRoot());
 
     // Assert
     ASSERT_EQ(match.GetKey(), d.GetKey());
@@ -184,7 +192,7 @@ TEST(BinaryTree, Can_Get_Max_By_Key) {
     Tree.InsertElem(&e);
 
     // Act
-    Element match = *Tree.GetMaxByKey();
+    Element match = *Tree.GetMaxByKey(Tree.GetRoot()  );
 
     // Assert
     ASSERT_EQ(match.GetKey(), c.GetKey());

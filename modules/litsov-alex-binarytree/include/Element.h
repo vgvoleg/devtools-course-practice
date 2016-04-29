@@ -11,7 +11,6 @@ class Element {
         Element* const init_parent = 0, Element* const init_right = 0,
         Element* const init_left = 0);
     Element(const Element& init_element);
-    ~Element();
     int GetKey() const;
     void SetKey(const int& assigned_key);
     string GetValue() const;

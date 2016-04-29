@@ -20,8 +20,6 @@ Element::Element(const Element& init_element) {
     right_ = nullptr;
     parent_ = nullptr;
 }
-Element::~Element() {
-}
 int Element::GetKey() const {
     return key_;
 }
