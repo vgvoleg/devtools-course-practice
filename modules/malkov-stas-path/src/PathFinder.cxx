@@ -6,9 +6,11 @@
 #include <exception>
 
 PathFinder::PathFinder() {
+    _IsInitialized = false;
 }
 
 PathFinder::PathFinder(int** graph, int vertice_num, int start_vertex) {
+    _IsInitialized = false;
     SetGraph(graph, vertice_num, start_vertex);
 }
 
@@ -66,7 +68,7 @@ void PathFinder::Reset() {
     _Distance[_StartVertex] = 0;
 }
 
-int PathFinder::GetDistance(int vertex) {
+int PathFinder::GetDistance(int vertex) const {
     if (!_IsInitialized)
         throw std::exception();
     if (vertex < 0 || vertex >= _Size)
@@ -74,7 +76,7 @@ int PathFinder::GetDistance(int vertex) {
     return _Distance[vertex];
 }
 
-int* PathFinder::GetDistances() {
+int* PathFinder::GetDistances() const {
     if (!_IsInitialized)
         throw std::exception();
     return _Distance;

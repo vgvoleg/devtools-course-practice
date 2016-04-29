@@ -3,32 +3,33 @@
 #ifndef MODULES_MALKOV_STAS_PATH_INCLUDE_PATHFINDER_H_
 #define MODULES_MALKOV_STAS_PATH_INCLUDE_PATHFINDER_H_
 
-#define PATH_NOT_EXISTS -1
-
-#define MAX_DISTANCE 100000000
-
-/* Алгоритм Дейкстры.
-С помощью SetGraph передаем указатель на таблицу расстояний между vertice_num
-вершин, после чего класс обрабатывает и сохраняет данные. */
 class PathFinder {
-    bool _IsInitialized = false;
+ public:
+    static const int PATH_NOT_EXISTS = -1;
+    static const int MAX_DISTANCE = 100000000;
+
+    PathFinder();
+    PathFinder(int** graph, int vertice_num, int start_vertex);
+    ~PathFinder();
+
+    void SetGraph(int** graph, int vertice_num, int start_vertex);
+    void SetStartVertex(int vertex);
+    void SetPath(int from, int to, int distance);
+    int GetDistance(int vertex) const;
+    int* GetDistances() const;
+ private:
+    bool _IsInitialized;
+
     int ** _Graph;
     int _Size;
     int _StartVertex;
+
     int* _Distance;
     bool* _Visited;
+
     void UpdateGraph();
     void Reset();
     void CheckVetricesWithoutPath();
- public:
-    PathFinder();
-    PathFinder(int**, int, int = 0);
-    ~PathFinder();
-    void SetGraph(int**, int, int = 0);
-    int GetDistance(int vertex);
-    int* GetDistances();
-    void SetStartVertex(int vertex);
-    void SetPath(int, int, int);
 };
 
 #endif  // MODULES_MALKOV_STAS_PATH_INCLUDE_PATHFINDER_H_
