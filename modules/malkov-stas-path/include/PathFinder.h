@@ -17,6 +17,7 @@ class PathFinder {
     void SetPath(int from, int to, int distance);
     int GetDistance(int vertex) const;
     int* GetDistances() const;
+
  private:
     bool _IsInitialized;
 
