@@ -19,10 +19,12 @@ class PathFinder {
 public:
     PathFinder();
     PathFinder(int**, int, int = 0);
+    ~PathFinder();
     void SetGraph(int**, int, int = 0);                     // Установка графа и параметров
     int GetDistance(int);                                   // Получение расстояния
     int* GetDistances();                                    // Получение всех расстояний
-    void SetStartVertex(int);                      // Установка начальной вершины
+    void SetStartVertex(int);                               // Установка начальной вершины
+    void SetPath(int, int, int);                            // Установка пути между вершинами
 };
 
 #endif

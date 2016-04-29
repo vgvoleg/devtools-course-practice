@@ -85,3 +85,27 @@ void PathFinder::SetStartVertex(int index) {
         throw std::exception("Start Vertex Index Out Of Range");
     SetGraph(_Graph, _Size, index);
 }
+
+void PathFinder::SetPath(int from, int to, int distance) {
+    if(!_IsInitialized)
+        throw std::exception("Not Initialized");
+    if (from < 0 || from >= _Size)
+        throw std::exception("Index From Out Of Bounds");
+    if (to < 0 || to >= _Size)
+        throw std::exception("Index To Out Of Boudns");
+    if (distance < 0)
+        throw std::exception("Distance cannot be less than 0");
+    if (distance == INT_MAX)
+        throw std::exception("Too Large Distance");
+    if (from == to && distance != 0)
+        throw std::exception("Path from vertex to self cannot be more than 0");
+    _Graph[from][to] = distance;
+    SetGraph(_Graph, _Size, _StartVertex);
+}
+
+PathFinder::~PathFinder() {
+    if (_IsInitialized) {
+        delete _Distance;
+        delete _Visited;
+    }
+}
