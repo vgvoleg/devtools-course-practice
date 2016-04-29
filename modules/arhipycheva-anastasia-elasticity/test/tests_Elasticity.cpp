@@ -579,3 +579,12 @@ TEST(TElasticity, ElasticityCross_IsThatFunctionWorks_6_var) {
   // Act & Assert
   ASSERT_NO_THROW(ElasticityCross(QA1, QA0, PB1, PB0));
 }
+
+TEST(TElasticity, ElasticityCross_IsThatFunctionWorks_6_var) {
+  // Arrange
+  const int QA1 = 1000, QA0 = 250;
+  const float PB1 = 200, PB0 = 100;
+
+  // Act & Assert
+  ASSERT_NO_THROW(ElasticityCross(QA1, QA0, PB1, PB0));
+}
