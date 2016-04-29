@@ -9,10 +9,12 @@ TEST(HypothecCalculatorTest, Can_Use_Default_Constructor) {
     HypothecCalculator calc = HypothecCalculator();
 
     // Assert
-    EXPECT_EQ(HypothecCalculator::DEFAULT_PROPERTY_COST , calc.getPropertyCost());
+    EXPECT_EQ(HypothecCalculator::DEFAULT_PROPERTY_COST,
+            calc.getPropertyCost());
     EXPECT_EQ(HypothecCalculator::DEFAULT_PERCENT, calc.getPercent());
     EXPECT_EQ(HypothecCalculator::DEFAULT_TERM, calc.getTerm());
-    EXPECT_EQ(HypothecCalculator::DEFAULT_PROPERTY_COST * HypothecCalculator::DEFAULT_FIRST_PAYMENT_PERCENT,
+    EXPECT_EQ(HypothecCalculator::DEFAULT_PROPERTY_COST
+            * HypothecCalculator::DEFAULT_FIRST_PAYMENT_PERCENT,
             calc.getFirstPayment());
     EXPECT_DOUBLE_EQ(0, calc.getMonthlyPayment());
     EXPECT_DOUBLE_EQ(0, calc.getOverpayment());
@@ -31,11 +33,13 @@ TEST(HypothecCalculatorTest, Can_Reset_Defaults) {
     calc.resetDefaults();
 
     // Assert
-    EXPECT_EQ(HypothecCalculator::DEFAULT_PROPERTY_COST, calc.getPropertyCost());
+    EXPECT_EQ(HypothecCalculator::DEFAULT_PROPERTY_COST,
+            calc.getPropertyCost());
     EXPECT_EQ(HypothecCalculator::DEFAULT_PERCENT, calc.getPercent());
     EXPECT_EQ(HypothecCalculator::DEFAULT_TERM, calc.getTerm());
-    EXPECT_EQ(HypothecCalculator::DEFAULT_PROPERTY_COST * HypothecCalculator::DEFAULT_FIRST_PAYMENT_PERCENT,
-        calc.getFirstPayment());
+    EXPECT_EQ(HypothecCalculator::DEFAULT_PROPERTY_COST
+            * HypothecCalculator::DEFAULT_FIRST_PAYMENT_PERCENT,
+            calc.getFirstPayment());
 }
 
 TEST(HypothecCalculatorTest, Can_Use_Init_Constructor) {
@@ -46,7 +50,11 @@ TEST(HypothecCalculatorTest, Can_Use_Init_Constructor) {
     int percent = 19;
 
     //Act
-    HypothecCalculator calc = HypothecCalculator(property_cost, first_payment, term, percent);
+    HypothecCalculator calc = HypothecCalculator(
+            property_cost,
+            first_payment,
+            term,
+            percent);
 
     // Assert
     EXPECT_EQ(property_cost, calc.getPropertyCost());
@@ -63,7 +71,8 @@ TEST(HypothecCalculatorTest, Test_Init_Constructor_Invalid_Property_Cost) {
     int term = 120;
 
     // Act & Assert
-    EXPECT_ANY_THROW(HypothecCalculator(property_cost, first_payment, term, percent));
+    EXPECT_ANY_THROW(
+            HypothecCalculator(property_cost, first_payment, term, percent));
 }
 
 TEST(HypothecCalculatorTest, Test_Init_Constructor_Invalid_First_Payment) {
@@ -74,10 +83,12 @@ TEST(HypothecCalculatorTest, Test_Init_Constructor_Invalid_First_Payment) {
     int term = 120;
 
     // Act & Assert
-    EXPECT_ANY_THROW(HypothecCalculator(property_cost, first_payment, term, percent));
+    EXPECT_ANY_THROW(
+            HypothecCalculator(property_cost, first_payment, term, percent));
 }
 
-TEST(HypothecCalculatorTest, Test_Init_Constructor_First_Payment_Lesser_Than_Property_Cost) {
+TEST(HypothecCalculatorTest,
+        Test_Init_Constructor_First_Payment_Lesser_Than_Property_Cost) {
     // Arrange
     int property_cost = 2000000;
     int first_payment = 5000000;
@@ -85,7 +96,8 @@ TEST(HypothecCalculatorTest, Test_Init_Constructor_First_Payment_Lesser_Than_Pro
     int term = 120;
 
     // Act & Assert
-    EXPECT_ANY_THROW(HypothecCalculator(property_cost, first_payment, term, percent));
+    EXPECT_ANY_THROW(
+            HypothecCalculator(property_cost, first_payment, term, percent));
 }
 
 TEST(HypothecCalculatorTest, Test_Init_Constructor_Invalid_Percent) {
@@ -96,7 +108,8 @@ TEST(HypothecCalculatorTest, Test_Init_Constructor_Invalid_Percent) {
     int term = 120;
 
     // Act & Assert
-    EXPECT_ANY_THROW(HypothecCalculator(property_cost, first_payment, term, percent));
+    EXPECT_ANY_THROW(
+            HypothecCalculator(property_cost, first_payment, term, percent));
 }
 
 TEST(HypothecCalculatorTest, Test_Init_Constructor_Invalid_Percent_2) {
@@ -107,7 +120,8 @@ TEST(HypothecCalculatorTest, Test_Init_Constructor_Invalid_Percent_2) {
     int term = 120;
 
     // Act & Assert
-    EXPECT_ANY_THROW(HypothecCalculator(property_cost, first_payment, term, percent));
+    EXPECT_ANY_THROW(
+            HypothecCalculator(property_cost, first_payment, term, percent));
 }
 
 TEST(HypothecCalculatorTest, Test_Init_Constructor_Invalid_Term) {
@@ -118,7 +132,8 @@ TEST(HypothecCalculatorTest, Test_Init_Constructor_Invalid_Term) {
     int term = -120;
 
     // Act & Assert
-    EXPECT_ANY_THROW(HypothecCalculator(property_cost, first_payment, term, percent));
+    EXPECT_ANY_THROW(
+            HypothecCalculator(property_cost, first_payment, term, percent));
 }
 
 TEST(HypothecCalculatorTest, Test_Init_Constructor_Invalid_Term_2) {
@@ -129,7 +144,8 @@ TEST(HypothecCalculatorTest, Test_Init_Constructor_Invalid_Term_2) {
     int term = 1200;
 
     // Act & Assert
-    EXPECT_ANY_THROW(HypothecCalculator(property_cost, first_payment, term, percent));
+    EXPECT_ANY_THROW(
+            HypothecCalculator(property_cost, first_payment, term, percent));
 }
 
 TEST(HypothecCalculatorTest, Can_Set_Property_Cost) {
@@ -234,7 +250,8 @@ TEST(HypothecCalculatorTest, Cannot_Set_Invalid_First_Payment) {
     EXPECT_ANY_THROW(calc.setFirstPayment(first_payment));
 }
 
-TEST(HypothecCalculatorTest, Test_Calculate_First_Payment_Lesser_Than_Property_Cost) {
+TEST(HypothecCalculatorTest,
+        Test_Calculate_First_Payment_Lesser_Than_Property_Cost) {
     // Arrange
     HypothecCalculator calc = HypothecCalculator();
 
@@ -251,7 +268,10 @@ TEST(HypothecCalculatorTest, Can_Calculate) {
     int first_payment = 500000;
     int percent = 19;
     int term = 120;
-    HypothecCalculator calc = HypothecCalculator(property_cost, first_payment, term, percent);
+    HypothecCalculator calc = HypothecCalculator(
+            property_cost,
+            first_payment,
+            term, percent);
 
     //Act
     calc.calculate();

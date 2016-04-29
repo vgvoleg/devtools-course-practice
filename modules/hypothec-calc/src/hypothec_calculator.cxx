@@ -14,12 +14,16 @@ HypothecCalculator::HypothecCalculator() {
     resetDefaults();
 }
 
-HypothecCalculator::HypothecCalculator(const int property_cost, const int first_payment, const int term, const int percent) {
-    if (first_payment > property_cost
-            || property_cost < 0
-            || first_payment < 0
+HypothecCalculator::HypothecCalculator(
+        const int property_cost,
+        const int first_payment,
+        const int term,
+        const int percent) {
+    if (first_payment >= property_cost
+            || property_cost <= 0
+            || first_payment <= 0
             || term <= 0
-            || term > 600 
+            || term > 600
             || percent <= 0
             || percent >= 100) {
         throw std::invalid_argument("Invalid constructor argument");
@@ -44,8 +48,9 @@ void HypothecCalculator::resetDefaults() {
 
 void HypothecCalculator::calculate() {
     int hypothec_amount = property_cost_ - first_payment_;
-    if (hypothec_amount < 0) {
-        throw std::invalid_argument("First payment must be lesser than property cost");
+    if (hypothec_amount <= 0) {
+        throw std::invalid_argument(
+                "First payment must be lesser than property cost");
     }
 
     double monthly_percent = percent_ / (100.0 * 12.0);
@@ -56,28 +61,30 @@ void HypothecCalculator::calculate() {
 
 void HypothecCalculator::setPercent(int percent) {
     if (percent <= 0 || percent >= 100) {
-        throw std::invalid_argument("First payment must be lesser than property cost");
+        throw std::invalid_argument(
+                "Percent must bigger than 0 and lesser than 100");
     }
     percent_ = percent;
 }
 
 void HypothecCalculator::setPropertyCost(int cost) {
-    if (cost < 0) {
-        throw std::invalid_argument("First payment must be lesser than property cost");
+    if (cost <= 0) {
+        throw std::invalid_argument("Property cost must be bigger than 0");
     }
     property_cost_ = cost;
 }
 
 void HypothecCalculator::setFirstPayment(int payment) {
-    if (payment < 0) {
-        throw std::invalid_argument("First payment must be lesser than property cost");
+    if (payment <= 0) {
+        throw std::invalid_argument("First payment must be bigger than 0");
     }
     first_payment_ = payment;
 }
 
 void HypothecCalculator::setTerm(int term) {
     if (term <= 0 || term > 600) {
-        throw std::invalid_argument("First payment must be lesser than property cost");
+        throw std::invalid_argument(
+                "Term must be lesser than 601 and bigger than 0");
     }
     term_ = term;
 }
