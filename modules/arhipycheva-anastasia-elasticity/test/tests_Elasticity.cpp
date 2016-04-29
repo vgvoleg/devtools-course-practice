@@ -7,6 +7,10 @@ using TElasticity::ElasticityByPricePointDo;
 using TElasticity::ElasticityByPriceArcDo;
 using TElasticity::ElasticityByIncomeDo;
 using TElasticity::ElasticityCrossDo;
+using TElasticity::ElasticityByPricePoint;
+using TElasticity::ElasticityByPriceArc;
+using TElasticity::ElasticityByIncome;
+using TElasticity::ElasticityCross;
 
 
 
@@ -351,3 +355,191 @@ TEST(TElasticity, ElasticityCrossDo_With_float_P) {
   EXPECT_EQ(rezult, ElasticityCrossDo(QA1, QA0, PB1, PB0));
 }
 
+TEST(TElasticity, ElasticityByPricePoint_IsThatFunctionWorks_1_var) {
+	// Arrange
+	const int Q1 = 10, Q0 = 15;
+	const float P1 = 10, P0 = 5;
+
+	// Act & Assert
+	ASSERT_NO_THROW(ElasticityByPricePoint(Q1, Q0, P1, P0));
+}
+
+TEST(TElasticity, ElasticityByPricePoint_IsThatFunctionWorks_2_var) {
+	// Arrange
+	const int Q1 = 3000, Q0 = 2500;
+	const float P1 = 100, P0 = 100;
+
+	// Act & Assert
+	ASSERT_NO_THROW(ElasticityByPricePoint(Q1, Q0, P1, P0));
+}
+
+TEST(TElasticity, ElasticityByPricePoint_IsThatFunctionWorks_3_var) {
+	// Arrange
+	const int Q1 = 3000, Q0 = 2500;
+	const float P1 = 90, P0 = 100;
+
+	// Act & Assert
+	ASSERT_NO_THROW(ElasticityByPricePoint(Q1, Q0, P1, P0));
+}
+
+TEST(TElasticity, ElasticityByPricePoint_IsThatFunctionWorks_4_var) {
+	// Arrange
+	const int Q1 = 100, Q0 = 100;
+	const float P1 = 90, P0 = 100;
+
+	// Act & Assert
+	ASSERT_NO_THROW(ElasticityByPricePoint(Q1, Q0, P1, P0));
+}
+
+TEST(TElasticity, ElasticityByPricePoint_IsThatFunctionWorks_5_var) {
+	// Arrange
+	const int Q1 = 0, Q0 = 10;
+	const float P1 = 2, P0 = 1;
+
+	// Act & Assert
+	ASSERT_NO_THROW(ElasticityByPricePoint(Q1, Q0, P1, P0));
+}
+
+TEST(TElasticity, ElasticityByPriceArc_IsThatFunctionWorks_1_var) {
+	// Arrange
+	const int Q1 = 10, Q0 = 15;
+	const float P1 = 10, P0 = 5;
+
+	// Act & Assert
+	ASSERT_NO_THROW(ElasticityByPriceArc(Q1, Q0, P1, P0));
+}
+
+TEST(TElasticity, ElasticityByPriceArc_IsThatFunctionWorks_2_var) {
+	// Arrange
+	const int Q1 = 3000, Q0 = 2500;
+	const float P1 = 100, P0 = 100;
+
+	// Act & Assert
+	ASSERT_NO_THROW(ElasticityByPriceArc(Q1, Q0, P1, P0));
+}
+
+TEST(TElasticity, ElasticityByPriceArc_IsThatFunctionWorks_3_var) {
+	// Arrange
+	const int Q1 = 3000, Q0 = 2500;
+	const float P1 = 90, P0 = 100;
+
+	// Act & Assert
+	ASSERT_NO_THROW(ElasticityByPriceArc(Q1, Q0, P1, P0));
+}
+
+TEST(TElasticity, ElasticityByPriceArc_IsThatFunctionWorks_4_var) {
+	// Arrange
+	const int Q1 = 100, Q0 = 100;
+	const float P1 = 90, P0 = 100;
+
+	// Act & Assert
+	ASSERT_NO_THROW(ElasticityByPriceArc(Q1, Q0, P1, P0));
+}
+
+TEST(TElasticity, ElasticityByPriceArc_IsThatFunctionWorks_5_var) {
+	// Arrange
+	const int Q1 = 20, Q0 = 10;
+	const float P1 = 20, P0 = 10;
+
+	// Act & Assert
+	ASSERT_NO_THROW(ElasticityByPriceArc(Q1, Q0, P1, P0));
+}
+
+TEST(TElasticity, ElasticityByPriceArc_IsThatFunctionWorks_6_var) {
+	// Arrange
+	const int Q1 = 20, Q0 = 10;
+	const float P1 = 30, P0 = 20;
+
+	// Act & Assert
+	ASSERT_NO_THROW(ElasticityByPriceArc(Q1, Q0, P1, P0));
+}
+
+TEST(TElasticity, ElasticityByIncome_IsThatFunctionWorks_1_var) {
+	// Arrange
+	const int Q1 = 10, Q0 = 15;
+	const float I1 = 10, I0 = 5;
+
+	// Act & Assert
+	ASSERT_NO_THROW(ElasticityByIncome(Q1, Q0, I1, I0));
+}
+
+TEST(TElasticity, ElasticityByIncome_IsThatFunctionWorks_2_var) {
+	// Arrange
+	const int Q1 = 3000, Q0 = 2500;
+	const float I1 = 100, I0 = 100;
+
+	// Act & Assert
+	ASSERT_NO_THROW(ElasticityByIncome(Q1, Q0, I1, I0));
+}
+
+TEST(TElasticity, ElasticityByIncome_IsThatFunctionWorks_3_var) {
+	// Arrange
+	const int Q1 = 3000, Q0 = 2500;
+	const float I1 = 90, I0 = 100;
+
+	// Act & Assert
+	ASSERT_NO_THROW(ElasticityByIncome(Q1, Q0, I1, I0));
+}
+
+TEST(TElasticity, ElasticityByIncome_IsThatFunctionWorks_4_var) {
+	// Arrange
+	const int Q1 = 10, Q0 = 10;
+	const float I1 = 90, I0 = 100;
+
+	// Act & Assert
+	ASSERT_NO_THROW(ElasticityByIncome(Q1, Q0, I1, I0));
+}
+
+TEST(TElasticity, ElasticityByIncome_IsThatFunctionWorks_5_var) {
+	// Arrange
+	const int Q1 = 15, Q0 = 10;
+	const float I1 = 10, I0 = 5;
+
+	// Act & Assert
+	ASSERT_NO_THROW(ElasticityByIncome(Q1, Q0, I1, I0));
+}
+
+TEST(TElasticity, ElasticityByIncome_IsThatFunctionWorks_6_var) {
+	// Arrange
+	const int Q1 = 3000, Q0 = 2500;
+	const float I1 = 100, I0 = 90;
+
+	// Act & Assert
+	ASSERT_NO_THROW(ElasticityByIncome(Q1, Q0, I1, I0));
+}
+
+TEST(TElasticity, ElasticityCross_IsThatFunctionWorks_1_var) {
+	// Arrange
+	const int QA1 = 10, QA0 = 15;
+	const float PB1 = 10, PB0 = 5;
+
+	// Act & Assert
+	ASSERT_NO_THROW(ElasticityCross(QA1, QA0, PB1, PB0));
+}
+
+TEST(TElasticity, ElasticityCross_IsThatFunctionWorks_2_var) {
+	// Arrange
+	const int QA1 = 3000, QA0 = 2500;
+	const float PB1 = 100, PB0 = 100;
+
+	// Act & Assert
+	ASSERT_NO_THROW(ElasticityCross(QA1, QA0, PB1, PB0));
+}
+
+TEST(TElasticity, ElasticityCross_IsThatFunctionWorks_3_var) {
+	// Arrange
+	const int QA1 = 3000, QA0 = 2500;
+	const float PB1 = 90, PB0 = 100;
+
+	// Act & Assert
+	ASSERT_NO_THROW(ElasticityCross(QA1, QA0, PB1, PB0));
+}
+
+TEST(TElasticity, ElasticityCross_IsThatFunctionWorks_4_var) {
+	// Arrange
+	const int QA1 = 3000, QA0 = 2500;
+	const float PB1 = 100.5, PB0 = 75.25;
+
+	// Act & Assert
+	ASSERT_NO_THROW(ElasticityCross(QA1, QA0, PB1, PB0));
+}
