@@ -1,3 +1,5 @@
+// Copyright 2016 Malkov Stanislav
+
 #include "PathFinder.h"
 
 #include <iostream>

@@ -1,3 +1,5 @@
+// Copyright 2016 Malkov Stanislav
+
 #include <gtest/gtest.h>
 #include "PathFinder.h"
 
