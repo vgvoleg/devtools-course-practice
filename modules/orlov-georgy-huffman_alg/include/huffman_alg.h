@@ -50,11 +50,13 @@ class Huff {
     void fillNodeList(FreqMap);
     void createTree();
     void buildTable(Node* root);
+    void coding(FreqMap);
     string decoding(TableMap, string);
 
     list<Node*> getNodeList();
     Node* getRoot();
     TableMap getTable();
+    string printTable();
 
  private:
     vector<bool> code;

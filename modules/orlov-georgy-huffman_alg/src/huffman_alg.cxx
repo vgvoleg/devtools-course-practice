@@ -27,6 +27,22 @@ TableMap Huff::getTable() {
     return table;
 }
 
+string Huff::printTable() {
+    string result;
+    for (auto& itr : getTable()) {
+        result += itr.first;
+        result.append(": ");
+        for (auto& vitr : itr.second) {
+            if (vitr == 0)
+                result.append("0");
+            else
+                result.append("1");
+        }
+        result.append("\n");
+    }
+    return result;
+}
+
 map<char, int> Huff::readString(string str) {
     if (str == "") {
         cout << "String is empty" << endl;
@@ -82,6 +98,13 @@ void Huff::buildTable(Huff::Node* root) {
 
     if (code.size() != 0)
         code.pop_back();
+}
+
+void Huff::coding(FreqMap frmap) {
+    fillNodeList(frmap);
+    createTree();
+    Node* root = getRoot();
+    buildTable(root);
 }
 
 string Huff::decoding(TableMap Tbl, string str) {

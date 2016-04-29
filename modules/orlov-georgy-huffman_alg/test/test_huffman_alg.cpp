@@ -216,22 +216,12 @@ TEST(huffman_alg, Can_Build_Table_Right) {
 
     // Act
     map = huf.readString(str);
-    huf.fillNodeList(map);
-    huf.createTree();
-    Huff::Node* root = huf.getRoot();
-    huf.buildTable(root);
-
-    std::ostringstream stream;
-    for (auto& itr : huf.getTable()) {
-        stream << itr.first << ": ";
-        std::copy(itr.second.begin(), itr.second.end(),
-            std::ostream_iterator<bool>(stream, ""));
-        stream << endl;
-    }
+    huf.coding(map);
+    string actual = huf.printTable();
 
     // Assert
-    const std::string expected_str = "e: 10\ns: 11\nt: 0\n";
-    EXPECT_EQ(expected_str, stream.str());
+    const string expected_str = "e: 10\ns: 11\nt: 0\n";
+    EXPECT_EQ(expected_str, actual);
 }
 
 TEST(huffman_alg, Throws_When_Decoding_Input_Is_Wrong_String) {
