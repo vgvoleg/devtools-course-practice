@@ -6,7 +6,7 @@
 
 fraction::fraction() : numerator_(0), denominator_(1) {}
 
-fraction::fraction(const int numerator, const int denominator) {
+fraction::fraction(int numerator, int denominator) {
     if (denominator == 0)
         throw std::string("Can't divide by zero");
     numerator_ = numerator;
@@ -31,11 +31,11 @@ int fraction::getDenom() const {
     return denominator_;
 }
 
-void fraction::setNum(const int numerator) {
+void fraction::setNum(int numerator) {
     numerator_ = numerator;
 }
 
-void fraction::setDenom(const int denominator) {
+void fraction::setDenom(int denominator) {
     denominator_ = denominator;
 }
 
@@ -91,7 +91,7 @@ bool fraction::operator != (const fraction& z) const {
 }
 
 bool fraction::equalsZero(const fraction& z) const {
-    return z.getNum() == 0 && z.getDenom() != 0;
+    return z.getNum() == 0;
 }
 
 int fraction::NOD() const {
