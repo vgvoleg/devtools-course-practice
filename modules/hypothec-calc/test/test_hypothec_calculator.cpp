@@ -88,7 +88,7 @@ TEST(HypothecCalculatorTest, Cannot_Create_With_Invalid_First_Payment) {
 }
 
 TEST(HypothecCalculatorTest,
-			Cannot_Create_With_First_Payment_Lesser_Than_Property_Cost) {
+        Cannot_Create_With_First_Payment_Lesser_Than_Property_Cost) {
     // Arrange
     int property_cost = 2000000;
     int first_payment = 5000000;
