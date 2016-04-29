@@ -241,6 +241,17 @@ TEST(Voevodin_Andrew_Color_Converter, Check_HSVToRGB6) {
     EXPECT_EQ(rgb, rgb_res);
 }
 
+TEST(Voevodin_Andrew_Color_Converter, Check_HSVToRGB7) {
+    // Arrange
+    vector<double> hsv{ 0.0, 0.0, 0.0 };
+    vector<int> rgb(3);
+    vector<int> rgb_res{ 0, 0, 0 };
+    // Act
+    rgb = color_converter::HSVToRGB(hsv);
+    // Assert
+    EXPECT_EQ(rgb, rgb_res);
+}
+
 TEST(Voevodin_Andrew_Color_Converter, Check_LABToRGB1) {
     // Arrange
     vector<int> lab{ 20, 10, 18 };
