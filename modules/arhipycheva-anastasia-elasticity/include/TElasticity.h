@@ -7,9 +7,8 @@
 using std::cout;
 using std::endl;
 
-class TElasticity {
- public:
-  int CODE_ERROR = 1000;
+namespace TElasticity {
+  const int CODE_ERROR = 1000;
   void ElasticityByPricePoint(int Q1, int Q0, float P1, float P0);
   void ElasticityByPriceArc(int Q1, int Q0, float P1, float P0);
   void ElasticityByIncome(int Q1, int Q0, float I1, float I0);
