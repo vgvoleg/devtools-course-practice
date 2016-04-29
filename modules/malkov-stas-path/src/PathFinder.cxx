@@ -80,12 +80,12 @@ int* PathFinder::GetDistances() {
     return _Distance;
 }
 
-void PathFinder::SetStartVertex(int index) {
+void PathFinder::SetStartVertex(int vertex) {
     if (!_IsInitialized)
         throw std::exception("Not Initialized");
-    if (index < 0 || index >= _Size)
+    if (vertex < 0 || vertex >= _Size)
         throw std::exception("Start Vertex Index Out Of Range");
-    SetGraph(_Graph, _Size, index);
+    SetGraph(_Graph, _Size, vertex);
 }
 
 void PathFinder::SetPath(int from, int to, int distance) {
