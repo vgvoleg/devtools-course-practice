@@ -6,15 +6,15 @@
 class fraction {
  public:
     fraction();
-    fraction(const int numerator, const int denominator);
+    fraction(int numerator, int denominator);
     fraction(const fraction& z);
 
     fraction& operator=(const fraction& z);
 
     int getNum() const;
     int getDenom() const;
-    void setNum(const int numerator);
-    void setDenom(const int denominator);
+    void setNum(int numerator);
+    void setDenom(int denominator);
 
     fraction operator + (const fraction& z) const;
     fraction operator - (const fraction& z) const;
