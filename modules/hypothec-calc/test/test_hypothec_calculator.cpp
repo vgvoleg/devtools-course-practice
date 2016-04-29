@@ -29,7 +29,7 @@ TEST(HypothecCalculatorTest, Can_Reset_Defaults) {
     calc.setTerm(150);
     calc.setPercent(20);
 
-    //Act
+    // Act
     calc.resetDefaults();
 
     // Assert
@@ -49,7 +49,7 @@ TEST(HypothecCalculatorTest, Can_Use_Init_Constructor) {
     int term = 120;
     int percent = 19;
 
-    //Act
+    // Act
     HypothecCalculator calc = HypothecCalculator(
             property_cost,
             first_payment,
@@ -273,7 +273,7 @@ TEST(HypothecCalculatorTest, Can_Calculate) {
             first_payment,
             term, percent);
 
-    //Act
+    // Act
     calc.calculate();
 
     // Assert
