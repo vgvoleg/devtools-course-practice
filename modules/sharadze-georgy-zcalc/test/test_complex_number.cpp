@@ -69,9 +69,9 @@ TEST(Sharadze_Georgy_ComplexNumberTest, Can_Do_Sum_Correcty) {
 
     // Act
     ComplexNumber actual = z1 + z2;
-    ComplexNumber expected(_re1 + _re2, _im1 + _im2);
 
     // Assert
+    ComplexNumber expected(_re1 + _re2, _im1 + _im2);
     EXPECT_TRUE(actual == expected);
 }
 
@@ -86,9 +86,9 @@ TEST(Sharadze_Georgy_ComplexNumberTest, Can_Do_Subtraction_Correctly) {
 
     // Act
     ComplexNumber actual = z1 - z2;
-    ComplexNumber expected(_re1 - _re2, _im1 - _im2);
 
     // Assert
+    ComplexNumber expected(_re1 - _re2, _im1 - _im2);
     EXPECT_TRUE(actual == expected);
 }
 
@@ -103,10 +103,10 @@ TEST(Sharadze_Georgy_ComplexNumberTest, Can_Do_Multiplication_Correctly) {
 
     // Act
     ComplexNumber actual = z1 * z2;
-    ComplexNumber expected(_re1 * _re2 - _im1 * _im2,
-                           _re1 * _im2 + _re2 * _im1);
 
     // Assert
+    ComplexNumber expected(_re1 * _re2 - _im1 * _im2,
+        _re1 * _im2 + _re2 * _im1);
     EXPECT_TRUE(actual == expected);
 }
 
@@ -118,14 +118,14 @@ TEST(Sharadze_Georgy_ComplexNumberTest, Can_Do_Division_Correctly) {
     const double _im2 = 4.9;
     const ComplexNumber z1(_re1, _im1);
     const ComplexNumber z2(_re2, _im2);
-    ComplexNumber expected;
 
     // Act
     ComplexNumber actual = z1 / z2;
-    expected.setRe((_re1 * _re2 + _im1 * _im2) / (_re2 * _re2 + _im2 * _im2));
-    expected.setIm((_re2 * _im1 - _re1 * _im2) / (_re2 * _re2 + _im2 * _im2));
 
     // Assert
+    ComplexNumber expected;
+    expected.setRe((_re1 * _re2 + _im1 * _im2) / (_re2 * _re2 + _im2 * _im2));
+    expected.setIm((_re2 * _im1 - _re1 * _im2) / (_re2 * _re2 + _im2 * _im2));
     EXPECT_TRUE(actual == expected);
 }
 
@@ -197,14 +197,12 @@ TEST(Sharadze_Georgy_ComplexNumberTest, Can_Calc_With_Sum) {
     const double _im2 = -2.0;
     const ComplexNumber z1(_re1, _im1);
     const ComplexNumber z2(_re2, _im2);
-    ComplexNumber expected;
 
     // Act
     ComplexNumber result = calc(z1, z2, '+');
-    expected.setRe(z1.getRe() + z2.getRe());
-    expected.setIm(z1.getIm() + z2.getIm());
 
     // Assert
+    ComplexNumber expected(_re1 + _re2, _im1 + _im2);
     EXPECT_TRUE(result == expected);
 }
 
@@ -216,14 +214,12 @@ TEST(Sharadze_Georgy_ComplexNumberTest, Can_Calc_With_Subtraction) {
     const double _im2 = -2.0;
     const ComplexNumber z1(_re1, _im1);
     const ComplexNumber z2(_re2, _im2);
-    ComplexNumber expected;
 
     // Act
     ComplexNumber result = calc(z1, z2, '-');
-    expected.setRe(z1.getRe() - z2.getRe());
-    expected.setIm(z1.getIm() - z2.getIm());
 
     // Assert
+    ComplexNumber expected(_re1 - _re2, _im1 - _im2);
     EXPECT_TRUE(result == expected);
 }
 
@@ -235,14 +231,13 @@ TEST(Sharadze_Georgy_ComplexNumberTest, Can_Calc_With_Multiplication) {
     const double _im2 = -2.0;
     const ComplexNumber z1(_re1, _im1);
     const ComplexNumber z2(_re2, _im2);
-    ComplexNumber expected;
 
     // Act
     ComplexNumber result = calc(z1, z2, '*');
-    expected.setRe(z1.getRe() * z2.getRe() - z1.getIm() * z2.getIm());
-    expected.setIm(z1.getRe() * z2.getIm() + z2.getRe() * z1.getIm());
 
     // Assert
+    ComplexNumber expected(_re1 * _re2 - _im1 * _im2,
+        _re1 * _im2 + _re2 * _im1);
     EXPECT_TRUE(result == expected);
 }
 
@@ -254,14 +249,14 @@ TEST(Sharadze_Georgy_ComplexNumberTest, Can_Calc_With_Division) {
     const double _im2 = -2.0;
     const ComplexNumber z1(_re1, _im1);
     const ComplexNumber z2(_re2, _im2);
-    ComplexNumber expected;
 
     // Act
     ComplexNumber result = calc(z1, z2, '/');
-    expected.setRe((_re1 * _re2 + _im1 * _im2) / (_re2 * _re2 + _im2 * _im2));
-    expected.setIm((_re2 * _im1 - _re1 * _im2) / (_re2 * _re2 + _im2 * _im2));
 
     // Assert
+    ComplexNumber expected;
+    expected.setRe((_re1 * _re2 + _im1 * _im2) / (_re2 * _re2 + _im2 * _im2));
+    expected.setIm((_re2 * _im1 - _re1 * _im2) / (_re2 * _re2 + _im2 * _im2));
     EXPECT_TRUE(result == expected);
 }
 
