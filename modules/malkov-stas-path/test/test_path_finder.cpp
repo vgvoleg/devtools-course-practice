@@ -18,13 +18,13 @@ TEST(PathFinder, Can_Get_All_Distances) {
     // Arrange
     int** graph = new int*[2];
     // Act
-    for (int i = 0; i < 2; i++)      // 1 2  1->2:2
+    for (int i = 0; i < 2; i++)         // 1 2  1->2:2
         graph[i] = new int[2]{ 1, 2 };  // 1 2  1->1:0
     PathFinder pathFinder(graph, 2, 0);
-    int* d = pathFinder.GetDistances();
+    int* distances = pathFinder.GetDistances();
     // Assert
-    EXPECT_EQ(d[0], 0);
-    EXPECT_EQ(d[1], 2);
+    EXPECT_EQ(distances[0], 0);
+    EXPECT_EQ(distances[1], 2);
 }
 
 TEST(PathFinder, Can_Get_Shortest_Path) {

@@ -1,6 +1,6 @@
 set(target ${TESTS})
 
-file(GLOB srcs "*.cxx")
+file(GLOB srcs "*.cpp")
 
 # VS2012 doesn't support correctly the tuples yet,
 # see http://code.google.com/p/googletest/issues/detail?id=412
