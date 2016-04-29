@@ -573,8 +573,8 @@ TEST(TElasticity, ElasticityCross_IsThatFunctionWorks_5_var) {
 
 TEST(TElasticity, ElasticityCross_IsThatFunctionWorks_6_var) {
   // Arrange
-  const int QA1 = 25, QA0 = 50;
-  const float PB1 = 30, PB0 = 10;
+  const int QA1 = 110, QA0 = 10;
+  const float PB1 = 20, PB0 = 10;
 
   // Act & Assert
   ASSERT_NO_THROW(ElasticityCross(QA1, QA0, PB1, PB0));

@@ -42,10 +42,6 @@ void TElasticity::ElasticityByPricePoint(int Q1, int Q0, float P1, float P0) {
     cout << " Perfectly inelastic demand" << endl;
     cout << "D does not change when the P changes: essential goods";
   }
-  if ((Elasticity < 0.0) && (Elasticity > -1.0)) {
-    cout << "Inelastic demand" << endl;
-    cout << "D fluctuates less than the P: FMCG or without replacement";
-  }
   if (Elasticity == -1.0) {
     cout << "The unit elasticity of demand";
     cout << "D is proportional to the P";
@@ -90,13 +86,6 @@ void TElasticity::ElasticityByIncome(int Q1, int Q0, float I1, float I0) {
     cout << "Neutral benefit" << endl;
     cout << "There is no direct relationship between the ";
     cout << "consumption of goods and changes in I.";
-  }
-  if ((Elasticity > 0.0) && (Elasticity < 1.0)) {
-    cout << "Goods essentials" << endl;
-    cout << "The D volume is changed to a smaller percentage than income.";
-    cout << "That is,when the income increase in";
-    cout << " a certain number of times,the D for a given commodity ";
-    cout << "will increase by a smaller number of times";
   }
   if (Elasticity > 0.0) {
     cout << "Normal (full) benefit" << endl;
