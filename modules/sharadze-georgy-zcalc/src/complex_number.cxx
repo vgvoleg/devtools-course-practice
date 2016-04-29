@@ -75,7 +75,7 @@ ComplexNumber ComplexNumber::operator = (const ComplexNumber& z) {
 }
 
 bool ComplexNumber::operator==(const ComplexNumber& z) const {
-    return (this->getRe() == z.getRe() && this->getIm() == z.getIm());
+    return (getRe() == z.getRe() && getIm() == z.getIm());
 }
 
 bool ComplexNumber::operator!=(const ComplexNumber& z) const {
