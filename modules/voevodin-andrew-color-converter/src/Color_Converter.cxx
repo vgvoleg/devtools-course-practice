@@ -69,7 +69,8 @@ vector<int> color_converter::XYZToRGB(const vector<double>& xyz) {
             norm_RGB[i] = norm_RGB[i] + norm_XYZ[j] * MatrCoefXYZToRGB[i][j];
 
     for (unsigned int i = 0; i < norm_XYZ.size(); i++) {
-        if (norm_RGB[0] > Epsilon_In_XYZToRGB) norm_RGB[0] = 1.055 * pow(norm_RGB[0], (1.0 / 2.4)) - 0.055;
+        if (norm_RGB[0] > Epsilon_In_XYZToRGB)
+           norm_RGB[0] = 1.055 * pow(norm_RGB[0], (1.0 / 2.4)) - 0.055;
         else
             norm_RGB[0] = 12.92 * norm_RGB[0];
     }
@@ -86,8 +87,9 @@ vector<int> color_converter::XYZToLAB(const vector<double>& xyz) {
     for (unsigned int i = 0; i < norm_XYZ.size(); i++)
          norm_XYZ[i] = xyz[i] / NormalizingVectorXYZToLAB[i];
 
-    for (unsigned int i = 0; i < norm_XYZ.size(); i++){
-        if (norm_XYZ[i] > Epsilon_In_lab) norm_XYZ[i] = pow(norm_XYZ[i], (1.0 / 3.0));
+    for (unsigned int i = 0; i < norm_XYZ.size(); i++) {
+        if (norm_XYZ[i] > Epsilon_In_lab)
+            norm_XYZ[i] = pow(norm_XYZ[i], (1.0 / 3.0));
         else
             norm_XYZ[i] = (Const_K_In_LAB * norm_XYZ[i]) + (16.0 / 116.0);
     }
@@ -112,14 +114,16 @@ vector<double> color_converter::RGBToXYZ(const vector<int>& rgb) {
          norm_RGB[i] = (1.0*rgb[i] / MaxValueInRGB);
 
     for (unsigned int i = 0; i < norm_RGB.size(); i++) {
-        if (norm_RGB[i] > Epsilon_In_RGBToXYZ) norm_RGB[i] = pow(((norm_RGB[i] + 0.055) / 1.055), 2.4);
+        if (norm_RGB[i] > Epsilon_In_RGBToXYZ)
+            norm_RGB[i] = pow(((norm_RGB[i] + 0.055) / 1.055), 2.4);
         else
             norm_RGB[i] = norm_RGB[i] / 12.92;
     }
 
     for (unsigned int i = 0; i < _XYZ.size(); i++)
         for (unsigned int j = 0; j < MatrCoefRGBToXYZ[i].size(); j++)
-            _XYZ[i] += norm_RGB[j] * NormalizingNumberXYZToRGB * MatrCoefRGBToXYZ[i][j];
+            _XYZ[i] += norm_RGB[j] *
+                       NormalizingNumberXYZToRGB * MatrCoefRGBToXYZ[i][j];
     return _XYZ;
 }
 
@@ -131,12 +135,13 @@ vector<double> color_converter::LABToXYZ(const vector<int>& lab) {
     norm_XYZ[0] = 1.0*lab[1] / 500.0 + norm_XYZ[1];
     norm_XYZ[2] = norm_XYZ[1] - 1.0*lab[2] / 200.0;
 
-    for (unsigned int i = 0; i < _XYZ.size(); i++){
-         if (pow(norm_XYZ[i], 3) > Epsilon_In_lab) norm_XYZ[i] = pow(norm_XYZ[i], 3.0);
+    for (unsigned int i = 0; i < _XYZ.size(); i++) {
+         if (pow(norm_XYZ[i], 3) > Epsilon_In_lab)
+             norm_XYZ[i] = pow(norm_XYZ[i], 3.0);
          else
              norm_XYZ[1] = (norm_XYZ[i] - 16.0 / 116.0) / Const_K_In_LAB;
     }
-	
+
     for (unsigned int i = 0; i < _XYZ.size(); i++)
     _XYZ[i] = NormalizingVectorXYZToLAB[i] * norm_XYZ[i];
     return _XYZ;
@@ -165,7 +170,7 @@ vector<int> color_converter::HSVToRGB(const vector<double>& hsv) {
     if (normalized_basis_angle_H == 0) {
         norm_RGB[0] = hsv[2];
         norm_RGB[1] = intermediate_HSV[2];
-        norm_RGB[2] = intermediate_HSV[0];    
+		norm_RGB[2] = intermediate_HSV[0];
     } else if (normalized_basis_angle_H == 1) {
         norm_RGB[0] = intermediate_HSV[1];
         norm_RGB[1] = hsv[2];
@@ -228,11 +233,14 @@ vector<double> color_converter::RGBToHSV(const vector<int>& rgb) {
 
         for (unsigned int i = 0; i < del_RGB.size(); i++)
             del_RGB[i] = (((CurrentMaxValueInRGB - norm_RGB[i]) / 6.0) +
-                           (DifMaxInRGB / 2.0)) / DifMaxInRGB;   
+                           (DifMaxInRGB / 2.0)) / DifMaxInRGB;
 
-        if (norm_RGB[0] == CurrentMaxValueInRGB) HSV[0] = del_RGB[2] - del_RGB[1];
-        else if (norm_RGB[1] == CurrentMaxValueInRGB) HSV[0] = (1.0 / 3.0) + del_RGB[0] - del_RGB[2];
-        else if (norm_RGB[2] == CurrentMaxValueInRGB) HSV[0] = (2.0 / 3.0) + del_RGB[1] - del_RGB[0];
+        if (norm_RGB[0] == CurrentMaxValueInRGB)
+            HSV[0] = del_RGB[2] - del_RGB[1];
+        else if (norm_RGB[1] == CurrentMaxValueInRGB)
+            HSV[0] = (1.0 / 3.0) + del_RGB[0] - del_RGB[2];
+        else if (norm_RGB[2] == CurrentMaxValueInRGB)
+            HSV[0] = (2.0 / 3.0) + del_RGB[1] - del_RGB[0];
 
         if (HSV[0] < 0.0) HSV[0] += 1.0;
         if (HSV[0] > 1.0) HSV[0] -= 1.0;
