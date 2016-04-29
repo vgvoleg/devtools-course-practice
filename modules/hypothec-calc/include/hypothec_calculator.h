@@ -5,14 +5,17 @@
 
 class HypothecCalculator {
  public:
-
     static const int DEFAULT_PROPERTY_COST;
     static const int DEFAULT_PERCENT;
     static const double DEFAULT_FIRST_PAYMENT_PERCENT;
     static const int DEFAULT_TERM;
 
     HypothecCalculator();
-    HypothecCalculator(const int propertyCost, const int firstPayment, const int term, const int percent);
+    HypothecCalculator(
+            const int propertyCost,
+            const int firstPayment,
+            const int term,
+            const int percent);
 
 
     int getPercent() const;
