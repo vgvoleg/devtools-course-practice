@@ -14,11 +14,11 @@ PathFinder::PathFinder(int** graph, int vertice_num, int start_vertex) {
 
 void PathFinder::SetGraph(int** graph, int vertice_num, int start_vertex) {
     if (graph == 0)
-        throw std::exception("Null Graph");
+        throw std::exception();
     if (vertice_num < 0)
-        throw std::exception("Cannot Set Negative Size");
+        throw std::exception();
     if (start_vertex < 0 || start_vertex >= vertice_num)
-        throw std::exception("Invalid Start Vertex");
+        throw std::exception();
     _Graph = graph;
     _Size = vertice_num;
     _StartVertex = start_vertex;
@@ -68,39 +68,39 @@ void PathFinder::Reset() {
 
 int PathFinder::GetDistance(int vertex) {
     if (!_IsInitialized)
-        throw std::exception("Not Initialized");
+        throw std::exception();
     if (vertex < 0 || vertex >= _Size)
-        throw std::exception("Vertex Index Out Of Range");
+        throw std::exception();
     return _Distance[vertex];
 }
 
 int* PathFinder::GetDistances() {
     if (!_IsInitialized)
-        throw std::exception("Not Initialized");
+        throw std::exception();
     return _Distance;
 }
 
 void PathFinder::SetStartVertex(int vertex) {
     if (!_IsInitialized)
-        throw std::exception("Not Initialized");
+        throw std::exception();
     if (vertex < 0 || vertex >= _Size)
-        throw std::exception("Start Vertex Index Out Of Range");
+        throw std::exception();
     SetGraph(_Graph, _Size, vertex);
 }
 
 void PathFinder::SetPath(int from, int to, int distance) {
     if (!_IsInitialized)
-        throw std::exception("Not Initialized");
+        throw std::exception();
     if (from < 0 || from >= _Size)
-        throw std::exception("Index From Out Of Bounds");
+        throw std::exception();
     if (to < 0 || to >= _Size)
-        throw std::exception("Index To Out Of Boudns");
+        throw std::exception();
     if (distance < 0)
-        throw std::exception("Distance cannot be less than 0");
+        throw std::exception();
     if (distance == INT_MAX)
-        throw std::exception("Too Large Distance");
+        throw std::exception();
     if (from == to && distance != 0)
-        throw std::exception("Path from vertex to self cannot be more than 0");
+        throw std::exception();
     _Graph[from][to] = distance;
     SetGraph(_Graph, _Size, _StartVertex);
 }
