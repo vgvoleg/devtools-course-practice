@@ -29,7 +29,7 @@ void PathFinder::SetGraph(int** graph, int vertice_num, int start_vertex) {
 
 void PathFinder::UpdateGraph() {
     for (int i = 0; i < _Size; i++) {
-        int max_distance = INT_MAX;
+        int max_distance = MAX_DISTANCE;
         int index_of_min_distance = -1;
         for (int k = 0; k < _Size; k++)
             if (!_Visited[k] && _Distance[k] < max_distance)
@@ -48,7 +48,7 @@ void PathFinder::UpdateGraph() {
 
 void PathFinder::CheckVetricesWithoutPath() {
     for (int i = 0; i < _Size; i++)
-        if (_Distance[i] == INT_MAX)
+        if (_Distance[i] == MAX_DISTANCE)
             _Distance[i] = PATH_NOT_EXISTS;
 }
 
@@ -60,7 +60,7 @@ void PathFinder::Reset() {
     _Distance = new int[_Size];
     _Visited = new bool[_Size];
     for (int i = 0; i < _Size; i++) {
-        _Distance[i] = INT_MAX;
+        _Distance[i] = MAX_DISTANCE;
         _Visited[i] = false;
     }
     _Distance[_StartVertex] = 0;
@@ -97,7 +97,7 @@ void PathFinder::SetPath(int from, int to, int distance) {
         throw std::exception();
     if (distance < 0)
         throw std::exception();
-    if (distance == INT_MAX)
+    if (distance == MAX_DISTANCE)
         throw std::exception();
     if (from == to && distance != 0)
         throw std::exception();

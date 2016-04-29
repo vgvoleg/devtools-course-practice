@@ -283,7 +283,7 @@ TEST(PathFinder, ThrowsExceptionWhenSetPathWithTooLargeDistance) {
     PathFinder p(gr, 2, 0);
     // Act
     // Assert
-    EXPECT_ANY_THROW(p.SetPath(0, 0, INT_MAX));
+    EXPECT_ANY_THROW(p.SetPath(0, 0, MAX_DISTANCE));
 }
 
 TEST(PathFinder, ThrowsExceptionWhenSetPathToSelfVertexWithPositiveDistance) {
@@ -293,7 +293,7 @@ TEST(PathFinder, ThrowsExceptionWhenSetPathToSelfVertexWithPositiveDistance) {
     PathFinder p(gr, 1, 0);
     // Act
     // Assert
-    EXPECT_ANY_THROW(p.SetPath(0, 0, INT_MAX));
+    EXPECT_ANY_THROW(p.SetPath(0, 0, MAX_DISTANCE));
 }
 
 TEST(PathFinder, CanDeleteNotInitialized) {
