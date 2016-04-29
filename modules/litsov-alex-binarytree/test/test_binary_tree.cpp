@@ -76,11 +76,11 @@ TEST(BinaryTree_Test_Cases, Can_Get_Order_By_Keys_In_Subtree) {
     Element* start_element = Tree.SearchByKey(3);
     string order;
 
-    //Act
+    // Act
     Tree.GetKeysOrderInSubtree(start_element, &order);
 
-    // Act & Assert
-    ASSERT_EQ("3;", order );
+    // Assert
+    ASSERT_EQ("3;", order);
 }
 
 TEST(BinaryTree_Test_Cases, Can_Get_Values_Order_By_Keys_In_Subtree) {
@@ -94,10 +94,10 @@ TEST(BinaryTree_Test_Cases, Can_Get_Values_Order_By_Keys_In_Subtree) {
     Element* start_element = Tree.SearchByKey(7);
     string res;
 
-    //Act
+    // Act
     Tree.GetValuesOrderInSubtree(start_element, &res);
 
-    // Act & Assert
+    // Assert
     ASSERT_EQ("6;7;", res);
 }
 
@@ -192,7 +192,7 @@ TEST(BinaryTree, Can_Get_Max_By_Key) {
     Tree.InsertElem(&e);
 
     // Act
-    Element match = *Tree.GetMaxByKey(Tree.GetRoot()  );
+    Element match = *Tree.GetMaxByKey(Tree.GetRoot());
 
     // Assert
     ASSERT_EQ(match.GetKey(), c.GetKey());
