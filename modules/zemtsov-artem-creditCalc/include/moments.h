@@ -16,6 +16,7 @@ class Moment{
     int getDay() { return day;}
     int getMonth() { return month; }
     int getYear() { return year; }
+
     // set
     void setTime(int day, int month, int year);
 
