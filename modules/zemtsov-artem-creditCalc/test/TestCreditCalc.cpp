@@ -24,7 +24,7 @@ TEST(creditPerson, no_throw_then_procent_is_normal) {
     CreditPerson example;
 
     // Act and Assert
-    for (int i=0; i < 100; i++) {
+    for (int i=0; i <= 100; i++) {
         EXPECT_NO_THROW(example.setProcentByUser(i));
     }
 }
