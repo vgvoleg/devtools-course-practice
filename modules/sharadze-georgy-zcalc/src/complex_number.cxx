@@ -96,14 +96,19 @@ ComplexNumber calc(const ComplexNumber& z1,
     switch (op) {
     case '+':
         result = z1 + z2;
+        break;
     case '-':
         result = z1 - z2;
+        break;
     case '*':
         result = z1 * z2;
+        break;
     case '/':
         result = z1 / z2;
+        break;
     default:
         throw std::string("Wrong operation format!");
+        break;
     }
     return result;
 }
