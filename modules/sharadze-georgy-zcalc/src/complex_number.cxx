@@ -2,6 +2,7 @@
 
 #include "include/complex_number.h"
 #include <string>
+#include <limits>
 
 ComplexNumber::ComplexNumber() {
     re = 0.0;
