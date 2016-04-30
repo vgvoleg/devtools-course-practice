@@ -109,7 +109,6 @@ ComplexNumber calc(const ComplexNumber& z1,
         break;
     default:
         throw std::string("Wrong operation format!");
-        break;
     }
     return result;
 }
