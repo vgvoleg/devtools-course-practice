@@ -4,6 +4,7 @@ set(MODULE      "${DIR_NAME}")
 set(LIBRARY     "lib_${MODULE}")
 set(TESTS       "test_${MODULE}")
 
+
 # Include directory with public headers
 include_directories("./")
 include_directories("include")
