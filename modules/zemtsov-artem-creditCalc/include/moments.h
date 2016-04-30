@@ -11,11 +11,7 @@
 
 class Moment{
  public:
-    Moment() {
-        day = 0;
-        month = 0;
-        year = 0;
-    }
+    Moment();
     // get
     int getDay() { return day;}
     int getMonth() { return month; }
