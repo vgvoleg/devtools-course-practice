@@ -2,7 +2,8 @@
 
 #include "include/complex_number.h"
 #include <string>
-#include <limits>
+
+const double epsilon = std::numeric_limits<double>::epsilon();
 
 ComplexNumber::ComplexNumber() {
     re = 0.0;
@@ -84,23 +85,25 @@ bool ComplexNumber::operator!=(const ComplexNumber& z) const {
 }
 
 bool ComplexNumber::equalsToZero(const ComplexNumber& z) const {
-    return z.getRe() <= DBL_EPSILON && z.getRe() >= -DBL_EPSILON &&
-           z.getIm() <= DBL_EPSILON && z.getIm() >= -DBL_EPSILON;
+    return z.getRe() <= epsilon && z.getRe() >= -epsilon &&
+           z.getIm() <= epsilon && z.getIm() >= -epsilon;
 }
 
 ComplexNumber calc(const ComplexNumber& z1,
                    const ComplexNumber& z2,
                    const char op) {
+    ComplexNumber result;
     switch (op) {
     case '+':
-        return z1 + z2;
+        result = z1 + z2;
     case '-':
-        return z1 - z2;
+        result = z1 - z2;
     case '*':
-        return z1 * z2;
+        result = z1 * z2;
     case '/':
-        return z1 / z2;
+        result = z1 / z2;
     default:
         throw std::string("Wrong operation format!");
     }
+    return result;
 }
