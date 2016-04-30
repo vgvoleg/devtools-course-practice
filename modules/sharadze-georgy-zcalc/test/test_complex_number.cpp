@@ -269,5 +269,5 @@ TEST(Sharadze_Georgy_ComplexNumberTest, Cant_Calc_With_Wrong_Operation_Format) {
     const ComplexNumber z2(_re2, _im2);
 
     // Assert & Act
-    ASSERT_ANY_THROW(calc(z1, z2, 'n'));
+    EXPECT_ANY_THROW(calc(z1, z2, 'n'));
 }

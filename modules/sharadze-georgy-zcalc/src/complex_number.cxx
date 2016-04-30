@@ -90,8 +90,7 @@ bool ComplexNumber::equalsToZero(const ComplexNumber& z) const {
 ComplexNumber calc(const ComplexNumber& z1,
                    const ComplexNumber& z2,
                    const char op) {
-    switch (op)
-    {
+    switch (op) {
     case '+':
         return z1 + z2;
     case '-':
