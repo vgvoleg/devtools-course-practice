@@ -13,12 +13,12 @@ class CreditPerson{
  private:
     // variables
     Moment startDay , finishDay;
-    int creditTime;  // credit period
+    int creditTime;
     double procent;
-    double cost;  // start price
-    double yourEnter;  // start enter
-    double needToPay;  // price with procent
-    double middlePay;  // everymonth pay
+    double cost;
+    double yourEnter;
+    double needToPay;
+    double middlePay;
     // methods
     // set
     void setStartTime(const int dayImp, const int monthImp, const int yearImp);
@@ -39,13 +39,7 @@ class CreditPerson{
 
  public:
     // constructors
-    CreditPerson() {
-        creditTime =  0;
-        procent = 0;
-        cost = 0;
-        yourEnter = 0;
-        needToPay = 0;
-    }
+    CreditPerson();
     // set
     void setProcentByUser(const double procentImp);
     void setStartTimeByUser(const int dImp, const int mImp, const int yImp);
