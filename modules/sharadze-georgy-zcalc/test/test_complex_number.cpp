@@ -5,10 +5,10 @@
 
 TEST(Sharadze_Georgy_ComplexNumberTest,
      Can_Create_Complex_Number_Without_Param) {
-    // Arrange & Act
+    // Arrange
     const ComplexNumber z;
 
-    // Assert
+    // Assert & Act
     EXPECT_DOUBLE_EQ(z.getRe(), z.getIm());
 }
 
