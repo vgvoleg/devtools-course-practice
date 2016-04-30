@@ -187,7 +187,3 @@ TEST(creditPerson, can_calc_cost_with_procents_than) {
                 example.performTheCalculation() );
     }
 }
-
-
-
-
