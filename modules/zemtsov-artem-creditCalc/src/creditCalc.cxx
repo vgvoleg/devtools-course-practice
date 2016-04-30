@@ -7,7 +7,7 @@
 //
 
 #include <stdio.h>
-
+#include <exception>
 #include "../include/creditCalc.h"
 
 CreditPerson::CreditPerson() {
@@ -48,7 +48,6 @@ double CreditPerson::newInstallment(const double installmentImp) {
         } else {
             throw std::invalid_argument("1");
             std::cout<< "Invalide installment(must be more than 0)"<< std::endl;
-            throw std::invalid_argument("1");
         }
 }
 
