@@ -17,13 +17,13 @@ class ComplexNumber {
     void setRe(const double _re);
     void setIm(const double _im);
 
-    ComplexNumber operator+(const ComplexNumber& z) const;
-    ComplexNumber operator-(const ComplexNumber& z) const;
-    ComplexNumber operator*(const ComplexNumber& z) const;
-    ComplexNumber operator/(const ComplexNumber& z) const;
-    ComplexNumber operator=(const ComplexNumber& z);
-    bool operator==(const ComplexNumber& z) const;
-    bool operator!=(const ComplexNumber& z) const;
+    ComplexNumber operator + (const ComplexNumber& z) const;
+    ComplexNumber operator - (const ComplexNumber& z) const;
+    ComplexNumber operator * (const ComplexNumber& z) const;
+    ComplexNumber operator / (const ComplexNumber& z) const;
+    ComplexNumber& operator = (const ComplexNumber& z);
+    bool operator == (const ComplexNumber& z) const;
+    bool operator != (const ComplexNumber& z) const;
     friend ComplexNumber calc(const ComplexNumber& z1,
         const ComplexNumber& z2,
         const char op);

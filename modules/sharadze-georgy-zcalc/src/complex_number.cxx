@@ -71,17 +71,17 @@ ComplexNumber ComplexNumber::operator / (const ComplexNumber& z) const {
     }
 }
 
-ComplexNumber ComplexNumber::operator = (const ComplexNumber& z) {
+ComplexNumber& ComplexNumber::operator = (const ComplexNumber& z) {
     setRe(z.re);
     setIm(z.im);
     return *this;
 }
 
-bool ComplexNumber::operator==(const ComplexNumber& z) const {
+bool ComplexNumber::operator == (const ComplexNumber& z) const {
     return equalsToZero(*this - z);
 }
 
-bool ComplexNumber::operator!=(const ComplexNumber& z) const {
+bool ComplexNumber::operator != (const ComplexNumber& z) const {
     return !(*this == z);
 }
 
