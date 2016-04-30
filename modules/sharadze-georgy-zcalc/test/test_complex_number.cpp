@@ -27,7 +27,6 @@ TEST(Sharadze_Georgy_ComplexNumberTest, Can_Create_Complex_Number_With_Copy) {
     // Act
     const ComplexNumber z2(z1);
 
-
     // Assert
     EXPECT_TRUE(z1 == z2);
 }

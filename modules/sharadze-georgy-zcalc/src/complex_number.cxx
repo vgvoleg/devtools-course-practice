@@ -75,7 +75,7 @@ ComplexNumber ComplexNumber::operator = (const ComplexNumber& z) {
 }
 
 bool ComplexNumber::operator==(const ComplexNumber& z) const {
-    return (getRe() == z.getRe() && getIm() == z.getIm());
+    return equalsToZero(*this - z);
 }
 
 bool ComplexNumber::operator!=(const ComplexNumber& z) const {
@@ -83,21 +83,24 @@ bool ComplexNumber::operator!=(const ComplexNumber& z) const {
 }
 
 bool ComplexNumber::equalsToZero(const ComplexNumber& z) const {
-    return (z.getRe() == 0.0 && z.getIm() == 0.0);
+    return z.getRe() <= DBL_EPSILON && z.getRe() >= -DBL_EPSILON &&
+           z.getIm() <= DBL_EPSILON && z.getIm() >= -DBL_EPSILON;
 }
 
 ComplexNumber calc(const ComplexNumber& z1,
                    const ComplexNumber& z2,
                    const char op) {
-    if (op == '+') {
+    switch (op)
+    {
+    case '+':
         return z1 + z2;
-    } else if (op == '-') {
+    case '-':
         return z1 - z2;
-    } else if (op == '*') {
+    case '*':
         return z1 * z2;
-    } else if (op == '/') {
+    case '/':
         return z1 / z2;
-    } else {
+    default:
         throw std::string("Wrong operation format!");
     }
 }
