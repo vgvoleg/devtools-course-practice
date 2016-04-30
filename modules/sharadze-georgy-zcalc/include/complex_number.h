@@ -1,5 +1,8 @@
 // Copyright 2016 Sharadze Georgy
 
+#include <limits>
+#include <string>
+
 #ifndef MODULES_SHARADZE_GEORGY_ZCALC_INCLUDE_COMPLEX_NUMBER_H_
 #define MODULES_SHARADZE_GEORGY_ZCALC_INCLUDE_COMPLEX_NUMBER_H_
 

@@ -2,6 +2,7 @@
 
 #include "include/complex_number.h"
 #include <string>
+#include <limits>
 
 const double epsilon = std::numeric_limits<double>::epsilon();
 
