@@ -20,9 +20,9 @@ const vector<vector<double>> kMatrCoefRGBToXYZ{
     { 0.0193339, 0.1191920, 0.9503041 },
 };
 
-const double kEpsilon_In_lab = 0.008856;
-const double kEpsilon_In_RGBToXYZ = 0.04045;
-const double kEpsilon_In_XYZToRGB = 0.0031308;
+const double kEpsilonInLAB = 0.008856;
+const double kEpsilonInRGBToXYZ = 0.04045;
+const double kEpsilonInXYZToRGB = 0.0031308;
 const double kMaxValueInRGB = 255.0;
 const double kNormalizingNumberXYZToRGB = 100.0;
 const double kKInLAB = 7.787;
@@ -58,152 +58,152 @@ bool color_converter::IsLABVectorinRange(const vector<int>& lab) {
 }
 
 vector<int> color_converter::XYZToRGB(const vector<double>& xyz) {
-    vector<int> RGB(3);
-    vector<double> norm_RGB(3);
-    vector<double> norm_XYZ(3);
-    for (size_t i = 0; i < norm_XYZ.size(); i++)
-        norm_XYZ[i] = xyz[i] / kNormalizingNumberXYZToRGB;
+    vector<int> rgb(3);
+    vector<double> norm_rgb(3);
+    vector<double> norm_xyz(3);
+    for (size_t i = 0; i < norm_xyz.size(); i++)
+        norm_xyz[i] = xyz[i] / kNormalizingNumberXYZToRGB;
 
-    for (size_t i = 0; i < norm_RGB.size(); i++)
+    for (size_t i = 0; i < norm_rgb.size(); i++)
         for (size_t j = 0; j < kMatrCoefRGBToXYZ[i].size(); j++)
-            norm_RGB[i] = norm_RGB[i] + norm_XYZ[j] * kMatrCoefXYZToRGB[i][j];
+            norm_rgb[i] = norm_rgb[i] + norm_xyz[j] * kMatrCoefXYZToRGB[i][j];
 
-    for (size_t i = 0; i < norm_XYZ.size(); i++) {
-        if (norm_RGB[i] > kEpsilon_In_XYZToRGB)
-           norm_RGB[i] = 1.055 * pow(norm_RGB[i], (1.0 / 2.4)) - 0.055;
+    for (size_t i = 0; i < norm_xyz.size(); i++) {
+        if (norm_rgb[i] > kEpsilonInXYZToRGB)
+           norm_rgb[i] = 1.055 * pow(norm_rgb[i], (1.0 / 2.4)) - 0.055;
         else
-            norm_RGB[i] = 12.92 * norm_RGB[i];
+            norm_rgb[i] = 12.92 * norm_rgb[i];
     }
 
-    for (size_t i = 0; i < norm_XYZ.size(); i++) {
-        RGB[i] = static_cast<int>(norm_RGB[i] * kMaxValueInRGB + 0.5);
+    for (size_t i = 0; i < norm_xyz.size(); i++) {
+        rgb[i] = static_cast<int>(norm_rgb[i] * kMaxValueInRGB + 0.5);
     }
-    return RGB;
+    return rgb;
 }
 
 vector<int> color_converter::XYZToLAB(const vector<double>& xyz) {
-    vector<int> LAB(3);
-    vector<double> LAB_res(3);
-    vector<double> norm_XYZ(3);
-    for (size_t i = 0; i < norm_XYZ.size(); i++)
-         norm_XYZ[i] = xyz[i] / kNormalizingVectorXYZToLAB[i];
+    vector<int> lab(3);
+    vector<double> lab_res(3);
+    vector<double> norm_xyz(3);
+    for (size_t i = 0; i < norm_xyz.size(); i++)
+         norm_xyz[i] = xyz[i] / kNormalizingVectorXYZToLAB[i];
 
-    for (size_t i = 0; i < norm_XYZ.size(); i++) {
-        if (norm_XYZ[i] > kEpsilon_In_lab)
-            norm_XYZ[i] = pow(norm_XYZ[i], (1.0 / 3.0));
+    for (size_t i = 0; i < norm_xyz.size(); i++) {
+        if (norm_xyz[i] > kEpsilonInLAB)
+            norm_xyz[i] = pow(norm_xyz[i], (1.0 / 3.0));
         else
-            norm_XYZ[i] = (kKInLAB * norm_XYZ[i]) + (16.0 / 116.0);
+            norm_xyz[i] = (kKInLAB * norm_xyz[i]) + (16.0 / 116.0);
     }
 
-    LAB_res[0] = ((116.0 * norm_XYZ[1]) - 16.0);
-    LAB_res[1] = (500.0 * (norm_XYZ[0] - norm_XYZ[1]));
-    LAB_res[2] = (200.0 * (norm_XYZ[1] - norm_XYZ[2]));
-    for (size_t i = 0; i < LAB.size(); i++) {
-        if (LAB_res[i] < 0) {
-             LAB[i] = static_cast<int>(LAB_res[i] - 0.5);
+    lab_res[0] = ((116.0 * norm_xyz[1]) - 16.0);
+    lab_res[1] = (500.0 * (norm_xyz[0] - norm_xyz[1]));
+    lab_res[2] = (200.0 * (norm_xyz[1] - norm_xyz[2]));
+    for (size_t i = 0; i < lab.size(); i++) {
+        if (lab_res[i] < 0) {
+             lab[i] = static_cast<int>(lab_res[i] - 0.5);
         } else {
-            LAB[i] = static_cast<int>(LAB_res[i] + 0.5);
+            lab[i] = static_cast<int>(lab_res[i] + 0.5);
         }
     }
-    return LAB;
+    return lab;
 }
 
 vector<double> color_converter::RGBToXYZ(const vector<int>& rgb) {
-    vector<double> _XYZ{ 0.0, 0.0, 0.0 };
-    vector<double> norm_RGB(3);
-    for (size_t i = 0; i < _XYZ.size(); i++)
-         norm_RGB[i] = (1.0*rgb[i] / kMaxValueInRGB);
+    vector<double> xyz_res{ 0.0, 0.0, 0.0 };
+    vector<double> norm_rgb(3);
+    for (size_t i = 0; i < xyz_res.size(); i++)
+         norm_rgb[i] = (1.0*rgb[i] / kMaxValueInRGB);
 
-    for (size_t i = 0; i < norm_RGB.size(); i++) {
-        if (norm_RGB[i] > kEpsilon_In_RGBToXYZ)
-            norm_RGB[i] = pow(((norm_RGB[i] + 0.055) / 1.055), 2.4);
+    for (size_t i = 0; i < norm_rgb.size(); i++) {
+        if (norm_rgb[i] > kEpsilonInRGBToXYZ)
+            norm_rgb[i] = pow(((norm_rgb[i] + 0.055) / 1.055), 2.4);
         else
-            norm_RGB[i] = norm_RGB[i] / 12.92;
+            norm_rgb[i] = norm_rgb[i] / 12.92;
     }
 
-    for (size_t i = 0; i < _XYZ.size(); i++)
+    for (size_t i = 0; i < xyz_res.size(); i++)
         for (size_t j = 0; j < kMatrCoefRGBToXYZ[i].size(); j++)
-            _XYZ[i] += norm_RGB[j] *
+            xyz_res[i] += norm_rgb[j] *
                        kNormalizingNumberXYZToRGB * kMatrCoefRGBToXYZ[i][j];
-    return _XYZ;
+    return xyz_res;
 }
 
 vector<double> color_converter::LABToXYZ(const vector<int>& lab) {
-    vector<double> _XYZ(3);
-    vector<double> norm_XYZ(3);
+    vector<double> xyz_res(3);
+    vector<double> norm_xyz(3);
 
-    norm_XYZ[1] = (1.0*lab[0] + 16.0) / 116.0;
-    norm_XYZ[0] = 1.0*lab[1] / 500.0 + norm_XYZ[1];
-    norm_XYZ[2] = norm_XYZ[1] - 1.0*lab[2] / 200.0;
+    norm_xyz[1] = (1.0*lab[0] + 16.0) / 116.0;
+    norm_xyz[0] = 1.0*lab[1] / 500.0 + norm_xyz[1];
+    norm_xyz[2] = norm_xyz[1] - 1.0*lab[2] / 200.0;
 
-    for (size_t i = 0; i < _XYZ.size(); i++) {
-         if (pow(norm_XYZ[i], 3) > kEpsilon_In_lab)
-             norm_XYZ[i] = pow(norm_XYZ[i], 3.0);
+    for (size_t i = 0; i < xyz_res.size(); i++) {
+         if (pow(norm_xyz[i], 3) > kEpsilonInLAB)
+             norm_xyz[i] = pow(norm_xyz[i], 3.0);
          else
-             norm_XYZ[i] = (norm_XYZ[i] - 16.0 / 116.0) / kKInLAB;
+             norm_xyz[i] = (norm_xyz[i] - 16.0 / 116.0) / kKInLAB;
     }
 
-    for (size_t i = 0; i < _XYZ.size(); i++)
-    _XYZ[i] = kNormalizingVectorXYZToLAB[i] * norm_XYZ[i];
-    return _XYZ;
+    for (size_t i = 0; i < xyz_res.size(); i++)
+         xyz_res[i] = kNormalizingVectorXYZToLAB[i] * norm_xyz[i];
+    return xyz_res;
 }
 
 vector<int> color_converter::HSVToRGB(const vector<double>& hsv) {
     if (!IsVectorSizeCorrect(hsv)) throw IncorrectSizeOfVector();
     if (!IsHSVVectorinRange(hsv)) throw IncorrectValueOfHSV();
-    vector<int> RGB_res(3);
-    vector<double> norm_RGB(3);
-    vector<double> intermediate_HSV(3);
+    vector<int> rgb_res(3);
+    vector<double> norm_rgb(3);
+    vector<double> intermediate_hsv(3);
 
     if (hsv[1] == 0.0) {
-       for (size_t i = 0; i < RGB_res.size(); i++)
-            RGB_res[i] = hsv[2] * kMaxValueInRGB;
+       for (size_t i = 0; i < rgb_res.size(); i++)
+            rgb_res[i] = hsv[2] * kMaxValueInRGB;
     } else {
         double normalized_angle_H = hsv[0] * 6.0;
         int normalized_basis_angle_H =
                        static_cast<int>(normalized_angle_H + 0.5);
         if (normalized_basis_angle_H == 6) normalized_angle_H = 0;
-        intermediate_HSV[0] = hsv[2] * (1.0 - hsv[1]);
-        intermediate_HSV[1] = hsv[2] * (1.0 - hsv[1] *
+        intermediate_hsv[0] = hsv[2] * (1.0 - hsv[1]);
+        intermediate_hsv[1] = hsv[2] * (1.0 - hsv[1] *
            (normalized_angle_H - normalized_basis_angle_H));
-        intermediate_HSV[2] = hsv[2] * (1.0 - hsv[1] *
+        intermediate_hsv[2] = hsv[2] * (1.0 - hsv[1] *
            (1.0 - (normalized_angle_H - normalized_basis_angle_H)));
         switch ((normalized_basis_angle_H)) {
         case 0:
-            norm_RGB[0] = hsv[2];
-            norm_RGB[1] = intermediate_HSV[2];
-            norm_RGB[2] = intermediate_HSV[0];
+            norm_rgb[0] = hsv[2];
+            norm_rgb[1] = intermediate_hsv[2];
+            norm_rgb[2] = intermediate_hsv[0];
             break;
         case 1:
-            norm_RGB[0] = intermediate_HSV[1];
-            norm_RGB[1] = hsv[2];
-            norm_RGB[2] = intermediate_HSV[0];
+            norm_rgb[0] = intermediate_hsv[1];
+            norm_rgb[1] = hsv[2];
+            norm_rgb[2] = intermediate_hsv[0];
             break;
         case 2:
-            norm_RGB[0] = intermediate_HSV[0];
-            norm_RGB[1] = hsv[2];
-            norm_RGB[2] = intermediate_HSV[2];
+            norm_rgb[0] = intermediate_hsv[0];
+            norm_rgb[1] = hsv[2];
+            norm_rgb[2] = intermediate_hsv[2];
             break;
         case 3:
-            norm_RGB[0] = intermediate_HSV[0];
-            norm_RGB[1] = intermediate_HSV[1];
-            norm_RGB[2] = hsv[2];
+            norm_rgb[0] = intermediate_hsv[0];
+            norm_rgb[1] = intermediate_hsv[1];
+            norm_rgb[2] = hsv[2];
             break;
         case 4:
-            norm_RGB[0] = intermediate_HSV[2];
-            norm_RGB[1] = intermediate_HSV[0];
-            norm_RGB[2] = hsv[2];
+            norm_rgb[0] = intermediate_hsv[2];
+            norm_rgb[1] = intermediate_hsv[0];
+            norm_rgb[2] = hsv[2];
             break;
         default:
-            norm_RGB[0] = hsv[2];
-            norm_RGB[1] = intermediate_HSV[0];
-            norm_RGB[2] = intermediate_HSV[1];
+            norm_rgb[0] = hsv[2];
+            norm_rgb[1] = intermediate_hsv[0];
+            norm_rgb[2] = intermediate_hsv[1];
             break;
         }
-    for (size_t i = 0; i < RGB_res.size(); i++)
-        RGB_res[i] = static_cast<int>(norm_RGB[i] * kMaxValueInRGB);
+    for (size_t i = 0; i < rgb_res.size(); i++)
+        rgb_res[i] = static_cast<int>(norm_rgb[i] * kMaxValueInRGB);
     }
-    return RGB_res;
+    return rgb_res;
 }
 
 vector<int> color_converter::LABToRGB(const vector<int>& lab) {
@@ -216,44 +216,44 @@ vector<int> color_converter::LABToRGB(const vector<int>& lab) {
 vector<double> color_converter::RGBToHSV(const vector<int>& rgb) {
     if (!IsVectorSizeCorrect(rgb)) throw IncorrectSizeOfVector();
     if (!IsRGBVectorinRange(rgb)) throw IncorrectValueOfRGB();
-    vector<double> HSV(3);
-    vector<int> RGB_res(rgb);
-    vector<double> norm_RGB(3);
+    vector<double> hsv(3);
+    vector<int> rgb_res(rgb);
+    vector<double> norm_rgb(3);
     vector<double> del_RGB(3);
-    for (size_t i = 0; i < norm_RGB.size(); i++)
-        norm_RGB[i] = (1.0*RGB_res[i] / kMaxValueInRGB);
+    for (size_t i = 0; i < norm_rgb.size(); i++)
+        norm_rgb[i] = (1.0*rgb_res[i] / kMaxValueInRGB);
 
-    double CurrentMinValueInRGB = 1.0 * RGB_res[0] / kMaxValueInRGB;
-    double CurrentMaxValueInRGB = 1.0 * RGB_res[0] / kMaxValueInRGB;
-    for (size_t i = 1; i < RGB_res.size(); i++) {
-        if (1.0*RGB_res[i] / kMaxValueInRGB < CurrentMinValueInRGB)
-         CurrentMinValueInRGB = 1.0*RGB_res[i] / kMaxValueInRGB;
-        if (1.0*RGB_res[i] / kMaxValueInRGB > CurrentMaxValueInRGB)
-         CurrentMaxValueInRGB = 1.0*RGB_res[i] / kMaxValueInRGB;
+    double current_min_value_in_rgb = 1.0 * rgb_res[0] / kMaxValueInRGB;
+    double current_max_value_in_rgb = 1.0 * rgb_res[0] / kMaxValueInRGB;
+    for (size_t i = 1; i < rgb_res.size(); i++) {
+        if (1.0*rgb_res[i] / kMaxValueInRGB < current_min_value_in_rgb)
+         current_min_value_in_rgb = 1.0*rgb_res[i] / kMaxValueInRGB;
+        if (1.0*rgb_res[i] / kMaxValueInRGB > current_max_value_in_rgb)
+         current_max_value_in_rgb = 1.0*rgb_res[i] / kMaxValueInRGB;
     }
-    double DifMaxInRGB = CurrentMaxValueInRGB - CurrentMinValueInRGB;
-    HSV[2] = CurrentMaxValueInRGB;
-    if (DifMaxInRGB == 0) {
-        HSV[0] = 0.0;
-        HSV[1] = 0.0;
+    double dif_max_in_rgb = current_max_value_in_rgb - current_min_value_in_rgb;
+    hsv[2] = current_max_value_in_rgb;
+    if (dif_max_in_rgb == 0) {
+        hsv[0] = 0.0;
+        hsv[1] = 0.0;
     } else {
-        HSV[1] = DifMaxInRGB / CurrentMaxValueInRGB;
+        hsv[1] = dif_max_in_rgb / current_max_value_in_rgb;
 
         for (size_t i = 0; i < del_RGB.size(); i++)
-            del_RGB[i] = (((CurrentMaxValueInRGB - norm_RGB[i]) / 6.0) +
-                           (DifMaxInRGB / 2.0)) / DifMaxInRGB;
+            del_RGB[i] = (((current_max_value_in_rgb - norm_rgb[i]) / 6.0) +
+                           (dif_max_in_rgb / 2.0)) / dif_max_in_rgb;
 
-        if (norm_RGB[0] == CurrentMaxValueInRGB)
-            HSV[0] = del_RGB[2] - del_RGB[1];
-        else if (norm_RGB[1] == CurrentMaxValueInRGB)
-            HSV[0] = (1.0 / 3.0) + del_RGB[0] - del_RGB[2];
-        else if (norm_RGB[2] == CurrentMaxValueInRGB)
-            HSV[0] = (2.0 / 3.0) + del_RGB[1] - del_RGB[0];
+        if (norm_rgb[0] == current_max_value_in_rgb)
+            hsv[0] = del_RGB[2] - del_RGB[1];
+        else if (norm_rgb[1] == current_max_value_in_rgb)
+            hsv[0] = (1.0 / 3.0) + del_RGB[0] - del_RGB[2];
+        else if (norm_rgb[2] == current_max_value_in_rgb)
+            hsv[0] = (2.0 / 3.0) + del_RGB[1] - del_RGB[0];
 
-        if (HSV[0] < 0.0) HSV[0] += 1.0;
-        if (HSV[0] > 1.0) HSV[0] -= 1.0;
+        if (hsv[0] < 0.0) hsv[0] += 1.0;
+        if (hsv[0] > 1.0) hsv[0] -= 1.0;
     }
-    return HSV;
+    return hsv;
 }
 
 vector<double> color_converter::LABToHSV(const vector<int>& lab) {
