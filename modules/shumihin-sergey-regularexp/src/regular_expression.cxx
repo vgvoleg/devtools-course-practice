@@ -5,52 +5,51 @@
 using std::string;
 
 
-Regex::Regex(const string& str){
-    for (auto iter = str.begin(); iter != str.end(); ++iter){
-        if ( (*iter == '\\') && (next(iter) != str.end()) ) {
+Regex::Regex(const string& str) {
+    for (auto iter = str.begin(); iter != str.end(); ++iter) {
+        if ((*iter == '\\') && (next(iter) != str.end())) {
             ++iter;
             switch (*iter) {
             case('d') :
-              functVect.push_back([](char symb)->bool {
-                    return isdigit(symb) != 0; });
+                functVect.push_back([](char symb)->bool {
+                return isdigit(symb) != 0; });
                 break;
             case('D') :
                 functVect.push_back([](char symb)->bool {
-                    return isdigit(symb) == 0; });
+                return isdigit(symb) == 0; });
                 break;
             case('s') :
                 functVect.push_back([](char symb)->bool {
-                    return isblank(symb) != 0; });
+                return isblank(symb) != 0; });
                 break;
             case('S') :
                 functVect.push_back([](char symb)->bool {
-                    return isblank(symb) == 0; });
+                return isblank(symb) == 0; });
                 break;
             case('w') :
-              functVect.push_back([](char symb)->bool {
-                    return isalnum(symb) != 0 || symb == '_'; });
+                functVect.push_back([](char symb)->bool {
+                return isalnum(symb) != 0 || symb == '_'; });
                 break;
             case('W') :
-              functVect.push_back([](char symb)->bool {
-                    return isalnum(symb) == 0 && symb != '_'; });
+                functVect.push_back([](char symb)->bool {
+                return isalnum(symb) == 0 && symb != '_'; });
                 break;
             case('\\') :
                 functVect.push_back([](char symb)->bool {
-                    return symb=='\\';});
+                return symb == '\\'; });
                 break;
             }
-        }
         //  Sequences can be set only in format (amount) {a}
-        else if (*iter=='{' && *next(iter,2)=='}' && iter!=str.begin() 
+        } else if (*iter == '{' && *next(iter, 2) == '}' && iter != str.begin()
             && isdigit(*next(iter)) ) {
             ++iter;
             functVect.resize(
                 functVect.size() + *iter -'0' - 1, functVect.back() );
             ++iter;
-        } else 
-          functVect.push_back([templSymbol = *iter](char symb)->bool {
-            return templSymbol == symb;});
-        
+        } else {
+            functVect.push_back([templSymbol = *iter](char symb)->bool {
+                return templSymbol == symb; });
+        }
     }
 }
 
@@ -59,10 +58,10 @@ bool Regex::search(const string& str) const {
     if (functVect.size() != 0) {
         auto iter = functVect.begin();
 
-        for (const char symb : str){
+        for (const char symb : str) {
             if ((*iter)(symb)){
                 ++iter;
-                if (iter == functVect.end()){
+                if (iter == functVect.end()) {
                     result = true;
                     break;
                 }
