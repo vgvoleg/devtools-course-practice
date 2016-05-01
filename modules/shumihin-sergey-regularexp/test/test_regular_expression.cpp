@@ -152,7 +152,7 @@ TEST(Regex, Can_Work_With_Empty_Regular) {
     EXPECT_FALSE(regular.search(str));
 }
 
-TEST(Regex, can_get_find_num) {
+TEST(Regex, Can_Get_Find_Num) {
     // Arrange
     Smatch smatch;
     const Regex regular("\\d");
@@ -166,7 +166,7 @@ TEST(Regex, can_get_find_num) {
     EXPECT_EQ(str_expection, smatch.front());
 }
 
-TEST(Regex, can_get_symbol_sequence) {
+TEST(Regex, Can_Get_Symbol_Sequence) {
     // Arrange
     Smatch smatch;
     const Regex regular("b{3}");
@@ -180,7 +180,7 @@ TEST(Regex, can_get_symbol_sequence) {
     EXPECT_EQ(str_expection, smatch.front());
 }
 
-TEST(Regex, sequence_work_only_with_last_symbol) {
+TEST(Regex, Sequence_Work_Only_With_Last_Symbol) {
     // Arrange
     Smatch smatch;
     const Regex regular("abc{3}");
@@ -194,7 +194,7 @@ TEST(Regex, sequence_work_only_with_last_symbol) {
     EXPECT_EQ(str_expection, smatch.front());
 }
 
-TEST(Regex, Smatch_empty_when_expression_empty) {
+TEST(Regex, Smatch_Empty_When_Expression_Empty) {
     // Arrange
     Smatch smatch;
     const Regex regular("");
@@ -215,7 +215,7 @@ TEST(Regex, Can_Check_Full_Compliance_With_Smath) {
 
     // Act
     const string str = "14abc";
-    bool result = regex.match(str, &smatch);
+    const bool result = regex.match(str, &smatch);
 
     // Assert
     EXPECT_TRUE(result);
@@ -228,7 +228,7 @@ TEST(Regex, Can_Check_Not_Full_Compliance_With_Smath) {
 
     // Act
     const string str = "14abcz23";
-    bool result = regex.match(str, &smatch);
+    const bool result = regex.match(str, &smatch);
 
     // Assert
     EXPECT_FALSE(result);
@@ -240,7 +240,7 @@ TEST(Regex, Can_Check_Full_Compliance_Without_Smath) {
 
     // Act
     const string str = "14abc";
-    bool result = regex.match(str);
+    const bool result = regex.match(str);
 
     // Assert
     EXPECT_TRUE(result);
@@ -253,7 +253,7 @@ TEST(Regex, Can_Check_Not_Full_Compliance_Without_Smath) {
 
     // Act
     const string str = "14abcz23";
-    bool result = regex.match(str);
+    const bool result = regex.match(str);
 
     // Assert
     EXPECT_FALSE(result);
@@ -261,19 +261,28 @@ TEST(Regex, Can_Check_Not_Full_Compliance_Without_Smath) {
 
 TEST(Regex, Can_Check_Full_Compliance_With_Dubl_Num) {
     // Arrange
-    Smatch smatchCompliance;
-    Smatch smatchOverload;
+    Smatch smatch;
     const Regex regex("\\d{2}");
 
     // Act
-    const string strCompliance = "22";
-    const string strOverload = "2222";
-    bool resultCompliance = regex.match(strCompliance, &smatchCompliance);
-    bool resultOverload = regex.match(strOverload, &smatchCompliance);
+    const string str = "22";
+    const bool result = regex.match(str, &smatch);
 
     // Assert
-    EXPECT_TRUE(resultCompliance);
-    EXPECT_FALSE(resultOverload);
+    EXPECT_TRUE(result);
+}
+
+TEST(Regex, Can_Check_Not_Full_Compliance_With_Dubl_Num) {
+    // Arrange
+    Smatch smatch;
+    const Regex regex("\\d{2}");
+
+    // Act
+    const string str = "2222";
+    const bool result = regex.match(str, &smatch);
+
+    // Assert
+    EXPECT_FALSE(result);
 }
 
 TEST(Regex, Can_Get_Right_Size_Of_SMatch) {
