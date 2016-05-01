@@ -17,7 +17,7 @@ ConverterLenght::ConverterLenght(const double val, Unit measure) {
 double ConverterLenght::getCoeff(const std::string& unit) {
     double temp = 0.0;
 
-    if (unit == "Ñentimeter") {
+    if (unit == "Centimeter") {
         temp = 0.01;
     } else {
         if (unit == "Meter") {
@@ -44,18 +44,18 @@ void ConverterLenght::converter(const Unit measure) {
             break;
 
         case Unit::MeterL:
-            value_ = value_ * getCoeff("Ñentimeter");
+            value_ = value_ * getCoeff("Centimeter");
             measure_ = measure;
             break;
 
         case Unit::KilometerL:
-            value_ = ((value_ * getCoeff("Ñentimeter")) /
+            value_ = ((value_ * getCoeff("Centimeter")) /
                 getCoeff("Kilometer"));
             measure_ = measure;
             break;
 
         case Unit::MileL:
-            value_ = ((value_ * getCoeff("Ñentimeter")) / getCoeff("Mile"));
+            value_ = ((value_ * getCoeff("Centimeter")) / getCoeff("Mile"));
             measure_ = measure;
             break;
         }
