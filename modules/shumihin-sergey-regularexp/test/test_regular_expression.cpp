@@ -8,7 +8,7 @@
 #include "include/regular_expression.h"
 
 
-TEST(Regex, Can_Find_Num_In_Stirng) {
+TEST(Regex, Can_Find_Num_In_String) {
     // Arrange
     Regex regular("\\d");
     const string str("dtdgb 42 sfg");
