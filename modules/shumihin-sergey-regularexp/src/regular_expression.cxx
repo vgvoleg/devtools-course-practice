@@ -1,5 +1,7 @@
 // Copyright 2016 Sergey Shumihin
 
+#include <string>
+
 #include "include/regular_expression.h"
 
 using std::string;
@@ -59,14 +61,15 @@ bool Regex::search(const string& str) const {
         auto iter = functVect.begin();
 
         for (const char symb : str) {
-            if ((*iter)(symb)){
+            if ((*iter)(symb)) {
                 ++iter;
                 if (iter == functVect.end()) {
                     result = true;
                     break;
                 }
-            } else
+            } else {
                 iter = functVect.begin();
+            }
         }
     }
     return result;
@@ -88,8 +91,7 @@ bool Regex::search(const string& str, Smatch& match) const {
                     buf.clear();
                     result = true;
                 }
-            }
-            else {
+            } else {
                 iter = functVect.begin();
                 buf.clear();
             }
@@ -128,7 +130,6 @@ bool Regex::match(const string & str, Smatch & match) const {
 
   if ( !functVect.empty() ) {
     for (auto symb = str.begin(); symb != str.end(); ++symb) {
-
       if ((*iter)(*symb)) {
         buf += *symb;
         ++iter;
