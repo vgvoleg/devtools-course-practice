@@ -28,7 +28,7 @@ class Smatch : private vector<string>{
   using vector<string>::size;
   using vector<string>::empty;
 
-  friend ostream& operator<< (ostream& os, const Smatch& sm);
+  friend ostream& operator<< (ostream& os, const Smatch& match);
   friend Regex;
 };
 

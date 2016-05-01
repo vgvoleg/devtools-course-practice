@@ -151,8 +151,8 @@ bool Regex::match(const string & str, Smatch* match) const {
   return result;
 }
 
-ostream& operator<< (ostream& os, const Smatch& sm) {
-    for (const string str : sm)
+ostream& operator<< (ostream& os, const Smatch& match) {
+    for (const string str : match)
       os << str << " ";
     return os;
 }
