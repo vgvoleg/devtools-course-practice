@@ -36,6 +36,8 @@ void fraction::setNum(int numerator) {
 }
 
 void fraction::setDenom(int denominator) {
+    if (denominator == 0)
+        throw std::string("Can't divide by zero");
     denominator_ = denominator;
 }
 
