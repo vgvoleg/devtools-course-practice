@@ -80,7 +80,7 @@ bool Regex::search(const string& str, Smatch& match) const {
     string buf = "";
     auto iter = functVect.begin();
 
-    if ( !functVect.empty() ) { 
+    if ( !functVect.empty() ) {
         for (char symb : str) {
             if ((*iter)(symb)) {
                 buf += symb;
