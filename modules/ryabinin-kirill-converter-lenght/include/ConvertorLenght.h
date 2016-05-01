@@ -11,7 +11,7 @@ enum class Data { OK, ERROR };
 enum class Unit { CentimeterL, MeterL, KilometerL, MileL };
 
 class ConverterLenght {
-public:
+ public:
     explicit ConverterLenght(const double, const Unit);
     void converter(const Unit);
     Data getRetCode(void);
@@ -19,7 +19,7 @@ public:
     Unit getUnit(void)const;
     void installValue(const double);
     void installUnit(const Unit);
-private:
+ private:
     Data retcode_;
     double value_;
     Unit measure_;
