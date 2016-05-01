@@ -49,7 +49,8 @@ Regex::Regex(const string& str) {
                 functVect.size() + *iter -'0' - 1, functVect.back() );
             ++iter;
         } else {
-            functVect.push_back([templSymbol = *iter](char symb)->bool {
+            auto templSymbol = *iter;
+            functVect.push_back([templSymbol](char symb)->bool {
                 return templSymbol == symb; });
         }
     }
