@@ -23,6 +23,14 @@ TEST(FractionTest, Do_Throw_When_Denominator_Is_Zero) {
     ASSERT_ANY_THROW(fraction z1(1, 0));
 }
 
+TEST(FractionTest, Do_Throw_When_Denominator_Set_Zero) {
+    // Arrange
+    fraction z;
+    
+    // Act & Assert
+    ASSERT_ANY_THROW(z.setDenom(0));
+}
+
 TEST(FractionTest, Can_Create_Nonzero_Element) {
     // Arrange
     int n = 5;
