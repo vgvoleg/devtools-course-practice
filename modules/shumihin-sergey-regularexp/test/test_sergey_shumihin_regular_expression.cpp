@@ -3,12 +3,13 @@
 #include <gtest/gtest.h>
 
 #include <sstream>
+#include <string>
 
 #include "include/regular_expression.h"
 
 
 TEST(Regex, Can_Find_Num_In_Stirng) {
-    // Arrange 
+    // Arrange
     Regex regular("\\d");
     const string str("dtdgb 42 sfg");
 
@@ -17,7 +18,7 @@ TEST(Regex, Can_Find_Num_In_Stirng) {
 }
 
 TEST(Regex, Can_Find_Not_Num_In_String) {
-    // Arrange 
+    // Arrange
     const Regex regular("\\D");
     const string str("bla 52 bla ");
 
@@ -26,7 +27,7 @@ TEST(Regex, Can_Find_Not_Num_In_String) {
 }
 
 TEST(Regex, Can_Find_Space_In_String) {
-    // Arrange 
+    // Arrange
     const Regex regular("\\s");
     const string str("bla bla");
 
@@ -35,7 +36,7 @@ TEST(Regex, Can_Find_Space_In_String) {
 }
 
 TEST(Regex, Can_Find_No_Space_Symbol_In_String) {
-    // Arrange 
+    // Arrange
     const Regex regular("\\S");
     const string str("blabla");
 
@@ -44,7 +45,7 @@ TEST(Regex, Can_Find_No_Space_Symbol_In_String) {
 }
 
 TEST(Regex, Can_Find_Letter_Or_Number_Or_Space) {
-    // Arrange 
+    // Arrange
     const Regex regular("\\w");
     const string str("bla 1");
 
@@ -53,7 +54,7 @@ TEST(Regex, Can_Find_Letter_Or_Number_Or_Space) {
 }
 
 TEST(Regex, Can_Find_Symbol_Expect_Letter_And_Number_And_Space) {
-    // Arrange 
+    // Arrange
     const Regex regular("\\W");
     const string str("^!;");
 
@@ -62,7 +63,7 @@ TEST(Regex, Can_Find_Symbol_Expect_Letter_And_Number_And_Space) {
 }
 
 TEST(Regex, Can_Find_Forward_Slash) {
-    // Arrange 
+    // Arrange
     const Regex regular("\\\\");
     const string str("\\d\\\\");
 
@@ -71,7 +72,7 @@ TEST(Regex, Can_Find_Forward_Slash) {
 }
 
 TEST(Regex, Can_Find_Forward_Slash_Before_Symbol) {
-    // Arrange 
+    // Arrange
     const Regex regular("\\\\");
     const string str("\\d\\\\d");
 
@@ -80,7 +81,7 @@ TEST(Regex, Can_Find_Forward_Slash_Before_Symbol) {
 }
 
 TEST(Regex, Can_Use_Search_Sequences) {
-    // Arrange 
+    // Arrange
     const Regex regular("\\d{2}");
     const string str("1 ds 22 d");
 
@@ -89,7 +90,7 @@ TEST(Regex, Can_Use_Search_Sequences) {
 }
 
 TEST(Regex, Can_Find_Symbol) {
-    // Arrange 
+    // Arrange
     const Regex regular("b");
     const string str("rjrdbkr");
 
@@ -98,7 +99,7 @@ TEST(Regex, Can_Find_Symbol) {
 }
 
 TEST(Regex, Can_Find_Symbol_With_Regular) {
-    // Arrange 
+    // Arrange
     const Regex regular("\\db");
     const string str("rjrdbkr4b");
 
@@ -107,7 +108,7 @@ TEST(Regex, Can_Find_Symbol_With_Regular) {
 }
 
 TEST(Regex, Cant_Find_Symbol_If_It_Not_Present_In_String) {
-    // Arrange 
+    // Arrange
     const Regex regular("a");
     const string str("3jofm 5lf9");
 
@@ -116,7 +117,7 @@ TEST(Regex, Cant_Find_Symbol_If_It_Not_Present_In_String) {
 }
 
 TEST(Regex, Cant_Find_Sequence_If_Not_Enough_Elements) {
-    // Arrange 
+    // Arrange
     const Regex regular("a{3}");
     const string str("aa");
 
@@ -125,7 +126,7 @@ TEST(Regex, Cant_Find_Sequence_If_Not_Enough_Elements) {
 }
 
 TEST(Regex, Cant_Find_Not_System_Symbol_With_Excess_Forward_Slash) {
-    // Arrange 
+    // Arrange
     const Regex regular("\\a");
     const string str("bgae");
 
@@ -134,7 +135,7 @@ TEST(Regex, Cant_Find_Not_System_Symbol_With_Excess_Forward_Slash) {
 }
 
 TEST(Regex, Can_Find_Expression_With_Normal_Slash) {
-    // Arrange 
+    // Arrange
     const Regex regular("/o");
     const string str("bg/oe");
 
@@ -143,7 +144,7 @@ TEST(Regex, Can_Find_Expression_With_Normal_Slash) {
 }
 
 TEST(Regex, Can_Work_With_Empty_Regular) {
-    // Arrange 
+    // Arrange
     const Regex regular("");
     const string str("b e5");
 
