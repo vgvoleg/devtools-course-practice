@@ -10,6 +10,8 @@
 #include <iostream>
 
 class Moment{
+ private:
+    int day, month, year;
  public:
     Moment();
     // get
@@ -19,8 +21,5 @@ class Moment{
 
     // set
     void setTime(int day, int month, int year);
-
- private:
-    int day, month, year;
 };
 #endif  //  MODULES_ZEMTSOV_ARTEM_CREDITCALC_INCLUDE_MOMENTS_H_
