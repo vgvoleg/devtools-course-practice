@@ -1,7 +1,7 @@
 // Copyright 2016 Sergey Shumihin
 
-#ifndef REGULAR_EXPRESSION_H_
-#define REGILAR_EXPRESSION_H_
+#ifndef MODULES_SHUMIHIN_SERGEY_REGULAREXP_INCLUDE_REGULAR_EXPRESSION_H_
+#define MODULES_SHUMIHIN_SERGEY_REGULAREXP_INCLUDE_REGULAR_EXPRESSION_H_
 
 #include <string>
 #include <vector>
@@ -16,10 +16,9 @@ using std::ostream;
 
 class Regex;
 
-class Smatch : private vector<string>
-{
-public:
-  Smatch() : vector<string>() {};
+class Smatch : private vector<string>{
+ public:
+  Smatch() : vector<string>() {}
   using vector<string>::~vector;
 
   using vector<string>::front;
@@ -36,15 +35,14 @@ public:
   friend Regex;
 };
 
-class Regex
-{
-public:
-    Regex(const string& str);
+class Regex{
+ public:
+    explicit Regex(const string& str);
     bool search(const string& str) const;
     bool search(const string& str, Smatch& match) const;
     bool match(const string& str) const;
     bool match(const string& str, Smatch& match) const;
-private:
+ private:
     vector < function<bool(char)> > functVect;
 };
 #endif 
