@@ -159,7 +159,7 @@ TEST(Regex, can_get_find_num) {
 
     // Act
     const string str = "nsf4sfos";
-    regular.search(str, smatch);
+    regular.search(str, &smatch);
 
     // Assert
     const string str_expection = "4";
@@ -173,7 +173,7 @@ TEST(Regex, can_get_symbol_sequence) {
 
     // Act
     const string str = "aaabbjjierk34bbbjk3";
-    regular.search(str, smatch);
+    regular.search(str, &smatch);
 
     // Assert
     const string str_expection = "bbb";
@@ -187,7 +187,7 @@ TEST(Regex, sequence_work_only_with_last_symbol) {
 
     // Act
     const string str = "abcabcabcaabbabccc";
-    regular.search(str, smatch);
+    regular.search(str, &smatch);
 
     // Assert
     const string str_expection = "abccc";
@@ -201,7 +201,7 @@ TEST(Regex, Smatch_empty_when_expression_empty) {
 
     // Act
     const string str = "ab 23 5im";
-    regular.search(str, smatch);
+    regular.search(str, &smatch);
 
     // Assert
     EXPECT_TRUE(smatch.empty());
@@ -215,7 +215,7 @@ TEST(Regex, Can_Check_Full_Compliance_With_Smath) {
 
     // Act
     const string str = "14abc";
-    bool result = regex.match(str, smatch);
+    bool result = regex.match(str, &smatch);
 
     // Assert
     EXPECT_TRUE(result);
@@ -228,7 +228,7 @@ TEST(Regex, Can_Check_Not_Full_Compliance_With_Smath) {
 
     // Act
     const string str = "14abcz23";
-    bool result = regex.match(str, smatch);
+    bool result = regex.match(str, &smatch);
 
     // Assert
     EXPECT_FALSE(result);
@@ -268,8 +268,8 @@ TEST(Regex, Can_Check_Full_Compliance_With_Dubl_Num) {
     // Act
     const string strCompliance = "22";
     const string strOverload = "2222";
-    bool resultCompliance = regex.match(strCompliance, smatchCompliance);
-    bool resultOverload = regex.match(strOverload, smatchCompliance);
+    bool resultCompliance = regex.match(strCompliance, &smatchCompliance);
+    bool resultOverload = regex.match(strOverload, &smatchCompliance);
 
     // Assert
     EXPECT_TRUE(resultCompliance);
@@ -283,7 +283,7 @@ TEST(Regex, Can_Get_Right_Size_Of_SMatch) {
 
     // Act
     const string str = "0u123y456789";
-    regex.search(str, smatch);
+    regex.search(str, &smatch);
     const int size = smatch.size();
 
     // Assert
@@ -298,7 +298,7 @@ TEST(Regex, Can_Print_Smatch_result) {
 
     // Act
     const string str = "root!vf drink.hb o?boby!b";
-    regex.search(str, smatch);
+    regex.search(str, &smatch);
     std::ostringstream stream;
     stream << smatch;
 
@@ -314,7 +314,7 @@ TEST(Regex, Can_Get_Num_And_Word) {
 
     // Act
     const string str = "ghtgh td1995 year!54q5w!";
-    regex.search(str, smatch);
+    regex.search(str, &smatch);
 
     // Assert
     const string str_expection = "1995 year";

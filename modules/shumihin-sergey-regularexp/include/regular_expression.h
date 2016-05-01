@@ -19,15 +19,12 @@ class Regex;
 class Smatch : private vector<string>{
  public:
   Smatch() : vector<string>() {}
-  using vector<string>::~vector;
-
+  
   using vector<string>::front;
   using vector<string>::back;
   using vector<string>::operator[];
-
   using vector<string>::begin;
   using vector<string>::end;
-
   using vector<string>::size;
   using vector<string>::empty;
 
@@ -39,9 +36,9 @@ class Regex{
  public:
     explicit Regex(const string& str);
     bool search(const string& str) const;
-    bool search(const string& str, Smatch&const match) const;
+    bool search(const string& str, Smatch* match) const;
     bool match(const string& str) const;
-    bool match(const string& str, Smatch&const match) const;
+    bool match(const string& str, Smatch* match) const;
  private:
     vector < function<bool(char)> > functVect;
 };

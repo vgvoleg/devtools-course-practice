@@ -75,7 +75,7 @@ bool Regex::search(const string& str) const {
     return result;
 }
 
-bool Regex::search(const string& str, Smatch& match) const {
+bool Regex::search(const string& str, Smatch * match) const {
     bool result = false;
     string buf = "";
     auto iter = functVect.begin();
@@ -87,7 +87,7 @@ bool Regex::search(const string& str, Smatch& match) const {
                 ++iter;
                 if (iter == functVect.end()) {
                     iter = functVect.begin();
-                    match.push_back(buf);
+                    (*match).push_back(buf);
                     buf.clear();
                     result = true;
                 }
@@ -122,7 +122,7 @@ bool Regex::match(const string & str) const {
     return result;
 }
 
-bool Regex::match(const string & str, Smatch & match) const {
+bool Regex::match(const string & str, Smatch* match) const {
   bool result = true;
   string buf = "";
 
@@ -137,7 +137,7 @@ bool Regex::match(const string & str, Smatch & match) const {
           if (next(symb) != str.end())
             result = false;
           iter = functVect.begin();
-          match.push_back(buf);
+          (*match).push_back(buf);
           buf.clear();
         }
       } else {
