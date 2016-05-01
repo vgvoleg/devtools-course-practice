@@ -19,7 +19,7 @@ class Regex;
 class Smatch : private vector<string>{
  public:
   Smatch() : vector<string>() {}
-  
+
   using vector<string>::front;
   using vector<string>::back;
   using vector<string>::operator[];
