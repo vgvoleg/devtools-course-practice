@@ -26,7 +26,7 @@ TEST(FractionTest, Do_Throw_When_Denominator_Is_Zero) {
 TEST(FractionTest, Do_Throw_When_Denominator_Set_Zero) {
     // Arrange
     fraction z;
-    
+
     // Act & Assert
     ASSERT_ANY_THROW(z.setDenom(0));
 }
