@@ -49,7 +49,7 @@ Regex::Regex(const string& str) {
                 functVect.size() + *iter -'0' - 1, functVect.back() );
             ++iter;
         } else {
-            auto templSymbol = *iter;
+            char templSymbol = *iter;
             functVect.push_back([templSymbol](char symb)->bool {
                 return templSymbol == symb; });
         }
@@ -58,7 +58,7 @@ Regex::Regex(const string& str) {
 
 bool Regex::search(const string& str) const {
     bool result = false;
-    if (functVect.size() != 0) {
+    if (!functVect.empty()) {
         auto iter = functVect.begin();
 
         for (const char symb : str) {
@@ -82,7 +82,7 @@ bool Regex::search(const string& str, Smatch * match) const {
     auto iter = functVect.begin();
 
     if ( !functVect.empty() ) {
-        for (char symb : str) {
+        for (const char symb : str) {
             if ((*iter)(symb)) {
                 buf += symb;
                 ++iter;
