@@ -39,10 +39,10 @@ class Regex{
  public:
     explicit Regex(const string& str);
     bool search(const string& str) const;
-    bool search(const string& str, Smatch& match) const;
+    bool search(const string& str, Smatch&const match) const;
     bool match(const string& str) const;
-    bool match(const string& str, Smatch& match) const;
+    bool match(const string& str, Smatch&const match) const;
  private:
     vector < function<bool(char)> > functVect;
 };
-#endif 
+#endif  // MODULES_SHUMIHIN_SERGEY_REGULAREXP_INCLUDE_REGULAR_EXPRESSION_H_
