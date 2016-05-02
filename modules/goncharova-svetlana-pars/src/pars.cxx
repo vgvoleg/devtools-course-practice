@@ -1,8 +1,9 @@
 // Copyright 2016 Goncharova Svetlana
 
+#include "include\pars.h"
+
 #include <iostream>
 #include <string>
-#include "include\pars.h"
 
     string Parser::parse_token() {
     while (isspace(*input)) ++input;
@@ -23,7 +24,6 @@
     }
 
     return "";
-
 }
 
 Expression Parser::parse_simple_expression() {
@@ -108,7 +108,7 @@ double Parser::eval(const Expression& e) {
             return pow(a, b);
         }
         if (e.token == "mod") {
-            return (int)a % (int)b;
+            return static_cast<int> (a) % static_cast<int> (b);
         }
         throw std::runtime_error("Unknown binary operator");
     }
