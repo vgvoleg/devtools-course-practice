@@ -2,8 +2,8 @@
 
 #include "include\pars.h"
 
-#include <iostream>
 #include <string>
+#include <iostream>
 
     string Parser::parse_token() {
     while (isspace(*input)) ++input;
