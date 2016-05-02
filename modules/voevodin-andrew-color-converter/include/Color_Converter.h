@@ -54,7 +54,7 @@ class color_converter {
     static const double kMaxValueInRGB;
     static const double kNormalizingNumberXYZToRGB;
     static const double kKInLAB;
-    static const vector<double> color_converter::kNormalizingVectorXYZToLAB;
+    static const vector<double> kNormalizingVectorXYZToLAB;
     static const vector<vector<double>> kMatrCoefXYZToRGB;
 
     static bool IsVectorSizeCorrect(const vector<double>& vector);
