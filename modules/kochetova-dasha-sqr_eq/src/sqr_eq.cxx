@@ -37,6 +37,7 @@ DType Equation::Discrim() {
 set<double> Equation::SolveDiscrim() {
     set <double> rootset;
     DType dis = Discrim();
+
     if (dis < 0) {
         SolveComplex();
     } else { if (dis > 0) {
