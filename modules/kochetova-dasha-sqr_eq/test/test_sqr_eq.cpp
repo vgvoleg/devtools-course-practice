@@ -38,11 +38,19 @@ TEST(QuadraticEquationTest, can_create_object_without_parameters_C) {
 }
 
 TEST(QuadraticEquationTest, can_create_object_without_parameters_error) {
-    // Act
+	// Arrange & Act
     Equation eq;
 
     // Assert
-    EXPECT_FALSE(eq.GetFlag());
+    EXPECT_FALSE(eq.GetError());
+}
+
+TEST(QuadraticEquationTest, can_create_object_without_parameters_flag) {
+	// Arrange & Act
+	Equation eq;
+
+	// Assert
+	EXPECT_TRUE(eq.GetFlag());
 }
 
 TEST(QuadraticEquationTest, can_create_object_with_parameters_A) {
@@ -79,11 +87,19 @@ TEST(QuadraticEquationTest, can_create_object_with_parameters_C) {
 }
 
 TEST(QuadraticEquationTest, can_create_object_with_parameters_without_error) {
-    // Act
+	// Arrange & Act
     Equation eq(2, 4, 5);
 
     // Assert
-    EXPECT_FALSE(eq.GetFlag());
+    EXPECT_FALSE(eq.GetError());
+}
+
+TEST(QuadraticEquationTest, can_create_object_with_parameters_flag) {
+	// Arrange & Act
+	Equation eq(2, 4, 5);
+
+	// Assert
+	EXPECT_TRUE(eq.GetFlag());
 }
 
 TEST(QuadraticEquationTest, not_create_object_with_null_A) {
@@ -94,7 +110,7 @@ TEST(QuadraticEquationTest, not_create_object_with_null_A) {
     Equation eq(a, 1, 1);
 
     // Assert
-    EXPECT_TRUE(eq.GetFlag());
+    EXPECT_TRUE(eq.GetError());
 }
 
 TEST(QuadraticEquationTest, can_put_parametrs_A) {
@@ -152,7 +168,7 @@ TEST(QuadraticEquationTest, solve_eq_without_param) {
     eq.SolveDiscrim();
 
     // Assert
-    EXPECT_FALSE(eq.GetFlag());
+    EXPECT_FALSE(eq.GetError());
 }
 
 TEST(QuadraticEquationTest, correct_discrim_with_param) {
@@ -267,7 +283,7 @@ TEST(QuadraticEquationTest, solve_viet_without_param_error) {
     eq.SolveViet();
 
     // Assert
-    EXPECT_TRUE(eq.GetFlag());
+    EXPECT_TRUE(eq.GetError());
 }
 
 TEST(QuadraticEquationTest, solve_viet_without_error) {
@@ -299,7 +315,7 @@ TEST(QuadraticEquationTest, can_calculate_parabola_top_error) {
     eq.ParabolaTop();
 
     // Assert
-    EXPECT_FALSE(eq.GetFlag());
+    EXPECT_FALSE(eq.GetError());
 }
 
 TEST(QuadraticEquationTest, calculate_parabola_top_error) {
@@ -310,7 +326,7 @@ TEST(QuadraticEquationTest, calculate_parabola_top_error) {
     eq.ParabolaTop();
 
     // Assert
-    EXPECT_TRUE(eq.GetFlag());
+    EXPECT_TRUE(eq.GetError());
 }
 
 TEST(QuadraticEquationTest, solve_eq_with_complex_root_x1) {
@@ -338,19 +354,60 @@ TEST(QuadraticEquationTest, solve_eq_with_complex_root_x2) {
 }
 
 TEST(QuadraticEquationTest, solve_eq_with_complex_root_error) {
-    // Act
+	// Arrange & Act
     Equation eq(1, 0, 9);
     eq.SolveComplex();
 
     // Assert
-    EXPECT_FALSE(eq.GetFlag());
+    EXPECT_FALSE(eq.GetError());
 }
 
 TEST(QuadraticEquationTest, solve_eq_complex_root_error_discrim) {
-    // Act
+	// Arrange & Act
     Equation eq(1, 3, 1);
     eq.SolveComplex();
 
     // Assert
-    EXPECT_TRUE(eq.GetFlag());
+    EXPECT_TRUE(eq.GetError());
 }
+
+TEST(QuadraticEquationTest, solve_eq_complex_without_cout) {
+	// Arrange & Act
+	Equation eq(1, 3, 1);
+	eq.SetFlag(false);
+	eq.SolveComplex();
+
+	// Assert
+	EXPECT_FALSE(eq.GetFlag());
+}
+
+TEST(QuadraticEquationTest, solve_eq_discrim_without_cout) {
+	// Arrange & Act
+	Equation eq(1, 3, 1);
+	eq.SetFlag(false);
+	eq.SolveDiscrim();
+
+	// Assert
+	EXPECT_FALSE(eq.GetFlag());
+}
+
+TEST(QuadraticEquationTest, solve_eq_top_parabola_without_cout) {
+	// Arrange & Act
+	Equation eq(1, 3, 1);
+	eq.SetFlag(false);
+	eq.ParabolaTop();
+
+	// Assert
+	EXPECT_FALSE(eq.GetFlag());
+}
+
+TEST(QuadraticEquationTest, solve_eq_viet_without_cout) {
+	// Arrange & Act
+	Equation eq(1, 3, 1);
+	eq.SetFlag(false);
+	eq.SolveViet();
+
+	// Assert
+	EXPECT_FALSE(eq.GetFlag());
+}
+

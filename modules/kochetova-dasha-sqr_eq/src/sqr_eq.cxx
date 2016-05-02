@@ -8,6 +8,7 @@ Equation::Equation() {
     _b = 1;
     _c = 1;
     error = false;
+	_flag = true;
 }
 
 Equation::Equation(DType a, DType b, DType c) {
@@ -15,10 +16,10 @@ Equation::Equation(DType a, DType b, DType c) {
         _a = a;
         _b = b;
         _c = c;
-        error = false; }
+        error = false;
+		_flag = true; }
     else
         error = true;
-      //  cout << "Error! You are give not the quadratic equation" << endl;
 }
 
 void Equation::PutParametrs(DType a, DType b, DType c) {
@@ -46,17 +47,27 @@ set<double> Equation::SolveDiscrim() {
             _x2 = (-_b - di) / (2 * _a);
             rootset.insert(_x2);
 
-            cout << "Discriminant = " << dis << endl;
-            cout << "di =" << di << endl;
-            cout << "x1 = " << _x1 << ", x2 = " << _x2 << endl;
-        } else {
+			if (_flag) {
+				cout << "Discriminant = " << dis << endl;
+				cout << "di =" << di << endl;
+				cout << "x1 = " << _x1 << ", x2 = " << _x2 << endl;
+			}	}  else {
             _x1 = -_b / (2 * _a);
             rootset.insert(_x1);
 
-            cout << "Discriminant = " << dis << endl;
-            cout << "x = " << _x1 << endl;
-        } }
+			if (_flag) {
+				cout << "Discriminant = " << dis << endl;
+				cout << "x = " << _x1 << endl;
+			} }	}
     return rootset;
+}
+
+void Equation::SetFlag(bool flag) {
+	_flag = flag;
+}
+
+bool Equation::GetFlag() {
+	return _flag;
 }
 
 DType Equation::GetA() {
@@ -79,7 +90,7 @@ double Equation::GetX2() {
     return _x2;
 }
 
-bool Equation::GetFlag() {
+bool Equation::GetError() {
     return error;
 }
 
@@ -96,6 +107,10 @@ set<double> Equation::SolveViet() {
                 rootset.insert(_x1);
                 _x2 = i;
                 rootset.insert(_x2);
+
+				if (_flag) {
+					cout << "x1 = " << _x1 << ", x2 = " << _x2 << endl;
+				}
                 break;
             } else {
                 error = true;
@@ -110,11 +125,13 @@ void Equation::SolveComplex() {
         double _im = sqrt(-dis);
         complex<DType> x1(-_b / 2, _im / 2);
         _cx1 = x1;
-        cout << "x1=" << real(x1) << "+"<< imag(x1) << "i" << endl;
         complex<DType> x2(-_b / 2, -_im / 2);
         _cx2 = x2;
-        cout << "x2=" << real(x2) << imag(x2) << "i" << endl;
-    } else {
+
+		if (_flag) {
+			cout << "x1=" << real(x1) << "+" << imag(x1) << "i" << endl;
+			cout << "x2=" << real(x2) << imag(x2) << "i" << endl;
+		} }	else {
         error = true;
     }
 }
@@ -123,17 +140,19 @@ array<double, 2> Equation::ParabolaTop() {
     std::array<double, 2> topcoordinat;
     if (_a == 0) {
         error = true;
-    } else {
-        double x0 = -_b / (2 * _a);
-        topcoordinat[0] = x0;
-        double y0 = (_a*x0*x0) + (_b*x0) + _c;
-        topcoordinat[1] = y0;
+	}
+	else {
+		double x0 = -_b / (2 * _a);
+		topcoordinat[0] = x0;
+		double y0 = (_a*x0*x0) + (_b*x0) + _c;
+		topcoordinat[1] = y0;
 
-        cout << "x0=" << topcoordinat[0];
-        cout << endl;
-        cout << "y0=" << topcoordinat[1];
-        cout << endl;
-    }
+		if (_flag) {
+			cout << "x0=" << topcoordinat[0];
+			cout << endl;
+			cout << "y0=" << topcoordinat[1];
+			cout << endl;
+		} }
     return topcoordinat;
 }
 
