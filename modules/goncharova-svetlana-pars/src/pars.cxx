@@ -94,18 +94,21 @@ double Parser::eval(const Expression& e) {
         auto b = eval(e.args[1]);
         if (e.token == "+") {
             result = a + b;
-        } else if (e.token == "-") {
+        }
+        if (e.token == "-") {
             result = a - b;
-        } else if (e.token == "*") {
+        }
+        if (e.token == "*") {
             result = a * b;
-        } else if (e.token == "/") {
+        }
+        if (e.token == "/") {
             result = a / b;
-        } else if (e.token == "**") {
+        }
+        if (e.token == "**") {
             result = pow(a, b);
-        } else if (e.token == "mod") {
+        }
+        if (e.token == "mod") {
             result = static_cast<int> (a) % static_cast<int> (b);
-        } else {
-            throw std::runtime_error("Unknown binary operator");
         }
         break;
     }
@@ -114,16 +117,18 @@ double Parser::eval(const Expression& e) {
         auto a = eval(e.args[0]);
         if (e.token == "+") {
             result = +a;
-        } else if (e.token == "-") {
+        }
+        if (e.token == "-") {
             result = -a;
-        } else if (e.token == "abs") {
+        }
+        if (e.token == "abs") {
             result = fabs(a);
-        } else if (e.token == "sin") {
+        }
+        if (e.token == "sin") {
             result = sin(a);
-        } else if (e.token == "cos") {
+        }
+        if (e.token == "cos") {
             result = cos(a);
-        } else {
-            throw std::runtime_error("Unknown unary operator");
         }
         break;
     }
