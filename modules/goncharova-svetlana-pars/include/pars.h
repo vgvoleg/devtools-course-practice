@@ -1,7 +1,7 @@
 // Copyright 2016 Goncharova Svetlana
 
-#ifndef MODULES_GONCHAROVA_SVETLANA_PARS_INCLUDE_PARSE_H_
-#define MODULES_GONCHAROVA_SVETLANA_PARS_INCLUDE_PARSE_H_
+#ifndef MODULES_GONCHAROVA_SVETLANA_PARS_INCLUDE_PARS_H_
+#define MODULES_GONCHAROVA_SVETLANA_PARS_INCLUDE_PARS_H_
 
 #include <string>
 #include <vector>
@@ -9,7 +9,8 @@
 #include <cctype>
 #include <cstring>
 
-using namespace std;
+using std::string;
+using std::vector;
 
 struct Expression {
     string token;
@@ -22,18 +23,16 @@ struct Expression {
 };
 
 class Parser {
-
-public:
+ public:
     explicit Parser(const char* input) : input(input) {}
     Expression parse();
     static double eval(const Expression& e);
 
-private:
+ private:
     string parse_token();
     Expression parse_simple_expression();
     Expression parse_binary_expression(int min_priority);
     const char* input;
-
 };
 
-#endif  // MODULES_GONCHAROVA_SVETLANA_PARS_INCLUDE_PARSE_H_
+#endif  // MODULES_GONCHAROVA_SVETLANA_PARS_INCLUDE_PARS_H_
