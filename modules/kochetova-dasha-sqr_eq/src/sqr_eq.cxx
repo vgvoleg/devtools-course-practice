@@ -140,8 +140,7 @@ array<double, 2> Equation::ParabolaTop() {
     std::array<double, 2> topcoordinat;
     if (_a == 0) {
         error = true;
-    }
-    else {
+    } else {
         double x0 = -_b / (2 * _a);
         topcoordinat[0] = x0;
         double y0 = (_a*x0*x0) + (_b*x0) + _c;
