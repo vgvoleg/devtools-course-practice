@@ -104,7 +104,7 @@ double Parser::eval(const Expression& e) {
             result = pow(a, b);
         } else if (e.token == "mod") {
             result = static_cast<int> (a) % static_cast<int> (b);
-        } 
+        }
         break;
     }
 
