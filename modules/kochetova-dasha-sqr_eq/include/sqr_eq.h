@@ -32,8 +32,8 @@ class Equation {
     complex<DType> GetCx1();
     complex<DType> GetCx2();
 
-	void SetFlag(bool flag);
-	bool GetFlag();
+    void SetFlag(bool flag);
+    bool GetFlag();
 
     bool GetError();
 
@@ -53,6 +53,6 @@ class Equation {
     double _x2;
     complex<DType> _cx2;
     bool error;
-	bool _flag;
+    bool _flag;
 };
 #endif  // MODULES_KOCHETOVA_DASHA_SQR_EQ_INCLUDE_SQR_EQ_H_
