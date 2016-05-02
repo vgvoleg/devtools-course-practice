@@ -107,6 +107,7 @@ double Parser::eval(const Expression& e) {
         } else {
             throw std::runtime_error("Unknown binary operator");
         }
+        break;
     }
 
     case 1: {
@@ -124,10 +125,12 @@ double Parser::eval(const Expression& e) {
         } else {
             throw std::runtime_error("Unknown unary operator");
         }
+        break;
     }
 
     case 0:
         result = strtod(e.token.c_str(), nullptr);
+        break;
     default:
         throw std::runtime_error("Unknown expression type");
     }
