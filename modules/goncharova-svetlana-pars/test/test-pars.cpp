@@ -77,7 +77,7 @@ TEST(Parser, Can_Calc_Eval_Plus_Substract) {
 
 TEST(Parser, Can_Error_If_Unknown_Un_Operator) {
     // Arrange
-    Parser parser("sin(10)/t(1)");
+    Parser parser("t(1)");
     // Act & Assert
     EXPECT_ANY_THROW(Parser::eval(parser.parse()));
 }

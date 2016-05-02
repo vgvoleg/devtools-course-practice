@@ -131,8 +131,6 @@ double Parser::eval(const Expression& e) {
     case 0:
         result = strtod(e.token.c_str(), nullptr);
         break;
-    default:
-        throw std::runtime_error("Unknown expression type");
     }
     return result;
 }
