@@ -24,11 +24,19 @@ void PathFinder::SetGraph(int** graph, int vertice_num, int start_vertex) {
         throw std::exception();
     if (start_vertex < 0 || start_vertex >= vertice_num)
         throw std::exception();
-    _Graph = graph;
+
     _Size = vertice_num;
     _StartVertex = start_vertex;
+    _Graph = new int*[_Size];
+    for (int i = 0; i < _Size; i++) {
+        _Graph[i] = new int[_Size];
+        for (int j = 0; j < _Size; j++)
+            _Graph[i][j] = graph[i][j];
+    }
+
     Reset();
     UpdateGraph();
+
     _IsInitialized = true;
 }
 
