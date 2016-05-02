@@ -9,6 +9,7 @@
 #include <cctype>
 #include <cstring>
 #include <stdexcept>
+#include <cstdlib>
 
 using std::string;
 using std::vector;

@@ -117,7 +117,7 @@ double Parser::eval(const Expression& e) {
         } else if (e.token == "-") {
             result = -a;
         } else if (e.token == "abs") {
-            result = abs(a);
+            result = fabs(a);
         } else if (e.token == "sin") {
             result = sin(a);
         } else if (e.token == "cos") {
