@@ -26,7 +26,8 @@ const double color_converter::kEpsilonInXYZToRGB = 0.0031308;
 const double color_converter::kMaxValueInRGB = 255.0;
 const double color_converter::kNormalizingNumberXYZToRGB = 100.0;
 const double color_converter::kKInLAB = 7.787;
-const vector<double> color_converter::kNormalizingVectorXYZToLAB = { 95.047, 100.000, 108.883 };
+const vector<double> color_converter::
+           kNormalizingVectorXYZToLAB{ 95.047, 100.000, 108.883 };
 
 bool color_converter::IsVectorSizeCorrect(const vector<double>& vector) {
     if (vector.size() != 3) return false;
