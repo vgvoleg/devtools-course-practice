@@ -47,7 +47,7 @@ class color_converter {
     static vector<int> HSVToLAB(const vector<double>& hsv);
 
  private:
-    static const vector<vector<double>> color_converter::kMatrCoefRGBToXYZ;
+    static const vector<vector<double>> kMatrCoefRGBToXYZ;
     static const double kEpsilonInLAB;
     static const double kEpsilonInRGBToXYZ;
     static const double kEpsilonInXYZToRGB;
