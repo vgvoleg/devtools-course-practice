@@ -87,54 +87,49 @@ Expression Parser::parse() {
 }
 
 double Parser::eval(const Expression& e) {
+    double result;
     switch (e.args.size()) {
     case 2: {
         auto a = eval(e.args[0]);
         auto b = eval(e.args[1]);
         if (e.token == "+") {
-            return a + b;
+            result = a + b;
+        } else if (e.token == "-") {
+            result = a - b;
+        } else if (e.token == "*") {
+            result = a * b;
+        } else if (e.token == "/") {
+            result = a / b;
+        } else if (e.token == "**") {
+            result = pow(a, b);
+        } else if (e.token == "mod") {
+            result = static_cast<int> (a) % static_cast<int> (b);
+        } else {
+            throw std::runtime_error("Unknown binary operator");
         }
-        if (e.token == "-") {
-            return a - b;
-        }
-        if (e.token == "*") {
-            return a * b;
-        }
-        if (e.token == "/") {
-            return a / b;
-        }
-        if (e.token == "**") {
-            return pow(a, b);
-        }
-        if (e.token == "mod") {
-            return static_cast<int> (a) % static_cast<int> (b);
-        }
-        throw std::runtime_error("Unknown binary operator");
     }
 
     case 1: {
         auto a = eval(e.args[0]);
         if (e.token == "+") {
-            return +a;
+            result = +a;
+        } else if (e.token == "-") {
+            result = -a;
+        } else if (e.token == "abs") {
+            result = abs(a);
+        } else if (e.token == "sin") {
+            result = sin(a);
+        } else if (e.token == "cos") {
+            result = cos(a);
+        } else {
+            throw std::runtime_error("Unknown unary operator");
         }
-        if (e.token == "-") {
-            return -a;
-        }
-        if (e.token == "abs") {
-            return abs(a);
-        }
-        if (e.token == "sin") {
-            return sin(a);
-        }
-        if (e.token == "cos") {
-            return cos(a);
-        }
-        throw std::runtime_error("Unknown unary operator");
     }
 
     case 0:
-        return strtod(e.token.c_str(), nullptr);
+        result = strtod(e.token.c_str(), nullptr);
+    default:
+        throw std::runtime_error("Unknown expression type");
     }
-
-    throw std::runtime_error("Unknown expression type");
+    return result;
 }

@@ -8,6 +8,7 @@
 #include <cmath>
 #include <cctype>
 #include <cstring>
+#include <stdexcept>
 
 using std::string;
 using std::vector;
