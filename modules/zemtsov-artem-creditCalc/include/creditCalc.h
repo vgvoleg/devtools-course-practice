@@ -10,6 +10,20 @@
 #include <include/moments.h>
 
 class CreditPerson{
+ public:
+    // constructors
+    CreditPerson();
+    // set
+    void setProcentByUser(const double procentImp);
+    void setStartTimeByUser(const int dImp, const int mImp, const int yImp);
+    void setFinishTimeByUser(const int creditTimeImp);
+    // get
+    double getBalanceOfTheDebt() {return needToPay;}
+    // math methods
+    double newInstallment(const double installmentImp);
+    double performTheCalculation();  // calculating price with procent
+    void discoverCost(const double costImp);  // setCost
+
  private:
     // variables
     Moment startDay , finishDay;
@@ -36,20 +50,6 @@ class CreditPerson{
     void checkDay(int dayImp);
     void checkMonth(int monthImp);
     void checkYear(int yearImp);
-
- public:
-    // constructors
-    CreditPerson();
-    // set
-    void setProcentByUser(const double procentImp);
-    void setStartTimeByUser(const int dImp, const int mImp, const int yImp);
-    void setFinishTimeByUser(const int creditTimeImp);
-    // get
-    double getBalanceOfTheDebt() {return needToPay;}
-    // math methods
-    double newInstallment(const double installmentImp);
-    double performTheCalculation();  // calculating price with procent
-    void discoverCost(const double costImp);  // setCost
 };
 
 #endif  //  MODULES_ZEMTSOV_ARTEM_CREDITCALC_INCLUDE_CREDITCALC_H_
