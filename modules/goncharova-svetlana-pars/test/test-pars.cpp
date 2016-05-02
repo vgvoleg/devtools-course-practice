@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 
-#include "include\pars.h"
+#include "include/pars.h"
 
 TEST(Parser, Can_Create_Parser) {
     // Arrange
@@ -51,7 +51,7 @@ TEST(Parser, Can_Calc_Eval_With_Sin_Cos_Del) {
     EXPECT_DOUBLE_EQ(expected_result, result);
 }
 
-TEST(Parser,Can_Error_If_Unknown_Un_Operator) {
+TEST(Parser, Can_Error_If_Unknown_Un_Operator) {
     // Arrange
     Parser parser("sin(10)/tan(1)");
     // Act & Assert
