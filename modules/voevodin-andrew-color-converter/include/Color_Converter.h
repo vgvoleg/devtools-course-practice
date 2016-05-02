@@ -47,6 +47,16 @@ class color_converter {
     static vector<int> HSVToLAB(const vector<double>& hsv);
 
  private:
+    static const vector<vector<double>> color_converter::kMatrCoefRGBToXYZ;
+    static const double kEpsilonInLAB;
+    static const double kEpsilonInRGBToXYZ;
+    static const double kEpsilonInXYZToRGB;
+    static const double kMaxValueInRGB;
+    static const double kNormalizingNumberXYZToRGB;
+    static const double kKInLAB;
+    static const vector<double> color_converter::kNormalizingVectorXYZToLAB;
+    static const vector<vector<double>> kMatrCoefXYZToRGB;
+
     static bool IsVectorSizeCorrect(const vector<double>& vector);
     static bool IsVectorSizeCorrect(const vector<int>& vector);
     static bool IsRGBVectorinRange(const vector<int>& rgb);

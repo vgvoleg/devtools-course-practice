@@ -8,25 +8,25 @@
 using std::string;
 using std::vector;
 
-const vector<vector<double>> kMatrCoefXYZToRGB{
+const vector<vector<double>> color_converter::kMatrCoefXYZToRGB{
     { 3.2404542, -1.5371385, -0.4985314 },
     { -0.9693660, 1.87560108, 0.0415560},
     { 0.0556434, -0.2040259, 1.0572252},
 };
 
-const vector<vector<double>> kMatrCoefRGBToXYZ{
+const vector<vector<double>> color_converter::kMatrCoefRGBToXYZ{
     { 0.4124564, 0.3575761, 0.1804375 },
     { 0.2126729, 0.7151522, 0.0721750 },
     { 0.0193339, 0.1191920, 0.9503041 },
 };
 
-const double kEpsilonInLAB = 0.008856;
-const double kEpsilonInRGBToXYZ = 0.04045;
-const double kEpsilonInXYZToRGB = 0.0031308;
-const double kMaxValueInRGB = 255.0;
-const double kNormalizingNumberXYZToRGB = 100.0;
-const double kKInLAB = 7.787;
-const vector<double> kNormalizingVectorXYZToLAB { 95.047, 100.000, 108.883 };
+const double color_converter::kEpsilonInLAB = 0.008856;
+const double color_converter::kEpsilonInRGBToXYZ = 0.04045;
+const double color_converter::kEpsilonInXYZToRGB = 0.0031308;
+const double color_converter::kMaxValueInRGB = 255.0;
+const double color_converter::kNormalizingNumberXYZToRGB = 100.0;
+const double color_converter::kKInLAB = 7.787;
+const vector<double> color_converter::kNormalizingVectorXYZToLAB = { 95.047, 100.000, 108.883 };
 
 bool color_converter::IsVectorSizeCorrect(const vector<double>& vector) {
     if (vector.size() != 3) return false;
