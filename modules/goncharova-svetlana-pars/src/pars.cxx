@@ -1,6 +1,6 @@
 // Copyright 2016 Goncharova Svetlana
 
-#include "include\pars.h"
+#include "include/pars.h"
 
 #include <string>
 
