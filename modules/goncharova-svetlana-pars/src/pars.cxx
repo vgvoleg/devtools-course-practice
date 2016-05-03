@@ -1,6 +1,6 @@
 // Copyright 2016 Goncharova Svetlana
 
-#include "include/pars.h"
+#include "include\pars.h"
 
 #include <string>
 
@@ -45,25 +45,23 @@ Expression Parser::parse_simple_expression() {
 }
 
 int get_priority(const string& binary_op) {
+    int res = 0;
     if (binary_op == "+") {
-        return 1;
+        res = 1;
+    } else if (binary_op == "-") {
+        res = 1;
+    } else if (binary_op == "*") {
+        res = 2;
+    } else if (binary_op == "/") {
+        res = 2;
+    } else if (binary_op == "mod") {
+        res = 2;
+    } else if (binary_op == "**") {
+        res = 3;
+    } else {
+        res = 0;
     }
-    if (binary_op == "-") {
-        return 1;
-    }
-    if (binary_op == "*") {
-        return 2;
-    }
-    if (binary_op == "/") {
-        return 2;
-    }
-    if (binary_op == "mod") {
-        return 2;
-    }
-    if (binary_op == "**") {
-        return 3;
-    }
-    return 0;
+    return res;
 }
 
 Expression Parser::parse_binary_expression(int min_priority) {

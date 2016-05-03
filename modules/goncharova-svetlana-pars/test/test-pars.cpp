@@ -15,7 +15,43 @@ TEST(Parser, Can_Create_Parser) {
     EXPECT_NE(nullptr, ptrParser);
 }
 
-TEST(Parser, Can_Calc_Eval_With_Sum_Pow_Proisv) {
+TEST(Parser, Can_Calc_Eval_With_Sum) {
+    // Arrange
+    Parser parser("1+20+300+4000");
+
+    // Act
+    const double result = Parser::eval(parser.parse());
+
+    // Assert
+    const double expected_result = 4321;
+    EXPECT_DOUBLE_EQ(expected_result, result);
+}
+
+TEST(Parser, Can_Calc_Eval_With_Pow) {
+    // Arrange
+    Parser parser("2**10");
+
+    // Act
+    const double result = Parser::eval(parser.parse());
+
+    // Assert
+    const double expected_result = pow(2,10);
+    EXPECT_DOUBLE_EQ(expected_result, result);
+}
+
+TEST(Parser, Can_Calc_Eval_With_Proisv) {
+    // Arrange
+    Parser parser("1*2*3*4");
+
+    // Act
+    const double result = Parser::eval(parser.parse());
+
+    // Assert
+    const double expected_result = 24;
+    EXPECT_DOUBLE_EQ(expected_result, result);
+}
+
+TEST(Parser, Can_Calc_Eval_Hard_1) {
     // Arrange
     Parser parser("2+2*(3+2**3)");
 
@@ -48,6 +84,30 @@ TEST(Parser, Can_Calc_Eval_With_Mod) {
 
     // Assert
     const double expected_result = 6;
+    EXPECT_DOUBLE_EQ(expected_result, result);
+}
+
+TEST(Parser, Can_Calc_Eval_With_Sin) {
+    // Arrange
+    Parser parser("sin(1000)");
+
+    // Act
+    const double result = Parser::eval(parser.parse());
+
+    // Assert
+    const double expected_result = sin(1000);
+    EXPECT_DOUBLE_EQ(expected_result, result);
+}
+
+TEST(Parser, Can_Calc_Eval_With_Cos) {
+    // Arrange
+    Parser parser("cos(-300)");
+
+    // Act
+    const double result = Parser::eval(parser.parse());
+
+    // Assert
+    const double expected_result = cos(-300);
     EXPECT_DOUBLE_EQ(expected_result, result);
 }
 
