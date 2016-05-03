@@ -1,10 +1,10 @@
 // Copyright 2016 Baydina Olya
 
-#ifndef MODULES_BAYDINA_OLY_INCLUDE_BITFIELD_H__
-#define MODULES_BAYDINA_OLY_INCLUDE_BITFIELD_H__
+#ifndef MODULES_BAYDINA_OLYA_BITFIELD_INCLUDE_TBITFIELD_H_
+#define MODULES_BAYDINA_OLYA_BITFIELD_INCLUDE_TBITFIELD_H_
 
 #include <iostream>
-
+#include <string>
 using std::string;
 
 typedef unsigned int TELEM;
@@ -15,7 +15,7 @@ class TBitField {
     TELEM *pMem;
     int  MemLen;
  public:
-    TBitField(int len);
+    explicit TBitField(int len);
     TBitField(const TBitField &bf);
     ~TBitField();
 
