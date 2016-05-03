@@ -57,7 +57,8 @@ void HypothecCalculator::calculate() {
                 "First payment must be lesser than property cost");
     }
 
-    double monthly_percent = percent_ / ((double) (MAX_PERCENT * MONTHS_IN_YEAR));
+    double monthly_percent =
+            percent_ / static_cast<double>(MAX_PERCENT * MONTHS_IN_YEAR);
     double k = pow(1 + monthly_percent, term_);
     monthly_payment_ = hypothec_amount * ((monthly_percent * k) / (k - 1));
     overpayment_ = monthly_payment_ * term_ - hypothec_amount;
@@ -66,7 +67,7 @@ void HypothecCalculator::calculate() {
 void HypothecCalculator::setPercent(int percent) {
     if (percent <= 0 || percent >= MAX_PERCENT) {
         throw std::invalid_argument(
-                "Percent must bigger than 0 and lesser than 100");
+                "Percent must be bigger than 0 and lesser than 100");
     }
     percent_ = percent;
 }
