@@ -74,7 +74,7 @@ void TBitField::ClrBit(const int n) {
         } else {
             pMem[GetMemIndex(n)] = pMem[GetMemIndex(n)] & (~GetMemMask(n));
              }
-	     }
+    }
 }
 
 int TBitField::GetBit(const int n) const {
@@ -139,7 +139,7 @@ TBitField TBitField::operator|(const TBitField &bf) {
 }
 
 TBitField TBitField::operator&(const TBitField &bf) {
-    TBitField result((BitLen>bf.BitLen) ? BitLen : bf.BitLen);
+    TBitField result((BitLen > bf.BitLen) ? BitLen : bf.BitLen);
     for (int i = 0; i < MemLen; i++) {
         result.pMem[i] = bf.pMem[i] & pMem[i];
     }
