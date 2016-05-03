@@ -1,29 +1,28 @@
-//Copyright 2016 Baydina Olya
+// Copyright 2016 Baydina Olya
 
-#ifndef __BITFIELD_H__
-#define __BITFIELD_H__
+#ifndef MODULES_BAYDINA_OLY_INCLUDE_BITFIELD_H__
+#define MODULES_BAYDINA_OLY_INCLUDE_BITFIELD_H__
 
 #include <iostream>
 
-using namespace std;
+using std::string;
 
 typedef unsigned int TELEM;
 
-class TBitField
-{
-private:
+class TBitField {
+ private:
     int  BitLen;
     TELEM *pMem;
     int  MemLen;
-public:
-    TBitField(int len);  
+ public:
+    TBitField(int len);
     TBitField(const TBitField &bf);
-    ~TBitField(); 
+    ~TBitField();
 
     int   GetMemIndex(const int n) const;
     TELEM GetMemMask(const int n) const;
     int GetMemLen(void) const;
-    int GetLength(void) const;  
+    int GetLength(void) const;
     void SetBit(const int n);
     void ClrBit(const int n);
     int  GetBit(const int n) const;
@@ -36,4 +35,4 @@ public:
     TBitField  operator~(void);
 };
 
-#endif
+#endif  // MODULES_BAYDINA_OLYA_BITFIELD_INCLUDE_TBITFIELD_H_

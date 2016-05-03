@@ -1,16 +1,15 @@
-//Copyright 2016 Baydina Olya
+// Copyright 2016 Baydina Olya
 
-#ifndef __SET_H__
-#define __SET_H__
+#ifndef MODULES_BAYDINA_OLY_INCLUDE_SET_H_
+#define MODULES_BAYDINA_OLY_INCLUDE_SET_H_
 
 #include "include/tbitfield.h"
 
-class TSet
-{
-private:
+class TSet {
+ private:
 	int MaxPower;
 	TBitField BitField;
-public:
+ public:
     TSet(int mp);
     TSet(const TSet &s);
     TSet(const TBitField &bf);
@@ -28,5 +27,5 @@ public:
     TSet operator* (const TSet &s);
     TSet operator~ (void);
 };
-#endif
+#endif  // MODULES_BAYDINA_OLYA_BITFIELD_INCLUDE_SET_H_
 

@@ -1,4 +1,4 @@
-//Copyright 2016 Baydina Olya
+// Copyright 2016 Baydina Olya
 
 #include "gtest/gtest.h"
 #include "include/tbitfield.h"

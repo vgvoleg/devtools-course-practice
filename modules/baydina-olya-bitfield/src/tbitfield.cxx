@@ -1,7 +1,7 @@
-//Copyright 2016 Baydina Olya
+// Copyright 2016 Baydina Olya
 
 #include "include/tbitfield.h"
-using namespace std;
+using std::string;
 
 int BYTE = 8;
 
