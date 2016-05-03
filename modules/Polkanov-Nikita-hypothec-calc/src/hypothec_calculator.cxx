@@ -10,6 +10,10 @@ const int HypothecCalculator::DEFAULT_PERCENT = 12;
 const double HypothecCalculator::DEFAULT_FIRST_PAYMENT_PERCENT = 0.2;
 const int HypothecCalculator::DEFAULT_TERM = 180;
 
+const int HypothecCalculator::MAX_TERM = 600;
+const int HypothecCalculator::MAX_PERCENT = 100;
+const int HypothecCalculator::MONTHS_IN_YEAR = 12;
+
 HypothecCalculator::HypothecCalculator() {
     resetDefaults();
 }
@@ -23,9 +27,9 @@ HypothecCalculator::HypothecCalculator(
             || property_cost <= 0
             || first_payment <= 0
             || term <= 0
-            || term > 600
+            || term > MAX_TERM
             || percent <= 0
-            || percent >= 100) {
+            || percent >= MAX_PERCENT) {
         throw std::invalid_argument("Invalid constructor argument");
     }
 
@@ -53,14 +57,14 @@ void HypothecCalculator::calculate() {
                 "First payment must be lesser than property cost");
     }
 
-    double monthly_percent = percent_ / (100.0 * 12.0);
+    double monthly_percent = percent_ / ((double) (MAX_PERCENT * MONTHS_IN_YEAR));
     double k = pow(1 + monthly_percent, term_);
     monthly_payment_ = hypothec_amount * ((monthly_percent * k) / (k - 1));
     overpayment_ = monthly_payment_ * term_ - hypothec_amount;
 }
 
 void HypothecCalculator::setPercent(int percent) {
-    if (percent <= 0 || percent >= 100) {
+    if (percent <= 0 || percent >= MAX_PERCENT) {
         throw std::invalid_argument(
                 "Percent must bigger than 0 and lesser than 100");
     }
@@ -82,7 +86,7 @@ void HypothecCalculator::setFirstPayment(int payment) {
 }
 
 void HypothecCalculator::setTerm(int term) {
-    if (term <= 0 || term > 600) {
+    if (term <= 0 || term > MAX_TERM) {
         throw std::invalid_argument(
                 "Term must be lesser than 601 and bigger than 0");
     }

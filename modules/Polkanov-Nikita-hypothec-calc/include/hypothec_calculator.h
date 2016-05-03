@@ -1,7 +1,7 @@
 // Copyright 2016 Polkanov Nikita
 
-#ifndef MODULES_HYPOTHEC_CALC_INCLUDE_HYPOTHEC_CALCULATOR_H_
-#define MODULES_HYPOTHEC_CALC_INCLUDE_HYPOTHEC_CALCULATOR_H_
+#ifndef MODULES_POLKANOV_NIKITA_HYPOTHEC_CALC_INCLUDE_HYPOTHEC_CALCULATOR_H_
+#define MODULES_POLKANOV_NIKITA_HYPOTHEC_CALC_INCLUDE_HYPOTHEC_CALCULATOR_H_
 
 class HypothecCalculator {
  public:
@@ -9,6 +9,10 @@ class HypothecCalculator {
     static const int DEFAULT_PERCENT;
     static const double DEFAULT_FIRST_PAYMENT_PERCENT;
     static const int DEFAULT_TERM;
+
+    static const int MAX_TERM;
+    static const int MAX_PERCENT;
+    static const int MONTHS_IN_YEAR;
 
     HypothecCalculator();
     HypothecCalculator(
@@ -45,4 +49,4 @@ class HypothecCalculator {
     double overpayment_;
 };
 
-#endif  // MODULES_HYPOTHEC_CALC_INCLUDE_HYPOTHEC_CALCULATOR_H_
+#endif  // MODULES_POLKANOV_NIKITA_HYPOTHEC_CALC_INCLUDE_HYPOTHEC_CALCULATOR_H_
