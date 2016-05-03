@@ -35,7 +35,7 @@ TEST(Parser, Can_Calc_Eval_With_Pow) {
     const double result = Parser::eval(parser.parse());
 
     // Assert
-    const double expected_result = pow(2,10);
+    const double expected_result = pow(2, 10);
     EXPECT_DOUBLE_EQ(expected_result, result);
 }
 
