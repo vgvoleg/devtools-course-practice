@@ -273,7 +273,7 @@ TEST(HypothecCalculatorTest, Can_Calculate) {
     // Arrange
     int property_cost = 2000000;
     int first_payment = 500000;
-    int percent = 19;
+    int percent = 20;
     int term = 120;
     HypothecCalculator calc = HypothecCalculator(
             property_cost,
