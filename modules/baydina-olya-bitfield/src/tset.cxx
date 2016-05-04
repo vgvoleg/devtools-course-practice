@@ -13,50 +13,50 @@ TSet::TSet(const TBitField &bf) : BitField(bf), MaxPower(bf.GetLength()) {
 }
 
 TSet::operator TBitField() {
-	return TBitField(MaxPower);
+    return TBitField(MaxPower);
 }
 
 int TSet::GetMaxPower(void) const {
-	return MaxPower;
+    return MaxPower;
 }
 
 int TSet::IsMember(const int Elem) const {
-	return BitField.GetBit(Elem);
+    return BitField.GetBit(Elem);
 }
 
 void TSet::InsElem(const int Elem) {
-	BitField.SetBit(Elem);
+    BitField.SetBit(Elem);
 }
 
 void TSet::DelElem(const int Elem) {
-	BitField.ClrBit(Elem);
+    BitField.ClrBit(Elem);
 }
 
 TSet& TSet::operator=(const TSet &s) {
-	BitField = s.BitField;
-	MaxPower = s.MaxPower;
+    BitField = s.BitField;
+    MaxPower = s.MaxPower;
 
-	return *this;
+    return *this;
 }
 
 int TSet::operator==(const TSet &s) const {
-	return (BitField == s.BitField);
+    return (BitField == s.BitField);
 }
 
 int TSet::operator!=(const TSet &s) const {
-	return (BitField != s.BitField);
+    return (BitField != s.BitField);
 }
 
 TSet TSet::operator+(const TSet &s) {
-	return (BitField | s.BitField);
+    return (BitField | s.BitField);
 }
 
 TSet TSet::operator*(const TSet &s) {
-	return (BitField & s.BitField);
+    return (BitField & s.BitField);
 }
 
 TSet TSet::operator~(void) {
-	return (~BitField);
+    return (~BitField);
 }
 
 
