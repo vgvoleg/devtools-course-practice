@@ -5,35 +5,35 @@
 #include "include/tset.h"
 
 
-TEST(TBitField, any_throw_with_negative_length){
-    // Act & Assert 
+TEST(TBitField, any_throw_with_negative_length) {
+    // Act & Assert
     EXPECT_ANY_THROW(TBitField bf(-1));
 }
 
-TEST(TBitField, when_len_is_positive){
+TEST(TBitField, when_len_is_positive) {
     // Act & Assert
     ASSERT_NO_THROW(TBitField field(5));
 }
 
-TEST(TBitField, Get_Mem_Index){
+TEST(TBitField, Get_Mem_Index) {
     // Arrange
-    const int n  =32;
+    const int n = 32;
     TBitField field(n);
 
-    // Act & Assert 
+    // Act & Assert
     EXPECT_EQ(1, field.GetMemIndex(32));
 }
 
-TEST(TBitField, Get_Length){
+TEST(TBitField, Get_Length) {
     // Arrange
-    int len=3;
+    int len = 3;
     TBitField field(len);
 
-    // Act & Assert 
+    // Act & Assert
     EXPECT_EQ(3, field.GetLength());
 }
 
-TEST(TBitField, copy_test){
+TEST(TBitField, copy_test) {
     // Arrange
     TBitField field(10);
     field.SetBit(2);
@@ -43,16 +43,15 @@ TEST(TBitField, copy_test){
     EXPECT_NE(0, bf.GetBit(2));
 }
 
-TEST(TBitField, any_throw_2){
+TEST(TBitField, any_throw_2) {
     // Arrange
     TBitField field(10);
 
-    // Act & Assert 
+    // Act & Assert
     EXPECT_ANY_THROW(field.SetBit(-1));
 }
 
-TEST(TBitField, throws_when_set_bit_with_too_large_index)
-{
+TEST(TBitField, throws_when_set_bit_with_too_large_index) {
     // Arrange
     TBitField bf(10);
 
@@ -60,21 +59,21 @@ TEST(TBitField, throws_when_set_bit_with_too_large_index)
     ASSERT_ANY_THROW(bf.SetBit(11));
 }
 
-TEST(TBitField, any_throw_in_Clr){
+TEST(TBitField, any_throw_in_Clr) {
     // Arrange
     TBitField field(10);
 
-    // Act & Assert 
+    // Act & Assert
     EXPECT_ANY_THROW(field.ClrBit(-1));
 }
 
-TEST(TBitField, set_to_zero){
+TEST(TBitField, set_to_zero) {
     // Arrange
     TBitField bf(100);
     int sum = 0;
 
     // Act
-    for (int i = 0; i < bf.GetLength(); i++){
+    for (int i = 0; i < bf.GetLength(); i++) {
         sum += bf.GetBit(i);
     }
 
@@ -82,22 +81,22 @@ TEST(TBitField, set_to_zero){
     EXPECT_EQ(0, sum);
 }
 
-TEST(TBitField, any_throw_in_GetBit_with_negative_index){
+TEST(TBitField, any_throw_in_GetBit_with_negative_index) {
     // Arrange
     TBitField field(10);
 
-    // Act & Assert 
+    // Act & Assert
     EXPECT_ANY_THROW(field.GetBit(-1));
 }
 
-TEST(TBitField, throws_when_get_bit_with_too_large_index){
+TEST(TBitField, throws_when_get_bit_with_too_large_index) {
     // Arrange
     TBitField bf(10);
     // Act & Assert
     ASSERT_ANY_THROW(bf.GetBit(11));
 }
 
-TEST(TBitField, is_equally){
+TEST(TBitField, is_equally) {
     // Arrange
     TBitField a(8);
     TBitField b(8);
@@ -109,7 +108,7 @@ TEST(TBitField, is_equally){
     EXPECT_TRUE(result);
 }
 
-TEST(TBitField, is_not_equally){
+TEST(TBitField, is_not_equally) {
     // Arrange
     TBitField a(3);
     TBitField b(4);
@@ -121,9 +120,9 @@ TEST(TBitField, is_not_equally){
     EXPECT_FALSE(result);
 }
 
-TEST(TBitField, Disjunction){
+TEST(TBitField, Disjunction) {
     // Arrange
-    const int size = 3;		
+    const int size = 3;
     TBitField bf1(size), bf2(size), expField(size);
     bf1.SetBit(2);
     bf1.SetBit(3);
@@ -139,7 +138,7 @@ TEST(TBitField, Disjunction){
     EXPECT_EQ(expField, bf1 | bf2);
 }
 
-TEST(TBitField, can_invert_large_bitfield){
+TEST(TBitField, can_invert_large_bitfield) {
     // Arrange
     const int size = 30;
     TBitField field(size), negField(size), expNegField(size);
@@ -147,7 +146,7 @@ TEST(TBitField, can_invert_large_bitfield){
     negField = ~field;
 
     // Act
-    for (int i = 0; i < size; i++){
+    for (int i = 0; i < size; i++) {
         expNegField.SetBit(i);
     }
     expNegField.ClrBit(27);
@@ -156,7 +155,7 @@ TEST(TBitField, can_invert_large_bitfield){
     EXPECT_EQ(expNegField, negField);
 }
 
-TEST(TBitField, conjunction){
+TEST(TBitField, conjunction) {
     // Arrange
     const int size = 3;
     TBitField bf1(size), bf2(size), expField(size);
@@ -172,7 +171,7 @@ TEST(TBitField, conjunction){
     EXPECT_EQ(expField, bf1 & bf2);
 }
 
-TEST(TBitField, logical_negation){
+TEST(TBitField, logical_negation) {
     // Arrange
     const int size = 3;
     TBitField bf(size);
@@ -187,7 +186,7 @@ TEST(TBitField, logical_negation){
     EXPECT_EQ(result, ~bf);
 }
 
-TEST(TBitField, Double_Cleaning){
+TEST(TBitField, Double_Cleaning) {
     // Arrange
     const int size = 3;
     TBitField bf(size);
@@ -199,9 +198,10 @@ TEST(TBitField, Double_Cleaning){
     EXPECT_EQ(0, bf.GetBit(1));
 }
 
-TEST(TBitField, can_right_make_2_operation){
+TEST(TBitField, can_right_make_2_operation) {
     // Arrange
-    TBitField first(3), second(3), third(3), tempSimp1(3), tempSimp2(3), tempNotSimple(3);
+	TBitField first(3), second(3), third(3);
+	TBitField tempSimp1(3), tempSimp2(3), tempNotSimple(3);
     first.SetBit(1);
     second.SetBit(2);
     third.SetBit(3);
@@ -211,7 +211,7 @@ TEST(TBitField, can_right_make_2_operation){
     tempSimp2 = tempSimp1 | third;
     tempNotSimple = first | second | third;
 
-    //Assert
+    // Assert
     EXPECT_EQ(tempSimp2, tempNotSimple);
 }
 
