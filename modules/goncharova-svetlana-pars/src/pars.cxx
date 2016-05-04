@@ -4,7 +4,7 @@
 
 #include <string>
 
-    string Parser::parse_token() {
+    string Parser::ParseToken() {
     while (isspace(*input)) ++input;
 
     if (isdigit(*input)) {
@@ -25,14 +25,14 @@
     return "";
 }
 
-Expression Parser::parse_simple_expression() {
-    auto token = parse_token();
+Expression Parser::ParseSimpleExpression() {
+    auto token = ParseToken();
     if (token.empty()) {
         throw std::runtime_error("Invalid input");
     }
     if (token == "(") {
         auto result = parse();
-        if (parse_token() != ")") {
+        if (ParseToken() != ")") {
             throw std::runtime_error("Expected ')'");
         }
         return result;
@@ -41,10 +41,10 @@ Expression Parser::parse_simple_expression() {
     if (isdigit(token[0])) {
         return Expression(token);
     }
-    return Expression(token, parse_simple_expression());
+    return Expression(token, ParseSimpleExpression());
 }
 
-int get_priority(const string& binary_op) {
+int GetPriority(const string& binary_op) {
     int res = 0;
     if (binary_op == "+") {
         res = 1;
@@ -64,24 +64,24 @@ int get_priority(const string& binary_op) {
     return res;
 }
 
-Expression Parser::parse_binary_expression(int min_priority) {
-    auto left_expr = parse_simple_expression();
+Expression Parser::ParseBinaryExpression(int min_priority) {
+    auto left_expr = ParseSimpleExpression();
 
     for (;;) {
-        auto op = parse_token();
-        auto priority = get_priority(op);
+        auto op = ParseToken();
+        auto priority = GetPriority(op);
         if (priority <= min_priority) {
             input -= op.size();
             return left_expr;
         }
 
-        auto right_expr = parse_binary_expression(priority);
+        auto right_expr = ParseBinaryExpression(priority);
         left_expr = Expression(op, left_expr, right_expr);
     }
 }
 
 Expression Parser::parse() {
-    return parse_binary_expression(0);
+    return ParseBinaryExpression(0);
 }
 
 double Parser::eval(const Expression& e) {

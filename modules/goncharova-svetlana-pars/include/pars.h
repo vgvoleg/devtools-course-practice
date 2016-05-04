@@ -31,9 +31,9 @@ class Parser {
     static double eval(const Expression& e);
 
  private:
-    string parse_token();
-    Expression parse_simple_expression();
-    Expression parse_binary_expression(int min_priority);
+    string ParseToken();
+    Expression ParseSimpleExpression();
+    Expression ParseBinaryExpression(int min_priority);
     const char* input;
 };
 
