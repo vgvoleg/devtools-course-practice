@@ -250,7 +250,7 @@ TEST(HypothecCalculatorTest, Cannot_Set_Invalid_Term_2) {
 
 TEST(HypothecCalculatorTest, Cannot_Set_Invalid_First_Payment) {
     // Arrange
-    int first_payment = -410414;
+    int first_payment = -410415;
     HypothecCalculator calc = HypothecCalculator();
 
     // Act & Assert
