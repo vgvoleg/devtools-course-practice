@@ -200,8 +200,8 @@ TEST(TBitField, Double_Cleaning) {
 
 TEST(TBitField, can_right_make_2_operation) {
     // Arrange
-	TBitField first(3), second(3), third(3);
-	TBitField tempSimp1(3), tempSimp2(3), tempNotSimple(3);
+    TBitField first(3), second(3), third(3);
+    TBitField tempSimp1(3), tempSimp2(3), tempNotSimple(3);
     first.SetBit(1);
     second.SetBit(2);
     third.SetBit(3);
