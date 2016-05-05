@@ -27,3 +27,5 @@ class MySort {
     void pasteSort(void);
     void mergeSort(int first, int last);
 };
+
+#endif MODULES_MARKOVA_LERA_SORT_INCLUDE_SORT_H_
