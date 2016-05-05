@@ -5,9 +5,9 @@
 
 bool MySort::operator==(const MySort & q) const {
         bool result = true;
-        if (q.length_ != length_)
+        if (q.length_ != length_) {
            result = false;
-        else {
+		} else {
            for (int i = 0; i < length_; i++) {
                  if (intArr_[i] != q.intArr_[i])
                     result = false;
@@ -32,19 +32,19 @@ void MySort::quickSort(int l, int r) {
             j--;
         }
     }
-    if (i<r)
+    if (i < r)
        quickSort(i, r);
-    if (l<j)
+    if (l < j)
        quickSort(l, j);
 }
 
 void MySort::selectionSort(void) {
     int count, key, i, j;
-    for (i = 0; i<length_ - 1; i++) {
+    for (i = 0; i < length_ - 1; i++) {
         count = intArr_[i];
         key = i;
-        for (j = i + 1; j<length_; j++)
-            if (intArr_[j]<intArr_[key]) key = j;
+        for (j = i + 1; j < length_; j++)
+            if (intArr_[j] < intArr_[key]) key = j;
         if (key != i) {
             intArr_[i] = intArr_[key];
             intArr_[key] = count;
@@ -55,8 +55,9 @@ void MySort::selectionSort(void) {
 void MySort::gnomeSort(void) {
     int i = 0;
     while (i < length_) {
-        if (i == 0 || intArr_[i-1] <= intArr_[i]) i++;
-        else { 
+        if (i == 0 || intArr_[i - 1] <= intArr_[i]) {
+             i++;
+        } else {
            int tmp = intArr_[i];
            intArr_[i] = intArr_[i-1];
            intArr_[--i] = tmp;
@@ -75,12 +76,12 @@ void MySort::shakerSort(int Start, int N) {
     int Left, Right, i;
     Left = Start;
     Right = N-1;
-    while (Left<=Right) {
-        for (i=Right; i>=Left; i--)
-            if (intArr_[i-1]>intArr_[i]) swap(i);
+    while (Left <= Right) {
+        for (i=Right; i >= Left; i--)
+            if (intArr_[i-1] > intArr_[i]) swap(i);
         Left++;
-        for (i=Left; i<=Right; i++)
-            if (intArr_[i-1]>intArr_[i]) swap(i);
+        for (i=Left; i <= Right; i++)
+            if (intArr_[i-1] > intArr_[i]) swap(i);
         Right--;
     }
 }
@@ -98,7 +99,7 @@ void MySort::pasteSort(void) {
 }
 
 MySort::MySort(const int intArr[], int length) {
-    intArr_ = new int [length];
+    intArr_ = new int[length];
     length_ = length;
     for (int i = 0; i < length_; i++)
        intArr_[i] = intArr[i];
@@ -109,26 +110,25 @@ MySort::~MySort() {
 }
 
 void MySort::merge(int first, int last) {
-    int middle, start, final, j;
-    int *mas = new int[100];
-    middle = (first + last) / 2;
-    start = first;
-    final = middle + 1;
-    for (j = first; j <= last; j++)
-        if ((start <= middle) && ((final>last) || (intArr_[start]<intArr_[final]))) {
-            mas[j] = intArr_[start];
-            start++;
-        }
-        else {
-            mas[j] = intArr_[final];
-            final++;
-        }
-    for (j = first; j <= last; j++) intArr_[j] = mas[j];
-    delete[]mas;
+   int mid, start, fin, j;
+   int *mas = new int[100];
+   mid = (first + last) / 2;
+   start = first;
+   fin = mid + 1;
+   for (j = first; j <= last; j++)
+     if ((start <= mid) && ((fin > last) || (intArr_[start] < intArr_[fin]))) {
+           mas[j] = intArr_[start];
+           start++;
+     } else {
+            mas[j] = intArr_[fin];
+            fin++;
+     }
+   for (j = first; j <= last; j++) intArr_[j] = mas[j];
+   delete[]mas;
 }
 
 void MySort::mergeSort(int first, int last) {
-     if (first<last) {
+     if (first < last) {
          mergeSort(first, (first + last) / 2);
          mergeSort((first + last) / 2 + 1, last);
          merge(first, last);
