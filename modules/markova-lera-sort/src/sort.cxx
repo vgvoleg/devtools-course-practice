@@ -7,7 +7,7 @@ bool MySort::operator==(const MySort & q) const {
         bool result = true;
         if (q.length_ != length_) {
            result = false;
-		} else {
+        } else {
            for (int i = 0; i < length_; i++) {
                  if (intArr_[i] != q.intArr_[i])
                     result = false;
@@ -87,7 +87,7 @@ void MySort::shakerSort(int Start, int N) {
 }
 
 void MySort::pasteSort(void) {
-    int counter=0;
+    int counter = 0;
     for (int i = 1; i < length_; i++) {
         for (int j = i; j > 0 && intArr_[j - 1] > intArr_[j]; j--) {
             counter++;
@@ -110,21 +110,21 @@ MySort::~MySort() {
 }
 
 void MySort::merge(int first, int last) {
-   int mid, start, fin, j;
-   int *mas = new int[100];
-   mid = (first + last) / 2;
-   start = first;
-   fin = mid + 1;
-   for (j = first; j <= last; j++)
-     if ((start <= mid) && ((fin > last) || (intArr_[start] < intArr_[fin]))) {
-           mas[j] = intArr_[start];
-           start++;
-     } else {
-            mas[j] = intArr_[fin];
-            fin++;
-     }
-   for (j = first; j <= last; j++) intArr_[j] = mas[j];
-   delete[]mas;
+  int mid, start, fin, j;
+  int *mas = new int[100];
+  mid = (first + last) / 2;
+  start = first;
+  fin = mid + 1;
+  for (j = first; j <= last; j++)
+    if ((start <= mid) && ((fin > last) || (intArr_[start] < intArr_[fin]))) {
+        mas[j] = intArr_[start];
+        start++;
+    } else {
+        mas[j] = intArr_[fin];
+        fin++;
+    }
+  for (j = first; j <= last; j++) intArr_[j] = mas[j];
+  delete[]mas;
 }
 
 void MySort::mergeSort(int first, int last) {
