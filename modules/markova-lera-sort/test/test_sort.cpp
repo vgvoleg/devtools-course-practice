@@ -50,7 +50,7 @@ TEST(MySort, Can_Result_False) {
     // Arrange
     const int N = 10;
     const int array[N] = { 1, 4, 5, 3, 7, 4, 3, 3, 2, 100 };
-    const int array2[N] = { 1, 4, 5, 3, 7, 3, 56, 1, 34, 54 };
+    const int array2[N] = { 7, 1, 2, 2, 1, 3, 56, 1, 34, 54 };
     MySort example(array, N);
     MySort example2(array2, N);
 
@@ -131,21 +131,6 @@ TEST(MySort, Can_Do_Quick_Sort) {
 
     // Assert
     const int expected_result[N] = { 1, 2, 3, 3, 3, 4, 4, 5, 7, 100 };
-    const MySort expected_sort(expected_result, N);
-    EXPECT_EQ(expected_sort, example);
-}
-
-TEST(MySort, Can_Do_Sheker_Sort) {
-    // Arrange
-    const int N = 5;
-    const int array[N] = { 1, 4, 5, 3, 7 };
-    MySort example(array, N);
-
-    // Act
-    example.shakerSort(0, N - 1);
-
-    // Assert
-    const int expected_result[N] = { 1, 3, 4, 5, 7 };
     const MySort expected_sort(expected_result, N);
     EXPECT_EQ(expected_sort, example);
 }
