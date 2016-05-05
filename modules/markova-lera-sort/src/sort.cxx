@@ -1,16 +1,14 @@
 // Copyright © 2016 Markova
 
 #include "include/sort.h"
+#include <algorithm>
 
-bool MySort::operator==(const MySort & q) const
-{
+bool MySort::operator==(const MySort & q) const {
         bool result = true;
         if (q.length_ != length_)
            result = false;
-        else
-        {
-           for (int i = 0; i < length_; i++)
-            {
+        else {
+           for (int i = 0; i < length_; i++) {
                  if (intArr_[i] != q.intArr_[i])
                     result = false;
             }
@@ -18,18 +16,15 @@ bool MySort::operator==(const MySort & q) const
         return result;
 }
 
-void MySort::quickSort(int l, int r)
-{
+void MySort::quickSort(int l, int r) {
     int x = intArr_[l + (r - l) / 2];
     int temp;
     int i = l;
     int j = r;
-    while (i <= j)
-    {
+    while (i <= j) {
         while (intArr_[i] < x) i++;
         while (intArr_[j] > x) j--;
-        if (i <= j)
-        {
+        if (i <= j) {
             temp = intArr_[i];
             intArr_[i] = intArr_[j];
             intArr_[j] = temp;
@@ -43,46 +38,44 @@ void MySort::quickSort(int l, int r)
        quickSort(l, j);
 }
 
-void MySort::selectionSort(void)
-{
+void MySort::selectionSort(void) {
     int count, key, i, j;
-    for (i = 0; i<length_ - 1; i++)
-    {
+    for (i = 0; i<length_ - 1; i++) {
         count = intArr_[i];
         key = i;
         for (j = i + 1; j<length_; j++)
             if (intArr_[j]<intArr_[key]) key = j;
-        if (key != i)
-        {
+        if (key != i) {
             intArr_[i] = intArr_[key];
             intArr_[key] = count;
         }
     }
 }
 
-void MySort::gnomeSort(void)
-{
+void MySort::gnomeSort(void) {
     int i = 0;
     while (i < length_) {
         if (i == 0 || intArr_[i-1] <= intArr_[i]) i++;
-        else { int tmp = intArr_[i]; intArr_[i] = intArr_[i-1]; intArr_[--i] = tmp; }
+        else { 
+           int tmp = intArr_[i];
+           intArr_[i] = intArr_[i-1];
+           intArr_[--i] = tmp;
+        }
     }
 }
 
-void MySort::swap(int i)
-{
+void MySort::swap(int i) {
     int temp;
-    temp=intArr_[i];
-    intArr_[i]=intArr_[i-1];
-    intArr_[i-1]=temp;
+    temp = intArr_[i];
+    intArr_[i] = intArr_[i-1];
+    intArr_[i-1] = temp;
 }
 
 void MySort::shakerSort(int Start, int N) {
     int Left, Right, i;
-    Left=Start;
-    Right=N-1;
-    while (Left<=Right)
-    {
+    Left = Start;
+    Right = N-1;
+    while (Left<=Right) {
         for (i=Right; i>=Left; i--)
             if (intArr_[i-1]>intArr_[i]) swap(i);
         Left++;
@@ -104,34 +97,29 @@ void MySort::pasteSort(void) {
     }
 }
 
-MySort::MySort(const int intArr[], int length)
-{
+MySort::MySort(const int intArr[], int length) {
     intArr_ = new int [length];
     length_ = length;
     for (int i = 0; i < length_; i++)
        intArr_[i] = intArr[i];
 }
 
-MySort::~MySort()
-{
+MySort::~MySort() {
     delete[] intArr_;
 }
 
-void MySort::merge(int first, int last)
-{
+void MySort::merge(int first, int last) {
     int middle, start, final, j;
     int *mas = new int[100];
     middle = (first + last) / 2;
     start = first;
     final = middle + 1;
     for (j = first; j <= last; j++)
-        if ((start <= middle) && ((final>last) || (intArr_[start]<intArr_[final])))
-        {
+        if ((start <= middle) && ((final>last) || (intArr_[start]<intArr_[final]))) {
             mas[j] = intArr_[start];
             start++;
         }
-        else
-        {
+        else {
             mas[j] = intArr_[final];
             final++;
         }
@@ -139,14 +127,10 @@ void MySort::merge(int first, int last)
     delete[]mas;
 }
 
-void MySort::mergeSort(int first, int last)
-{
-    {
-        if (first<last)
-        {
-            mergeSort(first, (first + last) / 2);
-            mergeSort((first + last) / 2 + 1, last);
-            merge(first, last);
-        }
-    }
+void MySort::mergeSort(int first, int last) {
+     if (first<last) {
+         mergeSort(first, (first + last) / 2);
+         mergeSort((first + last) / 2 + 1, last);
+         merge(first, last);
+     }
 }
