@@ -67,6 +67,7 @@ void MySort::gnomeSort(void) {
 
 void MySort::shakerSort(int Start, int N) {
     int Left, Right, i;
+    int temp;
     Left = Start;
     Right = N-1;
     while (Left <= Right) {
