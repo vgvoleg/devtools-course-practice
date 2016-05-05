@@ -30,6 +30,22 @@ TEST(MySort, Can_Same_Result) {
     EXPECT_TRUE(expected_true);
 }
 
+TEST(MySort, Can_Same_Result_False) {
+    // Arrange
+    const int N = 10;
+    const int M = 5;
+    const int array[N] = { 1, 4, 5, 3, 7, 4, 3, 3, 2, 100 };
+    const int array2[M] = { 1, 4, 5, 3, 7 };
+    MySort example(array, N);
+    MySort example2(array2, M);
+
+    // Act
+    const bool expected_false = example == example2;
+
+    // Assert
+    EXPECT_FALSE(expected_false);
+}
+
 TEST(MySort, Can_Write) {
     // Arrange
     const int N = 10;
