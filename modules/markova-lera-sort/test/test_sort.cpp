@@ -9,8 +9,8 @@ TEST(MySort, Can_Create) {
 
     // Act
     const int N = 2;
-    const int myArr[N] = { 1,3 };
-    a = new MySort(myArr,N);
+    const int myArr[N] = { 1, 3 };
+    a = new MySort(myArr, N);
 
     // Assert
     EXPECT_NE(nullptr, a);
@@ -47,16 +47,16 @@ TEST(MySort, Can_Write) {
 TEST(MySort, Can_Do_Gnome_Sort) {
     // Arrange
     const int N = 10;
-    const int array [N] = {1, 4, 5, 3, 7, 4, 3, 3, 2, 100};
-    MySort example (array, N);
+    const int array[N] = {1, 4, 5, 3, 7, 4, 3, 3, 2, 100};
+    MySort example(array, N);
 
     // Act
     example.gnomeSort();
 
-	// Assert
-    const int expected_result[N] = { 1,2,3,3,3,4,4,5,7,100 };
+    // Assert
+    const int expected_result[N] = { 1, 2, 3, 3, 3, 4, 4, 5, 7, 100 };
     const MySort expected_sort(expected_result, N);
-    EXPECT_EQ(expected_sort,example);
+    EXPECT_EQ(expected_sort, example);
 }
 
 TEST(MySort, Can_Do_Selection_Sort) {
@@ -69,7 +69,7 @@ TEST(MySort, Can_Do_Selection_Sort) {
     example.selectionSort();
 
     // Assert
-    const int expected_result[N] = { 1,2,3,3,3,4,4,5,7,100 };
+    const int expected_result[N] = { 1, 2, 3, 3, 3, 4, 4, 5, 7, 100 };
     const MySort expected_sort(expected_result, N);
     EXPECT_EQ(expected_sort, example);
 }
@@ -84,7 +84,7 @@ TEST(MySort, Can_Do_Paste_Sort) {
     example.pasteSort();
 
     // Assert
-    const int expected_result[N] = { 1,2,3,3,3,4,4,5,7,100 };
+    const int expected_result[N] = { 1, 2, 3, 3, 3, 4, 4, 5, 7, 100 };
     const MySort expected_sort(expected_result, N);
     EXPECT_EQ(expected_sort, example);
 }
@@ -99,7 +99,7 @@ TEST(MySort, Can_Do_Quick_Sort) {
     example.quickSort(0, N-1);
 
     // Assert
-    const int expected_result[N] = { 1,2,3,3,3,4,4,5,7,100 };
+    const int expected_result[N] = { 1, 2, 3, 3, 3, 4, 4, 5, 7, 100 };
     const MySort expected_sort(expected_result, N);
     EXPECT_EQ(expected_sort, example);
 }
@@ -114,7 +114,7 @@ TEST(MySort, Can_Do_Sheker_Sort) {
     example.shakerSort(0, N - 1);
 
     // Assert
-    const int expected_result[N] = { 1,2,3,3,3,4,4,5,7,100 };
+    const int expected_result[N] = { 1, 2, 3, 3, 3, 4, 4, 5, 7, 100 };
     const MySort expected_sort(expected_result, N);
     EXPECT_EQ(expected_sort, example);
 }
@@ -129,7 +129,7 @@ TEST(MySort, Can_Do_Merge_Sort) {
     example.mergeSort(0, N-1);
 
     // Assert
-    const int expected_result[N] = { 1,2,3,3,3,4,4,5,7,100 };
+    const int expected_result[N] = { 1, 2, 3, 3, 3, 4, 4, 5, 7, 100 };
     const MySort expected_sort(expected_result, N);
     EXPECT_EQ(expected_sort, example);
 }
