@@ -7,15 +7,15 @@ bool MySort::operator==(const MySort & q) const
         bool result = true;
         if (q.length_ != length_)
            result = false;
-		else
-		{
-			for (int i = 0; i < length_; i++)
-			{
-				if (intArr_[i] != q.intArr_[i])
-					result = false;
-			}
-		}
-		return result;
+        else
+        {
+           for (int i = 0; i < length_; i++)
+            {
+                 if (intArr_[i] != q.intArr_[i])
+                    result = false;
+            }
+        }
+        return result;
 }
 
 void MySort::quickSort(int l, int r)
