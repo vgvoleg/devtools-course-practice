@@ -1,9 +1,12 @@
 // Copyright © 2016 Markova
 
+#ifndef MODULES_MARKOVA_LERA_SORT_INCLUDE_SORT_H_
+#define MODULES_MARKOVA_LERA_SORT_INCLUDE_SORT_H_
+
 #include <stdio.h>
 #include <iostream>
 #include <iomanip>
-#include <algorithm> 
+#include <algorithm>
 
 class MySort {
  private:
