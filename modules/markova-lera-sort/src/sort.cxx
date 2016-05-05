@@ -1,13 +1,12 @@
-
-//  Copyright © 2016 Markova
+// Copyright © 2016 Markova
 
 #include "include/sort.h"
 
 bool MySort::operator==(const MySort & q) const
 {
-		bool result = true;
-		if (q.length_ != length_)
-			result = false;
+        bool result = true;
+        if (q.length_ != length_)
+           result = false;
 		else
 		{
 			for (int i = 0; i < length_; i++)
