@@ -65,23 +65,24 @@ void MySort::gnomeSort(void) {
     }
 }
 
-void MySort::swap(int i) {
-    int temp;
-    temp = intArr_[i];
-    intArr_[i] = intArr_[i-1];
-    intArr_[i-1] = temp;
-}
-
 void MySort::shakerSort(int Start, int N) {
     int Left, Right, i;
     Left = Start;
     Right = N-1;
     while (Left <= Right) {
         for (i=Right; i >= Left; i--)
-            if (intArr_[i-1] > intArr_[i]) swap(i);
+                if (intArr_[i - 1] > intArr_[i]) {
+                temp = intArr_[i];
+                intArr_[i] = intArr_[i - 1];
+                intArr_[i - 1] = temp;
+           }
         Left++;
-        for (i=Left; i <= Right; i++)
-            if (intArr_[i-1] > intArr_[i]) swap(i);
+        for (i = Left; i <= Right; i++)
+                if (intArr_[i - 1] > intArr_[i]) {
+                temp = intArr_[i];
+                intArr_[i] = intArr_[i - 1];
+                intArr_[i - 1] = temp;
+           }
         Right--;
     }
 }

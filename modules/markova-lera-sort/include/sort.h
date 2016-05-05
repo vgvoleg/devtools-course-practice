@@ -12,7 +12,6 @@ class MySort {
  private:
     int* intArr_;
     int length_;
-    void swap(int i);
     void merge(int first, int last);
  public:
     MySort(const int intArr[], int length);
