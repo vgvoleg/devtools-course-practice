@@ -9,10 +9,6 @@
 #include <algorithm>
 
 class MySort {
- private:
-    int* intArr_;
-    int length_;
-    void merge(int first, int last);
  public:
     MySort(const int intArr[], int length);
     ~MySort();
@@ -24,6 +20,10 @@ class MySort {
     void gnomeSort(void);
     void pasteSort(void);
     void mergeSort(int first, int last);
+ private:
+    int* intArr_;
+    int length_;
+    void merge(int first, int last);
 };
 
 #endif  // MODULES_MARKOVA_LERA_SORT_INCLUDE_SORT_H_
