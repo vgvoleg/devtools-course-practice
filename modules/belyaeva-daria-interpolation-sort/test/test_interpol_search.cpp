@@ -89,11 +89,8 @@ TEST(InterpolSearch, can_check_equality) {
     InterpolSearch myIS1(myArr, size);
     InterpolSearch myIS2(myArr, size);
 
-    // Act
-    const bool expected_true = (myIS1 == myIS2);
-
-    // Assert
-    EXPECT_TRUE(expected_true);
+    // Act & Assert
+    EXPECT_TRUE(myIS1 == myIS2);
 }
 
 TEST(InterpolSearch, can_check_inequality_with_different_elements) {
@@ -104,11 +101,8 @@ TEST(InterpolSearch, can_check_inequality_with_different_elements) {
     InterpolSearch myIS1(myArr, size);
     InterpolSearch myIS2(myArr2, size);
 
-    // Act
-    const bool expected_false = (myIS1 == myIS2);
-
-    // Assert
-    EXPECT_FALSE(expected_false);
+    // Act & Assert
+    EXPECT_FALSE(myIS1 == myIS2);
 }
 
 TEST(InterpolSearch, can_check_inequality_with_different_size) {
