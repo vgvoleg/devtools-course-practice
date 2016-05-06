@@ -22,7 +22,6 @@ class MySort {
     void quickSort(int l, int r);
     void selectionSort(void);
     void gnomeSort(void);
-    void shakerSort(int Start, int N);
     void pasteSort(void);
     void mergeSort(int first, int last);
 };
