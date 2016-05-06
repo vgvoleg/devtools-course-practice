@@ -185,6 +185,28 @@ TEST(TBitField, is_not_equally_Getbit) {
     EXPECT_TRUE(result);
 }
 
+TEST(TBitField, is_equally_if_the_same_bf) {
+    // Arrange
+    TBitField bf(10);
+
+    // Act
+    bool result = (bf == bf);
+
+    // Assert
+    EXPECT_TRUE(result);
+}
+
+TEST(TBitField, is_not_equally_if_the_same_bf) {
+    // Arrange
+    TBitField bf(10);
+
+    // Act
+    bool result = (bf == bf);
+	
+    // Assert
+    EXPECT_FALSE(result);
+}
+
 TEST(TBitField, Disjunction) {
     // Arrange
     const int size = 3;
