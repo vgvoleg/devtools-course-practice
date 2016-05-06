@@ -6,10 +6,10 @@
 TEST(MySort, Can_Create) {
     // Arrange
     MySort* a;
-
-    // Act
     const int N = 2;
     const int myArr[N] = { 1, 3 };
+
+    // Act
     a = new MySort(myArr, N);
 
     // Assert
