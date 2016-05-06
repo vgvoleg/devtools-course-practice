@@ -58,12 +58,20 @@ TEST(TBitField, throws_when_set_bit_with_too_large_index) {
     ASSERT_ANY_THROW(bf.SetBit(11));
 }
 
-TEST(TBitField, any_throw_in_Clr) {
+TEST(TBitField, throw1_in_Clr) {
     // Arrange
     TBitField field(10);
 
     // Act & Assert
     EXPECT_ANY_THROW(field.ClrBit(-1));
+}
+
+TEST(TBitField, throw2_in_Clr) {
+	// Arrange
+	TBitField field(10);
+
+	// Act & Assert
+	EXPECT_ANY_THROW(field.ClrBit(11));
 }
 
 TEST(TBitField, set_to_zero) {
@@ -109,14 +117,72 @@ TEST(TBitField, is_equally) {
 
 TEST(TBitField, is_not_equally) {
     // Arrange
-    TBitField a(3);
-    TBitField b(4);
+    TBitField a(8);
+    TBitField b(9);
 
     // Act
     bool result = (a == b);
 
     // Assert
     EXPECT_FALSE(result);
+}
+
+TEST(TBitField, is_equally_Getbit) {
+    // Arrange
+    TBitField a(3);
+    TBitField b(3);
+
+    // Act
+    a.SetBit(0);
+    a.SetBit(1);
+    b.SetBit(0);
+    b.SetBit(1);
+    b.SetBit(2);
+    bool result = (a == b);
+
+    // Assert
+    EXPECT_FALSE(result);
+}
+
+TEST(TBitField, is_not_equally_true) {
+    // Arrange
+    TBitField a(8);
+    TBitField b(9);
+
+    // Act
+    bool result = (a != b);
+
+    // Assert
+    EXPECT_TRUE(result);
+}
+
+TEST(TBitField, is_not_equally_false) {
+    // Arrange
+    TBitField a(9);
+    TBitField b(9);
+
+    // Act
+    bool result = (a != b);
+
+    // Assert
+    EXPECT_FALSE(result);
+}
+
+TEST(TBitField, is_not_equally_Getbit) {
+    // Arrange
+    TBitField a(3);
+    TBitField b(3);
+
+    // Act
+    a.SetBit(0);
+    a.SetBit(1);
+    b.SetBit(0);
+    b.SetBit(1);
+    b.SetBit(2);
+    bool result = (a != b);
+
+    // Assert
+    EXPECT_TRUE(result);
 }
 
 TEST(TBitField, Disjunction) {
@@ -213,4 +279,3 @@ TEST(TBitField, can_right_make_2_operation) {
     // Assert
     EXPECT_EQ(tempSimp2, tempNotSimple);
 }
-
