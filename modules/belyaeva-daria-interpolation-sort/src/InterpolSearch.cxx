@@ -1,9 +1,9 @@
 // Copyright 2016 Belyaeva Daria
 
-#include "include/InterpolationSearch.h"
+#include <include/InterpolationSearch.h>
 
-#include <algorithm>
 #include <stdlib.h>
+#include <algorithm>
 #include <iostream>
 #include <string>
 
