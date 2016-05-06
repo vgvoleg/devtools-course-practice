@@ -2,10 +2,10 @@
 
 #include "include/InterpolationSearch.h"
 
-#include <stdlib.h>
 #include <algorithm>
-#include <string>
+#include <stdlib.h>
 #include <iostream>
+#include <string>
 
 using std::swap;
 
