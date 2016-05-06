@@ -10,6 +10,15 @@ TEST(InterpolSearch, cant_create_object_with_incorrect_size) {
     EXPECT_ANY_THROW(InterpolSearch(-1));
 }
 
+TEST(InterpolSearch, cant_create_object_with_incorrect_size_with_value) {
+    // Arrange
+    const int size = 1;
+    const int myArr[size] = { 1 };
+
+    // Act & Assert
+    EXPECT_ANY_THROW(InterpolSearch(myArr, -1));
+}
+
 TEST(InterpolSearch, can_create_object_with_correct_size) {
     // Arrange
 
@@ -143,7 +152,7 @@ TEST(InterpolSearch, can_not_do_quick_sort_wrong_right) {
     InterpolSearch myIS(myArr, size);
 
     // Act & Assert
-    EXPECT_ANY_THROW(myIS.QuickSort(-1, size - 1));
+    EXPECT_ANY_THROW(myIS.QuickSort(0, size + 1));
 }
 
 TEST(InterpolSearch, can_do_quick_sort) {
@@ -174,7 +183,7 @@ TEST(InterpolSearch, can_do_search_wrong_key) {
     EXPECT_EQ(tmp, -1);
 }
 
-TEST(InterpolSearch, can_do_search) {
+TEST(InterpolSearch, can_do_search_mid_element) {
     // Arrange
     const int size = 5;
     const int myArr[size] = { 1, 2, 3, 4, 5 };
@@ -185,6 +194,45 @@ TEST(InterpolSearch, can_do_search) {
 
     // Assert
     EXPECT_EQ(tmp, 2);
+}
+
+TEST(InterpolSearch, can_do_search_left_of_center) {
+    // Arrange
+    const int size = 5;
+    const int myArr[size] = { 1, 2, 3, 4, 5 };
+    InterpolSearch myIS(myArr, size);
+
+    // Act
+    int tmp = myIS.InterpolationSearch(2);
+
+    // Assert
+    EXPECT_EQ(tmp, 1);
+}
+
+TEST(InterpolSearch, can_do_search_right_of_center) {
+    // Arrange
+    const int size = 5;
+    const int myArr[size] = { 1, 2, 3, 4, 5 };
+    InterpolSearch myIS(myArr, size);
+
+    // Act
+    int tmp = myIS.InterpolationSearch(4);
+
+    // Assert
+    EXPECT_EQ(tmp, 3);
+}
+
+TEST(InterpolSearch, can_do_search_left_element) {
+    // Arrange
+    const int size = 5;
+    const int myArr[size] = { 1, 2, 3, 4, 5 };
+    InterpolSearch myIS(myArr, size);
+
+    // Act
+    int tmp = myIS.InterpolationSearch(1);
+
+    // Assert
+    EXPECT_EQ(tmp, 0);
 }
 
 TEST(InterpolSearch, can_do_search_one_element) {
