@@ -1,11 +1,11 @@
 // Copyright 2016 Belyaeva Daria
 
-#ifndef MODULES_BELYAEVA_DARIA_INTERPOLATION_SEARCH_H_
-#define MODULES_BELYAEVA_DARIA_INTERPOLATION_SEARCH_H_
+#ifndef MODULES_BELYAEVA_DARIA_INTERPOLATION_SORT_INCLUDE_INTERPOLATIONSEARCH_H_
+#define MODULES_BELYAEVA_DARIA_INTERPOLATION_SORT_INCLUDE_INTERPOLATIONSEARCH_H_
 
 class InterpolSearch {
  public:
-    InterpolSearch(int _size);
+    explicit InterpolSearch(int _size);
     ~InterpolSearch();
     InterpolSearch(const int intArr[], int _size);
 
@@ -21,4 +21,4 @@ class InterpolSearch {
      int Size;
 };
 
-#endif  // MODULES_BELYAEVA_DARIA_INTERPOLATION_SEARCH_H_
+#endif  // MODULES_BELYAEVA_DARIA_INTERPOLATION_SORT_INCLUDE_INTERPOLATIONSEARCH_H_
