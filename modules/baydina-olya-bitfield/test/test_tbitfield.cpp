@@ -201,7 +201,7 @@ TEST(TBitField, is_not_equally_if_the_same_bf) {
     TBitField bf(10);
 
     // Act
-    bool result = (bf == bf);
+    bool result = (bf != bf);
 
     // Assert
     EXPECT_FALSE(result);
