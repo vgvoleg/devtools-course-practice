@@ -14,7 +14,7 @@ TEST(TBitField, when_len_is_positive) {
     ASSERT_NO_THROW(TBitField field(5));
 }
 
-TEST(TBitField, Get_Mem_Index) {
+TEST(TBitField, get_mem_index) {
     // Arrange
     const int n = 32;
     TBitField field(n);
@@ -23,7 +23,7 @@ TEST(TBitField, Get_Mem_Index) {
     EXPECT_EQ(1, field.GetMemIndex(32));
 }
 
-TEST(TBitField, Get_Length) {
+TEST(TBitField, get_length) {
     // Arrange
     int len = 3;
     TBitField field(len);
@@ -273,7 +273,7 @@ TEST(TBitField, logical_negation) {
     EXPECT_EQ(result, ~bf);
 }
 
-TEST(TBitField, Double_Cleaning) {
+TEST(TBitField, double_cleaning) {
     // Arrange
     const int size = 3;
     TBitField bf(size);

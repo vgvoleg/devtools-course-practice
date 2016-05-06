@@ -10,11 +10,7 @@ using std::string;
 typedef unsigned int TELEM;
 
 class TBitField {
- private:
-    int  BitLen;
-    TELEM *pMem;
-    int  MemLen;
- public:
+  public:
     explicit TBitField(int len);
     TBitField(const TBitField &bf);
     ~TBitField();
@@ -33,6 +29,10 @@ class TBitField {
     TBitField  operator|(const TBitField &bf);
     TBitField  operator&(const TBitField &bf);
     TBitField  operator~(void);
+  private:
+    int  BitLen;
+    TELEM *pMem;
+    int  MemLen;
 };
 
 #endif  // MODULES_BAYDINA_OLYA_BITFIELD_INCLUDE_TBITFIELD_H_

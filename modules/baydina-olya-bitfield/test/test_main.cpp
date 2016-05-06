@@ -1,4 +1,4 @@
-// Copyright Kulish_Sem 2016
+// Copyright 2016 Baydina Olya
 
 #include <gtest/gtest.h>
 
