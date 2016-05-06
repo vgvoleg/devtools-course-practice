@@ -196,43 +196,30 @@ TEST(InterpolSearch, can_do_search_mid_element) {
     EXPECT_EQ(tmp, 2);
 }
 
-TEST(InterpolSearch, can_do_search_left_of_center) {
+TEST(InterpolSearch, can_do_search_left_of_center_wrong_key) {
     // Arrange
-    const int size = 5;
-    const int myArr[size] = { 1, 2, 3, 4, 5 };
+    const int size = 8;
+    const int myArr[size] = { 5, 10, 15, 16, 18, 30, 35, 36 };
     InterpolSearch myIS(myArr, size);
 
     // Act
-    int tmp = myIS.InterpolationSearch(2);
+    int tmp = myIS.InterpolationSearch(11);
 
     // Assert
-    EXPECT_EQ(tmp, 1);
+    EXPECT_EQ(tmp, -1);
 }
 
-TEST(InterpolSearch, can_do_search_right_of_center) {
+TEST(InterpolSearch, can_do_search_right_of_center_wrong_key) {
     // Arrange
-    const int size = 5;
-    const int myArr[size] = { 1, 2, 3, 4, 5 };
+    const int size = 8;
+    const int myArr[size] = { 5, 10, 15, 16, 18, 30, 35, 36 };
     InterpolSearch myIS(myArr, size);
 
     // Act
-    int tmp = myIS.InterpolationSearch(4);
+    int tmp = myIS.InterpolationSearch(28);
 
     // Assert
-    EXPECT_EQ(tmp, 3);
-}
-
-TEST(InterpolSearch, can_do_search_left_element) {
-    // Arrange
-    const int size = 5;
-    const int myArr[size] = { 1, 2, 3, 4, 5 };
-    InterpolSearch myIS(myArr, size);
-
-    // Act
-    int tmp = myIS.InterpolationSearch(1);
-
-    // Assert
-    EXPECT_EQ(tmp, 0);
+    EXPECT_EQ(tmp, -1);
 }
 
 TEST(InterpolSearch, can_do_search_one_element) {

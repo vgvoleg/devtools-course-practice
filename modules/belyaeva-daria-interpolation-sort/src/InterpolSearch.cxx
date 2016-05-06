@@ -105,8 +105,5 @@ int InterpolSearch::InterpolationSearch(int key) {
         else
             return mid;
     }
-    if (Arr[left] == key)
-        return left;
-    else
-        return -1;
+    return -1;
 }
