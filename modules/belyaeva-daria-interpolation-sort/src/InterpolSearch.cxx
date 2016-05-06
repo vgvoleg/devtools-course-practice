@@ -4,6 +4,7 @@
 
 #include <stdlib.h>
 #include <string>
+#include <algorithm>
 #include <iostream>
 
 using std::swap;
@@ -43,11 +44,11 @@ bool InterpolSearch::operator==(const InterpolSearch & myIS) const {
     bool result = true;
     if (myIS.Size != Size) {
         result = false;
-    }
-    else {
+    } else {
         for (int i = 0; i < Size; i++) {
-            if (myIS.Arr[i] != Arr[i])
+            if (myIS.Arr[i] != Arr[i]) {
                 result = false;
+			}
         }
     }
     return result;
@@ -92,11 +93,11 @@ int InterpolSearch::InterpolationSearch(int key) {
     int mid;
     int left = 0;
     int right = Size - 1;
-    while (Arr[left] <= key && Arr[right] >= key)
-    {
+    while (Arr[left] <= key && Arr[right] >= key) {
         if (Arr[left] == Arr[right])
             return (Arr[left] == key ? left : -1);
-        mid = left + ((key - Arr[left]) * (right - left)) / (Arr[right] - Arr[left]);
+        mid = left + ((key - Arr[left]) * (right - left))
+	                    / (Arr[right] - Arr[left]);
         if (Arr[mid] < key)
             left = mid + 1;
         else if (Arr[mid] > key)
