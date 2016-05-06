@@ -33,7 +33,7 @@ TEST(InterpolSearch, can_create_object) {
     // Act
     InterpolSearch* myIS = new InterpolSearch(myArr, size);
 
-    //Assert
+    // Assert
     EXPECT_NE(nullptr, myIS);
 }
 
@@ -45,7 +45,7 @@ TEST(InterpolSearch, can_create_object_with_value) {
     // Act
     InterpolSearch myIS(myArr, size);
 
-    //Assert
+    // Assert
     EXPECT_EQ(myIS[0], 10);
 }
 
