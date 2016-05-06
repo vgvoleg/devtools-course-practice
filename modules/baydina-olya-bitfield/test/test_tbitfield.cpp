@@ -2,7 +2,6 @@
 
 #include "gtest/gtest.h"
 #include "include/tbitfield.h"
-#include "include/tset.h"
 
 
 TEST(TBitField, any_throw_with_negative_length) {
