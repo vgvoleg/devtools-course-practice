@@ -13,7 +13,7 @@ InterpolSearch::InterpolSearch(int _size) {
     if (_size < 0)
         throw std::string("Not permissible dimension");
     size = _size;
-    arr = new int[Size];
+    arr = new int[size];
     for (int i = 0; i < size; i++)
         arr[i] = 0;
 }
