@@ -1,6 +1,6 @@
 // Copyright 2016 Belyaeva Daria
 
-#include "InterpolationSearch.h"
+#include "include/InterpolationSearch.h"
 #include <gtest/gtest.h>
 
 int main(int argc, char **argv) {
