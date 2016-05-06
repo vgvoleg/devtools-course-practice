@@ -1,7 +1,7 @@
 // Copyright 2016 Belyaeva Daria
 
-#include <include/InterpolationSearch.h>
 #include <gtest/gtest.h>
+#include <include/InterpolationSearch.h>
 
 TEST(InterpolSearch, cant_create_object_with_incorrect_size) {
     // Arrange
