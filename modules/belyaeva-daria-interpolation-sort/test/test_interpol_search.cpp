@@ -23,15 +23,15 @@ TEST(InterpolSearch, can_create_object_with_correct_size) {
     // Arrange
 
     // Act & Assert
-    EXPECT_NO_THROW(InterpolSearch IS(5));
+    EXPECT_NO_THROW(InterpolSearch is(5));
 }
 
 TEST(InterpolSearch, initialization_with_zero_in_construction) {
     // Arrange
-    InterpolSearch IS(1);
+    InterpolSearch is(1);
 
     // Act & Assert
-    EXPECT_EQ(IS[0], 0);
+    EXPECT_EQ(is[0], 0);
 }
 
 TEST(InterpolSearch, can_create_object) {
@@ -60,26 +60,26 @@ TEST(InterpolSearch, can_create_object_with_value) {
 
 TEST(InterpolSearch, cant_address_to_negative_number_in_array) {
     // Arrange
-    InterpolSearch IS(1);
+    InterpolSearch is(1);
 
     // Act & Assert
-    EXPECT_ANY_THROW(IS[-1]);
+    EXPECT_ANY_THROW(is[-1]);
 }
 
 TEST(InterpolSearch, cant_address_to_number_bigger_than_size_of_array) {
     // Arrange
-    InterpolSearch IS(1);
+    InterpolSearch is(1);
 
     // Act & Assert
-    EXPECT_ANY_THROW(IS[2]);
+    EXPECT_ANY_THROW(is[2]);
 }
 
 TEST(InterpolSearch, can_address_to_normal_number_of_element) {
     // Arrange
-    InterpolSearch IS(1);
+    InterpolSearch is(1);
 
     // Act & Assert
-    EXPECT_NO_THROW(IS[0]);
+    EXPECT_NO_THROW(is[0]);
 }
 
 TEST(InterpolSearch, can_check_equality) {
@@ -129,10 +129,10 @@ TEST(InterpolSearch, can_check_inequality_with_different_size) {
 
 TEST(InterpolSearch, can_return_size) {
     // Arrange
-    InterpolSearch IS(3);
+    InterpolSearch is(3);
 
     // Act & Assert
-    EXPECT_EQ(IS.GetSize(), 3);
+    EXPECT_EQ(is.GetSize(), 3);
 }
 
 TEST(InterpolSearch, can_not_do_quick_sort_wrong_left) {

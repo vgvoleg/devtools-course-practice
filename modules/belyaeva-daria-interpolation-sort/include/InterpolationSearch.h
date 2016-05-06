@@ -17,8 +17,8 @@ class InterpolSearch {
 
     int InterpolationSearch(int key);
  private:
-     int* Arr;
-     int Size;
+     int* arr;
+     int size;
 };
 
 #endif  // MODULES_BELYAEVA_DARIA_INTERPOLATION_SORT_INCLUDE_INTERPOLATIONSEARCH_H_
