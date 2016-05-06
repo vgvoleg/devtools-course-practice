@@ -48,7 +48,7 @@ bool InterpolSearch::operator==(const InterpolSearch & myIS) const {
         for (int i = 0; i < Size; i++) {
             if (myIS.Arr[i] != Arr[i]) {
                 result = false;
-			}
+            }
         }
     }
     return result;
@@ -97,7 +97,7 @@ int InterpolSearch::InterpolationSearch(int key) {
         if (Arr[left] == Arr[right])
             return (Arr[left] == key ? left : -1);
         mid = left + ((key - Arr[left]) * (right - left))
-	                    / (Arr[right] - Arr[left]);
+                / (Arr[right] - Arr[left]);
         if (Arr[mid] < key)
             left = mid + 1;
         else if (Arr[mid] > key)
