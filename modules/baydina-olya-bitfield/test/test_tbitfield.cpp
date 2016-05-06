@@ -67,11 +67,11 @@ TEST(TBitField, throw1_in_Clr) {
 }
 
 TEST(TBitField, throw2_in_Clr) {
-	// Arrange
-	TBitField field(10);
+    // Arrange
+    TBitField field(10);
 
-	// Act & Assert
-	EXPECT_ANY_THROW(field.ClrBit(11));
+    // Act & Assert
+    EXPECT_ANY_THROW(field.ClrBit(11));
 }
 
 TEST(TBitField, set_to_zero) {
