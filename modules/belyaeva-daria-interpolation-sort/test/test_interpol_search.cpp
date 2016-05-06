@@ -170,6 +170,21 @@ TEST(InterpolSearch, can_do_quick_sort) {
     EXPECT_EQ(expectedResult, myIS);
 }
 
+TEST(InterpolSearch, can_do_quick_sort_one_more) {
+    // Arrange
+    const int size = 10;
+    const int myArr[size] = { 1, 3, 3, 2, 6, 6, 4, 5, 1, 1 };
+    InterpolSearch myIS(myArr, size);
+
+    // Act
+    myIS.QuickSort(0, size - 1);
+
+    // Assert
+    const int expectedArr[size] = { 1, 1, 1, 2, 3, 3, 4, 5, 6, 6 };
+    const InterpolSearch expectedResult(expectedArr, size);
+    EXPECT_EQ(expectedResult, myIS);
+}
+
 TEST(InterpolSearch, can_do_search_wrong_key) {
     // Arrange
     const int size = 5;
