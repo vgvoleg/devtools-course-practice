@@ -13,6 +13,7 @@ class MySort {
     int* intArr_;
     int length_;
     void merge(int first, int last);
+    void swap(int i);
  public:
     MySort(const int intArr[], int length);
     ~MySort();
