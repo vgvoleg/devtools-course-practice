@@ -3,8 +3,8 @@
 #include "include/InterpolationSearch.h"
 
 #include <stdlib.h>
-#include <string>
 #include <algorithm>
+#include <string>
 #include <iostream>
 
 using std::swap;
