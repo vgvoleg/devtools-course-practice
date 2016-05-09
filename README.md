@@ -4,6 +4,7 @@
 [![HTML][html-badge]][html]
 [![Build Status](https://travis-ci.org/UNN-VMK-Software/devtools-course-practice.svg?branch=master)](https://travis-ci.org/UNN-VMK-Software/devtools-course-practice)
 [![codecov](https://codecov.io/gh/UNN-VMK-Software/devtools-course-practice/branch/master/graph/badge.svg)](https://codecov.io/gh/UNN-VMK-Software/devtools-course-practice)
+
 <!-- [![Documentation](https://readthedocs.org/projects/devtools-course-practice/badge/?version=latest)](http://devtools-course-practice.readthedocs.org) -->
 
  - Нижегородский Государственный Университет им. Н.И. Лобачевского
@@ -32,9 +33,10 @@
 
 ![](https://codecov.io/gh/UNN-VMK-Software/devtools-course-practice/branch/master/graphs/icicle.svg)
 
-### Sunburst
+<!-- ### Sunburst
 
 ![](https://codecov.io/gh/UNN-VMK-Software/devtools-course-practice/branch/master/graphs/sunburst.svg)
+-->
 
 <!-- LINKS -->
 
