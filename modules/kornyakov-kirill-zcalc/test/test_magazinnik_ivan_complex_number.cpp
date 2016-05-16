@@ -81,15 +81,15 @@ TEST(Magazinnik_Ivan_ComplexNumberTest, Adding_Two_Epsilon_Number) {
     ASSERT_DOUBLE_EQ(expected_im, add.getIm());
 }
 
-TEST(Magazinnik_Ivan_ComplexNumberTest, Test_Create_Transcendental_Number) {
-    // Arrange
-    double re = M_E;
-    double im = M_PI;
-
-    // Act
-    ComplexNumber z(re, im);
-
-    // Assert
-    ASSERT_DOUBLE_EQ(re, z.getRe());
-    ASSERT_DOUBLE_EQ(im, z.getIm());
-}
+//TEST(Magazinnik_Ivan_ComplexNumberTest, Test_Create_Transcendental_Number) {
+//    // Arrange
+//    double re = M_E;
+//    double im = M_PI;
+//
+//    // Act
+//    ComplexNumber z(re, im);
+//
+//    // Assert
+//    ASSERT_DOUBLE_EQ(re, z.getRe());
+//    ASSERT_DOUBLE_EQ(im, z.getIm());
+//}
