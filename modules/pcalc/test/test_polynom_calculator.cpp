@@ -108,7 +108,7 @@ TEST_F(PolynomCalculatorTest, Can_Add_Polynoms) {
     Assert("1+6xyz^2+1x^2y");
 }
 
-TEST_F(PolynomCalculatorTest, Can_Add_Myself) {
+TEST_F(PolynomCalculatorTest, Can_Add_Himself) {
     // Arrange
     const vector<string> args = { "1", "1.5x^2y^0z^0-2.5x^3y^0z^0",
                                 "+", "1", "1" };
@@ -148,7 +148,7 @@ TEST_F(PolynomCalculatorTest, Can_Subtract_Polynoms) {
     Assert("-1+1x^2y-5x^3");
 }
 
-TEST_F(PolynomCalculatorTest, Can_Subtract_Myself) {
+TEST_F(PolynomCalculatorTest, Can_Subtract_Himself) {
     // Arrange
     const vector<string> args = { "1", "1.5x^2y^0z^0-2.5x^3y^0z^0",
                                  "-", "1", "1" };
