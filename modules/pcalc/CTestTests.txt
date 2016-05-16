@@ -35,7 +35,9 @@ set_tests_properties (${prefix}_can_Detect_Wrong_Number_Format
 
 add_test(
     NAME ${prefix}_can_Detect_Wrong_Polynoms_Format
-    COMMAND ${APPLICATION} 1 5x^3yt^0z^0
+    COMMAND ${APPLICATION} 
+    "1"
+    "5x^3yt^0z^0"
 )
 set_tests_properties (${prefix}_can_Detect_Wrong_Polynoms_Format
   PROPERTIES PASS_REGULAR_EXPRESSION "Wrong polynoms format!")
@@ -44,7 +46,10 @@ set_tests_properties (${prefix}_can_Detect_Wrong_Polynoms_Format
 
 add_test(
     NAME ${prefix}_can_Detect_Wrong_Operation_Format
-    COMMAND ${APPLICATION} 1 5x^3y^0z^0 *
+    COMMAND ${APPLICATION} 
+    "1"
+    "5x^3y^0z^0" 
+    "*"
 )
 set_tests_properties (${prefix}_can_Detect_Wrong_Operation_Format
   PROPERTIES PASS_REGULAR_EXPRESSION "No such operation!")
@@ -53,7 +58,12 @@ set_tests_properties (${prefix}_can_Detect_Wrong_Operation_Format
 
 add_test(
     NAME ${prefix}_can_Detect_Wrong_Number_Polynoms
-    COMMAND ${APPLICATION} -1 1.5x^2y^0z^0-2.5x^3y^0z^0 + 1 1
+    COMMAND ${APPLICATION} 
+    "-1"
+    "1.5x^2y^0z^0-2.5x^3y^0z^0"
+    "+"
+    "1"
+    "1"
 )
 set_tests_properties (${prefix}_can_Detect_Wrong_Number_Polynoms
   PROPERTIES PASS_REGULAR_EXPRESSION "Went abroad!")
@@ -62,7 +72,14 @@ set_tests_properties (${prefix}_can_Detect_Wrong_Number_Polynoms
 
 add_test(
     NAME ${prefix}_can_Detect_Wrong_Values_to_Calculate
-    COMMAND ${APPLICATION} 1 3x^2y^1z^1+1x^0y^0z^0 compute 1 a 3.5 2
+    COMMAND ${APPLICATION} 
+    "1"
+    "3x^2y^1z^1+1x^0y^0z^0"
+    "compute"
+    "1"
+    "a"
+    "3.5"
+    "2"
 )
 set_tests_properties (${prefix}_can_Detect_Wrong_Values_to_Calculate
   PROPERTIES PASS_REGULAR_EXPRESSION "Incorrect value!")
@@ -71,7 +88,12 @@ set_tests_properties (${prefix}_can_Detect_Wrong_Values_to_Calculate
 
 add_test(
     NAME ${prefix}_can_Detect_Wrong_Selected_Polynom
-    COMMAND ${APPLICATION} 1 1.5x^2y^0z^0-2.5x^3y^0z^0 + 2 1
+    COMMAND ${APPLICATION} 
+    "1"
+    "1.5x^2y^0z^0-2.5x^3y^0z^0"
+    "+"
+    "2"
+    "1"
 )
 set_tests_properties (${prefix}_can_Detect_Wrong_Selected_Polynom
   PROPERTIES PASS_REGULAR_EXPRESSION "Went abroad!")
