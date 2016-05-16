@@ -9,6 +9,7 @@
 
 using std::vector;
 using std::string;
+using ::testing::internal::RE;
 
 class PolynomCalculatorTest : public ::testing::Test {
  protected:
@@ -26,7 +27,7 @@ class PolynomCalculatorTest : public ::testing::Test {
     output_ = app_(argc, argv);
   }
   void Assert(const string& expected) {
-    EXPECT_TRUE(output_.find(expected) != string::npos);
+     EXPECT_TRUE(RE::PartialMatch(output_, RE(expected)));
   }
  private:
   PolynomCalculator app_;
@@ -105,7 +106,7 @@ TEST_F(PolynomCalculatorTest, Can_Add_Polynoms) {
                                 "+", "1", "2"};
     Act(args);
 
-    Assert("1+6xyz^2+1x^2y");
+    Assert("1\\+6xyz\\^2\\+1x\\^2y");
 }
 
 TEST_F(PolynomCalculatorTest, Can_Add_Himself) {
@@ -115,7 +116,7 @@ TEST_F(PolynomCalculatorTest, Can_Add_Himself) {
 
     Act(args);
 
-    Assert("3x^2-5x^3");
+    Assert("3x\\^2-5x\\^3");
 }
 
 TEST_F(PolynomCalculatorTest, Can_Add_Selected_Polynoms) {
@@ -125,7 +126,7 @@ TEST_F(PolynomCalculatorTest, Can_Add_Selected_Polynoms) {
                                 "+", "1", "4" };
     Act(args);
 
-    Assert("1+5x^2y");
+    Assert("1\\+5x\\^2y");
 }
 
 TEST_F(PolynomCalculatorTest, Can_Add_All_Polynoms) {
@@ -135,7 +136,7 @@ TEST_F(PolynomCalculatorTest, Can_Add_All_Polynoms) {
                                 "sum_all" };
     Act(args);
 
-    Assert("1+3x+5x^2y");
+    Assert("1\\+3x\\+5x\\^2y");
 }
 
 TEST_F(PolynomCalculatorTest, Can_Subtract_Polynoms) {
@@ -145,7 +146,7 @@ TEST_F(PolynomCalculatorTest, Can_Subtract_Polynoms) {
                                 "-", "1", "2" };
     Act(args);
 
-    Assert("-1+1x^2y-5x^3");
+    Assert("-1\\+1x\\^2y-5x\\^3");
 }
 
 TEST_F(PolynomCalculatorTest, Can_Subtract_Himself) {
@@ -164,7 +165,7 @@ TEST_F(PolynomCalculatorTest, Can_Subtract_Selected_Polynoms) {
                                 "-", "4", "1" };
     Act(args);
 
-    Assert("1+1x^2y");
+    Assert("1\\+1x\\^2y");
 }
 
 TEST_F(PolynomCalculatorTest, Can_Calculate_The_Polynom_At_A_Point) {
